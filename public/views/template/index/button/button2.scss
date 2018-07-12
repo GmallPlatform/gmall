@@ -31,6 +31,7 @@
     text-transform:$text-transform;
     background-color: $addColor2;
     border: $border-width solid $addColor1;
+    height: $height;
   border-radius: 0;
   color: $addColor3;
   font-weight: $font-weight;
@@ -98,6 +99,7 @@ fieldset[disabled] .btn:hover {
   background-color: $addColor4;
   border: $border-width  solid $addColor2;
   font-size: $font-size;
+  height: $height;
   color: $addColor2;
   font-weight: $font-weight;
 }
@@ -165,6 +167,5 @@ fieldset[disabled] .btn:hover {
     min-width: $width*0.7;
   }
 }
-
 
 

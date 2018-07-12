@@ -5,7 +5,7 @@ div(class=dj[key].wrapclass)
         div(class="slide-zoom col-lg-12 col-md-12 col-sm-12 col-xs-12",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
             if(dj[key].name)
                 h3(set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].name
-            div(id=dj[key].id,home-page-stuff-owl="owlslider"+dj[key]._id,zoom-img='true')
+            div(id=dj[key].id,home-page-stuff-owl="owlslider"+dj[key]._id,zoom-img='true',items=dj[key].qwslide,autoplay=dj[key].autoPlaySlider,duration=dj[key].duration)
                 div(class="nav-left")
                     i(class="icon-prev-img")
                 div(class="owl-carousel owl-theme",id="owlslider" +dj[key]._id)

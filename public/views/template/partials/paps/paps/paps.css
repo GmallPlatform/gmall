@@ -1,0 +1,17 @@
+img {
+    -o-fit-object:cover;
+    object-fit:cover;
+    object-position:50%50%;
+    -o-object-position:50%50%;
+}
+.thank {
+    display: block;
+}
+.mobile-wrapper img {
+    height: 15vh;
+}
+@media (max-width:768px) and (min-width: 400px){
+    h1 {
+        margin-top: 300px;
+    }
+}

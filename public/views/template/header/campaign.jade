@@ -1,0 +1,14 @@
+div(class=wrapclass)
+    div(class=mobileWrapper)
+        div(id=id,class="home-campaign")
+            div(class="home-section text-center")
+                a
+                    img(class="img-responsive",src=campaign[0].img)
+                    p=campaign[0].desc
+                    h3
+                        | до окончания акции осталось
+                    expiration-date(date=campaign[0].dateEnd)
+            div(class="clearfix")
+
+
+

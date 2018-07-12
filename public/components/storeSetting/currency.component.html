@@ -1,0 +1,36 @@
+<div class="currency col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+    <div class="cart-detail">
+        <h3 class="name-page text-center">изменение курса валют</h3>
+        <p>Основная валюта всегда имеет значение 1. Курсы других валют устанавливаются
+        по отношении к основной валюте. Например - основная валюта гривна. Ее курс равен 1. Вторая валюта доллар. Курс гривны к доллару
+        составляет 20 грн. Соответственно в систему необходимо внести курс 1/20=0.05, так как на сайте используется курс валют по отношению к основной валюте.</p>
+
+        <table class="table text-center table-currency" style="width: 100%">
+            <thead>
+            <th style="width: 20%">валюта</th>
+            <th style="width: 40%">курс</th>
+            <th style="width: 40%">отображение на сайте</th>
+            </thead>
+            <tr ng-repeat="(key,c) in $ctrl.item.currency track by $index">
+                <td ng-bind="key"></td>
+                <td>
+                    <input class="form-control"
+                           ng-model="$ctrl.item.currency[key][0]"
+                           ng-disabled="$ctrl.item.mainCurrency==key"
+                           type="number" ng-blur="$ctrl.save()">
+                </td>
+                <td>
+                    <input class="form-control"
+                           ng-model="$ctrl.item.currency[key][2]" ng-blur="$ctrl.save()">
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <p>Если в вашем магазине есть ценовой фильтр, а валюта учета товаров отличается от валюты сайта,
+        то для того, чтобы получать корректную выборку по цене, необходимо после изменения кутса пересчитать цены товаров</p>
+        <a class="btn btn-default btn-block" ng-click="$ctrl.recalculatePrice()">
+           <span class="link-success">пересчитать цену товаров с учетом изменненного курса</span>
+        </a>
+        <div class="clearfix"></div>
+    </div>
+</div>

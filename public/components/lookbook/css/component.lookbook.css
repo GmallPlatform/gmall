@@ -1,0 +1,40 @@
+
+.lookbook-list {
+    margin-top: 160px;
+}
+
+.lookbook-list-box {
+    padding-bottom: 40px;
+}
+.lookbook-list .nav-box-stuff {
+    position: fixed;
+    background-color: #fff;
+    top: 60px;
+    z-index: 1000;
+    width: 100%;
+    border-bottom: 3px solid #ddd;
+    padding-bottom: 4px;
+}
+.lookbook-list .add-goods {
+    font-size: 20px;
+}
+.lookbook-list .add-goods i {
+    font-size: 36px;
+}
+.lookbook-list .tab-nav-stuff a {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+/*pagination*/
+.news-stuff .nav-box-stuff .pagination {
+    margin: 15px 0 5px 0;
+}
+
+
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #93b1c6;
+    border-color: #93b1c6;
+}

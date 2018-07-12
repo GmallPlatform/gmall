@@ -1,0 +1,34 @@
+.category-edit {
+    padding-bottom: 40px;
+}
+.category-edit  .content-box {
+    margin-top: 100px;
+}
+/*elements*/
+.category-edit .form-control {
+    font-size: 18px;
+}
+
+.catalog .form-group label.control-label {
+    margin-top: 16px;
+}
+
+/*.category-edit .form-group.label-static label.control-label,
+.category-edit .form-group.label-floating.is-focused label.control-label,
+.category-edit .form-group.label-floating:not(.is-empty) label.control-label {
+    font-size: 14px;
+    color: #9c6a8d;
+    margin-top: 16px;
+}
+
+.category-edit .form-control,
+.category-edit .form-group.is-focused .form-control {
+    background-image: linear-gradient(#9c6a8d, #9c6a8d), linear-gradient(#D2D2D2, #D2D2D2);
+}
+
+.category-edit   .form-group label.control-label.label-select {
+    color: #9c6a8d;
+}*/
+/*media*/
+
+

@@ -1,0 +1,47 @@
+<div class="hover-top-menu">
+    <div class="text-center myMenu" id="wrapperForSections" >
+        <ul class="nav-center catalogDropDownMenu">
+            <li ng-repeat='section in $ctrl.sections'
+                ng-if="section.categories.length || section.child.length"
+                id="s{{section._id}}" class="mainli">
+                <a ng-if="::$ctrl.clickMenu && (section.categories.length>1||section.child.length)"class="section-name"><span ng-bind="section.name"></span></a>
+                <a ng-if="::$ctrl.clickMenu && (section.categories.length<2 && !section.child.length)"class="section-name" ui-sref="stuffs($ctrl.getSectionUrlParams(section))"><span ng-bind="section.name"></span></a>
+                <a ng-if="::!$ctrl.clickMenu"class="section-name" ui-sref="stuffs($ctrl.getSectionUrlParams(section))"><span ng-bind="section.name"></span></a>
+                <div class="innerDiv text-left" id="innerDiv{{$index}}" ng-if="section.categories.length>1||section.child.length">
+                    <div class="container container-menu">
+                        <ul ng-if="section.categories.length">
+                            <li class="category-in-section">
+                                <a ui-sref="stuffs($ctrl.getCategoryUrlParams(section))" ui-sref-opts="{reload:true}">
+                                    <span>Все категории</span>
+                                </a>
+                            </li>
+                            <li class="category-in-section" ng-repeat="category in section.categories track by $index">
+                                <a ui-sref="stuffs($ctrl.getCategoryUrlParams(section,category))" ui-sref-opts="{reload:true}">
+                                    <span ng-bind="category.name"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul ng-if="section.child.length">
+                            <li class="section-in-section" ng-repeat="child in section.child track by $index">
+                                <a class="category-name" ui-sref="stuffs($ctrl.getCategoryUrlParams(child,category))" ui-sref-opts="{reload:true}">
+                                    <span ng-bind="child.name"></span>
+                                </a>
+                                <ul>
+                                    <a ui-sref="stuffs($ctrl.getCategoryUrlParams(section))" ui-sref-opts="{reload:true}">
+                                        <span>Все категории</span>
+                                    </a>
+                                    <li ng-repeat="category in child.categories track by $index">
+                                        <a ui-sref="stuffs($ctrl.getCategoryUrlParams(child,category))" ui-sref-opts="{reload:true}">
+                                            <span ng-bind="category.name"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+

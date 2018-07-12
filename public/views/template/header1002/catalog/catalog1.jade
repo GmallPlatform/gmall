@@ -1,0 +1,79 @@
+li(class="nav-item")
+    div(class=dj[key].wrapclass+pullClass)
+        div(class=mobileWrapper)
+            menu-sections-pug
+                div(class="hover-top-menu")
+                    div(class="text-center myMenu",id="wrapperForSections")
+                        ul(class="nav-center catalogDropDownMenu")
+                            each section in sectionsMenu
+                                    li(id=section.id,class="mainli")
+                                        a(class="section-name",href=section.href)
+                                            span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                !=section.name
+                                        if(section.innerData)
+                                            div(class="innerDiv text-center", id=section.innerId)
+                                                div(class="container-menu text-left", style="display:inline-block")
+                                                    ul(class="first-li")
+                                                        if(store.newTag && section.newLink)
+                                                            li(class="category-in-section")
+                                                                a(class="new",href=section.tagHref+store.newTag)
+                                                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                        !=lang.new
+                                                        if(store.saleTag && section.saleLink)
+                                                            li(class="category-in-section")
+                                                                a(class="sale",href=section.tagHref+store.saleTag)
+                                                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                        !=lang.sale
+                                                        if(section.categories.length)
+                                                            li(class="category-in-section")
+                                                                a(class="all",href=section.allCategiriesHref)
+                                                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)=lang['allCategories']
+                                                            each category in section.categories1
+                                                                li(class="category-in-section")
+                                                                    a(href=category.href)
+                                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                            !=category.name
+
+                                                    if(section.categories2)
+                                                        ul
+                                                            each category in section.categories2
+                                                                li(class="category-in-section")
+                                                                    a(href=category.href)
+                                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                            !=category.name
+                                                    if(section.categories3)
+                                                        ul
+                                                            each category in section.categories3
+                                                                li(class="category-in-section")
+                                                                    a(href=category.href)
+                                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                            !=category.name
+                                                    if(brands.length)
+                                                        ul
+                                                            each brand in brands
+                                                                - var hrefB='/'+section.url+'/category?brand='+brand.url
+                                                                if(brand.display)
+                                                                    li(class="section-in-section first-li")
+                                                                        a(class="category-name", href=hrefB)
+                                                                            span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                                !=brand.name
+                                                                        ul
+                                                                            if(store.newTag)
+                                                                                li(class="category-in-section")
+                                                                                    a(class="new",href=hrefB + '&queryTag=' + store.newTag)
+                                                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                                            !=lang.new
+                                                                            if(store.saleTag)
+                                                                                li(class="category-in-section")
+                                                                                    a(class="sale",href=hrefB + '&queryTag=' + store.saleTag)
+                                                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                                            !=lang.sale
+                                                                            li(class="category-in-section")
+                                                                                a(class="all",href=hrefB)
+                                                                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)=lang['allCollection']
+                                                                            - for(var j=0;(j<brand.tags.length)&&(j<7);j++)
+                                                                                - var tag = brand.tags[j];
+                                                                                li(class="category-in-section")
+                                                                                    a(href='/' + section.url + '/category?brandTag=' + tag.url)
+                                                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                                            !=tag.name

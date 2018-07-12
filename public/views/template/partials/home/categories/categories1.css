@@ -1,0 +1,25 @@
+/*ideal*/
+  .home-categories  {
+    text-align: center;
+}
+  .home-categories .home-section img{
+    width: 100%;
+    border: 5px solid #fff;
+}
+
+  .home-categories .home-section h3 {
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    color: #fff;
+    letter-spacing: 2px;
+    transition: all .3s ease-out;
+}
+  .home-categories .home-section:hover h3 {
+    font-size: 36px;
+
+}
+
+
+
+

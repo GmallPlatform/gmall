@@ -1,0 +1,60 @@
+/*ideal*/
+
+/*menu-section-vertical*/
+
+/*.myMenu .catalogDropDownMenu a.section-name {
+    padding: 5px 20px;
+    text-transform: lowercase;
+    font-size: 20px;
+}
+.myMenu .catalogDropDownMenu a.section-name:hover {
+    opacity: 0.8;
+}
+.myMenu .catalogDropDownMenu .innerDiv {
+    background-color: #ebebeb;
+}
+.section-in-section {
+    border-left: 1px solid #ccc;
+}
+.myMenu .catalogDropDownMenu .innerDiv {
+    top: 30px;
+    z-index: 1030;
+}*/
+
+
+/*navbar-hover*/
+.nav-center {
+    font-size: 14px;
+    padding-left: 0;
+}
+.catalog {
+    display: inline-block;
+    margin-bottom: 0;
+}
+.catalog li {
+    list-style: none;
+    float: left;
+    padding: 0 17px;
+}
+.catalog li:hover,
+.catalog li:active {
+    border-bottom: 2px solid #4e4e4e;
+}
+.catalog li a {
+    display: inline-block;
+    /*font-stretch: ultra-condensed*/;
+    height: 57px;
+    line-height: 57px;
+    letter-spacing: 1px;
+    color: #333;
+
+}
+.catalog li a span{
+    line-height: 57px;
+}
+.catalog li a:hover,
+.catalog li a:focus {
+    color: #553412;
+
+}
+

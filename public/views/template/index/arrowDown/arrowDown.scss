@@ -1,0 +1,25 @@
+.nav-down {
+    z-index:1049;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    left:0;
+}
+
+.animate-style {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+}
+
+@media (max-width:380px) {
+    .icon-down-img {
+        margin-left: 0 !important;
+        background-size: 40px !important;
+    }
+
+}

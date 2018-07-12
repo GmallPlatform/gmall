@@ -1,0 +1,77 @@
+<div class="template-list" >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">компоненты страницы рабочего места</h3>
+        <div class="cart-detail">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right style-box">
+                <div class="form-group">
+                    <label  class="link-success">установить стили  страницы</label>
+                    <a ng-click="$ctrl.setColor($ctrl.item.workplace,'workplace')">
+                        <i class="material-icons" title="установить стиль">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="menu-box">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 head-box">название</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">наличие</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">номер шаблона</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">номер стиля</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box text-center">стиль блока</div>
+                <div class="clearfix"></div>
+                <div class="part-box">
+                    <div class="staticPage">
+                        <ul>
+                            <li ng-repeat="component in $ctrl.item.workplace.parts"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box form-group">
+                                    <i class="material-icons link-success">swap_vert</i>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+                                     <span ng-repeat="(key,part) in $ctrl.listOfBlocksForWorkplacePage" ng-if="component.name==key">
+                                         <span>
+                                             {{part}}
+                                         </span>
+                                     </span>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input ng-change="$ctrl.saveFieldTemplate('workplace',$ctrl.item.workplace)" ng-model="component.is" type="checkbox"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                    <ui-select ng-model="component.templ" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveFieldTemplate('workplace',$ctrl.item.workplace)">
+                                        <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                    <ui-select ng-model="component.style" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveFieldTemplate('workplace',$ctrl.item.workplace)">
+                                        <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                    <div class="form-group">
+                                        <a ng-click="$ctrl.setColor(component,'workplace')">
+                                            <i class="material-icons" title="установить стиль блока">opacity</i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,46 @@
+/*rk*/
+/*.stuff-box {
+    position: relative
+}*/
+.img-box {
+    overflow: hidden;
+}
+.img-goods {
+    width: 100%;
+}
+.price-block a {
+    cursor: default;
+}
+.price-block a:hover {
+    color: $color
+}
+/*.sort-box {
+    text-align: center;
+}*/
+/*.sort {
+    cursor: pointer;
+    transition: all 0.5s ease-out 0.1s;
+}*/
+/*.sort-name {
+    display: inline-block;
+}*/
+/*.sort:hover,
+.sort.sort-active {
+    border: 1px solid $mainColor;
+    background-color: transparentize($mainColor,.82);
+}*/
+/*.stuff-box:hover .half-shadow {
+    display: block;
+    z-index: 1025;
+
+}*/
+/*.mobile-wrapper .form-group {
+    margin-top: 0;
+    margin-bottom: 0;
+}*/
+/*@media (max-width: 1024px){
+    .stuff-box .half-shadow,
+    .stuff-box .title-block{
+        display: block;
+    }
+}*/

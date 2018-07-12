@@ -1,0 +1,15 @@
+/*ideal*/
+
+.page-stat.news.nav-group {
+    /*padding: 25px 10px;*/
+}
+.page-stat.news.nav-group a{
+    color: #333;
+}
+.page-stat.news.nav-group a:hover,
+.page-stat.news.nav-group a:focus{
+    color: #666;
+}
+.menu-section-vertical .page-stat.news a {
+    color: #333 ;
+}

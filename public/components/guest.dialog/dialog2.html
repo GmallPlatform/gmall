@@ -1,0 +1,104 @@
+<uib-tabset justified="true">
+    <uib-tab>
+        <uib-tab-heading>
+            <button type="button" class="btn  btn-chat-mini btn-lg">
+            </button>
+        </uib-tab-heading>
+        <div class="chat" ng-if="!questDialogCtrl.dialog">
+            <div class="chat-content" ng-if="questDialogCtrl.sellerIn">
+                <p class="chat-header">
+                    Добро пожаловать в чат. Введите Ваше сообщение и нажмите кнопку "начать чат".
+                </p>
+                <div class="chat-body">
+                    <form novalidate name='formDialog' ng-submit="questDialogCtrl.startDialog(formDialog)">
+                        <div class="form-group" ng-class="{ 'has-success': formDialog.name.$valid && questDialogCtrl.submitted,
+                                                      'has-error': formDialog.name.$invalid && questDialogCtrl.submitted }">
+                        <input ng-model="questDialogCtrl.user.name"
+                               ng-disabled="questDialogCtrl.user._id"
+                               ng-minlength="3"
+                               ng-maxlength="30"
+                               required
+                               name="name"
+                               class="form-control" placeholder="введите имя" >
+                            <span class="help-block" ng-show="(formDialog.name.$error.minlength ||
+                                                          formDialog.name.$error.required) && questDialogCtrl.submitted">
+                                введено менее 3-х символов
+                            </span>
+                            <span class="help-block" ng-show="formDialog.name.$error.maxlength && questDialogCtrl.submitted">
+                                введено более 20-ти символов
+                            </span>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-success': formDialog.message.$valid && questDialogCtrl.submitted,
+                                                      'has-error': formDialog.message.$invalid && questDialogCtrl.submitted }">
+                            <textarea ng-model="questDialogCtrl.message"
+                                      ng-minlength="3"
+                                      ng-maxlength="200"
+                                      required
+                                      name="message"
+                                      class="form-control" rows="4" placeholder="введите сообщение">
+
+                            </textarea>
+                            <span class="help-block" ng-show="(formDialog.message.$error.minlength ||
+                                                          formDialog.message.$error.required) && questDialogCtrl.submitted">
+                                введено менее 3-х символов
+                            </span>
+                            <span class="help-block" ng-show="formDialog.message.$error.maxlength && questDialogCtrl.submitted">
+                                введено более 200-ти символов
+                            </span>
+                        </div>
+                        <input type="submit" ng-disabled="questDialogCtrl.blockStartDialog"
+                           class="btn btn-lg btn-warning btn-block" value="начать чат">
+                    </form>
+
+                </div>
+            </div>
+            <div class="chat-content" ng-if="!questDialogCtrl.sellerIn">
+                <p class="chat-header">
+                    К сожалению, администратор не в сети. Воспользуйтесь формой обратной связи - оправьте свое сообщение.
+                </p>
+
+            </div>
+        </div>
+        <div ng-if="questDialogCtrl.dialog" >
+            <chat-box participant="questDialogCtrl.participant"
+                      seller="questDialogCtrl.seller"
+                      user="questDialogCtrl.user"
+                      dialog="questDialogCtrl.dialog"
+                      message="questDialogCtrl.message">
+            </chat-box>
+        </div>
+
+    </uib-tab>
+    <uib-tab>
+        <uib-tab-heading>
+            <button type="button" class="btn btn-lg btn-chat-mini dialog">
+            </button>
+        </uib-tab-heading>
+        <p class="chat-header">
+            Напишите сообщение и получите ответ, как только администратор будет в сети.
+        </p>
+        <feedback-message></feedback-message>
+    </uib-tab>
+    <uib-tab ng-if="global.get('store').val.notification['call']">
+        <uib-tab-heading>
+            <button type="button" class="btn btn-lg btn-chat-mini phone">
+            </button>
+        </uib-tab-heading>
+        <div ng-if="questDialogCtrl.sellerIn">
+            <call-from-store></call-from-store>
+        </div>
+
+
+        <div class="chat-content" ng-if="!questDialogCtrl.sellerIn">
+            <p class="chat-header">
+                К сожалению, никого нет дома. Воспользуйтесь другими каналами коммуникации(если конечно вы понимаете значение этих слов).
+            </p>
+
+        </div>
+    </uib-tab>
+
+</uib-tabset>
+
+
+
+

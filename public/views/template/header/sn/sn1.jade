@@ -1,0 +1,37 @@
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+        ul(class="social-links list-inline col-lg-12 col-md-12 col-sm-12 col-xs-12")
+            if(sn.fb && sn.fb.is)
+                li
+                    a(href=sn.fb.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate,class="icon-fb-img")
+
+            if(sn.gl && sn.gl.is)
+                li
+                    a(href=sn.gl.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate,class="icon-google-img")
+
+            if(sn.inst && sn.inst.is)
+                li
+                    a(href=sn.inst.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate,class="icon-inst-img")
+
+            if(sn.ok && sn.ok.is)
+                li
+                    a(href=sn.ok.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate,class="icon-ok-img")
+
+            if(sn.pin && sn.pin.is)
+                li
+                    a(href=sn.pin.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate,class="icon-pin-img")
+
+            if(sn.tw && sn.tw.is)
+                li
+                    a(href=sn.tw.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate,class="icon-tw-img")
+            if(sn.vk && sn.vk.is)
+                li
+                    a(href=sn.vk.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate,class="icon-vk-img")
+            div(class="clearfix")

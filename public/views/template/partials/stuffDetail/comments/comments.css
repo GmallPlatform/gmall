@@ -1,0 +1,14 @@
+.comments {
+    font-size: 14px;
+}
+.comments-header {
+    border-bottom: 1px dotted $mainColor;
+}
+.comments .date{
+    font-size: 14px;
+}
+.comments .name-user{
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 40px;
+}

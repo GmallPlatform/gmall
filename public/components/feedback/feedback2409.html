@@ -1,0 +1,39 @@
+<div class="chat-content">
+    <div class="chat-body">
+        <form id="ajax-contacts" name="feedbackBack" ng-submit="feedbackCtrl.sendMessage(feedbackBack)"  novalidate>
+            <fieldset>
+                <div class="form-group name-input" ng-class="{'has-error':feedbackBack.name.$invalid && feedbackBack.name.$dirty }">
+                    <input class="form-control" name="name" type="text" ng-model="mainFrameCtrl.feedback.name" placeholder="{{$ctrl.global.get('lang').val.name}}"
+                           ng-maxlength="30" ng-model-options="{'updateOn':'default blur','debounce':{'default':2500,'blur':0}}">
+                    <span class="help-block" ng-if="feedbackBack.name.$dirty" ng-messages="feedbackBack.name.$error">
+                        <span ng-message="maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+                    </span>
+                </div>
+
+                <div class="form-group email-input" ng-class="{'has-error':feedbackBack.email.$invalid && feedbackBack.email.$dirty }">
+                    <input class="form-control" ng-model-options="{'updateOn':'default blur','debounce':{'default':2500,'blur':0}}"
+                           name="email" type="email" ng-model="mainFrameCtrl.feedback.email" placeholder="e-mail" required>
+                    <span class="help-block" ng-if="feedbackBack.email.$dirty" ng-messages="feedbackBack.email.$error">
+                    <span ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</span>
+                    <span ng-message="email">{{$ctrl.global.get('langError').val.formatnot}}</span>
+                </span>
+                </div>
+                <div class="form-group message-input"  ng-class="{'has-error':feedbackBack.message.$invalid && feedbackBack.message.$dirty }">
+                    <textarea class="form-control" ng-model-options="{'updateOn':'default blur','debounce':{'default':2500,'blur':0}}"
+                              name="message" rows="3" cols="25" id="messageMsg" ng-model="feedbackCtrl.message" placeholder="{{$ctrl.global.get('langForm').val.message}}" ng-minlength="3" ng-maxlength="1000"></textarea>
+                    <span class="help-block" ng-if="feedbackBack.message.$dirty" ng-messages="feedbackBack.message.$error">
+                        <span ng-message="minlength">{{$ctrl.global.get('langError').val.errorMessage}}</span>
+                        <span ng-message="maxlength">{{$ctrl.global.get('langError').val.errorMessage}}</span>
+                    </span>
+                </div>
+                <!--<pre>{{feedbackBack|json}}</pre>-->
+                <div class="form-group">
+                    <button ng-disabled="feedbackCtrl.blockButton || feedbackBack.$invalid"
+                           class="btn btn-lg btn-project btn-block" name="submit" type="submit">
+                        {{$ctrl.global.get('langForm').val.sendamessage}}
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="tag-to-model select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выберите бренд</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" ng-if1="$ctrl.sections.length">
+            <h3 ng-bind="$ctrl.global.get('lang').val.section"></h3>
+            <div class="section-all">
+                <div class="section-name pull-left" ng-repeat="section in $ctrl.sections">
+                    <label>
+                        <input ng-model="$ctrl.section" value="{{section.url}}" type="radio">
+                        <span>{{section.name}}</span>
+                    </label>
+                    <label ng-repeat="child in section.child">
+                        <input ng-model="$ctrl.section" value="{{child.url}}" type="radio">
+                        <span>{{child.name}}</span>
+                    </label>
+                </div>
+
+
+            </div>
+
+            <ul>
+                <li class=" col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12  col-sm-offset-0 col-xs-12 col-xs-offset-0 " ng-repeat="filter in $ctrl.filters" style="margin-bottom: 10px">
+                    <div class="form-group tag-box">
+                        <form>
+                            <div ng-click="$ctrl.ok(filter)">
+                                <span  ng-bind="filter.name" ></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!--<div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</button>
+    </div>-->
+</div>
+
+
+
+

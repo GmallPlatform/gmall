@@ -1,0 +1,95 @@
+<div class="content-tab-box" ng-show="$ctrl.block=='homePage'"  ng-init="displayHelp=false">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="cart-detail">
+            <!--<h4 class="text-center name-box">компоненты главной страницы</h4>-->
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">наличие</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">количество блоков</div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 head-box">название блока</div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="part-box">
+                <div class="homePageDnd">
+                    <ul dnd-list="$ctrl.item.main"
+                        dnd-drop="$ctrl.dropCallback(item)"
+                        dnd-allowed-types="['home']">
+                        <li class="mb-40" ng-repeat="component in $ctrl.item.main"
+                            dnd-draggable="component"
+                            dnd-type="'home'"
+                            dnd-effect-allowed="move"
+                            dnd-moved="$ctrl.item.main.splice($index,1)"
+                            dnd-selected="models.selected = item"
+                            ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                            <div class="row" style="border-bottom: 1px dotted #ccc">
+                                <!--<pre>{{component|json}}</pre>-->
+                                <div class="col-lg-2">
+                                            <span ng-switch="component.name">
+                                                <span ng-switch-when="filterTags">группы</span>
+                                                <span ng-switch-when="slider">слайдер</span>
+                                                <span ng-switch-when="banner">баннер</span>
+                                                <span ng-switch-when="mission">миссия</span>
+                                                <span ng-switch-when="text">текст</span>
+                                                <span ng-switch-when="campaign">акции</span>
+                                                <span ng-switch-when="video">видео</span>
+                                                <span ng-switch-when="brandTags">коллекции</span>
+                                                <span ng-switch-when="brands">бренды</span>
+                                                <span ng-switch-when="categories">категории</span>
+                                                <span ng-switch-when="stuffs">товары</span>
+                                                <span ng-switch-when="news">новости</span>
+                                            </span>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input ng-change="$ctrl.saveField('main')" ng-model="component.is" type="checkbox"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <!--<pre>{{component.templ|json}}</pre>-->
+                                    <ui-select ng-model="component.templ" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveField('main')">
+                                        <ui-select-match placeholder="выберите номер">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <!--<div class="col-lg-2">
+                                    <span><i class="material-icons link-info">view_comfy</i></span>
+                                    <span><i class="material-icons link-info">dehaze</i></span>
+                                    <span></span>
+                                    <span></span>
+
+                                </div>-->
+                                <div class="col-lg-2">
+                                    <!--<pre>{{component.templ|json}}</pre>-->
+                                    <div ng-if="component.name!='slider'&& component.name!='banner'&& component.name!='video'&& component.name!='mission'&& component.name!='text'">
+                                        <ui-select ng-model="component.qty" skip-focusser="true" search-enabled="false" title="Выберите количество блоков"
+                                                   ng-change="$ctrl.saveField('main')">
+                                            <ui-select-match placeholder="количество блоков">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">название для блока</label>
+                                        <input type="text" class="form-control mb" ng-model="$ctrl.item.namebox"
+                                               lost-focus="$ctrl.saveField('namebox')"/>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

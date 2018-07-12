@@ -1,0 +1,9 @@
+.comments-list {
+    margin-top: 140px;
+}
+.comments-list .goods-name {
+    font-weight: 500;
+}
+.comments-list .thumbnail {
+    padding: 20px;
+}

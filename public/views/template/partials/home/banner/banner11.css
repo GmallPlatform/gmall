@@ -1,0 +1,14 @@
+/*tatiana*/
+.home-banner::after {
+    content:'';
+    height:100%;
+    width:100%;
+    background-image: url($imgPrevBlock);
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size:cover;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:-1;
+}

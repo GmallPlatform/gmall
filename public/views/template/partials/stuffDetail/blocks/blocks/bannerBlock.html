@@ -1,0 +1,6 @@
+<div class="container">
+    <h1 ng-if="block.name.length">{{block.name}}</h1>
+    <a ng-click="$ctrl.global.get('functions').val.cloneStore('smartcliniq')"><img class="img-responsive" ng-src="{{block.img}}"></a>
+    <p  ng-bind-html="block.desc|unsafe"></p>
+</div>
+

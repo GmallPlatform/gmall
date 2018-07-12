@@ -1,0 +1,171 @@
+<div class="nav-box-stuff">
+    <div class="tab-nav-stuff action text-center form-group">
+        <a class="btn btn-fab btn-fab-mini btn-success"
+           ng-click="$ctrl.createItem()"
+           title="создать новый купон">
+            <i class="material-icons link-white">add</i>
+        </a>
+    </div>
+    <div class="tab-nav-stuff text-center">
+        <paginator-main
+                paginate="$ctrl.paginate"
+                getlist="$ctrl.getList()"
+                scroll="{{scrollId}}">
+        </paginator-main>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="coupon-list">
+    <div class="stuff-admin">
+        <h3 class="name-page text-center">список купонов</h3>
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat="item in $ctrl.items">
+            <div class="cart-detail" ng-class="{'mobil':$ctrl.mobile}">
+                <h3 class="name-page text-center" ng-if="item.code">купон на первую покупку</h3>
+                <p  class="text-center" ng-if="item.code">показывается не авторизованным пользователям
+                    (данный купон используется в корзине только один раз при совершении первой покупки)</p>
+                <h3 class="name-page text-center" ng-if="!item.code">купон</h3>
+                <a title="удалить купон" ng-if="!item.code" class="btn btn-fab  pull-right" ng-click="$ctrl.deleteItem(item)" style="position: absolute; right: 40px; top:0px">
+                    <i class="material-icons link-warning">delete</i>
+                </a>
+                <p  class="text-center" ng-if="!item.code"></p>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <div class="block-edit">
+                        <div  ng-class="{'mobil':$ctrl.mobile}">
+                            <div class=" form-group label-floating">
+                                <label for="name1" class="control-label">название</label>
+                                <input type="text" id="name1" class="form-control name"
+                                       ng-model="item.name"
+                                       required
+                                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveField(item,'name')"/>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="togglebutton form-group ">
+                                    <label for="actived{{item._id}}">
+                                        <span ng-class="{'active':!item.actived}">не активный</span>
+                                        <input type="checkbox" id="actived{{item._id}}" ng-model="item.actived"
+                                               ng-change="$ctrl.saveField(item,'actived')">
+                                        <span ng-class="{'active':item.actived}">активный</span>
+                                    </label>
+                                </div>
+                                <div class="togglebutton form-group ">
+                                    <label for="hide{{item._id}}">
+                                        <span ng-class="{'active':!item.hide}">показывать witget</span>
+                                        <input type="checkbox" id="hide{{item._id}}" ng-model="item.hide"
+                                               ng-change="$ctrl.saveField(item,'hide')">
+                                        <span ng-class="{'active':item.hide}">не показывать witget</span>
+                                    </label>
+                                </div>
+                                <div class=" form-group label-floating">
+                                    <label for="dalay" class="control-label">начало показа witget через (сек)</label>
+                                    <input id="dalay" class="form-control " ng-model="item.delay" lost-focus="$ctrl.saveField(item,'delay')"/>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div>
+                                    <span>валюта купона</span>
+                                    <ui-select ng-model="item.currency"
+                                               append-to-body="true"
+                                               ng-change="$ctrl.saveField(item,'currency')">
+                                        <ui-select-match placeholder="выберите валюту">
+                                            <span ng-bind="$select.selected"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="item in ($ctrl.global.get('store').val.currencyArr | filter: $select.search)">
+                                            <span ng-bind="item"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="togglebutton form-group ">
+                                    <label for="condition{{item._id}}">
+                                        <span ng-class="{'active':!item.condition}">процент</span>
+                                        <input type="checkbox" id="condition{{item._id}}" ng-model="item.condition"
+                                               ng-change="$ctrl.saveField(item,'condition')">
+                                        <span ng-class="{'active':item.condition}">сумма</span>
+                                    </label>
+                                </div>
+                                <div class=" form-group label-floating">
+                                    <label for="campaignsum" class="control-label">размер скидки </label>
+                                    <input id="campaignsum" class="form-control " ng-model="item.val" lost-focus="$ctrl.saveField(item,'val')"/>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="block-edit">
+                        <h4 class="name-box text-center">управление доступом к купону</h4>
+
+                        <!--<a  title="создать новость"  class="btn btn-fab btn-fab-mini" ng-click="$ctrl.createNews(item)">
+                            <i class="material-icons link-success">fiber_new</i>
+                        </a>-->
+                        <div  ng-class="{'mobil':$ctrl.mobile}">
+                            <div  class="form-group" ng-if="$ctrl.subscibtionList.list">
+                                <label>список пользователей (рассылок)</label>
+                                <ui-select multiple ng-model="$ctrl.userLists"
+                                           search-enabled="false"
+                                           skip-focusser="false">
+                                    <ui-select-match allow-clear="true" placeholder="выберать список">
+                                        {{$item.value}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="person.key as (key, person) in $ctrl.subscibtionList.list">
+                                        {{person.value}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <h4 class="name-box text-center">для выбранного списка пользователей</h4>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <button class="btn btn-warning" ng-click="$ctrl.useCoupon(item._id)" ng-disabled="!$ctrl.userLists.length">сделать купон использованным</button>
+                                    <p>купон станет недоступен в корзине для указанной группы подписчиков</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <button class="btn btn-success" ng-click="$ctrl.cancelCoupon(item._id)" ng-disabled="!$ctrl.userLists.length">сделать купон не использованным</button>
+                                    <p>купон станет опять доступен для указанной группы подписчиков</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4  col-md-4 col-sm-12 col-xs-12">
+                    <div class="thumbnail sticker">
+                        <h4 class="text-center name-box">фото купона</h4>
+                        <load-image
+                                upload-url="/api/collections/Photo/fileUploadBig?collectionName=Coupon"
+                                item-id="{{item._id}}"
+                                item-resourse="$ctrl.Items"
+                                file-src="item.img"
+                                name-img="img">
+                        </load-image>
+                    </div>
+                    <div class="block-edit">
+                        <h4 class="text-center name-box"  ng-click="isCollapsed[$index] = !isCollapsed[$index]" style="cursor: pointer">добавить/изменить текстовый блок</h4>
+                        <div class="editor form-group">
+                            <div uib-collapse="isCollapsed[$index]" text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                 ng-change="$ctrl.saveField(item,'desc',200)"
+                                 ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                                 ng-model="item.desc"
+                                 ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                                 ta-text-editor-class="border-around"
+                                 ta-html-editor-class="border-around">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+
+
+                </div>
+            </div>
+        <div class="clearfix"></div>
+        </div>
+
+    </div>
+</div>
+
+
+

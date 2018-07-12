@@ -1,0 +1,72 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="stuff-list-wrapper",id="items-list-wrapper")
+
+            div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12")
+                div(class="container")
+                    h1=dj[key].listName
+                    table(class="table table-striped table-bordered")
+                        thead
+                            tr
+                                th()
+                                    span=lang.nomination
+
+                                th()
+                                    span=lang.duration
+
+                                th()
+                                    span=lang.cost
+                        tbody
+                            each item,$index in dj[key].items
+                                if(item.sortsOfStuff && item.sortsOfStuff.differentPrice)
+                                    each sort,tag in item.stock
+                                        tr
+                                            td(scope="row")
+                                                p
+                                                    a(href=item.link)
+                                                        span=item.name
+                                                        if(dj[key].filterTags[tag])
+                                                            span &nbsp
+                                                            span=dj[key].filterTags[tag]
+
+                                            td()
+                                                span=item.timePart * 15
+                                                span &nbsp;
+                                                span=lang.minute
+
+
+                                            td()
+                                                span=lang.from
+                                                span &nbsp;
+                                                if(sort.price.toFixed)
+                                                    span=sort.price.toFixed(dj[key].formatPrice)
+                                                else
+                                                    span=Number(sort.price).toFixed(dj[key].formatPrice)
+                                                span &nbsp;
+                                                span=dj[key].currency
+                                else
+                                    tr
+                                        td(scope="row")
+                                            p
+                                                a(href=item.link)
+                                                    span=item.name
+
+                                        td()
+                                            span=item.timePart * 15
+                                            span &nbsp;
+                                            span=lang.minute
+
+
+                                        td()
+                                            span=lang.from
+                                            span &nbsp;
+                                            if(item.price)
+                                                span=Number(item.price).toFixed(dj[key].formatPrice)
+                                            else
+                                                span='0.00'
+                                            span &nbsp;
+                                            span=dj[key].currency
+                if(titles.desc)
+        div(class="seo-desc col-lg-12 col-md-12 col-sm-12 col-xs-12 ")
+            |!{titles.desc}
+div(class="clearfix")

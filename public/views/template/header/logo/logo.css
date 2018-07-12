@@ -1,0 +1,23 @@
+/*cliniq*/
+ img.img-logo {
+    margin: 0 auto;
+    width: $width;
+    transition: all  1s ease-in-out 0.5s;
+}
+.navbar-toggle-slide.navbar-toggle-slide-mini img.img-logo {
+    width: 50px;
+}
+@media (max-width: 550px) {
+    .logo-top img{
+        width: 50px;
+    }
+}
+.mobile-wrapper .logo-top,
+.tablet-wrapper .logo-top {
+    text-align: center;
+}
+.mobile-wrapper .logo-top img,
+.tablet-wrapper .logo-top img {
+    /*display: inline-block;*/
+    margin-top: 5px;
+}

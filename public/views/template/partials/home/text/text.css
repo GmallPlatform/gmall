@@ -1,0 +1,41 @@
+.background-logo {
+    background-color: $background-color;
+    color:$color;
+}
+.mobile-wrapper  h4 {
+    font-size: 22px;
+}
+.mobile-wrapper p{
+    font-size: 16px;
+}
+.hideLink {
+    display: none;
+}
+.collapsedText{
+    overflow-y: hidden;
+    height: 100px;
+    transition: all ease-in-out 0.5s;
+}
+.textInBlock {
+    transition: all ease-in-out 0.5s;
+}
+.textInBlock.collapsedText {
+    box-shadow: inset 0px -95px 70px -35px white;
+    transition: all ease-in-out 0.5s;
+}
+.desc {
+    position: relative;
+    z-index: -1;
+}
+table {
+    width: 100%
+}
+tr {
+    border-bottom: 1px solid #ccc;
+}
+td {
+    padding-top: 10px;
+    min-width: 40px;
+    padding-right: 5px;
+    padding-left: 5px;
+}

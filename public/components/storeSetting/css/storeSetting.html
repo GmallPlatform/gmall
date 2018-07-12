@@ -1,0 +1,547 @@
+<div class="store-setting col-lg-12 col-md-12 col-sm-12 col-xs-12" id="filterBlock" ng-init="block='components'" ng-if="$ctrl.item">
+    <div class="row">
+        <div class="nav-box">
+            <div class="content-tab-nav">
+                <div class="tab-nav col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                    <a onclick="window.history.back()">
+                        <i class="material-icons link-warning">reply</i>
+                    </a>
+                </div>
+                <div class="tab-nav col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center" ng-class="{'active':block=='components'}">
+                    <a class="tab-nav-link"
+                       ng-click="block='components'">
+                       базовые настройки
+                    </a>
+                </div>
+                <div class="tab-nav col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center" ng-class="{'active':block=='blocks'}">
+                    <a class="tab-nav-link"
+                       ng-click="block='blocks'">
+                        компоненты сайта
+                    </a>
+                </div>
+               <div class="tab-nav col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center" ng-class="{'active':block=='technics'}">
+                    <a class="tab-nav-link"
+                       ng-class="{'btn-fab-mini':global.get('mobile')}"
+                       data-toggle="tooltip"
+                       ng-click="block='technics'"
+                       data-placement="bottom"
+                       data-original-title="галерея фото">
+                        технические данные
+                    </a>
+                </div>
+                <div class="tab-nav col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center" ng-class="{'active':block=='seo'}">
+                    <a class="tab-nav-link"
+                       ng-class="{'btn-fab-mini':global.get('mobile')}"
+                       ng-click="block='seo'"
+                       data-toggle="tooltip"
+                       data-placement="bottom"
+                       data-original-title="управление группами">
+                        SEO данные
+                    </a>
+                </div>
+                 <div class="tab-nav col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center" ng-class="{'active':block=='shop'}">
+                    <a class="tab-nav-link"
+                       ng-click="block='shop'">
+                        настройки продаж
+                    </a>
+                </div>
+                <div class="tab-nav col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center" ng-class="{'active':block=='message'}">
+                    <a class="tab-nav-link"
+                       ng-click="block='message'">
+                        письма
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-show="block=='components'"  ng-init="displayHelp=false">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">основные компоненты</h4>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label for="name" class="control-label">название сайта</label>
+                        <input type="text"
+                               placeholder="название"
+                               id="name"
+                               class="form-control name"
+                               ng-model="$ctrl.item.name"
+                               lost-focus="$ctrl.saveField('name')"
+                               required/>
+                    </div>
+                </div>
+
+                <!--<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group  label-floating">
+                        <label for="subDomain" class="control-label">поддомен</label>
+                        <input type="text" placeholder="subDomain" id="subDomain" class="form-control mb"
+                                   ng-model="$ctrl.item.subDomain" required ng-init="$ctrl.item.disabled=flase"/>
+                            <check-unique-field-in-base
+                                    result="$ctrl.item.disabled"
+                                    msg="такой поддомен уже используется"
+                                    $ctrl.items="$ctrl.items"
+                                    field="subDomaim"
+                                    $ctrl.item="$ctrl.item"
+                                    color="red">
+                            </check-unique-field-in-base>
+                        <p style="color:red" ng-if="$ctrl.item.disabled">такой поддомен уже используется</p>
+                    </div>
+                </div>-->
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label for="name" class="control-label">url</label>
+                        <span class="form-control">
+                            <strong>http://{{$ctrl.item.subDomain}}.gmall.io</strong>
+                        </span>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group" ng-if="$ctrl.config">
+                        <label  class="control-label">единицы измерения товаров</label>
+                        <ui-select multiple ng-model="$ctrl.item.unitOfMeasure" on-select="$ctrl.onSelected()"
+                                   ng-change="$ctrl.saveFiled('unitOfMeasure')" style="width: 300px;">
+                            <ui-select-match placeholder="выберите значения...">{{$item}}</ui-select-match>
+                            <ui-select-choices repeat="opt in $ctrl.config.unitOfMeasure">{{ opt }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group">
+                        <p> после изменения валют установите курсы в ююююююю</p>
+                        <label  class="control-label">валюты используемые на сайте</label>
+                        <ui-select multiple ng-model="$ctrl.item.currencyArr" on-select="$ctrl.onSelected()"
+                                   ng-change="$ctrl.saveFiled('currencyArr')" style="width: 300px;">
+                            <ui-select-match placeholder="выберите значения...">{{$item}}</ui-select-match>
+                            <ui-select-choices repeat="opt in $ctrl.config.currency">{{ opt }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6" ng-if="$ctrl.item.mainCurrency && $ctrl.item.currencyArr.length">
+                    <div  class="form-group">
+                        <label  class="control-label">основная валюта сайта</label>
+                        <ui-select ng-if="$ctrl.item.currencyArr" ng-model="$ctrl.item.mainCurrency" on-select="$ctrl.onSelected()"
+                                   ng-change="$ctrl.saveFiled('mainCurrency')" style="width: 300px;">
+                            <ui-select-match placeholder="выберите значения...">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="opt in $ctrl.item.currencyArr">{{ opt }}</ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="favicon thumbnail">
+                        <h4 class="text-center name-box">favicon</h4>
+                        <p>значок в формате .ico, который будет отображаться на вкладке страницы</p>
+                        <load-image
+                                upload-url="/api/collections/Photo/fileUploadSticker?collectionName=Store"
+                                item-id="{{$ctrl.item._id}}"
+                                item-resourse="$ctrl.Items"
+                                file-src="$ctrl.item.favicon"
+                                name-img="favicon">
+                        </load-image>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="logo thumbnail">
+                        <h4 class="text-center name-box">логотип</h4>
+                        <p>логотип компании в формате .png на прозрачном фоне </p>
+                        <load-image
+                                upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                item-id="{{$ctrl.item._id}}"
+                                item-resourse="$ctrl.Items"
+                                file-src="$ctrl.item.logo"
+                                name-img="logo">
+                        </load-image>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="background thumbnail">
+                        <h4 class="text-center name-box">background для сайта</h4>
+                        <p>для фона сайта используйте только бесшовное паттерное изображение</p>
+                        <load-image
+                                upload-url="/api/collections/Photo/fileUploadFullImg?collectionName=Store"
+                                item-id="{{$ctrl.item._id}}"
+                                item-resourse="$ctrl.Items"
+                                file-src="$ctrl.item.background"
+                                name-img="background">
+                        </load-image>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="content-tab-box" ng-show="block=='blocks'"  ng-init="displayHelp=false">
+        <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="cart-detail">
+                <h4  class="name-box text-center">выберите тип меню сайта</h4>
+                <p>на сайте может использоваться три типа меню<br>
+                    - фиксированное сверху, при наведении на которое мышкой появляется подменю,<br>
+                    - слайд-меню, появляющееся справа,<br>
+                    - слайд-меню, появляющееся слева</p>
+                <div class="radio radio-primary">
+                    <label>
+                        <input ng-model="$ctrl.item.slideMenu" value="left" type="radio" ng-change="$ctrl.saveFiled('slideMenu')"id="slide"/>
+                        слайд-меню слева
+                    </label>
+                </div>
+                <div class="radio radio-primary">
+                    <label>
+                        <input ng-model="$ctrl.item.slideMenu" value="right"type="radio" ng-change="$ctrl.saveFiled('slideMenu')"id="video"/>
+                        слайд-меню справа
+                    </label>
+                </div>
+                <div class="radio radio-primary">
+                    <label>
+                        <input ng-model="$ctrl.item.slideMenu" value='' type="radio" ng-change="$ctrl.saveFiled('slideMenu')"id="notall"/>
+                        верхнее меню
+                    </label>
+                </div>
+                <div class="clearfixs"></div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="cart-detail">
+                <h4  class="name-box text-center">выберите объекты для новинок и распродажи</h4>
+                <p class="text-center">выберите группу товаров, на которую будет переходить покупатель </p>
+                <div class="form-group col-lg-6 text-center">
+                    <h4 class="name-box">при нажатии на ссылку NEW</h4>
+                    <a class="col-lg-8" ng-click="$ctrl.selectTag('newTag')">
+                        <h4 ng-bind="$ctrl.item.newTag.name"></h4>
+                        <i class="material-icons link-success">cached</i>
+                    </a>
+                    <a class="col-lg-4 text-left" ng-click="$ctrl.deleteTag('newTag')">
+                        <h4>
+                            <i class="material-icons link-warning">delete</i>
+                        </h4>
+                    </a>
+                </div>
+
+                <div class="form-group col-lg-6 text-center">
+                    <h4 class="name-box">при нажатии на ссылку SALE</h4>
+                    <a class="col-lg-8" ng-click="$ctrl.selectTag('saleTag')">
+                        <h4 ng-bind="$ctrl.item.saleTag.name"></h4>
+                        <i class="material-icons link-success">cached</i>
+                    </a>
+
+                    <a class="col-lg-4 text-left" ng-click="$ctrl.deleteTag('saleTag')">
+                        <h4>
+                            <i class="material-icons link-warning">delete</i>
+                        </h4>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="name-box">укажите ссылки на страницы социальных сетей</h4><!--todo сделать еще пинтерест и инстаграмм-->
+                <p>для перехода с сайта на страницы ваших соцсетей поставьте соответствующие метки и вставьте адрес страниц</p>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.item.sn.fb.is" type="checkbox" ng-change="$ctrl.saveFiled('sn')"id="fb"/>
+                            fb
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"  ng-if="$ctrl.item.sn.fb.is">
+                        <label for="fb1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.item.sn.fb.link" lost-focus="$ctrl.saveFiled('sn')"id="fb1" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.item.sn.vk.is" type="checkbox" id="vk" ng-change="$ctrl.saveFiled('sn')"/>
+                            vk
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.item.sn.vk.is">
+                        <label for="vk1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.item.sn.vk.link" lost-focus="$ctrl.saveFiled('sn')"id="vk1" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.item.sn.tw.is" type="checkbox" id="tw" ng-change="$ctrl.saveFiled('sn')"/>
+                            tw
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.item.sn.tw.is">
+                        <label for="tw1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.item.sn.tw.link" lost-focus="$ctrl.saveFiled('sn')"id="tw1"  class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.item.sn.gl.is" type="checkbox" id="gl" ng-change="$ctrl.saveFiled('sn')"/>
+                            gl+
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.item.sn.gl.is">
+                        <label for="gl1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.item.sn.gl.link" lost-focus="$ctrl.saveFiled('sn')"id="gl1"  class="form-control"/>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-12" ng-if="$ctrl.item.template.footer">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">текст в футере</h4>
+                <p>для отображения контактной или какой-либо другой дополнительной информации в футере сайта внесите ее в этот блок </p>
+                <div class="editor form-group">
+                    <div text-angular ng-blur="$ctrl.saveFiled('footer',200)"
+                         ta-toolbar="[['h3','h4','p','insertLink'],['bold','italics','ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull']]"
+                         ng-model="$ctrl.item.footer.text"
+                         ta-text-editor-class="border-around"
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+                <h4 class="text-center name-box">адрес для обратной связи</h4>
+                <p>укажите адрес электронной почты, на которую будут приходить письма из формы обратной связи</p>
+                <div  class="form-group  label-floating">
+                    <label for="feedbackEmail" class="control-label">адрес для обратной связи</label>
+                    <input type="text" placeholder="feedbackEmail" id="feedbackEmail" class="form-control mb" ng-model="$ctrl.item.feedbackEmail" lost-focus="$ctrl.saveFiled('feedbackEmail')"/>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">текст-помощник для страницы корзины</h4>
+                <p>если вы хотите, чтобы в корзине отображался дополнительный текст с пояснениями об оформлении заказа, поставьте отметку внесите его в этот блок </p>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-change="$ctrl.saveFiled('helper')"
+                               placeholder=title id="helper"  ng-model="$ctrl.item.helper"/>
+                        добавить дополнительный текст-помощник
+                    </label>
+                </div>
+                <div class="editor form-group"><!--todo сделать правильно этот блок-->
+                    <div text-angular ng-blur="$ctrl.saveFiled('footer',200)"
+                         ta-toolbar="[['h3','h4','p','insertLink'],['bold','italics','ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull']]"
+                         ng-model="$ctrl.item.cart.text"
+                         ta-text-editor-class="border-around">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-show="block=='technics'"  ng-init="displayHelp=false">
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="name-box text-center">уведомления</h4>
+                <div  class="form-group">
+                    <ul>
+                        <li ng-repeat="not in listEditCtrl.config.notification">
+                            <div class="form-group label-floating">
+                                <label for="rad{{$index}}" class="control-label">{{not}}</label>
+                                <input type="checkbox" class="form-control" id="rad{{$index}}" ng-model="$ctrl.item.notification[not]">
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="name-box text-center"> счетчики слежения</h4>
+                <p>
+                    в яндекс метрике убрать номер счетчика из переменной try { w.yaCounter
+                    и заменить все двойные кавычки на одинарные,<br>
+                    убрать все теги и полностью удалить тег noscript со всем содержимым,
+                    оставить чистым JS
+                </p>
+                <a class="btn btn-success btn-lg" ng-if="!$ctrl.item.counters || $ctrl.item.counters.length<6" ng-click="$ctrl.item.counters.push({name:'',code:''})">
+                    ДОБАВИТЬ СЧЕТЧИК
+                </a>
+                <div ng-repeat="counter in $ctrl.item.counters">
+                    <div class="col-lg-3">
+                        <div  class="form-group label-floating ">
+                            <label for="namecounter{{$index}}" class="control-label">название счетчика</label>
+                            <input type="text" id="namecounter{{$index}}" class="form-control" ng-model="counter.name" lost-focus="$ctrl.saveFiled('counters')"/>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div  class="form-group label-floating">
+                            <label for="pageDescription" class="control-label">код счетчика</label>
+                            <textarea rows="8" id="codecounter{{$index}}" class="form-control" ng-model="counter.code" lost-focus="$ctrl.saveFiled('counters')"></textarea>
+                        </div>
+                    </div>
+                    <div  class="form-group col-lg-2">
+                        <a class="btn btn-fab" ng-click="$ctrl.item.counters.splice($index,1)">
+                            <i class="material-icons link-warning">delete</i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-show="block=='seo'"  ng-init="displayHelp=false">
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">SEO - данные для метатегов по умолчанию</h4>
+                <p class="col-lg-8 col-lg-offset-2">внесите стандартные значения метатегов description keywords title, которые будут отображаться на страницах сайта,
+                    если дополнительно не будут созданы отдельные SEO-блоки для каждой страницы в отдельности</p>
+                <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="title" class="control-label">заголовок</label>
+                        <input type="text" placeholder=title id="title" class="form-control mb" ng-model="$ctrl.item.seo.title"
+                               lost-focus="$ctrl.saveFiled('seo')"/>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="pageKeyWords" class="control-label">ключевые слова</label>
+                        <textarea lost-focus="$ctrl.saveFiled('seo')"
+                                rows="4" id="pageKeyWords" class="form-control" ng-model="$ctrl.item.seo.keywords"></textarea>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="pageDescription" class="control-label">описание</label>
+                        <textarea lost-focus="$ctrl.saveFiled('seo')"
+                                rows="4"id="pageDescription" class="form-control" ng-model="$ctrl.item.seo.description"></textarea>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-show="block=='shop'"  ng-init="displayHelp=false">
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">основные настройки для расчета цен</h4>
+                <p> внесите базовые размеры наценки для розницы и скидки для распродажи в %, количество единиц,
+                    с которого начиает действовать оптовая цена, а также электронный адрес, на который будут поступать уведомления о заказах</p>
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="salemail" class="control-label">адрес для уведомлений о заказах</label>
+                        <input type="text"  id="salemail" class="form-control" ng-model="$ctrl.item.seller.salemail" lost-focus="$ctrl.saveFieldSeller('salemail')"/>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div  class="form-group label-floating">
+                        <label for="quantity" class="control-label">опт с колличества</label>
+                        <input type="text" id="quantity" class="form-control" ng-model="$ctrl.item.seller.opt.quantity" lost-focus="$ctrl.saveFieldSeller('opt')"/>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div  class="form-group label-floating">
+                        <label  class="control-label">% наценки для розницы</label>
+                        <input type="text"  class="form-control" ng-model="$ctrl.item.seller.retail" lost-focus="$ctrl.saveFieldSeller('retail')"/>
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div  class="form-group label-floating">
+                        <label  class="control-label">% скидки для распродажи</label>
+                        <input type="text"  class="form-control" ng-model="$ctrl.item.seller.sale" lost-focus="$ctrl.saveFieldSeller('sale')"/>
+                    </div>
+                </div>
+                <!--<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="sum" class="control-label">опт с суммы</label>
+                        <input type="text" id="sum" class="form-control" ng-model="$ctrl.item.seller.opt.sum"/>
+                    </div>
+                </div>-->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="name-box text-center">данные для настройки сервиса отправки рассылок</h4>
+                <p>для настройки сервиса отправки рассылок необходимо внести следующие данные</p><!--todo сынок должен здесь написать и указать ссылку на нужный сайт-->
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="api_key" class="control-label">api_key из mailgun</label>
+                        <input type="text" id="api_key" class="form-control" ng-model="$ctrl.item.seller.mailgun.api_key" lost-focus="$ctrl.saveFieldSeller('mailgun')"/>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="domain" class="control-label">domain из mailgun</label>
+                        <input type="text" id="domain" class="form-control" ng-model="$ctrl.item.seller.mailgun.domain" lost-focus="$ctrl.saveFieldSeller('mailgun')"/>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="name-box text-center">данные для оплаты</h4>
+                <p>внесите данные, по которым покупатель сможет оплатить оформленный заказ.Эти данные будут отображаться только в письме,
+                    которое приходит покупателю после оформления заказа</p>
+                <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="payInfo" class="control-label">данные для оплаты</label>
+                        <textarea rows='4' placeholder="payInfo" id="payInfo" class="form-control" ng-model="$ctrl.item.seller.payInfo" lost-focus="$ctrl.saveFieldSeller('payInfo')"></textarea>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-show="block=='message'"  ng-init="displayHelp=false">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">письмо 1</h4>
+                <div class="editor form-group">
+                    <div text-angular ng-blur="$ctrl.saveFiled('footer',200)"
+                         ta-toolbar="[['h3','h4','p','insertLink'],['bold','italics','ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull']]"
+                         ng-model="$ctrl.item.cart.text"
+                         ta-text-editor-class="border-around">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">письмо 2</h4>
+                <div class="editor form-group">
+                    <div text-angular ng-blur="$ctrl.saveFiled('footer',200)"
+                         ta-toolbar="[['h3','h4','p','insertLink'],['bold','italics','ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull']]"
+                         ng-model="$ctrl.item.cart.text"
+                         ta-text-editor-class="border-around">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">письмо 3</h4>
+                <div class="editor form-group">
+                    <div text-angular ng-blur="$ctrl.saveFiled('footer',200)"
+                         ta-toolbar="[['h3','h4','p','insertLink'],['bold','italics','ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull']]"
+                         ng-model="$ctrl.item.cart.text"
+                         ta-text-editor-class="border-around">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

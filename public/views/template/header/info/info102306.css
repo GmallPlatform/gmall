@@ -1,0 +1,23 @@
+/*dance*/
+
+.vertical-menu li{
+    list-style: none;
+}
+.mobile-wrapper .info li,
+.tablet-wrapper .info li {
+    list-style: none;
+}
+.nav-group.info.dropdown .info-page {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.nav-group.info.dropdown .info-page li {
+    list-style: none;
+    float: left;
+}
+.dropdown-menu a {
+    @if $font-size {
+        font-size: $font-size*0.8;
+    }
+}
+

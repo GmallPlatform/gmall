@@ -1,0 +1,45 @@
+/*balance logo*/
+.img-logo {
+    /*width: $width;
+    transition: all  1s ease-in-out 0.5s;*/
+    display: inline-block;
+
+}
+.img-logoInv {
+    /*width: $width;
+    transition: all  1s ease-in-out 0.5s;*/
+    display: none;
+
+}
+img {
+    /*width: auto;
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    transition: all 2s;
+    position: fixed;
+    top:200px;
+    left: 300px;
+    opacity: 0.5;*/
+}
+.logo-out{
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    transition: all 2s;
+    -webkit-transform:scale(0.2) translate(-200px, -200px);
+    transform:scale(0.2) translate(-200px, -200px);
+}
+
+.logo-out img {
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    transition: all 2s;
+    /*transition: all  10s ease 20s;*/
+    /*position: relative;*/
+    top: 80px !important;
+    left: 60px!important;
+    opacity: 1!important;
+}
+/*.logo-out {
+    transform: translate(-200px, 200px);
+}*/
+

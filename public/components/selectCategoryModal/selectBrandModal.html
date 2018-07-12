@@ -1,0 +1,92 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выберите бренд</h3>
+        <a class="cancel" type="button" ng-click="cancel()"></a>
+
+    </div>
+    <div class="modal-body">
+        <div class="form-group" >
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="itemBrand" value="null"  ng-change="ok(null)">без бренда
+                </label>
+            </div>
+            <div class="radio" ng-repeat="brand in brands">
+                <label>
+                    <input type="radio" ng-model="brandItem" value="{{brand._id}}" ng-change="ok(brand._id)">{{brand.name}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>
+<!--
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">управление ценой</h3>
+        <a class="cancel" type="button" ng-click="cancel()"></a>
+
+    </div>
+    <div class="modal-body">
+        <div class="form-group" >
+            <h4 class="name-box text-center">цена SALE</h4>
+            <div class="togglebutton text-center">
+                <label for="sale">
+                    <span ng-class="{'active':!item.sale1}">по настройкам магазина</span>
+                    <input type="checkbox"
+                           id="sale"
+                           ng-model="item.sale1"
+                           ng-change="saveField(item,'sale1')">
+                    <span ng-class="{'active':item.sale1}">установить sale на данный товар</span>
+                </label>
+            </div>
+            <ui-select ng-model="item.unitOfMeasure"
+                       ng-change="saveField(item,'unitOfMeasure')"
+                       on-select="onSelected($item)"
+                       append-to-body="true"
+                       search-enabled="false">
+                <ui-select-match allow-clear="true" placeholder="цена sale">
+                    <span ng-bind="$select.selected"></span>
+                </ui-select-match>
+                <ui-select-null-choice>%</ui-select-null-choice>
+                <ui-select-choices>
+                    <span>сумма</span>
+                </ui-select-choices>
+            </ui-select>
+
+        </div>
+        <div class="form-group" >
+            <h4 class="name-box text-center">цена SALE</h4>
+            <div class="togglebutton text-center">
+                <label for="retail">
+                    <span ng-class="{'active':!item.sale1}">по настройкам магазина</span>
+                    <input type="checkbox"
+                           id="retail"
+                           ng-model="item.sale1"
+                           ng-change="saveField(item,'sale1')">
+                    <span ng-class="{'active':item.sale1}">установить retail на данный товар</span>
+                </label>
+            </div>
+            <ui-select ng-model="item.unitOfMeasure"
+                       ng-change="saveField(item,'unitOfMeasure')"
+                       on-select="onSelected($item)"
+                       append-to-body="true"
+                       search-enabled="false">
+                <ui-select-match allow-clear="true" placeholder="цена sale">
+                    <span ng-bind="$select.selected"></span>
+                </ui-select-match>
+                <ui-select-null-choice>%</ui-select-null-choice>
+                <ui-select-choices>
+                    <span>сумма</span>
+                </ui-select-choices>
+            </ui-select>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-lg btn-raised btn-block" type="button" ng-click="$ctrl.ok()">
+            сохранить
+        </a>
+    </div>
+</div>-->

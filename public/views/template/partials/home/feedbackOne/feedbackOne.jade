@@ -1,0 +1,11 @@
+div(class=wrapclass)
+    div(class=mobileWrapper)
+        div(class="col-lg-12")
+            div(class="col-lg-6")
+                h2=name
+                | !{desc}
+                feedback-message
+            div(class="col-lg-6")
+                if(img)
+                    img(src=photoHost + '/' + img)
+

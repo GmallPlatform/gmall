@@ -1,0 +1,42 @@
+/*cliniq and mobile*/
+.home-brands .container{
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: $background-color;
+}
+.home-brands img{
+    opacity: 1;
+    width: 100%;
+}
+.home-brands .brands-desk {
+    width: 100%;
+    position: absolute;
+    top: 130px;
+    padding: 15px;
+    text-align: center;
+    color: $color;
+}
+@media (max-width: 1050px){
+    .home-brands  .brands-desk {
+        left: 15%;
+        right: 15%;
+        width: 80%;
+    }
+}
+.tablet-wrapper  .brands-desk {
+        left: 10%;
+        right: 10%;
+        width: 80%;
+    }
+.mobile-wrapper   .home-brands  .brands-desk {
+    width: 100%;
+    top: 50px;
+    left: 0;
+    right: 0;
+}
+.mobile-wrapper      .home-brands  .brands-desk h3 {
+    width: 80%;
+    font-size: 26px;
+}
+

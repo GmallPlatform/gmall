@@ -1,0 +1,155 @@
+div(class="menu",ng-if="global.get('store').val.slideMenu",pageslide,ps-open="checkedMenu.slideMenu",ps-side="{{::global.get('store').val.slideMenu}}",ps-speed="0.3",ps-size="{{::slideMenuWidth}}",click-outside="global.get('functions').val.closeMenu()",id='slideMenu')
+  div(class="vertical-menu")
+    div(class="form-search pull-left")
+      form(ng-submit="global.get('functions').val.searchStuff(searchStr)")
+        div(class="input-group")
+          span(class="input-group-btn")
+            button(type="button",class="btn btn-default",ng-click="global.get('functions').val.searchStuff(searchStr)")
+              span(class="glyphicon glyphicon-search")
+          input(class="form-control",type="text",ng-model="searchStr",placeholder="поиск")
+    a(ng-click="checkedMenu.slideMenu=false",class="button")
+      img(class="close",src="views/template/img/icon/clear.png")
+    div(class="clearfix")
+    div(class="menu-section-vertical")
+      div(class="page-stat")
+        a(ng-if="!global.get('user').val",ng-click="global.get('functions').val.enter()")
+          span вход
+        a(ng-if="global.get('user').val",ng-click="global.get('functions').val.changeLocation('/manage')")
+          span кабинет
+        a(ng-if="global.get('user').val",ng-click="global.get('functions').val.logout()")
+          span выход
+      div(class="page-stat",dropdown-on-hover,id="changeCurrencyUl",ng-if="global.get('store').val.displayCurrency")
+        a(href="#")
+          -var srcImg1= "views/"+store.template.folder+"/img/icon/"+store.mainCurrency+".png"
+          img(class="currency",src=srcImg1)
+          span(ng-bind="global.get('currency').val")
+          span(class="caret")
+        ul
+          //li(ng-repeat="(prop,val) in global.get('store').val.currency")
+            a(ng-click="global.get('functions').val.changeCurrency(prop)")
+              img(class="currency",ng-src="views/{{global.get('store').val.template.folder}}/img/icon/{{prop}}.png")
+              span(ng-bind="prop")
+          -for(var prop in store.currency)
+            a(ng-click="global.get('functions').val.changeCurrency('#{prop}')")
+              li
+                -var srcImg= "views/"+store.template.folder+"/img/icon/"+prop+".png"
+                img(class="currency",src=srcImg)
+                =prop
+      div(class="page-stat",ng-if="global.get('store').val.saleTag")
+        a(href="/group/category?queryTag=rasprodazha")
+          span sale
+      div(class="page-stat",ng-if="global.get('store').val.newTag")
+        a(href="/group/category?queryTag=")
+          span new
+      div(class="page-stat",ng-if="global.get('campaign').val.length")
+        a(href="/campaign")
+          span акции
+      div(class="page-stat")
+        a(href="/news")
+          span новости
+      div(class="page-stat")
+        a(href="/lookbook",ng-if="global.get('store').val.lookbook")
+          span галерея
+      menu-sections-virtical
+      //pre {{global.get('store').val.template|json}}
+
+section
+  nav(class="navbar navbar-fixed-top",set-fon-after-start-scroll)
+    div(class="navbar-top",ng-if="!global.get('store').val.slideMenu")
+      div(class="nav-left")
+        div(class="nav-group",ng-if="global.get('store').val.saleTag")
+          a(href="/group/category?queryTag=rasprodazha")
+            | sale
+        div(class="nav-group",ng-if="global.get('store').val.newTag")
+          a(href="/group/category?queryTag=")
+            | new
+        div(class="nav-group",ng-if="global.get('campaign').val.length")
+          a(href="/campaign")
+            | акции
+      div(class="nav-right")
+        div(class="nav-group")
+          a(ng-click="global.get('functions').val.enter()")
+            | вход
+        div(class="nav-group nav-bag")
+          a(class="text-center",ui-sref="cart")
+            span(class="cart-img")
+            //img(src="views/clinic/img/cart/3.png",class="img-responsive")
+            span(ng-class="{'newInCart':cart.changeCartItems,'inCart':!cart.changeCartItems}",set-animate,data-animation="animated6",data-animation-delay="02")
+              b(ng-bind="cart.inCart")
+        div(class="nav-group dropdown",uib-dropdown,is-open="status.isopen")
+          a(href="",class="dropdown-toggle",data-toggle="dropdown",ng-click="goToInfo()",uib-dropdown-toggle)
+            | инфо
+            span(class="caret")
+          ul(class="dropdown-menu right",role="menu",uib-dropdown-menu)
+            each page,index in stats
+              li
+                - var hr = "/staticPage/"+page.url
+                a(href=hr)
+                  =page.name
+        //div(ng-if="global.get('store').val.currencyArr.length>1",class="nav-group dropdown",id="changeCurrencyUl",uib-dropdown,is-open="status.isopen1")
+          a(href="#",class="dropdown-toggle",data-toggle="dropdown1",uib-dropdown-toggle)
+            img(class="currency",ng-src="views/clinic/img/icon/{{global.get('currency').val}}.png")
+            span(ng-bind="global.get('currency').val")
+            span(class="caret")
+          ul(class="dropdown-menu",role="menu",uib-dropdown-menu)
+            -for(var prop in store.currency)
+              a(ng-click="global.get('functions').val.changeCurrency('#{prop}')")
+                li
+                  -var srcImg= "views/"+store.template.folder+"/img/icon/"+prop+".png"
+                  img(class="currency",src=srcImg)
+                  =prop
+      div(class="clearfix")
+    div(class="navbar-bottom text-center",ng-if="!global.get('store').val.slideMenu")
+      div(class="nav-left")
+        div(class="logo-top")
+          a(href="/home")
+            - var src = photoHost+"/"+store.logo
+            img(src=src)
+      div(menu-sections="fixed")
+
+      //ul(class="nav-center catalog")
+        li(class="catalog-section")
+          a
+            span одежда
+        li(class="catalog-section")
+          a
+            span аксессуары
+
+      div(class="nav-right",ng-show="$state.current.name!='stuffs'")
+        div(class="form-search")
+          form(ng-submit="mainFrameCtrl.searchStuff(searchStr)")
+            div(class="input-group")
+              span(class="input-group-btn")
+                button(type="button",class="btn btn-default",ng-click="mainFrameCtrl.searchStuff(searchStr)")
+                  span(class="glyphicon glyphicon-search")
+              input(class="form-control",type="text",ng-model="searchStr",placeholder="поиск")
+
+    div(ng-class="{'navbar-toggle-slide-mini':$state.current.name!='home'}",class="navbar-toggle-slide",ng-if="global.get('store').val.slideMenu")
+      div(class="logo-top pull-left")
+        a(href="/home")
+          - var src = photoHost+"/"+store.logo
+          img(src=src)
+      div(class="right-nav-menu  pull-right")
+        button(class="button navbar-toggle pull-right",ng-click="global.get('functions').val.openSlideMenu()",type="button")
+          span(class="sr-only") Toggle navigation
+          span(class="icon-bar")
+          span(class="icon-bar")
+          span(class="icon-bar")
+        div(class="nav-group dropdown pull-right",uib-dropdown,is-open="status.isopen2")
+          a(href="",class="dropdown-toggle",data-toggle="dropdown2",ng-click="goToInfo()",uib-dropdown-toggle)
+            | инфо
+            span(class="caret")
+          ul(class="dropdown-menu right",role="menu",uib-dropdown-menu)
+            each page,index in stats
+              li
+                - var hr = "/staticPage/"+page.url
+                a(href=hr)
+                  =page.name
+
+        div(class="nav-group nav-bag pull-right")
+          a(class="text-center",ui-sref="cart")
+            span(class="cart-img")
+            //img(src="views/clinic/img/cart/3.png",class="img-responsive")
+            span(ng-class="{'newInCart':cart.changeCartItems,'inCart':!cart.changeCartItems}",set-animate,data-animation="animated6",data-animation-delay="02")
+              b(ng-bind="cart.inCart")
+      div(class="clearfix")

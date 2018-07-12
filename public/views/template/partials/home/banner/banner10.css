@@ -1,0 +1,90 @@
+/*dance end mobile*/
+.container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+.home-banner {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: $height;
+    width: 100%;
+    background-position: center center !important;
+}
+img {
+    width: 100%;
+}
+.banner-content {
+    position: absolute;
+    right: 0;
+    bottom: 20%;
+    top: 20%;
+    width: 60%;
+    text-align: center;
+}
+
+.home-banner .banner-header{
+    font-size: $font-size;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    font-weight: $font-weight;
+    /*background-color: $backgroundColor;*/
+    color:$color;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    text-shadow: 0 1px 1px #999;
+}
+.home-banner.btn-banner {
+    font-size: 24px;
+    padding: 10px 20px;
+}
+.home-banner .btn-banner {
+    font-size: 24px;
+    padding: 10px 20px;
+}
+
+@media (max-width: 1150px) {
+    .home-banner.half-section-banner {
+        background-position: left top !important; ;
+    }
+}
+.tablet-wrapper .banner-content{
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    top:30%;
+}
+.mobile-wrapper .banner-content {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 20%;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+}
+.mobile-wrapper .banner-header {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 40px;
+    text-align: center;
+}
+.mobile-wrapper .home-banner {
+    background-size: 1400px !important;
+    background-position: 20% center !important;
+    height: 90vh;
+}
+.mobile-wrapper .btn-project {
+    font-size: 16px;
+}
+.img-one {
+    position: absolute;
+    height: 100vh;
+    z-index: -1;
+}
+.mobile-wrapper .img-one {
+    min-width: 1000px;
+    right: -300px;
+    top: -100px;
+}

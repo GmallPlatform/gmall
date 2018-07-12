@@ -1,0 +1,112 @@
+<style>
+    ul.dropdown-menu {
+        top:30px !important;
+    }
+    .active-date {
+      color:#00A000;
+    }
+</style>
+<div class="news-stuff" *ngIf="items">
+    <!--<div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-8 col-sm-8 col-lg-8 text-center">
+        <p class="no_story">
+            по вашему запросу нет записей!
+        </p>
+    </div>-->
+    <div class="nav-box-stuff">
+        <div class="content-tab-nav-stuff">
+            <!--<div class="tab-nav-stuff form-group  col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <a ng-click="$ctrl.createItem()">
+                    создать акцию(компанию)
+                </a>
+            </div>-->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                <server-paginator
+                        [paginate]="paginate"
+                        [getitems]="getItems"
+                        >
+                </server-paginator>
+
+            </div>
+           <!-- <form ng-submit="$ctrl.searchItems(searchStr)">
+                <div class="search col-lg-3 col-md-3 col-sm-3 col-xs-3 pull-right form-group label-floating">
+                    <label class="control-label">поиск компании</label>
+                    <input type="text"  class="form-control" ng-model="searchStr"/>
+
+                </div>
+                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
+            </form>-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="news-stuff-container">
+        <div class="stuff-admin col-lg-6 col-md-6 col-sm-12 col-xs-12"  *ngFor="#item of items">
+            <div class="thumbnail">
+                <div class="col-lg-4 thumbnail-in">
+                    <a class="photo link-white" [routerLink]="['CampaignDetail',{id:item._id}]">
+                        <img class="img-responsive" src="{{item.img||'/img/upload/no.png'}}" />
+                    </a>
+
+                    <a class="photo link-white">
+                        <i class="material-icons">font_download</i><br>
+                        <span>редактировать</span>
+                    </a>
+                </div>
+                <div class="half-shadow-stuff col-lg-8">
+                    <div class="title-block-stuff text-center">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group label-floating">
+                            <label for="name1" class="control-label">название</label>
+                            <input type="text" placeholder="" id="name1" class="form-control"
+                                   [ngModel]="item.name"
+                                   required
+                                   lost-focus="$ctrl.saveField(item,'name')"/>
+                        </div>
+                        <!--<div class="col-lg-12" ng-class="{'checkbox':true}">
+                            <label>
+                                <input  type="checkbox" ng-model="item.actived"  ng-change="$ctrl.saveField(item,'actived')">
+                                <span ng-if="!item.actived">активная</span>
+                                <span ng-if="item.actived">не активная</span>
+                            </label>
+                        </div>-->
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!--<div class="row" ng-init="item.dateOptions={showWeeks:false}">
+                    <div class="col-md-6">
+                        <p class="input-group">
+                            период действия :
+                            <span  ng-class="{'active-date':item.openStart}"ng-bind="item.dateStart|date" ng-click="item.openStart=true"></span>
+                            <input type="hidden"
+                                   uib-datepicker-popup="{{locale.DATETIME_FORMATS.shortDate}}"
+                                   datepicker-options="item.dateOptions"
+                                   ng-model="item.dateStart"
+                                   show-button-bar="false"
+                                   is-open="item.openStart"
+                                   ng-required="true"
+                                   ng-change="item.openEnd=true;$ctrl.saveField(item,'dateStart')"/>
+                            -
+                            <span  ng-class="{'active-date':item.openEnd}"ng-bind="item.dateEnd|date" ng-click="item.openEnd=true"></span>
+                            <input type="hidden"
+                                   uib-datepicker-popup="{{$ctrl.date.format}}"
+                                   datepicker-options="item.dateOptions"
+                                   ng-model="item.dateEnd"
+                                   is-open="item.openEnd"
+                                   show-button-bar="false"
+                                   ng-change="$ctrl.saveField(item,'dateEnd')"
+                                   ng-required="true" />
+                        </p>
+                    </div>
+                </div>-->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <a href="#" class="back-to-top">
+        <i class="fa fa-angle-double-up fa-3x" ></i>
+    </a>
+    </div>
+</div>
+<div ui-view></div>
+
+

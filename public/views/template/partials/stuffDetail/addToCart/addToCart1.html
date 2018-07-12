@@ -1,0 +1,49 @@
+
+<div ng-switch="$ctrl.item.orderType" class="half-btn  pull-right" ng-if="::$ctrl.item.sort">
+    <div class="row" ng-switch-when='1'>
+        <a class="btn  btn-project btn-border"
+           ng-click="$ctrl.item.order()">
+            заказать
+        </a>
+    </div>
+    <div class="row" ng-switch-when='2'>
+        <a class="btn  btn-project btn-border"
+           ng-click="$ctrl.global.get('functions').val.witget('dateTime',$ctrl.item)">
+            записаться
+           <!-- <img class="icon-btn" src="../../../img/icon/scissor-and-comb.png">-->
+        </a>
+    </div>
+    <!--<div class="row" ng-switch-when='3'>
+        <a class="btn  btn-project btn-border"
+           ui-sref="stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url,parentGroup:null,categoryList:null,searchStr:null})" >
+            подробнее
+        </a>
+    </div>-->
+    <div class="row" ng-switch-default>
+        <span ng-switch="$ctrl.item.checkInCart()">
+             <span ng-switch-when=true>
+                  <a class="btn  btn-project btn-border" disabled="disabled">
+                      уже  в корзине
+                  </a>
+             </span>
+             <span ng-switch-default>
+                  <a  class="btn  btn-project btn-border"  ng-click="$ctrl.item.addItemToOrder()">
+                      в корзину
+                  </a>
+             </span>
+        </span>
+    </div>
+</div>
+<!--<div  ng-if="!$ctrl.item.service">
+    <a class="btn  btn-project btn-border pull-right"
+       ng-click="$ctrl.item.addItemToOrder()">
+        добавить в корзину
+    </a>
+</div>
+<div  ng-if="$ctrl.item.service">
+    <a class="btn  btn-project btn-border pull-right"
+       ng-click="$ctrl.item.order()">
+        заказать услугу
+    </a>
+</div>-->
+<div class="clearfix"></div>

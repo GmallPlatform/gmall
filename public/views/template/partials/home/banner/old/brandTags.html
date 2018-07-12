@@ -1,0 +1,32 @@
+<div ng-class="::{'home-brandTags':!homeCtrl.template.brandTags.class,
+        'home-brandTags1':homeCtrl.template.brandTags.class==1,
+        'home-brandTags2':homeCtrl.template.brandTags.class==2,
+        'home-brandTag3':homeCtrl.template.brandTags.class==3,
+        'home-brandTags4':homeCtrl.template.brandTags.class==4,
+        'home-brandTags5':homeCtrl.template.brandTags.class==5,}">
+        <div class="container">
+            <div class="row">
+                <h2 class="text-center" ng-if="::homeCtrl.template.brandTags.namebox" ng-bind="::homeCtrl.template.brandTags.namebox"></h2>
+            <div class=" home-section text-center"
+                 ng-class="::{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.template.brandTags.qty==2||homeCtrl.template.brandTags.qty==4,
+                            'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.template.brandTags.qty==3,
+                            'col-lg-12 col-md-12 col-sm-12 col-xs-12': homeCtrl.template.brandTags.qty==1}"
+                 ng-repeat="item in homeCtrl.data.brandTags">
+
+                <div class="row">                    
+                    <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',brandTag:item.url,brand:item.brandUrl})">
+                        <img class="img-responsive" ng-src="{{item.img}}">
+                        <div class="box-overlay"></div>
+                        <div class="half-shadow">
+                            <div class="title-block">
+                                <span>коллекция</span><br>
+                                <span class="brand-tag-name" ng-bind="item.name"></span>
+                            </div>
+                        </div>
+                </a>
+            </div></div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+</div>

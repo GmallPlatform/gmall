@@ -1,0 +1,29 @@
+div(class="thumbnail list-item",id='item-'+item._id)
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 news-stuff-img")
+        a(href=item.link)
+            if(item.imgs && item.imgs.length)
+                .page-slides
+                    div(gmall-slider-page=item.url)
+                        div(class="substrate")
+                            img(class="img-responsive",src=item.imgs[0].img)
+                        - for (var i = 0; i < item.imgs.length; ++i)
+                            div(id=item.wrapclass + 'page' + i,class="mytoggle-page")
+                                img(class="img-responsive",src=item.imgs[i].img)
+
+            if(item.img)
+                img(style="width:100%", src=item.img)
+            if(item.video)
+                div
+                    | !{item.video}
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 news-stuff-desk")
+        a(href=item.link)
+            div(class="form-group")
+                if(item.name)
+                    h2=item.name
+                if(item.position)
+                    h4=item.position
+                if(item.desc)
+                    p=item.desc
+            h4(class="pull-right col-lg-4 news-stuff-date")=item.date
+            div(class="clearfix")
+    div(class="clearfix")

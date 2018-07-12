@@ -1,0 +1,113 @@
+
+.master-item  {
+    margin-top: 160px;
+}
+.tab-nav-stuff.mt-20 {
+    margin: 20px 20px 10px 20px;
+}
+.master-item {
+    padding-bottom: 40px;
+}
+
+.master-item .tab-nav-stuff.active{
+    border-bottom: 1px solid rgb(255, 113, 72);
+}
+.master-item .name-box {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.campaign-item {
+    padding-bottom: 40px;
+}
+.campaign-item .tab-nav-stuff .material-icons {
+    font-size: 32px;
+}
+.campaign-item .tab-nav-stuff.active{
+    border-bottom: 1px solid rgb(255, 113, 72);
+}
+
+.master-item .tab-nav.active{
+    border-bottom: 2px solid rgb(255, 113, 72)
+}
+.master-item .master-img{
+    min-height: 600px;
+}
+
+.master-item .edit {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.master-item .delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.master-item .servise-name {
+    color: #93b1c6;
+}
+
+.master-reviews table {
+    width: 80%;
+    border: 1px solid black;
+}
+.master-reviews table th {
+    background-color: #653535;
+    color: #fff;
+    text-align: center;
+    height: 45px;
+    font-size: 17px;
+}
+.master-reviews table tbody tr td {
+    width: 200px;
+    background-color: #eae0e0;
+    height: 40px;
+}
+.master-reviews table tbody tr td input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    height: 30px;
+    outline: none;
+}
+.master-reviews table tbody tr td p {
+    text-align: center;
+}
+.master-reviews .form-group div {
+    margin-bottom: 5px;
+}
+.master-reviews .form-group label {
+    float: left;
+    padding-right: 10px;
+    font-weight: bold;
+}
+.master-reviews .form-control {
+    width: 300px;
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    outline: none;
+}
+.master-reviews .btn {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid #000099;
+    border-radius: 4px;
+    background-color: #3E9EFF;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.master-reviews .btn:hover {
+    background-color: #0000FF;
+}
+.add-block .ui-select-choices{
+    right: 0;
+    left: auto;
+    min-width: 300px;
+}
+
+
+

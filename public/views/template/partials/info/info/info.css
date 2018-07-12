@@ -1,0 +1,15 @@
+/*.info-block {
+    min-height: 90vh;
+}*/
+.panel-heading {
+    padding: 0;
+}
+.panel-title a {
+    display: block;
+    width: 100%;
+    padding: 20px;
+}
+
+.mobile-wrapper .info-block ul{
+    padding-left: 15px;
+}

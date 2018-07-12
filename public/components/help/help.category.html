@@ -1,0 +1,15 @@
+<h2 ng-bind="$ctrl.category.name"></h2>
+<p ng-bind-html="$ctrl.category.desc|unsafe"></p>
+<div ng-hide="$ctrl.$state.current.name!='frame.help.category'">
+    <ul>
+        <li ng-repeat="stuff in $ctrl.stuffs">
+            <a ui-sref="frame.help.category.stuff({stuff:stuff._id})">
+                <span ng-bind="stuff.name"></span>
+            </a>
+
+        </li>
+    </ul>
+</div>
+<div ui-view="">
+
+</div>

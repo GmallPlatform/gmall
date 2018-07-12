@@ -1,0 +1,311 @@
+
+/************ Required styles *************/
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+.advancedDemo ul[dnd-list],
+.advancedDemo ul[dnd-list] > li {
+    position: relative;
+}
+/************ Dropzone Styling ************/
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.advancedDemo .dropzone ul[dnd-list] {
+    min-height: 42px;
+    /*margin: 0px;
+    padding-left: 0px;*/
+}
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.advancedDemo .dropzone li {
+    display: block;
+}
+/**
+ * Reduce opacity of elements during the drag operation. This allows the user
+ * to see where he is dropping his element, even if the element is huge. The
+ * .dndDragging class is automatically set during the drag operation.
+ */
+.advancedDemo .dropzone .dndDragging {
+    opacity: 0.7;
+}
+/**
+ * The dndDraggingSource class will be applied to the source element of a drag
+ * operation. It makes sense to hide it to give the user the feeling that he's
+ * actually moving it. Note that the source element has also .dndDragging class.
+ */
+.advancedDemo .dropzone .dndDraggingSource {
+    /*display: none;*/
+    opacity: 0.3;
+}
+/**
+ * An element with .dndPlaceholder class will be added as child of the dnd-list
+ * while the user is dragging over it.
+ */
+/*.advancedDemo .dropzone .dndPlaceholder {
+    background-color: #ddd !important;
+    min-height: 80px;
+    display: block;
+    position: relative;
+}*/
+.filters .dndPlaceholder {
+    background-color: rgba(167, 191, 220, 0.18);
+    min-height: 80px;
+    width: 90%;
+    margin-top: 20px;
+    box-shadow: inset 0 3px 8px 0 #d1d1d1;
+    display: block;
+    position: relative;
+}
+
+
+
+/*.filters .pages-header {
+    margin-bottom: 20px;
+}
+
+.filters .name-page {
+    font-weight: bold;
+    color: #767c89;
+    letter-spacing: 2px;
+}*/
+.filters {
+    margin-top: 50px;
+}
+.filters .material-icons {
+    margin-right: 0;
+}
+
+.filters .color-box-orange,
+.filters .color-box-blue {
+    background-color: #fff;
+}
+
+.filters .filter-box {
+    box-shadow: 0px 5px 8px 0px #999;
+    margin-bottom: 10px;
+    cursor: move;
+    border: 4px solid #ff7148;
+    background-color: #fff;
+}
+
+.filters .tag-box {
+    border: 1px solid #ccc;
+    box-shadow: 0px 5px 8px 0px #999;
+    cursor: move;
+    border: 4px solid #93b1c6;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #fff;
+}
+
+.filters .add-filters {
+    border: 3px solid #ff7148;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+.filters .add-tag {
+    border: 3px solid #93b1c6;
+    margin-top: 15px;
+}
+
+.filters .down-up {
+    cursor: pointer;
+}
+
+.filters .box-section-left {
+    padding-right: 0;
+}
+
+.filters .box-section-right {
+    border-left: 2px solid #767c89;
+}
+
+.filters .box-border-top {
+    border-top: 2px solid #767c89;
+    margin-top: 50px;
+    padding-right: 0;
+}
+ul.itemlist {
+    padding-left: 0;
+
+}
+.tag-right {
+    margin-top: 50px;
+}
+/*.filters .bind {
+    font-size: 18px;
+    display: inline-block;
+    margin-bottom: 10px;
+}*/
+
+.filters .border-right {
+    border-right: 1px solid #ccc;
+}
+
+.filters .border-left {
+    border-left: 1px solid #ccc;
+}
+.filters .box-control {
+    padding: 5px 0;
+    font-size: 16px;
+}
+
+.filters .box-control a {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.filters .control {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+
+.filters .control-box {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.filters .control-box i {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+.filters .control-box a {
+    cursor: pointer;
+}
+
+
+
+/*elements*/
+.filters .form-group {
+    margin-top: 0;
+    padding-bottom: 0;
+    margin-top: 10px;
+}
+
+.filters .form-control {
+    font-size: 18px;
+    color: #4d505b;
+}
+
+.filters .form-group label.control-label {
+    font-size: 16px;
+    margin-top: 5px;
+    /*color: rgba(118, 124, 137, 0.61);*/
+}
+
+/*.filters .form-group.is-focused label,
+.filters .form-group.is-focused label.control-label {
+    color: #767c89;
+}*/
+
+/*.filters .form-control,
+.filters .form-group.is-focused .form-control {
+    background-image: linear-gradient(#767c89, #767c89), linear-gradient(#D2D2D2, #D2D2D2);
+}*/
+
+.filters .add-filters .form-group  label.control-label {
+    margin-top: 22px;
+    color: #ff7148;
+}
+
+.filters .add-filters .form-group.is-focused label,
+.filters .add-filters .form-group.is-focused label.control-label {
+    /*color: #767c89;*/
+}
+
+.filters .add-filters .form-group.label-static label.control-label,
+.filters .add-filters .form-group.label-floating.is-focused label.control-label,
+.filters .add-filters .form-group.label-floating:not(.is-empty) label.control-label {
+    left: 0;
+}
+
+.filters .add-filters input,
+.filters .add-filters input {
+    color: #4d505b;
+}
+
+.filters .add-tag .form-group  label.control-label {
+    margin-top: 22px;
+    color: #93b1c6;
+}
+
+.filters .add-tag .form-group.is-focused label,
+.filters .add-tag .form-group.is-focused label.control-label {
+   /* color: #767c89;*/
+}
+
+.filters .add-tag .form-group.label-static label.control-label,
+.filters .add-tag .form-group.label-floating.is-focused label.control-label,
+.filters .add-tag .form-group.label-floating:not(.is-empty) label.control-label {
+    left: 0;
+}
+
+.filters .form-group .checkbox {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.filters .checkbox input[type=checkbox]:checked + .checkbox-material .check {
+    color: #93b1c6;
+    border-color: #93b1c6;
+}
+
+.filters .checkbox input[type=checkbox]:checked + .checkbox-material .check:before {
+    color: #93b1c6;
+}
+
+.filters .togglebutton label .toggle,
+.filters .togglebutton label input[type=checkbox][disabled] + .toggle {
+    margin-left: 10px;
+
+}
+
+.filters .togglebutton label input[type=checkbox]:checked + .toggle {
+    background-color: rgba(147, 177, 198, 0.52);
+}
+
+.filters .togglebutton label input[type=checkbox]:checked + .toggle:after {
+    background-color: #93b1c6;
+}
+
+.filters .form-group .checkbox label,
+.filters .form-group .radio label,
+.togglebutton label{
+    color: #93b1c6;
+}
+
+/*.filters .add-tag input.form-control,
+.filters .add-filters input.form-control {
+    color: #4d505b;
+}*/
+
+.filters .filter-box  .form-control {
+    color: #ff7148;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 22px;
+}
+
+.filters .tag-box   .form-control {
+    color: #93b1c6;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 22px;
+}
+
+.filters input.enter {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+}
+

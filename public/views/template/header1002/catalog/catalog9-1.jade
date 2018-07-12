@@ -1,0 +1,64 @@
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+            menu-sections-virtical-pug
+                div(class="myMenuV", id="wrapperForSections")
+                    ul(class="catalog-menu")
+                        - for (var i = 0; i < sections.length; i++)
+                            - var section=sections[i]
+                            - var id='s'+section._id
+                            - var innerData = !((!section.categories.length || section.categories.length < 2) && !section.child.length)
+                            - var innerData = (section.categories.length && section.categories.length >1)||(section.child.length && section.child.some(function(ch){return ch.categories.some(function(c){return !c.notActive})}))
+                            - var href = '/'+section.url+'/category'
+                            - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'"+((section.categories[0])?section.categories[0].url:'category')+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                            if(innerData)
+                                li(id=id,class="mainli",set-animate=dj[key].blockAnimate,data-animation=dj[key].blockAnimate,data-animation-delay=dj[key].animationDelay+i)
+                                    a(class="section-name",ui-sref=(innerData)?null:ui_sref)
+                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                            !=section.name
+                                    div
+                                        ul(class="second-level")
+                                            each child,index2 in section.child
+                                                - var ui_sref ="stuffs({groupUrl:'"+child.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                li(ng-click="ignoreClick($event);")
+                                                    - var ngclick="isNavCollapsed"+index2+" = !isNavCollapsed"+index2
+                                                    a(class="category-name",ng-click=ngclick)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                            !=child.name
+                                                    ul(uib-collapse="!isNavCollapsed"+index2)
+                                                        if(child.categories.length)
+                                                            li(class="category-in-section")
+                                                                - var ui_sref ="stuffs({groupUrl:'"+child.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                a(class="allcategories",ui-sref=ui_sref)
+                                                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)=lang['allCategories']
+                                                        each category in child.categories
+                                                            if(!category.notActive)
+                                                                li()
+                                                                    - var ui_sref ="stuffs({groupUrl:'"+child.url+"',categoryUrl:'"+category.url+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                    a(href=href,ui-sref=ui_sref,class="category")
+                                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                            !=category.name
+                                            each category in section.categories
+                                                if(!category.notActive)
+                                                    li(class="category-in-section")
+                                                        - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'"+category.url+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                        a(href=href,ui-sref=ui_sref)
+                                                            span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                !=category.name
+                                            if(store.newTag && section.newLink)
+                                                li(class="category-in-section")
+                                                    - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:'"+ store.newTag+"',stringStr:null})"
+                                                    a(ui-sref=ui_sref)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                            !=lang.new
+                                            if(store.saleTag && section.saleLink)
+                                                li(class="category-in-section")
+                                                    - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:'"+ store.saleTag+"',stringStr:null})"
+                                                    a(ui-sref=ui_sref)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                            !=lang.sale
+                                            if(section.categories.length)
+                                                li(class="category-in-section")
+                                                    - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                    a(class="allcategories",ui-sref=ui_sref)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)=lang['allCategories']
+

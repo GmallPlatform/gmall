@@ -1,0 +1,132 @@
+<div  class="online-list">
+    <h3 class="name-page col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">запись к мастеру</h3>
+    <div data class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+        <div class="form-group label-floating">
+            <label for="dp{{$index}}" class="control-label">дата</label>
+            <input date-range-picker class="form-control date-picker"
+                   type="text" ng-model="$ctrl.date"
+                   ng-change="$ctrl.changeDate()"
+                   options="$ctrl.datePickerOptions"/>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div  ng-repeat='c in $ctrl.items' class="col-lg-2 col-md-2 col-sm-4 col-xs-6" ng-hide="c.hide">
+            <h3 ng-bind="c.name"></h3>
+            <ui-select  tagging ng-model="c.selectedStuff" ng-change="$ctrl.selectStuff(c)">
+                <ui-select-match  placeholder="Выберите услугу">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="s in c.stuffs | filter:$select.search|filter:$ctrl.filterServices">
+                    {{s.name}}
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div  class="col-lg-1 col-md-1 col-sm-2 col-xs-4" ng-show="$ctrl.selectedStuff.length">
+            <a ng-click="$ctrl.allTable()" class="btn">Все услуги</a>
+        </div>
+    </div>
+    <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div  class="cart-detail">
+            <!--<div style="width:90%">-->
+                <div class="text-center time-box">
+                    <div class="time-header">
+                        время
+                    </div>
+                    <div class="time-header-clock" ng-repeat="row in $ctrl.timeParts"
+                         ng-if="$index>=$ctrl.startTimeParts&&$index<$ctrl.endTimeParts && $index%4==0">
+                        <span ng-bind="$ctrl.timeTable[$index/4]"></span>
+                    </div>
+                </div>
+                <div class="text-center master-box" ng-repeat="master in $ctrl.masters" ng-show="master.show">
+                    <div class="master-name">
+                        {{master.name}}
+                    </div>
+                    <div class="servise-box" ng-repeat="item in master.entryTimeTable"
+                         ng-click="$ctrl.newEntry(master,$index)"
+                         ng-class="{'busyEntry':item.busy,borderBottom:!item.noBorder}"
+                         ng-if="$index>=$ctrl.startTimeParts&&$index<$ctrl.endTimeParts">
+                        <div>
+                            <span ng-bind="::item.service"></span></br>
+                            <span ng-bind="::item.user"></span><br>
+                            <span  ng-bind="::item.phone"></span><br>
+                            <span  ng-bind="::item.email"></span><br>
+                            <!--<div ng-init="item.entry.master=master._id"
+                                 class="actionEntry"
+                                 ng-if="item.entry.show"
+                                 qty-blocks="{{item.qty}}"
+                                 ng-if="::item.new">
+
+                            </div>-->
+                        </div>
+
+
+                        <!--<div ng-if="item.busy">
+
+                        </div>-->
+
+                    </div>
+
+                </div>
+            <!--</div>-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div>
+
+
+
+    <div style="width:100%">
+        <!--<div style="width:10%;float: left">
+            s
+        </div>-->
+        <!--<div style="width:90%">
+
+            <div style="width:50px;float: left">
+                <div style="height:90px;width:100%;border:1px solid #d6d6d6">
+                    время
+                </div>
+                <div ng-repeat="row in $ctrl.timeParts"ng-if="$index>=$ctrl.startTimeParts&&$index<$ctrl.endTimeParts && $index%4==0" style="height:100px;width:100%;border:1px solid #d6d6d6">
+                    <span ng-bind="$ctrl.timeTable[$index/4]"></span>
+                </div>
+            </div>
+            <div ng-repeat="master in $ctrl.masters" style="width:250px;float: left">
+                <div  style="height:90px;width:100%;border:1px solid #d6d6d6">
+                    {{master.name}}
+                </div>
+                <div ng-repeat="item in master.entryTimeTable"
+                     style="height:25px;width:100%;border-right: 1px solid #d6d6d6;overflow: visible"
+                     ng-click="$ctrl.newEntry(master,$index)"
+                     ng-class="{'busyEntry':item.busy,borderBottom:!item.noBorder}"
+                     ng-if="$index>=$ctrl.startTimeParts&&$index<$ctrl.endTimeParts">
+
+                    <div>
+                        <strong ng-bind="::item.service"></strong></br>
+                        <strong ng-bind="::item.user"></strong><br>
+                        <strong  ng-bind="::item.phone"></strong><br>
+                        <strong  ng-bind="::item.email"></strong><br>
+                        &lt;!&ndash;<div ng-init="item.entry.master=master._id"
+                             class="actionEntry"
+                             ng-if="item.entry.show"
+                             qty-blocks="{{item.qty}}"
+                             ng-if="::item.new">
+
+                        </div>&ndash;&gt;
+                    </div>
+
+
+                    &lt;!&ndash;<div ng-if="item.busy">
+
+                    </div>&ndash;&gt;
+
+                </div>
+
+            </div>
+        </div>-->
+    </div>
+    <!--<p>s</p>-->
+</div>
+
+
+

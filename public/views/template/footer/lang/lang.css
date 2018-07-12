@@ -1,0 +1,10 @@
+/**/
+.lang-box li {
+    list-style: none;
+}
+.active {
+    color: $color;
+}
+a:hover {
+    color: $color;
+}

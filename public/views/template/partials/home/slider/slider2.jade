@@ -1,0 +1,22 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        if(dj[key].arrowDownDiv)
+            arrow-down
+        //- var id=(i && i==1)?'arrow-down':'';
+        div(id=dj[key].id,class="home-slides",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
+            div(class="container")
+                if(dj[key].name)
+                    h3(class="text-center",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].name
+                each im in dj[key].imgs
+                    div(set-animate=dj[key].animate && !mobile,data-animation=dj[key].animate)
+                        div(class="slide-box")
+                            div(class="img-wrap col-lg-3 col-md-3 col-sm-4 col-xs-12")
+                                img(class=" img-responsive", src=photoHost+'/'+im.img,alt=im.alt,ng-swipe-left="slideswipeLeft()",ng-swipe-right="slideswipeRight()")
+                            div(class="desc-wrap col-lg-9 col-md-9 col-sm-8 col-xs-12")
+                                div(class="home-section-header")
+                                    if(im.name)
+                                        h1=im.name
+                                    if(im.desc)
+                                        | !{im.desc}
+                            div(class="clearfix")
+                                //a(href=im.link)

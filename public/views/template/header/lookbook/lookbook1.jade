@@ -1,0 +1,12 @@
+- var pullClass=''
+if(position!='center' && (positionMenu=='top' ||positionMenu=='bottom'))
+    - pullClass=' pull-'+position
+div(class=wrapclass+pullClass)
+    div(class=mobileWrapper)
+        if(positionMenu=='top' ||positionMenu=='bottom')
+            - var c = 'page-stat lookbook nav-group'
+        else
+            - var c = 'page-stat lookbook'
+        div(class=c)
+            a(href="/lookbook")
+                span lookbook

@@ -1,0 +1,33 @@
+@if $className=="container" {
+  /*.tablet-wrapper  {
+    .container{
+      width: 100%;
+    }
+  }*/
+  .mobile-wrapper {
+    .container{
+      width: 100%;
+      /*padding-left: 10px;
+      padding-right: 10px;*/
+    }
+  }
+}
+
+@if $className=="home-section" {
+  .tablet-wrapper {
+    .home-section {
+      width: 100%;
+      /*margin-bottom: 20px;*/
+     /* @if $padding-top{
+        padding-top: $padding-top*0.5;
+      }*/
+    }
+  }
+  .mobile-wrapper {
+    .home-section {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+  }
+}

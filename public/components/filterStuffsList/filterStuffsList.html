@@ -1,0 +1,41 @@
+<div class="filter-stuffs-list">
+    <div class="modal-header">
+        <h3 class="modal-title col-lg-8" >{{$ctrl.global.get('lang').val.filterconfign}}!!</h3>
+        <a class="btn btn-success pull-right btn-lg" type="button"
+                ng-click="$ctrl.ok()">Установить
+        </a>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+
+    <div class="modal-body">
+        <a class="btn btn-warning col-lg-12" ng-click="$ctrl.clearAll()">сбросить все метки</a>
+        <ul>
+            <li class="col-lg-4" ng-repeat="filter in $ctrl.filters" ng-if="filter.tags.length">
+                <h3 ng-bind="filter.name"></h3>
+                <!--<hr>-->
+                <a class="reset link-warning" ng-click="$ctrl.changeAllTags(filter)">сброс</a>
+
+                            <!--<input type="checkbox" ng-model="filter.allTags" ng-change="$ctrl.changeAllTags(filter)">&nbsp<span>все</span>-->
+
+
+                <div class="form-group" ng-repeat="tag in filter.tags">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="tag.set" ng-change="$ctrl.changeTag(filter)">&nbsp{{tag.name}}
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer col-lg-12">
+        <a class="btn btn-warning pull-left btn-lg" type="button"
+                ng-click="$ctrl.cancel()">Отменить</a>
+        <a class="btn btn-success pull-right btn-lg" type="button"
+                ng-click="$ctrl.ok()">Установить</a>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

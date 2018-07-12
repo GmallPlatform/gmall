@@ -1,0 +1,108 @@
+<style>
+    .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+    }
+    .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+    }
+
+    .order-cart {
+        padding-top: 10px;
+        background-color: #ffffff;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        box-shadow: 0px 8px 17px 0px;
+        border-bottom-color: rgb(51,51,51);
+        margin-bottom: 15px;
+    }
+
+</style>
+<section ng-hide="ordersCtrl.orderId" ng-cloak>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+            <input date-range-picker class="form-control date-picker" type="text" ng-model="datePicker.date" options="ordersCtrl.options" required/>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-5 col-xs-11 ">
+            <form ng-submit="ordersCtrl.reloadOrders(ordersCtrl.searchStr)">
+                <input type="text" class="form-control search" ng-model="ordersCtrl.searchStr" placeholder="поиск по номеру">
+                <input type="submit"
+                       style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+                       tabindex="-1" />
+            </form>
+        </div>
+
+    </div>
+
+    <div class="row">
+    <div  class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+        <div class="row">
+            <div ng-repeat="order in ordersCtrl.orders" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div bs-component>
+                    <div  id="{{order._id}}" class="order-cart">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <span>№  - <strong  ng-bind="order.num"></strong> </span>
+                            <span class="pull-right"> &nbsp;&nbsp;&nbsp; от
+                            <span  ng-bind="moment(order.date).format('LLL')"></span></span>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            клиент <strong class="pull-right"ng-bind="order.profile.fio"> </strong>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 mb-10">
+                            сумма - <strong ng-bind="(order.paySum).toFixed(2)"></strong>&nbsp{{order.currency}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-switch="order.status">
+                            <span class="pull-right"style=" text-transform: uppercase;" ng-switch-when="1">поступил</span>
+                            <span class="pull-right"style="text-transform: uppercase;" ng-switch-when="2">принят</span>
+                            <span class="pull-right"style="text-transform: uppercase;" ng-switch-when="3">оплачен</span>
+                            <span class="pull-right"style="text-transform: uppercase;" ng-switch-when="5">доставлен</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <p class="col-lg-5 col-xs-5  text-left mb-10">
+                            <a  class="btn btn-primary" ng-click="ordersCtrl.pickOrder(order._id)">
+                                подробнее
+                            </a>
+                        </p>
+                        <p class="col-lg-2 col-xs-2 text-right" ng-if="order.chatMessages">
+                            Чат <span class="badge pull-right"ng-bind="order.chatMessages"></span>
+                        </p>
+                        <p class="col-lg-5 col-xs-5 text-right mb-10" ng-if="order.status<2">
+                            <a  style="margin-top: 10px" class="label label-danger"
+                                ng-click="ordersCtrl.deleteOrder(order)">
+                                удалить ордер
+                            </a>
+                        </p>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <empty-list items="ordersCtrl.itemsCount" message="По вашему запросу нет данных">
+            </empty-list>
+        </div>
+    </div>
+    </div>
+    <div class="clearfix"></div>
+    <paginator-main
+            rows='ordersCtrl.paginate.rows'
+            page='ordersCtrl.paginate.page'
+            items="ordersCtrl.paginate.totalItems"
+            getlist="ordersCtrl.getList(page,rows)"
+            scroll="true">
+    </paginator-main>
+</section>
+<div ng-if="ordersCtrl.orderId">
+    <order-detail order-id="ordersCtrl.orderId"></order-detail>
+</div>
+
+
+

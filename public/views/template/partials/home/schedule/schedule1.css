@@ -1,0 +1,184 @@
+/*smart*/
+.container {
+     width: 100%;
+}
+.btn-project {
+    margin-bottom: 40px;
+}
+.online-box {
+    overflow: auto;
+    width: 100%;
+    margin: 0 auto;
+    white-space: nowrap;
+    margin-bottom: 30px;
+
+}
+.center-div {
+    margin: 0 auto; width: 880px
+}
+.week-box {
+    font-size: 12px;
+    text-align: center;
+    display: table-row;
+}
+.box-day {
+    position: relative;
+}
+.week-table-header {
+    margin-bottom: 20px;
+}
+.week-box .box-day {
+    float: left;
+    width: 95px;
+    border:1px solid #ccc;
+    padding: 10px 5px;
+    margin-right: 15px ;
+    margin-left: 15px;
+    background-color: #f5f5f5;
+    height: auto;
+
+}
+.week-box .box-day:hover {
+    background-color: #ffffff;
+}
+.week-box .active {
+    background-color: rgb(0, 207, 180);
+}
+.week-box .active a{
+    color: #ffffff;
+}
+.week-box .box-day.active:hover {
+    background-color: #333333;
+}
+.day-week {
+    text-transform: capitalize;
+}
+.online-table {
+    display: table;
+    width: 880px;
+    border-collapse: collapse;
+    border-bottom: 1px solid#ccc;
+
+}
+.online-table-header,
+.online-table-body{
+    display: table-row;
+}
+.online-table-header .box-day {
+    height: auto;
+}
+.online-table-day {
+    display: table-cell;
+    float: left;
+    /*width: 12%;*/
+    width: 110px;
+
+}
+.online-table-day.box-day {
+    padding: 10px 20px;
+    height: 45px;
+    border-top: 1px solid #ccc;
+}
+.box-day {
+    text-align: center;
+    border-right: 1px solid#ccc;
+    /*border-left: 1px solid#ccc;*/
+    height: 45px;
+    white-space: normal;
+    font-size: 12px;
+}
+.online-table-header-left {
+    border-left: 1px solid#ccc;
+}
+.online-table-header-left .box-day {
+    border-top: 1px solid #ccc;
+    padding: 10px ;
+}
+.servise-box {
+    height: 100%;
+    padding: 5px;
+    border-bottom: 1px solid transparent;
+}
+.disabled {
+    background-color: rgb(0, 207, 180);
+}
+.busyEntry{
+    background-color: rgb(0, 207, 180);
+    border-top: none;
+    /*border-bottom: none;*/
+}
+.reservation{
+    background-color: rgb(255, 214, 219);
+    border-top: none;
+}
+.borderTop{
+    border-top:  1px solid #d6d6d6;
+}
+.tempEntry {
+    background-color: rgb(118, 177, 226);
+    /*border-top: none;
+    border-bottom: none;*/
+}
+.unavailable,
+.booked,
+.your,
+.reserv{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.booking {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.booking .time-action {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.unavailable {
+    background-color: rgba(197, 236, 255, 0.49);
+}
+.booked {
+    /*background-color: rgb(197, 236, 255);*/
+    background-color: rgb(0, 207, 180);
+}
+.your {
+    background-color: rgb(118, 177, 226);
+}
+.reserv {
+    background-color: rgb(255, 214, 219);
+}
+.type-block {
+    text-align: center;
+}
+.mobile-wrapper .booking {
+    font-size: 12px;
+   text-align: left;
+}
+.mobile-wrapper .booking .unavailable,
+.mobile-wrapper .booking .booked,
+.mobile-wrapper .booking .your,
+.mobile-wrapper .booking .reserv{
+    width: 20px;
+    height: 20px;
+}
+
+.mobile-wrapper .type-block {
+    text-align: left;
+}
+.mobile-wrapper .type {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tempEntry:hover{
+    /*display: block;*/
+    cursor:url(../../../../../img/icon/cancel-circle.png), auto
+}

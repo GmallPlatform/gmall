@@ -1,0 +1,128 @@
+extends layout
+
+block content
+  div( ng-cloak,ng-init="setInitData(#{JSON.stringify(store)},#{JSON.stringify(user)},#{JSON.stringify(admin)},#{JSON.stringify(mobile)},#{JSON.stringify(seller)})")
+    toaster-container
+    div(class="navbar navbar-default navbar-fixed-top")
+      .container-fluid
+        button(type="button",class="navbar-toggle",data-toggle="collapse",data-target=".navbar-responsive-collapse")
+          span(class="icon-bar")
+          span(class="icon-bar")
+          span(class="icon-bar")
+        a(ui-sref="frame",class="navbar-brand")
+          i(class="material-icons") homes
+        a(ui-sref="frame.users({user:null})",class="navbar-brand")
+          span(ng-if="global.get('seller').val") продавец&nbsp
+          span(ng-bind="global.get('user').val.name")
+
+
+
+
+
+    div( ui-view,style="margin-top:70px")
+
+  script(src='scripts/myPrototype.js')
+  script(src='scripts/angular-node.js')
+
+  script(src="bower_components/jquery/dist/jquery.js")
+
+  // Twitter Bootstrap
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+  //script(src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js")
+
+
+  //script(src="bower_components/select2/select2.js")
+
+  script(src='bower_components/angular/angular.js')
+  script(src='bower_components/angular-animate/angular-animate.js')
+
+  script(src='bower_components/angular-socket-io/socket.js')
+
+  script(src="bower_components/angular-ui-bootstrap/ui-bootstrap-tpls-0.14.3.min.js")
+
+  script(src='bower_components/angular-route/angular-route.js')
+  script(src='bower_components/angular-ui-router/release/angular-ui-router.js')
+  script(src='bower_components/angular-resource/angular-resource.js')
+  script(src='bower_components/angular-cookies/angular-cookies.js')
+  script(src='bower_components/angular-touch/angular-touch.js')
+  //script(src="bower_components/ng-tasty/ng-tasty-tpls.min.js")
+  script(src='assets/ui-select-master/dist/select.js')
+
+  script(src="bower_components/AngularJS-Toaster/toaster.min.js")
+
+  script(src="bower_components/bootstrap-material-design/dist/js/material.js")
+  script(src="bower_components/bootstrap-material-design/dist/js/ripples.min.js")
+
+  // Dropdown.js
+  script(src="assets//jquery.dropdown.js")
+  //owl carousel
+  script(src="assets/owl/owl.carousel.min.js",type="text/javascript")
+
+  // дата пикер
+  script(src="bower_components/moment/min/moment-with-locales.min.js")
+  script(src="bower_components/bootstrap-daterangepicker/daterangepicker.js")
+  script(src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js")
+  //script(src="bower_components/bootstrap-material-datepicker/js/bootstrap-material-datepicker.js")
+
+  script(src='assets/ui-select-master/dist/select.js')
+  script(src='scripts/angular-drag-and-drop-lists.js')
+
+  script(src='modules/content/js/app.js')
+  script(src='modules/content/js/controllers.js')
+  script(src='modules/content/js/services.js')
+  script(src='modules/content/js/directives.js')
+
+
+
+
+
+
+  script(src='scripts/service.global.js')
+  script(src='scripts/service.helper.js')
+
+  // sections
+  script(src='components/sections/scripts/directive.sections.js')
+  script(src='components/sections/scripts/service.sections.js')
+
+  // sections
+  script(src='components/filters/scripts/directive.filters.js')
+  script(src='components/filters/scripts/service.filters.js')
+
+  // file upload
+  script(src='components/loadImage/scripts/directive.loadImage.js')
+  script(src='components/loadImage/scripts/service.fileUpload.js')
+
+  //menu
+  script(src='components/menu/scripts/directive.menu.js')
+
+  //stuffs
+  script(src='components/stuff/scripts/directive.filterForStuffs.js')
+  script(src='components/stuff/scripts/directive.stuffsAdminListWithPaginate.js')
+  script(src='components/stuff/scripts/directive.stuffEdit.js')
+
+  // directives
+  script(src='components/directives/directive.lost-focus.js')
+  script(src='components/directives/directive.owl-carusel.js')
+  script(src='components/checklistmodel/scripts/directive.checklist.js')
+  script(src='components/bindModelToCategory/scripts/directive.bindModelToCategory.js')
+
+  // orders
+  script(src='components/order/scripts/service.order.js')
+  // brands
+  script(src='components/brand/scripts/service.brands.js')
+  script(src='components/brand/scripts/directive.brands.js')
+
+  script(src='scripts/service.brandcollections.js')
+  script(src='scripts/service.anchorSmoothScroll.js')
+
+  script(src='components/stuff/scripts/controller.stuff.js')
+  script(src='components/stuff/scripts/service.stuff.js')
+
+
+  script(src='scripts/directive.paginatorMain.js')
+
+
+  script(src='components/choiceUser/directive.js')
+
+
+

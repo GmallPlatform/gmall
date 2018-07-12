@@ -1,0 +1,17 @@
+if(subscriptionAdd && subscriptionAdd.length)
+    div(class=wrapclass)
+        div(class=mobileWrapper)
+            - var className="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-section full text-center"
+            if(img)
+                - className  ="col-lg-6 col-md-6 col-sm-6 col-xs-12 home-section full text-center"
+            div.row
+                h3=name
+                if(img)
+                    div(class=className)
+                        img(class='img-responsive',src=photoHost+'/'+img)
+                div(class=className)
+                    subscription-add
+            div(class="clearfix")
+    
+
+

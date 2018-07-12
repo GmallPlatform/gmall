@@ -1,0 +1,22 @@
+<div class="create-catalog select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">создание объекта</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group label-floating ">
+                <label for="name" class="control-label">название</label>
+                <input type="text" id="name" class="form-control"
+                       ng-model="$ctrl.name"/>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <a class="btn btn-lg btn-raised btn-block" type="button" ng-click="$ctrl.ok()">
+            создать
+        </a>
+    </div>
+    <div class="clearfix"></div>
+</div>

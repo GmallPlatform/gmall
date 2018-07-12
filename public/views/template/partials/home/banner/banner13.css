@@ -1,0 +1,38 @@
+/*web*/
+.home-banner{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: $height;
+    width: 100%;
+    background-position:center center;
+    background-size: cover;
+    overflow: hidden;
+
+}
+img {
+    width: 100%;
+}
+.tablet-wrapper .banner-content,
+.mobile-wrapper .banner-content {
+    width: 100%;
+
+}
+.mobile-wrapper .banner-header {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.mobile-wrapper .home-banner {
+    height: 85vh;
+}
+
+.img-one {
+    position: absolute;
+    height: 100vh;
+    z-index: -1;
+}
+.mobile-wrapper .img-one {
+    min-width: 1000px;
+    right: -350px;
+    top: -95px;
+}

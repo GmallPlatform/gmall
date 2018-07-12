@@ -1,0 +1,36 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="stuff-list-wrapper",id="items-list-wrapper")
+            if(dj[key].filtersInlist)
+                div(class="filters-wrap td-list "+dj[key].filtersClass,ng-show="$ctrl.$stateParams.categoryUrl!='category'||$ctrl.global.get('store').val.template.stuffListType[$ctrl.global.get('sectionType').val].filtersForAll")
+            div(class='list-class '+dj[key].classList)
+                div(class="col-lg-1 col-md-1 col-sm-1 col-xs-1 td-list")
+                div(id='td-list-1',class="col-lg-2 col-md-2 col-sm-2 col-xs-2  td-list")
+                    div(class="td-wrapper")
+                        each stuff in dj[key].itemsArr5[0]
+                            div(class="td-inner",stuff-in-list=stuff.stuffInList,group-stuffs-in-list=stuff.groupStuffsInList)
+                                div
+                div(id='td-list-2',class="col-lg-2 col-md-2 col-sm-2 col-xs-2  td-list")
+                    div(class="td-wrapper")
+                        each stuff in dj[key].itemsArr5[1]
+                            div(class="td-inner",stuff-in-list=stuff.stuffInList,group-stuffs-in-list=stuff.groupStuffsInList)
+                                div
+                div(id='td-list-3',class="col-lg-2 col-md-2 col-sm-2 col-xs-2  td-list")
+                    div(class="td-wrapper")
+                        each stuff in dj[key].itemsArr5[2]
+                            div(class="td-inner",stuff-in-list=stuff.stuffInList,group-stuffs-in-list=stuff.groupStuffsInList)
+                                div
+                div(id='td-list-4',class="col-lg-2 col-md-2 col-sm-2 col-xs-2  td-list")
+                    div(class="td-wrapper")
+                        each stuff in dj[key].itemsArr5[3]
+                            div(class="td-inner",stuff-in-list=stuff.stuffInList,group-stuffs-in-list=stuff.groupStuffsInList)
+                                div
+                div(id='td-list-5',class="col-lg-2 col-md-2 col-sm-2 col-xs-2  td-list")
+                    div(class="td-wrapper")
+                        each stuff in dj[key].itemsArr5[4]
+                            div(class="td-inner",stuff-in-list=stuff.stuffInList,group-stuffs-in-list=stuff.groupStuffsInList)
+                                div
+                div(class="col-md-1 td-list")
+        div(class="clearfix")
+        div(id="paginateData"+dj[key].page,data-total=dj[key].total,data-qty=dj[key].qty,data-page=dj[key].page,data-last-item-id=dj[key].lastItemId)
+div(class="clearfix")

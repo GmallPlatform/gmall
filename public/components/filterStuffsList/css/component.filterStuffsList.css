@@ -1,0 +1,61 @@
+.filter-stuffs-list .modal-header {
+    background-color:  #eee;
+    padding: 12px 20px;
+    border-bottom: 3px solid #d5d5d5;
+}
+.filter-stuffs-list .modal-footer {
+    padding: 0;
+    border-top: 3px solid #d5d5d5;
+}
+.filter-stuffs-list .modal-footer .btn {
+    margin: 0;
+    padding: 12px;
+    min-height: 46px;
+}
+.filter-stuffs-list .modal-body {
+    padding-bottom: 5px;
+}
+.filter-stuffs-list .modal-title {
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #767c89;
+    text-align: center;
+}
+.filter-stuffs-list hr{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.filter-stuffs-list a {
+    text-decoration: none;
+}
+.filter-stuffs-list a.reset {
+    margin-left: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ff7148;
+}
+.filter-stuffs-list ul li {
+    list-style: none;
+    border-left: 1px solid #ccc;
+}
+.filter-stuffs-list .form-group.is-focused .radio label {
+    color: #93b1c6;
+}
+
+.filter-stuffs-list .checkbox input[type=checkbox]:checked + .checkbox-material .check,
+.filter-stuffs-list .checkbox input[type=checkbox]:checked + .checkbox-material .check:before{
+    color: #93b1c6;
+    border-color: #93b1c6;
+}
+
+.filter-stuffs-list .cancel {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: 15px;
+    height: 15px;
+    background: url("../../../img/icon/clear.png");
+    background-size: 15px;
+}

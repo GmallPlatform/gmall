@@ -1,0 +1,70 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">загрузка внешнего каталога ({{$ctrl.catalogName}}) в базу данных</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="ship-box col-sm-12 col-lg-12 col-md-12 col-xs-12 text-center">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>параметр</th>
+                    <th>количество</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Новых товаров</td>
+                    <td>
+                        <span ng-hide="$ctrl.disableSpinner"><img style="width: 30px" src="/img/loading.gif"></span>
+                        <span ng-bind="$ctrl.newStuffs"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Обновленных товаров</td>
+                    <td>
+                        <span ng-hide="$ctrl.disableSpinner"><img style="width: 30px" src="/img/loading.gif"></span>
+                        <span ng-bind="$ctrl.updateStuffs"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Новых категорий</td>
+                    <td>
+                        <span ng-hide="$ctrl.disableSpinner"><img style="width: 30px" src="/img/loading.gif"></span>
+                        <span ng-bind="$ctrl.newCategories"></span></td>
+                </tr>
+                <tr>
+                    <td>Новых брендов</td>
+                    <td>
+                        <span ng-hide="$ctrl.disableSpinner"><img style="width: 30px" src="/img/loading.gif"></span>
+                        <span ng-bind="$ctrl.newBrands"></span></td>
+                </tr>
+                <tr>
+                    <td>Новых коллекций</td>
+                    <td>
+                        <span ng-hide="$ctrl.disableSpinner"><img style="width: 30px" src="/img/loading.gif"></span>
+                        <span ng-bind="$ctrl.newBrandTags"></span></td>
+                </tr>
+                <tr>
+                    <td>Новых групп</td>
+                    <td>
+                        <span ng-hide="$ctrl.disableSpinner"><img style="width: 30px" src="/img/loading.gif"></span>
+                        <span ng-bind="$ctrl.newFilters"></span></td>
+                </tr>
+                <tr>
+                    <td>Новых характеристик</td>
+                    <td>
+                        <span ng-hide="$ctrl.disableSpinner"><img style="width: 30px" src="/img/loading.gif"></span>
+                        <span ng-bind="$ctrl.newFilterTags"></span></td>
+                </tr>
+                </tbody>
+            </table>
+            <p ng-bind="$ctrl.errText" class="error"></p>
+            <p>после окончания загрузки вы можете просмотреть log файл с результатами</p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <button ng-disabled="$ctrl.disabledUpload" class="btn btn-block btn-raised" ng-click="$ctrl.confirmUpload()">загрузить</button>
+    </div>
+</div>

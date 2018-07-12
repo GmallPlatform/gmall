@@ -1,0 +1,44 @@
+<div class="mainMenu" ng-init="urlParams={}" style="position: relative">
+    <script type="text/ng-template" id="categories.html">
+        <ul ng-if="section.categories.length">
+            <li ng-repeat="category in section.categories track by $index">
+                <a ui-sref="frame.stuffs(getCategoryUrlParams(section,category))" ui-sref-opts="{reload:true}">
+                    <span ng-bind="category.name"></span>
+                </a>
+            </li>
+            <li ng-if="section.categories.length>1">
+                <a class="all-categories" ui-sref="frame.stuffs(getCategoryUrlParams(section))">
+                    <span>все категории</span>
+                </a>
+            </li>
+        </ul>
+    </script>
+    <script type="text/ng-template" id="subsection.html">
+        <div class="text-center">
+            <div ng-if="section.categories.length" class="categoryInSection col-centered" ng-include="'categories.html'"></div>
+            <div class="subsubsection col-centered"  ng-repeat="section in section.child track by $index" style="vertical-align: top">
+                <a class="section-name" ui-sref="frame.stuffs(getSectionUrlParams(section))" ui-sref-opts="{reload:true}">{{section.name}}</a>
+                <div ng-include="'subsection.html'"></div>
+            </div>
+        </div>
+    </script>
+    <div class="text-center" id="wrapperForSections" >
+        <ul class="nav-center catalog">
+            <li class="catalog-section" ng-repeat='section in sections' id="s{{section._id}}">
+                <a  ui-sref="frame.stuffs(getSectionUrlParams(section))">
+                    <span ng-bind="section.name"></span>
+                </a>
+            </li>
+        </ul>
+
+        <!--<div class="section menu-section col-centered sectionsListItem"  >
+            <a  ui-sref="frame.stuffs(getSectionUrlParams(section))" ng-bind="section.name"></a>
+        </div>-->
+    </div>
+    <div id="wrapperForSubSections" class="wrapperForSubSections">
+        <div  class="subsection" ng-repeat='section in sections' id="s{{section._id}}ub"
+             ng-include="'subsection.html'">
+        </div>
+    </div>
+</div>
+

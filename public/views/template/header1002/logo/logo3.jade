@@ -1,0 +1,13 @@
+li(class="nav-item")
+    div(class=dj[key].wrapclass+pullClass)
+        div(class=mobileWrapper)
+            - var c = 'logo-top logo-out'
+            div(class=c,remove-class-by-scroll="logo-out")
+                a(href="/home")
+                    - var src = photoHost+"/"+store.logo
+                    - var srcInv = photoHost+"/"+store.logoInverse
+                    if(store.logo)
+                        img(id="mainLogo",src=src,class="img-logo",alt="logo")
+                    if(store.logoInverse)
+                        img(id="inverseLogo",src=srcInv,class="img-logoInv",alt="logo")
+

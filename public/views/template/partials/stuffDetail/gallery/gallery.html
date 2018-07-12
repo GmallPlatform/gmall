@@ -1,0 +1,8 @@
+<div>
+    <img ng-src="{{$ctrl.item.sticker}}"  class="sticker">
+    <div ng-repeat="item in $ctrl.item.gallery">
+        <img itemprop="image" class="img-responsive img-detail" ng-src="{{item.thumb}}"
+             alt="{{::$ctrl.item.categoryName}} {{::$ctrl.item.name}}">
+    </div>
+</div>
+

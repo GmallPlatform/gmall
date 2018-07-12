@@ -1,0 +1,220 @@
+/*autofan*/
+.home-slides {
+    position: relative;
+}
+.home-slides .substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.slide-fade{
+    position: relative;
+}
+.home-slides {
+    position: relative;
+}
+.mytoggle,
+.home-slides img{
+    width: 100%
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+.mytoggle-page {
+    width: 100%;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.helf-shadow {
+    z-index: 1029;
+}
+/*.title-block {
+    position: absolute;
+    bottom: 20%;
+    width: 100%;
+}*/
+.img-box {
+    z-index: 1025;
+    overflow: hidden;
+
+}
+.img-box:hover .box-overlay {
+    opacity: 0.8;
+}
+img {
+    transition: all 0.5s ease-out 0s;
+}
+.img-box:hover img {
+    transition: transform 0.5s ease-out 0s;
+    transform: scale(1.2,1.2);
+}
+
+.next {
+    display: block;
+    height: 100%;
+    width: 40px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    z-index: 1024;
+}
+.icon-next-img {
+    position: absolute;
+    top: 45%;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity 0.5s ease-out 0s;
+    z-index: 2500;
+}
+.prev {
+    display: block;
+    height: 100%;
+    width: 40px;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    z-index: 1024;
+}
+.icon-prev-img {
+    position: absolute;
+    top: 45%;
+    left: 20px;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity 0.4s;
+    transition: opacity 0.5s ease-out 0s;
+    z-index: 2500;
+}
+.home-slides:hover .icon-prev-img,
+.home-slides:hover .icon-next-img {
+    opacity: 1;
+}
+/*.carousel-indicators {
+    left: 0;
+    margin: 0;
+    text-align: center;
+    z-index: 1035;
+    width: 100%;
+
+}
+.carousel-box {
+    display: inline-block;
+}
+.carousel-indicators li{
+    background-color: $color;
+    border: 4px solid $color;
+    width: 80px;
+    height: 4px;
+    border-radius: 0;
+    opacity: 0.6;
+    margin: 0 5px;
+}
+.carousel-indicators li.active {
+    background-color: transparent;
+    opacity: 0.9;
+    border-width: 4px;
+}*/
+/*.tablet-wrapper .home-slides .title-block h1{
+    font-size: 80px;
+}
+.mobile-wrapper .home-slides .title-block h1{
+    font-size: 40px;
+}*/
+/*.mobile-wrapper .carousel-indicators {
+    bottom: 0;
+}
+.mobile-wrapper .carousel-indicators li{
+    border: 2px solid $color;
+    width: 40px;
+    height: 2px;
+    border-width: 2px;
+    margin-bottom: 0;
+}
+.mobile-wrapper .home-slides .carousel-indicators .active {
+    border-width: 2px
+}
+.mobile-wrapper .navleft-carousel,
+.mobile-wrapper .navright-carousel {
+    display: none;
+}*/
+/*.mobile-wrapper .slide-fade {
+    height: 90vh;
+    width: 1200px;
+}
+.mobile-wrapper .home-slides {
+    overflow: hidden;
+}
+.mobile-wrapper .home-slides img{
+    height: 90vh;
+    width: 1200px !important;
+}*/
+/*
+.mytoggle {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity:0;
+}
+.mytoggle.ng-enter {
+    opacity: 0;
+}
+.mytoggle.ng-enter-active {
+    opacity: 1;
+}
+.mytoggle.ng-leave {
+    opacity: 1;
+}
+.mytoggle.ng-leave-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-add {
+
+    opacity: 1;
+    display: block !important;
+}
+.mytoggle.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-remove {
+    opacity: 0;
+    display: block !important;
+}
+.mytoggle.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+.zoom-plus {
+    position: absolute;
+    top:200px;
+    left: 45%;
+}
+.mobile-wrapper .home-slides {
+}*/

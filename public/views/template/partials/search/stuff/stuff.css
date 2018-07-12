@@ -1,0 +1,38 @@
+.header-page {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+}
+.search-header {
+    margin-top: 0;
+}
+.search-list-box {
+    margin-bottom: 20px;
+}
+.search-list-img {
+    position: relative;
+    width: 100%;
+}
+.see {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-right: 30px;
+}
+.icon-see-img {
+    width: 32px;
+    height: 32px;
+    background-size: 32px;
+    opacity: 0.7;
+    transition: all  0.3s ease-in-out 0.1s;
+}
+.search-list-box-img:hover .icon-see-img{
+    transform: rotate(180deg);
+    opacity: 1;
+}
+.search-desc a {
+    color: $mainColor;
+}
+/*
+.search-desc a:hover {
+    color: #cccccc;
+}*/

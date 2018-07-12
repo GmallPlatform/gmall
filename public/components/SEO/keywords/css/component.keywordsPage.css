@@ -1,0 +1,130 @@
+.clear {
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:5px 10px;
+    position:absolute;
+    right:30px;
+    top:4px;
+    color: red;
+}
+.keywords-list{
+    list-style:none;
+    padding: 0;
+
+}
+.keywords-list ul[dnd-list],
+.keywords-list ul[dnd-list] > li {
+    position: relative;
+}
+
+.keywords-list ul[dnd-list] {
+    min-height: 30px;
+    margin: 0px;
+    padding-left: 0px;
+}
+.keywords-list li {
+    display: block;
+}
+.keywords-list .dndDragging {
+    opacity: 0.7;
+}
+.keywords-list .dndDraggingSource {
+    display: none;
+}
+
+.keywords-list .dndPlaceholder {
+    background-color: #e7e7e7;
+    height: 30px;
+    display: block;
+    position: relative;
+}
+hr{
+    border-top-color: #0a0a0a;
+}
+
+
+
+.keywords-page  .nav-box-stuff {
+    position: fixed;
+    background-color: #fff;
+    top: 60px;
+    z-index: 100;
+    width: 100%;
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 4px;
+}
+.keywords-page .tab-nav-stuff a {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+.keywords-page .nav-box-stuff .tab-nav-stuff {
+    margin-top: 20px;
+}
+.keywords-page .tab-nav {
+    padding: 10px 15px;
+}
+.keywords-page-container {
+    margin-top: 180px;
+}
+.keywords-page .add-goods {
+    font-size: 20px;
+}
+.keywords-page .add-goods i {
+    font-size: 36px;
+}
+.action-block {
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+}
+.clear i{
+    font-size: 14px;
+    margin-right: 0;
+}
+.key .form-group {
+    margin-top: 0;
+}
+.key input {
+    width: 100%;
+}
+/*modal keywords*/
+
+
+.bind-to-page .modal-header,
+.bindFCKeywords .modal-header,
+.new-keywords .modal-header{
+    background-color:  #eee;
+    padding: 12px 20px;
+    border-bottom: 3px solid #d5d5d5;
+}
+.bind-to-page .modal-body,
+.bindFCKeywords .modal-body,
+.new-keywords .modal-body {
+
+
+}
+.bind-to-page .modal-footer,
+.bindFCKeywords .modal-footer,
+.new-keywords .modal-footer {
+    padding: 0;
+    border-top: 3px solid #d5d5d5;
+}
+.bind-to-page .modal-footer .btn,
+.bindFCKeywords .modal-footer .btn,
+.new-keywords .modal-footer .btn {
+    margin: 0;
+    padding: 12px;
+    min-height: 46px;
+    width: 100%;
+}
+.bind-to-page .page-list{
+    list-style:none;
+    padding: 0;
+
+}
+.bind-to-page .page-list .page {
+    padding-left: 20px;
+    text-transform: uppercase;
+}
+

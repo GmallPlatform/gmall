@@ -1,0 +1,31 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="stuff-list-wrapper",id="items-list-wrapper")
+            - var classList = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+            - var classList12 = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+            - var classList9="col-lg-9 col-md-9 col-sm-9 col-xs-9"
+            if(dj[key].filterInlist)
+                - classList="col-lg-9 col-md-9 col-sm-9 col-xs-9"
+                div(class="filters-wrap col-lg-3 col-md-3 col-sm-3 col-xs-3",ng-show="$ctrl.$stateParams.categoryUrl!='category'||$ctrl.global.get('store').val.template.stuffListType[$ctrl.global.get('sectionType').val].filtersForAll")
+            div(class=classList)
+                div(id='td-list-1',class="col-md-4 td-list")
+                    div(class="td-wrapper")
+                        each stuff in dj[key].itemsArr3[0]
+                            div(class="td-inner",ng-init=stuff.ngInitData)
+                                div
+                div(id='td-list-2',class="col-md-4 td-list")
+                    div(class="td-wrapper")
+                        each stuff in dj[key].itemsArr3[1]
+                            div(class="td-inner",ng-init=stuff.ngInitData)
+                                div
+                div(id='td-list-3',class="col-md-4 td-list")
+                    div(class="td-wrapper")
+                        each stuff in dj[key].itemsArr3[2]
+                            div(class="td-inner",ng-init=stuff.ngInitData)
+                                div
+        div(class="clearfix")
+        div(id="paginateData"+dj[key].page,data-total=dj[key].total,data-qty=dj[key].qty,data-page=dj[key].page,data-last-item-id=dj[key].lastItemId)
+if(titles.desc)
+    div(class="seo-desc col-lg-12 col-md-12 col-sm-12 col-xs-12 ")
+        |!{titles.desc}
+div(class="clearfix")

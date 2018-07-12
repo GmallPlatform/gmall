@@ -1,0 +1,41 @@
+/*dance*/
+.catalogDropDownMenu {
+    list-style: none;
+}
+/*@media (max-width: 1200px) {
+    .container.container-menu {
+        width: 85%
+    }
+
+}
+@media (max-width: 992px) {
+    .container.container-menu {
+        width: 100%
+    }
+
+}*/
+.first-li {
+    border-left:1px solid #fff;
+}
+ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sub-menu {
+
+    position: absolute;
+    display: none;
+}
+
+/*.sub-menu > li.section-in-section {
+    display: block;
+    cursor: pointer;
+}*/
+
+/*li.section-in-section:hover .sub-menu {
+
+    display: block;
+}*/
+

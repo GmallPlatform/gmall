@@ -1,0 +1,130 @@
+
+div(id="dimScreen" spinner-arrtibute="sendCart" ng-show="sendCart")
+    img(src="../img/spinner.gif", style="position: fixed; bottom:50%; left: 45%; ")
+div(class="cart-box")
+    div(class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0", elem-ready="$ctrl.ready()", style="margin-bottom: 60px")
+        div(class="row")
+            div(class="")
+                div(class="col-sm-12 col-lg-12 col-md-12 col-xs-12 cart-inner")
+                    h2(class="page-section text-center",ng-bind="$ctrl.global.get('lang').val.yourorder")
+                    p(class="text-center", ng-if="$ctrl.order.quantity>0")
+                        a(class="btn  btn-project btn-border ", ng-class="{'pull-right':!$ctrl.mobile}",ng-click="$ctrl.clearCart()",ng-bind="$ctrl.global.get('lang').val.clearcart")
+
+                div(class="clearfix")
+                div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-cart")
+                    div(ng-show="$ctrl.order.cart.stuffs.length", ng-repeat="(idx,stuff) in $ctrl.order.cart.stuffs track by $index", class="cart-detail",  id="cart-inner")
+                        div(class=" clearfix")
+                            span(class="index")
+                                | !{idx + 1}
+                            div(class="col-lg-2 col-md-2 col-sm-3 col-xs-6")
+                                span(ng-if="stuff.img" )
+                                    img(class="img-responsive cart-img", ng-src="{{stuff.img}}")
+
+                                span( ng-if="stuff.sticker" )
+                                    img(class="sticker", ng-src="{{stuff.sticker}}")
+                            div(class="col-lg-10 col-md-10 col-sm-9 col-xs-6")
+                                a(ng-click="$ctrl.goToStuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url})")
+                                    p(class="name-goods",  ng-bind="stuff.name+' '+stuff.artikul")
+
+                            div(class="col-lg-10 col-md-10 col-sm-9 col-xs-12")
+                                div(class="row")
+                                    div(class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ")
+                                        p(ng-class="{'half':$ctrl.mobile}", ng-if="stuff.sortName")
+                                            span(ng-bind="stuff.sortName")
+                                        p(ng-if="!stuff.single", ng-class="{'half':$ctrl.mobile}")
+                                            input(class="form-control", ng-class="{'cart-mobile':$ctrl.mobile}",type="number", min='1', max='1000',ng-model="stuff.quantity",ng-disabled="stuff.single",ng-change="$ctrl.saveCart()")
+                                                | !{stuff.unitOfMeasure}
+                                    div(class="col-lg-3 col-md-3 col-sm-3 col-xs-6")
+                                        div(ng-if="stuff.price>stuff.cena")
+                                            p(class=" text-right" )
+                                                | !{$ctrl.global.get('lang').val.price}
+                                            p(class=" text-right")
+                                                | !{($ctrl.order.kurs*(stuff.price)).toFixed(2)}
+                                                | &nbsp
+                                                | !{$ctrl.order.currency}
+                                    div(class="col-lg-3 col-md-3 col-sm-3 col-xs-6")
+                                        p(class=" text-right")
+                                            span(ng-if="stuff.price>stuff.cena")
+                                                | !{$ctrl.global.get('lang').val.pricesale}
+                                            span(ng-if="stuff.price<=stuff.cena")
+                                                | !{$ctrl.global.get('lang').val.price}
+                                        p(class="text-right")
+                                            | !{($ctrl.order.kurs*(stuff.cena=$ctrl.order.getPrice(idx))).toFixed(2)}
+                                            | &nbsp
+                                            | !{$ctrl.order.currency}
+                                    div(class="clearfix")
+                                    hr
+                                div(class="clearfix")
+                                hr
+
+                                div(class="col-lg-6 col-md-6 col-sm-6 col-xs-6")
+                                    a(class="info")
+                                        span(ng-click="$ctrl.removeItem($index)")
+                                        | !{$ctrl.global.get('lang').val.delete}
+                                div(class="col-lg-6 col-md-6 col-sm-6 col-xs-6 sum text-right")
+                                    span
+                                    | !{($ctrl.order.kurs*(stuff.sum=stuff.cena*stuff.quantity)).toFixed(2)}
+                                    | &nbsp
+                                    | !{$ctrl.order.currency}
+                div(class="col-lg-6 col-md-6 col-sm-6 col-xs-12")
+                    div(ng-if="$ctrl.coupon && !$ctrl.order.coupon._id")
+                        p
+                            span
+                                | !{$ctrl.global.get('lang').val.available}
+                            strong
+                                | !{$ctrl.coupon.name}&nbsp;&nbsp;&nbsp;
+                            a(class="coupon", ng-click="$ctrl.order.setCoupon($ctrl.coupon)")
+                                | !{$ctrl.global.get('lang').val.usecoupon}
+                    div(ng-if="$ctrl.order.coupon._id")
+                        p
+                            | !{$ctrl.coupon.name}
+                        a(class="coupon",ng-click="$ctrl.order.setCoupon(null)")
+                            | !{$ctrl.global.get('lang').val.cancelcoupon}
+                div(class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right")
+                    p(id="cartProfile", ng-if="$ctrl.order.coupon._id")
+                        | !{$ctrl.global.get('lang').val.intotal}
+                        |:
+                        span(class="sum")
+                            | !{$ctrl.order.quantity=$ctrl.order.getTotalQuantity()}
+                            | !{$ctrl.global.get('lang').val.pcs}
+                        span(class="unit", ng-bind="$ctrl.item.unitOfMeasure")
+                            |&nbsp;&nbsp;
+                            | !{($ctrl.order.kurs*($ctrl.order.sum=$ctrl.order.getTotalSum())).toFixed(2)}
+                            | &nbsp
+                            | !{$ctrl.order.currency}
+                        br
+                        span(ng-if="$ctrl.order.coupon._id")
+                            | !{$ctrl.global.get('lang').val.withcoupon}
+                        span(class="sum")
+                            | !{($ctrl.order.paySum=$ctrl.order.kurs*$ctrl.order.getCouponSum()).toFixed(2)}
+                            | &nbsp
+                            | !{$ctrl.order.currency}
+                    p(id="cartProfile",ng-if="!$ctrl.order.coupon || !$ctrl.order.coupon._id")
+                        | !{$ctrl.global.get('lang').val.intotal}
+                        | :
+                        span
+                            | !{$ctrl.order.quantity=$ctrl.order.getTotalQuantity()}
+                            | !{$ctrl.global.get('lang').val.pcs}
+                        span(class="unit", ng-bind="$ctrl.item.unitOfMeasure")
+                            | &nbsp;&nbsp;&nbsp;
+                        span(class="sum")
+                            | !{($ctrl.order.paySum=$ctrl.order.kurs*($ctrl.order.sum=$ctrl.order.getTotalSum())).toFixed(2)}
+                            | &nbsp
+                            | !{$ctrl.order.currency}
+                    //p(ng-if="$ctrl.order.getTotalDiscount()>0")
+                        | !{$ctrl.global.get('lang').val.totaldiscount}
+                        | -
+                        span(ng-bind="$ctrl.order.getTotalDiscount()")
+                        | %
+                div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12",ng-if="$ctrl.disabledMessage&& $ctrl.order.quantity<$ctrl.opt")
+                    h3(class="text-center no-order")
+                        | !{$ctrl.global.get('lang').val.checkoutimpossible}
+                        | -
+                        span
+                            | !{$ctrl.opt}
+                             span
+                                | !{$ctrl.global.get('lang').val.unitsadd}
+                div(class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center",ng-if="$ctrl.enableCheckOut()", ng-disabled="$ctrl.disabledCheckOut()")
+                    a(class="btn btn-lg btn-project",ng-class="{'pull-right':!$ctrl.mobile}",ng-click="$ctrl.checkOut()")
+                        | !{$ctrl.global.get('lang').val.checkout}
+                div(class="clearfix")

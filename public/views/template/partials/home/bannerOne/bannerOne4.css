@@ -1,0 +1,59 @@
+/*didenko*/
+/*.home-banner{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: $height;
+    width: 100%;
+    background-attachment:fixed;
+    background-size: cover;
+}
+.home-banner img {
+    width: 100%;
+
+}*/
+
+/*.mobile-wrapper .banner-content {
+    position: relative;
+
+}*/
+/*.mobile-wrapper .banner-content-box {
+    position: relative;
+}*/
+/*.tablet-wrapper .home-banner,
+ .mobile-wrapper .home-banner {
+     height: 70vh;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+     background-position: 90% 20% !important;
+ }
+
+@media only screen and (max-width : 320px)  {
+    .home-banner {
+        background-attachment: scroll;
+    }
+}
+@media only screen and (max-width : 480px)  {
+    .home-banner  {
+        background-attachment: scroll;
+    }
+}
+
+@media only screen and (max-width : 1024px)  {
+    .home-banner {
+        background-attachment: scroll;
+    }
+}
+@media (min-width : 1025px)  {
+    .home-banner {
+        background-attachment: fixed;
+    }
+}*/
+/*
+.mobile-wrapper .banner-content-box {
+    width: 300px;
+    height: 250px;
+    top: 30%;
+}*/

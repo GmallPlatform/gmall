@@ -1,0 +1,49 @@
+/*mission dance*/
+.container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+.home-banner {
+    position: relative;
+    overflow: hidden;
+}
+img {
+    width: 100%;
+}
+.home-banner .banner-content {
+    position: absolute;
+    top:50px;
+    left: 50px;
+    width: 50%;
+}
+.home-banner img {
+    min-width: 1000px;
+
+}
+.tablet-wrapper .banner-content {
+    width: 70%;
+}
+.tablet-wrapper .banner-header{
+    font-size: 26px;
+}
+.tablet-wrapper p{
+
+}
+.mobile-wrapper .banner-content  {
+    width:100%;
+    left: 0;
+    right: 0;
+    top:0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.mobile-wrapper .banner-header{
+    font-size: 24px;
+}
+.mobile-wrapper .banner-desc {
+    font-size: 16px;
+}
+.mobile-wrapper .btn-project {
+    font-size: 16px;
+}

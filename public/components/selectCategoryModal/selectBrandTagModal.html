@@ -1,0 +1,20 @@
+<div class="select-brand-tag-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выберите коллекцию</h3>
+        <a class="cancel" type="button" ng-click="cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="brandTag" ng-value="null"  ng-change="ok(null)">без коллекции
+                </label>
+            </div>
+            <div class="radio" ng-repeat="tag in brandTags">
+                <label>
+                    <input type="radio" ng-model="brandTag" value="{{tag._id}}" ng-change="ok(tag._id)">{{tag.name}}
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

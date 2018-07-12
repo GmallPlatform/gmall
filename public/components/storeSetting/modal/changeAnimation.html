@@ -1,0 +1,60 @@
+<div class="change-animation">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выбор анимации для блока</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <form ng-submit="$ctrl.ok()">
+        <div class="modal-body">
+            <ui-select ng-model="$ctrl.animationData.clip"
+                       title="выберите значение" search-enabled="false"
+                       skip-focusser="true">
+                <ui-select-match placeholder="выберите форму">
+                    {{$select.selected.value}}
+                </ui-select-match>
+                <ui-select-choices repeat="data.key as (key, data) in $ctrl.clipList">
+                    <span ng-bind="data.value"></span>
+                </ui-select-choices>
+            </ui-select>
+            <ui-select ng-model="$ctrl.animationData.wrapper"
+                       title="выберите значение" search-enabled="false"
+                       skip-focusser="true">
+                <ui-select-match placeholder="весь блок">
+                    {{$select.selected.value}}
+                </ui-select-match>
+                <ui-select-choices repeat="data.key as (key, data) in $ctrl.animationList">
+                    <span ng-bind="data.value"></span>
+                </ui-select-choices>
+            </ui-select>
+            <ui-select ng-model="$ctrl.animationData.inner"
+                       title="выберите значение" search-enabled="false"
+                       skip-focusser="true">
+                <ui-select-match placeholder="все содержимое">
+                    {{$select.selected.value}}
+                </ui-select-match>
+                <ui-select-choices repeat="data.key as (key, data) in $ctrl.animationList">
+                    <span ng-bind="data.value"></span>
+                </ui-select-choices>
+            </ui-select>
+            <ui-select ng-model="$ctrl.animationData.header"
+                       title="выберите значение" search-enabled="false"
+                       skip-focusser="true">
+                <ui-select-match placeholder="заголовок">
+                    {{$select.selected.value}}
+                </ui-select-match>
+                <ui-select-choices repeat="data.key as (key, data) in $ctrl.animationList">
+                    <span ng-bind="data.value"></span>
+                </ui-select-choices>
+            </ui-select>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="modal-footer col-lg-12 text-center">
+            <button class="btn btn-block btn-raised" type="submit">
+                готово
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+    <div class="clearfix"></div>
+</div>

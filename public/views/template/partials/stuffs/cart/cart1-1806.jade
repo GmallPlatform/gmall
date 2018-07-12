@@ -1,0 +1,76 @@
+div(class="stuffs")
+    div(id="list"+stuff._id,class="goods-container-img")
+        a(href=stuff.link)
+            div(class="stuff-box")
+                img(class="sticker",ng-src="{{stuff.sticker}}")
+                img(class="img-responsive img-goods",src=(photoHost+'/'+stuff.gallery[0].thumb) ||'/img/upload/no.png',alt=stuff.name)
+                div(class="box-overlay")
+                div(class="half-shadow")
+                    div(class="title-block text-center")
+                        h3(class="stuff-name")
+                            span(class="name")=stuff.name
+                            | &nbsp;
+                            span(class="artikul")=stuff.artikul
+
+    div(class="text-center action-box" ,ng-class="{'goods-desc':!stuff.service,'service-desc':stuff.service }" )
+        if(!stuff.service)
+            if(stuff.sortsOfStuff && stuff.sortsOfStuff.filter)
+                div(class="sort-box",ng-if="stuff.sort")
+                    span(class="sort",ng-show="sort.quantity", ng-repeat="sort in stuff.stockKeysArray",ng-class="{'sort-active':stuff.sort==sort._id}")
+                        span(ng-click="stuff.changeSortOfStuff(sort._id)",ng-show="sort.quantity",ng-bind="sort.name")
+
+
+            div(class="price-block")
+                p
+                    span(ng-if="!stuff.sort",ng-bind="$ctrl.global.get('lang').val.expected",ng-cloack)
+                    span(class="price" ng-class="{'line':stuff.priceSale||stuff.campaignUrl}", ng-if="stuff.sort",ng-cloack)
+                        span(class="long0",ng-bind="stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val| currency:'':0",ng-class="{'line':stuff.sale||stuff.campaignUrl}")
+                        span(class="long2",ng-bind="(stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val).toFixed(2)", ng-class="{'line':stuff.sale||stuff.campaignUrl}")
+                        span(ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]", ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                        span(ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]",ng-bind="global.get('currency').val")
+
+                    span(class="sale", ng-if="(stuff.sort && stuff.priceSale)",ng-cloack)
+                        span(class="flash") /
+                        span(class="long0",ng-bind="stuff.stock[stuff.sort].priceSale*$ctrl.global.get('rate').val| currency:'':0")
+                        span(class="long2",ng-bind="(stuff.stock[stuff.sort].priceSale*$ctrl.global.get('rate').val).toFixed(2)")
+                        span(ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]", ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                        span(ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]", ng-bind="global.get('currency').val")
+
+                    span(class="campaign", ng-if="(stuff.campaignUrl && stuff.sort)",ng-cloack)
+                        span(class="flash") /
+                        span(class="long0",ng-bind="stuff.stock[stuff.sort].priceCampaign*$ctrl.global.get('rate').val| currency:'':0")
+                        span(class="long2",ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                        span(ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]", ng-bind="global.get('currency').val")
+
+                    span(class="clearfix")
+                    span(class="retail",ng-if="(stuff.sort && $ctrl.global.get('store').val.seller.retail)",ng-cloack)
+                        span(ng-bind="$ctrl.global.get('lang').val.retail")
+                        | &nbsp;
+                        span(class="long0",ng-bind="stuff.stock[stuff.sort].retail*$ctrl.global.get('rate').val| currency:'':0")
+                        | &nbsp;
+                        span(ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]", ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                        span(ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]",ng-bind="global.get('currency').val")
+
+                p(ng-if="stuff.campaignUrl" class="campaign-label",ng-cloack)
+                    a(ui-sref="campaign.detail({id:stuff.campaignUrl})", ng-bind="$ctrl.global.get('lang').val.actions")
+
+                div(class="clearfix")
+        div(ng-if="stuff.sort",ng-cloack)
+            if(stuff.orderType=='1')
+                div
+                    a(class="btn  btn-project btn-border", ng-click="stuff.order()", ng-bind="$ctrl.global.get('lang').val.toOrder")
+            else if(stuff.orderType == '2')
+                div
+                    a(class="btn  btn-project btn-border", ng-click="$ctrl.global.get('functions').val.witget('dateTime',{stuff:stuff})",ng-bind="$ctrl.global.get('lang').val.enroll")
+            else if(stuff.orderType == '3')
+                div
+                    a(class="btn  btn-project btn-border",ui-sref="stuffs.stuff(stuff.linkData)",ng-bind="$ctrl.global.get('lang').val.more")
+            else if(stuff.orderType == '4')
+                div
+                    a(class="btn  btn-project btn-border",ng-click="stuff.getBonus()",ng-bind="$ctrl.global.get('store').val.bonusButtonText")
+            else
+                span(ng-show="stuff.checkInCart()")
+                    a(class="btn  btn-project btn-border",ng-bind="$ctrl.global.get('lang').val.inCart")
+                span(ng-hide="stuff.checkInCart()")
+                    a( class="btn  btn-project btn-border",ng-click="stuff.addItemToOrder()",ng-bind="$ctrl.global.get('lang').val.addToCart")
+    div(class="clearfix")

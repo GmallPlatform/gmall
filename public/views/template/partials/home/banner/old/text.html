@@ -1,0 +1,38 @@
+<div  ng-class="::{'home-text':!homeCtrl.template.text.class,
+        'home-text1':homeCtrl.template.text.class==1,
+        'home-text2':homeCtrl.template.text.class==2,
+        'home-text3':homeCtrl.template.text.class==3,
+        'home-text4':homeCtrl.template.text.class==4,
+        'home-text5':homeCtrl.template.text.class==5,}"
+      class="col-lg-12 col-md-12 col-xs-12 home-section background-logo">
+    <!--<div class="row">-->
+        <div class="container text-center" set-animate data-animation="animated10" data-animation-delay="01">
+            <h2 ng-bind="homeCtrl.data.textName"></h2>
+            <p ng-bind-html="homeCtrl.data.textDesc|unsafe"></p>
+            <span ng-if="homeCtrl.data.textButton.button" ng-switch on="homeCtrl.data.textButton.link">
+                <span ng-switch-when="subscription">
+                    <a  class="btn btn-project btn-border"
+                         ng-click="global.get('functions').val.witget('subscription')" ng-bind="homeCtrl.data.textButton.text">
+                    </a>
+                </span>
+                <span ng-switch-when="call">
+                    <a class="btn btn-project btn-border"
+                         ng-click="global.get('functions').val.witget('call')" ng-bind="homeCtrl.data.textButton.text">
+                    </a>
+                </span>
+                <span ng-switch-when="dateTime">
+                    <a class="btn btn-project btn-border"
+                       ng-click="global.get('functions').val.witget('dateTime')" ng-bind="homeCtrl.data.textButton.text">
+                    </a>
+                </span>
+
+                <span ng-switch-default="" ng-if="homeCtrl.data.textButton.button">
+                    <a class="btn btn-project  btn-border btn-banner" href="{{homeCtrl.data.textButton.link}}" ng-bind="homeCtrl.data.textButton.text"></a>
+                </span>
+            </span>
+        </div>
+    <!--</div>-->
+</div>
+<div class="clearfix"></div>
+
+

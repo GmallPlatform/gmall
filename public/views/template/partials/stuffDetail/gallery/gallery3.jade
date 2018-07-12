@@ -1,0 +1,9 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div
+            div(ng-repeat="item in $ctrl.item.gallery")
+                if(!mobile)
+                    div(class="prev-photo",ng-click="$ctrl.prevStuff()")
+                img(src=item.gallery[0].img,ng-click="$ctrl.returnToList()",itemprop="image", class="img-responsive img-detail", ng-src="{{item.img}}",alt=item.altImg,ng-swipe-left="$ctrl.prevStuff()",ng-swipe-right="$ctrl.nextStuff()")
+                if(!mobile)
+                    div(class="next-photo",ng-click="$ctrl.nextStuff()")

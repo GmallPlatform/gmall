@@ -1,0 +1,25 @@
+.paps-list {
+    margin-top: 80px;
+    padding-bottom: 40px;
+}
+
+/*.paps-list .edit {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.paps-list .delete {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}*/
+
+.paps-list img {
+    width: 100%;
+}
+
+
+
+
+

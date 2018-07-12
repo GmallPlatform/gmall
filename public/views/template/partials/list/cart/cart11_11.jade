@@ -1,0 +1,37 @@
+div(class="thumbnail list-item",id='item-'+item._id,ng-hide="$ctrl.hideCart && $ctrl.$stateParams.id && $ctrl.$stateParams.id=='"+item.url+"'&&"+$index+">0")
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 news-stuff-img")
+        a(href=item.link)
+            if(item.imgs && item.imgs.length)
+                .page-slides
+                    div(gmall-slider-page=(item.url)?item.url:'/home')
+                        div(class="substrate")
+                            img(class="img-responsive",src=item.imgs[0].img)
+                        - for (var i = 0; i < item.imgs.length; ++i)
+                            div(class="mytoggle-page")
+                                img(class="img-responsive",src=item.imgs[i].img)
+
+                        //h1(ng-bind="sliders."+item.url+".index",style="z-index:2000")
+
+            if(item.img)
+                img(style="width:100%", src=item.img)
+            if(item.video)
+                div
+                    | !{item.video}
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 news-stuff-desk")
+            div(class="form-group")
+                if(item.name)
+                    h2=item.name
+                if(item.position)
+                    h4=item.position
+                if(item.desc)
+                    div(class="desc")=item.desc
+            hr
+            div(class="col-lg-4 col-md-4 col-sm-5 col-xs-5 read-more")
+                a(class="read-more-list",href=item.link)
+                    span(ng-bind="$ctrl.global.get('lang').val.readMore")
+            div(class="social-hub-stuff col-lg-8 col-md-8 col-sm-7 col-xs-7")
+                span(class="share")=lang.share
+                social-hub
+                h4(class="news-date")=item.date
+            div(class="clearfix")
+    div(class="clearfix")

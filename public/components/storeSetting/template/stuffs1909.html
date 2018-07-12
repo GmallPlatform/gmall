@@ -1,0 +1,95 @@
+<div class="template-list" ng-show="$ctrl.block=='stuffs'"  ng-init="displayHelp=false">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">компоненты списка товаров</h3>
+        <div class="cart-detail">
+            <div class="btn-group btn-group-justified btn-group-raised" style="height: 60px">
+                <a class="btn"><span class="link-success">товар</span></a>
+                <a class="btn"><span class="link-success">услуга</span></a>
+                <a class="btn"><span class="link-success">инфо</span></a>
+                <a class="btn"><span class="link-success">медиа</span></a>
+            </div>
+            <div class="menu-box">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box"></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 head-box">название</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">класс</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">анимация</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">удалить</div>
+                <div class="clearfix"></div>
+                <hr>
+            </div>
+            <div class="part-box">
+                <div class="dropzone">
+                    <ul dnd-list="$ctrl.item.stuffsList"
+                        dnd-drop="$ctrl.dropCallbackBlock(item)"
+                        dnd-allowed-types="['stuffsList']">
+                        <li ng-repeat="block in $ctrl.item.stuffsList"
+                            dnd-draggable="block"
+                            dnd-type="'stuffsList'"
+                            dnd-effect-allowed="move"
+                            dnd-moved="$ctrl.item.stuffsList.splice($index,1)"
+                            ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box form-group">
+                                <!--<i class="material-icons link-success">open_with</i>-->
+                                <i class="material-icons link-success">swap_vert</i>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group">
+                                        <span ng-switch="block.name">
+                                            <span ng-switch-when="filters">поиск и пагинация</span>
+                                            <span ng-switch-when="categories">категории</span>
+                                            <span ng-switch-when="call">звонок</span>
+                                            <span ng-switch-when="subscriptions">подписка</span>
+                                            <span ng-switch-when="list">список</span>
+                                        </span>
+                            </div>
+                            <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-change="$ctrl.saveField('stuffsList')" ng-model="block.is" type="checkbox"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="block.templ" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('stuffsList')">
+                                    <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="block.templ" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('stuffsList')">
+                                    <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2  col-md-2 col-sm-2 col-xs-2 form-group">
+                                <a ng-click="$ctrl.changeAnimations(component)">
+                                    <i class="material-icons link-success" >assistant</i>
+                                </a>
+                            </div>
+                            <div class="col-lg-2  col-md-2 col-sm-2 col-xs-2 form-group">
+                                <a ng-click="$ctrl.item.main.right.splice($index,1);$ctrl.saveField('main')">
+                                    <i class="material-icons link-warning" title="удалить из списка">delete</i>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <ui-select ng-model="$ctrl.blockForAdd" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.addBlockForMainPage($ctrl.blockForAdd,$ctrl.item.main.left)">
+                    <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                    <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForMainPage|filter:$ctrl.filterMainListL">{{ opt.value }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</div>

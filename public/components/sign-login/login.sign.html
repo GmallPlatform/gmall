@@ -1,0 +1,176 @@
+<section>
+    <div class="row">
+        <div clasd="col-lg-12">
+            <div class=" col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">
+                        АВТОРИЗАЦИЯ
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form" name="formLogin" ng-submit="mainFrameCtrl.login.login2(formLogin)" id="formLogin" novalidate  form-autofill-fix>
+                        <div class="form-group" ng-class="{ 'has-success': formLogin.emailLogin.$valid && submittedLogin,
+                                                      'has-error': formLogin.emailLogin.$invalid && submittedLogin }">
+                            <!--<label></label>-->
+                            <input type="email" placeholder="e-mail" name="emailLogin" class="form-control cart" ng-model="mainFrameCtrl.login.user.email"  required  mongoose-error/>
+                <span class="help-block" ng-show="formLogin.emailLogin.$error.email && submittedLogin">
+                    недействительный электронный адрес
+                </span>
+                <span class="help-block" ng-show="formLogin.emailLogin.$error.required && submittedLogin">
+                    некорректный электронный адрес
+                </span>
+                <span class="help-block" ng-show="formLogin.emailLogin.$error.mongoose">
+                    {{ errors.emailLogin }}
+                </span>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-success': formLogin.passwordLogin.$valid && submittedLogin,
+                                                      'has-error': formLogin.passwordLogin.$invalid &&submittedLogin }">
+                            <!--<label></label>-->
+                            <input placeholder="пароль"  type="password" name="passwordLogin" class="form-control cart mb-20" ng-model="mainFrameCtrl.login.user.password" id="passwordLogin"
+                                    ng-minlength="3"
+                                    ng-maxlength="20"
+                                    required
+                                    />
+                <span class="help-block" ng-show="(formLogin.passwordLogin.$error.minlength ||
+                                                          formLogin.passwordLogin.$error.required) && submittedLogin">
+                    введено менее 3-х символов
+                </span>
+                <span class="help-block" ng-show="formLogin.passwordLogin.$error.maxlength && submittedLogin">
+                    введено более 20-ти символов
+                </span>
+                <span class="help-block" ng-show="formLogin.passwordLogin.$error.mongoose">
+                    {{ errors.passwordLogin}}
+                </span>
+                        </div>
+                        <button class="btn btn-lg btn-warning btn-block btn-1 mb-20" type="submit">войти</button>
+                        <!--  <button type="button" class="pull-right btn btn-1 btn-lg btn-default mb-20" style="margin-top: 20px;" ng-click="login.cancel()">Закрыть</button> -->
+                    </form>
+                    <uib-accordion close-others="oneAtATime">
+                        <uib-accordion-group is-open="status.open">
+                            <uib-accordion-heading>
+                                <h4 class="modal-title">
+                                    Сменить пароль
+                                </h4>
+                            </uib-accordion-heading>
+                            <form class="form" name="resetform" ng-submit="mainFrameCtrl.login.resetPswd(form)">
+                                <div class="form-group" ng-class="{ 'has-success': resetform.emailreset.$valid && submittedReset,
+                                                          'has-error': resetform.emailreset.$invalid && submittedReset }">
+                                    <!--<label>E-mail</label>-->
+                                    <input type="email" name="emailreset"
+                                           class="form-control cart mb-20"
+                                           ng-model="mainFrameCtrl.login.reseteEmail"
+                                           placeholder="введите ваш e-mail"
+                                           required
+                                           mongoose-error>
+                                    <span class="help-block" ng-show="resetform.emailreset.$error.mongoose">
+                                        {{ errors.emailreset}}
+                                    </span>
+                                </div>
+                                <button type="submit" class="btn btn-warning btn-block btn-lg mb-20"> Отправить </button>
+                            </form>
+
+                        </uib-accordion-group>
+                    </uib-accordion>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class=" col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">
+                        РЕГИСТРАЦИЯ
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form" name="form" ng-submit="mainFrameCtrl.signup.signup(form)" novalidate>
+                        <div class="form-group"
+                             ng-class="{ 'has-success': form.name.$valid && submitted,
+                                                  'has-error': form.name.$invalid && submitted }">
+                            <!--<label class="control-label">Имя
+                                <span class="promt">( от 3-х до 25-и латинских символов )</span>
+                            </label>-->
+                            <input type="text" name="name" class="form-control cart" id="name"
+                                   ng-model="mainFrameCtrl.signup.user.name"
+                                   ng-minlength="3"
+                                   ng-maxlength="25"
+                                   placeholder="введите имя (от 3-х до 25-и латинских символов)"
+                                   required
+                                   mongoose-error/>
+                            <span class="help-block"  ng-show="form.name.$error.required && submitted">
+                                необходимо указать логин
+                            </span>
+                            <span class="help-block"  ng-show="form.name.$error.minlength && submitted">
+                                не менее 3-х символов
+                            </span>
+                            <span class="help-block"  ng-show="form.name.$error.maxlength && submitted">
+                                не более 25-ти символов
+                            </span>
+                            <span class="help-block" ng-show="form.name.$error.mongoose">
+                                {{ errors.name }}
+                            </span>
+
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                                  'has-error': form.email.$invalid && submitted }">
+                            <!--<label class=" control-label">E-mail</label>-->
+
+                            <input type="email" name="email" class="form-control cart mb-20"
+                                   ng-model="mainFrameCtrl.signup.user.email"
+                                   placeholder="введите e-mail"
+                                   set-model
+                                   required
+                                   mongoose-error/>
+                            <span class="help-block" ng-show="form.email.$error.email && submitted">
+                                недействительный электронный адрес
+                            </span>
+                            <span class="help-block" ng-show="form.email.$error.required && submitted">
+                                введите электронный адрес
+                            </span>
+                            <span class="help-block" ng-show="form.email.$error.mongoose">
+                                {{ errors.email }}
+                            </span>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                                                    'has-error': form.password.$invalid && submitted }">
+                            <!--<label class=" control-label"  >Пароль<span class="promt"> (не менее 6-ти символов)</span></label>-->
+                            <input ng-hide="showpassword"type="password" name="password" class="form-control mb-10 cart"
+                                   ng-model="mainFrameCtrl.signup.user.password" id="password"
+                                   placeholder="пароль (не менее 6-ти символов)"
+                                   ng-minlength="6"
+                                   required
+                                   mongoose-error/>
+                            <input ng-show="showpassword" type="text" name="passwordCheck" class="form-control mb-10 cart"
+                                   ng-model="user.password"ng-minlength="6" mongoose-error/>
+                                <span class="help-block"
+                                      ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+                                    введено менее 6-ти символов
+                                </span>
+                                <span class="help-block" ng-show="form.password.$error.mongoose">
+                                    {{ errors.password }}
+                                </span>
+
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-success': form.password2.$valid && submitted,
+                                                                    'has-error': (form.password2.$error.pswdmatch||form.password2.$error.required) && submitted}">
+                            <!--<label class=" control-label" >Повторите пароль</label>-->
+                            <input type="password" name="password2" class="form-control mb-10 cart mb-20" id="password2" required placeholder="повторите пароль"
+                                   ng-model="mainFrameCtrl.signup.user.password2 " pswd-check="password"/>
+                                <span class="help-block" ng-show="(form.password2.$error.pswdmatch||form.password2.$error.required) && submitted">
+                                    пароли не совпадают
+                                </span>
+                        </div>
+
+
+                        <div class=" mb">
+                            <button class="btn btn-1 btn-lg btn-block btn-warning" type="submit" >зарегистрироваться</button>
+                        </div>
+                        <div class="g-recaptcha" data-sitekey="6Lcbpg8TAAAAABvITwNEgG8qkZWfhrWqMzGzf3Eg"></div>
+                        <div class="g-recaptcha" data-sitekey="6LfW0gcUAAAAAPBl-LPkiKPpF2E84zUPTzg8WEKl"></div>
+                    </form>
+                </div>
+        </div>
+    </div>
+
+</section>
+

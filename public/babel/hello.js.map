@@ -1,0 +1,1 @@
+{"version":3,"sources":["../hello.js"],"names":["phrase","sayHello","document","write"],"mappings":";;AAAA;;AAEA,IAAMA,SAAS,mBAASC,QAAT,CAAkB,IAAlB,CAAf;AACAC,SAASC,KAAT,CAAeH,MAAf","file":"hello.js","sourcesContent":["import { greeting } from \"greeting\";\r\n\r\nconst phrase = greeting.sayHello(\"ru\");\r\ndocument.write(phrase);\r\n"]}

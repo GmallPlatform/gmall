@@ -1,0 +1,10 @@
+<div  ng-class="::{'home1-slides':!homeCtrl.template.slider.class,
+        'home1-slides1':homeCtrl.template.slider.class==1,
+        'home1-slides2':homeCtrl.template.slider.class==2,
+        'home1-slides3':homeCtrl.template.slider.class==3,
+        'home1-slides4':homeCtrl.template.slider.class==4,
+        'home1-slides5':homeCtrl.template.slider.class==5,}">
+    <!--<pre>{{homeCtrl.template|json}}</pre>
+    <pre>{{!homeCtrl.template.slides.class|json}}</pre>-->
+    <gmall-slider images="homeCtrl.data.imgs" index="photoIndex"/>
+</div>

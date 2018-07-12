@@ -1,0 +1,10 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        ul(class="footer-catalog")
+            each section in sections
+                li
+                    - var href='/'+section.url+'/category'
+                    a(href=href)
+                        =section.name
+
+

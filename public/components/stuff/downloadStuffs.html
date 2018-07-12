@@ -1,0 +1,124 @@
+<div class="downloads">
+    <div class="container">
+        <div class="cart-detail">
+            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 mb-20 text-center" style="min-height: 200px; border-right: 1px solid #ccc">
+                <h3>ШАГ 1 - выбрать формат файла </h3>
+                <h4 class="text-left">Каталог можно скачать в форматах XML/YML и XLSX.
+                    Выберите необходимый формат.</h4>
+                <label class="radio-inline">
+                    <input type="radio" name="extCatalog" ng-model="$ctrl.ext" value="xml">
+                    XML/YML
+                </label>
+                <label>
+                    <input type="radio" name="extCatalog" ng-model="$ctrl.ext" value="xlsx">
+                    excel
+                </label>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 mb-20 text-center" style="min-height: 200px">
+                <h3>ШАГ 2 - выбрать вид файла </h3>
+                <h4 class="text-left">Формат файла адаптирован для портала prom.ua или для обмена данными между магазинами на платформе gmall.io.
+                    Выберите необходимую конфигурацию файла.</h4>
+                <label class="radio-inline">
+                    <input type="radio" name="typeCatalog" ng-model="$ctrl.catalog" value="prom">
+                    каталог для импорта на prom.ua
+                </label>
+                <label>
+                    <input type="radio" name="typeCatalog" ng-model="$ctrl.catalog" value="gmall">
+                    каталог для обмена данными на gmall.io
+                </label>
+
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 mb-20 text-center" style="min-height: 200px; border-right: 1px solid #ccc">
+                <h3>ШАГ 3 - выбрать бренд</h3>
+                <h4 class="text-left">Для скачивания доступен, как общий каталог, так и каталоги отдельных брендов.</h4>
+                <label class="radio-inline">
+                    <input ng-model="$ctrl.brand" type="radio" name="optradio" value="all">{{$ctrl.global.get('lang').val.all}}
+                </label>
+                <label class="radio-inline" ng-repeat="brand in $ctrl.brands.val">
+                    <input ng-model="$ctrl.brand" type="radio" name="optradio" value="{{brand.url}}">{{brand.name}}
+                </label>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 mb-20">
+                <h3>ШАГ 4 - выбрать валюту и язык прайса</h3>
+                <h4 class="text-left">Ссылка формируется с учетом выбранной валюты и языка каталога.</h4>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 mb-20">
+                    <ui-select ng-model="$ctrl.currency">
+                        <ui-select-match>
+                            <span ng-bind="$select.selected"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in $ctrl.currencyArray">
+                            <span ng-bind="item"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 mb-20">
+                    <ui-select ng-model="$ctrl.lang">
+                        <ui-select-match>
+                            <span ng-bind="$select.selected"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in $ctrl.langArr">
+                            <span ng-bind="item"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 mb-20 text-center">
+                <h3>ШАГ 5 - определить структуру каталога</h3>
+                <h4>Если Вы используете ссылку XML/YML для загрузки каталога на портал prom.ua и, если категории каталога (платья, блузы, и т.п.) должны располагаться в отдельной папке с наименованием, то поставьте метку "категории в папке".<br>
+                    Иначе все категории будут помещены в корневую папку вашего каталога.<br>
+                </h4>
+                <div class="togglebutton text-center">
+                    <label for="razdel">
+                        <span ng-class="{'active':!$ctrl.razdel}"> категории без папки</span>
+                        <input type="checkbox"
+                               id="razdel"
+                               ng-model="$ctrl.razdel">
+                        <span ng-class="{'active':$ctrl.razdel}">категории в папке </span>
+                    </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                <h3>ШАГ 6/1 - скопировать ссылку в формате XML/YML</h3>
+                <h4>Ссылку для портала prom.ua необходимо вставить в соответствующее поле загрузки каталога на портале, указав, что в файле есть разновидности.
+                Эту ссылку можно использовать для автоматического обновления нашего каталога на вашем сайте.</h4>
+                <p>
+                    <strong>
+                        {{$ctrl.setLink()}}
+                    </strong>
+                </p>
+                <a class="btn btn-raised " ng-click="$ctrl.copyLink()" >скопировать ссылку в формате XML/YML</a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                <h3>ШАГ 6/2 - скачать каталог в формате Excel.</h3>
+                <h4>После формирования нужной Вам конфигурации каталога скопируйте ссылку, откройте новую вкладку браузера
+                и вставьте скопированную ссылку в адресную строку. Нажмите enter и скачивание начнется автоматически.</h4>
+                <a class="btn btn-raised " ng-click="$ctrl.copyLink()" >скопировать ссылку в формате Excel</a>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                <h3>ШАГ 7 - скопировать архив фото</h3>
+                    В файле XML/YML  и в таблице Excel присутствуют ссылки на все фотографии каждой модели.<br>
+                    <h4>Если Вы используете ручную загрузку нашего каталога на свой сайт, то Вам доступен архив фотографий сайта на google disk.<br>
+                        Фотографии размещаются в момент выпуска коллекции и не привязаны к названиям и наличию моделей на сайте.
+                        К скачиванию доступны архивы фото по коллекциям или отдельные фотографии из папок коллекций. Учтите, что фотографии в папках - в полном размере.
+                        Поэтому коллекцию лучше скачивать в заархивированном виде.</h4>
+                    <a class="btn btn-raised "
+                       target="_blank" href="{{$ctrl.global.get('store').val.seller.archImages}}" >
+                        скачать архив фото
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+
+    </div>
+</div>

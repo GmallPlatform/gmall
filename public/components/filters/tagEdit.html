@@ -1,0 +1,72 @@
+<div class="tag-edit row">
+    <div class="nav-box-stuff">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.filters">
+                <i class="material-icons link-warning md-42">reply</i>
+            </a>
+        </div>
+
+        <h3 class="name-page col-lg-8 col-md-8 col-sm-8 col-xs-7">
+            редактирование признака
+            <span>{{$ctrl.item.name}}</span>
+        </h3>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-box">
+        <div class=" col-lg-5 col-md-5 col-sm-5 col-xs-12">
+            <div class="cart-detail tag-img">
+                <h4 class="text-center name-box">фото признака</h4>
+                <load-image
+                        upload-url="/api/collections/Photo/fileUpload?collectionName=FilterTags"
+                        item-id="{{$ctrl.item._id}}"
+                        item-url="{{$ctrl.item.url}}"
+                        item-resourse="$ctrl.Items"
+                        file-src="$ctrl.item.img">
+                </load-image>
+            </div>
+            <div class="cart-detail favicon text-center">
+                <h4 class=" name-box">фото стикера признака для списка товаров</h4>
+                <load-image
+                        upload-url="/api/collections/Photo/fileUploadSticker?collectionName=FilterTags"
+                        item-id="{{$ctrl.item._id}}"
+                        item-resourse="$ctrl.Items"
+                        file-src="$ctrl.item.sticker"
+                        name-img="sticker">
+                </load-image>
+            </div>
+        </div>
+        <div class=" col-lg-7 col-md-7 col-sm-7 col-xs-12">
+            <div class="cart-detail">
+                <div class="form-group label-floating">
+                    <label for="name" class="control-label">наименование признака</label>
+                    <input type="text" id="name" class="form-control name"
+                           ng-model="$ctrl.item.name" lost-focus="$ctrl.saveField('name')"/>
+                </div>
+                <h4 class="text-center name-box">описание</h4>
+                <div class="form-group editor">
+                    <div text-angular ng-blur="$ctrl.saveField('desc',200)"
+                         ng-change="$ctrl.saveField('desc',200)"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="$ctrl.item.desc"
+                         ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--<div class=" col-lg-12 col-md-8 col-sm-8 col-xs-12">
+            <a class="btn btn-success btn-block btn-block btn-lg save" type="button"  ui-sref="frame.filters">
+                в список
+            </a>
+        </div>-->
+    </div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="footer-news")
+            if(store.nameLists.newsList)
+                a(href="/news")
+                    span=store.nameLists.newsList
+            else
+                a(href="/news")
+                    span=lang['news']
+
+

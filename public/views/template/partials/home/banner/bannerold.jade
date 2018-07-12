@@ -1,0 +1,22 @@
+div(class=wrapclass)
+    if(i && i==1)
+        - var id='arrowDownDiv'
+        arrow-down
+    - var clickLink=''
+    if(button &&button.link)
+        - clickLink="global.get('functions').val.action('"+button.link+"')"
+    if(button && button.is)
+        - var element = "div"
+    else
+        - var element = "a"
+    #{element}(ng-click=clickLink)
+        div(id=id,class="home-banner half-section-banner",back-stretch=img)
+            div(class="banner-content")
+                h3(class="banner-header")
+                    span
+                        |!{desc}
+                if(button && button.is)
+                    a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-banner",ng-click=clickLink)=button.text
+
+
+

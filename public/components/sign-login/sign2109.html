@@ -1,0 +1,115 @@
+<!--<style>
+    .has-error .help-block {
+        color: #f02222;
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+    .has-error .form-control,
+    .has-error .form-control:focus {
+        box-shadow: none;
+        border-color: #f02222;
+    }
+</style>-->
+<div class="sign-box">
+    <form method="post" ng-submit="$ctrl.signup(signupForm)" name="signupForm" ng-init="$ctrl.user.type='subscription'" novalidate>
+        <div class="form-group has-feedback">
+            <input ng-class="{ 'has-error' : signupForm.displayName.$invalid}" class="form-control input-lg"
+                   type="text"
+                   name="displayName"
+                   ng-model="$ctrl.user.name"
+                   placeholder="{{$ctrl.global.get('langForm').val['name']}}"
+                   ng-maxlength="30"
+                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+            <span class="ion-person form-control-feedback"></span>
+
+        </div>
+        <span class="help-block text-danger" ng-show="signupForm.displayName.$invalid" ng-messages="signupForm.displayName.$error">
+            <span ng-message="maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+            <!--<span ng-message="minlength">{{$ctrl.global.get('langError').val.nameshort}}</span>-->
+        </span>
+        <div class="form-group has-feedback">
+            <input ng-class="{ 'has-error' : signupForm.email.$invalid }" class="form-control input-lg"
+                   type="email"
+                   id="email"
+                   name="email"
+                   ng-model="$ctrl.user.email"
+                   placeholder="е-mail"
+                   required
+                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+            <span class="ion-at form-control-feedback"></span>
+        </div>
+        <span class="help-block text-danger" ng-show="signupForm.email.$invalid" ng-messages="signupForm.email.$error">
+            <span ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</span>
+            <span ng-message="email">{{$ctrl.global.get('langError').val.formatnot}}</span>
+        </span>
+        <div class="form-group has-feedback">
+            <input  ng-class="{ 'has-error' : signupForm.password.$invalid}" class="form-control input-lg"
+                    password-strength
+                    type="password"
+                    name="password"
+                    ng-model="$ctrl.user.password"
+                    placeholder="{{$ctrl.global.get('langForm').val['password']}}"
+                    ng-minlength="6"
+                    ng-maxlength="20"
+                    ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+            <span class="ion-key form-control-feedback"></span>
+        </div>
+        <span class="help-block" ng-show="signupForm.password.$invalid" ng-messages="signupForm.password.$error">
+            <span ng-message="minlength">{{$ctrl.global.get('langError').val.passshort}}</span>
+            <span ng-message="maxlength">{{$ctrl.global.get('langError').val.passlong}}</span>
+        </span>
+        <div class="form-group has-feedback">
+            <input ng-class="{ 'has-error' : signupForm.confirmPassword.$error && signupForm.confirmPassword.$error.compareTo}"
+                   password-match="$ctrl.user.password"
+                   class="form-control input-lg"
+                   type="password"
+                   name="confirmPassword"
+                   ng-model="$ctrl.confirmPassword"
+                   placeholder="{{$ctrl.global.get('langForm').val['confirmPassword']}}"
+                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+            <span class="ion-key form-control-feedback"></span>
+        </div>
+        <span class="help-block" ng-show="signupForm.confirmPassword.$error && signupForm.confirmPassword.$error.compareTo" ng-messages="signupForm.confirmPassword.$error">
+            <span ng-message="compareTo">{{$ctrl.global.get('langError').val.passnotmatch}}</span>
+        </span>
+
+        <p ng-show="$ctrl.global.get('store').val.textCondition" style="margin-bottom: 10px"><small ng-bind-html="$ctrl.global.get('store').val.textCondition|unsafe"></small></p>
+            <!--<div vc-recaptcha
+                    key="6LfW0gcUAAAAAPBl-LPkiKPpF2E84zUPTzg8WEKl"></div>-->
+
+        <p class="help-block" ng-hide="$ctrl.user.password">если Вы не ввели пароль, то он будет сгенерирован автоматически и выслан  на e-mail с точкой входа</p>
+        <button type="submit"  class="btn btn-lg btn-block  btn-project">{{$ctrl.global.get('langForm').val.signUp}}</button>
+
+            <!--<div class="g-recaptcha" data-sitekey="6LfW0gcUAAAAAPBl-LPkiKPpF2E84zUPTzg8WEKl"></div>-->
+    </form>
+    <div class="sn-button">
+        <h4 class="text-center" ng-if="$ctrl.global.get('store').val.fb.id||$ctrl.global.get('store').val.gl.id||$ctrl.global.get('store').val.vk.id">{{$ctrl.global.get('langForm').val.upthrough}}</h4>
+        <div class="sn-login pull-left" ng-if="$ctrl.global.get('store').val.fb.id">
+            <button class="btn btn-block btn-facebook" ng-click="$ctrl.authenticate('facebook')" style="padding-left: 5px;padding-right: 5px; vertical-align: middle">
+                <span class="icon-fbwhite-img"></span>
+                <span>Facebook</span>
+            </button>
+        </div>
+        <div class="sn-login pull-left" ng-if="$ctrl.global.get('store').val.gl.id">
+            <button class="btn btn-block btn-google-plus" ng-click="$ctrl.authenticate('google')" style="padding-left: 5px;padding-right: 5px; vertical-align: middle">
+                <span class="icon-googlewhite-img"></span>
+                <span>Google</span>
+            </button>
+        </div>
+        <div class="sn-login pull-left" ng-if="$ctrl.global.get('store').val.vk.id">
+            <button class="btn btn-block btn-vk" ng-click="$ctrl.authenticate('vkontakte')" style="padding-left: 5px;padding-right: 5px; vertical-align: middle">
+                <span class="icon-vkwhite-img"></span>
+                <span>Vkontakte</span>
+            </button>
+        </div>
+        <!--<div class="sn-login pull-left" ng-if="$ctrl.global.get('store').val.tw.id">
+            <button class="btn btn-twitter" ng-click="$ctrl.authenticate('twitter')">
+                    <i class="icon-twwhite-img"></i>
+                    <span>Twitter</span>
+                </button>
+            </div>-->
+    </div>
+    <!--<a target="_blank" href="/info/spravka">{{$ctrl.global.get('lang').val.helpBlock}}</a>-->
+
+</div>
+

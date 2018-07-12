@@ -1,0 +1,17 @@
+
+
+ .slider-fade .navleft-carousel {
+    position: absolute;
+    left: 0;
+    top: 45%;
+    width: 30px;
+}
+.slider-fade .navright-carousel {
+    position: absolute;
+    right: 0;
+    top: 45%;
+    width: 30px;
+}
+.carousel-indicators {
+    bottom: 10%
+}

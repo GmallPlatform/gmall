@@ -1,0 +1,28 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="home-section background-logo")
+            div(class="container",set-animate=dj[key].animate,data-animation=dj[key].animate,ng-init="isCollapsed['"+key+"']=false")
+                - var clickLink=''
+                - var link=null;
+                if(dj[key].button && dj[key].button.link)
+                    if(dj[key].button.link == 'subscription' || dj[key].button.link == 'subscriptionAdd' || dj[key].button.link == 'feedback' || dj[key].button.link == 'dateTime' || dj[key].button.link == 'allBonus' || dj[key].button.link == 'call')
+                        - clickLink="global.get('functions').val.action('"+dj[key].button.link+"')"
+                    else
+                        - link = dj[key].button.link;
+                if(dj[key].name)
+                    a(class="details",ng-click="isCollapsed['"+key+"'] = !isCollapsed['"+key+"']")
+                        span(ng-show="isCollapsed['"+key+"']",class="open")
+                            span(class="text-center icon-left-img")
+                            span(class="header-details",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].name
+                        span(ng-show="!isCollapsed['" + key + "']")
+                            span(class="text-center icon-right-img")
+                            span(class="header-details",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].name
+                    div(uib-collapse="!isCollapsed['"+key+"']")
+                        div(class="details-desc")
+                            if(dj[key].desc)
+                                | !{dj[key].desc}
+                            if(dj[key].button && dj[key].button.is)
+                                a(set-animate=dj[key].button.animate,data-animation=dj[key].button.animate,class="btn btn-project btn-banner",ng-click=clickLink,href=link)=dj[key].button.text
+        div( class="clearfix")
+
+    

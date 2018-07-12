@@ -1,0 +1,21 @@
+<!--categories-->
+<div  ng-class="::{'home1-categories':!homeCtrl.template.categories.class,
+        'home1-categories1':homeCtrl.template.categories.class==1,
+        'home1-categories2':homeCtrl.template.categories.class==2,
+        'home1-categories3':homeCtrl.template.categories.class==3,
+        'home1-categories4':homeCtrl.template.categories.class==4,
+        'home1-categories5':homeCtrl.template.categories.class==5,}"
+      class="categories-home">
+    <div class="home-section text-center"
+         ng-class="::{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.template.categories.qty==2||homeCtrl.template.categories.qty==4,
+             'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.template.categories.qty==3}"
+         ng-repeat="item in homeCtrl.data.categories">
+        <h2 class="text-center" ng-if="::homeCtrl.template.categories.namebox" ng-bind="::homeCtrl.template.categories.namebox"></h2>
+        <a ui-sref="stuffs({groupUrl:'group',categoryUrl:item.url})">
+            <img class="img-responsive" ng-src="{{item.img}}">
+        </a>
+        <span ng-bind="item.name"></span>
+    </div>
+    <div class="clearfix"></div>
+</div>
+

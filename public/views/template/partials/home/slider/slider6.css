@@ -1,0 +1,105 @@
+/*clinic, tatiana - zoom*/
+/*.zoom-plus {
+    position: absolute;
+    width: 100%;
+    z-index: 1027;
+    top:45%;
+}*/
+/*.icon-see-img {
+   opacity: 0.8;
+   display: inline-block;
+}*/
+
+
+/*.home-slides .container {
+    padding-left: 0;
+    padding-right: 0;
+}*/
+/*.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}*/
+.mytoggle-page {
+    width: 100%;
+}
+.home-slides .substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.home-slides .slide-fade{
+    position: relative;
+}
+.home-slides {
+    position: relative;
+}
+.home-slides h1 {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 100px;
+    font-family: rosa;
+    color: #fff;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    background-color: #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.home-slides:hover .box-overlay {
+    opacity: 0.3;
+}
+
+.home-slides .carousel-indicators {
+  z-index: 1025;
+    width: 100%;
+    margin-left: -50%;
+}
+.home-slides .carousel-indicators li{
+    height: 3px;
+    opacity: 0.6;
+    @if $color {
+        background-color: $color;
+        border: 2px solid $color;
+    }
+
+
+}
+.home-slides .carousel-indicators .active {
+    height: 3px;
+    background-color: transparent;
+    opacity: 1;
+    @if $color {
+        border: 2px solid $color;
+    }
+}
+.owl-theme .owl-dots .owl-dot span {
+    border: 1px solid #fff;
+}
+
+.icon-zoom-img {
+    display: inline-block;
+}
+.zoom-plus:hover .icon-zoom-img {
+    display: none;
+}
+.icon-zoom-inverse {
+    display: none;
+}
+.zoom-plus:hover .icon-zoom-inverse {
+    display: inline-block;
+}

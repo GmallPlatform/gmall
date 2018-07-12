@@ -1,0 +1,40 @@
+/*zefir*/
+.sort-stuff {
+    padding-left: 0;
+}
+.sort-box {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.color-box {
+    margin-bottom: 10px;
+}
+.sort {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.5s ease-out 0.1s;
+}
+.sort span {
+    display: inline-block;
+    min-width: 25px;
+    min-height: 25px;
+}
+.sort-active {
+    border: 2px solid $mainColor;
+    background-color: transparentize($mainColor,.82);
+}
+.group-goods {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 5px 5px 15px 5px;
+    border: 1px solid #ccc;
+}
+.group-goods img {
+    width: 100%;
+}
+.group-goods.active{
+    border: 1px solid #0e9da2;
+}

@@ -1,0 +1,44 @@
+/*tatiana*/
+.home-banner{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: $height;
+    width: 100%;
+    background-attachment:fixed;
+    /*background-size: cover;*/
+}
+img {
+    width: 100%;
+    -o-fit-object:cover;
+    object-fit: cover;
+}
+.tablet-wrapper .home-banner,
+.mobile-wrapper .home-banner {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@media only screen and (max-width : 320px)  {
+    .home-banner {
+        background-attachment: scroll;
+    }
+}
+@media only screen and (max-width : 480px)  {
+    .home-banner  {
+        background-attachment: scroll;
+    }
+}
+
+@media only screen and (max-width : 1024px)  {
+    .home-banner {
+        background-attachment: scroll;
+    }
+}
+@media (min-width : 1025px)  {
+    .home-banner {
+        background-attachment: fixed;
+    }
+}

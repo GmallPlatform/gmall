@@ -1,0 +1,74 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        if(dj[key].i && dj[key].i==1)
+            - var id='arrowDownDiv'
+            arrow-down
+        div(class="banner-content")
+            if(dj[key].name)
+                h1(class="banner-header",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)
+                    | !{dj[key].name}
+            div(schedule-place-from-server data-stuff=dj[key].scheduleStuff,data-templ=dj[key].templ)
+                div(uib-carousel,active="$ctrl.week",interval="$ctrl.myInterval",ng-cloak)
+                    each i in [0,1,2,3,4,5,6]
+                        div(uib-slide,index=i,style="min-height: 75px",ng-swipe-left="$ctrl.chancheActiveSlide('left')",ng-swipe-right="$ctrl.chancheActiveSlide('right')")
+                            h3(class="weeks")
+                                a(ng-click="$ctrl.changeWeek("+i+")")
+                                    span=dj[key].weeksRange[i].startDateString
+                                    span=' - '
+                                    span=dj[key].weeksRange[i].endDateString
+
+                div(class="schedule",id="innerDivInschedule")
+                    div(class="container")
+                        div(class="online-box")
+                            div(class="center-div")
+                                div(class="online-table")
+                                    if(mobile)
+                                        each d,index in dj[key].datesOfWeeks
+                                            if(dj[key].weekData[d.date] && dj[key].weekData[d.date].entryTimeTable)
+                                                h3(class="days")=d.dateField
+                                                each entry in dj[key].weekData[d.date].entryTimeTable
+                                                    p
+                                                        span(class="time")=entry.usedTime
+                                                        | &nbsp;&nbsp;
+                                                        a(class="service",href=entry.serviceLink)
+                                                            span=entry.service
+                                                        | &nbsp;&nbsp;
+                                                        span=entry.comment
+                                                        | &nbsp;&nbsp;
+                                                        a(class="master",href=entry.masterLink)
+                                                            span=entry.masterName
+                                        if(dj[key].noSchedule)
+                                            div(class="text-center")
+                                                p=lang['noentries']
+                                    else
+                                        div(class="online-table-header")
+                                            div(class="online-table-day box-day",style="border-left:1px solid #ccc")
+                                                span(ng-bind2="$ctrl.currentMonth")=dj[key].currentMonth
+                                            each d,index in dj[key].datesOfWeeks
+                                                div(class="online-table-day box-day")
+                                                    p(ng-bind2="$ctrl.datesOfWeeks["+index+"].dateField")=d.dateField
+                                        div(class="online-table-body")
+                                            div(class="online-table-day online-table-header-left")
+                                                each part,idx in dj[key].timePartsForTable
+                                                    div(class="box-day")
+                                                        span()=part
+                                                div(class="clearfix")
+                                            each data,date in dj[key].weekDataFull
+                                                div(class="online-table-day")
+                                                    each item in data.entryTimeTable
+                                                        div(class="box-day",style=(item.zIndex)?"z-index:"+item.zIndex:'')
+                                                            div(class="servise-box "+((!item.noBorder)?'borderTop':'') style=(item.backgroundcolor)?"background-color:"+item.backgroundcolor:'')
+                                                                div(class="entry")
+                                                                    span=item.usedTime
+                                                                    br
+                                                                    a(href=item.masterLink)
+                                                                        span=item.masterName
+                                                                    br
+                                                                    a(href=item.serviceLink)
+                                                                        span=item.service
+                                                                    br
+                                                                    small
+                                                                        span(style="color:grey")=item.comment
+
+
+

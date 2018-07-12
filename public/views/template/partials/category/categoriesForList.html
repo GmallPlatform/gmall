@@ -1,0 +1,59 @@
+<!--<div class="categories-for-list" ng-if="$ctrl.parentSection.categories.length">
+    <div class="  form-group">
+        <div class="radio">
+            <label
+                   ng-class="{'active':$ctrl.category=='category'}">
+                <input type="radio" ng-model="$ctrl.category" value="category"
+                       ng-change="$ctrl.changeCategory($ctrl.category)">
+                ВСЕ КАТЕГОРИИ
+            </label>
+
+            <label for="co{{$index}}" ng-repeat="c in $ctrl.parentSection.categories|orderBy:'index'"
+                   ng-class="{'active':c.url==$ctrl.category}">
+                <input ng-change="$ctrl.changeCategory($ctrl.category)"
+                       type="radio"
+                       ng-model="$ctrl.category"
+                       ng-value="c.url"
+                       id="co{{$index}}">
+                {{c.name}}
+            </label>
+        </div>
+    </div>
+
+</div>-->
+<div class="categories-for-list" >
+    <div ng-if="$ctrl.parentSection.categories.length">
+        <a class="categories-stuff" ng-click="$ctrl.changeCategory('category')"  ng-class="{'active':$ctrl.category=='category'}">
+            <img class="img-responsive" ng-src="{{$ctrl.global.get('store').val.allCategories}}">
+            <p class="text-center">все категории</p>
+        </a>
+
+        <a class="categories-stuff" ng-click="$ctrl.changeCategory(item.url)"   ng-repeat="item in $ctrl.parentSection.categories"  ng-class="{'active':$ctrl.category==item.url}">
+            <img class="img-responsive" ng-src="{{item.smallimg}}">
+            <p class="text-center" ng-bind="item.name"></p>
+        </a>
+
+
+
+       <!-- <div class="categories-stuff col-lg-2 col-md-2 col-sm-3 col-xs-6">
+            <a ng-click="$ctrl.changeCategory('category')"  ng-class="{'active':$ctrl.category=='category'}">
+                <img class="img-responsive" ng-src="{{$ctrl.global.get('store').val.allCategories}}">
+                <p class="text-center">все категории</p>
+            </a>
+        </div>
+
+        <div class="categories-stuff  col-lg-2 col-md-2 col-sm-3 col-xs-6"  ng-repeat="item in $ctrl.parentSection.categories">
+            <a ng-click="$ctrl.changeCategory(item.url)"   ng-class="{'active':$ctrl.category==item.url}">
+                <img class="img-responsive" ng-src="{{item.smallimg}}">
+                <p class="text-center" ng-bind="item.name"></p>
+            </a>
+        </div>-->
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-lg-12 col-xs-12">
+        <p class="desription-page" ng-if="$ctrl.categoryData.desc" ng-bind-html="$ctrl.categoryData.desc|unsafe"></p>
+        <p class="desription-page" ng-if="$ctrl.brandData.desc"  ng-bind-html="$ctrl.brandData.desc|unsafe"></p>
+    </div>
+</div>
+
+<!--ng-model-options="{ debounce: 300 }"-->

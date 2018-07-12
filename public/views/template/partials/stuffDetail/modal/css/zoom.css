@@ -1,0 +1,100 @@
+/*zoom*/
+.zoom-slide {
+    position: relative;
+}
+.zoom-slide img {
+    width: 100%;
+    position: relative;
+}
+.cancel {
+    position: absolute;
+    /*width: 20px;
+    height: 20px;*/
+    /*right:20px;
+    top:20px;*/
+    z-index: 1000;
+    /*padding: 5px;
+    background-color: rgba(255, 255, 255, 0.53);*/
+}
+.zoom-slide .slide-img {
+    margin: 0 auto;
+}
+.zoom-slide .carousel-control.right,
+.zoom-slide .carousel-control.left {
+    background-image: none;
+}
+.zoom-slide  .carousel-control.right {
+    right: -50px;
+}
+.zoom-slide .carousel-control.left {
+    left: -50px;
+}
+.zoom-slide  .carousel-control.right span,
+.zoom-slide .carousel-control.left span{
+    display: none;
+}
+.zoom-slide  .carousel-control.right {
+    background: url("../../../../../../img/icon/next1.png") no-repeat;
+    background-position: center;
+}
+.zoom-slide  .carousel-control.left {
+    background: url("../../../../../../img/icon/prev1.png") no-repeat;
+    background-position: center;
+}
+.zoom-slide .carousel-indicators li{
+    background-color: #fff;
+    border: 3px solid #fff;
+    width: 15%;
+    height: 5px;
+    border-radius: 0;
+    border-width: 3px;
+    opacity: 0.6;
+    display: inline-block;
+    margin: 1px 5px;
+}
+.zoom-slide .carousel-indicators .active {
+    width: 15%;
+    height: 5px;
+    border-width: 3px;
+    background-color: transparent;
+    opacity: 1;
+    margin: 1px 5px;
+}
+@media (max-width: 400px){
+    .zoom-modal-horizontal .modal-content,
+    .zoom-modal-horizontal .modal-dialog {
+        width: 90vw;
+        margin: 30% auto;
+    }
+    .zoom-modal-vertical .modal-content {
+        height: auto;
+    }
+    .zoom-slide .slide-img {
+        height: auto !important;
+        width: auto !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .zoom-slide .gallery-wrap {
+        min-height: 120px;
+    }
+    .zoom-slide  .gallery-small {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        left: 0;
+
+    }
+    .zoom-slide .gallery-small img {
+        width: 70px;
+        display: inline-block;
+        float: left;
+    }
+    .zoom-slide .icon-downslide-img,
+    .zoom-slide .icon-up-img {
+        display: none;
+    }
+
+}
+

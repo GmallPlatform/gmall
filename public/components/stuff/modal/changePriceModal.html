@@ -1,0 +1,41 @@
+
+<!--для price-->
+<div class="change-price select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">изменение цены</h3>
+        <a  class="cancel" ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <form ng-submit="$ctrl.ok()">
+        <div class="modal-body">
+            <p class="text-center">Выберите тип изменения цены - сумму или процент.<br> При повышении цены введите положительное значение, при понижении - отрицательное знацение.</p>
+            <div class="form-group text-center">
+                <div class="togglebutton">
+                    <label for="single">
+                        <span ng-class="{'active':!$ctrl.item.sum}">процент</span>
+                        <input type="checkbox"
+                               id="single"
+                               ng-model="$ctrl.item.sum">
+                        <span ng-class="{'active':$ctrl.item.sum}">сумма</span>
+                    </label>
+                </div>
+            </div>
+            <div class="text-center qty">
+                <div class="form-group label-floating">
+                    <label class="control-label">введите значение</label>
+                    <input class="form-control" ng-model="$ctrl.item.value" style="width: 200px">
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-raised btn-block">
+                <span>сохранить</span>
+            </button>
+
+        </div>
+    </form>
+
+</div>
+<!--end price-->

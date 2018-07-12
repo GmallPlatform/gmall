@@ -1,0 +1,39 @@
+/*???*/
+
+/*right/left-menu*/
+.menu-section-vertical {
+    display: table;
+    height: 100%;
+    padding: 35% 50px;
+    background-color: $background-color;
+}
+.myMenuV{
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+}
+
+
+.vertical-menu .page-stat a{
+    padding: 5px 10px 5px 0;
+    color: $color;
+    text-transform: lowercase;
+}
+.vertical-menu ul.catalog-menu {
+    padding-left: 0;
+}
+.vertical-menu ul.catalog-menu li {
+    list-style: none;
+}
+.tablet-wrapper .page-stat a {
+    color: $color;
+}
+.tablet-wrapper .menu-section-vertical,
+.mobile-wrapper .menu-section-vertical {
+    padding: 30% 20px;
+}
+.tablet-wrapper .menu-section-vertical .page-stat a,
+.mobile-wrapper .menu-section-vertical .page-stat a {
+    text-transform: uppercase;
+}

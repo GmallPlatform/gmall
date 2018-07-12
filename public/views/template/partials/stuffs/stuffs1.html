@@ -1,0 +1,10 @@
+<div id='mainContent' class="stuffs-box">
+    <div ui-view></div>
+    <div ng-hide1="$state.current.name!='stuffs'" class="stuffs-admin" ng-init="padding=null" ng-class="{'padding-top-160':padding}">
+        <div class="clearfix"></div>
+        <stuff-list-template-list filters-block="true"></stuff-list-template-list>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+

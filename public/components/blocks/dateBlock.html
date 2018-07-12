@@ -1,0 +1,11 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group label-floating">
+            <label class="control-label">дата</label>
+            <input  date-range-picker class="date-picker form-control"
+                   type="text" ng-model="$ctrl.item.date" id="{{$index}}"
+                   options="$ctrl.datePickerOptions" ng-blur="$ctrl.saveField('date',$ctrl.item.date,300)"/>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

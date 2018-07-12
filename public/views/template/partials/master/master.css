@@ -1,0 +1,100 @@
+
+/*cliniq*/
+.master-stuff,
+.master-detail{
+    margin-top: 160px;
+    margin-bottom: 40px;
+}
+.master-stuff .master-box {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.master-stuff .thumbnail {
+    border:1px solid #bfbfbf;
+}
+.master-stuff  .thumbnail-master:hover .box-overlay {
+    opacity: 0.6;
+}
+
+.master-stuff  .master-name {
+    z-index: 1025;
+    position: absolute;
+    bottom: 120px;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+    color: #fff;
+}
+.master-stuff  .master-name h3,
+.master-stuff  .master-name h4 {
+    color: #333;
+}
+.master-stuff  .master-name img{
+    width: 50px;
+    transition: all  0.4s ease-in-out 0.1s;
+}
+.master-stuff  .master-stuff .see {
+    opacity: 0.5;
+    z-index: 1025;
+    text-align: center;
+}
+
+.master-stuff  .thumbnail-master:hover .see {
+    opacity: 1;
+}
+.master-stuff  .thumbnail-master:hover .see img{
+    transform: rotate(180deg);
+}
+
+.master-stuff  .see-master {
+    font-size: 16px;
+    /*color: #3ab8b2;*/
+    color: #fff;
+}
+
+.mobile-wrapper .master-name .see-master {
+    color: #fff;
+}
+
+
+/*master-detail*/
+.master-desc {
+    margin-bottom: 40px;
+}
+.master-detail .owl-box {
+    position: relative;
+}
+.master-detail .owl-carousel {
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+.master-detail .owl-carousel-nav {
+    position: absolute;
+    top: 45%;
+    z-index: 1025;
+    width: 100%;
+}
+
+.master-detail #owl-carousel-prev img,
+.master-detail #owl-carousel-next img {
+    width: 30px;
+}
+.master-detail .block-comments {
+    margin-bottom: 40px;
+}
+.master-detail .name-reviews,
+.master-detail .date{
+    font-size: 14px;
+    font-weight: bold;
+    color: #999;
+}
+.master-detail .reviews {
+    border-bottom: 1px solid #ccc;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+.master-detail .add-comments {
+    height: 40px;
+}

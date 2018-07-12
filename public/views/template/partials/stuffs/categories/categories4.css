@@ -1,0 +1,43 @@
+/*base-murti*/
+
+.categories-for-list{
+    margin-bottom: 0px;
+    padding: 10px 20px;
+}
+.categories-for-list .categories-stuff {
+    float: left;
+    margin-right: 20px;
+}
+
+.categories-for-list .categories-stuff .icon-btn {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    vertical-align: middle;
+    transition: all .3s ease-out;
+    background-color: #fff;
+}
+.categories-for-list .categories-stuff:hover .icon-btn {
+    transform: rotate(90deg)
+}
+
+.categories-for-list .categories-stuff  p {
+    color: #333;
+}
+
+.categories-for-list .categories-stuff .active .icon-btn {
+    transform: rotate(90deg)
+}
+.categories-stuff  p {
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #333;
+    min-height: 50px;
+}
+.categories-stuff  p:hover {
+    color: rgba(51, 35, 33, 0.69);
+}
+.categories-stuff .active p {
+    color: #999;
+}

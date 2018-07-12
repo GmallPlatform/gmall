@@ -1,0 +1,22 @@
+<div id="stuff-cart.html" class="stuffs">
+        <div class="stuff-box">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{'mobil':$ctrl.mobile}">
+                <div class="stuff-cart-min-height" ng-if="::!stuff._id">
+                </div>
+                <div id="list{{::stuff._id}}" class="goods-container-img " style="position: relative; " ng-if='::stuff._id'>
+                    <a ng-click="stuffs.zoomm" >
+                        <img class="sticker" ng-src="{{stuff.sticker}}">
+                        <img class="img-responsive img-goods" ng-src="{{stuff.gallery[0].thumb||'/img/upload/no.png'}}" />
+                    </a>
+                    <div class="box-overlay"></div>
+                    <div class="half-shadow">
+                        <div class="see"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+</div>

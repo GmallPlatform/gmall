@@ -1,0 +1,132 @@
+/*@if $className=="banner-content-box" {
+  @media  (max-width: 1500px) {
+    .banner-content {
+      @if $top {
+        top: $top*0.9;
+      }
+      @if $bottom {
+        bottom: $bottom*0.9;
+      }
+      @if $right {
+        right: $right*0.9;
+      }
+      @if $left {
+        left: $left*0.9;
+      }
+    }
+  }*/
+
+  /*.mobile-wrapper {
+    .banner-content-box {
+     width: 300px;
+      height: 250px;
+      top: 30%;
+    }
+  }
+}*/
+/*@if $className=="left-block" {
+  .tablet-wrapper {
+    .left-block {
+      @if $padding-top {
+        padding-top: $padding-top*0.1;
+      }
+    }
+  }
+  .mobile-wrapper {
+    .left-block {
+      @if $padding-top {
+        padding-top: $padding-top*0.5;
+      }
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+@if $className=="right-block" {
+  .tablet-wrapper {
+    .right-block {
+      @if $padding-top {
+        padding-top: $padding-top*0.5;
+      }
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+  .mobile-wrapper {
+    .right-block {
+      @if $padding-top {
+        padding-top: $padding-top*0.5;
+      }
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}*/
+/*@if $className=="desc-box" {
+  .tablet-wrapper {
+    .desc-box{
+      @if $top {
+        top: $top*0.5;
+      }
+
+    }
+  }
+}*/
+/*
+@if $className=="container" {
+  .tablet-wrapper {
+    .container{
+      width: 100%;
+      @if $padding-right {
+        padding-right: $padding-right*0.5;
+      }
+      @if $padding-left {
+        padding-left: $padding-left*0.5;
+      }
+      @else {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+  .mobile-wrapper {
+    .container{
+      width: 100%;
+      @if $padding-right {
+        padding-right: $padding-right*0.5;
+      }
+      @if $padding-left {
+        padding-left: $padding-left*0.5;
+      }
+      @else {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+}
+@if $className=="banner-desc" {
+  .mobile-wrapper .banner-desc{
+    @if $padding-right {
+      padding-right: $padding-right*0.5;
+    }
+    @if $padding-left {
+      padding-left: $padding-left*0.5;
+    }
+    @if $padding-top {
+      padding-top: $padding-top*0.2;
+    }
+    @if $padding-bottom {
+      padding-bottom: $padding-bottom*0.2;
+    }
+    @else {
+      padding-right: 10px;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+    }
+    @if $font-size==26px {
+      font-size: $font-size*0.7;
+    }
+  }
+}*/

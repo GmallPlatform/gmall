@@ -1,0 +1,24 @@
+/*all*/
+.vertical-menu li{
+    list-style: none;
+}
+.mobile-wrapper .info li,
+.tablet-wrapper .info li {
+    list-style: none;
+}
+.nav-group.info.dropdown .info-page {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.dropdown-menu > li > a {
+    padding: 5px 20px;
+}
+.nav-group.info.dropdown .info-page li {
+    list-style: none;
+}
+.dropdown-menu a {
+    @if $font-size {
+        font-size: $font-size*0.8;
+    }
+}
+

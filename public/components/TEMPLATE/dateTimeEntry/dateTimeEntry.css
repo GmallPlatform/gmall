@@ -1,0 +1,371 @@
+#entryTimeElement {
+    border-left: 1px solid #999;
+    height:100%
+}
+.date-time h3,
+.date-time h4,
+.date-time p,
+.date-time span{
+    color: #444;
+}
+.date-time .select-block h3,
+.date-time .select-block h4,
+.date-time .select-block p,
+.date-time .select-block span{
+    color: #777;
+}
+.date-time h3{
+    margin-bottom: 40px;
+}
+.date-time .select-block {
+    margin-bottom: 20px;
+}
+/*.modal-body {
+    -webkit-transition: all 0.2s ease-out 1s;
+    -moz-transition: all 0.2s ease-out 1s;
+    -o-transition: all 0.2s ease-out 1s;
+    transition: all 0.2s ease-out 1s;
+}*/
+.date-time .panel-body {
+    background-color: #fff !important;
+}
+.date-time .cancel {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url("../../../img/icon/cancel.png") no-repeat center center;
+    background-size: 10px;
+    top: 10px;
+    right: 10px;
+}
+.date-time a {
+    color: #444;
+    font-size: 16px;
+}
+.date-time a:hover {
+    color: #777;
+}
+.date-time .service-name {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 20px;
+}
+.date-time  .img-master {
+    border-radius: 100%;
+
+}
+.date-time .name-master {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.date-time .desc-master {
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+.moment-picker .moment-picker-container {
+    top: 200%;
+}
+.date-time .service-block {
+    padding: 10px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.entry .modal-title{
+    padding: 20px;
+    background-color: #666;
+    color: #fff;
+}
+#wrapper-for-entry1{
+    height: 100%;
+    width:100%;
+    overflow: hidden;
+
+}
+.service-choice {
+    margin: 20px;
+}
+.service-choice .service-choice-nav {
+    margin-bottom: 40px;
+}
+.service-box {
+    color: #302f2f;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 20px;
+    background-color: #e2e2e2;
+}
+
+.back {
+    position: absolute;
+    top:10px;
+    left: 10px;
+}
+.before {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#wrapper-for-entry1 .select-block,
+#wrapper-for-entry1 .select-block-master {
+    margin: 10px 20px;
+}
+#wrapper-for-entry1 .select-block-master span{
+    text-transform: uppercase;
+}
+.icon-cancel-img {
+    cursor: pointer;
+}
+.select-block-list {
+    position: relative;
+}
+.select-block-list p {
+    margin-top: 10px;
+}
+.select-block-list p span {
+    display: inline-block;
+}
+.select-block-list hr {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#wrapper-for-entry2{
+    position: relative;
+    left: 0;
+    margin: 0;
+    height: 100%;
+    width: 500%;
+    text-align: left;
+    -webkit-transition: margin-left 0.5s; /* Safari 3.1 to 6.0 */
+    transition: margin-left 0.5s;
+}
+#wrapper-for-entry2 .innerBlock{
+    height: 100%;
+    width:20%;
+    float:left;
+}
+#wrapper-for-entry1 .panel-group .panel {
+    background-color: #ffffff;
+    color: #302f2f;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+#wrapper-for-entry1 .panel-default>.panel-heading {
+    background-color: #ffffff;
+    color: #302f2f;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    padding: 40px 20px;
+    text-transform: uppercase;
+
+}
+#wrapper-for-entry1 .panel-default>.panel-heading .panel-title {
+    font-size: 18px;
+}
+#wrapper-for-entry1  .master-choice-box {
+    background-color: #ffffff;
+    color: #302f2f;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    transition: all .2s ease-out;
+}
+#wrapper-for-entry1 .master-choice-box div.active {
+    box-shadow: 2px 1px 6px 0px #000000;
+}
+#wrapper-for-entry1 .master-select {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    opacity: 0;
+    transition: opasity 1s;
+}
+#wrapper-for-entry1 .master-select.active {
+    opacity: 1;
+}
+#wrapper-for-entry1 .name-master {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    transition: opacity;
+    color: #666;
+}
+#wrapper-for-entry1 .position {
+    color: #666;
+}
+#wrapper-for-entry1  .master-choice-box img {
+    border-radius: 50%;
+}
+#wrapper-for-entry1 .date-choice-nav {
+    min-height: 40px;
+}
+#wrapper-for-entry1 .date-box {
+    width: 100%;
+    display:inline-block;
+    min-height:290px;
+}
+#wrapper-for-entry1 .well{
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
+}
+#wrapper-for-entry1  .well table {
+    width: 100%
+}
+#wrapper-for-entry1  .date-box .well table tr,
+#wrapper-for-entry1  .date-box .well table th,
+#wrapper-for-entry1  .date-box .well table td {
+    border: none;
+}
+#wrapper-for-entry1 .date-box .well table td button {
+    border:none;
+}
+#wrapper-for-entry1  .date-box .well table tr {
+    height: 50px;
+
+}
+#wrapper-for-entry1  .date-box .well table th {
+    font-size: 20px;
+}
+#wrapper-for-entry1  .date-box .well table td.h6 {
+    background-color: #f5f5f5;
+}
+#wrapper-for-entry1  .date-box .well table thead tr:first-child {
+    height: 80px;
+    background-color: #666;
+}
+#wrapper-for-entry1  .date-box .well table thead tr:first-child th {
+    background-color: #666;
+
+}
+#wrapper-for-entry1  .date-box .well table thead tr:first-child th button {
+    background-color: #666;
+    color: #fff;
+    height: 100%;
+    border: none;
+    text-transform: uppercase;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+#wrapper-for-entry1 .clock-box {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+}
+#wrapper-for-entry1 .order-box {
+    padding: 20px;
+}
+#wrapper-for-entry1 .clock-choice {
+    display: inline-block;
+    margin: 15px;
+}
+#wrapper-for-entry1 .clock-choice a{
+    padding: 10px;
+    font-size: 18px;
+    color: #333;
+
+}
+#wrapper-for-entry1 .clock-choice a:hover {
+    background-color: #ededed;
+}
+#wrapper-for-entry1 .clock-choice a span {
+    display: inline-block;
+    width: 40px !important;
+}
+/*#wrapper-for-entry1 .remember-online .remember-online-label {
+    display: none;
+}*/
+.service-choice.order-service .clock-box {
+    margin-bottom: 20px;
+}
+#wrapper-for-entry1 .remember-online .radio label input{
+    margin-top: 5px;
+}
+#wrapper-for-entry1 .cancel {
+    position: relative;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+.service-bg,
+.master-bg,
+.date-bg,
+.clock-bg,
+.order-bg{
+    padding: 20px;
+}
+#wrapper-for-entry1  .btn-info.active,
+#wrapper-for-entry1   .btn-info:active{
+    background-color: #666;
+    outline: none;
+}
+#wrapper-for-entry1 .btn-default.active {
+    outline: none;
+}
+#wrapper-for-entry1  .btn-info.active .text-info,
+#wrapper-for-entry1   .btn-info:active .text-info{
+    color: #fff;
+}
+.master-bg {
+    background: url("../../../views/template/img/bg/ideal9.jpg") no-repeat right center;
+}
+.service-bg {
+    background: url("../../../views/template/img/bg/ideal10.jpg") no-repeat right center;
+}
+.date-bg {
+    background: url("../../../views/template/img/bg/ideal6a.jpg") no-repeat right center;
+}
+.clock-bg {
+    background: url("../../../views/template/img/bg/ideal7a.jpg") no-repeat right center;
+}
+.order-bg {
+    background: url("../../../views/template/img/bg/ideal8.jpg") no-repeat right center;
+}
+@media (max-width: 320px){
+    .modal-title .record-time {
+        font-size: 18px;
+    }
+    .master-bg {
+        background-size: 500px;
+    }
+    .service-bg {
+        background-size: 500px;
+    }
+    .date-bg {
+        background-size: 500px;
+    }
+    .clock-bg {
+        background-size: 500px;
+    }
+    .order-bg {
+        background-size: 500px;
+    }
+    .service-choice {
+        margin: 0 5px;
+    }
+    .service-choice .service-choice-nav {
+        margin-bottom: 10px;
+    }
+    /*#wrapper-for-entry1  .date-box .well table td.h6 {
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+        font-size: 12px;
+        width: 20px !important;
+    }
+    #wrapper-for-entry1  .date-box .well table tr {
+        height: 40px;
+    }*/
+    #wrapper-for-entry1  .date-box .well table th {
+        font-size: 14px;
+    }
+    #wrapper-for-entry1  .date-box .well table thead tr:first-child th button {
+        font-size: 18px;
+    }
+    .date-box table {
+        font-size: 14px;
+    }
+    .h6 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}

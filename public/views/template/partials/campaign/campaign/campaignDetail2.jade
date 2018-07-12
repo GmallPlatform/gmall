@@ -1,0 +1,35 @@
+div(class="campaign-detail")
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12")
+        div(class="container")
+            h1(class="text-center",ng-bind="$ctrl.item.name")
+            div(class="col-lg-6 col-md-6  col-sm-8 col-xs-12")
+                h2(class="timer-box text-center", ng-if="$ctrl.item.dateEnd")
+                    p(class="camp-time")
+                        | !{$ctrl.global.get('lang').val.endAction}
+                    hr
+                    expiration-date(date="{{$ctrl.item.dateEnd}}")
+                    hr
+            div(class="col-lg-6 col-md-6 col-sm-4 col-xs-12 campaign-desc")
+                p(ng-bind-html="$ctrl.item.desc|unsafe")
+                h2
+                    | !{$ctrl.global.get('lang').val.withaSticker}
+                    img(ng-src="{{$ctrl.item.sticker}}")
+
+        div(class="clearfix")
+    div(ng-if="!$ctrl.item.revers")
+        div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center")
+            a(class="box-campaign", ng-click="$ctrl.campaignStuff='stuffs'", ng-class="{'active':$ctrl.campaignStuff=='stuffs'}")
+                h3
+                    | !{$ctrl.global.get('lang').val.promotionalItems}
+            a(class=" box-campaign", ng-if="$ctrl.dispalyCondition()", ng-click="$ctrl.campaignStuff='conditionsStuffs'", ng-class="{'active':$ctrl.campaignStuff=='conditionsStuffs'}")
+                h3
+                    | {$ctrl.global.get('lang').val.goodsConditions}
+
+
+        div(class="clearfix")
+
+        stuff-list-template-campaign-list(ng-if="$ctrl.campaignStuff=='stuffs'")
+        stuff-list-template-campaign-list(ng-if="$ctrl.campaignStuff=='conditionsStuffs'",campaign-condition="true")
+
+
+    div(class="clearfix")

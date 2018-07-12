@@ -1,0 +1,60 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">скачать таблицу с данными подписчиков</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="ship-box col-sm-12 col-lg-12 col-md-12 col-xs-12 text-center">
+            <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok()">
+                <div class="togglebutton date-user">
+                    <label for="date">
+                        <span ng-class="{'active':!$ctrl.item.dateNot}">все</span>
+                        <input type="checkbox"
+                               id="date"
+                               ng-model="$ctrl.showPhone"
+                               ng-change="$ctrl.saveField(item,'dateNot')">
+                        <span ng-class="{'active':$ctrl.item.dateNot}">за период</span>
+                    </label>
+                </div>
+                <div ng-show="$ctrl.showPhone" class="form-group data-picker" >
+                    <label class="col-lg-12 control-label">период подписки</label>
+                    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+                        <p class="form-control">
+                            <span class="pull-left">
+                                <strong>c </strong>
+                                <span  ng-class="{'active-date':$ctrl.item.openStart}"
+                                       ng-bind="$ctrl.dateStart|date"
+                                       ng-click="$ctrl.openStart=true">
+                                </span>
+                            </span>
+
+                            <input type="hidden"
+                                   uib-datepicker-popup="{{locale.DATETIME_FORMATS.shortDate}}"
+                                   datepicker-options="$ctrl.dateOptions"
+                                   ng-model="$ctrl.dateStart"
+                                   show-button-bar="false"
+                                   is-open="$ctrl.openStart"/>
+
+                            <span class="pull-right">
+                                <strong>по </strong>
+                                <span  ng-class="{'active-date':$ctrl.openEnd}"
+                                       ng-bind="$ctrl.dateEnd|date"
+                                       ng-click="$ctrl.openEnd=true"></span>
+                                <input type="hidden"
+                                       uib-datepicker-popup="{{locale.DATETIME_FORMATS.shortDate}}"
+                                       datepicker-options="$ctrl.dateOptions"
+                                       ng-model="$ctrl.dateEnd"
+                                       is-open="$ctrl.openEnd"
+                                       show-button-bar="false"/>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <button ng-disabled="$ctrl.blockButton" class="btn btn-block btn-raised" ng-click="$ctrl.ok()">скачать</button>
+    </div>
+</div>

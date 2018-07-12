@@ -1,0 +1,80 @@
+/*smak*/
+.img-bag {
+    position: relative;
+}
+.icon-cart-inverse{
+    display: none;
+}
+.inverseColor .icon-cart-inverse{
+    display: inline-block;
+}
+.inverseColor .icon-cart-img{
+    display: none;
+}
+.inCart{
+    color: $color;
+    box-shadow: 0 0 1px #666;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    -o-transition: all  ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+/*.newInCart {
+    position:absolute;
+    color: $mainColor;
+    font-size:35px ;
+    width: 60px;
+    height: 60px;
+    padding-top: 5px;
+    top: -20px;
+    right: -20px;
+    border-radius: 30px;
+    opacity: 1;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    -o-transition: all  ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+    z-index: 1300;
+}*/
+/*preview-cart*/
+.cartItems {
+    /*position: absolute;
+    top:77px;
+    width: 350px;
+    right: 0px;
+    background-color: #fff;
+    padding: 20px 10px;*/
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 2000;
+}
+.gotoinCart {
+    color: $mainColor;
+    transition: all  0.3s ease-in-out 0.1s;
+    line-height: 28px;
+}
+.gotoinCart:hover {
+    color: $mainColor;
+    font-size: 18px;
+}
+
+.added-cart{
+    opacity: 1;
+    /*border: 1px solid rgba(0, 0, 0, .15);*/
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    z-index: 2001;
+    color:$color;
+}
+.addItem {
+    padding: 10px;
+}
+.addItem .name-goods {
+    padding: 0;
+}
+

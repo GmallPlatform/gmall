@@ -1,0 +1,25 @@
+<div class="select-stuff select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выбор новости</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group" ng-init="focus=true">
+            <label>введите наименование новости</label>
+            <input class="form-control" type="text"
+                   ng-model="$ctrl.name"
+                   ng-model-options="{ debounce: 300 }"
+                   ng-change="$ctrl.search($ctrl.name)"
+                   simple-focus-element=""/>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-repeat="item in $ctrl.items">
+            <a ng-click="$ctrl.selectItem(item)" class="thumbnail">
+                <img class="img-responsive " ng-src="{{item.img||'img/upload/no.png'}}">
+                <p class="stuff-name text-center" ng-bind="item.name"></p>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+

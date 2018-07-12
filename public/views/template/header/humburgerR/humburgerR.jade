@@ -1,0 +1,16 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="hamburger")
+            if(dj[key].icon)
+                span(id="mainHumb",class="icon-menu-img",ng-click="global.get('functions').val.openSlideMenu()")
+                span(id="inverseHumb",class="icon-menu-inverse",ng-click="global.get('functions').val.openSlideMenu()")
+            else if(dj[key].iconStandart)
+                button(class="button navbar-toggle pull-right",ng-click="global.get('functions').val.openSlideMenu()",type="button")
+                    span(class="sr-only") Toggle navigation
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+
+            if(dj[key].text)
+                span(ng-click="global.get('functions').val.openSlideMenu()")
+                    | !{dj[key].text}

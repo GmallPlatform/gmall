@@ -1,0 +1,24 @@
+.paps-item {
+    padding-bottom: 40px;
+    margin-top: 80px;
+}
+
+.paps-item .page-photo {
+    min-height: 650px;
+}
+
+.paps-item .banner {
+    position: relative;
+}
+.paps-item .page-photo load-image img{
+    width: 100%;
+}
+.paps-item .content-box {
+    margin-top: 100px;
+}
+/*.paps-item load-image .add-photo {
+    width: 100%;
+    top: 0px;
+    left: 0;
+}*/
+

@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- '0.12'
+env:
+  global:
+  - secure: "Cg+r3iiCOSrghMNfcvFaZBbK0ZLT9mbIlVEYr7cW7P/PjWr3hid51hkEzJcoHxbB/UAqWGh09IBmfmFh4XN9iySj8LyUeFqI/ner9JDQYSnm+dWtxU9TZgA8MRXL4k+/fRYWmUnwOJB211F+fsevfGuKCbqQcl0axBiI+xTsfpQ="
+install: 'npm install'
+after_success:
+  - 'grunt deploy'

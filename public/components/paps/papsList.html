@@ -1,0 +1,58 @@
+<div ng-hide="$ctrl.$state.current.name!='frame.paps' && $ctrl.$state.current.name!='paps'"  class="paps-list">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4>
+            Здесь вы можете отредактировать страницы, на которые будет перенаправлен
+            пользователь завершивший одно из указанных действий.
+            Вы можете отредактировать заголовок и текст сообщения на данной странице, загрузить фото для баннера а также ввести
+            дополнительную информацию для системы adWords.
+        </h4>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat="item in $ctrl.items">
+        <div class="cart-detail" ng-class="{'mobil':global.get('mobile').val}">
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12" ui-sref="frame.paps.item({id:item.url})">
+
+                <!--<a ng-click="$ctrl.deleteItem(item)" class="btn btn-fab pull-right delete">
+                    <i class="material-icons link-warning">delete</i>
+                </a>-->
+                <img class="img-responsive" ng-src="{{item.img||'/img/upload/no.png'}}" />
+
+            </div>
+            <div class="text-center col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-class="{'mobil':$ctrl.modal}">
+                <span >действие</span>
+                <span ng-switch on="item.action">
+                        <span class="form-control" ng-switch-when="order">заказ</span>
+                        <span class="form-control" ng-switch-when="subscriptionAdd">подписка с доп. полями</span>
+                        <span class="form-control" ng-switch-when="subscription">подписка(регистрация)</span>
+                        <span class="form-control" ng-switch-when="call">заказ обратного звонка</span>
+                        <span class="form-control" ng-switch-when="feedback">сообщение из формы обратной связи</span>
+                        <span class="form-control" ng-switch-when="booking">онлайн запись</span>
+                        <span class="form-control" ng-switch-when="bonus">получение контента</span>
+                    </span>
+            </div>
+            <div class="text-center col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-class="{'mobil':$ctrl.modal}">
+                <div class=" form-group label-floating">
+                    <label for="name1" class="control-label">заголовок</label>
+                    <input type="text" id="name1" class="form-control name"
+                           ng-model="item.name"
+                           ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                           required
+                           lost-focus="$ctrl.saveField(item,'name')"/>
+                </div>
+            </div>
+
+            <div class="text-center col-lg-2 col-md-3 col-sm-6 col-xs-12" ng-class="{'mobil':$ctrl.modal}">
+                <a class="btn btn-fab btn-fab-mini edit" ui-sref="frame.paps.item({id:item.url})">
+                    <i class="material-icons link-success md-42">edit</i>
+                </a>
+            </div>
+            <div class="half-shadow-stuff col-lg-9 col-md-9 col-sm-6 col-xs-12" ng-class="{'mobil':$ctrl.modal}">
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div ui-view></div>
+
+

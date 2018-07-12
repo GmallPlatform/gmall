@@ -1,0 +1,50 @@
+/* Sweep To Top */
+.animated13  {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.animated13:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  @if $addColor2{
+    background: $addColor2;
+  }
+  @else {
+    background:#000
+  }
+}
+.animated13:hover, .animated13:focus, .animated13:active {
+  @if $addColor1{
+    color: $addColor1;
+  }
+  @else {
+    background:#fff
+  }
+}
+.animated13:hover:before, .animated13:focus:before, .animated13:active:before {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}

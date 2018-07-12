@@ -1,0 +1,47 @@
+div(class="stuffs")
+    div(id="list"+stuff._id,class="goods-container-img")
+        a(href=stuff.link)
+            div(class="stuff-box text-center ")
+                img(class="img-responsive img-goods",src=stuff.img,alt=stuff.name)
+                div(class="box-overlay")
+                div(class="half-shadow",id="divforfix" ng-if='stuff._id')
+                    div(class="title-block text-center")
+                        div(class="see")
+                            span(class="icon-see-img")
+                            p(class="see-master",ng-bind="$ctrl.global.get('lang').val.more")
+    div(class="text-center action-box")
+        div(class="title-block text-center")
+            h3(class="stuff-name")
+                span(class="name")=stuff.name
+        div
+            ul
+                each item in stuff.stuffs
+                    li
+                        span=item.name
+        div(class="title-block text-center")
+            span=stuff.price
+        div
+            if(stuff.orderType == '1')
+                div
+                    a(class="btn  btn-project btn-border", ng-click="stuff.order()", ng-bind="$ctrl.global.get('lang').val.toOrder")
+            else if(stuff.orderType == '2')
+                div
+                    a(class="btn  btn-project btn-border", ng-click="$ctrl.global.get('functions').val.witget('dateTime',{stuff:stuff})",ng-bind="$ctrl.global.get('lang').val.enroll")
+            else if(stuff.orderType == '6')
+                div
+                    a(class="btn  btn-project btn-border", ng-click="$ctrl.global.get('functions').val.witget('call',{stuff:stuff})",ng-bind="$ctrl.global.get('lang').val.enroll")
+            else if(stuff.orderType == '3')
+                div
+                    a(class="btn  btn-project btn-border",ui-sref="stuffs.stuff(stuff.linkData)",ng-bind="$ctrl.global.get('lang').val.more")
+            else if(stuff.orderType == '4')
+                div
+                    a(class="btn  btn-project btn-border",ng-click="stuff.getBonus()",ng-bind="$ctrl.global.get('store').val.bonusButtonText")
+            else
+                span(ng-show="stuff.checkInCart()")
+                    a(class="btn  btn-project btn-border",ng-bind="$ctrl.global.get('lang').val.inCart",disabled="disabled")
+                span(ng-hide="stuff.checkInCart()")
+                    a( class="btn  btn-project btn-border",ng-click="stuff.addItemToOrder()",ng-bind="$ctrl.global.get('lang').val.addToCart")
+            //a(class="btn  btn-project btn-border",ng-click="$ctrl.global.get('functions').val.orderGroupStuffs("+stuff.groupStuffsInList+")")
+                span=store.langData.toOrder
+
+    div(class="clearfix")

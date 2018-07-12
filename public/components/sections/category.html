@@ -1,0 +1,160 @@
+<div class="category-edit row" ng-if="$ctrl.item">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff text-center" ng-class="{'active':block=='desc'}">
+            <a ng-click="cnahgeBlock('desc')" class="btn btn-fab btn-fab-mini"  ui-sref="frame.sections">
+                <i class="material-icons link-warning md-42">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='blocks'}">
+            <a ng-click="$ctrl.block='blocks'" title="blocks">
+                <i class="material-icons link-warning">select_all</i>
+                <p>blocks</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff add-block pull-right" ng-show="$ctrl.block=='blocks'">
+            <ui-select ng-model="$ctrl.newBlock" skip-focusser="true" search-enabled2="false" ng-change="$ctrl.addBlock($ctrl.newBlock)">
+                <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocks">{{ opt.value }}</ui-select-choices>
+            </ui-select>
+        </div>
+
+        <h3 class="name-page col-lg-8 col-md-8 col-sm-8 col-xs-7">
+            <a ng-click="$ctrl.block='desc'">редактирование категории</a>
+            <span>{{$ctrl.item.name}}</span>
+        </h3>
+        <div class="clearfix"></div>
+    </div>
+    <!--<div class="col-lg-12 pages-header">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <a class="btn btn-fab "  ui-sref="frame.sections">
+                <i class="material-icons link-warning md-36">reply</i>
+            </a>
+        </div>
+        <h3 class="text-center name-page col-lg-8 col-md-8 col-sm-8 col-xs-7">
+            редактирование категории
+            <span>{{$ctrl.item.name}}</span>
+        </h3>
+        <div class="clearfix"></div>
+    </div>-->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-box" ng-show="$ctrl.block=='desc'" >
+        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="cart-detail tag-img">
+                <h3 class="text-center">фото категории</h3>
+                <div class="form-group">
+                    <load-image
+                            no-load="noLoad"
+                            no-change="noChange"
+                            upload-url="/api/collections/Photo/fileUploadBig?collectionName=Category"
+                            item-id="{{$ctrl.item._id}}"
+                            item-url="{{$ctrl.item.url}}"
+                            item-resourse="$ctrl.Items"
+                            file-src="$ctrl.item.img">
+                    </load-image>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="cart-detail tag-img">
+                <h3 class="text-center">баннер категории</h3>
+                <div class="form-group">
+                    <load-image
+                            no-load="noLoad"
+                            no-change="noChange"
+                            upload-url="/api/collections/Photo/fileUploadFullImg?collectionName=Category"
+                            item-id="{{$ctrl.item._id}}"
+                            item-url="{{$ctrl.item.url}}"
+                            item-resourse="$ctrl.Items"
+                            file-src="$ctrl.item.banner"
+                            name-img="banner">
+                    </load-image>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="cart-detail">
+                <create-link title='false'   link="$ctrl.item.customLink" change="$ctrl.saveField('customLink')" edit-seo-page="true"></create-link>
+            </div>
+        </div>
+        <div class=" col-lg-8 col-md-8 col-sm- col-xs-12">
+            <div class="cart-detail">
+                <div class="col-lg-7  col-md-7 col-sm-7 col-xs-7">
+                    <div class="form-group label-floating ">
+                        <label for="name" class="control-label">наименование категории</label>
+                        <input type="text" id="name" class="form-control name"
+                               ng-model="$ctrl.item.name"
+                               ng-model-options="{
+                                'updateOn': 'default blur',
+                                'debounce': {
+                                  'default': 700,
+                                  'blur': 0
+                                }
+                              }"
+                               ng-change="$ctrl.saveField('name')"/>
+                    </div>
+                </div>
+                <!--<div class="border-right checkbox text-center col-lg-2  col-md-2 col-sm-2 col-xs-2">
+                    <label>
+                        <input type="checkbox" ng-model="$ctrl.item.notActive" ng-change="$ctrl.saveField('notActive')">
+                        не активная
+                    </label>
+                </div>-->
+                <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3">
+                    <div class="form-group label-floating ">
+                        <label for="url" class="control-label">url</label>
+                        <input type="text" id="url" class="form-control name"
+                               ng-model="$ctrl.item.url" disabled/>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <h4 class="text-center name-box">описание</h4>
+                <div class="form-group editor">
+                    <div text-angular ng-model-options="{'updateOn': 'default blur','debounce': {'default': 700,'blur': 0}}"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="$ctrl.item.desc"
+                         ng-change="$ctrl.saveField('desc',200)"
+                         ta-paste="$ctrl.global.get('functions').val.taPaste($html)"\
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-md-3 col-md-3 col-sm-3 col-xs-12 control-label label-select">характеристики</label>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                        <ui-select multiple ng-model="$ctrl.item.filters" ng-change="$ctrl.saveField('filters')">
+                            <ui-select-match placeholder="выберите характеристики">
+                                {{$item.name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item._id  as item in $ctrl.filters | filter:$select.search">
+                                {{item.name}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-md-3 col-md-3 col-sm-3 col-xs-12  control-label label-select">бренды</label>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+                        <ui-select multiple ng-model="$ctrl.item.brands" ng-change="$ctrl.saveField('brands')">
+                            <ui-select-match placeholder="выберите бренды">
+                                {{$item.name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item._id  as item in $ctrl.brands | filter:$select.search">
+                                {{item.name}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-box" ng-show="$ctrl.block=='blocks'" >
+        <blocks-edit
+                item="$ctrl.item"
+                type="Category"
+                refresh-blocks="$ctrl.refreshBlocks()">
+        </blocks-edit>
+    </div>
+</div>
+

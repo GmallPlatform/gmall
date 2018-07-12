@@ -1,0 +1,16 @@
+<div class="news-box" ng-class="{'mobil':$ctrl.mobile}">
+    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+        <a ui-sref="news.item({id:item.url})">
+            <img style="width:100%" ng-src="{{item.img}}" />
+            <div ng-if="::!item.img" ng-bind-html="item.video|unsafe"></div>
+        </a>
+    </div>
+    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+        <a ui-sref="news.item({id:item.url})">
+            <h2 ng-bind="item.name"></h2>
+        </a>
+        <p ng-bind="item.desc.clearTag()|cut:true:250:'...'"></p>
+        <h4 ng-bind="$ctrl.moment(item.date).format('LL')"></h4>
+    </div>
+    <div class="clearfix"></div>
+</div>

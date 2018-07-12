@@ -1,0 +1,72 @@
+/*tatiana темный*/
+.home-filterTags .container {
+    width: 85%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.home-section:hover .box-overlay {
+    opacity: 0.4;
+}
+.home-section {
+    padding-right: 0;
+    padding-left: 0;
+}
+.home-filterTags  .half-shadow {
+    position: absolute;
+    width: 100%;
+    z-index: 1029;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+}
+.home-filterTags  .half-shadow{
+    height: 32%;
+}
+.home-filterTags a:hover .half-shadow {
+    display: block;
+}
+.home-filterTags  .title-block {
+    display: none;
+    bottom: 15px;
+    letter-spacing: 2px;
+    color: $color;
+    font-size: 70px;
+    line-height: 60px;
+}
+
+.home-filterTags a:hover .title-block  {
+    display: block;
+    color: $color;
+    text-shadow: none;
+}
+@media (max-width: 1200px){
+    .home-filterTags .half-shadow,
+    .home-filterTags .title-block{
+        display: block;
+        text-shadow: 0 0 2px #000;
+        font-size: 120px;
+    }
+    .home-filterTags .banner-header {
+        font-size: 32px;
+    }
+}
+.mobile-wrapper .home-filterTags .half-shadow{
+    display: block;
+    height: 20%;
+}
+.mobile-wrapper .home-filterTags .title-block{
+    display: block;
+    text-shadow: 0 0 2px #000;
+}

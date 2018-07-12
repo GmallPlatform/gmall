@@ -1,0 +1,100 @@
+<div class="filters-first-box" style="position: relative;width:100%">
+    <div class="filter-box" style="position: absolute;width:100%">
+        <div ng-if="$ctrl.brands.length">
+            <a class="reset link-warning" ng-click="$ctrl.changeAllBrands()">
+                <span class="cancelall">
+                    {{$ctrl.global.get('lang').val.cancelAll}}
+                </span>
+                <span class="icon-cancel-img"></span>
+            </a>
+        </div>
+        <uib-accordion close-others="false" >
+            <div uib-accordion-group  class="brand-box" is-open="brand.showCollections">
+                <uib-accordion-heading>
+                    <div class="pull-left">
+                        <span class="filter-brand-name" >{{$ctrl.global.get('lang').val.allBrands}}</span>
+                    </div>
+                    <div class="pull-right text-right all-collection">
+                        <span class="up-down" ng-show="!brand.showCollections">
+                            <span class="icon-plus-img"></span>
+                        </span>
+                        <span class="up-down" ng-show="brand.showCollections">
+                            <span class="icon-delete-img"></span>
+                        </span>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </uib-accordion-heading>
+                <div>
+                    <p>
+                        <a class="chars text-center" ng-class="{'brand-active':$ctrl.char==ch}" ng-repeat="ch in $ctrl.chars" ng-click="$ctrl.setCharForBrands(ch)" >
+                            <span ng-bind="ch"></span>
+                        </a>
+                    </p>
+
+                    <div class="form-group tag" ng-repeat="brand in $ctrl.brands|orderBy:'name'|filter:$ctrl.filterBrands" ng-show="brand.inList">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="brand.set"  ng-change="$ctrl.changeTag()">
+                                &nbsp {{brand.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-accordion>
+
+        <a class="reset" ng-click="$ctrl.clearAll()" >
+            <span class="cancelall">
+                {{$ctrl.global.get('lang').val.cancelAll}}
+            </span>
+            <span class="icon-cancel-img"></span>
+        </a>
+        <uib-accordion close-others="false" >
+            <div uib-accordion-group   class="tag-box" ng-repeat="filter in $ctrl.filters" ng-if="filter.inList && (filter.tags.length||filter.count)" is-open="filter.open">
+                <uib-accordion-heading>
+                    <span class="pull-left block-left">
+                        <span>{{filter.name}} </span>
+                        <span ng-if="filter.count">{{filter.desc}}</span>
+                    </span>
+                    <span class="pull-right block-right" ng-show="!filter.open">
+                        <span class="icon-plus-img"></span>
+                    </span>
+                    <span class="pull-right block-right" ng-show="filter.open">
+                        <span class="icon-delete-img"></span>
+                    </span>
+                    <span class="clearfix"></span>
+                </uib-accordion-heading>
+                <a class="reset link-warning" ng-click="$ctrl.changeAllTags(filter)">
+                    {{$ctrl.global.get('lang').val.tagsReset}}
+                </a>
+                <div class="clearfix"></div>
+                <div ng-if="filter.count">
+                    <rzslider
+                            rz-slider-model="filter.minValue"
+                            rz-slider-high="filter.maxValue"
+                            rz-slider-options="{floor: filter.min, ceil: filter.max}"></rzslider>
+                    <a class="pull-right link-success" ng-click="$ctrl.setCountFilter(filter)">
+                        {{$ctrl.global.get('lang').val.set}}
+                    </a>
+                    <a class="link-warning" ng-click="$ctrl.clearCountFilter(filter)">
+                        {{$ctrl.global.get('lang').val.clear}}
+                    </a>
+                </div>
+
+                <div class="tag-row" ng-if="!filter.count" class="form-group tag" ng-repeat="tag in filter.tags">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="tag.set"
+                                   ng-change="$ctrl.changeTag()">&nbsp{{tag.name}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </uib-accordion>
+    </div>
+</div>
+
+
+
+

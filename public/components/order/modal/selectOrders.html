@@ -1,0 +1,33 @@
+
+<!--для price-->
+<div class="change-price select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">поступившие и принятые ордера</h3>
+        <a  class="cancel" ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Выберите ордер</p>
+        <div class="text-center qty">
+            <p ng-repeat="order in $ctrl.orders">
+                <a ng-click="$ctrl.ok(order)">
+                    <span>N </span>
+                    <span ng-bind="order.num"></span>
+                    <span>&nbsp от </span>
+                    <span ng-bind="order.date"></span>
+                </a>
+            </p>
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="modal-footer">
+        <p>&nbsp;</p>
+        <!--<button type="submit" class="btn btn-raised btn-block">
+            <span>сохранить</span>
+        </button>-->
+
+    </div>
+
+</div>
+<!--end price-->

@@ -1,0 +1,131 @@
+<style>
+    .slider-catalog-wrapper .section {
+        margin: 10px 10px
+    }
+    .slider-catalog-wrapper .invisible {
+       /* visibility: hidden;*/
+
+    }
+    .help-content-container{
+        min-height: 200px;
+        padding-left: 50px;
+    }
+
+    .help-content{
+        padding-bottom: 20px;
+        padding-top: 20px;
+        clear: both;
+    }
+    .help-contetn-img{
+        max-height: 200px;
+        clear: both;
+    }
+</style>
+<div class="col-lg-12">
+    <span ng-click="$ctrl.backToCatalog()">Навигация</span>
+    <span ng-repeat="item in $ctrl.breadcrumbs">
+        <span ng-click="$ctrl.backToBC($index)">
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <span ng-bind="item.name"></span>
+        </span>
+    </span>
+</div>
+<div class="col-lg-12 slider-catalog-wrapper">
+    <div class="col-lg-4" style="min-height: 1000px">
+
+        <div ng-class="$ctrl.sectionsClass" id="sections">
+            <div class="section clearfix" ng-repeat="section in $ctrl.sections" >
+                <a ng-click="$ctrl.forwardToSubsections(section)">
+                    <span ng-bind="section.name"></span>
+                    <span class="pull-right">more</span>
+                </a>
+            </div>
+        </div>
+
+
+
+        <div
+             style="position: absolute;top:0;left:0"
+             ng-class="section.class"
+             ng-repeat="section in $ctrl.sections"
+             id="sub{{section._id}}"
+             ng-init="section.class='invisible'">
+            <div class="section clearfix" ng-repeat="subSection in section.child" >
+                <a ng-click="$ctrl.forwardToCategories(section,subSection)"><span ng-bind="subSection.name"></span></a>
+                <span class="pull-right">more</span>
+            </div>
+            <div class="section clearfix" ng-repeat="category in section.categories" >
+                <a ng-click="$ctrl.getStuffs(category)">
+                    <span ng-bind="category.name"></span>
+                </a>
+            </div>
+            <div class="section clearfix">
+                <a ng-click="$ctrl.backInSection(section)"><span>назад</span></a>
+            </div>
+        </div>
+
+        <div ng-repeat="section in $ctrl.sections">
+            <div style="position: absolute;top:0;left:0"
+                 ng-class="subSection.class"
+                 ng-repeat="subSection in section.child"
+                 id="cat{{subSection._id}}"
+                 ng-init="subSection.class='invisible'">
+                <div class="section clearfix" ng-repeat="category in subSection.categories" >
+                    <a ng-click="$ctrl.getStuffs(category)"><span ng-bind="category.name"></span></a>
+                </div>
+                <div class="section clearfix">
+                    <a ng-click="$ctrl.backInSubSection(subSection,section)"><span>назад</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <h2 ng-bind="$ctrl.category.name"></h2>
+        <p ng-bind="$ctrl.category.desc|unsafe"></p>
+        <div class="col-lg-12">
+            <div ng-repeat="item in $ctrl.items">
+                <div class="collapse-heading">
+                    <a ng-click="$ctrl.getStuff(item,$index)">
+                        <i class="pull-right1 glyphicon" ng-class="{'glyphicon-chevron-down': item.isOpen, 'glyphicon-chevron-right': !item.isOpen}"></i>
+                        <span>&nbsp</span>
+                        <span ng-bind="item.name"></span>
+                    </a>
+                </div>
+                <div uib-collapse="!item.isOpen" class="help-content-container">
+                    <div class="help-content" ng-bind-html="item.desc|unsafe"></div>
+                    <div class="help-contetn-img" ng-if="item.gallery[0]">
+                        <img class="img-response" ng-src="{{item.gallery[0].thumb}}">
+                    </div>
+                    <div class="help-content" ng-bind-html="item.desc1|unsafe"></div>
+                    <div class="help-contetn-img" ng-if="item.gallery[1]">
+                        <img class="img-response" ng-src="{{item.gallery[1].thumb}}">
+                    </div>
+                    <div class="help-content" ng-bind-html="item.desc2|unsafe"></div>
+                    <div class="help-contetn-img" ng-if="item.gallery[2]">
+                        <img class="img-response" ng-src="{{item.gallery[2].thumb}}">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+       <!-- <uib-accordion close-others="true">
+        <uib-accordion-group is-open="item.isOpen" ng-repeat="item in $ctrl.items">
+            <uib-accordion-heading>
+                <i class="pull-right1 glyphicon" ng-class="{'glyphicon-chevron-down': item.isOpen, 'glyphicon-chevron-right': !item.isOpen}"></i>
+                <span>&nbsp</span>
+                <span ng-bind="item.name"></span>
+            </uib-accordion-heading>
+            <div ng-bind-html="item.desc|unsafe">
+
+            </div>
+        </uib-accordion-group>
+        </uib-accordion>-->
+
+
+    </div>
+</div>
+<!--<pre>{{$ctrl.sections|json}}</pre>-->
+
+

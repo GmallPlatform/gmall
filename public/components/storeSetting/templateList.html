@@ -1,0 +1,68 @@
+<div ng-hide="$ctrl.$state.current.name!='frame.templates'"  class="template-list" style="margin-top: 140px">
+    <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <p class="no_story">
+            по вашему запросу нет записей
+        </p>
+    </div>
+    <div class="clearfix"></div>
+    <div class="nav-box-stuff">
+        <div class="content-tab-nav-stuff">
+            <div class="tab-nav-stuff form-group  col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <a class="link-success" ng-click="$ctrl.createItem()">
+                    создать шаблон
+                </a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                <paginator-main
+                       paginate="$ctrl.paginate"
+                        getlist="$ctrl.getList()"
+                        scroll="{{scrollId}}">
+                </paginator-main>
+            </div>
+            <form ng-submit="$ctrl.searchItem(searchStr)">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pull-right">
+                    <div class="search  form-group label-floating">
+                        <label class="control-label">поиск шаблона</label>
+                        <input type="text"  class="form-control" ng-model="searchStr"/>
+                    </div>
+                </div>
+                <input type="submit" class="enter" tabindex="-1"  />
+            </form>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="template-stuff-container">
+        <div class="stuff-admin col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat="item in $ctrl.items">
+            <div class="cart-detail" ng-class="{'mobil':$ctrl.global.get('mobile').val}">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label for="name" class="control-label">название</label>
+                        <input type="text" id="name" class="form-control"
+                               ng-model="item.name"
+                               required
+                               ng-blur="$ctrl.saveField(item,'name')"/>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label for="folder" class="control-label">folder</label>
+                        <input type="text" id="folder" class="form-control"
+                               ng-model="item.folder"
+                               required
+                               ng-blur="$ctrl.saveField(item,'folder')"/>
+                    </div>
+                </div>
+
+
+                <a class="pull-right" ui-sref="frame.templates.template({id:item._id})">подробнее</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+<div class="clearfix"></div>
+<div ui-view></div>
+
+

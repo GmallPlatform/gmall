@@ -1,0 +1,24 @@
+@media  (max-width: 1500px) and (min-width: 1301px)  {
+  h1 {
+    @if $top {
+      top: $top*0.9;
+    }
+    @if $font-size {
+      font-size: $font-size*0.9;
+    }
+  }
+}
+@media  (max-width: 1300px) and (min-width: 1025px) {
+  h1 {
+    @if $font-size {
+      font-size: $font-size*0.8;
+    }
+  }
+}
+/*@media  (max-width: 992px) {
+  h1 {
+    @if $font-size {
+      font-size: $font-size*0.7;
+    }
+  }
+}*/

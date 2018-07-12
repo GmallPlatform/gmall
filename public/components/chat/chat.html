@@ -1,0 +1,101 @@
+<div class="panel panel-violet">
+    <div class="panel-heading">
+        <!--<span class="glyphicon glyphicon-user"></span>--> ДИАЛОГ с {{chatCtrl.global.get('store').val.seller.name}}
+    </div>
+    <div id="innerChat" class="panel-body" scroll-up="chatCtrl.messages" style="overflow-y: scroll; height: 350px;">
+        <ul class="chat">
+            <li class="text-center" ng-if="chatCtrl.totalCount>chatCtrl.localCount">
+                <a ng-click="chatCtrl.getMoreMessage()">
+                    <span class="col-lg-4"><hr></span>
+                    <span class="col-lg-4 text-center">ранее</span>
+                    <span class="col-lg-4"><hr></span>
+                    <div class="clearfix"></div>
+                </a>
+            </li>
+            <li class="row message" ng-repeat="message in chatCtrl.messages"
+                ng-init="message.who=chatCtrl.getWho(message.recipient)">
+                <div ng-if="message.who=='me'">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-8 ">
+                        <div class="row">
+                            <div class="message-me">
+                                <small class="text-muted">
+                                    <span class="glyphicon glyphicon-time"></span>{{moment(message.date).format('LLL')}}
+                                </small>
+                                <p ng-bind="message.message"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-lg-3 col-md-3 col-sm-3 col-xs-4 text-center">
+                        <img class="img-message">
+                        <strong class="name-message"  ng-bind="message.name"></strong>
+                        <!--<span class="info-chat-mini">Я</span>-->
+                        <!--<img src="http://placehold.it/50/55C1E7/fff&text=Я" class="img-circle" />-->
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div ng-if="message.who=='he'">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 text-center">
+                        <img class="img-message" >
+                        <!--<img src="http://placehold.it/50/FA6F57/fff&text=TLUX" class="img-circle" />-->
+                        <strong class="name-message"  ng-bind="message.name"></strong>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-8 text-right">
+                        <div class="row">
+                            <div class="message-he">
+                                <small class="text-muted ">
+                                    <span class="glyphicon glyphicon-time"></span>{{moment(message.date).format('LLL')}}
+                                </small>
+                                <p ng-bind="message.message"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <form novalidate name='formChat' ng-submit="chatCtrl.sendMessage(formChat)">
+            <div class="form-group label-floating" ng-class="{ 'has-success': formChat.message.$valid && chatCtrl.submitted,
+                                                      'has-error': formChat.message.$invalid && chatCtrl.submitted }">
+
+                <div class="input-group">
+                    <!--<span class="input-group-addon">$</span>-->
+                    <label class="control-label" style="margin-left: 20px">Введите сообщение</label>
+                    <input id="btn-input form-control" type="text"
+                           autocomplete="off"
+                           ng-maxlength="200"
+                           required
+                           name="message"
+                           ng-model="chatCtrl.message"
+                           class="form-control "
+                           simple-focus-element
+                    /><!--ng-minlength="3"-->
+                    <span class="input-group-btn" style="padding-right: 0">
+                        <!--<button class="btn btn-fab " id="btn-chat"
+                                ng-disabled="order && order.status>5"
+                                ng-click="chatCtrl.sendMessage(chatCtrl.message)"
+                                style="margin-bottom: 0;margin-top: -20px">
+                            <i class="material-icons link-primary md-36" style="margin-right: 0">send</i>
+                        </button>-->
+                        <button class="btn " id="btn-chat"
+                                ng-disabled="order && order.status>5"
+                                ng-click="chatCtrl.sendMessage(chatCtrl.message)"
+                                style="margin-bottom: 0;margin-top: -20px; height: 60px">
+                            <i class="material-icons link-primary" style="margin-right: 0; font-size: 36px">send</i>
+                        </button>
+                    </span>
+                    <!--<span class="help-block hint" ng-show="(formChat.message.$error.minlength ||
+                                                              formChat.message.$error.required) && chatCtrl.submitted">
+                        введено менее 3-х символов
+                    </span>
+                    <span class="help-block hint" ng-show="formChat.message.$error.maxlength && chatCtrl.submitted">
+                        введено более 200-ти символов
+                    </span>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

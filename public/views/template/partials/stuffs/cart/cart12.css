@@ -1,0 +1,60 @@
+/*tatiana*/
+.img-goods {
+    width: 100%;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.stuff-box:hover .box-overlay{
+    opacity: 0.6;
+}
+.price-block a {
+    cursor: default;
+}
+.price-block a:hover {
+    color: $color
+}
+.sort {
+    cursor: pointer;
+    transition: all 0.5s ease-out 0.1s;
+}
+.sort:hover,
+.sort.sort-active {
+    border: 1px solid $mainColor;
+    background-color: transparentize($mainColor,.82);
+}
+.icon-see-img {
+    transition: all  0.4s ease-in-out 0.1s
+}
+.stuff-box:hover .see {
+    opacity: 1;
+}
+.stuff-box:hover .icon-see-img {
+    transform: rotate(180deg);
+}
+
+.stuff-box:hover .half-shadow {
+    display: block;
+    z-index: 1025;
+}
+@media (max-width: 1024px){
+    .stuff-box .half-shadow,
+    .stuff-box .title-block{
+        display: block;
+    }
+}
+.btn.disabled,
+.btn[disabled] {
+    cursor: not-allowed;
+}

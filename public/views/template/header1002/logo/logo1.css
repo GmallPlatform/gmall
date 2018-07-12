@@ -1,0 +1,24 @@
+
+/*indian*/
+.logo-top img {
+    margin: 0 auto;
+    width: 250px;
+    margin-top: 15px;
+    transition: all  1s ease-in-out 0.5s;
+}
+.center-menu .logo-top {
+    position: relative;
+    display: inline-block;
+    float: left;
+    right: 50%;
+}
+.center-menu .logo-top img {
+    display: inline-block;
+}
+.navbar-toggle-slide.navbar-toggle-slide-mini .logo-top img {
+    width: 160px;
+}
+.mobile-wrapper .logo-top img{
+    margin-top: 20px;
+    width: 180px;
+}

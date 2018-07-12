@@ -1,0 +1,80 @@
+/*indian fashion*/
+/* .stdetail-quantity.quantity {
+    margin-top: 20px;
+    text-align: right;
+    margin-bottom: 20px;
+    padding-right: 0;
+}
+.stdetail-quantity.quantity .ui-select-container {
+    float: right;
+    margin-left: 20px;
+}*/
+/*indian*/
+/*.stdetail-quantity .form-control {
+    width: 200px;
+    float: right;
+}*/
+/*.mobile-wrapper .quantity {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 0;
+    padding-right: 0;
+}*/
+/*.mobile-wrapper .form-control {
+    width: 100%;
+}*/
+/*.quantity .form-control {
+    height: 40px;
+    background-color: transparent;
+    font-size: 14px;
+    margin-bottom: 5px;
+    border: none;
+    border-bottom: 1px solid #666;
+    border-radius: 0;
+    box-shadow: none;
+    width: 80px;
+}*/
+.quantity .form-control:focus {
+    box-shadow: none;
+    outline: none;
+}
+.qty {
+    margin-right: 20px;
+}
+.quantity input {
+    width: 40px;
+    padding-right: 0;
+    padding-left: 0;
+    text-align: center;
+    border-bottom: 0;
+    font-size: 20px;
+    background-color: transparent;
+}
+.quantity .qty-plus,
+.quantity .qty-minus{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding-top: 5px;
+    font-weight: 600;
+    background-color: #fbfbfb;
+}
+.quantity .qty-plus:hover,
+.quantity .qty-minus:hover {
+    background-color: #e2e2e2;
+    border: 1px solid #cacaca;
+}
+.ui-select-bootstrap .btn-default-focus{
+    outline: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+.ui-select-bootstrap .ui-select-choices-row.active>a {
+    background-color: #ccc;
+}
+.unit {
+    display: inline-block;
+    margin-top: 4px;
+}

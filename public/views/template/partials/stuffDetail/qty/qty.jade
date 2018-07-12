@@ -1,0 +1,30 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(ng-if="$ctrl.item.sort && !$ctrl.item.service",class="quantity")
+            //input(class="form-control pull-left",type="number", min='{{$ctrl.item.minQty}}', max='{{$ctrl.item.maxQty}}',ng-model="$ctrl.item.quantity",ng-change="$ctrl.save.item.quantity()")
+            //span(class="unit pull-left",ng-bind="$ctrl.item.unitOfMeasure")
+            div(class="pull-left qty")
+                a(class="pull-left",ng-click="$ctrl.decreaseQty($index)")
+                    span(class="qty-minus") -
+                input(class="form-control pull-left",type="text",min='{{$ctrl.item.minQty}}', max='{{$ctrl.item.maxQty}}',ng-model="$ctrl.item.quantity",ng-change="$ctrl.save.item.quantity()")
+                a(class="pull-left",ng-click="$ctrl.increaseQty($index)")
+                    span(class="qty-plus") +
+            p(class="pull-left unit")
+                span(class="unit pull-left",ng-bind="$ctrl.item.unitOfMeasure")
+            p(class="clearfix")
+            p
+                span(ng-if="$ctrl.item.multiple")
+                    span(ng-bind="$ctrl.global.get('lang').val.minimumOrder")
+                    | &nbsp;-&nbsp;
+                    span(ng-bind="$ctrl.item.minQty")
+                    | &nbsp;
+                    span(class="unit",ng-bind="$ctrl.item.unitOfMeasure")
+                    br
+                span(ng-if="$ctrl.item.single")
+                    span(ng-bind="$ctrl.global.get('lang').val.maximumOrder")
+                    | &nbsp;-&nbsp;
+                    span(ng-bind="$ctrl.item.maxQty")
+                    | &nbsp;
+                    span(class="unit",ng-bind="$ctrl.item.unitOfMeasure")
+
+

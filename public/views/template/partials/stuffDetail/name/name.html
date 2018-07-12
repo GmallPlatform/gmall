@@ -1,0 +1,12 @@
+<div class="name">
+    <h1 itemprop="name">
+        <span  class="goods-name" ng-bind="$ctrl.item.name"></span><br>
+        <span ng-bind="$ctrl.item.artikul"></span>
+        <p ng-if="$ctrl.item.brand">
+            <a ui-sref="stuffs({'groupUrl':'group','categoryUrl':'category','brand':$ctrl.item.brandUrl})">
+                <span ng-bind="$ctrl.item.brandName"></span>
+            </a>
+        </p>
+        <hr>
+    </h1>
+</div>

@@ -1,0 +1,253 @@
+
+<div class="nav-box-stuff">
+    <!--<a class="btn btn-fab btn-fab-mini " onclick="window.history.back()">
+        <i class="material-icons link-warning">reply</i>
+    </a>-->
+    <div class="tab-nav-stuff">
+        <a class="btn btn-fab btn-fab-mini btn-success"
+           ng-click="$ctrl.createItem()"
+           title="добавить usera">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+
+    <div class="tab-nav-stuff">
+        <form ng-submit="$ctrl.searchItems(searchStr)">
+            <input type="text"  class="search-fluid"  ng-model="searchStr"/>
+            <input type="submit" class="enter" tabindex="-1" />
+        </form>
+    </div>
+    <div class="tab-nav-stuff">
+        <paginator-main
+                paginate="$ctrl.paginate"
+                getlist="$ctrl.getList()"
+                scroll="{{scrollId}}">
+        </paginator-main>
+    </div>
+    <div class="tab-nav-stuff upload pull-right">
+        <a ng-click="$ctrl.viewLogFile()">(log file)</a>
+        <div class="form-group input-file">
+
+            <label>загрузить на сайт</label>
+            <label>загрузить на сайт</label>
+            <input type = "file" file-model = "$ctrl.myFile"/>
+            <div class="input-group" >
+                <!--<i class="material-icons link-success input-group-addon">attach_file</i>-->
+                <input  type="text" readonly="" class="form-control" placeholder="выбрать файл  с данными">
+                <span  style="z-index: 1000"class="input-group-btn input-group-sm">
+                    <button type="button" ng-disabled="$ctrl.disabledUpload|| !$ctrl.myFile"
+                            class="btn btn-fab btn-fab-mini btn-success" ng-click="$ctrl.uploadFile()">
+                        <i class="material-icons">file_upload</i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="tab-nav-stuff pull-right">
+        <div>
+            <label>скачать с сайта</label>
+            <a class="form-control" ng-click="$ctrl.downloadUsers()">сформировать базу users</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div  class="users-stuff">
+    <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <p class="no_story">
+            Таких товаров нет в каталоге
+        </p>
+    </div>
+    <h3 class="text-center name-page">список пользователей</h3>
+    <div class="users-stuff-container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <div class="table">
+                    <div class="user-box" ng-repeat="item in $ctrl.items" ng-init="$ctrl.items.profile=$ctrl.items.profile||{}">
+                        <div class="num">
+                            {{$index+1+$ctrl.paginate.rows*$ctrl.paginate.page}}.
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-left: 50px">
+                            <strong><i class="material-icons link-success" style="">contact_mail</i><span ng-bind="item.email"></span></strong><br>
+                            <span ng-bind="item.profile.fio"></span><br>
+                            <i class="material-icons link-success">contact_phone</i><span ng-bind="item.profile.phone"></span><br>
+                            <span ng-bind="$ctrl.moment(item.date).format('LL')"></span>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 city">
+                            <div class="form-group">
+                                <i class="material-icons link-success">location_city</i>
+                                <input type="text" class="form-control"
+                                       change="$ctrl.saveField(item,'profile')"  ng-autocomplete-city  user="item"/>
+                                <br>
+                                <br>
+                                <i class="material-icons link-success">directions_bus</i>
+                                <input type="text" placeholder="введите перевозчика"  class="form-control"
+                                       ng-blur="$ctrl.saveField(item,'profile')"  ng-model="item.profile.transporter"/>
+                            </div>
+
+                        </div>
+                        <!--<div class="col-lg-1 col-md-1 col-sm-4 col-xs-6">
+
+                            <span ng-if="item.subscription">подписан</span>
+                            <span ng-if="!item.subscription">не подписан</span>
+                            <div class="checkbox">
+                                <label for="rur45{{item._id}}">
+                                    <input type="checkbox" id="rur45{{item._id}}" ng-model="item.subscription"
+                                           ng-change="$ctrl.saveField(item,'subscription')">
+                                    изменить
+                                </label>
+                            </div>
+                        </div>-->
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 sub-user">
+                            <div class="togglebutton">
+                                <label for="sub">
+                                    <span ng-class="{'active':!item.subscription}">не подписан</span>
+                                    <input type="checkbox"
+                                           id="sub"
+                                           ng-model="item.subscription"
+                                           ng-change="$ctrl.saveField(item,'subscription')">
+                                    <span ng-class="{'active':item.subscription}">подписан</span>
+                                </label>
+                            </div>
+                            <div ng-if="$ctrl.confirmEmail">
+                                <span ng-show="item.confirmEmail">e-mail подтвержден</span>
+                                <span ng-hide="item.confirmEmail">e-mail не подтвержден</span>
+                            </div>
+                            <div  class="form-group" ng-if="$ctrl.subscibtionList.list">
+                                <label>список рассылок</label>
+                                <ui-select multiple ng-model="item.list"
+                                           search-enabled="false"
+                                           skip-focusser="false"
+                                           ng-change="$ctrl.saveField(item,'list')">
+                                    <ui-select-match allow-clear="true"
+                                                     placeholder="общий">
+                                        {{$item.value}}
+                                    </ui-select-match>
+                                    <!--<ui-select-null-choice>No person</ui-select-null-choice>-->
+                                    <ui-select-choices repeat="person.key as (key, person) in $ctrl.subscibtionList.list">
+                                        {{person.value}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <p>
+                                <span ng-repeat="(key,info) in item.addInfo">
+                                    <span ng-bind="key"></span>:
+                                    <span ng-bind="info"></span>
+                                    &nbsp;
+
+                                </span>
+                            </p>
+                            <p>
+                                визитов <span ng-bind="item.visits"></span><br>
+                                заказов <span ng-bind="item.order.count"></span>/<span ng-bind="item.order.sum"></span>
+                            </p>
+
+                            <a class="btn btn-fab btn-fab-mini" title="изменить пароль" ng-click="$ctrl.changePswd(item._id)">
+                                <i class="link-success material-icons">replay</i>
+                            </a>
+
+                            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.deleteItem(item)">
+                                <i class="link-warning material-icons">delete</i>
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>e-mail, ФИО, телефон, дата</th>
+                            <th>город,перевозчик</th>
+                            <th>подписан</th>
+                            <th ng-if="$ctrl.confirmEmail">подтвержд.email</th>
+                            <th>список рассылок</th>
+                            <th>посещений</th>
+                            <th>удалить</th>
+                            <th>pswd</th>
+                        </tr>
+                    </thead>
+                    <tr  ng-repeat="item in $ctrl.items" ng-init="$ctrl.items.profile=$ctrl.items.profile||{}">
+                        <td>{{$index+1+$ctrl.paginate.rows*$ctrl.paginate.page}}</td>
+                        <td>
+                            <strong><span ng-bind="item.email"></span></strong><br>
+                            <span ng-bind="item.profile.fio"></span><br>
+                            <span ng-bind="item.profile.phone"></span><br>
+                            <span ng-bind="$ctrl.moment(item.date).format('LL')"></span>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input type="text"   class="form-control mb-10 cart"
+                                  change="$ctrl.saveField(item,'profile')"     ng-autocomplete-city  user="item"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="введите перевозчика"  class="form-control mb-10 cart"
+                                       ng-blur="$ctrl.saveField(item,'profile')"  ng-model="item.profile.transporter"/>
+                            </div>
+                        </td>
+                        <td>
+                            <span ng-if="item.subscription">да</span>
+                            <span ng-if="!item.subscription">нет</span>
+                            <div class="checkbox">
+                                <label for="rur45{{item._id}}">
+                                    <input type="checkbox" id="rur45{{item._id}}" ng-model="item.subscription"
+                                           ng-change="$ctrl.saveField(item,'subscription')">
+                                    изменить
+                                </label>
+                            </div>
+                        </td>
+                        <td ng-if="$ctrl.confirmEmail">
+                            <span ng-show="item.confirmEmail">да</span>
+                            <span ng-hide="item.confirmEmail">нет</span>
+                        </td>
+                        <td>
+                            <div  class="form-group" ng-if="$ctrl.subscibtionList.list">
+                                <ui-select multiple ng-model="item.list"
+                                           search-enabled="false"
+                                           skip-focusser="false"
+                                           ng-change="$ctrl.saveField(item,'list')" style="width: 300px;">
+                                    <ui-select-match allow-clear="true"
+                                            placeholder="общий">
+                                        {{$item.value}}
+                                    </ui-select-match>
+                                    &lt;!&ndash;<ui-select-null-choice>No person</ui-select-null-choice>&ndash;&gt;
+                                    <ui-select-choices repeat="person.key as (key, person) in $ctrl.subscibtionList.list">
+                                        {{person.value}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </td>
+                        <td>
+                            <span ng-bind="item.visits"></span>
+                        </td>
+                        <td>
+                            <a class="link-warning form-group" ng-click="$ctrl.deleteItem(item)">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="link-warning form-group" ng-click="$ctrl.changePswd(item._id)">
+                                <i class="material-icons">replay</i>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>-->
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+

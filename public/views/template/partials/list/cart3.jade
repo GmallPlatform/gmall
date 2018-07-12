@@ -1,0 +1,21 @@
+div(class="")
+    div(class="thumbnail-master col-lg-12 col-md-12 col-sm-12 col-xs-12")
+        a(href=item.link)
+            div(class="box-overlay")
+            if(item.img)
+                img(src=photoHost+'/'+item.img)
+            if(item.video)
+                div
+                    |!{item.video}
+            if(item.imgs && item.imgs[0])
+                img(style="width:100%", src=item.imgs[0].img)
+            div(class="master-name")
+                div(class="see")
+                    span(class="icon-see-img")
+                    p(class="see-master") о специалисте
+        a(href=item.link)
+            if(item.name)
+                h2=item.name
+            if(item.position)
+                h4=item.position
+    div(class="clearfix")

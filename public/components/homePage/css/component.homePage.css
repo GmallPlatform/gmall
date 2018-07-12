@@ -1,0 +1,120 @@
+.home-page {
+    margin-top: 210px;
+}
+.home-page  .active,
+.home-page .name-box{
+    color: #ff7148;
+    margin-top: 15px;
+}
+ .home-page .name-action {
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #72ad66;
+    cursor: pointer;
+}
+ .accordion-toggle,
+ .panel-title,
+ .btn-fab:focus {
+     outline: none;
+ }
+.home-page hr {
+    border-top-color:#ff7148
+}
+.home-page .create-link {
+    margin-bottom: 40px;
+}
+.block-tab {
+    position: fixed;
+    top: 50px;
+    z-index: 999;
+}
+.home-page .pages-header {
+    position: fixed;
+    top:112px;
+    z-index: 999;
+
+}
+input[type="color"] {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+/*gallery*/
+.home-page .video-box,
+.home-page .video-alt {
+    min-height: 350px
+}
+/*.home-page img {
+    max-width: 300px;
+}*/
+.home-page .fillHeigh {
+    width: 100%;
+}
+
+.home-page .edit {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.home-page .delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.home-page .public {
+    position: absolute;
+    bottom: -20px
+}
+.home-page .groups-home,
+.home-page .categories-home,
+.home-page .stuffs-home {
+    height: auto;
+}
+.home-page .groups-home .gallery-item,
+.home-page .categories-home .gallery-item,
+.home-page .stuffs-home .gallery-item,
+.home-page .brands-home .gallery-item
+{
+    position: relative;
+}
+
+
+.home-page .editor h3,
+.home-page .link-box h3{
+    cursor: pointer;
+}
+.home-page .select-animation .label-static {
+   margin-top: 16px
+}
+.home-page .select-animation .control-label {
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+.slider-block .loadImage .add-photo {
+    top:140px;
+}
+.slider-block  .edit {
+    left: 10px;
+    /*margin-top: 80px;*/
+}
+.slider-block  .delete {
+    right: 10px;
+    /*margin-top: 80px;*/
+}
+.deleted-block .delete {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+}
+.deleted-block .delete a {
+    display: inline-block
+}
+.upload-video .delete-video {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+}

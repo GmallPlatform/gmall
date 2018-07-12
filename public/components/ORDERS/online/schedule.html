@@ -1,0 +1,68 @@
+<div class="schedule" ng-hide="$ctrl.$state.current.name!='frame.schedule'">
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
+        <a class="btn btn-raised btn-block" ng-click="$ctrl.scheduleTransfer()">перенести расписание</a>
+    </div>
+    <div class="container">
+        <div class="online-box">
+            <div class="center-div">
+                <div class="online-table">
+                    <div class="week-box week-table-header1">
+                        <div uib-carousel active="$ctrl.week" interval="$ctrl.myInterval" no-wrap="$ctrl.noWrapSlides">
+                            <div uib-slide ng-repeat="slide in $ctrl.slides" index="slide.i"  active="slide.active" style="min-height: 75px">
+                                <h3>
+                                    <a ng-click1="$ctrl.changeWeek($index)">
+                                        <span>
+                                            <span ng-bind="$ctrl.weeksRange[$index].startDateString"></span> -
+                                            <span ng-bind="$ctrl.weeksRange[$index].endDateString"></span>
+                                        </span>
+                                    </a>
+                                </h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="online-table-header">
+                        <div class="online-table-day box-day" style="border-left:1px solid #ccc">
+                            <span ng-bind="$ctrl.currentMonth"></span>
+                        </div>
+                        <div  class="online-table-day box-day" ng-repeat="d in $ctrl.datesOfWeeks" ng-init="dateField=$ctrl.getDateObj(d.date)">
+                            <p ng-bind="dateField"></p>
+                        </div>
+                    </div>
+                    <div class="online-table-body">
+                        <div  class="online-table-day online-table-header-left">
+                            <div class="box-day"  ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePart">
+                                <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="online-table-day" ng-repeat="(date,data) in $ctrl.selectedWorkplace.week">
+                            <div class="box-day" ng-repeat="item in data.entryTimeTable|filter:$ctrl.filterTimePartForMaster" style="z-index:{{item.zIndex}}"
+                                 ui-sref="frame.schedule.entry({id:item._id})">
+                                <!-- ng-click="item.ngClickOnEntry(date,$parent.$index)">-->
+                                <div class="servise-box" style="background-color: {{item.backgroundcolor}}"
+                                     ng-class="{'borderTop':!item.noBorder}">
+
+                                    <div class="entry">
+                                        <span ng-bind="item.usedTime"></span><br>
+                                        <a><span ng-bind="item.masterName"></span></a></br>
+                                        <a><span ng-bind="item.service"></span></a></br>
+                                        <span class="comment" ng-bind="item.comment"></span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-view=""></div>
+
+
+
+

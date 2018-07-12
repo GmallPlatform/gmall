@@ -1,0 +1,17 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="col-lg-6 col-md-6 col-sm-12 col-xs-12 block-page",set-animate=dj[key].animate&&!mobile,data-animation=dj[key].animate)
+            div(class="container")
+                if(dj[key].name)
+                    h2=dj[key].name
+                div(class="page-box")
+                    p
+                        | !{dj[key].videoLink}
+                div(class="desc-box")
+                    if(dj[key].desc)
+                        div
+                            | !{dj[key].desc}
+                div( class="clearfix")
+
+
+

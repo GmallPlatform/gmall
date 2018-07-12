@@ -1,0 +1,203 @@
+/*cliniq*/
+
+.home-mission  .mission {
+    padding: 70px 70px;
+}
+.home-mission  {
+    background: url("../../../../../img/bg/cliniq.png") no-repeat 50% 50%;
+}
+.home-mission  .background-logo-big {
+    background: url("../../../../../img/bg/cliniq.png") no-repeat 70% top;
+}
+.home-mission  .mission p {
+    font-size: 18px;
+}
+.home-mission .mission h1{
+    font-family: raleway-bold;
+    font-size: 46px;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+.mobile-wrapper .home-mission  .mission {
+    padding: 20px;
+}
+
+.mobile-wrapper .home-mission  .background-logo  {
+    height: auto;
+}
+.mobile-wrapper .home-mission  .background-logo  .btn {
+        font-size: 16px;
+}
+.mobile-wrapper .home-mission  .mission h1{
+        padding: 20px;
+        font-size: 30px;
+}
+.mobile-wrapper .home-mission .mission p {
+        font-size: 16px;
+}
+
+
+
+/*indian*/
+.home-mission3 .mission {
+    padding: 50px 70px;
+}
+.home-mission3 .mission{
+    font-family: MyriadProRegular;
+    font-size: 30px;
+    letter-spacing: 2px;
+
+}
+@media (max-width: 380px) {
+    .home-mission3  .background-logo  {
+        height: auto;
+    }
+    .home-mission3  .background-logo  .btn {
+        font-size: 16px;
+    }
+
+}
+
+
+
+/*ideal*/
+/*.home-mission1 {
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+    transform: skew(20deg);
+}*/
+/*.home-mission1 {
+    height: 400px;
+}*/
+.home-mission1{
+    background: url("../../../../../img/bg/ideal.jpg") no-repeat top center;
+}
+.home-mission1  .mission {
+    padding:  70px;
+}
+.home-mission1  .mission p {
+    font-size: 18px;
+}
+.home-mission1 .mission h1{
+    font-family: ahellya;
+    font-size: 46px;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+@media (max-width: 380px) {
+    .home-mission1  .background-logo  {
+        height: auto;
+    }
+    .home-mission1  .background-logo  .btn {
+        font-size: 16px;
+    }
+    .home-mission1 .mission {
+        padding: 20px;
+        font-size: 30px;
+    }
+    .home-mission1 .mission p {
+        font-size: 16px;
+    }
+
+
+
+}
+
+/*fashion*/
+.home-mission2 .container {
+    width: 100%;
+
+}
+.home-mission2 .mission {
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 50px solid rgba(185, 219, 229, 0.62);
+    border: 50px solid rgba(226, 226, 226, 0.62);
+
+}
+.home-mission2 .mission p {
+    font-size: 18px;
+}
+.home-mission2 .mission h1{
+    font-family: mistral;
+    font-size: 66px;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+@media (max-width: 380px) {
+    .home-mission2 .mission {
+        border: 20px solid rgba(185, 219, 229, 0.62);
+    }
+}
+
+/*base-indian*/
+.home-mission3 .mission {
+    padding: 50px 70px;
+}
+.home-mission3 .mission{
+    /*font-family: HelveticaNeueCyrLight;*/
+    font-size: 40px;
+    letter-spacing: 2px;
+
+}
+@media (max-width: 380px) {
+    .home-mission3  .background-logo  {
+        height: auto;
+    }
+    .home-mission3  .background-logo  .btn {
+        font-size: 16px;
+    }
+
+}
+
+/*base-murti*/
+.home-mission4 .mission {
+    padding: 50px 70px;
+}
+.home-mission4 .mission{
+    font-family: HelveticaNeueCyrLight;
+    font-size: 40px;
+    letter-spacing: 2px;
+
+}
+@media (max-width: 380px) {
+    .home-mission4  .background-logo  {
+        height: auto;
+    }
+    .home-mission4  .background-logo  .btn {
+        font-size: 16px;
+    }
+
+}
+.mobile-wrapper .home-mission4 .mission {
+    padding: 0 10px;
+}
+/*cake*/
+.home-mission5{
+    background: url("../../../../../img/bg/cake.jpg") no-repeat top center;
+}
+.home-mission5 .mission {
+    padding: 20px 70px 50px 70px;
+}
+.home-mission5 .mission{
+    font-family: LuganskiyV;
+    font-size: 40px;
+    letter-spacing: 2px;
+
+}
+.home-mission5 .mission h1{
+    font-family: Forum_Regular;
+}
+@media (max-width: 380px) {
+    .home-mission5  .background-logo  {
+        height: auto;
+    }
+    .home-mission5  .background-logo  .btn {
+        font-size: 16px;
+    }
+
+}
+.mobile-wrapper .home-mission5 .mission {
+    padding: 0 10px;
+}

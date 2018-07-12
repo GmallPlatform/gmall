@@ -1,0 +1,31 @@
+<div  class="slider-fade">
+    <div class="mytoggle" ng-repeat='slide in $ctrl.images' ng-init="$last && $ctrl.finished()"
+         ng-show="$ctrl.currentIndex==$index">
+
+        <a  href="{{slide.link}}">
+            <img class="img-responsive" ng-src="{{slide.img}}">
+            <div class="box-overlay"></div>
+            <div>
+                <h1 ng-bind="slide.name"></h1>
+                <p ng-bind-html="slide.desc|unsafe"></p>
+            </div>
+        </a>
+
+    </div>
+
+    <a ng-click="$ctrl.prev()" class="navleft-carousel">
+        <img src="img/icon/back.png">
+    </a>
+    <a ng-click="$ctrl.next()" class="navright-carousel">
+        <img src="img/icon/next.png">
+    </a>
+    <ol class="carousel-indicators">
+        <li ng-repeat="slide in $ctrl.images"
+                ng-click="$ctrl.setSlide($index)"
+            ng-class="{active:$ctrl.currentIndex==$index}">
+
+        </li>
+    </ol>
+
+
+</div>

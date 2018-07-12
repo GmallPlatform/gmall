@@ -1,0 +1,162 @@
+<div ng-hide="$ctrl.$state.current.name!='frame.stores'"  class="store-list">
+    <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-8 col-sm-8 col-lg-8 text-center">
+        <p class="no_story">
+            по вашему запросу нет записей
+        </p>
+    </div>
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff">
+            <a class="btn btn-fab btn-fab-mini btn-success"
+               ng-click="$ctrl.createItem()"
+               title="создать магазин">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff">
+            <form ng-submit="$ctrl.searchItem(searchStr)">
+                <input type="text"  class="search-fluid"  ng-model="searchStr"/>
+                <input type="submit" class="enter" tabindex="-1" />
+            </form>
+        </div>
+        <div class="tab-nav-stuff text-center">
+            <a ng-click="$ctrl.changeType()"><span>все</span></a>&nbsp;
+            <a ng-repeat="item in $ctrl.storeTypes" ng-click="$ctrl.changeType(item)"><span ng-bind="item"></span>&nbsp;</a>
+        </div>
+        <div class="tab-nav-stuff text-center">
+            <paginator-main
+                    paginate="$ctrl.paginate"
+                    getlist="$ctrl.getList()"
+                    scroll="{{scrollId}}">
+            </paginator-main>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="store-list-container">
+        <div class="stuff-admin col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat="item in $ctrl.items" ng-init="exist=false;existD=false">
+            <div class="cart-detail" ng-class="{'mobil':$ctrl.global.get('mobile').val}">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group label-floating ">
+                            <label for="name" class="control-label">название</label>
+                            <input type="text" id="name" class="form-control"
+                                   ng-model="item.name"
+                                   required
+                                   ng-blur="$ctrl.saveField(item,'name')"/>
+                        </div>
+                        <ui-select ng-model="item.storeType" search-enabled="false" skip-focusser="true"
+                                   ng-change="$ctrl.saveField(item,'storeType')">
+                            <ui-select-match placeholder="Выберите тип">
+                                <span ng-bind="$select.selected"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="storeType in $ctrl.storeTypes">
+                                <span ng-bind="storeType"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                        <div class="form-group label-floating ">
+                            <label for="desc" class="control-label">описание</label>
+                            <textarea type="text" id="desc" class="form-control"
+                                   ng-model="item.desc"
+                                      ng-blur="$ctrl.saveField(item,'desc')"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group label-floating ">
+                            <label for="subDomain" class="control-label">subDomain</label>
+                            <span ng-bind="item.subDomain"></span>
+                            <a ng-click="$ctrl.changeSubDomain(item)">сменить</a>
+                            <!--<input type="text" id="subDomain" class="form-control"
+                                   ng-model="item.subDomain"
+                                   check-domain-name1="item"
+                                   field="subDomain"
+                                   exist="exist"
+                                   required
+                                   ng-blur="$ctrl.saveField(item,'subDomain',exist)"/>-->
+                        </div>
+                        <span ng-if="exist" class="help-block link-warning">поддомен занят</span>
+
+
+                        <div class="form-group label-floating ">
+                            <label for="domain" class="control-label">domain</label>
+                            <span ng-bind="item.domain"></span>
+                            <a ng-show="item.domain" ng-click="$ctrl.clearDomain(item)">&nbsp;
+                                <i class="material-icons link-warning"  style="font-size: 16px">clear</i>
+                            </a>
+                            &nbsp<a ng-click="$ctrl.changeDomain(item)">сменить</a>
+                            <!--<input type="text" id="domain" class="form-control"
+                                   ng-model="item.domain"
+                                   check-domain-name1="item"
+                                   field="domain"
+                                   exist="existD"
+                                   ng-blur="$ctrl.saveField(item,'domain',existD)"/>-->
+                        </div>
+                        <span ng-if="existD"  class="help-block link-warning">домен занят</span>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <p>
+                            <span ng-bind="item.date"></span>
+                        </p>
+                        <div class="pull-left">
+                            <p ng-show="!item.readStore"><a ng-click="$ctrl.readStoreUnable(item)">загрузить шаблон</a></p>
+                            <div class="form-group" style="width: 300px" ng-show="item.readStore">
+                                <ui-select  ng-model="subDomain" skip-focusser="true"
+                                            ng-change="$ctrl.readStore(item,subDomain)">
+                                    <ui-select-match placeholder="выбрать шаблон для загрузки">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in $ctrl.subDomains">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <p ng-show="!item.showOwner">
+                                <a ng-click="$ctrl.getOwner(item)">показать владельца</a>
+                            </p>
+                            <div ng-show="item.showOwner">
+                                <p>
+                                    <a class="link-success" ng-click="$ctrl.addOwner(item)">добавить владельца</a>
+                                </p>
+                                <ul class="owner">
+                                    <li ng-repeat="user in item.owner">
+                                        <span>{{user.name}}|{{user.email}}</span>
+                                        <a><i class="material-icons link-warning" ng-click="$ctrl.deleteOwner(item,$index)" style="font-size: 16px">clear</i></a>
+
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <!--<select ng-model="subDomain" ng-change="$ctrl.readStore(item,subDomain)">
+                            <option value="">выбрать магазин для чтения</option>
+                            <option ng-repeat="opt in $ctrl.subDomains" value="{{opt}}">{{opt}}</option>
+                        </select>-->
+
+                        <div class="pull-right">
+                            <a class="btn btn-fab btn-fab-mini" title="удалить магазин" ng-click="$ctrl.deleteStore(item)">
+                                <i class="link-warning material-icons">delete</i>
+                            </a>
+                            <!--<a ng-click="$ctrl.deleteStore(item)">delete</a>-->
+                        </div>
+                        <div class="pull-right">
+                            <a class="btn btn-fab btn-fab-mini" title="выгрузка магазина" ng-click="$ctrl.cloneStore(item)">
+                                <i class=" material-icons">content_copy</i>
+                            </a>
+                            <!--<a ng-click="$ctrl.cloneStore(item)">clone</a>-->
+                        </div>
+                        <div class="pull-right">
+                            <!--<a class="btn btn-fab btn-fab-mini" title="чтение магазина" ng-click="$ctrl.readStore(item)">
+                                <i class=" material-icons">home</i>
+                            </a>-->
+
+                            <!--<a ng-click="$ctrl.cloneStore(item)">clone</a>-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div ui-view></div>
+
+

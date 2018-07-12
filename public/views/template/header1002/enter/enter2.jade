@@ -1,0 +1,22 @@
+li(class="nav-item")
+    div(class=dj[key].wrapclass+pullClass)
+        div(class=mobileWrapper)
+            if(dj[key].positionMenu=='top' ||dj[key].positionMenu=='bottom')
+                - var c = 'page-stat enter-block nav-group'
+            else
+                - var c = 'page-stat enter-block'
+            div(class=c)
+                span(class="part",ng-hide="global.get('user').val && global.get('user').val._id")
+                    a(class="enter-login",ng-click="global.get('functions').val.enter()",set-animate=dj[key].animate,data-animation=dj[key].animate)
+                        span()
+                            | !{lang.login}
+                    div(class="clearfix")
+                span(class="part",ng-show="global.get('user').val && global.get('user').val._id",ng-cloak)
+                    a(class="enter-first",ng-click="global.get('functions').val.changeLocation('/manage')",set-animate=dj[key].animate,data-animation=dj[key].animate)
+                        span()
+                            | !{lang.cabinet}&nbsp;
+                    span(class="slash") /
+                    a(class="enter-two",ng-click="global.get('functions').val.logout()",set-animate=dj[key].animate,data-animation=dj[key].animate)
+                        span()
+                            | !{lang.logout}
+                    div(class="clearfix")

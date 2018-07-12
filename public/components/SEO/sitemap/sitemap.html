@@ -1,0 +1,41 @@
+<style>
+    .site-map {
+        margin-top: 120px;
+    }
+</style>
+<div class="site-map">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff">
+            <a class="btn btn-fab btn-fab-mini" ui-sref="frame" class="undo">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff">
+            <a class="btn btn-fab btn-fab-mini btn-success" ng-click="$ctrl.createItem()" title="обновить">
+                <i class="material-icons link-white">cached</i>
+            </a>
+
+           </div>
+        </div>
+    </div>
+
+    <div class="news-page col-lg-12">
+        <div class="pages-header">
+            <h3 class="text-center name-page">содержание файла sitemap</h3>
+            <h3 class="text-center">ссылка на файл <span ng-bind="$ctrl.getFileName()"></span></h3>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="cart-detail" >
+            <pre ng-bind="$ctrl.content"> </pre>
+
+        </div>
+
+        <div class="row" ng-if="!$ctrl.content">
+            <h2>пока не создан</h2>
+        </div>
+
+
+    </div>
+</div>

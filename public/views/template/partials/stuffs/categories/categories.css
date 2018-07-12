@@ -1,0 +1,45 @@
+/*ideal*/
+.categories-for-list .categories-stuff .icon-categories-img {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    vertical-align: middle;
+    transition: all .3s ease-out;
+    border: 1px solid $mainColor;
+}
+.categories-for-list .categories-stuff:hover .icon-categories-img {
+    transform: rotate(90deg)
+}
+
+.categories-for-list .categories-stuff.active span {
+    border-bottom: 1px solid $mainColor;
+}
+.categories-for-list .categories-stuff .active .icon-categories-img {
+    transform: rotate(90deg)
+}
+.breadcrumbs .breadcrumbs-box {
+    margin-right: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f5f5f5;
+    position: relative;
+}
+.breadcrumbs  .icon-cancel-img {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    top:0;
+    right: 0;
+}
+.breadcrumbs-box span {
+    margin-right: 5px;
+}
+.mobile-wrapper .categories-for-list .categories-stuff {
+    font-size: 14px;
+}
+.mobile-wrapper .categories-for-list .categories-stuff .icon-categories-img {
+    display: none;
+
+}

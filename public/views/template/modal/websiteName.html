@@ -1,0 +1,45 @@
+<div class="select-modal">
+    <div class="modal-header ">
+        <h3 class="modal-title text-center">{{$ctrl.global.get('langForm').val.choiceWebsiteName}}</h3>
+        <a class="cancel"  ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-search">
+            <form ng-submit="$ctrl.ok(websiteName)" name="websiteName">
+                <div class="form-group">
+                    <input focus-me="$ctrl.focus" class="form-control" name="name"
+                           ng-model="$ctrl.item"
+                           ng-maxlength="30"
+                           ng-minlength="3"
+                           ng-pattern="$ctrl.re"
+                           ng-change="$ctrl.checkSubDomain($ctrl.item)"
+                           required
+                           autocomplete="off"
+                           placeholder="{{$ctrl.global.get('langForm').val.enterWebsiteName}}">
+                </div>
+                <span class="help-block" ng-if="websiteName.name.$dirty" ng-messages="websiteName.name.$error">
+                    <span ng-message="maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+                    <span ng-message="minlength">{{$ctrl.global.get('langError').val.nameshort}}</span>
+                    <span ng-message="required">{{$ctrl.global.get('langError').val.nameshort}}</span>
+                    <span ng-message="pattern">{{$ctrl.global.get('langError').val.patternnot}}</span>
+                </span>
+                <span class="help-block" ng-if="$ctrl.exist">
+                    <span>
+                        {{$ctrl.global.get('langError').val.subdomainIsbusy}}
+                    </span>
+                </span>
+
+                <div class="clearfix"></div>
+                <div class="modal-footer text-center">
+                    <button class="btn btn-block btn-project" type="submit" >
+                        {{$ctrl.global.get('langForm').val.createSite}}
+                    </button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+

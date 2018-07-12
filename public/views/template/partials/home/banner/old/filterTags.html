@@ -1,0 +1,28 @@
+
+<div  ng-class="::{'home-filterTags':!homeCtrl.template.filterTags.class,
+        'home-filterTags1':homeCtrl.template.filterTags.class==1,
+        'home-filterTags2':homeCtrl.template.filterTags.class==2,
+        'home-filterTags3':homeCtrl.template.filterTags.class==3,
+        'home-filterTags4':homeCtrl.template.filterTags.class==4,
+        'home-filterTags5':homeCtrl.template.filterTags.class==5,}">
+    <h2 class="text-center" ng-if="::homeCtrl.template.filterTags.namebox" ng-bind="::homeCtrl.template.filterTags.namebox"></h2>
+    <div class=" home-section text-center"
+         ng-class="::{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.template.filterTags.qty==2||homeCtrl.template.filterTags.qty==4,
+                            'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.template.filterTags.qty==3,
+                            'col-lg-12 col-md-12 col-sm-12 col-xs-12': homeCtrl.template.filterTags.qty==1}"
+         ng-repeat="item in homeCtrl.data.filterTags">
+        <div class="row">
+
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',queryTag:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+                <div class="box-overlay"></div>
+                <div class="half-shadow">
+                    <div class="title-block">
+                        <span ng-bind="item.name"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

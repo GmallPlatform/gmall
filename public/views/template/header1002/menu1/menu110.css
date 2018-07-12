@@ -1,0 +1,89 @@
+/*menu1*/
+.navbar-fixed-top{
+    z-index: 1045;
+}
+.navbar {
+    /*padding-top: $padding-top;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-bottom: $padding-bottom;
+    margin-top: $margin-top;
+    padding-left: $margin-left;
+    margin-right: $margin-right;
+    margin-bottom: 0;
+    color: $color;
+    height: $height;
+    font-size: $font-size;
+    border: $border;*/
+    border-radius: 0;
+    /*-webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transition: all ease-in-out 0.5s;
+    -o-transition: all  ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;*/
+    min-height: 0;
+}
+@media (min-width: 1025px) {
+    .navbar:hover {
+        background-color: $hover-background-color;
+    }
+}
+.navbar.menuColor {
+    background-color: $background-color;
+}
+.navbar .right-nav-menu {
+    z-index: 1050;
+}
+.wrap-for-horizontel-menu{
+    position: relative;
+}
+.inverseColor a{
+   /* color: change-color($color,[$invert],[$grayscale])*/
+    /*color: invert($color);*/
+    /*color: grayscale($color)*/
+    @if $color{
+        color: mix($color,#fff,80%)
+    }
+}
+.inverseColor a.active,
+.inverseColor a:hover{
+    font-weight: bold;
+    @if $color{
+        color: desaturate($color, 100%);
+    }
+}
+.center-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.center-wrap {
+    display:inline-block;
+}
+.left-nav-menu {
+    position:absolute;
+    left:0
+}
+.right-nav-menu {
+    position:absolute;
+    right:0
+}
+@media (min-width: 768px) {
+    .navbar {
+        min-height: 0;
+    }
+}
+@media (min-width: 100px) {
+    .navbar {
+        min-height: 0;
+    }
+}
+.mobile-wrapper .navbar {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+

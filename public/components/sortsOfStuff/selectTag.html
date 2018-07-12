@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h3 class="modal-title pull-left" ng-bind="$ctrl.filter.name"></h3>
+    <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.cancel()">
+        <i class="material-icons link-warning">clear</i>
+    </a>
+</div>
+<div class="modal-body">
+    <div class="form-group" >
+        <div class="radio" ng-repeat="tag in $ctrl.filter.tags">
+            <label>
+                <a  ng-click="$ctrl.selectTag(tag)" ng-bind="tag.name"></a>
+            </label>
+        </div>
+    </div>
+</div>
+<!--
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</button>
+</div>
+-->

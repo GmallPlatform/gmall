@@ -1,0 +1,154 @@
+<div class="change-animation select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">редактирование дополнительных полей ввода</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <form name="bonusForm" ng-submit="$ctrl.ok()">
+            <div class="modal-body">
+                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">удалить/<br>обязательное/<br>множественное</div>
+                    <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">наименование</div>
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">тип поля</div>
+                    <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">значения<br>поля</div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </div>-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="field in $ctrl.fields track by $index">
+                    <div class="form-group">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">название поля</label>
+                                <input name="name{{$index}}" type="text" class="form-control"
+                                        pattern="[A-Za-zА-Яа-я0-9.\s-]{3,100}"
+                                        ng-minlength="3"
+                                        ng-maxlength="25"
+                                        required
+                                        ng-model="field.name"
+                                        placeholder="наименование поля"/>
+                            </div>
+                            <div class="help-block text-danger" ng-if="bonusForm['name'+$index].$dirty" ng-messages="bonusForm['name'+$index].$error">
+                                <span ng-message="required">укажите название</span>
+                                <span ng-message="pattern">в этом поле допускаются только буквы</span>
+                                <span ng-message="minlength">не менее 3-х символов</span>
+                                <span ng-message="maxlength">не более 25-ти символов</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" >
+                            <ui-select ng-model="field.type"
+                                       title="выберите значение" search-enabled="false"
+                                       skip-focusser="true">
+                                <ui-select-match placeholder="тип поля">
+                                    {{$select.selected}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in ['text','radio','checkbox','select']">
+                                    <span ng-bind="opt"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" >
+                            <a class="btn btn-fab" ng-click="fields.splice($index,1)">
+                                <i class="material-icons link-warning">delete</i>
+                            </a>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="togglebutton">
+                                <label for="required{{$index}}">
+                                    <span ng-class="{'active':!field.required}">не обязательно для заполнения</span>
+                                    <input type="checkbox"
+                                           id="required{{$index}}"
+                                           ng-model="field.required"
+                                           ng-change="saveField('required')">
+                                    <span ng-class="{'active':field.required}">обязательно для заполнения</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    наличие поля в форме
+                                    <input ng-model="field.is" type="checkbox"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="togglebutton">
+                                <label for="multiple{{$index}}">
+                                    <span ng-class="{'active':!field.multiple}">единоразовое заполнение</span>
+                                    <input type="checkbox"
+                                           id="multiple{{$index}}"
+                                           ng-model="field.multiple"
+                                           ng-change="saveField('multiple')">
+                                    <span ng-class="{'active':field.multiple}">множественное заполнение</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!--<div class="pull-left" >
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="field.multiple" type="checkbox"/>
+                                </label>
+                            </div>
+                        </div>-->
+
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group"  ng-repeat="value in field.values track by $index"
+                                 ng-if="field.type!='text'" ng-init="name='value'+$parent.$parent.$index+$index">
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                    <input name="{{name}}" type="text" class="form-control"
+                                           pattern="[A-Za-zА-Яа-я0-9.\s-]{3,100}"
+                                           ng-minlength="3"
+                                           ng-maxlength="75"
+                                           required
+                                           ng-model="field.values[$index]"
+                                           placeholder="значение"/>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <a ng-click="field.values.splice($index,1)">
+                                        <i class="material-icons link-warning">clear</i>
+                                    </a>
+                                </div>
+                                <div class="help-block text-danger" ng-if="bonusForm[name].$dirty" ng-messages="bonusForm[name].$error">
+                                    <span ng-message="required">укажите название</span>
+                                    <span ng-message="pattern">в этом поле допускаются только буквы и цифры</span>
+                                    <span ng-message="minlength">не менее 3-х символов</span>
+                                    <span ng-message="maxlength">не более 75-ти символов</span>
+                                </div>
+
+
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="field.type!='text'">
+                                <a class="link-success" ng-click="field.values.push('новое значение')">
+                                    <h4>добавить значение поля</h4>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+
+                            <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="field.required" type="checkbox"/>
+                                    </label>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <a class="link-success" ng-click="$ctrl.addField()">
+                        <h4>добавить новое поле</h4>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="modal-footer col-lg-12 text-center">
+                <button class="btn btn-block btn-raised" type="submit">
+                    готово
+                </button>
+            </div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

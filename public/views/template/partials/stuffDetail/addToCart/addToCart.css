@@ -1,0 +1,26 @@
+/*ideal*/
+.btn-project-noborder-inv .icon-categories-img {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    vertical-align: middle;
+    transition: all .3s ease-out;
+    border: 1px solid $mainColor;
+    background-color: #fff;
+}
+.btn-project-noborder-inv:hover .icon-categories-img {
+    transform: rotate(90deg)
+}
+.select-size {
+    font-size: 14px;
+    color: #db4437;
+    min-height: 20px;
+}
+.mobile-wrapper .btn-project,
+.mobile-wrapper .btn-project-inv {
+    width: 100%;
+}
+.tablet-wrapper .add-to-cart {
+    text-align: center;
+}

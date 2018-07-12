@@ -1,0 +1,82 @@
+
+.news-page-edit{
+    margin-top: 140px;
+    padding-bottom: 40px;
+}
+.tab-nav-stuff.add-block {
+    min-width: 350px;
+}
+.tab-nav-stuff.date-picker {
+    margin-top: 0;
+}
+.tab-nav-stuff.date-picker .form-group{
+    margin-top: 10px;
+}
+.tab-nav-stuff.toggle  .form-group{
+    margin-top: 10px;
+}
+.news-page-edit .gallery-item {
+    position: relative;
+}
+.news-page-edit .gallery-item p,
+.news-page-edit .gallery-item h4{
+    color: #666;
+}
+.news-page-edit  .edit {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.news-page-edit  .delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/*.news-item .add-goods {
+    color: #ff7148;
+    cursor: pointer;
+}
+.news-item .add-goods:hover {
+    color: #ff996b;
+    text-decoration: none;
+
+}*/
+
+
+
+/*.news-page-edit  .form-group.label-static label.control-label,
+.news-page-edit  .form-group.label-floating.is-focused label.control-label,
+.news-page-edit  .form-group.label-floating:not(.is-empty) label.control-label {
+    font-size: 14px;
+    color: #9c6a8d;
+}
+.news-page-edit .checkbox label,
+.news-page-edit .form-group .checkbox label{
+    color: #93b1c6;
+}
+.news-page-edit .radio input[type=radio]:checked ~ .check {
+    background-color: #93b1c6;
+}
+.news-page-edit .form-group.is-focused label,
+.news-page-edit .form-group.is-focused label.control-label{
+    color: #6d7f8f;
+}
+
+.news-page-edit .checkbox input[type=checkbox]:checked + .checkbox-material .check,
+.news-page-edit .checkbox input[type=checkbox]:checked + .checkbox-material .check:before{
+    color: #93b1c6;
+    border-color: #93b1c6;
+}*/
+
+/*.news-page-edit .galleryTable .galleryRow .gallery-item-ul> li {
+    background-color: #e8e8e8;
+    border: 10px solid #f5f5f5;
+    color: #fff;
+    text-align: center;
+    height: 350px;
+    margin-bottom: 40px;
+}*/
+/*.news-page-edit .galleryTable .galleryRow .gallery-item-ul> li img {
+    vertical-align: bottom;
+}*/

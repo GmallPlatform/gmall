@@ -1,0 +1,219 @@
+.store-setting {
+    margin-top: 180px;
+}
+.mt-25 {
+    margin-top: 25px;
+}
+/*.store-setting .tab-nav-stuff .material-icons {
+    font-size: 32px;
+    margin-right: 0;
+}*/
+.store-setting .tab-nav-stuff .material-icons.mini {
+     font-size: 26px;
+     padding-bottom: 5px;
+ }
+.store-setting .tab-nav-stuff.active{
+    border-bottom: 1px solid rgb(255, 113, 72);
+}
+.store-setting .content-tab-box {
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.store-setting hr,
+.store-setting .cart-detail hr {
+    border-top-color: #ccc;
+    background-color: #eee;
+}
+.store-setting .active {
+    color:  rgb(255, 113, 72);
+}
+.month.active {
+    text-transform: uppercase;
+}
+.store-setting code {
+    color:  rgb(255, 113, 72);
+}
+.store-setting .name-box {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.store-setting .sticker {
+    position: absolute;
+    left: 20px;
+    top:20px;
+    width: 70px;
+}
+.cart-detail .thumbnail {
+    min-height: 520px;
+    padding: 10px;
+    background-color: #fafafa;
+}
+
+/**
+* The dnd-list should always have a min-height,
+* otherwise you can't drop to it once it's empty
+*/
+.store-setting .currency-order ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.store-setting .currency-order ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.store-setting .currency-order ul[dnd-list] .dndPlaceholder {
+    background-color: #ddd;
+    display: block;
+    min-height: 42px;
+}
+
+.store-setting .currency-order ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+/**
+ * Show selected elements in green
+ */
+.store-setting .currency-order ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+/*checkbox*/
+.store-setting .checkbox {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.store-setting .checkbox .checkbox-material .check {
+    margin-right: 10px;
+}
+
+.store-setting .checkbox input[type=checkbox]:checked + .checkbox-material .check,
+.store-setting .checkbox input[type=checkbox]:checked + .checkbox-material .check:before{
+    color: #93b1c6;
+    border-color: #93b1c6;
+}
+
+.togglebutton label .toggle, .togglebutton label input[type=checkbox][disabled] + .toggle {
+    margin-left: 10px;
+}
+
+.togglebutton label input[type=checkbox]:checked + .toggle {
+    background-color: #93b1c6;
+}
+
+.togglebutton label input[type=checkbox]:checked + .toggle:after {
+    background-color: #93b1c6;
+}
+.select-currency .form-group label.control-label{
+    margin-top: 0;
+    font-size: 14px;
+}
+.select-currency .form-group {
+    margin-top: -12px;
+}
+.select-currency .btn-default {
+    margin-top: 0;
+}
+
+.store-setting  .btn-default-focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+.store-setting  .ui-select-container .ui-select-match .btn-default {
+    margin-top: 0px;
+    padding-left: 5px;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+.store-setting  .lang-btn {
+    float: left;
+    display: inline-block;
+    margin: 10px;
+}
+.store-setting .month {
+    display: inline-block;
+    margin-right: 10px;
+}
+.store-setting  .lang-btn span{
+    display: inline-block;
+    padding-top: 15px;
+}
+
+@media (max-width: 375px) {
+    .galleryTable .galleryRow .dndPlaceholder {
+        height: 195px;
+        width: 130px;
+    }
+    .galleryTable .galleryRow .gallery-item-ul> li {
+        height: 195px;
+        width: 130px;
+    }
+
+}
+
+/*table*/
+.stuffEdit .table>tbody>tr>td,
+.stuffEdit .table>tbody>tr>th,
+.stuffEdit .table>tfoot>tr>td,
+.stuffEdit .table>tfoot>tr>th,
+.stuffEdit .table>thead>tr>td,
+.stuffEdit .table>thead>tr>th {
+    vertical-align: middle;
+}
+.stuffEdit .table>tbody>tr>td input {
+    text-align: center;
+}
+.stuffEdit .table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f5f5f5;
+}
+.stuffEdit td.price-box {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+/*store setting list*/
+.tab-nav-stuff .link-success {
+    font-size: 20px;
+}
+.owner li {
+    list-style: none;
+}
+.store-list .cart-detail {
+    min-height: 275px;
+}
+.box-style {
+    margin-right: 15px;
+}
+
+.text-header .editor .ta-scroll-window > .ta-bind,
+.text-header .editor .ta-editor.ta-html,
+.text-header .ta-scroll-window.form-control {
+    min-height: 100px;
+}
+.text-header .editor .ta-scroll-window > .ta-bind,
+.text-header .editor .ta-editor.ta-html,
+.text-header .ta-scroll-window.form-control {
+    min-height: 100px;
+}
+

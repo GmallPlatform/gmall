@@ -1,0 +1,15 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        - var clickLink=null
+        - var link=null;
+        if(dj[key].link == 'subscription' || dj[key].link == 'subscriptionAdd' || dj[key].link == 'feedback' || dj[key].link == 'dateTime' || dj[key].link == 'allBonus' || dj[key].link == 'call')
+            - clickLink="global.get('functions').val.action('"+dj[key].link+"')"
+        else
+            - link = dj[key].link;
+        div(class="container")
+            a(set-animate=dj[key].animate,data-animation=dj[key].animate,class="btn btn-project btn-banner",ng-click=clickLink,href=link)
+                span=dj[key].name
+
+
+
+

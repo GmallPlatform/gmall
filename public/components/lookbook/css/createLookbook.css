@@ -1,0 +1,30 @@
+.create-lookbook .modal-header .modal-title {
+    font-weight: 500;
+}
+.create-lookbook .modal-header {
+    background-color:  #eee;
+    padding: 12px 20px;
+    border-bottom: 3px solid #d5d5d5;
+}
+.create-lookbook .cancel {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 15px;
+    height: 15px;
+    background: url("../../../img/icon/clear.png");
+    background-size: 15px;
+}
+.create-lookbook .modal-body {
+    padding: 20px 0 0;
+}
+.create-lookbook .modal-footer {
+    padding: 0;
+    border-top: 3px solid #d5d5d5;
+}
+.create-lookbook .modal-footer .btn {
+    margin: 0;
+    padding: 12px;
+    min-height: 46px;
+    width: 100%;
+}

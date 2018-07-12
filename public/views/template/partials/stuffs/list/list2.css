@@ -1,0 +1,145 @@
+/*chudo*/
+.stuff-list-wrapper table{
+    width: 100%;
+    margin-top: 40px;
+}
+.stuff-list-wrapper table td {
+    vertical-align: top;
+}
+.stuff-box  .img-goods {
+    width: 100%;
+}
+/*
+.list-box {
+    padding-left: 0;
+    padding-right: 0;
+}*/
+
+
+
+/*tatiana*/
+.sticker {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+}
+/*.service-desc {
+    padding: 0 20px;
+    min-height: 200px;
+}
+.goods-desc {
+    padding: 0 20px;
+    min-height: 250px;
+}*/
+.stuff-box .stuff-name {
+    font-size: 18px;
+}
+.price-block .price {
+    font-size: 22px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+.price-block {
+    text-align: center;
+}
+.price-block .sale {
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: $mainColor;
+}
+.price-block a {
+    cursor: default;
+}
+.price-block a:hover {
+    color: $color
+}
+.line {
+    text-decoration: line-through;
+}
+.stuffs-box  .sort-of-stuff {
+    color: #999;
+    font-weight: normal;
+}
+.stuffs-box  .tab-nav-stuff {
+    margin-top: 10px;
+}
+.sort {
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    min-width: 35px;
+}
+.sort-active {
+    border: 2px solid $mainColor;
+    background-color: transparentize($mainColor,.82);
+}
+/*.price-box {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}*/
+/*тень при наведении*/
+.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.stuff-box:hover .box-overlay{
+    opacity: 0.5;
+}
+.half-shadow img{
+    width: 50px;
+    transition: all  0.4s ease-in-out 0.1s;
+}
+.half-shadow{
+    position: absolute;
+    width: 100%;
+    z-index: 1027;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+    height: 45%;
+}
+.stuffs .brand-name {
+    color: #ccc;
+}
+.half-shadow p {
+    margin-bottom: 0;
+    line-height: 22px;
+}
+.title-block {
+    padding: 15px;
+    bottom: 15px;
+    display: none;
+}
+.title-block a {
+    letter-spacing: 1px;
+    color: $color;
+}
+.stuff-box:hover .title-block {
+    display: block;
+}
+.mobile-wrapper  .title-block,
+.tablet-wrapper  .title-block {
+    display: block;
+}
+@media (max-width:1392px) and (min-width: 1200px){
+    .title-block {
+        padding: 5px 15px;
+    }
+    .sort {
+        font-size: 14px;
+    }
+}

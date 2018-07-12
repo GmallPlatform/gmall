@@ -1,0 +1,7 @@
+div(class="thumbnail stuff-list",id='item-'+item._id)
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center")
+        a(href=item.link)
+            h3=item.name
+            if(item.desc)
+                p=item.desc
+    div(class="clearfix")

@@ -1,0 +1,107 @@
+<div class="login-box">
+    <div uib-tabset  justified="true">
+        <uib-tab index="0" heading={{(!$ctrl.global.get('store').val.onlineis)?$ctrl.global.get('langForm').val.fromEmail:''}}>
+            <form method="post" ng-submit="$ctrl.login(loginForm)" name="loginForm" novalidate>
+                <div class="form-group has-feedback">
+                    <input ng-class="{ 'has-error' : loginForm.email.$invalid}" class="form-control input-lg"
+                           type="email" name="email"
+                           ng-model="$ctrl.user.email"
+                           placeholder="e-mail"
+                           required autofocus22>
+                    <span class="ion-at form-control-feedback"></span>
+                </div>
+                <span class="help-block" ng-messages="loginForm.email.$error" role="alert">
+                    <span ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</span>
+                    <span ng-message="email">{{$ctrl.global.get('langError').val.formatnot}}</span>
+                </span>
+
+                <div class="form-group has-feedback">
+                    <input  ng-class="{'has-error' : loginForm.password.$invalid}" class="form-control input-lg"
+                            ng-minlength='6'
+                           ng-maxlength="20"
+                           type="password" name="password"
+                           ng-model="$ctrl.user.password"
+                           placeholder="{{$ctrl.global.get('langForm').val['password']}}"
+                           required>
+                    <span class="ion-key form-control-feedback"></span>
+                </div>
+                <span class="help-block" ng-show="loginForm.password.$invalid" ng-messages="loginForm.password.$error">
+                    <span ng-message="required">{{$ctrl.global.get('langError').val.enterPassword}}</span>
+                    <span ng-message="minlength">{{$ctrl.global.get('langError').val.passshort}}</span>
+                    <span ng-message="maxlength">{{$ctrl.global.get('langError').val.passlong}}</span>
+                </span>
+
+                <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-lg btn-block btn-project">{{$ctrl.global.get('langForm').val.enter}}</button>
+            </form>
+            <div class="sn-button">
+                <h4  class="text-center" ng-if="$ctrl.global.get('store').val.fb.id||$ctrl.global.get('store').val.gl.id||$ctrl.global.get('store').val.vk.id">{{$ctrl.global.get('langForm').val.enterThrough}}</h4>
+                <div class="sn-login pull-left" ng-if="$ctrl.global.get('store').val.fb.id">
+                    <button class="btn  btn-facebook" ng-click="$ctrl.authenticate('facebook')" style="padding-left: 5px;padding-right: 5px; vertical-align: middle">
+                        <span class="icon-fbwhite-img"></span>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+                <div class="sn-login pull-left" ng-if="$ctrl.global.get('store').val.gl.id">
+                    <button class="btn  btn-google-plus" ng-click="$ctrl.authenticate('google')" style="padding-left: 5px;padding-right: 5px; vertical-align: middle">
+                        <span class="icon-googlewhite-img"></span>
+                        <span>Google</span>
+                    </button>
+                </div>
+                <!--<div class="sn-login pull-left" ng-if="$ctrl.global.get('store').val.tw.id">
+                    <button class="btn btn-twitter" ng-click="$ctrl.authenticate('twitter')">
+                        <i class="icon-twwhite-img"></i>
+                        <span>Twitter</span>
+                    </button>
+                </div>-->
+                <div class="sn-login pull-left" ng-if="$ctrl.global.get('store').val.vk.id">
+                    <button class="btn btn-twitter" ng-click="$ctrl.authenticate('vkontakte')" style="padding-left: 5px;padding-right: 5px; vertical-align: middle">
+                        <span class="icon-vkwhite-img"></span>
+                        <span>Vkontakte</span>
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="enter-button ">
+                <enter-button  toaster="true"></enter-button>
+            </div>
+        </uib-tab>
+        <uib-tab index="1" heading={{$ctrl.global.get('langForm').val.fromPhone}} ng-show="!$ctrl.global.get('store').val.onlineis">
+            <form method="post" ng-submit="$ctrl.sendCodeToPhone()" name="loginFormPhone">
+                <div enter-phone-numder="$ctrl.phone"></div>
+                <button type="submit" ng-disabled="loginFormPhone.$invalid || $ctrl.sendCodeDisable" class="btn btn-block btn-project">
+                    <span ng-bind="$ctrl.global.get('langForm').val.sendCode"></span>
+
+                </button>
+                <p class="text-help" ng-show="$ctrl.codeSent"><a ng-click="$ctrl.sendCodeToPhone()">{{$ctrl.global.get('langForm').val.notCode}}</a></p>
+            </form>
+            <hr>
+
+            <form novalidate name="smscode" ng-submit="$ctrl.verifyCode(smscode)">
+                <h4 class="text-center">{{$ctrl.global.get('langForm').val.enterCode}}</h4>
+                <div class="form-group text-center">
+                    <input  ng-class="{'has-error': smscode.smscode.$invalid && smscode.smscode.$dirty}" class="form-control input-code"
+                           type="text"
+                           ng-model="$ctrl.code"
+                           ui-mask="9 9 9 9 9 9"
+                           ui-mask-placeholder
+                           ui-mask-placeholder-char="_"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           name="smscode"
+                           placeholder="{{$ctrl.global.get('langForm').val.code}}"
+                           required/>
+
+                </div>
+                <span class="help-block" ng-show="smscode.smscode.$invalid && smscode.smscode.$dirty" ng-messages="smscode.smscode.$error">
+                    <span ng-message="required">{{$ctrl.global.get('langError').val.enterCode}}</span>
+                </span>
+                <span class="help-block" ng-show="$ctrl.wrongCode && smscode.smscode.$dirty">
+                    <span>{{$ctrl.global.get('langError').val.errorCode}}</span>
+                </span>
+                <button class="btn btn-block  btn-project" type="submit" ng-disabled="$ctrl.sendVerifyCodeDisable">{{$ctrl.global.get('langForm').val.logIn}}</button>
+            </form>
+
+        </uib-tab>
+    </div>
+    <!--<a target="_blank" href="/info/spravka">{{$ctrl.global.get('lang').val.helpBlock}}</a>-->
+</div>

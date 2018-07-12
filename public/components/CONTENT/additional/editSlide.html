@@ -1,0 +1,34 @@
+<div class="edit-slide select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">редактирование данных для слайда</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group label-floating">
+                <label for="name" class="control-label">название</label>
+                <input type="text" id="name" class="form-control"
+                       ng-model="$ctrl.item.name"/>
+            </div>
+        </div>
+        <create-link link="$ctrl.item.link"></create-link>
+
+        <div class="editor col-lg-12">
+            <h4 class="text-center name-box">описание</h4>
+            <div class="form-group">
+                <div text-angular
+                     ta-toolbar="[['h3','h4','p','insertLink'],['bold','italics','ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull']]"
+                     ng-model="$ctrl.item.desc"
+                     ta-text-editor-class="border-around"
+                     ta-html-editor-class="border-around">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <a class="btn btn-lg btn-raised btn-block" type="button" ng-click="$ctrl.ok()">
+            сохранить
+        </a>
+    </div>
+</div>

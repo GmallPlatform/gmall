@@ -1,0 +1,31 @@
+<div class="template-list" >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">paps</h3>
+        <div class="cart-detail">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <ui-select ng-model="$ctrl.item.paps.templ" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('paps.templ',$ctrl.item.paps.templ)">
+                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <ui-select ng-model="$ctrl.item.paps.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('paps.style',$ctrl.item.paps.style)">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right style-box">
+                <div class="form-group">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.paps,'paps')" style="margin-top: 0">
+                        <i class="material-icons link-info md-42" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

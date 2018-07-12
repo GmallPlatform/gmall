@@ -1,0 +1,47 @@
+<div class="">
+    <h3 ng-click="$ctrl.loadPhoto(block,'imgs',$index)" class="text-center name-action">добавить/изменить фото</h3>
+    <div class="galleryWrapper">
+        <div class="galleryTable">
+            <div class="galleryRow">
+                <ul dnd-list="block.imgs"
+                    dnd-horizontal-list="true" class="gallery-item-ul">
+                    <li ng-repeat="image in block.imgs" class="gallery-item"
+                        dnd-draggable="image"
+                        dnd-effect-allowed="move"
+                        dnd-dragend="$ctrl.movedItemInSlider(block)"
+                        dnd-moved="block.imgs.splice($index, 1)">
+                        <span class="helper" ></span>
+                        <div>
+                            <img class="img-responsive" ng-src="{{image.img}}">
+                        </div>
+
+                        <a class="btn  btn-fab delete" title="удалить фото" ng-click="$ctrl.deleteSlide(block,$index)">
+                            <i class="material-icons link-danger md-36">delete</i>
+                        </a>
+                        <a class="btn  btn-fab edit" title="редактировать фото" ng-click="$ctrl.editSlide(block,$index)">
+                            <i class="material-icons link-success md-36">edit</i>
+                        </a>
+                        <a type="button" class="btn btn-fab" title="изменить фото"  ng-click="$ctrl.changeSlidePhoto(block,$index)">
+                            <i class="material-icons md-36 link-success">add_a_photo</i>
+                        </a>
+                        <div class="form-group public col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="togglebutton text-center">
+                                <label for="block1a{{$parent.$index}}{{$index}}">
+                                    <span ng-class="{'active':!image.actived}">не опубликован</span>
+                                    <input type="checkbox"
+                                           id="block1a{{$parent.$index}}{{$index}}"
+                                           ng-model="image.actived"
+                                           ng-change="$ctrl.saveField('blocks.'+block.i+'.imgs',block.imgs)">
+                                    <span ng-class="{'active':image.actived}">опубликован</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,11 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        - var style=(dj[key].img)?"background-image:url("+photoHost+'/'+dj[key].img+");background-repeat:no-repeat;":null;
+        div(class="home-feedback")
+            div(class="feedback",style=style)
+                div(class="container")
+                    div(class="feedback-box")
+                        h3=dj[key].name
+                        | !{dj[key].desc}
+                        feedback-message
+

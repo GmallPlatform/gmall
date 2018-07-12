@@ -1,0 +1,235 @@
+<div class="template-list" >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">дополнительные компоненты сайта</h3>
+        <div class="cart-detail">
+            <h4 class="text-center name-box">сквозная кнопка</h4>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <div class="togglebutton">
+                        <label for="feedback">
+                            <span ng-class="{'active':!$ctrl.item.addcomponents.addbutton.is}">кнопки нет</span>
+                            <input type="checkbox"
+                                   id="feedback"
+                                   ng-model="$ctrl.item.addcomponents.addbutton.is"
+                                   ng-change="$ctrl.saveFieldTemplate('addcomponents.addbutton.is',$ctrl.item.addcomponents.addbutton.is)">
+                            <span ng-class="{'active':$ctrl.item.addcomponents.addbutton.is}">кнопка есть</span>
+                        </label>
+                    </div>
+                    <!--<div class="checkbox">
+                        <label>
+                            <input ng-change="$ctrl.saveFieldStore('addcomponents.addbutton')" ng-model="$ctrl.store.addcomponents.addbutton.is" type="checkbox"/>
+                            наличие
+                        </label>
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class=" label-floating form-group">
+                    <label for="ggg" class="control-label">текст на кнопке</label>
+                    <input  type="text" class="form-control" id="ggg"
+                            ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                            ng-change="$ctrl.saveFieldTemplate('addcomponents.addbutton.nameL',$ctrl.item.addcomponents.addbutton.nameL)"
+                            ng-model="$ctrl.item.addcomponents.addbutton.nameL[$ctrl.global.get('store').val.lang]"
+                            class="form-control">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="link-box form-group">
+                    <p class=" name-action"  ng-click="isCollapsedAddB = !isCollapsedAddB" >редактировать ссылку</p>
+                    <create-link  uib-collapse="!isCollapsedAddB" link="$ctrl.item.addcomponents.addbutton.link"
+                                  change="$ctrl.saveFieldTemplate('addcomponents.addbutton.link',$ctrl.item.addcomponents.addbutton.link)"></create-link>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
+                <label class="control-label" style="margin-top: 0">анимация кнопки</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.addbutton.animate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.addbutton.animate',$ctrl.item.addcomponents.addbutton.animate)">
+                    <ui-select-match allow-clear="true" placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">стиль</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.addbutton.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.addbutton.style',$ctrl.item.addcomponents.addbutton.style)">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 text-right style-box">
+                <div class="form-group">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.addcomponents.addbutton,'addcomponents.addbutton')">
+                        <i class="material-icons link-info md-42" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h4 class="text-center name-box">zoom компонент для галереи товара</h4>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">шаблон</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.zoom.templ" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.zoom.templ',$ctrl.item.addcomponents.zoom.templ)">
+                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">стиль</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.zoom.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.zoom.style',$ctrl.item.addcomponents.zoom.style)">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right style-box">
+                <div class="form-group">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.addcomponents.zoom,'addcomponents.zoom')">
+                        <i class="material-icons link-info md-42" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h4 class="text-center name-box">слайд chat</h4>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">шаблон</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.chat.templ" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.chat.templ',$ctrl.item.addcomponents.chat.templ)">
+                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">стиль</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.chat.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.chat.style',$ctrl.item.addcomponents.chat.style)">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right style-box">
+                <div class="form-group">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.addcomponents.chat,'addcomponents.chat')">
+                        <i class="material-icons link-info md-42" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h4 class="text-center name-box">слайд запись на время</h4>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">шаблон</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.datetime.templ" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.datetime.templ',$ctrl.item.addcomponents.datetime.templ)">
+                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">стиль</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.datetime.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.datetime.style',$ctrl.item.addcomponents.datetime.style)">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right style-box">
+                <div class="form-group">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.addcomponents.datetime,'addcomponents.datetime')">
+                        <i class="material-icons link-info md-42" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h4 class="text-center name-box">настройка кабинета</h4>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">шаблон</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.cabinet.templ" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.cabinet.templ',$ctrl.item.addcomponents.cabinet.templ)">
+                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">стиль</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.cabinet.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.cabinet.style',$ctrl.item.addcomponents.cabinet.style)">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right style-box">
+                <div class="form-group">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.addcomponents.cabinet,'addcomponents.cabinet')">
+                        <i class="material-icons link-info md-42" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h4 class="text-center name-box">уведомления об ошибке</h4>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">шаблон</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.toastError.templ" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.toastError.templ',$ctrl.item.addcomponents.toastError.templ)">
+                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">стиль</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.toastError.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.toastError.style',$ctrl.item.addcomponents.toastError.style)">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right style-box">
+                <div class="form-group">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.addcomponents.toastError,'addcomponents.toastError')">
+                        <i class="material-icons link-info md-42" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h4 class="text-center name-box">информационное уведомление</h4>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">шаблон</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.toastInfo.templ" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.toastInfo.templ',$ctrl.item.addcomponents.toastInfo.templ)">
+                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label class="control-label" style="margin-top: 0">стиль</label>
+                <ui-select ng-model="$ctrl.item.addcomponents.toastInfo.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('addcomponents.toastInfo.style',$ctrl.item.addcomponents.toastInfo.style)">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right style-box">
+                <div class="form-group">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.addcomponents.toastInfo,'addcomponents.toastInfo')">
+                        <i class="material-icons link-info md-42" title="настроить стили">opacity</i>
+                    </a>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,112 @@
+<div class="schedule">
+    <div class="container">
+        <div class="booking">
+            <p class="text-center">
+                <span class="unavailable"></span><span>время недоступно для бронирования</span>
+                <span class="booked"></span><span>забронировано</span>
+                <span class="your"></span><span>выбранное для бронирования время</span>
+                <span class="reserv"></span><span>временный резерв (ожидание оплаты)</span>
+            </p>
+
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <a class="btn btn-project btn-project-inv" ng-click="$ctrl.booking()">{{$ctrl.global.get('lang').val.bookIt}}</a>
+        </div>
+
+        <div class="online-box">
+            <div class="center-div">
+                <div class="online-table">
+                    <div class="week-box week-table-header">
+                        <div class="">
+                            <div  class="box-day" ng-repeat="i in [0,1,2,3,4,5,6]" ng-class="{'active':i==$ctrl.week}">
+                                <a ng-click="$ctrl.changeWeek(i)">
+                                    {{$ctrl.global.get('langForm').val.thisWeek}}
+                                    <span ng-show="i">+ {{i}}</span> </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="week-box" style="height: 40px"></div>
+
+                    <div class="online-table-header">
+                        <div class="online-table-day box-day" style="border-left:1px solid #ccc">
+                            <!--{{$ctrl.global.get('langForm').val.time}}-->
+                            <span ng-bind="$ctrl.currentMonth"></span>
+                        </div>
+                        <div  class="online-table-day box-day" ng-repeat="d in $ctrl.datesOfWeeks" ng-init="dateField=$ctrl.getDateObj(d.date)">
+                            <p ng-bind="dateField"></p>
+                        </div>
+                    </div>
+                    <div class="online-table-body">
+                        <div  class="online-table-day online-table-header-left">
+                            <div class="box-day"  ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePart">
+                                <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div  class="online-table-day" ng-repeat="(date,data) in $ctrl.selectedMaster.week"
+                              ng-class="{'disabled':$index<$ctrl.currentDayOfWeek&& !$ctrl.week}">
+                            <div class="box-day" ng-repeat="item in data.entryTimeTable|filter:$ctrl.filterTimePartForMaster">
+                                <div class="servise-box"
+                                     ng-if="!item.user" ng-click="$ctrl.newBooking(date,item,$parent.$parent.$index)"
+                                     ng-class="{
+                                     'busyEntry':item.busy && !item.temp && !item.reservation,
+                                     'reservation':item.busy && !item.temp && item.reservation,
+                                     'borderTop':!item.noBorder,'tempEntry':item.temp,'disabled':$ctrl.disabledTimePart(item,$parent.$parent.$index)}">
+                                    <div class="entry">
+                                        <span ng-bind="item.usedTime"></span>
+                                    </div>
+                                </div>
+                                <a ng-if="item.user" ui-sref="{{item.uiSref}}">
+                                    <div class="servise-box"
+                                         ng-class="{
+                                         'busyEntry':item.busy && !item.temp && !item.reservation,
+                                          'reservation':item.busy && !item.temp && item.reservation,
+                                         'borderTop':!item.noBorder,'tempEntry':item.temp,'disabled':$ctrl.disabledTimePart(item,$parent.$parent.$index)}">
+                                        <div class="entry" ng-class2="{'timepartDisabled':item.out}">
+                                            <!--<span ng-show="::item.out">недоступно для записи</span>-->
+                                            <!--<span class="service" ng-bind="item.service"></span></br>-->
+                                            <span ng-bind="item.usedTime"></span><br>
+                                            <span ng-bind="item.user"></span>
+                                            <!--<span class="phone"  ng-bind="item.phone"></span><br>-->
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <a class="btn btn-project btn-project-inv" ng-click="$ctrl.booking()">{{$ctrl.global.get('lang').val.bookIt}}</a>
+        </div>
+    </div>
+</div>
+
+
+                        <!--<div style="float: left; width:220px" ng-repeat="(date,data) in $ctrl.selectedMaster.week" ng-init="dateField=$ctrl.getDateObj(date)">
+                            <div class="col-lg-12">
+                                {{dateField}}
+                            </div>
+                            <div class="col-lg-12" style="height: 100px" ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePart">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 time-entry ">
+                                    <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="height: 100%"ng-init="item=data.entryTimeTable[row.i]" ng-click="$ctrl.newBooking(date,item)">
+                                    <div class="servise-box"
+                                         ng-class="{'busyEntry':item.busy,borderBottom:!item.noBorder}">
+                                        <div class="entry" ng-class2="{'timepartDisabled':item.out}">
+                                            &lt;!&ndash;<span ng-show="::item.out">недоступно для записи</span>&ndash;&gt;
+                                            <span ng-bind="item.service"></span></br>
+                                            <span ng-bind="item.user"></span>
+                                            <span class="phone"  ng-bind="item.phone"></span><br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>-->
+
+

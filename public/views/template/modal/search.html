@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">{{$ctrl.global.get('lang').val.search}}</h3>
+    <a class="cancel"  ng-click="$ctrl.cancel()">
+        <span class="icon-cancel-img"></span>
+    </a>
+</div>
+<div class="modal-body">
+    <div class="form-search">
+        <form ng-submit="$ctrl.ok()">
+            <div class="form-group">
+                <input focus-me="$ctrl.focus" class="form-control"
+                       ng-model="$ctrl.item"
+                       ng-change="$ctrl.global.get('functions').val.searchStuffList($ctrl.item)"
+                       ng-blur="$ctrl.global.get('functions').val.searchLostFocus()"
+                       ng-focus="$ctrl.global.get('functions').val.searchStuffList($ctrl.item)"
+                       placeholder="{{$ctrl.global.get('lang').val.search}}">
+            </div>
+            <div ng-show="$ctrl.globalProperty.stuffSearchList && $ctrl.globalProperty.stuffSearchList.length" class="searchresults">
+                <div search-stuff-list="$ctrl.globalProperty.stuffSearchList" search-str="$ctrl.item">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!--<div class="modal-footer">
+    <a class="btn btn-raised btn-block" type="button" ng-click="$ctrl.ok()">искать</a>
+</div>-->
+<div class="clearfix"></div>

@@ -1,0 +1,33 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="slide-zoom col-lg-6 col-md-6  col-sm-6 col-xs-12")
+            if(dj[key].name)
+                h3(set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].name
+            if(dj[key].arrowDownDiv)
+                arrow-down
+            div(id=dj[key].id,class="home-slides",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
+                    div(class="slide-fade",gmall-slider-home,duration=dj[key].duration)
+                        if(dj[key].imgs && dj[key].imgs.length)
+                            div(class="substrate")
+                                img(class="img-responsive",src=photoHost + '/' + dj[key].imgs[0].img,alt=dj[key].imgs[0].alt)
+                            - for (var i = 0; i < dj[key].imgs.length; i++)
+                                if(dj[key].imgs[i].actived)
+                                    div(id=dj[key].wrapclass+i,class="mytoggle")
+                                        a(href2=dj[key].imgs[i].link,ng-click="zoomSliderImg("+i+","+JSON.stringify(dj[key].imgs)+")")
+                                            span(class="zoom-plus")
+                                                span(class="icon-see-img")
+                                            div(class="box-overlay",ng-swipe-left="slideswipeLeft()",ng-swipe-right="slideswipeRight()")
+                                            img(class="img-responsive",src=photoHost + '/' + dj[key].imgs[i].img,alt=dj[key].imgs[i].alt,ng-swipe-left="slideswipeLeft()",ng-swipe-right="slideswipeRight()")
+                                            div(class="half-shadow")
+                                                div(class="title-block")
+                                                    h1=dj[key].imgs[i].name
+                                                    p=dj[key].imgs[i].desc
+                            a(class="prev" ng-click="prev()", class="navleft-carousel")
+                                span(class="icon-prevgallery-img")
+                            a(ng-click="next()", class="navright-carousel")
+                                span(class="icon-nextgallery-img")
+                            ol(class="carousel-indicators")
+                                div(class="carousel-box")
+                                    - for (var i = 0; i < dj[key].imgs.filter(function(i){return i.actived}).length; i++)
+                                        li(id="set-slide"+i+dj[key].wrapclass,class="set-slide")
+

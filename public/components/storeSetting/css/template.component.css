@@ -1,0 +1,305 @@
+/*dnd*/
+/*gallery*/
+ul[dnd-list],
+ul[dnd-list] > li,
+.homePage ul[dnd-list],
+.homePage ul[dnd-list] > li,
+.stuffDetail ul[dnd-list],
+.stuffDetail ul[dnd-list] > li,
+.part-box ul[dnd-list],
+.part-box ul[dnd-list] > li {
+    position: relative;
+}
+
+/***************************** Dropzone Styling *****************************/
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+ul[dnd-list],
+.homePage ul[dnd-list],
+.stuffDetail ul[dnd-list],
+.part-box .dropzone ul[dnd-list] {
+    min-height: 59px;
+    padding-left: 0;
+    /*margin: 0px;
+    padding-left: 0px;*/
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.dropzone li,
+.homePage li,
+.stuffDetail li,
+.part-box .dropzone li {
+    display: block;
+}
+
+/**
+ * Reduce opacity of elements during the drag operation. This allows the user
+ * to see where he is dropping his element, even if the element is huge. The
+ * .dndDragging class is automatically set during the drag operation.
+ */
+.dndDragging,
+.homePage .dndDragging,
+.stuffDetail .dndDragging,
+.part-box .dropzone .dndDragging {
+    opacity: 0.7;
+}
+
+/**
+ * The dndDraggingSource class will be applied to the source element of a drag
+ * operation. It makes sense to hide it to give the user the feeling that he's
+ * actually moving it. Note that the source element has also .dndDragging class.
+ */
+.dropzone .dndDraggingSource,
+.homePage .dndDraggingSourc,
+.stuffDetail .dndDraggingSource,
+.part-box .dropzone .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be added as child of the dnd-list
+ * while the user is dragging over it.
+ */
+.dndPlaceholder,
+.homePage .dndPlaceholder,
+.stuffDetail .dndPlaceholder,
+.part-box .dropzone .dndPlaceholder {
+    background-color: #d6d6d6 !important;
+    min-height: 59px;
+    display: block;
+    position: relative;
+}
+.template-item .active {
+    color: rgb(255, 113, 72);
+}
+.template-item .template-list {
+    margin-top: 140px;
+    margin-bottom: 40px;
+}
+@media (max-width: 1200px) {
+    .template-item .tab-nav-stuff p {
+        font-size: 12px;
+    }
+}
+@media (max-width: 400px) {
+    .template-item .template-list {
+        margin-top: 120px;
+    }
+}
+.template-item .tab-nav-stuff{
+    border-bottom: 1px solid transparent;
+}
+.template-item .tab-nav-stuff.active{
+    border-bottom: 1px solid rgb(255, 113, 72);
+}
+/*.template-item .tab-nav-stuff p {
+    font-size: 10px;
+}
+.template-item .tab-nav-stuff .material-icons {
+    font-size: 42px;
+}*/
+.template-item .tab-nav-stuff .material-icons.mini {
+    font-size: 26px;
+    padding-bottom: 5px;
+}
+.template-item .block-tab {
+    position: fixed;
+    top: 150px;
+    z-index: 999;
+}
+.part-box {
+    padding-bottom: 40px;
+}
+
+.head-box  {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+.name-menu {
+    font-size: 20px;
+    color: #767c89;
+    font-weight: bold;
+}
+/*.menu-box {
+    padding: 20px;
+}*/
+.part-box.thumbnail {
+    border-color: #bababa;
+}
+.label-menu {
+    font-size: 14px;
+}
+/*.box-component {
+    padding: 20px 60px;
+}*/
+.bgcolor_one{
+    background-color: #eee;
+    border: 1px dotted #999;
+}
+.bgcolor_one:hover,
+.bgcolor_two:hover{
+    background-color: #dddddd;
+}
+
+.bgcolor_two{
+    background-color: #fff;
+    border: 1px dotted #999;
+}
+ul li {
+    list-style: none;
+}
+
+.template-item  {
+    padding-top: 90px;
+    padding-bottom: 40px;
+    color: #666;
+}
+/*.template-item .content-box {
+    font-size: 18px;
+    min-height: 270px;
+}*/
+.template-item hr {
+    border-top-color:#ff7148;
+    margin-bottom: 10px;
+    margin-top: 10px;
+ }
+
+.template-item .content-box .panel-heading{
+    background-color: #93b1c6;
+    color: #fff;
+}
+
+.template-item .content-box .panel-heading .panel-title {
+    font-size: 22px;
+}
+
+.template-item .content-box .panel-body i{
+    font-size: 40px;
+}
+
+.template-item .content-box .panel-body .plot {
+    color: #767c89
+}
+
+a.content-box-link {
+    color: #ff7148;
+    text-decoration: none;
+}
+a.content-box-link:hover {
+    color: #93b1c6;
+}
+/*.setting-component {
+    margin-top: -200px;
+}*/
+
+/*
+.home-page ul {
+    margin-left: 0;
+}*/
+.template-list .icon-box {
+    padding: 10px ;
+    border: 1px solid #eee;
+   /* width: 250px;*/
+    height: 170px;
+    position: relative;
+    margin-bottom: 20px;
+}
+.template-list .icon-box-img {
+    margin-bottom: 10px;
+    background-color: #eaeaea;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+.icon{
+    display: block;
+    margin-right: 20px;
+}
+
+.template-list .icon-box img{
+    width: 40px;
+}
+.template-list .icon-box a{
+    float: left;
+}
+.icon-box .btn-fab {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.template-list .block-info {
+    border: 1px dotted #666;
+    text-align: center;
+    padding: 5px;
+}
+.template-list ul {
+    padding-left: 0;
+}
+.template-list .radio {
+    display: inline-block;
+}
+.add-block {
+    margin-top: 10px;
+}
+.add-block .btn-default {
+    background-color: rgba(170, 211, 166, 0.27);
+
+}
+.add-block .btn-default ::-webkit-input-placeholder {color:#72ad66;}
+.add-block .btn-default ::-moz-placeholder          {color:#72ad66;}/* Firefox 19+ */
+.add-block .btn-default :-moz-placeholder           {color:#72ad66;}/* Firefox 18- */
+.add-block .btn-default :-ms-input-placeholder      {color:#72ad66;}
+    /*setIcon*/
+.set-icon .modal-body{
+    background-color: #dfdfdf;
+}
+.set-icon  img {
+    width: 36px;
+    display: inline-block;
+}
+.set-icon .icon-box {
+    margin: 5px;
+    text-align: center;
+}
+.template-list .select-block {
+    display:inline-block;
+    border: 1px dotted #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    vertical-align: text-top;
+    padding: 5px 10px;
+    margin-right: 5px
+}
+.template-list .clear-icon {
+    font-size: 14px;
+    margin-right: 0;
+    margin-left: 5px;
+}
+.template-list .input-group .form-group {
+    margin-top: 0;
+}
+.template-list .help-text {
+    font-size: 14px;
+}
+
+.box-style {
+
+    display: inline-block;
+}
+.box-style .ui-select-container {
+    width: 200px;
+}
+.box-color .btn.btn-fab.btn-fab-mini,
+.box-color .input-group-btn .btn.btn-fab.btn-fab-mini {
+    margin: 0;
+}

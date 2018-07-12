@@ -1,0 +1,187 @@
+/*auto*/
+.home-slides .slide-fade{
+    position: relative;
+}
+.home-slides .substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.mytoggle,
+.home-slides .slide-fade img{
+    width: 100%;
+}
+.home-slides {
+    position: relative;
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.zoom-plus {
+    position: absolute;
+    top:200px;
+    left: 45%;
+}
+.mytoggle-page {
+    width: 100%;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    /*background-color: #000;*/
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.helf-shadow {
+    z-index: 1029;
+}
+.title-block {
+    position: absolute;
+    bottom: 20%;
+    width: 100%;
+}
+.home-section {
+    overflow: hidden;
+    transition: all 0.5s ease-out 0s;
+}
+.home-section:hover .box-overlay {
+    opacity: 0.8;
+}
+.home-section img {
+    transition: all 0.5s ease-out 0s;
+    min-width: 650px;
+}
+.home-section:hover img {
+    transition: transform 0.5s ease-out 0s;
+    transform: scale(1.2,1.2);
+}
+.home-slides .navright-carousel {
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    z-index: 1024;
+}
+.home-slides .navright-carousel span {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    opacity: 0.7;
+}
+.home-slides .navleft-carousel {
+    display: block;
+    height: 100%;
+    position: absolute;
+    left: 20px;
+    top: 0;
+    z-index: 1024;
+}
+.home-slides .navleft-carousel span {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    opacity: 0.7;
+    transition: opacity 0.4s;
+}
+.home-slides .navleft-carousel:hover span,
+.home-slides .navright-carousel:hover span {
+    opacity: 1;
+}
+
+.home-slides .carousel-indicators {
+    z-index: 1025;
+}
+.home-slides .carousel-indicators li{
+    background-color: $color;
+    border: 4px solid $color;
+      width: 15%;
+      height: 4px;
+      border-radius: 0;
+      border-width: 4px;
+      opacity: 0.6;
+}
+.home-slides .carousel-indicators .active {
+  background-color: transparent;
+  opacity: 0.9;
+  border-width: 4px;
+    height: 4px;
+    margin: 1px;
+}
+
+.mytoggle {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity:0;
+}
+.mytoggle.ng-enter {
+    opacity: 0;
+}
+.mytoggle.ng-enter-active {
+    opacity: 1;
+}
+.mytoggle.ng-leave {
+    opacity: 1;
+}
+.mytoggle.ng-leave-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-add {
+
+    opacity: 1;
+    display: block !important;
+}
+.mytoggle.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-remove {
+    opacity: 0;
+    display: block !important;
+}
+.mytoggle.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+
+.mobile-wrapper .slide-fade {
+    margin: 0;
+}
+.mobile-wrapper .img-wrap {
+    padding: 0;
+}
+.tablet-wrapper .home-section-header {
+    top: 20%;
+}
+.tablet-wrapper h1 {
+    font-size: 30px;
+}
+.mobile-wrapper .home-section-header {
+    top: 15%;
+}

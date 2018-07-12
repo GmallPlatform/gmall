@@ -1,0 +1,133 @@
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+        if(dj[key].positionMenu=='top'||dj[key].positionMenu=='bottom')
+            menu-sections-pug
+                div(class="hover-top-menu")
+                    div(class="text-center myMenu",id="wrapperForSections")
+                        ul(class="nav-center catalogDropDownMenu")
+                            - for (var i = 0; i < sections.length; i++)
+                                - var section=sections[i]
+                                if(section.categories.length || section.child.length)
+                                    - var id='s'+section._id
+                                    - var innerId="innerDiv"+section._id
+                                    - var innerData = !((!section.categories.length || section.categories.length < 2) && !section.child.length)
+                                    - var href='/'+section.url+'/category'
+                                    - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'"+((section.categories[0])?section.categories[0].url:'category')+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                    li(id=id,class="mainli")
+                                        a(class="section-name",href=(innerData)?null:href,ui-sref=(innerData)?null:ui_sref)
+                                            span
+                                                !=section.name
+                                        if(innerData)
+                                            div(class="innerDiv text-left", id=innerId)
+                                                div(class="container container-menu")
+                                                    ul(class="first-li")
+                                                        if(section.categories.length)
+                                                            li(class="category-in-section")
+                                                                - var href =  '/'+section.url+'/'+category.url
+                                                                - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                a(class="all",href=href,ui-sref=ui_sref)
+                                                                    span=lang['allCategories']
+                                                            - for(var ii=0;ii<7;ii++)
+                                                                -var category=section.categories[ii]
+                                                                if(category && !category.notActive)
+                                                                    li(class="category-in-section")
+                                                                        - var href =  '/'+section.url+'/'+category.url
+                                                                        - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'"+category.url+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                        a(href=href,ui-sref=ui_sref)
+                                                                            span
+                                                                                !=category.name
+                                                    if(section.categories.length>7)
+                                                        ul
+                                                            - for(var ii=7;ii<17;ii++)
+                                                                -var category=section.categories[ii]
+                                                                if(category && !category.notActive)
+                                                                    li(class="category-in-section")
+                                                                        - var href =  '/'+section.url+'/'+category.url
+                                                                        - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'"+category.url+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                        a(href=href,ui-sref=ui_sref)
+                                                                            span
+                                                                                !=category.name
+                                                    if(section.categories.length > 17)
+                                                        ul
+                                                            - for(var ii=17;ii<section.categories.length;ii++)
+                                                                -var category=section.categories[ii]
+                                                                if(category &&!category.notActive)
+                                                                    li(class="category-in-section")
+                                                                        - var href =  '/'+section.url+'/'+category.url
+                                                                        - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'"+category.url+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                        a(href=href,ui-sref=ui_sref)
+                                                                            span
+                                                                                !=category.name
+                                                    if(section.child.length)
+                                                        ul
+                                                            each child in section.child
+                                                                - var href = '/'+child.url+'/category'
+                                                                - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                li(class="section-in-section")
+                                                                    a(class="category-name",href=href,ui-sref=ui_sref)
+                                                                        span
+                                                                            !=child.name
+                                                                    ul
+                                                                        - var href = '/'+child.url+'/category'
+                                                                        - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                        a(class="all",href=href,ui-sref=ui_sref)
+                                                                            span=lang['allCategories']
+                                                                        each category in child.categories
+                                                                            if(!category.notActive)
+                                                                                li(class="category-in-section")
+                                                                                    - var href =  '/'+child.url+'/'+category.url;
+                                                                                    - var ui_sref ="stuffs({groupUrl:'"+child.url+"',categoryUrl:'"+category.url+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                                    a(href=href,ui-sref=ui_sref)
+                                                                                        span
+                                                                                            !=category.name
+        else
+            menu-sections-virtical-pug
+                div(class="myMenuV", id="wrapperForSections")
+                    ul(class="catalog-menu")
+                        - for (var i = 0; i < sections.length; i++)
+                            - var section=sections[i]
+                            - var id='s'+section._id
+                            - var innerData = !((!section.categories.length || section.categories.length < 2) && !section.child.length)
+                            - var href = '/'+section.url+'/category'
+                            - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'"+((section.categories[0])?section.categories[0].url:'category')+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                            li(id=id,class="mainli")
+                                a(class="section-name",href=(innerData)?null:href,ui-sref=(innerData)?null:ui_sref)
+                                    span
+                                        !=section.name
+                                div
+                                    if(innerData)
+                                        ul
+                                            li(class="category-in-section")
+                                                - var href = '/'+section.url+'/category'
+                                                - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                a(class="all",href=href,ui-sref=ui_sref)
+                                                    span=lang['allCategories']
+                                            each category in section.categories
+                                                if(!category.notActive)
+                                                    li(class="category-in-section")
+                                                        - var href =  '/'+section.url+'/'+category.url
+                                                        - var ui_sref ="stuffs({groupUrl:'"+section.url+"',categoryUrl:'"+category.url+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                        a(href=href,ui-sref=ui_sref)
+                                                            span
+                                                                !=category.name
+
+
+                                            each child in section.child
+                                                - var href =  '/'+child.url+'/category'
+                                                - var ui_sref ="stuffs({groupUrl:'"+child.url+"',categoryUrl:'category',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                li
+                                                    a(class="category-name",href=href,ui-sref=ui_sref)
+                                                        span
+                                                            !=child.name
+                                                    ul
+                                                        each category in child.categories
+                                                            if(!category.notActive)
+                                                                li
+                                                                    - var href =  '/'+child.url+'/'+category.url
+                                                                    - var ui_sref ="stuffs({groupUrl:'"+child.url+"',categoryUrl:'"+category.url+"',brand:null,brandTag:null,queryTag:null,stringStr:null})"
+                                                                    a(href=href,ui-sref=ui_sref)
+                                                                        span
+                                                                            !=category.name
+
+
+

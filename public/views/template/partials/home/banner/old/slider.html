@@ -1,0 +1,24 @@
+<div  ng-class="::{'home-slides':!homeCtrl.template.slider.class,
+        'home-slides1':homeCtrl.template.slider.class==1,
+        'home-slides2':homeCtrl.template.slider.class==2,
+        'home-slides3':homeCtrl.template.slider.class==3,
+        'home-slides4':homeCtrl.template.slider.class==4,
+        'home-slides5':homeCtrl.template.slider.class==5,}">
+    <h1 ng-if="::global.get('store').val.template.main.getOFA('name','imgs').namebox" class="text-center" ng-bind="::global.get('store').val.template.main.getOFA('name','imgs').namebox"></h1>
+    <div class="container">
+        <div class="home-section" ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.data.imgs.length==2||homeCtrl.data.imgs.length==4,
+             'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.data.imgs.length==3,
+             'col-lg-12 col-md-12 col-sm-12 col-xs-12': homeCtrl.data.imgs.length==1}" ng-repeat="image in homeCtrl.data.imgs" set-animate data-animation="animated8" data-animation-delay="02">
+            <div class="row">
+                <a href="{{image.link}}">
+                    <img class="img-responsive" ng-src="{{image.img}}">
+
+                    <div class="home-section-header">
+                        <h3 ng-bind="image.name"></h3>
+                        <p ng-bind-html="image.desc|unsafe"></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

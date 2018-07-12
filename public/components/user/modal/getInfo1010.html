@@ -1,0 +1,98 @@
+<!--http://stackoverflow.com/questions/27005608/angularjs-ui-bootstrap-modal-with-google-places-->
+<style>
+    .pac-container {
+        z-index: 100000;
+    }
+</style>
+
+<div class="ship">
+    <div class="modal-header">
+        <h2 class="text-center">контактные данные</h2>
+        <a class="cancel"  ng-click="$ctrl.cancel()">
+            <!--<img class="cancel" src="../../../img/icon/clear.png">-->
+        </a>
+    </div>
+
+
+    <div class="clearfix"></div>  
+    <div class="ship-box col-sm-12 col-lg-12 col-md-12 col-xs-12">
+        <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok()">
+            <div class="form-group" ng-class="{ 'has-success': formProfile.email.$valid,'has-error': formProfile.email.$invalid}">
+                <input  name="email" type="email" class="form-control" required
+                        ng-model="$ctrl.user.email" ng-disabled="$ctrl.user._id"
+                        placeholder="email"/>
+                <div class="help-block text-danger" ng-if="formProfile.email.$dirty" ng-messages="formProfile.email.$error">
+                    <div ng-message="required">введите e-mail</div>
+                    <div ng-message="pattern">неправильный формат e-mail</div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-success': formProfile.fio.$valid,'has-error': formProfile.fio.$invalid}">
+                <input  name="fio" type="text" class="form-control mb-10 cart"
+                        pattern="[A-Za-zА-Яа-я0-9.\s-]{3,100}"
+                        ng-minlength="3"
+                        ng-maxlength="70"
+                        required
+                        ng-model="$ctrl.user.profile.fio"
+                        placeholder="ФИО"/>
+
+                <div class="help-block text-danger" ng-if="formProfile.fio.$dirty" ng-messages="formProfile.fio.$error">
+                    <div ng-message="required">укажите ФИО</div>
+                    <div ng-message="pattern">в этом поле допускаются только буквы</div>
+                    <div ng-message="minlength">не менее 3-ти символов</div>
+                    <div ng-message="maxlength">не более 70-ти символов</div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-success': formProfile.phone.$valid,'has-error': formProfile.phone.$invalid}">
+                <!--<input   type="text" class="form-control mb-10 cart"
+                         pattern="[0-9.\s-+()]{7,20}"
+                         name="phone"
+                         required
+                         ng-minlength="7"
+                         ng-maxlength="20"
+                         ng-model="$ctrl.user.profile.phone"
+                         placeholder="Телефон"/>
+
+                <div class="help-block text-danger" ng-if="formProfile.phone.$dirty" ng-messages="formProfile.phone.$error">
+                    <div ng-message="required">укажите телефон</div>
+                    <div ng-message="pattern">в этом поле допускаются только цифры, - и +)</div>
+                    <div ng-message="minlength">не менее 7-ти символов</div>
+                    <div ng-message="maxlength">не более 20-ти символов</div>
+                </div>-->
+                <div enter-phone-numder="$ctrl.user.profile.phone"></div>
+            </div>
+            <div ng-if="!$ctrl.service"class="form-group" ng-class="{ 'has-success': formProfile.cityId.$valid,'has-error': formProfile.cityId.$invalid}">
+                <input name="cityId" required data-ng-model="$ctrl.user.profile.cityId" type="hidden">
+                <input type="text"   class="form-control mb-10 cart"
+                       ng-autocomplete-city  user="$ctrl.user"/>
+                <div class="help-block text-danger" ng-if="formProfile.cityId.$dirty" ng-messages="formProfile.cityId.$error">
+                    <div ng-message="required">выберите город  из предлагаемого списка, появляющегося после начала набора</div>
+                </div>
+            </div>
+
+            <div ng-if="!$ctrl.service"class="form-group">
+                <input  ng-maxlength="100"
+                        name="transporter"
+                        type="text" class="form-control mb-10 cart"  ng-model="$ctrl.user.profile.transporter"
+                        placeholder="транспортная компания(перевозчик) и ее отделение"/>
+
+                <div class="help-block text-danger" ng-if="formProfile.transporter.$dirty" ng-messages="formProfile.transporter.$error">
+                    <div ng-message="maxlength">не более 100-ти символов</div>
+                </div>
+            </div>
+            <textarea class="form-control mb-10 cart" rows="4" placeholder="комментарии к заказу" data-ng-model="$ctrl.user.comment"></textarea>
+            <div class="clearfix"></div>
+            <div ng-switch on="$ctrl.service">
+                <div class="text-center" ng-switch-when="true">
+                    <button class="btn btn-block btn-project" type="submit">ЗАКАЗАТЬ</button>
+                </div>
+                <div class="text-center" ng-switch-default="">
+                    <button class="btn btn-block btn-project" type="submit">ЗАПИСАТЬСЯ</button>
+                </div>
+            </div>
+
+        </form>
+        </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

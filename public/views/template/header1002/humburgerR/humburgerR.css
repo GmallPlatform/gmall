@@ -1,0 +1,16 @@
+.icon-menu-img {
+    -webkit-transition: all 1s ease-out 0.5s;
+    -moz-transition: all 1s ease-out 0.5s;
+    -o-transition: all 1s ease-out 0.5s;
+    transition: all 1s ease-in-out 0.5s;
+}
+.icon-menu-inverse {
+    display: none;
+    -webkit-transition: all 1s ease-out 0.5s;
+    -moz-transition: all 1s ease-out 0.5s;
+    -o-transition: all 1s ease-out 0.5s;
+    transition: all 1s ease-in-out 0.5s;
+}
+.hamburger {
+    cursor: pointer;
+}

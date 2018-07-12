@@ -1,0 +1,37 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        if(dj[key].i && dj[key].i==1)
+            - var id='arrowDownDiv'
+            arrow-down
+        - var clickLink=''
+        - var poster =(dj[key].videoCover)?photoHost+'/'+dj[key].videoCover:null
+        if(dj[key].button && dj[key].button.link)
+            - clickLink="global.get('functions').val.action('"+dj[key].button.link+"')"
+        if(dj[key].button && dj[key].button.is)
+            - var element = "div"
+        else
+            - var element = "a"
+        #{element}(ng-click=clickLink)
+            div(class="half-section-video")
+                div(class="container text-center",style="display: block!important")
+                    div(class="video-box")
+                        if(dj[key].name)
+                            h1(class="video-header",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate,data-animation-delay=dj[key].nameAnimateDelay)
+                                span=dj[key].name
+                        //if(mobile)
+                            img(class="img-responsive",src=poster)
+                        if(true)
+                            video(preload="true",loop,autoplay,style="width: 100%",muted=!dj[key].audio,controls=dj[key].videoControl,webkit-playsinline)
+                                if(dj[key].videoOgg)
+                                    source(src=photoHost + '/' + dj[key].videoOgg,type="video/ogg")
+                                if(dj[key].video)
+                                    source(src=photoHost+'/'+dj[key].video,type="video/mp4")
+
+                    div(class="video-content text-center")
+
+                        if(dj[key].desc)
+                            p(class="banner-desc")
+                                | !{dj[key].desc.trim().clearFirstTag('p')}
+                        if(dj[key].button && dj[key].button.is)
+                            a(set-animate=dj[key].animate && !mobile,data-animation=dj[key].animate,class="btn btn-project btn-banner",ng-click=clickLink)=dj[key].button.text
+

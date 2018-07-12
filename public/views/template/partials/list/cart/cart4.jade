@@ -1,0 +1,11 @@
+div(class="thumbnail stuff-list",id='item-'+item._id,ng-hide="$ctrl.hideCart && $ctrl.$stateParams.id && $ctrl.$stateParams.id=='"+item.url+"'&&"+$index+">0")
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center")
+        a(href=item.link)
+            if(item.img)
+                img(style="width:100%", src=item.img)
+            if(item.name)
+                h3=item.name
+            if(item.desc)
+                div
+                    | !{item.desc}
+    div(class="clearfix")

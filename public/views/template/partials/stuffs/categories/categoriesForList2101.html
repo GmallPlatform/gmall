@@ -1,0 +1,24 @@
+<!--clinic-->
+
+
+
+<div class="categories-for-list"  ng-if="$ctrl.parentSection.categories.length && $ctrl.parentSection.categories.some(function(c){return !c.notActive})">
+    <a class="categories-stuff" ng-click="$ctrl.changeCategory('category')"  ng-class="{'active':$ctrl.category=='category'}">
+        <img class="img-responsive" ng-src="{{$ctrl.global.get('store').val.allCategories}}">
+        <span class="text-center" ng-bind="$ctrl.global.get('lang').val.allCategories"></span>
+
+    </a>
+    <a class="categories-stuff" ng-click="$ctrl.changeCategory(item.url)"   ng-repeat="item in $ctrl.parentSection.categories"
+       ng-class="{'active':$ctrl.category==item.url}"
+       ng-show="!item.notActive">
+        <img class="img-responsive" ng-src="{{item.smallimg}}">
+        <span class="text-center" ng-bind="item.name"></span>
+    </a>
+    <div class="clearfix"></div>
+    <div class="breadcrumbs">
+        <span class="breadcrumbs-box" ng-repeat="item in $ctrl.breadcrumbs" >
+            <span ng-bind="item.name"></span>
+            <span class="icon-cancel-img" ng-click="$ctrl.deleteCrumb($index)"></span>
+        </span>
+    </div>
+</div>

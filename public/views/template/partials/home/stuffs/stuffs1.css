@@ -1,0 +1,18 @@
+/*clinic*/
+.home-stuffs .container {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.home-stuffs img {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.home-stuffs .btn-box {
+    margin-bottom: 30px;
+}
+/*  .home-stuffs .btn-project{
+    display: block;
+
+}*/

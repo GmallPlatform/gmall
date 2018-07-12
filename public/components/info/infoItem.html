@@ -1,0 +1,126 @@
+ <div ng-if="$ctrl.item">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.info">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff">
+            <a class="btn btn-fab btn-fab-mini btn-success"
+               ng-if="$ctrl.item.blocks.length<40"
+               ng-click="$ctrl.createNewRazdel()"
+               title="создать новый подраздел">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+        <!--<div class="tab-nav-stuff col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <a class="add-goods link-success" ng-if="$ctrl.item.blocks.length<40" ng-click="$ctrl.saveEmbeddedField({name:'новый подраздел'},'name')">
+                <span class="link-success">создать новый подраздел</span>
+                <i class="material-icons link-success">add_box</i>
+            </a>
+        </div>-->
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="info-item">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pages-header">
+            <h3 class="text-center name-page">редактирование информационного раздела</h3>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label class="control-label">заголовок</label>
+                        <input class="form-control name" ng-model="$ctrl.item.name"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('name')">
+                    </div>
+
+                    <!--<div class="favicon thumbnail">
+                        <h4 class="text-center name-box">стикер для подраздела</h4>
+                        <load-image
+                                upload-url="/api/collections/Info/fileUpload"
+                                item-id="{{$ctrl.item._id}}"
+                                item-resourse="$ctrl.Items"
+                                file-src="$ctrl.item.img"
+                                name-img="img">
+                        </load-image>
+                    </div>-->
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="info-item-list" >
+                        <ul dnd-list="$ctrl.item.blocks"
+                            dnd-drop="$ctrl.dropCallback(item)">
+                            <li ng-repeat="item in $ctrl.item.blocks"
+                                dnd-draggable="item"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.blocks.splice($index,1)"
+                                ng-init="item.close=true"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                <div >
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box text-center"  ng-if="!$ctrl.mobile" style="cursor: move">
+                                        <i class="material-icons link-success form-group">swap_vert</i>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 head-box ">
+                                        <a class="pull-left" ng-click="item.close=!item.close">
+                                            <div class="head-box form-group ">
+                                                <span ng-bind="item.name||'без названия'"></span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 head-box ">
+                                        <div class="form-group pull-left text-center">
+                                            <div class="togglebutton">
+                                                <label for="actived{{$index}}-ds2">
+                                                    <span class="ll" ng-class="{'active':!item.actived}">не опубликовано</span>
+                                                    <input type="checkbox"
+                                                           id="actived{{$index}}-ds2"
+                                                           ng-model="item.actived"
+                                                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                                           ng-change="$ctrl.saveEmbeddedField(item,'actived')">
+                                                    <span class="lr" ng-class="{'active':item.actived}">опубликовано</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 head-box text-right">
+                                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveEmbeddedField(item)">
+                                            <i class="material-icons link-warning" title="удалить подраздел">delete</i>
+                                        </a>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+
+                                </div>
+                                <div class="cart-detail" uib-collapse="item.close">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">заголовок</label>
+                                        <input class="form-control name" ng-model="item.name"
+                                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 700,'blur': 0}}"
+
+                                               ng-change="$ctrl.saveEmbeddedField(item,'name')">
+                                    </div>
+                                    <h4 class="text-center name-box">текст подраздела</h4>
+                                    <div class="editor form-group">
+                                        <div text-angular
+                                             ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                             ng-change="$ctrl.saveEmbeddedField(item,'desc',2000)"
+                                             ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                                             ng-model="item.desc"
+                                             ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                                             ta-html-editor-class="border-around">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

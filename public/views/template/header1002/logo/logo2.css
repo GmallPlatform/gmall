@@ -1,0 +1,51 @@
+/*balance logo*/
+.img-logo {
+    /*width: $width;
+    transition: all  1s ease-in-out 0.5s;*/
+    display: inline-block;
+
+}
+.img-logoInv {
+    /*width: $width;
+    transition: all  1s ease-in-out 0.5s;*/
+    display: none;
+
+}
+img {
+    width: auto;
+    -webkit-transition: all 20s;
+    -moz-transition: all 20s;
+    transition: all 20s;
+    position: fixed;
+    /*top: 50%;
+    left: 50%;*/
+    /*top:200px;
+    left: 300px;*/
+    opacity: 0.5;
+    margin: 5% auto; /* Will not center vertically and won't work in IE6/7. */
+    left: 0;
+    right: 0;
+    /*margin-top: 200px; !* Negative half of height. *!
+    margin-left: 250px; !* Negative half of width. *!*/
+}
+.logo-out{
+    width: auto;
+    -webkit-transition: transform 20s;
+    -moz-transition: transform 20s;
+    transition: transform 20s;
+    -webkit-transform:scale(0.2);
+    transform:scale(0.2);
+    transform-origin: left top;
+
+}
+
+.logo-out img {
+    /*transition: all  10s ease 20s;*/
+    /*position: relative;*/
+
+    opacity: 1;
+}
+/*.logo-out {
+    transform: translate(-200px, 200px);
+}*/
+

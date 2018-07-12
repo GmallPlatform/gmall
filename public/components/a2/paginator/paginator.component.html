@@ -1,0 +1,19 @@
+<div class="col-lg-12" *ngIf="pages>1">
+    <ul class="pagination">
+        <li (click)="perviousPage()" [ngClass]="isFirstPage() && 'disabled'">
+            <a>
+                <i class="material-icons" [ngClass]="isFirstPage() && 'icon-white'">skip_previous</i>
+            </a>
+        </li>
+        <li *ngFor="#i of arrayPage" (click)="setPage(i)" [ngClass]="{'active':paginate.page===i}">
+        <!--<li (click)="setPage(i)" ng-repeat="i in arrayPage track by $index" ng-class="paginate.page==(i) && 'active'">-->
+            <a class="page">{{getPageStr(i)}}</a>
+        </li>
+        <li (click)="nextPage()" [ngClass]="isLastPage() && 'disabled'">
+            <a>
+                <i class="material-icons" [ngClass]="isLastPage() && 'icon-white'">skip_next</i>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="clearfix"></div>

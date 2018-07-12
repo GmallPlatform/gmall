@@ -1,0 +1,105 @@
+/*cliniq*/
+.navbar {
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    min-height: 100px;
+    margin-bottom: 0;
+    border-radius: 0;
+    color: #8d8d8d;
+}
+.navbar-fixed-top {
+    border-bottom: none;
+}
+
+.navbar-top {
+    background-color: #fff;
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+}
+.navbar-top a {
+    letter-spacing: 2px;
+}
+
+.navbar-toggle-slide {
+    padding: 20px 50px;
+    background-color: transparent;
+}
+.navbar-toggle-slide.navbar-toggle-slide-mini {
+    background-color: #fff;
+    opacity: 1;
+    padding: 12px 50px;
+}
+@media (max-width: 550px) {
+    .navbar-toggle-slide {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+.mobile-wrapper .navbar-toggle-slide.navbar-toggle-slide-mini {
+    background-color: #fff;
+    opacity: 1;
+    padding: 12px 10px;
+}
+.navbar-top .nav-left {
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+    padding-left: 0;
+}
+.nav-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    padding-left: 0;
+}
+.menuColor,
+.navbar-fixed-top:hover {
+    background-color: rgba(255, 255, 255, 0.77);
+    /*border-bottom: 1px solid #ccc;*/
+    /*box-shadow: 0 0 6px #ccc;*/
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transition: all ease-in-out 0.5s;
+    -o-transition: all  ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+    border-bottom: 1px solid #ececec;
+}
+.navbar-bottom {
+    background-color: #fff;
+    height: 60px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+.navbar-bottom .nav-left {
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+    padding-left: 0;
+}
+
+.right-nav-menu .nav-group{
+    font-size: 20px;
+    border: none;
+}
+.right-nav-menu .nav-group a{
+    color: #3a230d;
+    padding: 25px 10px;
+    text-transform: lowercase;
+}
+.right-nav-menu .nav-group li a:hover,
+.right-nav-menu .nav-group li a:focus {
+
+    opacity: 0.7;
+}
+/*.mobile-wrapper .page-stat a{
+    font-size: 16px;
+}*/
+/*.menu-section-vertical .page-stat a{
+    text-transform: uppercase;
+}
+.menu-section-vertical .page-stat a {
+    padding: 10px 10px 10px 0;
+}*/
+

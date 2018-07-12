@@ -1,0 +1,68 @@
+/*zoom1*/
+.zoom-slide {
+    position: relative;
+    background-color:$color
+}
+.zoom-slide img {
+    width: 100%;
+    position: relative;
+}
+.zoom-slide .icon-cancel-img {
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+}
+.zoom-cancel {
+    /*position: absolute;
+    width: 25px;
+    height: 25px;
+    right:20px;
+    top:20px;*/
+    z-index: 1000;
+    /*padding: 5px;*/
+   /* background-color: rgba(255, 255, 255, 0.53);*/
+}
+.zoom-slide .slide-img {
+    margin: 0 auto;
+}
+.zoom-slide .carousel-control.right,
+.zoom-slide .carousel-control.left {
+    background-image: none;
+}
+/*.zoom-slide  .carousel-control.right {
+    right: -50px;
+}
+.zoom-slide .carousel-control.left {
+    left: -50px;
+}*/
+.zoom-slide  .carousel-control.right span,
+.zoom-slide .carousel-control.left span{
+    display: none;
+}
+/*.zoom-slide  .carousel-control.right {
+    background: url("../../../../../../img/icon/next1.png") no-repeat;
+    background-position: center;
+}
+.zoom-slide  .carousel-control.left {
+    background: url("../../../../../../img/icon/prev1.png") no-repeat;
+    background-position: center;
+}*/
+.carousel-indicators li{
+    background-color: #fff;
+    border: 3px solid #fff;
+    width: 15%;
+    height: 5px;
+    border-radius: 0;
+    border-width: 3px;
+    opacity: 0.6;
+    display: inline-block;
+    margin: 1px 5px;
+}
+.carousel-indicators .active {
+    width: 15%;
+    height: 5px;
+    border-width: 3px;
+    background-color: transparent;
+    opacity: 1;
+    margin: 1px 5px;
+}

@@ -1,0 +1,15 @@
+/*dance*/
+.enter-block a {
+    color:$color;
+}
+/*.enter-block a.enter-first {
+    padding-right: 0;
+}
+.enter-block a.enter-two {
+    padding-left: 0;
+}*/
+/*zefir*/
+/*
+.enter-block a {
+    display: inline-block !important;
+}*/

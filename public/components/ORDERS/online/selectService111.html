@@ -1,0 +1,179 @@
+<div class="create-master">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">Запись на время</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>{{$ctrl.hour}} час  {{$ctrl.minutes}} минут</h3>
+            </div>
+            <div class="col-lg-6">
+                <h3>мастер - {{$ctrl.master.name}}</h3>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-2">Клиент</div>
+                <div class="col-lg-8">
+                    <ui-select ng-model="$ctrl.user">
+                        <ui-select-match placeholder="Введите номер телефона">
+                            {{$select.selected.name}}  +{{$select.selected.phone}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="user in $ctrl.users track by $index"
+                                           refresh="$ctrl.refreshUsers($select.search)"
+                                           refresh-delay="0">
+                            <strong ng-bind="user.name"></strong>  +<span ng-bind="user.phone"></span>
+
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-1">
+                    <button  ng-disabled="$ctrl.disabledAddUser" class="btn btn-raised btn-info">Добавить</button>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <h4>Выберите услугу</h4>
+                <ul>
+                    <li ng-repeat="item in $ctrl.master.stuffs">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="item.used"> {{item.name}}
+                            </label>
+                        </div>
+                        <!--<input class="form-control" type="checkbox" ng-model="item.used">
+                        <a ng-click="$ctrl.ok(item)"><span ng-bind="item.name"></span></a>-->
+                    </li>
+                </ul>
+                клиент - {{$ctrl.user.name}}/{{$ctrl.user.phone}} <a ng-if="$ctrl.user"><small ng-click="$ctrl.clearUser()">x</small></a><br>
+                <h4>Выберите клиента</h4>
+                <div class="col-lg-12" ng-hide="$ctrl.addingUser">
+
+                    <div class="col-lg-4">
+                        <ui-select ng-model="$ctrl.phoneCode" skip-focusser="true" style="width:100%">
+                            <ui-select-match>{{$select.selected.code}}</ui-select-match>
+                            <ui-select-choices repeat="opt.code as opt in $ctrl.phoneCodes">{{opt.code}}({{opt.country}})</ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group label-floating">
+                            <label class="control-label">введите телефон</label>
+                            <input class="form-control" type="text"
+                                   ng-model="$ctrl.phone"
+                                   ng-change="$ctrl.searchUser($ctrl.phone)"/>
+                        </div>
+                        <!--ng-model-options="{ debounce: 300 }"-->
+                    </div>
+                    <div class="col-lg-12">
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">введите телефон</label>
+                            <input class="form-control" type="text"
+                                   ng-model="$ctrl.phone"
+                                   ng-change="$ctrl.searchUser($ctrl.phone)"/>
+                        </div>
+                        <!--ng-model-options="{ debounce: 300 }"-->
+                    </div>
+                    <div class="col-lg-12">
+                        <button ng-if="!$ctrl.disabledAddUser()"
+                                ng-click="$ctrl.addingUser=true">добавить</button>
+                    </div>
+                </div>
+                <div class="col-lg-12" ng-show="$ctrl.addingUser">
+                    <form name="form" ng-submit="$ctrl.addUser()">
+                    <div class="col-lg-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label">введите имя</label>
+                            <input class="form-control" type="text"
+                                   ng-model="$ctrl.userName"
+                                   ng-model-options="{ debounce: 300 }"
+                                   ng-minlength="3"
+                                   ng-maxlength="50"
+                                   name="name"
+                                   required
+                                   />
+                        </div>
+                        <div ng-messages="form.name.$error" style="color:maroon" role="alert">
+                            <div ng-message="required">Необходимо ввести имя</div>
+                            <div ng-message="minlength">не менее 3 символов</div>
+                            <div ng-message="maxlength">не более 25</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">{{$ctrl.phoneCode}}</span>
+                                <label class="control-label">введите телефон</label>
+                                <input type="text"
+                                       class="form-control"
+                                       ng-model="$ctrl.phone"
+                                       ui-mask="(999) 999-9999"
+                                       ui-mask-placeholder
+                                       ui-mask-placeholder-char="_"
+                                       ng-model="$ctrl.phone"
+                                       name="phone"
+                                       required
+                                />
+                            </div>
+                        </div>
+                        <div ng-messages="form.phone.$error" style="color:maroon" role="alert">
+                            <div ng-message="required">Необходимо ввести телефон в указанном формате</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button ng-disabled="$ctrl.checkNameNewUser()"
+                                type="submit">сохранить</button>
+                        <button ng-click="$ctrl.addingUser=false">отмена</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6">
+
+                <div class="form-group" ng-if="$ctrl.user">
+                    <h2>Напоминание</h2>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.remind" type="radio" name="remind" value="null" checked="">
+                            без напоминания
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input
+                                    ng-disabled="!$ctrl.user.email"
+                                    ng-model="$ctrl.remind" type="radio" name="remind" value="email" checked="">
+                            email
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.remind" type="radio" name="remind" value="call">
+                            phone call
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select ng-model="$ctrl.timeRemind">
+                        <option value="">время напоминания за</option>
+                        <option ng-repeat="(key,item) in $ctrl.timeRemindArr" value="{{item}}">
+                            {{key}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <button class="btn btn-block btn-raised" ng-click="$ctrl.ok()"
+                ng-disabled="$ctrl.allFieldCheck()">
+            создать запись
+        </button>
+    </div>
+    <div class="clearfix"></div>
+</div>

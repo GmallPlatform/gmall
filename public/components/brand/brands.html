@@ -1,0 +1,189 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 brands">
+    <div ng-hide="$state.current.name!='frame.brands'">
+        <!-- Template for a normal list item -->
+        <script type="text/ng-template" id="tag.html">
+            <form role="form">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 box-border-top"></div>
+                <div  class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-group collection-box" >
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  control-box">
+                        <a class="text-center border-right control" ui-sref="frame.brands.tag({id:tag._id})">
+                            <i class="material-icons link-success">add_a_photo</i>
+                        </a>
+                    </div>
+                    <div class="col-lg-10  col-md-10 col-sm-10 col-xs-10 label-floating">
+                        <label class="control-label">коллекция </label>
+                        <input ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="saveTag(tag,'name')"
+                                dnd-nodrag
+                                class="form-control"
+                                ng-model="tag.name">
+                    </div>
+                    <div class="col-lg-1 control-box">
+                        <a class="text-center border-left control"  ng-click="deleteTag(brand,$index)">
+                            <i class="material-icons link-warning">delete</i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="box-control">
+                        <div class="border-rightcol-lg-6 text-center  col-md-6 col-sm-6 col-xs-6">
+                            <div class="togglebutton form-group" style="margin-top: 0">
+                                <label for="tagact{{tag._id}}">
+                                    <span ng-class="{'active':!tag.actived}">не опубликован</span>
+                                    <input type="checkbox"
+                                           id="tagact{{tag._id}}"
+                                           ng-model="tag.actived"
+                                           ng-change="saveTag(tag,'actived')">
+                                    <span ng-class="{'active':tag.actived}">опубликован</span>
+                                </label>
+                            </div>
+                            <!--<label>
+                                <input type="checkbox"  ng-model="tag.actived">
+                                активный
+                            </label>-->
+                        </div>
+                        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center border-right">
+                            <a ng-click="selectCategory(tag._id,'revers')">
+                                <span class="link-success">привязать к категории</span>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </script>
+
+        <script type="text/ng-template" id="brand.html">
+            <div class="dropzone col-lg-6   col-md-6 col-sm-6 col-xs-12 box-section-left">
+                <form role="form">
+
+                    <div class="col-lg-11   col-md-11 col-sm-11 col-xs-11 form-group brand-box">
+                        <div class="col-lg-1  col-md-1 col-sm-1 col-xs-1 control-box">
+                            <a class="text-center border-right control" ui-sref="frame.brands.brand({id:brand._id})">
+                                <i class="material-icons link-success">add_a_photo</i>
+                            </a>
+                        </div>
+                        <div class="col-lg-10  col-md-10 col-sm-10 col-xs-11 label-floating">
+                            <label class="control-label">бренд</label>
+                            <input ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="saveBrand(brand,'name')" class="form-control" dnd-nodrag ng-model="brand.name">
+                        </div>
+                        <div class=" col-lg-1 col-md-1 col-sm-1 col-xs-1 control-box text-right">
+                            <a class="down-up control border-left"  ng-click="brand.showTags=!brand.showTags">
+                                <i  class="material-icons link-primary" ng-if="!brand.showTags">expand_more</i>
+                                <i  class="material-icons link-primary" ng-if="brand.showTags">expand_less</i>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="box-control">
+                            <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center border-right">
+                                <a ng-click="selectCategory(brand._id)">
+                                    <span class="link-success">привязать к категории</span>
+                                </a>
+                            </div>
+                            <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center " ng-if="!brand.tags.length " >
+                                <a  ng-click="deleteBrand(brand,$index)">
+                                    <span class="link-danger">удалить</span>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 box-border-top" ng-if="brand.showTags"></div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <ul ng-if="brand.showTags"
+                dnd-list="brand.tags"
+                dnd-allowed-types="['tag']"
+                dnd-drop="dropTagCallback(item,index,brand)"
+                class="itemlist col-lg-6  col-md-6 col-sm-6 col-xs-12 box-border-left right-collection">
+                <li dnd-nodrag >
+                    <form ng-submit="brand.showTags=true;addTag(brand,newTag)">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 box-border-top"></div>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10  add-collection">
+                            <div class=" form-group label-floating">
+                                <label class="control-label">добавить коллекцию</label>
+                                <input class="form-control" ng-model="newTag.name">
+                                <div class="clearfix"></div>
+                                <input type="submit"
+                                       class="enter"
+                                       tabindex="-1" />
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                        <div class="clearfix"></div>
+                    </form>
+                </li>
+                <li ng-repeat="tag in brand.tags track by $index"
+                    dnd-draggable="tag"
+                    dnd-type="'tag'"
+                    dnd-effect-allowed="move"
+                    dnd-moved="tagMoved(brand,tag,$index)"
+                    dnd-inserted="tagInserted(index)"
+                    dnd-selected="models.selected = item"
+                    ng-class="{selected: models.selected === item}"
+                    class="tree-node-category"
+                    ng-include="'tag.html'">
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </script>
+
+        <!-- Main area with dropzones and source code -->
+        <div class="advancedDemo">
+            <div class="dropzone ng-scope">
+                <div class="pages-header">
+                    <h3 class="text-center name-page">бренды и коллекции  <a ng-click="fixBrands()">fix data structure</a></h3>
+                </div>
+                <ul dnd-list="brands"
+                    dnd-drop="dropBrandCallback(item)"
+                    dnd-allowed-types="['brand']">
+                    <li>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  box-section-left">
+                            <form ng-submit="addNewBrand(newBrand)">
+                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  add-brand">
+                                    <div class=" form-group label-floating">
+                                        <label class="control-label">добавить бренд</label>
+                                        <input class="form-control" ng-model="newBrand.name">
+                                        <div class="clearfix"></div>
+                                        <input type="submit"
+                                               class="enter"
+                                               tabindex="-1" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 "></div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                    <li class="mb-40" ng-repeat="brand in brands"
+                        dnd-draggable="brand"
+                        dnd-type="'brand'"
+                        dnd-effect-allowed="move"
+                        dnd-moved="brands.splice($index,1)"
+                        dnd-selected="models.selected = item"
+                        ng-class="{selected: models.selected === item}"
+                        ng-include="'brand.html'">
+                    </li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+<div ui-view></div>
+</div>
+
+
+
+
+
+
+

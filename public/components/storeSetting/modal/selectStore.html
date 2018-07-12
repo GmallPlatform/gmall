@@ -1,0 +1,26 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выберите шаблон для считывания</h3>
+        <a class="cancel"  ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+
+        <ul>
+            <li ng-repeat="store in $ctrl.stores">
+                <a ng-click="$ctrl.selectStore(store)">
+                    <span ng-bind="store.name"></span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!--<div class="modal-footer">
+        <a class="btn btn-block btn-raised" ng-click="$ctrl.ok()">
+            создать
+        </a>
+    </div>-->
+    <div class="clearfix"></div>
+</div>

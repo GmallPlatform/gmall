@@ -1,0 +1,107 @@
+<div class="clearfix">
+    <uib-accordion close-others="true" >
+        <uib-accordion-group ng-if="filterDirective.categories.length">
+            <uib-accordion-heading>
+                <a class="panel-head" ng-click="filterDirective.p.displayFilters=!filterDirective.p.displayFilters">
+                    <h4>
+                        <span class=" filter-name">КАТЕГОРИЯ</span>
+                        <span ng-if="!filterDirective.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                        <span ng-if="filterDirective.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                    </h4>
+                    <div class="clearfix"></div>
+                </a>
+            </uib-accordion-heading>
+            <label class="filter-value">
+                <input type="radio" ng-model="filterDirective.query.category" value="" ng-click="filterDirective.changeFilter(true)">
+                <span >ВСЕ КАТЕГОРИИ</span>
+            </label>
+            <label for="co{{$index}}" ng-repeat="c in filterDirective.categories|orderBy:'index'" class="filter-value">
+                <input ng-click="filterDirective.changeFilter(true)"
+                       type="radio"
+                       name="category"
+                       ng-model="filterDirective.query.category"
+                       ng-value="c._id"
+                       id="co{{$index}}">
+                <span >{{c.name}}</span>
+            </label>
+        </uib-accordion-group>
+        <uib-accordion-group ng-repeat="(key,filter) in filterDirective.filters"  ng-init="filterDirective.initQueryTags(i)">
+            <uib-accordion-heading>
+                <a class="panel-head" ng-click="filterDirective.p.displayFilters=!filterDirective.p.displayFilters">
+                    <h4>
+                        <span class=" filter-name" ng-bind="filter.name| uppercase"></span>
+                        <span ng-if="!filterDirective.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                        <span ng-if="filterDirective.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                    </h4>
+                    <div class="clearfix"></div>
+                </a>
+
+            </uib-accordion-heading>
+            <label class="filter-value ">
+                <a class="cancel" ng-click="filterDirective.query.tags[key].length=0;filterDirective.changeFilter()">
+                    отменить все
+                </a>
+            </label>
+            <label ng-repeat="tag in filter.tags|orderBy:'index'"  class="filter-value" >
+                <input type="checkbox" checklist-model="filterDirective.query.tags[key]" checklist-value="tag._id" ng-click="filterDirective.changeFilter()">
+                <span>{{tag.name}}</span>
+            </label>
+
+            <div class="clearfix"></div>
+
+        </uib-accordion-group>
+        <uib-accordion-group  ng-if="filterDirective.brands.length">
+            <uib-accordion-heading>
+                <a class="panel-head" ng-click="filterDirective.p.displayFilters=!filterDirective.p.displayFilters">
+                    <h4>
+                        <span class=" filter-name">Бренды</span>
+                        <span ng-if="!filterDirective.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                        <span ng-if="filterDirective.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                    </h4>
+
+                </a>
+            </uib-accordion-heading>
+            <label class="filter-value">
+                <input type="radio" ng-model="filterDirective.query.brand"value="" ng-click="filterDirective.changeFilter()">
+                <span >ВСЕ БРЕНДЫ</span>
+            </label>
+            <label for="br{{$index}}" ng-repeat="c in filterDirective.brands|orderBy:'index'" class="filter-value">
+                <input ng-click="filterDirective.changeFilter()"
+                       type="radio"
+                       name="brand"
+                       ng-model="filterDirective.query.brand"
+                       ng-value="c._id"
+                       id="br{{$index}}">
+                <span >{{c.name}}</span>
+            </label>
+        </uib-accordion-group>
+        <uib-accordion-group ng-if="filterDirective.brandCollections.length">
+            <uib-accordion-heading>
+                <a class="panel-head" ng-click="filterDirective.p.displayFilters=!filterDirective.p.displayFilters">
+                    <h4>
+                        <span class=" filter-name">Коллекции</span>
+                        <span ng-if="!filterDirective.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                        <span ng-if="filterDirective.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                    </h4>
+
+                </a>
+            </uib-accordion-heading>
+            <label class="filter-value">
+                <input type="radio" ng-model="filterDirective.query.brandTag"value="" ng-click="filterDirective.changeFilter()">
+                <span >ВСЕ КОЛЛЕКЦИИ</span>
+            </label>
+            <label for="collection{{$index}}" ng-repeat="c in filterDirective.brandCollections" class="filter-value">
+                <input ng-click="filterDirective.changeFilter()"
+                       type="radio"
+                       name="collection"
+                       ng-model="filterDirective.query.brandTag"
+                       ng-value="c._id"
+                       id="collection{{$index}}">
+                <span >{{c.name}}</span>
+            </label>
+        </uib-accordion-group>
+    </uib-accordion>
+
+</div>
+
+

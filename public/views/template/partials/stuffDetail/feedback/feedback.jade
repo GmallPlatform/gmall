@@ -1,0 +1,8 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="feedback-form")
+            a(class="input-group",ng-click="$ctrl.global.get('functions').val.action('feedback')")
+                span(class="input-group-btn")
+                    button(class="btn btn-default add-comments pull-right", type="submit")
+                        span.icon-edit-img
+                input(type="text",class="form-control",placeholder="{{$ctrl.global.get('lang').val.feedback}}",disabled)

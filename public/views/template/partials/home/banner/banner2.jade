@@ -1,0 +1,21 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        if(dj[key].arrowDownDiv)
+            arrow-down
+        #{dj[key].element}(ng-click=dj[key].ngClick,href=dj[key].href,set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat,data-animation-delay=dj[key].animateDelay)
+            div(class="container")
+                div(id=dj[key].id,class="home-banner"+dj[key].additionalClass)
+                    img(class="img-responsive",src=dj[key].img,alt=dj[key].alt)
+                    div(class="box-overlay")
+                    div(class="banner-content")
+                        if(dj[key].name)
+                            h1(class="banner-header",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)
+                                | !{dj[key].name}
+                        if(dj[key].desc)
+                            div(class="banner-desc")
+                                | !{dj[key].desc}
+                        div(class="title-block text-center")
+                            if(dj[key].button && dj[key].button.is)
+                                a(set-animate=dj[key].button.animate && !mobile,data-animation=dj[key].button.animate,class="btn btn-project btn-banner",ng-click=dj[key].button.ngClick,href=dj[key].button.href)=dj[key].button.text
+
+                div(class="clearfix")

@@ -1,0 +1,17 @@
+<div>
+    <ui-select ng-model="user" on-select="selectUser($item)">
+        <ui-select-match placeholder="выбрать пользователя">
+            <span ng-bind="$select.selected.name+' '+$select.selected.profile.fio+' '+$select.selected.email">
+
+            </span>
+        </ui-select-match>
+        <ui-select-choices repeat="item in (select.users ) track by $index"
+                           refresh="refresUsers($select.search)"
+                           refresh-delay="100">
+            <span ng-bind="'login-'+item.name+'| фио- '+item.profile.fio+'| '+item.email"></span>
+        </ui-select-choices>
+    </ui-select>
+</div>
+<div class="clearfix"></div>
+
+

@@ -1,0 +1,31 @@
+<div class="price-box col-lg-8 col-md-8 col-sm-8 col-xs-12 text-right" ng-if="!$ctrl.item.service">
+    <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                             <span ng-class="{'line':$ctrl.item.sale}" itemprop="price">
+                                <span class="price" ng-bind="($ctrl.item.stock[$ctrl.item.sort].price*$ctrl.rate.val).toFixed(2)"
+                                      ng-class="{'line':$ctrl.item.sale ||$ctrl.item.stock[$ctrl.item.sort].priceCampaign}"></span>
+                                <span ng-bind="$ctrl.currency.val"></span>
+                             </span>
+                            <span ng-if="$ctrl.item.sale">
+                                <span> / </span>
+                                <span class="sale" ng-bind="($ctrl.item.stock[$ctrl.item.sort].priceSale*$ctrl.rate.val).toFixed(2)"></span>
+                                <span ng-bind="$ctrl.currency.val"></span>
+                            </span>
+
+                            <span class="" ng-if="$ctrl.global.get('store').val.seller.retail">
+                                <span ng-bind="($ctrl.item.stock[$ctrl.item.sort].retail*$ctrl.rate.val).toFixed(2)"></span>
+                                <span ng-bind="$ctrl.currency.val"></span>
+                            </span>
+                            <span class="" ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign">
+                                <span> / </span>
+                                <!--<label>акционная цена</label><br>-->
+                                <span class="sale" ng-bind="($ctrl.item.stock[$ctrl.item.sort].priceCampaign*$ctrl.rate.val).toFixed(2)"></span>
+                                <span ng-bind="$ctrl.currency.val"></span>
+    <p class="text-right" ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign">
+        <a ui-sref="campaign.detail({url:$ctrl.item.campaignUrl})">условия акции</a>
+    </p>
+
+    </span>
+    </p>
+
+    <div class="clearfix"></div>
+</div>

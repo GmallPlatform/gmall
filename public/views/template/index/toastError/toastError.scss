@@ -1,0 +1,57 @@
+@if $color{
+  color:$color;
+}
+@if $background-color{
+  background-color:$background-color;
+}
+@if $font-size{
+  font-size:$font-size;
+}
+@if $font-family{
+  font-family:$font-family;
+}
+@if $border-radius{
+  border-radius:$border-radius;
+}
+@if $border{
+  border:$border;
+}
+@if $box-shadow{
+  box-shadow:$box-shadow;
+}
+@if $opacity{
+  opacity:$opacity;
+}
+
+/*toast-error*/
+.toast-message {
+  @if $color{
+    color:$color !important;
+  }
+}
+#toast-container>div:hover {
+  box-shadow: none !important;
+}
+.toast.toast-error .toast-message div {
+  @if $color{
+    color:$color !important;
+  }
+}
+.toast-title {
+  @if $color{
+    color:$color;
+  }
+}
+.toast-close-button {
+  @if $color{
+    color:$color;
+  }
+  opacity: 0.6;
+}
+.toast-close-button:focus,
+.toast-close-button:hover {
+  opacity: 1;
+}
+#toast-container>.toast-error {
+  /*background-image: url($backgroundImg);*/
+}

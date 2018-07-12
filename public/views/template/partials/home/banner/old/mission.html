@@ -1,0 +1,50 @@
+
+<div  ng-class="::{'home-mission':!homeCtrl.template.mission.class,
+        'home-mission1':homeCtrl.template.mission.class==1,
+        'home-mission2':homeCtrl.template.mission.class==2,
+        'home-mission3':homeCtrl.template.mission.class==3,
+        'home-mission4':homeCtrl.template.mission.class==4,
+        'home-mission5':homeCtrl.template.mission.class==5,}"
+        class=" home-section background-logo">
+    <!--<div class="row">-->
+        <div class="container mission text-center" set-animate data-animation="animated10" data-animation-delay="01">
+            <h2 ng-bind="homeCtrl.data.name">
+            </h2>
+            <p ng-bind-html="homeCtrl.data.desc|unsafe"></p>
+            <span ng-switch on="homeCtrl.data.descButton.button" ng-if="homeCtrl.data.descButton.button">
+                <span ng-switch-when="subscription">
+                    <a  class="btn btn-project btn-border"
+                         ng-click="global.get('functions').val.witget('subscription')" ng-bind="homeCtrl.data.descButton.text">
+                    </a>
+                </span>
+                <span ng-switch-when="call">
+                    <a class="btn btn-project btn-border"
+                         ng-click="global.get('functions').val.witget('call')" ng-bind="homeCtrl.data.descButton.text">
+                    </a>
+                </span>
+                <span ng-switch-when="dateTime">
+                    <a class="btn btn-project btn-border"
+                       ng-click="global.get('functions').val.witget('dateTime')" ng-bind="homeCtrl.data.descButton.text">
+                    </a>
+                </span>
+                <span ng-switch-default="" ng-if="homeCtrl.data.descButton.button">
+                    <a class="btn btn-project  btn-border btn-mission" href="{{homeCtrl.data.descButton.link}}" ng-bind="homeCtrl.data.descButton.text"></a>
+                </span>
+            </span>
+        </div>
+    <!--</div>-->
+</div>
+<div class="clearfix"></div>
+
+
+
+<!-- текстовый блок-->
+<!--<div class="col-lg-10 col-lg-offset-1 block-white">
+    <h1><span class="title-block-white" ng-bind="homeCtrl.data.name"></span><br><br></h1>
+    <p ng-bind-html="homeCtrl.data.desc|unsafe"></p>
+    <div set-animate data-animation="animated8" data-animation-delay="03" ng-if="homeCtrl.data.descButton.button">
+        <a class="btn btn-1 btn-success btn-lg btn-border" href="{{homeCtrl.data.descButton.link}}" ng-bind="homeCtrl.data.descButton.text"></a>
+    </div>
+
+</div>-->
+

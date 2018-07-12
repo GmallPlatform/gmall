@@ -1,0 +1,43 @@
+/*cliniq*/
+.vertical-menu {
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: 32% 50px 49% 50px;
+    /*background-color: $backgroundColor;*/
+}
+.vertical-menu .page-stat {
+    text-transform: uppercase;
+    padding: 10px 10px 10px 0;
+}
+.menu-section-vertical .page-stat ul li {
+    list-style: none;
+}
+/*.myMenuV{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+}*/
+
+.mobile-wrapper .vertical-menu {
+    padding: 40% 0 50% 20px;
+}
+.mobile-wrapper .menu-section-vertical .page-stat a {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+/*top-menu*/
+/*
+.menu2-paddig{
+    margin-top: 88px;
+}*/

@@ -1,0 +1,50 @@
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+            menu-sections-virtical-pug
+                div(class="myMenuV", id="wrapperForSections")
+                    ul(class="catalog-menu")
+                        - for (var i = 0; i < sectionsMenu.length; i++)
+                            - var section=sectionsMenu[i]
+                            li(id=section.id,class="mainli",set-animate=dj[key].blockAnimate,data-animation=dj[key].blockAnimate,data-animation-delay=dj[key].animationDelay + i)
+                                a(class="section-name",href=(section.innerData) ? null : section.allCategiriesHref)
+                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                        !=section.name
+                                div
+                                    if(section.innerData)
+                                        ul(class="second-level")
+                                            each child,index2 in section.child
+                                                li(ng-click2="ignoreClick($event);")
+                                                    - var ngclick="isNavCollapsed"+i+index2+" = !isNavCollapsed"+i+index2
+                                                    a(class="category-name",ng-click=ngclick)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                            !=child.name
+                                                    ul(class="three-level",uib-collapse="!isNavCollapsed" + i + index2)
+                                                        if(child.categories.length)
+                                                            li(class="category-in-section")
+                                                                a(class="allcategories",href=child.href)
+                                                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)=lang['allCategories']
+                                                        each category in child.categories
+                                                            li()
+                                                                a(href=category.href,class="category")
+                                                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                        !=category.name
+                                            each category in section.categories
+                                                li(class="category-in-section")
+                                                    a(class="category-in-section-link",href=category.href)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                            !=category.name
+                                            if(store.newTag && section.newLink)
+                                                li(class="category-in-section")
+                                                    a(class="category-in-section-link new",href=section.tagHref + store.newTag)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                            !=lang.new
+                                            if(store.saleTag && section.saleLink)
+                                                li(class="category-in-section")
+                                                    a(class="category-in-section-link sale",href=section.tagHref + store.saleTag)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                            !=lang.sale
+                                            if(section.categories.length>1)
+                                                li(class="category-in-section")
+                                                    a(class="allcategories2",href=section.allCategiriesHref)
+                                                        span(set-animate=dj[key].animate,data-animation=dj[key].animate)=lang['allCategories']
+

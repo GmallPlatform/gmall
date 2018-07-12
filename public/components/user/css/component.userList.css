@@ -1,0 +1,80 @@
+/*users-stuff*/
+.users-stuff-container .material-input {
+    display: none;
+}
+.users-stuff {
+    margin-top: 160px;
+}
+.upload {
+    width:300px;
+}
+.upload .input-file {
+    margin-top: 0
+}
+.users-stuff .nav-box-stuff .pagination {
+    margin: 15px 0 5px 0;
+}
+.btn-default-focus {
+    box-shadow: none;
+    background-color: transparent;
+}
+.upload .btn.btn-fab.btn-success,
+.upload  .input-group-btn .btn.btn-fab.btn-success {
+    border-radius: 5px;
+    background-color: #4caf50;
+}
+.upload input {
+    cursor: pointer;
+}
+.upload input[type="text"]::-webkit-input-placeholder {
+    color: #93b1c6;
+}
+    /*subscription-list*/
+.subscription-list {
+    margin-top: 100px;
+}
+
+.table span{
+    display: inline-block;
+    vertical-align: top;
+}
+.table .ui-select-match {
+    display: none;
+}
+.sub-user .form-group,
+.table  .city .form-group {
+    margin-top: 0;
+}
+.table  .city .material-icons {
+    float: left;
+    margin-top: 10px;
+}
+.table  .city input {
+    width: 90%;
+    float: left;
+}
+/*modal*/
+
+.table .active,
+.date-user .active {
+    color: #ff7148;
+}
+.user-box {
+    position: relative;
+}
+.table .num {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.date-user {
+    margin-bottom: 20px;
+}
+.select-modal .btn-project-inv,
+.select-modal .btn-project {
+    width: 100%;
+}
+.ship-box {
+    padding-right: 0;
+    padding-left: 0;
+}

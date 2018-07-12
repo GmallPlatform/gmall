@@ -1,0 +1,275 @@
+<div class="entry">
+    <h3 class="modal-title text-center">
+        <span ng-show="$ctrl.currentBlock">
+            <a class="back" ng-click="$ctrl.back()">
+                <span class="icon-left-img"></span>
+            </a>
+        </span>
+        <a href="/home">
+            <!--<img id="mainLogo" ng-src="{{$ctrl.global.get.store.logo}}" class="img-logo img-responsive" alt="logo">-->
+        </a>
+
+        <span class="record-time">{{$ctrl.global.get('langForm').val.recordingTime}}</span>
+    </h3>
+    <div id="wrapper-for-entry1">
+        <div uib-carousel no-wrap="noWrapSlides" active="$ctrl.currentBlock" id="wrapper-for-entry2">
+            <div  uib-slide  index="0" class="innerBlock">
+                <div class="service-bg">
+                    <h3 class="range-of-services text-left">
+                        <span>
+                            {{$ctrl.global.get('langForm').val.rangeofServices}}
+                        </span>
+                    </h3>
+                </div>
+                <div class="service-choice">
+                    <p class="service-choice-nav" ng-if="$ctrl.selectedStuff.length">
+                        <a class=" pull-right" ng-disabled="!$ctrl.selectedStuff.length" ng-click="$ctrl.forward()">
+                            <span class="before">
+                                {{$ctrl.global.get('lang').val.view}}
+                            </span>
+                            <span class="">
+                                <span class="icon-right-img"></span>
+                            </span>
+                        </a>
+                        <span class="clearfix"></span>
+                    </p>
+                    <div class="service-box" ng-show="$ctrl.selectedMaster">
+                        <div class="select-block-master">
+                            <span class="select-block-list">
+                                <p class="clearfix">
+                                    <!--<span class="pull-left icon-user-img"></span>-->
+                                    <span class="pull-left">{{$ctrl.global.get('lang').val.masters}}&nbsp;&nbsp;</span>
+                                    <span class="pull-left" ng-bind="$ctrl.selectedMaster.name"></span>
+                                    <span class="icon-cancel-img pull-right"  ng-click="$ctrl.clearMaster()"></span>
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                    <p>{{$ctrl.global.get('langForm').val.selectedServices}}</p>
+                    <div class="service-box" ng-if="$ctrl.selectedStuff.length">
+                        <div class="select-block">
+                            <p class="select-block-list" ng-repeat="stuff in $ctrl.selectedStuff">
+                                <!--<span class="pull-left icon-setting-img"></span>-->
+                                <span class="pull-left" ng-bind="stuff.name"> </span>
+                                <span class="icon-cancel-img pull-right"  ng-click="$ctrl.deleteStuff($index)"></span>
+
+
+                                <span class="clearfix"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <p class="text-center">
+                        <span>
+                           {{$ctrl.global.get('langForm').val.all}}
+                        </span>
+                         {{$ctrl.global.get('langForm').val.otherservices}}
+                    </p>
+                    <uib-accordion close-others="true">
+                        <div ng-repeat="c in $ctrl.items" ng-hide="c.hide">
+                            <div uib-accordion-group >
+                                <uib-accordion-heading >
+                                    <span class="pull-left" ng-bind="c.name"></span>
+                                    <span class="pull-right icon-downslide-img"></span>
+                                    <span class="pull-right icon-upslide-img"></span>
+                                    <span class="clearfix"></span>
+                                </uib-accordion-heading>
+                                <p class="service-name" ng-repeat="stuff in c.stuffs" ng-hide="stuff.hide">
+                                    <a ng-click="$ctrl.addStuff(stuff)">
+                                        <span ng-bind="stuff.name"></span>
+                                        <span> - </span>
+                                        <span class="price">
+                                            <span>
+                                               {{$ctrl.global.get('lang').val.from}}
+                                            </span>
+                                            <span ng-bind="(stuff.price*$ctrl.global.get('rate').val).toFixed(2)"></span>
+                                            <span ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                        </span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </uib-accordion>
+                </div>
+            </div>
+
+             <!--stuffs-->
+            <div  uib-slide  index="1" class="innerBlock">
+                <div class="service-bg">
+                    <h3 class="range-of-services text-left">
+                        <span>
+                            {{$ctrl.global.get('langForm').val.rangeofMaster}}
+                        </span>
+                    </h3>
+                </div>
+                <div class="service-choice">
+                    <p class="service-choice-nav">
+                        <a class="pull-left" ng-disabled="!$ctrl.selectedStuff.length"  ng-click="$ctrl.back()">
+                            <span>
+                                <span class="before">
+                                    <span class="icon-left-img"></span>
+                                </span>
+                                {{$ctrl.global.get('langForm').val.otherservices}}
+                            </span>
+
+                        </a>
+                        <a class="pull-right" ng-disabled="!$ctrl.selectedStuff.length" ng-click="$ctrl.selectMaster(null)">
+                            <span>
+                                {{$ctrl.global.get('lang').val.view}}
+                                <span class="before">
+                                    <span class="icon-right-img"></span>
+                                </span>
+                            </span>
+                        </a>
+
+                        <span class="clearfix"></span>
+                    </p>
+
+                    <div class="master-choice-box " ng-repeat="m in $ctrl.masters" ng-show="m.show">
+                        <div ng-class="{'active':$ctrl.selectedMaster._id==m._id}">
+                            <a ng-click="$ctrl.selectMaster(m)">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                    <img class="img-responsive img-master" ng-src="{{m.img}}">
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6" style="position: relative">
+                                    <h3 class="name-master" ng-bind="m.name"></h3>
+                                    <p class="position" ng-bind="m.position"></p>
+                                    <p>
+                                        <a ng-if="m.desc"
+                                           ng-click="m.showReview=false;m.showDetail=!m.showDetail">
+                                            <small>{{$ctrl.global.get('lang').val.more}}</small>
+                                        </a>
+                                        <a ng-if1="m.reviews.length"
+                                           ng-click="m.showDetail=false;m.showReview=!m.showReview"
+                                           class="pull-right">
+                                            <small>{{$ctrl.global.get('lang').val.reviews}}</small>
+                                        </a>
+                                        <span class="clearfix"></span>
+                                    </p>
+                                    <span class="master-select icon-userhe-img" ng-class="{'active':$ctrl.selectedMaster._id==m._id}"></span>
+                                </div>
+                            </a>
+
+                            <span class="clearfix"></span>
+                        </div>
+                        <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 desc-master" ng-if="m.showDetail">
+                            <br>
+                            <p>
+                                <a href="{{m.link}}">{{$ctrl.global.get('lang').val.pageinnetworks}}</a>
+                            </p>
+                            <p ng-bind-html="m.desc|unsafe">
+                            </p>
+                        </div>
+                        <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 desc-master" ng-if="m.showReview">
+                            <br>
+                            <div ng-repeat="item in m.reviews">
+                                <p>
+                                    <span ng-bind="item.name"></span>
+                                    <span class="pull-right" ng-bind="$ctrl.moment(item.date).format('LL')"></span>
+                                <p ng-bind="item.desc"></p>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div><!--masters-->
+            <div  uib-slide  index="2" class="innerBlock">
+                <div class="service-bg">
+                    <h3 class="range-of-services text-left">
+                        <span>
+                            {{$ctrl.global.get('langForm').val.choiceofdates}}
+                        </span>
+                    </h3>
+                </div>
+                <div class="date-box">
+                    <div uib-datepicker min-date="$ctrl.today"  ng-click="$event.stopPropagation();" ng-change="$ctrl.setDay($ctrl.dt)" ng-model="$ctrl.dt" class="well" datepicker-options="options"></div>
+
+                </div>
+            </div>
+            <div  uib-slide  index="3" class="innerBlock">
+                <div class="service-bg">
+                    <h3 class="range-of-services text-left">
+                        <span>
+                            {{$ctrl.global.get('langForm').val.timing}}
+                        </span>
+                    </h3>
+                </div>
+                <div class="clock-box">
+                    <span  class="clock-choice" ng-repeat="part in $ctrl.entryTimeTable| filter:$ctrl.filterTimePart">
+                        <a ng-click="$ctrl.setTimePart(part)">
+                            <span ng-bind="$ctrl.timeTable15min[part.i]"></span>
+                        </a>
+                    </span>
+                </div>
+            </div><!--time part-->
+
+            <div  uib-slide  index="4" class="innerBlock">
+                <div class="service-bg">
+                    <h3 class="range-of-services text-left">
+                        <span>
+                            {{$ctrl.global.get('langForm').val.selectTime}}
+                        </span>
+                    </h3>
+                </div>
+                <div class="service-choice order-service">
+                    <div class="clock-box">
+                        <p>
+                            <span class="choice">{{$ctrl.global.get('lang').val.masters}}</span> - <span ng-bind="$ctrl.timePart.master.name"></span></br>
+                            <span class="choice">{{$ctrl.global.get('lang').val.service}}</span> - <span ng-repeat="stuff in $ctrl.selectedStuff"><span ng-bind="stuff.name"></span> </span></br>
+                            <span class="choice">{{$ctrl.global.get('lang').val.date}}</span> - <span ng-bind="$ctrl.moment($ctrl.dt).format('LL')"></span></br>
+                            <span class="choice">{{$ctrl.global.get('lang').val.time}}</span> - <span ng-bind="$ctrl.timeTable15min[$ctrl.timePart.i]"></span></br>
+                        </p>
+                        <!--<hr>-->
+                        <!--<reminder-online></reminder-online>-->
+                    </div>
+
+                    <form name="form" ng-submit="$ctrl.orderService()">
+                        <fieldset class="well the-fieldset">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="order-box">
+                                    <div class="form-group label-floating">
+                                        <input class="form-control" type="text"
+                                               ng-model="$ctrl.name"
+                                               ng-model-options="{ debounce: 300 }"
+                                               ng-minlength="3"
+                                               ng-maxlength="50"
+                                               name="name"
+                                               placeholder="имя"
+                                               required/>
+                                    </div>
+                                    <div class="help-block" ng-messages="form.name.$error" role="alert">
+                                        <div ng-message="minlength">{{$ctrl.global.get('lang.error').val.nameshort}}</div>
+                                        <div ng-message="maxlength">{{$ctrl.global.get('lang.error').val.namelong}}</div>
+                                    </div>
+
+                                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">введите e-mail</label>
+                                        <input class="form-control" type="email"
+                                               ng-model="$ctrl.userEmail"
+                                               ng-model-options="{ debounce: 300 }"
+                                               name="email"/>
+                                    </div>
+                                </div>-->
+                                <div enter-phone-numder="$ctrl.phone"></div>
+
+                                <button class="btn btn-project btn-block" ng-disabled="!form.$valid || !$ctrl.selectedStuff.length" type="submit" style="margin-top: 10px">
+                                    {{$ctrl.global.get('lang').val.enroll}}
+                                </button>
+
+                                <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+
+            </div><!--order-->
+        </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+

@@ -1,0 +1,34 @@
+.notification .box-notification {
+    margin-top: 160px;
+}
+.notification .thumbnail {
+    border-color: #999;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+.notification .note-desc {
+    font-size: 16px;
+}
+.notification .tab-nav-stuff.note-type {
+    margin-top: 20px;
+}
+.notification .cart-detail hr, hr {
+    border-top-color: #ccc;
+    background-color: #eee;
+}
+.notification .cart-detail a:hover,
+.notification .cart-detail a:focus{
+   text-decoration: none;
+}
+/*.notification .order-name {
+    margin-top: 0;
+}*/
+.notification h3 {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+.notification h4 {
+    margin-bottom: 0;
+}
+

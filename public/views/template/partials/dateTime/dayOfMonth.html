@@ -1,0 +1,26 @@
+<div class="date-block">
+    <!--<span class="icon-prev-img"></span>
+    <span ng-repeat="day in $ctrl.daysOfMonth">
+        <span ng-bind="day"></span>
+    </span>
+    <span class="icon-next-img"></span>-->
+    <h3 ng-bind="$ctrl.moment($ctrl.parent.td).format('LL')"></h3>
+    <!--<pre>{{$ctrl.daysOfMonth|json}}</pre>-->
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 nav-left">
+        <!--<span ng-click="$ctrl.next()" class="icon-prev-img"></span>-->
+        <i ng-click="$ctrl.prev()" class="glyphicon glyphicon-chevron-left"></i>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <div id="dayPicker" class="owl-carousel owl-theme">
+            <!--<div class="item" ng-repeat="day in $ctrl.daysOfMonth|filter:$ctrl.filterNumOfDays" ng-class="{'active':day==$ctrl.selectedDay}">
+                <a  ng-click="$ctrl.setDay(day)">{{day}}</a>
+            </div>-->
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 nav-right">
+        <!--<span ng-click="$ctrl.next()" class="icon-next-img"></span>-->
+        <span ng-click="$ctrl.next()" class="glyphicon glyphicon-chevron-right"></span>
+    </div>
+    <div class="clearfix"></div>
+
+</div>

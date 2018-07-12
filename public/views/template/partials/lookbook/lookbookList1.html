@@ -1,0 +1,31 @@
+
+
+<div class="look-book">
+    <div class="look-book-box"  ng-repeat="item in $ctrl.items">
+        <!--<pre>{{item|json}}</pre>-->
+        <!--<div ng-repeat="image in item.imgs">
+            <img class="img-responsive" ng-src="{{image.img}}">
+        </div> -->
+
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <div class="slider">
+                <gmall-slider images="item.imgs" index="photoIndex"/>
+            </div>
+            <div class="look-book-desc"  style="z-index: 1029">
+                <a href="{{item.link}}" target="_blank">
+                    <p ng-bind="$ctrl.moment(item.date).format('LL')"></p>
+                    <h1 ng-bind="item.name"></h1>
+
+                    <span>посмотреть галерею</span>
+                </a>
+
+            </div>
+            <p ng-bind="item.desc.clearTag()"></p>
+           <!-- <a href="{{item.link}}">
+
+            </a>-->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>

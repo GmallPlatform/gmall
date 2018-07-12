@@ -1,0 +1,9 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="sort-stuff", ng-if="$ctrl.item.sortsOfStuff.filter")
+            div(class="sort-box pull-left")
+                span(ng-bind="$ctrl.item.filterName")
+                span(ng-click="$ctrl.item.changeSortOfStuff(item._id)",class="sort",ng-repeat="item in $ctrl.item.stockKeysArray",ng-class="{'sort-active':$ctrl.item.sort==item._id}",ng-if="item.quantity")
+                    span(ng-bind="item.name")
+
+          

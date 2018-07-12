@@ -1,0 +1,94 @@
+<section ng-if="$ctrl.item" class="master-detail">
+    <div class="background-logo-big">
+        <div  class=" master-desc">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <h1>
+                    {{::$ctrl.item.name}}
+                </h1>
+                <h4>
+                    {{::$ctrl.item.position}}
+                </h4>
+                <h4 ng-if="::$ctrl.item.link">
+                    <a href="{{::$ctrl.item.link}}" target="blank">в социальной сети</a>
+                </h4>
+            </div>
+            <div class="col-lg-12 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <img ng-src="{{$ctrl.item.img}}" class="img-responsive">
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" >
+                    <div ng-if="$ctrl.item.imgs.length">
+                        <h3 class="text-center">дипломы и сертификаты</h3>
+                        <div class="owl-box">
+                            <div id="owl-carousel-master" owl-carousel class="owl-carousel owl-theme">
+                                <div ng-repeat="item in $ctrl.item.imgs" class="item" image-load-watcher>
+                                    <img class="img-responsive" ng-src="{{item.img}}">
+                                </div>
+                            </div>
+                            <div class="owl-carousel-nav">
+                                <a id="owl-carousel-prev" class="btn pull-left">
+                                    <img src="img/icon/left-arrow.png">
+                                </a>
+                                <a id="owl-carousel-next" class="btn pull-right">
+                                    <img src="img/icon/right-arrow.png">
+                                </a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <!--<p class="text-justify col-lg-12 col-xs-12" ng-if="$ctrl.item.desc.length" ng-bind-html="$ctrl.item.desc|unsafe"></p>
+                    <div class="img-for-master">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-repeat="item in $ctrl.item.imgs">
+                            <a href="{{::$ctrl.item.imgs[0].link}}" target="_blank">
+                                <img class="img-responsive"ng-src="{{item.img}}" >
+                                <h4 ng-bind="item.name"></h4>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>-->
+                    <div class="block-comments">
+                        <h3 class="text-center">отзывы о сотруднике</h3>
+                        <!--<a ng-if="$ctrl.global.get('user').val" ng-click="$ctrl.unableAddReview=!$ctrl.unableAddReview">добавить отзыв</a>
+                        <p ng-if="$ctrl.unableAddReview">
+                            <textarea ng-model="$ctrl.newReviewText">
+                            </textarea>
+                            <button class="btn bnt-project" ng-click="$ctrl.addReview()">готово</button>
+                        </p>-->
+                        <div class="input-group" ng-if="$ctrl.global.get('user').val">
+                            <input  class="form-control" placeholder="добавьте комментарий" ng-model="$ctrl.newReviewText">
+                                <span class="input-group-btn">
+                                    <button  class="btn btn-default add-comments pull-right"  ng-click="$ctrl.addReview()" type="button">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                </span>
+                        </div>
+                        <div class="reviews" ng-repeat="item in $ctrl.item.reviews">
+                            <p>
+                                <span class="name-reviews" ng-bind="item.name"></span>
+                                <span class="date" ng-bind="$ctrl.moment(item.date).format('LL')"></span>
+                            <p ng-bind="item.desc"></p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <a class="news-head" href="/masters">
+                <!--<span class="glyphicon glyphicon-chevron-left">
+                </span>-->
+                в список сотрудников
+            </a>
+        </div>
+    </div>
+    </div>
+
+
+</section>

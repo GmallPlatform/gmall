@@ -1,0 +1,12 @@
+/*clinic*/
+.container {
+    width: 70%;
+}
+
+.img-header{
+    width: 100%;
+    border-radius: 100%;
+    padding: 7px;
+    border: 1px solid #bfbfbf;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,86 @@
+<uib-tabset justified="true" class="panel-dialog">
+    <uib-tab ng-if="questDialogCtrl.communication.chat">
+        <uib-tab-heading>
+            <button type="button" class="btn  btn-chat-mini chat btn-lg">
+                <span class="call-click icon-chat-img"></span>
+            </button>
+        </uib-tab-heading>
+
+        <div class="chat">
+            <div class="chat-content" ng-if="questDialogCtrl.sellerIn && !questDialogCtrl.dialog">
+                <p class="chat-header">
+                    {{$ctrl.global.get('langForm').val.welcomechat}}
+                </p>
+                <div class="chat-body">
+                    <form novalidate name='formDialog' ng-submit="questDialogCtrl.startDialog(formDialog)">
+                        <div class="form-group"><!-- ng-class="{ 'has-success': formDialog.name.$valid && questDialogCtrl.submitted,
+                            'has-error': formDialog.name.$invalid && questDialogCtrl.submitted }"-->
+                        <input ng-model="questDialogCtrl.user.name"
+                               ng-disabled="questDialogCtrl.user._id"
+                               ng-minlength="3"
+                               ng-maxlength="30"
+                               required
+                               name="name"
+                               class="form-control" placeholder="{{$ctrl.global.get('langForm').val.name}}"
+                               simple-focus-element="">
+                            <span class="help-block" ng-show="(formDialog.name.$error.minlength ||
+                                                          formDialog.name.$error.required) && questDialogCtrl.submitted">
+                                {{$ctrl.global.get('langError').val.nameshort}}
+                            </span>
+                            <span class="help-block" ng-show="formDialog.name.$error.maxlength && questDialogCtrl.submitted">
+                                {{$ctrl.global.get('langError').val.namelong}}
+                            </span>
+                        </div>
+                        <input type="submit" ng-disabled="questDialogCtrl.blockStartDialog"
+                           class="btn btn-lg btn-project btn-block" value="{{$ctrl.global.get('langForm').val.startchat}}">
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="chat-content" ng-if="!questDialogCtrl.sellerIn">
+                <p class="chat-header">
+                    {{$ctrl.global.get('langForm').val.adminnot}}
+                </p>
+
+            </div>
+        </div>
+        <div ng-if="questDialogCtrl.dialog && questDialogCtrl.sellerIn" >
+            <chat-dialog
+                    participant="user"
+                    dialog="questDialogCtrl.dialog">
+            </chat-dialog>
+        </div>
+
+    </uib-tab>
+    <uib-tab ng-if="questDialogCtrl.communication.feedback">
+        <uib-tab-heading>
+            <button type="button" class="btn btn-lg btn-chat-mini dialog">
+                <span class="call-click icon-envelope-img"></span>
+            </button>
+        </uib-tab-heading>
+        <div class="chat-content">
+            <feedback-message></feedback-message>
+        </div>
+    </uib-tab>
+    <uib-tab ng-if="questDialogCtrl.communication.call">
+        <uib-tab-heading>
+            <button type="button" class="btn btn-lg btn-chat-mini phone">
+                <span class="call-click icon-call-img"></span>
+            </button>
+        </uib-tab-heading>
+        <div ng-if="questDialogCtrl.sellerIn">
+            <call-from-store></call-from-store>
+        </div>
+        <div class="chat-content" ng-if="!questDialogCtrl.sellerIn">
+            <p class="chat-header">
+                {{$ctrl.global.get('langForm').val.adminnot}}
+            </p>
+        </div>
+    </uib-tab>
+
+</uib-tabset>
+
+
+
+

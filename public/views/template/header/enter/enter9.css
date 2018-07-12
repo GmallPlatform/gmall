@@ -1,0 +1,16 @@
+/*zefir*/
+
+.enter-block a.enter-two {
+    padding-left: 0!important;
+}
+.enter-block a.enter-first {
+    padding-right: 0;
+}
+.enter-block {
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+}
+.enter-block a {
+    display: inline-block !important;
+
+}

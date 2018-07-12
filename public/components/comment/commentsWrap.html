@@ -1,0 +1,45 @@
+<div class="coments">
+    <a ng-click="enableAddComment=!enableAddComment;focusInput=!focusInput;comment={};comment[what]=parent;">
+        <span class="pull-left" style="display: block; margin-top: 5px">ОСТАВЬТЕ СВОЙ КОММЕНТАРИЙ</span>
+        <img ng-if="!enableAddComment"src="../../img/icon/plus.png" class=" pull-right icon-plus">
+        <img ng-if="enableAddComment"src="../../img/icon/minus.png" class=" pull-right icon-minus"></span>
+    </a>
+    <div class="clearfix"></div>
+    <form name="form" novalidate class="comment-form"
+          ng-submit="addChildComment(comment,comments)" >
+        <div ng-hide="user.val">
+            <div class="form-group" style="margin-bottom: 0">
+                <label class="" >Имя</label>
+                <input name="name" class="form-control" style="" ng-model="comment.name"
+                       ng-minlength="3"
+                       ng-maxlength="20"
+                       ng-required="!user.val"/>
+            </div>
+            <div class="mb-20" ng-if="form.name.$invalid">
+                введите имя от 3 до 20 символов
+            </div>
+            <div class="form-group">
+                <label class="" >E-mail</label>
+                <input name="email" class="form-control" style="" ng-model="comment.email"
+                       ng-required="!user.val"/>
+            </div>
+            <!-- <div class="form-group">
+                <label class="" >Адрес страницы</label>
+                <input name="profileUrl" class="form-control" style="" ng-model="comment.profileUrl"/>
+            </div> -->
+        </div>
+        <div class="form-group">
+            <textarea class="form-control mb-20"  placeholder="Ваш комментарий" ng-model="comment.text" rows="5" style="width: 100%" focus-me="focusInput">
+            </textarea>
+        </div>
+        <button ng-disabled="form.$invalid" class="btn btn-warning btn-1 mb-20" type="submit" style="width: 100%">Отправить</button>
+    </form>
+
+
+    <comments comments='comments' click-fn="addChildComment" depth="0"></comments>
+
+
+    <a data-ng-show="(paginate.page+1)*5<paginate.totalItems" ng-click="moreComments()" class=" pull-right basic mb">Показать еще</a>
+    <!--<div class="clearfix"></div>
+    <nodes nodes='comments' click-fn="func.addChildComment" depth="0"></nodes>-->
+</div>

@@ -1,0 +1,14 @@
+div(class=dj[key].wrapclass)
+        div(class=mobileWrapper)
+            div(class="home-subscription")
+                div(class="container")
+                    if(dj[key].img)
+                        div(class="subscription-img")
+                            img(class='img-responsive',src=photoHost+'/'+dj[key].img,alt=dj[key].alt)
+                    div(class="subscription-box")
+                        h3=dj[key].name
+                        if(dj[key].desc)
+                            div(class="sub-desc")
+                                | !{dj[key].desc}
+                        user-sign
+                    div(class="clearfix")

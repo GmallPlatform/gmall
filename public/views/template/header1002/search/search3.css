@@ -1,0 +1,92 @@
+/*nautilus*/
+/*.searchresults {
+    width: 300px;
+    position: absolute;
+    background-color: #fdfdfd;
+    max-height: 350px;
+    overflow: auto;
+}*/
+.name-resalt {
+    font-size: 14px;
+    line-height: 14px;
+}
+.name-resalt p,
+.name-resalt {
+    color: #666666;
+}
+.search-window hr {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.all-results {
+    cursor: pointer;
+}
+.all-results{
+    color: $mainColor;
+    transition: all  0.3s ease-in-out 0.1s;
+    opacity: 0.7;
+    line-height: 28px;
+    display: inline-block;
+}
+.all-results:hover{
+    font-size: 14px;
+    opacity: 1;
+    line-height: 28px;
+}
+.searchResaltsInner{
+    padding: 20px;
+}
+
+/*vertical-menu*/
+
+.input-group {
+    width: auto;
+}
+.input-group-addon,
+.input-group-btn {
+    width: auto;
+}
+input[type="text"]::-webkit-input-placeholder {
+    color: $color;
+    font-family: $font-family;
+}
+input[type="search"]::-moz-placeholder {
+    color: $color;
+    font-family: $font-family;
+}
+.form-control {
+    box-shadow: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-transition: all 0.5s ease-in-out 0.5s;
+    -moz-transition: all 0.5s ease-in-out 0.5s;
+    -ms-transition: all 0.5s ease-in-out 0.5s;
+    -o-transition: all 0.5s  ease-in-out 0.5s;
+    transition: all 0.5s ease-in-out 0.5s;
+}
+.form-control {
+    font-size: $font-size;
+}
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+.form-control:hover {
+    border-bottom: none;
+}
+.btn-default:hover,
+.btn-default:focus{
+    outline: none;
+}
+.btn-default:hover {
+    border-bottom: none;
+}
+
+.mobile-wrapper .search-button {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    color: rgba(255, 255, 255, 0.35);
+}
+

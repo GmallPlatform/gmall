@@ -1,0 +1,45 @@
+<style>
+
+</style>
+
+<table>
+    <thead>
+        <th>дата регистрации</th>
+        <th>login</th>
+        <th>email</th>
+        <th></th>
+    </thead>
+    <tr>
+        <td  ng-bind="moment(user.date).format('LLL')"></td>
+        <td ng-bind="user.email"></td>
+        <td ng-bind="user.email"></td>
+        <td>
+            <a  ng-click="deleteUser(user._id)">
+                <i class="material-icons link-danger md-24">delete</i>
+            </a>
+        </td>
+    </tr>
+</table>
+
+
+
+<!--<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+    <div class="user-cart">
+        <p>
+            <span>дата регистрации</span>
+            <span class="pull-right" ng-bind="moment(user.date).format('LLL')"></span>
+        </p>
+        <div class="clearfix"></div>
+        <p>
+            <span>login - <strong class="pull-right" ng-bind="user.name"></strong> </span>
+        </p>
+        <div class="clearfix"></div>
+        <span>email - <strong class="pull-right" ng-bind="user.email"></strong> </span>
+        <div class="clearfix"></div>
+        &lt;!&ndash;<a ng-click="deleteUser(user._id)" class="btn btn-error">удалить</a>&ndash;&gt;
+        <a class="btn btn-fab btn-fab-mini pull-right" ng-click="deleteUser(user._id)">
+            <i class="material-icons link-danger md-24">delete</i>
+        </a>
+        <div class="clearfix"></div>
+    </div>
+</div>-->

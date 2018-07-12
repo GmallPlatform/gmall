@@ -1,0 +1,65 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="cart-detail">
+        <uib-accordion ng-init="$ctrl.isOpen={}">
+            <div uib-accordion-group class="panel-default">
+                <uib-accordion-heading>
+                    <h3 class="text-center name-box pull-left">
+                        <span>подписка</span>
+                        <i class="material-icons link-success">settings</i>
+                    </h3>
+                    <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.cloneBlock(block)">
+                        <i class="material-icons md-42" title="клонировать блок со стилями">content_copy</i>
+                    </a>
+                    <div class="clearfix"></div>
+                </uib-accordion-heading>
+                <style-block></style-block>
+            </div>
+        </uib-accordion>
+        <div class="subscription">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 img-box">
+                <h3 class="text-center name-action">добавить/изменить фото</h3>
+                <load-image
+                        upload-url="/api/collections/Photo/fileUploadFullImg?collectionName=HomePage"
+                        item-id="{{$ctrl.item._id}}"
+                        item-resourse="$ctrl.Items"
+                        file-src="block.img"
+                        name-img="{{$ctrl.activeSide}}.{{block.dbIndex}}.img">
+                </load-image>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label class="control-label">заголовок  блока</label>
+                        <input class="form-control" ng-model="block.name"
+                               ng-model-options="{'updateOn': 'default blur',
+                               'debounce': {'default': 700,'blur': 0}}"
+                               ng-change="$ctrl.saveField(block,$index,'name')">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label class="control-label" style="margin-top: 0">анимация заголовка</label>
+                    <ui-select ng-model="block.nameAnimate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.saveField(block,$index,'nameAnimate')">
+                        <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="editor form-group">
+                    <h3 class="name-action"  ng-click="isCollapsed[$index] = !isCollapsed[$index]">добавить/изменить текст</h3>
+                    <div uib-collapse="!isCollapsed[$index]" text-angular
+                         ng-model-options="{'updateOn': 'default blur',
+                         'debounce': {'default': 700,'blur': 0}}"
+                         ng-change="$ctrl.saveField(block,$index,'desc',200)"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="block.desc"
+                         ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                         ta-text-editor-class="border-around"
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

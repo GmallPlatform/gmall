@@ -1,0 +1,51 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+        <h3 class="text-center name-page"><span class="small-text">тип блока </span>{{$ctrl.listOfBlocks[block.type]}} / {{block.type}} </h3>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
+        <div class="form-group">
+            <label class="control-label">изменить тип блока</label>
+            <ui-select ng-model="block.type" skip-focusser="true" search-enabled="false" ng-change="$ctrl.saveField('blocks.'+block.i+'.type',block.type)">
+                <ui-select-match placeholder="изменить тип блока">{{$select.selected.value}}</ui-select-match>
+                <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocks">{{ opt.value }}</ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <hr>
+    <style-block-page></style-block-page>
+    <hr>-->
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="form-group label-floating">
+            <label class="control-label">название кнопки</label>
+            <input class="form-control" ng-model="block.name"
+                ng-model-options="{'updateOn': 'default blur','debounce': {'default': 700,'blur': 0}}"
+                ng-change="block.nameL[$ctrl.global.get('store').val.lang]=block.name;$ctrl.saveField('blocks.'+block.i+'.name',block.name)">
+        </div>
+        <div class="form-group ">
+            <label class="control-label" style="margin-top: 0">анимация кнопки</label>
+            <ui-select ng-model="block.button.animate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                       ng-change="$ctrl.saveField('blocks.'+block.i+'.button',block.button)">
+                <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+            </ui-select>
+        </div>
+        <create-link title='false' link="block.link" change="$ctrl.saveField('blocks.'+block.i+'.link',block.link)" edit-seo-page="true"></create-link>
+        <div class="clearfix"></div>
+       <!-- <div class="editor form-group">
+            <h3 class="name-action" ng-click="isCollapsed[$index] = !isCollapsed[$index]">добавить/изменить текст</h3>
+            <div uib-collapse="!isCollapsed[$index]" text-angular
+                 ng-model-options="{'updateOn': 'default blur',
+                 'debounce': {'default': 700,'blur': 0}}"
+                 ng-change="$ctrl.saveField('blocks.'+block.i+'.desc',block.desc)"
+                 ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                 ng-model="block.desc"
+                 ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                 ta-html-editor-class="border-around">
+            </div>
+        </div>-->
+    </div>
+    <div class="clearfix"></div>
+</div>

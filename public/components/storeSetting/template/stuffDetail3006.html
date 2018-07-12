@@ -1,0 +1,177 @@
+<div class="template-list" ng-show="$ctrl.block=='stuffdetail'"  ng-init="displayHelp=false">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">компоненты страницы товара</h3>
+        <div class="cart-detail">
+            <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6 head-box text-center">первая колонка</div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  head-box text-center">вторая колонка</div>
+            <div class="clearfix"></div>
+            <div class="menu-box">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box"></div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box"></div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+                <div class="clearfix"></div>
+            </div>
+            <hr>
+            <div class="part-box">
+                <div class="dropzone">
+
+                        <ul class="col-lg-6  col-md-6 col-sm-12 col-xs-12"
+                            dnd-list="$ctrl.item.stuffDetail[0]"
+                            dnd-drop="$ctrl.dropCallbackStuffDetail(item)"
+                            dnd-allowed-types="['stuff']">
+                            <li ng-if="!$ctrl.item.stuffDetail[0].length">
+                                <p>добавить</p>
+                            </li>
+                            <li ng-repeat="block in $ctrl.item.stuffDetail[0]"
+                                dnd-draggable="block"
+                                dnd-type="'stuff'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.stuffDetail[0].splice($index,1)"
+                                dnd-selected="models.selected = item"
+                                ng-class="{selected: models.selected === item,bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box form-group">
+                                    <i class="material-icons link-success">swap_vert</i>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+                                     <span ng-switch="block.name">
+                                         <span ng-switch-when="gallery">галерея</span>
+                                         <span ng-switch-when="comments">комментарии</span>
+                                         <span ng-switch-when="lastViewed">последние просмотренные</span>
+                                         <span ng-switch-when="sort">разновидности</span>
+                                         <span ng-switch-when="addInfo">доп. информация</span>
+                                         <span ng-switch-when="desc">описание</span>
+                                         <span ng-switch-when="addToCart">кнопка в корзину</span>
+                                         <span ng-switch-when="price">блок цен</span>
+                                         <span ng-switch-when="qty">блок количества</span>
+                                         <span ng-switch-when="name">наименование</span>
+                                     </span>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input ng-change="$ctrl.saveField('stuffDetail')" ng-model="block.is" type="checkbox"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <ui-select ng-model="block.templ" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveField('stuffDetail')">
+                                        <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                        <ul  class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                                dnd-list="$ctrl.item.stuffDetail[1]"
+                                dnd-drop="$ctrl.dropCallbackStuffDetail(item)"
+                                dnd-allowed-types="['stuff']">
+                            <li ng-if="!$ctrl.item.stuffDetail[1].length">
+                                <div class="row">
+                                    <span>добавить</span>
+                                </div>
+                            </li>
+                            <li ng-if="!$ctrl.item.stuffDetail[0].length">
+                                <div class="row">
+                                    <span>добавить</span>
+                                </div>
+                            </li>
+                            <li ng-repeat="block in $ctrl.item.stuffDetail[1]"
+                                dnd-draggable="block"
+                                dnd-type="'stuff'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.stuffDetail[1].splice($index,1)"
+                                dnd-selected="models.selected = item"
+                                ng-class="{selected: models.selected === item,bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}" >
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box form-group">
+                                        <i class="material-icons link-success">open_with</i>
+                                    </div>
+                                    <!--<pre>{{component|json}}</pre>-->
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+                                        <span ng-switch="block.name">
+                                                <span ng-switch-when="gallery">галерея</span>
+                                                <span ng-switch-when="comments">комментарии</span>
+                                                <span ng-switch-when="lastViewed">последние просмотренные</span>
+                                                <span ng-switch-when="sort">разновидности</span>
+                                                <span ng-switch-when="addInfo">доп. информация</span>
+                                                <span ng-switch-when="desc">описание</span>
+                                                <span ng-switch-when="addToCart">кнопка в корзину</span>
+                                                <span ng-switch-when="price">блок цен</span>
+                                                <span ng-switch-when="qty">блок количества</span>
+                                            <span ng-switch-when="name">наименование</span>
+                                            </span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input ng-change="$ctrl.saveField('stuffDetail')" ng-model="block.is" type="checkbox"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <!--<pre>{{component.templ|json}}</pre>-->
+                                        <ui-select ng-model="block.templ" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveField('stuffDetail')">
+                                            <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                            </li>
+
+                        </ul>
+                        <div class="clearfix"></div>
+
+                </div>
+
+
+            <div class="container">
+                <h4 class="text-center name-page">заголовки подразделов описания товара</h4>
+                <p>если вы хотите, чтобы описание товара было разделено на подразделы или выведенно в виде табов (например, описание, технические характеристики и т.п., то внесите названия заголовков  в поля</p>
+                <div class="form-group label-floating">
+                    <label for="headDesc" class="control-label">заголовок 1</label>
+                    <input type="text"
+                           placeholder="headDesc"
+                           id="headDesc"
+                           class="form-control name"
+                           ng-model="$ctrl.item.headDesc"
+                           lost-focus="$ctrl.saveField('headDesc')"
+                            />
+                </div>
+                <div class="form-group label-floating">
+                    <label for="headDesc1" class="control-label">заголовок 2</label>
+                    <input type="text"
+                           placeholder="headDesc1"
+                           id="headDesc1"
+                           class="form-control name"
+                           ng-model="$ctrl.item.headDesc1"
+                           lost-focus="$ctrl.saveField('headDesc1')"
+                            />
+                </div>
+                <div class="form-group label-floating">
+                    <label for="headDesc2" class="control-label">заголовок 3</label>
+                    <input type="text"
+                           placeholder="headDesc2"
+                           id="headDesc2"
+                           class="form-control name"
+                           ng-model="$ctrl.item.headDesc2"
+                           lost-focus="$ctrl.saveField('headDesc2')"
+                            />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.group-goods {
+    padding: 5px;
+    
+    border:2px solid transparent;
+}
+.group-goods:hover {
+    border:2px solid $mainColor;
+}
+.active {
+    border:2px solid $mainColor;
+}
+.group-goods img {
+    width: 100%;
+}

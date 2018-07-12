@@ -1,0 +1,13 @@
+<div class="gallery zoom-slide">
+    <img  ng-src="{{$ctrl.img}}" ng-if="$ctrl.img">
+    <a class="cancel" ng-click="$ctrl.cancel()">
+        <span class="icon-cancel-img" style="z-index: 10000"></span>
+    </a>
+    <div uib-carousel active="$ctrl.idx" >
+        <div uib-slide ng-repeat="slide in $ctrl.gallery track by $index" index="$index" active="slide.active">
+            <a ng-click="$ctrl.next($index)">
+                <img class="slide-img" ng-src="{{slide.img}}" style="{{$ctrl.style}}">
+            </a>
+        </div>
+    </div>
+</div>

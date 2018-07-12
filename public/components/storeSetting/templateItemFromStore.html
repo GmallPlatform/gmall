@@ -1,0 +1,740 @@
+<div class="template-item" ng-if="$ctrl.item">
+    <div  class="nav-box-stuff" ng-if="$ctrl.block"  ng-class="{'mini-nav':$ctrl.global.get('mobile').val}">
+        <!--<div class="tab-nav-stuff text-center">
+            <a class="btn btn-fab"  ng-click="$ctrl.block=''" ng-class="{'btn-fab-mini':$ctrl.global.get('mobile').val}">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>-->
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='homePage','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='homePage'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">dashboard</i>
+                <p class="mini-text" ng-if="$ctrl.global.get('mobile').val"> база</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">базовые<br>компоненты</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='base','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='base'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">camera</i>
+                <p class="mini-text" ng-if="$ctrl.global.get('mobile').val"> icon</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">иконки</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='header','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='header'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">menu</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">меню</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">меню<br>(header)</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='footer','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='footer'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">subtitles</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">подвал</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">подвал<br>(footer)</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='stuffs','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='stuffs'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">assignment</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">список</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">список<br>товаров</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='stuffdetail','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='stuffdetail'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">redeem</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">товар</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">страница<br>товара</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='news','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='news'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">receipt</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">списки</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">списки</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='newsDetail','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='newsDetail'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">fiber_new</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">страницы</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">страницы</p>
+            </a>
+        </div>
+        <!--<div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='newsDetail','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='newsDetail'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">fiber_new</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">новость</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">страница<br>новости</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='stats','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='stats'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">dns</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">стат</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">статическая<br>страница</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='master','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='master'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">account_box</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">мастер</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">страница<br>сотрудника</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='workplace','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='workplace'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">android</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">workplace</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">страница<br>рабочего места</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='additional','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='additional'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">list</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">доп список</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">страница<br>доп списка</p>
+            </a>
+        </div>-->
+
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='cart','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='cart'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">shopping_basket</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">корзина</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">страница<br>корз</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='addcomponents','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='addcomponents'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">toll</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">доп</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">доп<br>комп</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='social','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='social'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">share</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">сети</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">соц<br>сети</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='paps','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='paps'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">favorite</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">сенкью</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">сенкью<br>пейдж</p>
+            </a>
+        </div>
+
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='campaign','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='campaign'">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">alarm</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">акции</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">акции</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center">
+            <a ng-click="$ctrl.clearCashe()">
+                <i class="material-icons link-warning"  ng-class="{'mini':$ctrl.global.get('mobile').val}">settings_backup_restore</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">кеш</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">кеш</p>
+            </a>
+        </div>
+
+        <div class="tab-nav-stuff text-center pull-right">
+            <a  ng-click="$ctrl.makeMainCSS()">
+                <i class="material-icons link-success" style="font-size: 42px; margin-left: 5px; margin-right: 5px" ng-class="{'mini':$ctrl.global.get('mobile').val}">opacity</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">стили</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">создать<br> стили</p>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div ng-if="!$ctrl.block">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='homePage'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                            <span class="text-center">
+                                <i class="material-icons link-warning">dashboard</i>
+                            </span>
+                                базовые компоненты сайта
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            базовые компоненты сайта - шрифты, body, боковых панелей, кнопок, ссылок и т.п.
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='base'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">camera</i>
+                        </span>
+                            иконки
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            базовые изображения icons для сайта
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='header'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">menu</i>
+                        </span>
+                            меню (header)
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            выбор вида меню и управление его компонентами
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='footer'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">subtitles</i>
+                        </span>
+                            подвал (footer)
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            формат футера и размещение его компонентов
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='stuffs'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">assignment</i>
+                        </span>
+                            список товаров
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            размещение компонентов на страницах списка товаров и услуг
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='stuffdetail'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">redeem</i>
+                        </span>
+                            страницы товара (услуги)
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            формирование страницы товара (услуги), размещение компонентов на странице товаров
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='news'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">receipt</i>
+                        </span>
+                            списки
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            настройка страницы списка новостей, списка сотрудников, списка статических страниц, списка инфо страниц, списка акций
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='newsDetail'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">fiber_new</i>
+                        </span>
+                            страницы
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            настройка страниц новости, сотрудника, рабочего места, дополнительного списка и статических страниц
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='cart'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">shopping_basket</i>
+                        </span>
+                            страница корзины
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            формирование страницы корзины, размещение компонентов и дополнительной информации
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='addcomponents'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">toll</i>
+                        </span>
+                            дополнительные компоненты
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            настройка стилей дополнительных компонентов, которые используются для страниц сайта
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='social'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">share</i>
+                        </span>
+                            социальные сети
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            настройка вида используемых социальных сетей и ссылок на них
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='paps'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">favorite</i>
+                        </span>
+                            сенкью пейдж
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            настройка страниц post action page
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <a ng-click="$ctrl.block='campaign'"  class="content-box-link">
+                <div class="panel content-box">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                        <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">alarm</i>
+                        </span>
+                            акционные предложения
+                        </h3>
+                    </div>
+                    <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <span class="plot">
+                            настройка стилей страницы акции
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <!--<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a ng-click="$ctrl.block='homePage'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">базовые компоненты сайта</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">dashboard</i>
+                        </p>
+                        <p class="plot">
+                            базовые компоненты сайта - body, slide-menu, icon, link<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>-->
+        <!--<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a ng-click="$ctrl.block='base'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">иконки</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">camera</i>
+                        </p>
+                        <p class="plot">
+                            базовые изображения icons для сайта<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='header'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты меню (header)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">menu</i>
+                        </p>
+                        <p class="plot">
+                            выбор вида меню и управление его компонентами<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='footer'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты подвала (footer)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">subtitles</i>
+                        </p>
+                        <p class="plot">
+                            размещение компонентов футера<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='stuffs'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты списка товаров</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">assignment</i>
+                        </p>
+                        <p class="plot">
+                            размещение элементов на страницах списка товаров и услуг<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='stuffdetail'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты страницы товара</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">redeem</i>
+                        </p>
+                        <p class="plot">
+                            формирование страницы товара, размещение блоков на странице<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='news'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">списки</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">receipt</i>
+                        </p>
+                        <p class="plot">
+                            новостей, мастеров, статических страниц, информационных страниц,акций<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='newsDetail'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">страницы</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">fiber_new</i>
+                        </p>
+                        <p class="plot">
+                            настройка страниц новости, сотрудника, рабочего места, дополнительного списка и статических страниц<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>-->
+        <!--<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='stats'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты статических страниц</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">view_list</i>
+                        </p>
+                        <p class="plot">
+                            формирование страниц "контакты", "о нас" и подобных страниц со статической информацией<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='master'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты страницы сотрудника</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">account_box</i>
+                        </p>
+                        <p class="plot">
+                            должность, привязка к услугам, отзывы, квалификация<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='workplace'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты страницы рабочего места</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">android</i>
+                        </p>
+                        <p class="plot">
+                            компоненты, необходимые для оформления страницы рабочего места<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='additional'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты дополнительного списка</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">list</i>
+                        </p>
+                        <p class="plot">
+                            компоненты и настройки нестандартного списка<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='cart'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">компоненты страницы корзины</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">shopping_basket</i>
+                        </p>
+                        <p class="plot">
+                            формирование страницы корзины, размещение блоков основной и дополнительной информации<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='addcomponents'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">дополнительные компоненты страниц</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">toll</i>
+                        </p>
+                        <p class="plot">
+                            дополнительные компоненты, которые используются для страниц сайта<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='social'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">социальные сети</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">share</i>
+                        </p>
+                        <p class="plot">
+                            настройка используемых социальных сетей и ссылок на них<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='paps'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">сенкью пейдж</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">favorite</i>
+                        </p>
+                        <p class="plot">
+                            настройка страниц PAP<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-center" >
+            <a  ng-click="$ctrl.block='campaign'" class="content-box-link">
+                <div class="panel content-box">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">campaign</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center">
+                            <i class="material-icons">alarm</i>
+                        </p>
+                        <p class="plot">
+                            настройка страницы акции<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>-->
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="setting-component">
+        <template-menu-setting   ng-if="$ctrl.block=='header'"></template-menu-setting>
+        <template-footer-setting ng-if="$ctrl.block=='footer'"></template-footer-setting>
+        <template-base-setting ng-show="$ctrl.block=='base'"></template-base-setting>
+        <template-index-setting  ng-if="$ctrl.block=='homePage'"></template-index-setting>
+        <template-cart-setting   ng-if="$ctrl.block=='cart'"></template-cart-setting>
+        <template-stuffs-setting   ng-if="$ctrl.block=='stuffs'"></template-stuffs-setting>
+        <template-stuff-detail-setting   ng-if="$ctrl.block=='stuffdetail'"></template-stuff-detail-setting>
+        <template-news-setting   ng-if="$ctrl.block=='news'"></template-news-setting>
+        <template-news-detail-setting   ng-if="$ctrl.block=='newsDetail'"></template-news-detail-setting>
+        <template-stats-setting   ng-if="$ctrl.block=='stats'"></template-stats-setting>
+        <template-master-setting   ng-if="$ctrl.block=='master'"></template-master-setting>
+        <template-workplace-setting   ng-if="$ctrl.block=='workplace'"></template-workplace-setting>
+        <template-additional-setting   ng-if="$ctrl.block=='additional'"></template-additional-setting>
+        <template-addcomponents-setting   ng-if="$ctrl.block=='addcomponents'"></template-addcomponents-setting>
+        <template-social-setting   ng-if="$ctrl.block=='social'"></template-social-setting>
+        <template-paps-setting   ng-if="$ctrl.block=='paps'"></template-paps-setting>
+        <template-campaign-setting   ng-if="$ctrl.block=='campaign'"></template-campaign-setting>
+
+        <!--<div ng-include src="'components/storeSetting/template/header.html'"></div>-->
+        <!--<div ng-include="'components/storeSetting/template/homePage.html'"></div>-->
+        <!--<div ng-include="'components/storeSetting/template/stuffs.html'"></div>-->
+        <!--<div ng-include="'components/storeSetting/template/stuffDetail.html'"></div>-->
+        <!--<div ng-include="'components/storeSetting/template/footer.html'"></div>-->
+        <!--<div ng-include="'components/storeSetting/template/news.html'"></div>
+        <div ng-include="'components/storeSetting/template/stats.html'"></div>
+        <div ng-include="'components/storeSetting/template/newsDetail.html'"></div>-->
+        <!--<div ng-include="'components/storeSetting/template/master.html'"></div>-->
+        <!--<div ng-include="'components/storeSetting/template/cart.html'"></div>-->
+        <!--<div ng-include="'components/storeSetting/template/additional.html'"></div>
+        <div ng-include="'components/storeSetting/template/addcomponents.html'"></div>-->
+    </div>
+</div>

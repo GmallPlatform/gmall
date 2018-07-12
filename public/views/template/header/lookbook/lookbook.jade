@@ -1,0 +1,13 @@
+div(class=dj[key].wrapclass,set-animate=dj[key].blockAnimate,data-animation=dj[key].blockAnimate,data-animation-delay=dj[key].animationDelay)
+    div(class=mobileWrapper)
+        if(dj[key].positionMenu=='top' ||dj[key].positionMenu=='bottom')
+            - var c = 'page-stat lookbook nav-group'
+        else
+            - var c = 'page-stat lookbook'
+        div(class=c)
+            a(href="/lookbook",set-animate=dj[key].animate,data-animation=dj[key].animate)
+                if(store.nameLists.lookbookList)
+                    span(class="part",set-animate=dj[key].animate,data-animation=dj[key].animate)=store.nameLists.lookbookList
+                else
+                    span(class="part",set-animate=dj[key].animate,data-animation=dj[key].animate)=lang['lookbook']
+                //span(class="part")=lang.lookbook

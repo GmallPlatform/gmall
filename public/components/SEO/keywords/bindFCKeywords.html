@@ -1,0 +1,52 @@
+<style>
+    .page-list{
+        list-style:none;
+        padding: 0;
+
+    }
+    .page-list .page {
+        padding-left: 20px;
+        text-transform: uppercase;
+    }
+
+</style>
+<div class="bindFCKeywords">
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-lg-5">
+                <h3 class="modal-title pull-left">привязка слова фильтру</h3>
+            </div>
+
+            <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.cancel()">
+                <i class="material-icons link-warning">clear</i>
+            </a>
+        </div>
+        <hr>
+    </div>
+    <div class="modal-body">
+        <div class="has-success">
+            <div class="radio" ng-repeat="(key,item) in $ctrl.list">
+                <label>
+                    <input ng-model="$ctrl.value" type="radio" name="data" id="qqq{{key}}" value="{{key}}">
+                    <strong>{{item}}</strong>
+                </label>
+            </div>
+        </div>
+
+        <!--<ui-select ng-model="$ctrl.value"
+                   title="выберите значение" search-enabled="false" skip-focusser="true">
+            <ui-select-match placeholder="выберите значение">
+                {{$select.selected.value}}
+            </ui-select-match>
+            <ui-select-choices repeat="data.key as (key, data) in $ctrl.list">
+                <span ng-bind="data.value"></span>
+            </ui-select-choices>
+        </ui-select>-->
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer col-lg-12">
+        <a class="btn btn-raised btn-block" type="button" ng-click="$ctrl.ok()">Готово</a>
+        <!--<a class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</a>-->
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,169 @@
+@if $font-size {
+    font-size: $font-size;
+}
+/*modalProject*/
+.modal-content{
+    @if $background-color {
+        background-color: $background-color;
+    }
+    /*@if $height {
+        max-height: $height;
+    }*/
+    @if $font-family {
+        font-family: $font-family;
+    }
+    @if $padding-left {
+        padding-left: $padding-left;
+    }
+    @if $padding-right {
+        padding-right: $padding-right;
+    }
+    @if $padding-top {
+        padding-top: $padding-top;
+    }
+    @if $padding-bottom {
+        padding-bottom: $padding-bottom;
+    }
+}
+input[type="text"]::-webkit-input-placeholder,
+input[type="password"]::-webkit-input-placeholder,
+input[type="email"]::-webkit-input-placeholder,
+input[type="search"]::-moz-placeholder {
+    @if $font-family {
+        font-family: $font-family;
+    }
+}
+
+.modal-content input {
+    background-color: transparent;
+}
+.modal-dialog{
+    width: $width;
+}
+
+.modal-content{
+    border-radius:$border-radius;
+}
+/*sign-login*/
+.modal-content .tab-head {
+    margin-bottom: 20px;
+}
+.modal-content .tab-head a {
+    font-size: 14px;
+    color: $mainColor;
+}
+.modal-content .head-box {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.modal-content .head-box.active-tab {
+    border-bottom: 1px solid #ccc;
+}
+.modal-content .btn-project {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.sn-button .btn {
+    font-size: 13px;
+}
+.sn-button .btn .icon-fbwhite-img,
+.sn-button .btn .icon-googlewhite-img,
+.sn-button .btn .icon-twwhite-img,
+.sn-button .btn .icon-vkwhite-img{
+    background-size: 16px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle
+}
+.input-code {
+    width: auto;
+    display: inline-block;
+}
+
+@media (max-width: 1450px) {
+    .modal-content {
+        @if $padding-left {
+            padding-left: $padding-left*0.5 !important;
+        }
+        @if $padding-right {
+            padding-right: $padding-right*0.5 !important;
+        }
+
+    }
+}
+
+@media  (max-width: 1100px)  {
+    .modal-content {
+        padding: 20px !important;
+    }
+    .shipinfo {
+        width: 90% !important;
+    }
+    .witget {
+        width: 90% !important;
+    }
+}
+@media  (max-width: 992px)  {
+    .modal-body-project{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+    /*.modal-content {
+        padding: 10px !important;
+    }*/
+}
+@media  (max-width: 400px)  {
+    /*.modal-header-project {
+        padding-top: 20px;
+    }*/
+    .modal-dialog {
+        width: 98% !important;
+        margin: 0 auto !important;
+    }
+    .modal-content {
+        padding: 10px !important;
+        margin-top: 20px !important;
+    }
+    .sign {
+        border-left:none  !important;
+    }
+    .login {
+        border-bottom: 1px solid #ccc;
+    }
+    .sign,
+    .login {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-bottom: 20px;
+    }
+    .modal-body-project {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        margin-top: 40px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    .btn-project {
+        @if $font-size {
+            font-size: $font-size*0.9 !important;
+        }
+        letter-spacing: 1px !important;
+    }
+    .witget {
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .shipinfo {
+        width: 100% !important;
+    }
+}
+.filters-first-box {
+    min-height: 250px;
+}
+.ui-select-bootstrap .ui-select-choices-row.active>span {
+    background-color: #b9b9b9;
+}
+

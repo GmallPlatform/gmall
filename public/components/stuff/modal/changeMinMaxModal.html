@@ -1,0 +1,65 @@
+
+<!--для min-max-->
+<div class="select-modal min-max">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">ограничение продажи</h3>
+        <a  class="cancel" ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <form ng-submit="$ctrl.ok()">
+    <div class="modal-body">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group text-center">
+                <p>минимальное количество для заказа</p>
+                <div class="togglebutton">
+                    <label for="singlemin">
+                        <span ng-class="{'active':!$ctrl.item.multiple}">без ограничения</span>
+                        <input type="checkbox"
+                               id="singlemin"
+                               ng-model="$ctrl.item.multiple">
+                        <span ng-class="{'active':$ctrl.item.multiple}">ограничить</span>
+                    </label>
+                </div>
+
+            </div>
+            <div class="text-center qty">
+                <div class="form-group label-floating"  ng-show="$ctrl.item.multiple">
+                    <label class="control-label">min количество</label>
+                    <input class="form-control"ng-model="$ctrl.item.minQty">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group text-center">
+                <p>максимальное количество для заказа</p>
+                <div class="togglebutton">
+                    <label for="single">
+                        <span ng-class="{'active':!$ctrl.item.single}">без ограничения</span>
+                        <input type="checkbox"
+                               id="single"
+                               ng-model="$ctrl.item.single">
+                        <span ng-class="{'active':$ctrl.item.single}">ограничить</span>
+                    </label>
+                </div>
+            </div>
+            <div class="text-center qty">
+                <div class="form-group label-floating" ng-show="$ctrl.item.single">
+                    <label class="control-label">max количество</label>
+                    <input class="form-control" ng-model="$ctrl.item.maxQty">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-raised btn-block">
+            <span>применить</span>
+        </button>
+    </div>
+    </form>
+ </div>
+<!--end min-max-->

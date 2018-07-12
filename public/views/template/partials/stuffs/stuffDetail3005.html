@@ -1,0 +1,239 @@
+<div class="stuff-detail " ng-if="$ctrl.item">
+    <div class="container">
+        <div class="row" itemscope itemtype="http://schema.org/Product">
+            <div
+                 ng-class="{'col-lg-4 col-md-5 col-sm-12 col-xs-12':!$ctrl.item.service,'col-lg-6 col-md-6 col-sm-12 col-xs-12':$ctrl.item.service}">
+                <img ng-src="{{$ctrl.item.sticker}}"  class="sticker">
+                <div ng-repeat="item in $ctrl.item.gallery">
+                    <img itemprop="image" class="img-responsive img-detail" ng-src="{{item.thumb}}"
+                         alt="{{::$ctrl.item.categoryName}} {{::$ctrl.item.name}}"
+                    >
+                </div>
+
+                <div class="pull-right" ng-if="$ctrl.objShare">
+                    <social-hub></social-hub>
+                </div>
+            </div>
+            <div ng-class="{'col-lg-8 col-md-7 col-sm-12 col-xs-12':!$ctrl.item.service,'col-lg-6 col-md-6 col-sm-12 col-xs-12':$ctrl.item.service}">
+                <div class="margin">
+                    <h3 itemprop="name">
+                        <span  class="goods-name" ng-bind="$ctrl.item.name"></span><br>
+                        <span ng-bind="$ctrl.item.artikul"></span>
+                        <p ng-if="$ctrl.item.brand">
+                            <a ui-sref="stuffs({'groupUrl':'group','categoryUrl':'category','brand':$ctrl.item.brandUrl})">
+                                <span ng-bind="$ctrl.item.brandName"></span>
+                            </a>
+                        </p>
+                        <hr>
+                    </h3>
+
+                    <p itemprop="description" class="description" ng-bind-html="$ctrl.item.desc|unsafe"></p>
+                    <div  ng-if="!$ctrl.item.service">
+                        <a  ui-sref="stuffs({'groupUrl':$ctrl.item.groupUrl,'categoryUrl':$ctrl.item.categoryUrl,parentGroup:$ctrl.item.parentGroup})">
+                            все
+                            <span ng-bind="$ctrl.item.categoryName"></span>
+                            <span ng-bind="$ctrl.item.brandName"></span>
+                        </a>
+                    </div>
+                    <hr>
+
+                    <div class="clearfix"></div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" ng-if="$ctrl.item.sortsOfStuff.filter">
+                        <div class="row">
+                            <p>
+                                выберите {{$ctrl.getFilterName($ctrl.item.sortsOfStuff.filter)}}
+                            </p>
+                            <!--<pre>{{$ctrl.item.sort}} {{$ctrl.getTagName($ctrl.item.sort)}}</pre>-->
+                            <span ng-init="$ctrl.item.stock[$ctrl.item.sort].name=$ctrl.getTagName($ctrl.item.sort)"
+                                  class="sort" ng-repeat="(tag,sort) in $ctrl.item.stock|filter:$ctrl.item.filterSorts"
+                                  ng-class="{'sort-active':$ctrl.item.sort==tag}">
+                                <span
+                                      ng-click="$ctrl.item.sort=tag;$ctrl.item.changeSortOfStuff()">{{sort.value.name=$ctrl.getTagName(tag)}}
+                                </span>
+                            </span>
+                    <!--<span class="sort" ng-repeat="(tag,sort) in stuff.stock|filter:stuff.filterSorts">{{$index}}</span>-->
+                    <!--<span class="sort">15.00-20.00</span>-->
+                    <!--<p class="col-lg-12">
+                        выберите  {{$ctrl.getFilterName($ctrl.item.sortsOfStuff.filter)}}
+                    </p>
+                    <div ng-init="stuff=$ctrl.item">
+                        <ui-select
+                                ng-init="stuff.stock[stuff.sort].name=$ctrl.getTagName(stuff.sort)"
+                                ng-model="stuff.sort"
+                                ng-change="stuff.changeSortOfStuff()"
+                                on-select="stuff.onSelected()"
+                                append-to-body="true"
+                                search-enabled="false"
+                                style="width: 300px;">
+                            <ui-select-match placeholder="из {{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}">
+                                &lt;!&ndash; <span ng-bind="getTagName($select.selected.tag)"></span>&ndash;&gt;
+                                {{$ctrl.getTagName($select.selected.tag)}}
+                            </ui-select-match>
+                            <ui-select-choices ui-disable-choice="!sort.value.quantity"
+                                               repeat="sort.tag as (tag,sort) in stuff.stock|filter:stuff.filterSorts">
+                                <span>{{sort.value.name=$ctrl.getTagName(sort.tag)}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>-->
+                        </div>
+                    </div>
+                    <div class="quantity col-lg-4 col-md-4 col-sm-4 col-xs-12"  ng-if="!$ctrl.item.single">
+                        <div class="row">
+                        <!--<p>количество</p>-->
+                            <ui-select ng-model="$ctrl.item.quantity"
+                                       theme="bootstrap"
+                                       on-select="$ctrl.item.onSelected()"
+                                       append-to-body="true"
+                                       search-enabled="false">
+                                <ui-select-match placeholder="выберите количество">{{$select.selected}}</ui-select-match>
+                                <ui-select-choices repeat="qty in [1,2,3,4,5,6,7,8,9,10] track by $index">
+                                    <span ng-bind="qty | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                    </div>
+                    <span   ng-bind="$ctrl.item.unitOfMeasure"></span><!--  ng-if="!$ctrl.item.single"-->
+                    <!--<div class="clearfix"></div>
+                    <hr>-->
+                    <div class="price-box col-lg-8 col-md-8 col-sm-8 col-xs-12 text-right" ng-if="!$ctrl.item.service">
+                        <!--<label>цена</label><br>-->
+                        <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                             <span ng-class="{'line':$ctrl.item.sale}" itemprop="price">
+                                <span class="price" ng-bind="($ctrl.item.stock[$ctrl.item.sort].price*$ctrl.rate.val).toFixed(2)"
+                                      ng-class="{'line':$ctrl.item.sale ||$ctrl.item.stock[$ctrl.item.sort].priceCampaign}"></span>
+                                <span ng-bind="$ctrl.currency.val"></span>
+                             </span>
+                            <span ng-if="$ctrl.item.sale">
+                                <span> / </span>
+                                <span class="sale" ng-bind="($ctrl.item.stock[$ctrl.item.sort].priceSale*$ctrl.rate.val).toFixed(2)"></span>
+                                <span ng-bind="$ctrl.currency.val"></span>
+                            </span>
+
+                            <span class="" ng-if="$ctrl.global.get('store').val.seller.retail">
+                                <span ng-bind="($ctrl.item.stock[$ctrl.item.sort].retail*$ctrl.rate.val).toFixed(2)"></span>
+                                <span ng-bind="$ctrl.currency.val"></span>
+                            </span>
+                            <span class="" ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign">
+                                <span> / </span>
+                                    <!--<label>акционная цена</label><br>-->
+                                <span class="sale" ng-bind="($ctrl.item.stock[$ctrl.item.sort].priceCampaign*$ctrl.rate.val).toFixed(2)"></span>
+                                <span ng-bind="$ctrl.currency.val"></span>
+                                <p class="text-right" ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign">
+                                    <a ui-sref="campaign.detail({url:$ctrl.item.campaignUrl})">условия акции</a>
+                                </p>
+
+                            </span>
+                        </p>
+
+                        <!--<a class="btn  btn-primary btn-border pull-right"
+                           ng-click="$ctrl.item.addItemToOrder()">
+                            добавить в корзину
+                        </a>-->
+
+                        <!--<a class="btn  btn-primary btn-border pull-right"
+                           ng-click="stuff.addItemToOrder()">
+                            заказать услугу
+                        </a>-->
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div  ng-if="!$ctrl.item.service">
+                        <a class="btn  btn-project btn-border pull-right"
+                           ng-click="$ctrl.item.addItemToOrder()">
+                            добавить в корзину
+                        </a>
+                    </div>
+                    <div  ng-if="$ctrl.item.service">
+                        <a class="btn  btn-project btn-border pull-right"
+                           ng-click="$ctrl.item.order()">
+                            заказать услугу
+                        </a>
+                    </div>
+
+
+
+                <!--<div class="row">
+                   <p>
+                     категория - <span ng-bind="::$ctrl.item.categoryName"></span>
+                   </p>
+                    <p ng-if="$ctrl.item.brand">
+                        brand - <span ng-bind="$ctrl.item.brandName"></span>
+                    </p>
+                    <p ng-if="$ctrl.item.brandTag">
+                        коллекция - <span ng-bind="$ctrl.item.brandTagName"></span>
+                    </p>
+                </div>-->
+                <div class="row" ng-if="$ctrl.item.addInfo">
+                    <h4>
+                        ТАБЛИЦА РАЗМЕРОВ
+                    </h4>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th class="col-lg-2">
+                                #
+                            </th>
+                            <th class="col-lg-2" ng-repeat="head in $ctrl.item.addInfo.header">
+                                {{head}}
+                            </th>
+
+                        </tr>
+                        <tr ng-repeat="(key,tr) in $ctrl.item.addInfo.table">
+                            <td>{{$ctrl.getTagName(key)}}</td>
+                            <td ng-repeat="td in tr track by $index">{{td}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <!--<div class="row" ng-if="$ctrl.item.sortsOfStuff && $ctrl.item.sortsOfStuff.stuffs.length">
+                    <div class="col-lg-2" ng-repeat="item in $ctrl.item.sortsOfStuff.stuffs">
+                        <a ng-class="{'active':item._id==$ctrl.item._id}"
+                           ui-sref="stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:item.url})">
+                            <img class="img-responsive" ng-src="{{item.gallery[0].thumbSmall}}">
+                        </a>
+                    </div>
+                </div>-->
+                    <div class="clearfix"></div>
+                <div class="block-comments" style="margin-top: 40px">
+                    <hr>
+                    <div class="input-group" ng-if="$ctrl.global.get('user').val">
+                        <input  class="form-control" placeholder="добавьте комментарий" ng-model="$ctrl.comment">
+                        <span class="input-group-btn">
+                            <button  class="btn btn-default add-comments pull-right" ng-click="$ctrl.createNewComment($ctrl.comment)" type="button">
+                            <span class="glyphicon glyphicon-edit"></span></button>
+                        </span>
+                    </div>
+                    <!--<div ng-if="$ctrl.global.get('user').val">
+                        <textarea class="form-control pull-left col-lg-10" placeholder="добавьте комментарий" ng-model="$ctrl.comment"> </textarea>
+                        <a class="add-comments pull-right col-lg-2" ng-click="$ctrl.createNewComment($ctrl.comment)">+</a>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    <div class="comments-box">
+                        <div class="comments" ng-repeat="item in $ctrl.item.comments">
+                        <span class="date">
+                            <span ng-bind="$ctrl.moment(item.date).format('LLL')"></span>
+                            <span ng-bind="item.user"></span>
+                        </span>
+                            <div class="com-text">
+                                <span ng-bind="item.text"></span>
+                            </div>
+
+                            <div class="response col-lg-offset-3 col-lg-9">
+                            <span class="date" ng-if="item.response">
+                                <span>администратор</span>
+                            </span><br>
+                                <span ng-bind="item.response"></span>
+                            </div>
+                        </div>
+                        <p ng-if="$ctrl.paginate.items>$ctrl.item.comments.length">
+                            <a ng-click="$ctrl.getComments('more')"> еще</a>
+                        </p>
+                    </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

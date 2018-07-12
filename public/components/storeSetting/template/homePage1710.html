@@ -1,0 +1,381 @@
+<style>
+
+    hr {
+        border-top-color:#ff7148
+    }
+
+</style>
+<div class="template-list base-setting" ng-if="$ctrl.item.index">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">настройки стилей для сайта </h3>
+        <div ng-if="$ctrl.item.index">
+            <div class="cart-detail">
+                <h4 class="text-center name-page">шрифты</h4>
+                <hr>
+                <ui-select multiple ng-model="$ctrl.item.index.fontFaces" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('index.fontFaces',$ctrl.item.index.fontFaces)">
+                    <ui-select-match  allow-clear="true"placeholder="font family">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="opt in $ctrl.fontFaces">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+
+            <div class="cart-detail">
+                <h4 class="text-center name-page">цвета</h4>
+                <hr>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                    <span>основной цвет проекта</span>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.mainColor">@</a>
+                        </span>
+                        <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.mainColor"
+
+                               ng-change="$ctrl.saveFieldTemplate('index.mainColor',$ctrl.item.index.mainColor)">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                    <span>первый дополнительный цвет проекта</span>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.addColor1">@</a>
+                        </span>
+                        <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.addColor1"
+
+                               ng-change="$ctrl.saveFieldTemplate('index.addColor1',$ctrl.item.index.addColor1)">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                    <span>второй дополнительный цвет проекта</span>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.addColor2">@</a>
+                        </span>
+                        <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.addColor2"
+
+                               ng-change="$ctrl.saveFieldTemplate('index.addColor2',$ctrl.item.index.addColor2)">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                    <span>третий дополнительный цвет проекта</span>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.addColor3">@</a>
+                        </span>
+                        <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.addColor3"
+
+                               ng-change="$ctrl.saveFieldTemplate('index.addColor3',$ctrl.item.index.addColor3)">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                    <span>четвертый дополнительный цвет проекта</span>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.addColor4">@</a>
+                        </span>
+                        <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.addColor4"
+
+                               ng-change="$ctrl.saveFieldTemplate('index.addColor4',$ctrl.item.index.addColor4)">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+
+            <div class="cart-detail">
+                <h4 class="text-center name-page">body</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.body" save-field="index.body" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">elements for body</h4>
+                <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveFieldTemplate('index.elements',$ctrl.item.index.elements)">
+                        <i class="material-icons link-success">save</i>
+                    </a>
+                </div>-->
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <ui-select ng-model="$ctrl.element" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.addElementInMain()">
+                        <ui-select-match placeholder="choice element">{{$item}}</ui-select-match>
+                        <ui-select-choices repeat="opt in $ctrl.listElements|filter:$ctrl.filterMainElements">{{ opt }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 name-class">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="наименование класса" ng-model="$ctrl.selectors['index']">
+                        <span class="input-group-addon">
+                            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.indexAddSelector('index',$ctrl.item.index)">
+                                <i class="material-icons link-success md-42">add</i>
+                            </a>
+                        </span>
+
+                    </div>
+                    <p class="help-text">
+                        для указания .class.class запись class__class<br>
+                        для указания class:hover запись class&hover<br>
+                        для указания element:hover запись &elevent&hover
+                    </p>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="(element,item) in $ctrl.item.index.elements">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        <h4 class="text-center name-page" ng-bind="element"></h4>
+                    </div>
+                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                        <set-styles item="item" save-field="index.elements.{{element}}" font-faces="$ctrl.item.index.fontFaces"
+                                    save-function="$ctrl.saveFieldTemplate(field,value)"
+                                    delete-function="$ctrl.deleteElementInMain(element)"
+                                    element="{{element}}"
+                                    action="save delete"
+                        ></set-styles>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+
+            <div class="cart-detail">
+                <h4 class="text-center name-page">экран загрузки (ожидания при загрузке контента)</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.dimScreen" save-field="index.dimScreen" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">ссылки</h4>
+                <span class="text-center text-small"> шаблон</span>
+                <ui-select ng-model="$ctrl.item.index.linkFile" append-to-body="true" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveFieldTemplate('index.linkFile',$ctrl.item.index.linkFile)">
+                    <ui-select-match placeholder="номер шаблона">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+                <hr>
+                <!--<pre>{{$ctrl.item.index.link|json}}</pre>-->
+                <set-styles item="$ctrl.item.index.link" save-field="index.link" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">кнопки</h4>
+                <hr>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <ui-select ng-model="$ctrl.item.index.buttonColorFile" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.saveFieldTemplate('index.buttonColorFile',$ctrl.item.index.buttonColorFile)">
+                            <ui-select-match placeholder="choice file of color">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.key as (key, item) in $ctrl.tableOfColorsForButton">{{ item.value }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <ui-select ng-model="$ctrl.item.index.buttonFile" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.saveFieldTemplate('index.buttonFile',$ctrl.item.index.buttonFile)">
+                            <ui-select-match placeholder="choice file of button">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.key as (key, item) in $ctrl.tableOfButtonsFile">{{ item.value }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+
+
+                <set-styles item="$ctrl.item.index.button" save-field="index.button" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <!--<div class="cart-detail">
+                <h4 class="text-center name-page">сквозная кнопка</h4>
+                <hr>
+               &lt;!&ndash; <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <ui-select ng-model="$ctrl.item.index.buttonColorFile" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.saveFieldTemplate('index.buttonColorFile',$ctrl.item.index.buttonColorFile)">
+                            <ui-select-match placeholder="choice file of color">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.key as (key, item) in $ctrl.tableOfColorsForButton">{{ item.value }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <ui-select ng-model="$ctrl.item.index.buttonFile" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.saveFieldTemplate('index.buttonFile',$ctrl.item.index.buttonFile)">
+                            <ui-select-match placeholder="choice file of button">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.key as (key, item) in $ctrl.tableOfButtonsFile">{{ item.value }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>&ndash;&gt;
+
+
+                <set-styles item="$ctrl.item.index.addbutton" save-field="index.addbutton" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>-->
+            <div class="cart-detail">
+                <h4 class="text-center name-page">кнопка скроллирования вниз (для баннера и слайдера)</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.arrowDown" save-field="index.arrowDown" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">кнопка скроллирования вверх</h4>
+                <set-styles item="$ctrl.item.index.arrowUp" save-field="index.arrowUp" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">модальные окна</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.modalProject.styles" save-field="index.modalProject.styles" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+
+                <hr>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <ui-select ng-model="$ctrl.element" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.indexAddElement($ctrl.item.index.modalProject)">
+                        <ui-select-match placeholder="выбрать элемент">{{$item}}</ui-select-match>
+                        <ui-select-choices repeat="opt in $ctrl.listElements|filter:$ctrl.filterListElements">{{ opt }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 name-class">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="наименование класса" ng-model="$ctrl.selectors['modalwindow']">
+                        <span class="input-group-addon">
+                            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.indexAddSelector('modalwindow',$ctrl.item.index.modalProject)">
+                                <i class="material-icons link-success md-42">add</i>
+                            </a>
+                        </span>
+                    </div>
+                    <p class="help-text">
+                        для указания .class.class запись class__class<br>
+                        для указания class:hover запись class&hover<br>
+                        для указания element:hover запись &elevent&hover
+                    </p>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="(element,item) in $ctrl.item.index.modalProject.elements">
+                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <h4 class="element-block link-warning" ng-bind="element"></h4>
+                        </div>
+                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                            <set-styles item="item" save-field="main.elements.{{element}}" font-faces="$ctrl.item.index.fontFaces"
+                                        delete-function="$ctrl.indexDeleteElement($ctrl.item.index.modalProject.elements,element)"
+                                        element="{{element}}"
+                                        action="delete">
+
+                            </set-styles>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveFieldTemplate('index.modalProject.elements',$ctrl.item.index.modalProject.elements)">
+                            <i class="material-icons link-success md-42">save</i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">цвет заливки экрана при вызове модальных окон</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.modalBackdropClass" save-field="index.modalBackdropClass" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">боковая слайд-панель МЕНЮ (стили панели)</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.slideMenu" save-field="index.slideMenu" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">боковая слайд-панель ЧАТ (стили панели)</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.slideChat" save-field="index.slideChat" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">боковая слайд-панель КОРЗИНА (стили панели)</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.slideCart" save-field="index.slideCart" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">боковая слайд-панель ОН-ЛАЙН ЗАПИСЬ на услуги (стили панели)</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.slideEntry" save-field="index.slideEntry" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>
+            <!--<div class="cart-detail">
+                <h4 class="text-center name-page">гамбургер для slideMenu (бокового)</h4>
+                <hr>
+                <set-styles item="$ctrl.item.index.slideMenuHum" save-field="index.slideMenuHum" font-faces="$ctrl.item.index.fontFaces"
+                            save-function="$ctrl.saveFieldTemplate(field,value)" action="save">
+                </set-styles>
+                <div class="clearfix"></div>
+            </div>-->
+
+
+            <div class="cart-detail">
+                <h4 class="text-center name-page">иконки для сайта</h4>
+                <hr>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="(icon,item) in $ctrl.item.index.icons">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-right: 0">
+                        <h3 ng-bind="icon"></h3>
+                        <div class=" icon-box ">
+                            <a class="icon-box-img"  ng-click="$ctrl.setIcon(icon,'img')">
+                                <img ng-if="item.img" ng-src="{{item.img}}">
+                                <span ng-if="!item.img">icon</span>
+
+                            </a>
+                            <a ng-if="item.img" ng-click="$ctrl.deleteIcon(icon,'img')">
+                                <i class="material-icons link-warning md-42">clear</i>
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class=" icon-box">
+                            <a class="icon-box-img" ng-click="$ctrl.setIcon(icon,'hoverImg')">
+                                <img ng-if="item.hoverImg" ng-src="{{item.hoverImg}}">
+                                <span ng-if="!item.hoverImg">icon:hover</span>
+                            </a>
+                            <a  ng-if="item.hoverImg" ng-click="$ctrl.deleteIcon(icon,'hoverImg')">
+                                <i class="material-icons link-warning md-42">clear</i>
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                        <set-styles item="item.styles" save-field="index.icons.{{icon}}.styles" font-faces="$ctrl.item.index.fontFaces"
+                                    save-function="$ctrl.saveFieldTemplate(field,value)" action="save"></set-styles>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

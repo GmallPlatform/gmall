@@ -1,0 +1,37 @@
+if(dj[key].stuffs && dj[key].stuffs.length)
+    div(class=dj[key].wrapclass)
+        div(class=mobileWrapper)
+            div(class="home-stuffs stuffs-home")
+                div(class="container")
+                    if(dj[key].name)
+                        h2(class="text-center")=dj[key].name
+                    - var className  ="col-lg-3 col-md-3 col-sm-6 col-xs-12"
+                    if(dj[key].stuffs.length == 2)
+                        - className="col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                    else if(dj[key].stuffs.length == 3)
+                        - className='col-lg-4 col-md-4 col-sm-4 col-xs-12'
+                    else if(dj[key].stuffs.length == 4 || dj[key].stuffs.length == 8 || dj[key].stuffs.length == 12)
+                        - className="col-lg-3 col-md-3 col-sm-3 col-xs-12"
+
+
+                    each stuff in dj[key].stuffs
+                        div(class=className,home-page-stuff=stuff._id)
+                            a(href=stuff.link)
+                                img(class="img-responsive" src=photoHost+'/'+stuff.img,alt=stuff.alt)
+                                if(stuff.name)
+                                    div(class="box-desc")
+                                        h4
+                                            span=stuff.name
+                                            | &nbsp;
+                                            span(class="artikul")=stuff.artikul
+
+                                        if(stuff.orderType==1)
+                                            a(class="btn  btn-project btn-border",ng-click="$ctrl.stuff.order()",ng-bind="$ctrl.global.get('lang').val.toOrder")
+                                        else if(stuff.orderType==2)
+                                            a(class="btn  btn-project btn-border",ng-click="$ctrl.global.get('functions').val.witget('dateTime',{stuff:$ctrl.stuff})",ng-bind="$ctrl.global.get('lang').val.enroll")
+                                        else if(stuff.orderType==3)
+                                            a(class="btn  btn-project btn-border",href=stuff.link,ng-bind="$ctrl.global.get('lang').val.more")
+                                        else if(stuff.orderType==4)
+                                            a(class="btn  btn-project btn-border",ng-click="$ctrl.stuff.getBonus()",ng-bind="$ctrl.global.get('store').val.bonusButtonText")
+
+                    div( class="clearfix")

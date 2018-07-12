@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  div(id="app")
+  - var favicon = photoHost+"/"+store.favicon
+  script.
+    (function () {
+      var link = document.createElement( 'link' );
+      link.type = 'image/x-icon';
+      link.rel = 'shortcut icon';
+      link.href = "#{favicon}";
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }());
+
+  script(src="account.js")
+
+
+
+

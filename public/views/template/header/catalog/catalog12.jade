@@ -1,0 +1,36 @@
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+            menu-sections-virtical-pug
+                div(class="myMenuV", id="wrapperForSections")
+                    ul(class="catalog-menu")
+                        - for (var i = 0; i < sectionsMenu.length; i++)
+                            - var section=sectionsMenu[i]
+                            li(id=section.id,class="mainli")
+                                a(class="section-name",href=(section.innerData) ? null : section.allCategiriesHref,set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                    span()
+                                        !=section.name
+                                    span(class="icon-caret-img")
+                                if(section.innerData)
+                                    div
+                                        ul(class="second-level")
+                                            if(store.newTag && section.newLink)
+                                                li(class="category-in-section")
+                                                    a(class="category-link new",href=section.tagHref + store.newTag)
+                                                        span()
+                                                            !=lang.new
+                                            if(store.saleTag && section.saleLink)
+                                                li(class="category-in-section")
+                                                    a(class="category-link sale",href=section.tagHref + store.saleTag)
+                                                        span()
+                                                            !=lang.sale
+                                            li(class="category-in-section")
+                                                a(class="all",href=section.allCategiriesHref)
+                                                    span()=lang['allCategories']
+                                            each category in section.categories
+                                                li(class="category-in-section")
+                                                    a(class="category-link",href=category.href)
+                                                        span()
+                                                            !=category.name
+
+
+

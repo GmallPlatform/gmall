@@ -1,0 +1,18 @@
+<div class="addItem">
+    <div class="col-lg-12">
+        <div class="col-lg-4">
+            <span ng-if="$ctrl.addItem.img">
+                <img class="img-responsive cart-img"  ng-src="{{$ctrl.addItem.img}}">
+            </span>
+        </div>
+        <div class="col-lg-7">
+            <a ng-click="$ctrl.goToStuff({groupUrl:'group',categoryUrl:'category',stuffUrl:$ctrl.addItem.url})">
+                <p class="name-goods" ng-bind="$ctrl.addItem.name+' '+$ctrl.addItem.artikul+(($ctrl.addItem.sortName)?' '+$ctrl.addItem.sortName:'')"></p>
+            </a>
+            <!-- to do вставить lang-->
+            <p>
+                <a href="/cart">корзина</a>
+            </p>
+        </div>
+    </div>
+</div>

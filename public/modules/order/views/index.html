@@ -1,0 +1,183 @@
+<div class="content" ng-if="$state.current.name=='frame'">
+    <div class="" ng-hide="global.get('store').val.orderis">
+        <a ui-sref="frame.orders" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">shop</i>
+                        </span>
+                        ордера заказов</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        оформленные (поступившие) заказы,  работа с ордерами
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="" ng-if="global.get('seller').val" ng-hide="global.get('store').val.onlineis">
+        <a   ui-sref="frame.online" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">query_builder</i>
+                        </span>
+                        запись он-лайн
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        таблица записи к специалистам (мастерам) на дату и время
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="" ng-if="global.get('seller').val" ng-hide="global.get('store').val.onlineis">
+        <a   ui-sref="frame.schedule" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">assignment</i>
+                        </span>
+                       расписание
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        перенос (копирование) расписания
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.notification" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">ring_volume</i>
+                        </span>
+                        уведомления
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        уведомления о заказах
+                        сообщениях в чате и других активных действиях
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="" ng-if="global.get('seller').val">
+        <a  ui-sref="frame.comments" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">record_voice_over</i>
+                        </span>
+                    комментарии</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        редактирование комментариев, которые пользователи оставляют на страницах товаров
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.dialogs" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">question_answer</i>
+                        </span>
+                        диалоги</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        чаты с авторизованными <br> и неавторизованными пользователями
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="" ng-if="global.get('seller').val">
+        <a   ui-sref="frame.currency" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons  link-warning">broken_image</i>
+                        </span>курсы валют</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        настройка блока валют
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="" ng-if="!global.get('seller').val">
+        <a   ui-sref="frame.user" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons  link-warning">line_style</i>
+                        </span>профиль</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        данные профиля
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a   ui-sref="frame.downloads" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons  link-warning">file_download</i>
+                        </span>скачать прайс и архивы фотографий</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                    <p class="plot">
+                        скачать каталог в формате YML/XML, Excel, скачать архивы фотографий и баннеры коллекций
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div ui-view></div>
+
+
+
+
+

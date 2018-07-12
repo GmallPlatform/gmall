@@ -1,0 +1,196 @@
+<div  ng-class="::{'home-news':!homeCtrl.template.news.class,
+        'home-news1':homeCtrl.template.news.class==1,
+        'home-news2':homeCtrl.template.news.class==2,
+        'home-news3':homeCtrl.template.news.class==3,
+        'home-news4':homeCtrl.template.news.class==4,
+        'home-news5':homeCtrl.template.news.class==5,}">
+        <div class="container">
+            <h2 class="text-center" ng-if="::homeCtrl.template.news.namebox" ng-bind="::homeCtrl.template.news.namebox"></h2>
+
+                <div class=" home-section home-news-content text-center"
+                     ng-class="::{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.template.news.qty==2||homeCtrl.template.news.qty==4,
+                                'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.template.news.qty==3,
+                                'col-lg-12 col-md-12 col-sm-12 col-xs-12': homeCtrl.template.news.qty==1}"
+                     ng-repeat="item in homeCtrl.data.news" ng-if="homeCtrl.data.news">
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 news-home-img" set-animate data-animation="fadeInLeft" data-animation-delay="03">
+                            <a ui-sref="news.item({id:item.url})">
+                                <img class="img-responsive" ng-src="{{item.img}}">
+                            </a>
+                            <div ng-if="::!item.img" ng-bind-html="item.video|unsafe">
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 news-home-desk" set-animate data-animation="fadeInRight" data-animation-delay="03">
+                            <div class="news-desc">
+                                <h3 ng-bind="item.name"></h3>
+                                <p ng-bind="item.desc.clearTag()|cut:true:250:'...'"></p>
+                            </div>
+                            <div class="text-center">
+                                <a class="btn btn-project btn-border btn-banner" ui-sref="news.item({id:item.url})">
+                                    подробнее
+                                </a>
+                            </div>
+                        </div>
+
+                    <div class="clearfix"></div>
+                    <a class="all-news" href="/news"> все новости</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        <!--</div>
+    </div>-->
+</div>
+
+
+
+
+
+
+
+<!-- текстовый блок-->
+<!--<div class="col-lg-10 col-lg-offset-1 block-white">
+    <h1><span class="title-block-white" ng-bind="homeCtrl.data.name"></span><br><br></h1>
+    <p ng-bind-html="homeCtrl.data.desc|unsafe"></p>
+    <div set-animate data-animation="animated8" data-animation-delay="03" ng-if="homeCtrl.data.descButton.button">
+        <a class="btn btn-1 btn-success btn-lg btn-border" href="{{homeCtrl.data.descButton.link}}" ng-bind="homeCtrl.data.descButton.text"></a>
+    </div>
+
+</div>-->
+
+<!--news-->
+<!-- <div class="col-lg-12 home-section  " ng-repeat="item in homeCtrl.data.news">
+     <div>
+         <a ui-sref="news.item({url:item.url})">
+             <img class="img-responsive" ng-src="{{item.img}}">
+             <div class="home-section-header-big">
+                 <h3 ng-bind="item.name"></h3>
+                 <p ng-bind-html="item.desc|unsafe">комплексная скидка на все услуги при семейном посещении клиники</p>
+             </div>
+         </a>
+     </div>
+ </div>-->
+
+<!--banner-->
+<!--<div class="banner-box">
+       <img class="img-responsive banner" ng-src="{{homeCtrl.data.bannerSrc}}">
+        <div class="banner-content text-center" ng-if="homeCtrl.data.banner.button">
+            <h1 class="banner-header">
+                <span ng-bind="homeCtrl.data.banner.desc"></span>
+            </h1>
+            <a class="btn btn-primary btn-border btn-banner" href="{{homeCtrl.data.banner.link}}" ng-bind="homeCtrl.data.banner.text">
+            </a>
+
+        </div>
+        <div class="down">
+            <a>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+
+        </div>
+    </div>-->
+<!--<div class="row">
+    <div class="col-lg-12">
+        <img class="img-responsive" ng-src="{{homeCtrl.data.bannerSrc}}">
+        <div style="position: absolute;left: 50%;top: 40%;transform: translate(-50%,-40%);" ng-if="homeCtrl.data.banner.button">
+            <a class="btn btn-1 btn-success btn-lg btn-border" href="{{homeCtrl.data.banner.link}}" ng-bind="homeCtrl.data.banner.text"></a>
+            <h3 ng-bind="homeCtrl.data.banner.desc"></h3>
+        </div>
+    </div>
+</div>-->
+
+
+
+<!--video-->
+<!--<div class="row">
+    <div class="col-lg-12" ng-if="homeCtrl.data.videoSrc" style="position:relative">
+        <video  loop  autoplay style="width: 100%">
+            <source ng-src="{{homeCtrl.data.videoSrc | trustUrl}}" type="video/webm">
+        </video>
+        <div style="position: absolute;left: 50%;top: 40%;transform: translate(-50%,-40%);" ng-if="homeCtrl.data.video.button">
+            <a class="btn btn-1 btn-success btn-lg btn-border" href="{{homeCtrl.data.video.link}}" ng-bind="homeCtrl.data.video.text"></a>
+            <h3 ng-bind="homeCtrl.data.video.desc"></h3>
+        </div>
+
+    </div>
+</div>-->
+
+
+<!--slider-->
+<!--<div class="row">
+    <div class="col-lg-3" ng-repeat="image in homeCtrl.data.imgs">
+        <a href="{{image.link}}">
+            <img  class="img-responsive" ng-src="{{image.img}}">
+        </a>
+        <h3 ng-bind="image.name">
+
+        </h3>
+        <div ng-bind-html="image.desc|unsafe">
+        </div>
+    </div>
+</div>-->
+
+<!--brands-->
+<!--<div class="row">
+    <div class="col-lg-3" ng-repeat="item in homeCtrl.data.brands">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',brand:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+    </div>-->
+
+
+    <!--filterTags-->
+    <!--<div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="item in homeCtrl.data.filterTags">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',queryTag:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>-->
+
+
+
+<!--brandTags-->
+    <!--<div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="item in homeCtrl.data.brandTags">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',brandTag:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>-->
+
+<!--categories-->
+    <!--<div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="item in homeCtrl.data.categories">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>-->
+
+
+    <!--stuffs-->
+   <!-- <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="item in homeCtrl.data.stuffs">
+            <a ui-sref="stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:item.url})">
+                <img class="img-responsive" ng-src="{{item.gallery[0].thumb}}">
+            </a>
+            <span ng-bind="item.name"></span> <span ng-bind="item.artikul"></span>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>-->
+
+
+

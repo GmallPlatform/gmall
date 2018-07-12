@@ -1,0 +1,169 @@
+.cart-detail {
+    background-color: #eee;
+    box-shadow: 0 3px 3px #666;
+    -webkit-box-shadow: 0 3px 3px #666;
+    -moz-box-shadow: 0 3px 3px #666;
+    box-shadow: 0 3px 3px #666;
+    margin-bottom: 10px;
+    padding: 0px 0px 0px 0px;
+}
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+.simpleDemo ul[dnd-list],
+.simpleDemo ul[dnd-list] > li {
+    position: relative;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.simpleDemo ul[dnd-list] {
+    min-height: 32px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.simpleDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.simpleDemo ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #E6E3EE;
+    min-height: 32px;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.simpleDemo ul[dnd-list] li {
+     background-color: #eee;;
+    /*border: 1px solid #ddd;*/
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+.simpleDemo ul[dnd-list] li:hover{
+    background-color: #e0deee;
+    text-decoration: none;
+}
+
+/**
+ * Show selected elements in green
+ */
+/*.simpleDemo ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}*/
+a {
+    cursor: pointer;
+}
+
+
+/* мз файла детали*/
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1em 1em 1em !important;
+    margin: 0 0 1em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+/*.tags {
+  margin-top: 10px;
+}*/
+.tags .tag {
+    border-radius: 3px;
+    background-color: #cadFEF;
+    box-shadow: 0 2px 2px #666;
+    -webkit-box-shadow: 0 2px 2px #666;
+    -moz-box-shadow: 0 2px 2px #666;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color:black;
+}
+
+input:focus.input-inline  {
+    box-shadow: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent;
+    border: 0px solid !important;
+    border-bottom: 1px solid #5f9aff !important;
+    outline: 0 !important;
+
+}
+input.input-inline  {
+    box-shadow: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent;
+    border: 0px solid !important;
+    outline: 0 !important;
+
+}
+textarea.textarea-inline  {
+    box-shadow: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent;
+    border: 0px solid !important;
+    outline: 0 !important;
+    width:100%;
+
+}
+.redColor{
+    color: #ff1629;
+}
+span.inline{
+    cursor: pointer;
+
+}
+span.inline:hover{
+    color:#376fff;
+}
+span.date{
+    cursor: pointer;
+
+}
+span.date:hover{
+    color: #915dff;
+}
+
+.ship-detail {
+    background-color: #eee;
+    box-shadow: 0 3px 3px #666;
+    -webkit-box-shadow: 0 3px 3px #666;
+    -moz-box-shadow: 0 3px 3px #666;
+    margin-bottom: 10px;
+    padding: 10px 20px 10px 10px;
+}
+

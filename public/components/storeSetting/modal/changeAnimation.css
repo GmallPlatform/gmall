@@ -1,0 +1,17 @@
+.change-animation .modal-header {
+    background-color:  #eee;
+    padding: 12px 20px;
+    border-bottom: 3px solid #d5d5d5;
+}
+
+
+.change-animation .modal-footer {
+    padding: 0;
+    border-top: 3px solid #d5d5d5;
+}
+.change-animation .modal-footer .btn {
+    margin: 0;
+    padding: 12px;
+    min-height: 46px;
+    width: 100%;
+}

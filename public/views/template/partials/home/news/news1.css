@@ -1,0 +1,41 @@
+/*zefir*/
+.mytoggle-page {
+    width: 100%;
+}
+.home-news .home-section:hover .news-desc {
+    transform: translateY(-10%);
+}
+.home-news .substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.home-news .slide-fade{
+    position: relative;
+}
+.home-news {
+    position: relative;
+}
+.home-news .mytoggle-page,
+.home-news img{
+    width: 100%;
+}
+.mytoggle-page {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity:0;
+}
+.owl-theme .owl-dots .owl-dot span {
+    border: 1px solid #fff;
+}

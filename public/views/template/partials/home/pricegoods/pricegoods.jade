@@ -1,0 +1,9 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="col-lg-12 col-md-12 col-xs-12 home-section",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
+            h3(class="text-center",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].name
+                | !{dj[key].desc}
+            img(src=photoHost+dj[key].img)
+            div(style='max-height:200px;overflow:scroll')
+                price-goods
+        div(class="clearfix")

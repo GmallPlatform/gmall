@@ -1,0 +1,39 @@
+
+<div class="block-comments">
+    <div class="input-group" ng-if="$ctrl.global.get('user').val">
+        <input  class="form-control" placeholder="добавьте комментарий" ng-model="$ctrl.comment">
+            <span class="input-group-btn">
+                <button  class="btn btn-default add-comments pull-right" ng-click="$ctrl.createNewComment($ctrl.comment)" type="button">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </button>
+            </span>
+    </div>
+    <!--<div ng-if="$ctrl.global.get('user').val">
+        <textarea class="form-control pull-left col-lg-10" placeholder="добавьте комментарий" ng-model="$ctrl.comment"> </textarea>
+        <a class="add-comments pull-right col-lg-2" ng-click="$ctrl.createNewComment($ctrl.comment)">+</a>
+    </div>-->
+    <div class="clearfix"></div>
+    <div class="comments-box">
+        <div class="comments" ng-repeat="item in $ctrl.item.comments">
+                        <span class="date">
+                            <span ng-bind="$ctrl.moment(item.date).format('LLL')"></span>
+                            <span ng-bind="item.user"></span>
+                        </span>
+            <div class="com-text">
+                <span ng-bind="item.text"></span>
+            </div>
+
+            <div class="response col-lg-offset-3 col-lg-9">
+                            <span class="date" ng-if="item.response">
+                                <span>администратор</span>
+                            </span><br>
+                <span ng-bind="item.response"></span>
+            </div>
+        </div>
+        <p ng-if="$ctrl.paginate.items>$ctrl.item.comments.length">
+            <a ng-click="$ctrl.getComments('more')"> еще</a>
+        </p>
+    </div>
+
+</div>
+<div class="clearfix"></div>

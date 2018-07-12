@@ -1,0 +1,27 @@
+.border-box {
+    /*display: table-row;*/
+    border: 1px solid #ccc;
+}
+/*.container {
+    width: 80%
+}*/
+.name {
+    width: 55%;
+}
+.duration,
+.cost {
+    width: 20%;
+}
+
+td {
+    border:none;
+}
+@media (max-width: 380px) {
+    .container {
+        width: 100%
+    }
+}
+
+.border-left-box {
+    border-left: 1px solid #ccc;
+}

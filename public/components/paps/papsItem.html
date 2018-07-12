@@ -1,0 +1,74 @@
+<div class="paps-item">
+    <!--<div class="nav-box">
+        <div class="content-tab-nav">
+
+        </div>
+    </div>-->
+    <div class="nav-box-stuff">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.paps">
+                <i class="material-icons link-warning md-42">reply</i>
+            </a>
+        </div>
+
+        <h3 class="name-page col-lg-8 col-md-8 col-sm-8 col-xs-7">
+            редактирование post action page
+        </h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content-box">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="cart-detail">
+                <div class="form-group label-floating">
+                    <label class="control-label">заголовок</label>
+                    <input class="form-control name" ng-model="$ctrl.item.name" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('name')">
+                </div>
+                <h3 class="text-center name-box">текст на странице</h3>
+                <div class="editor form-group">
+                    <div text-angular  ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                         ng-change="$ctrl.saveField('desc',200)"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="$ctrl.item.desc"
+                         ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="cart-detail">
+                <div class="banner text-center">
+                    <h3 class="text-center name-box">баннер</h3>
+                    <load-image
+                            upload-url="/api/collections/Photo/fileUploadBig?collectionName=Paps"
+                            item-id="{{$ctrl.item._id}}"
+                            item-url="{{$ctrl.item.url}}"
+                            item-resourse="$ctrl.Items"
+                            file-src="$ctrl.item.img"
+                            name-img="img">
+                    </load-image>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="cart-detail">
+                <h3 class="text-center name-box">код цели из adWords</h3>
+                <p>устанавливается если вы ведете рекламную компании в adWords</p>
+                <div class="form-group label-floating">
+                    <label class="control-label">код цели из adWords</label>
+                    <textarea rows='6' class="form-control name" ng-model="$ctrl.item.googleGoal" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                              ng-change="$ctrl.saveField('googleGoal')"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="clearfix"></div>
+    </div>
+</div>

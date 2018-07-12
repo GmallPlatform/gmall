@@ -1,0 +1,126 @@
+<article class="col-lg-12 col-md-12 col-sm-12 col-xs-12 config-date">
+  <h3 class="name-page text-center">Основные прараметры конфигурации</h3>
+  <form ng-submit="$ctrl.updateItem()">
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="cart-detail">
+        <div class="form-group label-floating">
+          <label for="name" class="control-label">название</label>
+          <input type="text" placeholder="название" id="name" class="form-control mb"
+                 ng-model="$ctrl.item.name"
+                 required
+                 focus-me="focusInput"/>
+        </div>
+      </div>
+    </div>
+    <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="cart-detail">
+        <div class="form-group">
+          <tag-manager tags="$ctrl.item.currency" header="валютные метки"></tag-manager>
+        </div>
+        <button class="btn btn-raised btn-success btn-block" type="submit">сохранить</button>
+      </div>
+    </div>
+    <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="cart-detail">
+        <div class="form-group">
+          <tag-manager tags="$ctrl.item.langs" header="языковые метки"></tag-manager>
+        </div>
+        <button class="btn btn-raised btn-success btn-block" type="submit">сохранить</button>
+      </div>
+    </div>
+    <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="cart-detail">
+        <div class="form-group">
+          <tag-manager-for-object tags="$ctrl.item.tagsValue" header="типы для тегов"></tag-manager-for-object>
+        </div>
+        <button class="btn btn-raised btn-success btn-block" type="submit">сохранить</button>
+      </div>
+    </div>
+    <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="cart-detail">
+        <div class="form-group">
+          <tag-manager tags="$ctrl.item.roles" header="роли для пользователей"></tag-manager>
+        </div>
+        <button class="btn btn-raised btn-success btn-block" type="submit">сохранить</button>
+      </div>
+    </div>
+    <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="cart-detail">
+        <div class="form-group">
+          <tag-manager tags="$ctrl.item.unitOfMeasure" header="единицы измерений"></tag-manager>
+        </div>
+        <button class="btn btn-raised btn-success btn-block" type="submit">сохранить</button>
+      </div>
+    </div>
+    <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="cart-detail">
+        <div class="form-group">
+          <tag-manager-for-object tags="$ctrl.item.actions" header="коды действие - коды писем"></tag-manager-for-object>
+        </div>
+        <button class="btn btn-raised btn-success btn-block" type="submit">сохранить</button>
+      </div>
+    </div>
+    <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="cart-detail">
+        <div class="form-group">
+          <tag-manager tags="$ctrl.item.notification" header="виды уведомлений"></tag-manager>
+        </div>
+        <button class="btn btn-raised btn-success btn-block" type="submit"  ng-click="$ctrl.saveField(item,'data')">сохранить</button>
+      </div>
+    </div>
+    <!--<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="cart-detail text-center">
+        <button class="btn btn-raised btn-success" type="submit">сохранить</button>
+      </div>
+      <div class="clearfix"></div>
+    </div>-->
+  </form>
+</article>
+
+
+
+
+
+<style>
+  .tags {
+    margin: 10px 0;
+  }
+  .tags .tag {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #EFEFEF;
+    border: 1px solid #DDD;
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+  .tags .tag:hover {
+    color: #ff7148;
+    text-decoration: none;
+  }
+  .form-group .input-group-btn a.btn-fab {
+     border-radius: 5px;
+   }
+  input {
+    margin-bottom: 0px !important;
+  }
+  .config-date h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #767c89;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .tag-list {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #EFEFEF;
+    border: 1px dotted #DDD;
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+  .tag-list:hover {
+    color: #72ad66;
+  }
+</style>

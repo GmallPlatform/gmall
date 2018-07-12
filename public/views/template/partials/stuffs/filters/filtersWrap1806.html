@@ -1,0 +1,130 @@
+<style>
+
+    .filter-box .checkbox .checkbox-material .check {
+        margin-right: 3px;
+    }
+    .filter-box .brand-name {
+        font-size: 16px;
+    }
+    .filter-box .all-collection {
+        margin-top: 10px;
+    }
+    .filter-box .all-collection span{
+        font-size: 16px;
+        margin-right: 20px;
+    }
+    .filter-box .tag {
+       margin-top: 0;
+        margin-bottom: 0;
+    }
+    .filter-box .tag .checkbox{
+        margin-right: 20px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .filter-box a {
+        color: #333333;
+    }
+    .panel-title a{
+        display: block;
+        width: 100%;
+    }
+    .filter-box .checkbox input[type=checkbox],
+    .filter-box .checkbox-inline input[type=checkbox],
+    .filter-box .radio input[type=radio],
+    .filter-box .radio-inline input[type=radio] {
+        width: 20px;
+        height: 20px;
+        margin-left: -25px;
+    }
+    .filter-box .checkbox label,
+    .filter-box .checkbox-inline label {
+        padding-left: 30px;
+    }
+    .filter-box {
+        font-size: 16px;
+    }
+    .filter-box hr {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .filter-box.affix {
+        width: 100%;
+    }
+
+</style>
+<div class="filter-box">
+    <a class="reset" ng-click="$ctrl.clearAll()">
+        {{$ctrl.global.get('lang').val.cancelAll}}
+    </a>
+    <uib-accordion close-others="false" >
+        <uib-accordion-group ng-repeat="filter in $ctrl.filters" ng-if="filter.inList && (filter.tags.length||filter.count)" is-open="filter.open">
+            <uib-accordion-heading><span>{{filter.name}} </span><span ng-if="filter.count">{{filter.desc}}</span></uib-accordion-heading>
+            <a class="reset link-warning" ng-click="$ctrl.changeAllTags(filter)">
+                {{$ctrl.global.get('lang').val.tagsReset}}
+            </a>
+            <div class="clearfix"></div>
+            <div ng-if="filter.count">
+                <rzslider
+                        rz-slider-model="filter.minValue"
+                        rz-slider-high="filter.maxValue"
+                        rz-slider-options="{floor: filter.min, ceil: filter.max}"></rzslider>
+                <a class="pull-right link-success" ng-click="$ctrl.setCountFilter(filter)">
+                    {{$ctrl.global.get('lang').val.set}}
+                </a>
+                <a class="link-warning" ng-click="$ctrl.clearCountFilter(filter)">
+                    {{$ctrl.global.get('lang').val.clear}}
+                </a>
+            </div>
+
+            <div ng-if="!filter.count" class="form-group pull-left tag" ng-repeat="tag in filter.tags">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="tag.set"
+                               ng-change="$ctrl.changeTag()">&nbsp{{tag.name}}
+                    </label>
+                </div>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>
+
+    <div ng-if="$ctrl.brands.length">
+        <a class="reset link-warning" ng-click="$ctrl.changeAllBrands()">
+            {{$ctrl.global.get('lang').val.tagsReset}}
+        </a>
+    </div>
+
+    <div ng-repeat="brand in $ctrl.brands" ng-if="brand.inList">
+        <div class="pull-left">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"ng-model="brand.set"  ng-change="$ctrl.changeTag()">
+                    <span class="brand-name" ng-bind="brand.name" ></span>
+                </label>
+
+            </div>
+        </div>
+        <div class="pull-right text-right all-collection">
+            <a ng-if="$ctrl.checkedBrand<2 && brand.tags.length" ng-click="brand.showCollections=!brand.showCollections">
+                <span>коллекции бренда</span>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <div ng-show="brand.showCollections">
+            <div class="form-group pull-left tag" ng-repeat="tag in brand.tags">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="tag.set"
+                               ng-change="$ctrl.changeTag()">&nbsp{{tag.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+
+    </div>
+
+
+
+</div>

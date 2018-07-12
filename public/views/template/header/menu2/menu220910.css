@@ -1,0 +1,150 @@
+display: table;
+height: 100%;
+width: 100%;
+/*main style*/
+/*chudo, dance*/
+.navbar{
+    /*padding-top: $padding-top;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-bottom: $padding-bottom;
+    margin-top: $margin-top;
+    margin-left: $margin-left;
+    margin-right: $margin-right;
+    margin-bottom: $margin-right;
+    color: $color;
+    height: $height;
+    font-size: $font-size;
+    border: $border;*/
+    border-radius: $border-radius;
+    -webkit-transition: top ease-in-out 0.5s;
+    -moz-transition: top ease-in-out 0.5s;
+    -ms-transition: top ease-in-out 0.5s;
+    -o-transition: top  ease-in-out 0.5s;
+    transition: top ease-in-out 0.5s;
+}
+.navbar-toggle-slide {
+    position: relative;
+}
+.menuColor {
+    background-color : $background-color;
+}
+.center-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.center-wrap {
+    display:inline-block;
+}
+.left-nav-menu {
+    position:absolute;
+    left:0;
+}
+.right-nav-menu {
+    position:absolute;
+    right:0
+}
+.catalogDropDownMenu,
+.catalogDropDownMenu ul {
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+.catalogDropDownMenu ul li{
+    list-style: none;
+}
+.section-in-section {
+    float: left;
+}
+.catalogDropDownMenu .mainli{
+    position: relative;
+}
+.catalogDropDownMenu a {
+    display: block;
+}
+/* Level 1 Drop Down */
+.mainli {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: -4px; /* solve the 4 pixels spacing between list-items */
+}
+/* Level 2 */
+.innerDiv {
+    border-top: 1px solid $color;
+    border-bottom: 1px solid $color;
+    background-color: $background-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: none;
+    position: absolute;
+    left: 0;
+    width: auto;
+    z-index: 999999; /* if you have YouTube iframes,
+    is good to have a bigger z-index so the video can appear above the video */
+}
+.category-name{
+    text-transform: uppercase;
+    color: $color;
+}
+.nav-center {
+    font-size: 14px;
+    padding-left: 0;
+}
+.mobile-wrapper .navbar-toggle-slide {
+    padding: 0 10px;
+}
+
+/*menu-vertical*/
+.menu-section-vertical {
+    display: table;
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+}
+/*.menu-section-vertical ul {
+    margin-bottom: 0;
+    width: 100%;
+}*/
+.menu-section-vertical li {
+    list-style: none;
+}
+.myMenuV{
+    width: 100%;
+    height: 100%;
+}
+/*.section-name {
+    padding-top:$padding-top;
+    padding-right:$padding-right;
+    padding-bottom:$padding-bottom;
+    padding-left:$padding-left;
+    text-transform: $text-transform;
+}*/
+.catalog-menu {
+    padding-left: 0;
+    width: 100%;
+}
+
+/*.myMenuV .catalog-menu .mainli {
+    padding: 0;
+ }*/
+/*.tablet-wrapper .menu-section-vertical,
+.mobile-wrapper .menu-section-vertical {
+    padding: 30% 30px;
+}*/
+.tablet-wrapper .catalog-menu ul,
+.mobile-wrapper .catalog-menu ul {
+    padding-left: 20px;
+}
+.menu.ng-pageslide.menu-box {
+    overflow: auto !important;
+}
+/*.tablet-wrapper .menu-section-vertical .page-stat a,
+.mobile-wrapper .menu-section-vertical .page-stat a {
+    text-transform: uppercase;
+}*/
+

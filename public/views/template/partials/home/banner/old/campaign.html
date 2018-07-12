@@ -1,0 +1,25 @@
+<!--campaign-->
+<div  ng-class="::{'home-campaign':!homeCtrl.template.campaign.class,
+        'home-campaign1':homeCtrl.template.campaign.class==1,
+        'home-campaign2':homeCtrl.template.campaign.class==2,
+        'home-campaign3':homeCtrl.template.campaign.class==3,
+        'home-campaign4':homeCtrl.template.campaign.class==4,
+        'home-campaign5':homeCtrl.template.campaign.class==5,}"
+      class="col-lg-12" ng-repeat="item in global.get('campaign').val">
+    <div class="home-section text-center"
+         ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.data.campaign.length==2||homeCtrl.data.campaign.length==4,
+                                    'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.data.campaign.length==3,
+                                    'col-lg-12 col-md-12 col-sm-12 col-xs-12': homeCtrl.data.campaign.length==1}">
+        <div class="row">
+            <a ui-sref="campaign.detail({id:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+                <div class="campaign-desc">
+                    <h3 ng-bind="item.name"></h3>
+                    <p ng-bind="item.gesc"></p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

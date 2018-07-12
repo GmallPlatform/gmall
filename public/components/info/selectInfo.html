@@ -1,0 +1,22 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выберите информационный раздел</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div>
+            <ul>
+                <li ng-repeat="item in $ctrl.items" style="cursor: pointer; margin-bottom: 30px">
+                    <div ng-click="$ctrl.ok(item)">
+                        <h4  ng-bind="item.name" ></h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,10 @@
+if(position=='center')
+    - var c = 'nav-group nav-bag'
+else
+    - var c = 'nav-group nav-bag pull-'+position
+div(class=c)
+    a(class="text-center",ui-sref="cart")
+        span(class="cart-img")
+        span(ng-class="{'newInCart':cart.changeCartItems,'inCart':!cart.changeCartItems}",set-animate,data-animation="animated6",data-animation-delay="02")
+            b(ng-bind="cart.inCart")
+

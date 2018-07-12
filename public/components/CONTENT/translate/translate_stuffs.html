@@ -1,0 +1,84 @@
+<style>
+    .content.translate .content-box {
+        min-height: 60px;
+    }
+    .translate h3 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 0;
+
+    }
+    .heading {
+        background-color: #93b1c6;
+        color: #ffffff;
+        padding: 15px 10px;
+        min-height: 60px;
+    }
+    .translated{
+        background: rgba(255, 113, 72, 0.18);
+        padding: 17px 10px;
+    }
+</style>
+<pre>{{$ctrl.items}}</pre>
+<div class="content translate" ng-if="$ctrl.$state.current.name=='frame.translate.stuffs'">
+    <div class="nav-box-stuff" style="left: 0">
+        <div class="tab-nav-stuff text-center action">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.translate">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <div class="text-center tab-nav-stuff">
+        <paginator-main
+                paginate="$ctrl.paginate"
+                getlist="$ctrl.getList()"
+                scroll="{{scrollId}}">
+        </paginator-main>
+    </div>
+
+    <div class="" ng-repeat="item in $ctrl.items">
+            <div class="panel content-box">
+                <a  ui-sref="frame.translate.stuffs.stuff({id:item._id})" class="content-box-link">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                        <h3>
+                            <span>
+                                <i class="material-icons link-warning">chrome_reader_mode</i>
+                            </span>
+                            {{item.name}}</h3>
+                    </div>
+                </a>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right" ng-class="{'translated':item.translated[$ctrl.translateLang]}">
+                   <!-- <div class="form-group">
+
+                    </div>-->
+                    <div class="checkbox" style="margin-bottom: 0; margin-top: 0">
+                        <label>
+                            превод текстов завершен
+                            <input ng-model="item.translated[$ctrl.translateLang]" type="checkbox" ng-change="$ctrl.saveField(item,'translated',item.translated)"/>
+                        </label>
+                    </div>
+                    <!--<span class="plot" >
+                        превод текстов завершен
+                    </span>-->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+    </div>
+    <div class="panel content-box" ng-show="$ctrl.items && !$ctrl.items.length">
+        <div class="panel-body col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <span class="plot" >
+                список пуст
+            </span>
+        </div>
+    </div>
+
+
+
+    <div class="clearfix"></div>
+</div>
+
+<div ui-view></div>

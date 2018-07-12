@@ -1,0 +1,56 @@
+/*dance*/
+.menu1-top-bottom.navbar {
+    padding-top: $padding-top;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-bottom: $padding-bottom;
+    margin-top: $margin-top;
+    padding-left: $margin-left;
+    margin-right: $margin-right;
+    margin-bottom: $margin-bottom;
+    color: $color;
+    border-bottom: 1px solid $color;
+    height: $height;
+    font-size: $font-size;
+    border: none;
+    border-radius: 0;
+}
+.menu1-top-bottom.navbar:hover {
+    background-color: $background-color;
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transition: all ease-in-out 0.5s;
+    -o-transition: all  ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+}
+
+.menu1-top-bottom.menuColor {
+    background-color: $background-color;
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transition: all ease-in-out 0.5s;
+    -o-transition: all  ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+}
+
+.menu1-top-bottom.navbar ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.menu1-top-bottom.navbar .right-nav-menu {
+    z-index: 1050;
+}
+.menu1-top-bottom  .center-menu {
+    left: 50%;
+    margin: auto;
+}
+.center-menu .logo-top {
+    position: relative;
+    display: inline-block;
+    right: 50%;
+    z-index: 1000;
+}
+.center-menu .logo-top img {
+    display: inline-block;
+}

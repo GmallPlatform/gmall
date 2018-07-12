@@ -1,0 +1,179 @@
+/*dtn*/
+.home-slides {
+    position: relative;
+}
+.substrate{
+    position: relative;
+    -webkit-transition: opacity 1s  ease-in-out 0.5s;
+    -moz-transition: opacity 1s  ease-in-out 0.5s;
+    -ms-transition: opacity 1s  ease-in-out 0.5s;
+    -o-transition: opacity 1s  ease-in-out 0.5s;
+    transition: opacity  1s ease-in-out 0.5s;
+}
+.mytoggle {
+    -webkit-transition: all 1s  ease-in-out 0.5s;
+    -moz-transition: all 1s  ease-in-out 0.5s;
+    -ms-transition: all 1s  ease-in-out 0.5s;
+    -o-transition: all 1s  ease-in-out 0.5s;
+    transition: all  1s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity:0;
+}
+.mytoggle.ng-enter {
+    opacity: 0;
+}
+.mytoggle.ng-enter-active {
+    opacity: 1;
+}
+.mytoggle.ng-leave {
+    opacity: 1;
+}
+.mytoggle.ng-leave-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-add {
+
+    opacity: 1;
+    display: block !important;
+}
+.mytoggle.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-remove {
+    opacity: 0;
+    display: block !important;
+}
+.mytoggle.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+/*.mobile-wrapper .mytoggle {
+    -webkit-transition: all 0.5s  ease-in-out 0.1s;
+    -moz-transition: all 0.5s  ease-in-out 0.1s;
+    -ms-transition: all 0.5s  ease-in-out 0.1s;
+    -o-transition: all 0.5s  ease-in-out 0.1s;
+    transition: all  0.5s ease-in-out 0.1s;
+}*/
+.slide-fade{
+    position: relative;
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+.mytoggle-page {
+    width: 100%;
+}
+.helf-shadow {
+    z-index: 1029;
+}
+
+.navleft-carousel span,
+.navright-carousel span {
+    border: 1px solid #000;
+}
+
+.navleft-carousel,
+.navright-carousel {
+    display: inline-block;
+    z-index: 1024;
+    height: 40px;
+    transition: all 0s ease-out 0.5s;
+}
+.navleft-carousel span,
+.navleft-carousel span {
+    border-right: none;
+}
+/*.mobile-wrapper .navleft-carousel,
+.mobile-wrapper .navright-carousel {
+    display: none;
+}*/
+.mobile-wrapper .substrate{
+    -webkit-transition: opacity 0.5s  ease-in-out 0.2s;
+    -moz-transition: opacity 0.5s  ease-in-out 0.2s;
+    -ms-transition: opacity 0.5s  ease-in-out 0.2s;
+    -o-transition: opacity 0.5s  ease-in-out 0.2s;
+    transition: opacity  0.5s ease-in-out 0.2s;
+}
+.mobile-wrapper .mytoggle {
+    -webkit-transition: all 0.5s ease-in-out 0.2s;
+    -moz-transition: all 0.5s ease-in-out 0.2s;
+    -ms-transition: all 0.5s ease-in-out 0.2s;
+    -o-transition: all 0.5s ease-in-out 0.2s;
+    transition: all 0.5s ease-in-out 0.2s;
+}
+/*.carousel-indicators {
+    left: 0;
+    margin: 0;
+    text-align: center;
+}*/
+.carousel-box {
+    display: inline-block;
+}
+.carousel-indicators li{
+    background-color: $color;
+    border: 3px solid $color;
+    width: 40px;
+    height: 5px;
+    border-radius: 0;
+    border-width: 3px;
+    opacity: 0.6;
+    float: left;
+    margin: 1px 5px;
+
+}
+.carousel-indicators .active {
+    background-color: transparent;
+    opacity: 1;
+    border-width: 3px;
+    margin: 1px 5px;
+}
+.icon-prev-inverse,
+.icon-next-inverse {
+    display: none;
+    transition: all 0s ease-out 0.5s;
+}
+.prev:hover .icon-prev-inverse{
+    display: block;
+}
+.prev:hover .icon-prev-img{
+    display: none;
+}
+.next:hover .icon-next-inverse{
+    display: block;
+}
+.next:hover .icon-next-img{
+    display: none;
+}
+/*media*/
+/*@media  (max-width: 1500px){
+    .home-slides {
+        margin-top: -60px;
+    }
+}*/
+/*.tablet-wrapper h3 {
+    letter-spacing: 10px;
+}*/
+/*.mobile-wrapper h3 {
+    margin-top: 5px;
+    letter-spacing: 5px;
+}*/
+.tablet-wrapper .nav-box{
+    font-size: 24px;
+}
+/*.tablet-wrapper .home-slides {
+    margin-top: -40px;
+}*/
+/*.mobile-wrapper .home-slides{
+    margin-top: 0 !important;
+}*/
+/*.mobile-wrapper  .btn-project {
+    display: none;
+}*/
+/*.mobile-wrapper .carousel-indicators {
+    display: block;
+}*/

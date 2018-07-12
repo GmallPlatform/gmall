@@ -1,0 +1,18 @@
+/*dropdown-absolute*/
+/*.currency-box ul {
+    padding: 10px  0;
+}*/
+.currency-box .dropdown-menu > li > a {
+    padding: 5px 20px;
+}
+.currency-box ul li {
+    list-style: none;
+}
+.currency-box .dropdown-menu .currency {
+    margin-top: 0px;
+}
+.dropdown-menu a {
+@if $font-size {
+    font-size: $font-size*0.8;
+}
+}

@@ -1,0 +1,19 @@
+div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-block")
+    div(class="col-lg-6 col-md-6 col-sm-12 col-xs-12 menu-left")
+        h1 jjjJJJJJJJJJJJJJJJJJJJ
+        each item in info
+            a(href='/info/'+item.url)
+                h2
+                    span(ng-class="{'active':$ctrl.$stateParams.id=='"+item.url+"'}")
+                        span=item.name
+    div(class="col-lg-6 col-md-6 col-sm-12 col-xs-12")
+        uib-accordion(ng-init="$ctrl.isOpen={}")
+            - for(var i =0; i< dj[key].itemDetail.blocks.length; i++)
+                div(uib-accordion-group,class="panel-default",is-open="$ctrl.isOpen['"+dj[key].itemDetail.blocks[i]._id+"']",ng-init="$ctrl.isOpen['"+dj[key].itemDetail.blocks[i]._id+"']=false")
+                    uib-accordion-heading
+                        span(ng-click="$ctrl.openBlock('"+dj[key].itemDetail.blocks[i]._id+"')")
+                            |#{dj[key].itemDetail.blocks[i].name}
+                    |!{dj[key].itemDetail.blocks[i].desc}
+
+    div(class="clearfix")
+div(class="clearfix")

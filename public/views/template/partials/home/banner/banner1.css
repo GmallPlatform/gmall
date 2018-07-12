@@ -1,0 +1,19 @@
+/*dtn*/
+.home-banner{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+img {
+    width: 100%;
+}
+
+.mobile-wrapper .container {
+    width: 100%;
+}
+.mobile-wrapper h1 {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

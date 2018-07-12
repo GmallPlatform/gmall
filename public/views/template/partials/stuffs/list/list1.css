@@ -1,0 +1,142 @@
+/*dance*/
+.stuff-list-wrapper table{
+    width: 100%;
+}
+.stuff-list-wrapper table td {
+    vertical-align: top;
+}
+.stuff-box  .img-goods {
+    width: 100%;
+}
+.sticker {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+}
+.service-desc {
+    padding: 0 20px;
+    min-height: 200px;
+}
+.goods-desc {
+    padding: 0 20px;
+    min-height: 250px;
+}
+.goods-desc .stuff-name {
+    font-size: 24px;
+    font-weight: 500;
+}
+.stuff-box .price {
+    font-size: 22px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+.stuff-box .sale {
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: $mainColor;
+}
+.price-block a {
+    cursor: default;
+}
+.price-block a:hover {
+    color: $color
+}
+.line {
+    text-decoration: line-through;
+}
+.stuffs-box  .sort-of-stuff {
+    color: #999;
+    font-weight: normal;
+}
+.stuffs-box  .tab-nav-stuff {
+    margin-top: 10px;
+}
+
+.sort {
+    padding: 20px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+}
+.sort-active {
+    border: 2px solid $mainColor;
+    background-color: transparentize($mainColor,.82);
+}
+.price-box {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+/*тень при наведении*/
+.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.stuff-box:hover .box-overlay{
+    opacity: 0.5;
+}
+.half-shadow img{
+    width: 50px;
+    transition: all  0.4s ease-in-out 0.1s;
+}
+
+.half-shadow{
+    position: absolute;
+    width: 100%;
+    z-index: 1027;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+}
+.half-shadow {
+    height: 30%;
+}
+.half-shadow-stuff {
+    height: 32%;
+}
+.half-shadow-stuff p {
+    margin-bottom: 0;
+    line-height: 22px;
+}
+/*.half-shadow-stuff.mobil {
+    background-color: rgba(255, 255, 255, 0.45);
+    position: relative;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}*/
+
+.title-block {
+    padding: 15px;
+    bottom: 15px;
+    display: none;
+}
+.title-block a {
+    letter-spacing: 1px;
+    color: #fff;
+}
+.stuff-box:hover .title-block {
+    display: block;
+}
+.mobile-wrapper  .title-block,
+.tablet-wrapper  .title-block {
+    display: block;
+}
+/*.mobile-wrapper  .box-overlay ,
+.tablet-wrapper  .box-overlay {
+    display: none;
+}*/
+/*.title-block a:hover {
+    color: #fff;
+    text-shadow: 0 0 1px #000;
+    text-shadow: none;
+}*/

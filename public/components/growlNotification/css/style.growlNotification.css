@@ -1,0 +1,17 @@
+.growl-notifications {
+    position: fixed;
+    top: 0px;
+    right: 10px;
+    z-index: 3000;
+}
+
+.growl-notifications .growl-notification {
+    background: rgba(93, 221, 96, 0.6);
+    color: white;
+    padding: 10px 20px;
+    width: 150px;
+    display: block;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-transform: uppercase;
+}

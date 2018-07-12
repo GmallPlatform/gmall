@@ -1,0 +1,49 @@
+<div class="template-list base-setting" ng-if="$ctrl.item.index">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="cart-detail">
+            <h4 class="text-center name-page">
+                <span>иконки для сайта  </span>
+                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.icons')" title="загрузить из шаблона">
+                    <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                </a>
+                <input class="form-control" placeholder="поиск по имени" ng-model="$ctrl.iconSearch">
+            </h4>
+
+            <div class="">
+                <div class="text-center box-style col-lg-2 col-md-2 col-sm-3 col-xs-12"  ng-repeat="(icon,item) in $ctrl.item.index.icons" ng-if="$ctrl.hasIcons(icon)">
+                    <div class="icon-box">
+                        <span style="display: inline-block"><small ng-bind="icon"></small></span><br>
+                        <span class="icon">
+                                <a class="icon-box-img"  ng-click="$ctrl.setIcon(icon,'img')">
+                                <img ng-if="item.img" ng-src="{{item.img}}">
+                                <span ng-if="!item.img">icon</span>
+                            </a>
+                            <a ng-if="item.img" ng-click="$ctrl.deleteIcon(icon,'img')">
+                                <i class="material-icons link-warning">clear</i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </span>
+                        <span class="icon">
+                            <a class="icon-box-img" ng-click="$ctrl.setIcon(icon,'hoverImg')">
+                                <img ng-if="item.hoverImg" ng-src="{{item.hoverImg}}">
+                                <span ng-if="!item.hoverImg">hover</span>
+                            </a>
+                            <a  ng-if="item.hoverImg" ng-click="$ctrl.deleteIcon(icon,'hoverImg')">
+                                <i class="material-icons link-warning">clear</i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </span>
+
+                        <span class="icon-hover" ng-init="field2='index.icons.'+icon+'.styles'">
+                            <a class="btn btn-fab btn-fab-mini"  ng-click="$ctrl.setColor(item.styles,field2,true)">
+                                <i class="material-icons md-42 link-info" title="настроить стили">opacity</i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

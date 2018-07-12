@@ -1,0 +1,125 @@
+<div class="nav-box-stuff">
+    <div class="content-tab-nav-stuff">
+        <div class="tab-nav-stuff action">
+            <a class="btn btn-fab btn-fab-mini" >
+                <i class="material-icons link-warning" onclick="window.history.back()">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff action">
+            <a class="btn btn-fab btn-fab-mini btn-success"
+               ng-click="$ctrl.createItem()"
+               title="создать новый витжет">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+        <div class=" text-center">
+            <paginator-main
+                    paginate="$ctrl.paginate"
+                    getlist="$ctrl.getList()"
+                    scroll="{{scrollId}}">
+            </paginator-main>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="witget-list">
+    <div class="stuff-admin">
+        <h3 class="name-page text-center">всплывающие окна с призывом к действию</h3>
+        <div  ng-repeat="item in $ctrl.items">
+            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="cart-detail">
+                    <div  class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                        <div class="block-edit">
+                            <div class="text-center" ng-class="{'mobil':$ctrl.mobile}">
+                                <div class="form-group label-floating">
+                                    <label for="name1" class="control-label">название</label>
+                                    <input type="text" id="name1" class="form-control name"
+                                           ng-model="item.name"
+                                           required
+                                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                           ng-change="$ctrl.saveField(item,'name')"/>
+                                </div>
+                            </div>
+                            <div class="togglebutton">
+                                <label for="actived{{item.actived}}">
+                                    <span ng-class="{'active':!item.actived}">не активный</span>
+                                    <input type="checkbox" id="actived{{item.actived}}" ng-model="item.actived"
+                                           ng-change="$ctrl.saveField(item,'actived')">
+                                    <span ng-class="{'active':item.actived}">активный</span>
+                                </label>
+                            </div>
+                            <div class="togglebutton">
+                                <label for="actived{{item.forAll}}">
+                                    <span ng-class="{'active':!item.forAll}">только для не авторизованных</span>
+                                    <input type="checkbox" id="actived{{item.forAll}}" ng-model="item.forAll"
+                                           ng-change="$ctrl.saveField(item,'forAll')">
+                                    <span ng-class="{'active':item.forAll}">для всех</span>
+                                </label>
+                            </div>
+                            <div class="togglebutton">
+                                <label for="show">
+                                    <span ng-class="{'active':!item.showOnes}">показывать постоянно</span>
+                                    <input type="checkbox" id="show" ng-model="item.showOnes"
+                                           ng-change="$ctrl.saveField(item,'showOnes')">
+                                    <span ng-class="{'active':item.showOnes}">показывать один раз за сессию</span>
+                                </label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <ui-select ng-model="item.type" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField(item,'type')">
+                                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="value.type as value in $ctrl.types">{{ value.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <ui-select ng-model="item.delay" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField(item,'delay')">
+                                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="value.type as value in $ctrl.times">{{ value.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <a  title="удалить витжет" class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.deleteItem(item)">
+                                <i class="link-warning material-icons">delete</i>
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="block-edit">
+                            <h4 class="text-center name-box" ng-click="isCollapsed[$index] = !isCollapsed[$index]" style="cursor: pointer">добавить/изменить текстовый блок</h4>
+                            <div class="editor form-group">
+                                <div uib-collapse="!isCollapsed[$index]" text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                     ng-change="$ctrl.saveField(item,'desc',200)"
+                                     ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                                     ng-model="item.desc"
+                                     ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                                     ta-text-editor-class="border-around"
+                                     ta-html-editor-class="border-around">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="thumbnail sticker">
+                            <h4 class="text-center name-box">фото для всплывающего окна</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Witget"
+                                    item-id="{{item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="item.img"
+                                    name-img="img">
+                            </load-image>
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

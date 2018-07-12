@@ -1,0 +1,54 @@
+<div class="collection-edit">
+    <div class="col-lg-12 pages-header">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <a class="btn btn-fab "  ui-sref="frame.brands">
+                <i class="material-icons link-warning md-36">reply</i>
+            </a>
+        </div>
+        <h3 class="text-center name-page col-lg-8 col-md-8 col-sm-8 col-xs-7">
+            редактирование коллекции
+            <span>{{itemTag.name}}</span>
+        </h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-lg-12">
+        <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="cart-detail tag-img">
+                <h3 class="text-center">фото коллекции</h3>
+                <load-image
+                        no-load="noLoad"
+                        no-change="noChange"
+                        upload-url="/api/collections/Photo/fileUpload?collectionName=BrandTags"
+                        item-id="{{itemTag._id}}"
+                        item-url="{{itemTag.url}}"
+                        item-resourse="ItemsTag"
+                        file-src="itemTag.img">
+                </load-image>
+            </div>
+        </div>
+        <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="cart-detail">
+                <div class="form-group label-floating">
+                    <label for="name" class="control-label">нименование коллекции</label>
+                    <input type="text" id="name" class="form-control"
+                           ng-model="itemTag.name" ng-model-options="{'updateOn': 'default blur','debounce': {'default': 700,'blur': 0}}"
+                           ng-change="$ctrl.saveField('name')"/>
+                </div>
+                <h4 class="text-center name-box">описание</h4>
+                <div class="form-group editor">
+                    <div text-angular ng-model-options="{'updateOn': 'default blur','debounce': {'default': 700,'blur': 0}}"
+                         ng-change="$ctrl.saveField('desc',200)"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="itemTag.desc"
+                         ta-html-editor-class="border-around"><!--ng-model="$ctrl.item.desc"-->
+                    </div>
+                </div>
+
+            </div>
+    <!--<div class=" col-lg-12 col-md-8 col-sm-8 col-xs-12">
+        <a class="btn btn-success btn-block btn-block btn-lg save" type="button"  ui-sref="frame.brands">
+            в список
+        </a>-->
+        </div>
+    </div>
+</div>

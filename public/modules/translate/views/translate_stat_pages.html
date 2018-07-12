@@ -1,0 +1,42 @@
+<style>
+    .content.translate .content-box {
+        min-height: 60px;
+    }
+    .translate h3 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 0;
+
+    }
+    .heading {
+        background-color: #93b1c6;
+        color: #ffffff;
+        padding: 15px 10px;
+        min-height: 60px;
+    }
+</style>
+<div class="content translate" ng-if="$state.current.name=='frame.translate.stats'">
+    <div class="" ng-repeat="item in $ctril.items">
+        <a  ui-sref="frame.translate.stats.page({id:item._id})" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">work</i>
+                        </span>
+                        {{item.nama}}</h3>
+                </div>
+                <!--<div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов главной страницы
+                    </span>
+                </div>-->
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+<div ui-view></div>

@@ -1,0 +1,121 @@
+<div class="col-lg-7  col-md-7 col-sm-7 col-xs-12 box-section-left">
+    <div class="col-lg-11  col-md-11 col-sm-11 col-xs-11 form-group filter-box">
+        <div class="col-lg-11  col-md-11 col-sm-11 col-xs-11   label-floating">
+            <label class="control-label">характеристика</label>
+            <input ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                   ng-change="$ctrl.saveFilter(filter,'name')"
+                   class="form-control"
+                   dnd-nodrag ng-model="filter.name">
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 control-box form-group">
+            <a class="down-up control border-left"  ng-click="filter.showTags=!filter.showTags">
+                <i class="material-icons link-primary" ng-show="!filter.showTags">expand_more</i>
+                <i class="material-icons link-primary" ng-show="filter.showTags">expand_less</i>
+            </a>
+            <a class="text-center border-left control"
+               ng-if="!filter.tags.length " ng-click="$ctrl.deleteFilter(filter,$index)">
+                <i class="material-icons link-warning">delete</i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+
+        <!--<div class="box-control">
+            <div class="border-right text-center col-lg-6  col-md-6 col-sm-6 col-xs-6">
+                <div class="togglebutton form-group" style="margin-top: 0">
+                    <label for="categoryact{{filter._id}}">
+                        <span ng-class="{'active':!filter.notActive}">опубликован</span>
+                        <input type="checkbox"
+                               id="categoryact{{filter._id}}"
+                               ng-model="filter.notActive"
+                               ng-change="$ctrl.saveCategoryActive(filter)">
+                        <span ng-class="{'active':filter.notActive}">не опубликован</span>
+                    </label>
+                </div>
+            </div>
+            <a class="col-lg-6  col-md-6 col-sm-6 col-xs-6 text-center" ng-click="$ctrl.selectCategory(filter._id)">&lt;!&ndash;bind&ndash;&gt;
+                <span class="link-success">привязать к категории</span>
+            </a>
+
+            <div class="clearfix"></div>
+        </div>-->
+        <div class="box-control">
+            <div class="border-right col-lg-5  col-md-5 col-sm-5 col-xs-5">
+                <div class="label-floating">
+                    <label class="control-label">комментарий</label>
+                    <input ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFilter(filter,'comment')"
+                           class="form-control"
+                           dnd-nodrag ng-model="filter.comment">
+                </div>
+                <a>
+                    <span class="link-success" ng-click="$ctrl.setCountData(filter)">количественная характеристика</span>
+                </a>
+            </div>
+            <div class="col-lg-7  col-md-7 col-sm-7 col-xs-7 text-center">
+                <a ng-click="$ctrl.selectCategory(filter._id)">
+                    <p class="link-success">привязать к категории</p>
+                </a>
+
+                <div class="togglebutton form-group">
+                    <label for="categoryact{{filter._id}}">
+                        <span ng-class="{'active':!filter.actived}">не опубликован</span>
+                        <input type="checkbox"
+                               id="categoryact{{filter._id}}"
+                               ng-model="filter.actived"
+                               ng-change="$ctrl.saveField(filter,'actived')">
+                        <span ng-class="{'active':filter.actived}">опубликован</span>
+                    </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  box-border-top" ng-show="filter.showTags"></div>
+    <div class="clearfix"></div>
+</div>
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 box-section-right tag-right" ng-show="filter.showTags">
+    <div class="row">
+        <ul
+                dnd-list="filter.tags"
+                dnd-allowed-types="['tag']"
+                dnd-drop="$ctrl.dropTagCallback(item,index,filter)"
+                class="itemlist">
+            <li ng-repeat="tag in filter.tags track by $index"
+                dnd-draggable="tag"
+                dnd-type="'tag'"
+                dnd-effect-allowed="move"
+                dnd-moved="$ctrl.tagMoved(filter,tag,$index)"
+                dnd-inserted="$ctrl.tagInserted(index)"
+                dnd-selected="models.selected = item"
+                ng-class="{selected: models.selected === item}"
+                class="tree-node-category">
+                <filter-tag-component></filter-tag-component>
+            </li>
+
+            <li dnd-nodrag >
+                <form ng-submit="$ctrl.addTag(filter)">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  box-border-top"></div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10  add-tag">
+                        <div class=" form-group label-floating">
+                            <label class="control-label">добавить признак</label>
+                            <input class="form-control" ng-model="filter.newTag">
+                            <!--<a class="btn  btn-primary" ng-click="filter.showTags=true;addTag(filter)">
+                                    <i class="material-icons">add</i>
+                                </a>-->
+                            <div class="clearfix"></div>
+                            <input type="submit" class="enter" tabindex="-1" />
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                    <div class="clearfix"></div>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+
+
+

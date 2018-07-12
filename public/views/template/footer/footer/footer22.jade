@@ -1,0 +1,46 @@
+footer
+  div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12")
+    | !{top}
+  div(class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right")
+    | !{left}
+  div(class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right")
+    | !{center}
+  div(class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right")
+    | !{right}
+  div(class="clearfix")
+
+
+  //.container
+    div(class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ")
+      ul(class="footer-nav-links")
+        li(ng-if="global.get('store').val.saleTag")
+          a(href="/group/category?queryTag=rasprodazha") sale
+        li(ng-if="global.get('store').val.newTag")
+          a(href="/group/category?queryTag=") new
+        li(ng-if="global.get('campaign').val.length")
+          a(href="/campaign") акции
+        li
+          a(href="/news") новости
+        each page,index in stats
+          li
+            - var hr = "/staticPage/"+page.url
+            a(href=hr)
+              =page.name
+
+    div(class="col-lg-5 col-md-5 col-sm-5 col-xs-12 footer-text",ng-if="::global.get('store').val.template.footer")
+      div(ng-bind-html="::global.get('store').val.footer.text|unsafe")
+    div(class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right")
+      ul(class="social-links list-inline")
+        li(ng-if="global.get('store').val.sn.fb.is")
+          a(href="{{global.get('store').val.sn.fb.link}}",target="_blank")
+            img(src="views/clinic/img/icon/facebook.png")
+        li(ng-if="global.get('store').val.sn.vk.is")
+          a(href="{{global.get('store').val.sn.pin.link}}",target="_blank")
+            img(src="views/clinic/img/icon/pinterest.png")
+        li(ng-if="global.get('store').val.sn.tw.is")
+          a(href="{{global.get('store').val.sn.tw.link}}",target="_blank")
+            img(src="views/clinic/img/icon/twitter.png")
+        li(ng-if="global.get('store').val.sn.gl.is")
+          a(href="{{global.get('store').val.sn.gl.link}}",target="_blank")
+            img(class="google",src="views/clinic/img/icon/google.png")
+        div(class="clearfix")

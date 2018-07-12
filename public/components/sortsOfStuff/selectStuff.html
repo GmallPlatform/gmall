@@ -1,0 +1,30 @@
+<div class="select-stuff">
+    <div class="modal-header">
+        <h3 class="modal-title pull-left">выбор товара</h3>
+        <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.cancel()">
+            <i class="material-icons link-warning">clear</i>
+        </a>
+        <div class="clearfix"></div>
+        <div class="form-group" ng-init="focus=true">
+            <label>введите наименование товара</label>
+            <input class="form-control" type="text"
+                   ng-model="$ctrl.name"
+                   ng-model-options="{ debounce: 300 }"
+                   ng-change="$ctrl.search($ctrl.name)"
+                   focus-element="focus"
+                    />
+        </div>
+    </div>
+    <div class="modal-body">
+        <div ng-repeat="stuff in $ctrl.stuffs">
+            <a class="col-lg-3" ng-click="$ctrl.selectStuff(stuff)">
+                <img class="img-responsive " ng-src="{{stuff.gallery[0].thumbSmall||stuff.gallery[0].thumb||'img/upload/no.png'}}">
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!--<div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</button>
+    </div>-->
+</div>
+

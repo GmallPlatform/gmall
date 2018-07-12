@@ -1,0 +1,55 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(ng-switch="$ctrl.data.rows",class="stuff-list-wrapper")
+            if(mobile)
+                each item in dj[key].items
+                    div(class="")
+                        include='cart'+dj[key].cart+'.jade'
+
+            if(tablet)
+                table(class="table-50")
+                    tr
+                        td
+                            div(class="td-wrapper")
+
+                                div(class="td-inner",id="td-inner{{$index}}",ng-repeat="stuff in $ctrl.itemsArr2[0]",stuff-cart)
+                        td
+                            div(class="td-wrapper")
+                                div(class="td-inner",ng-repeat="stuff in $ctrl.itemsArr2[1]",stuff-cart)
+
+
+
+            div(ng-switch-when="3")
+                table(class="table-33")
+                    tr
+                        td
+                            div(class="td-wrapper")
+                                div(class="td-inner",id="td-inner{{$index}}",ng-repeat="stuff in $ctrl.itemsArr3[0]",stuff-cart)
+                        td
+                            div(class="td-wrapper")
+                                div(class="td-inner",ng-repeat="stuff in $ctrl.itemsArr3[1]",stuff-cart)
+                        td
+                            div(class="td-wrapper")
+                                div(class="td-inner",ng-repeat="stuff in $ctrl.itemsArr3[2]",stuff-cart)
+
+
+
+
+            div(ng-switch-when="4")
+                table(class="table-25")
+                    tr
+                        td
+                            div(class="td-wrapper")
+                                div(class="td-inner",id="td-inner{{$index}}",ng-repeat="stuff in $ctrl.itemsArr4[0]",stuff-cart)
+                        td
+                            div(class="td-wrapper")
+                                div(class="td-inner",ng-repeat="stuff in $ctrl.itemsArr4[1]",stuff-cart)
+                        td
+                            div(class="td-wrapper")
+                                div(class="td-inner",ng-repeat="stuff in $ctrl.itemsArr4[2]",stuff-cart)
+                        td
+                            div(class="td-wrapper")
+                                div(class="td-inner",ng-repeat="stuff in $ctrl.itemsArr4[3]",stuff-cart)
+paginator-main(paginate="$ctrl.paginate",getlist="$ctrl.getList()",scroll="{{scrollId}}" )
+div(class="seo-desc col-lg-12 col-md-12 col-sm-12 col-xs-12 ",ng-bind-html="$ctrl.global.get('titles').val.desc|unsafe")
+div(class="clearfix")

@@ -1,0 +1,124 @@
+/*all*/
+.searchresults {
+    width: 300px;
+    position: absolute;
+    background-color: #fdfdfd;
+    max-height: 350px;
+    overflow: auto;
+}
+.tablet-wrapper
+.searchresults,
+.mobile-wrapper
+.searchresults {
+    width:100%;
+    left: 0;
+    z-index: 1000;
+    min-height: 50vh;
+    max-height: 50vh;
+}
+.tablet-wrapper img,
+.mobile-wrapper img {
+    min-width: 50px;
+}
+.name-resalt {
+    font-size: 14px;
+    line-height: 14px;
+}
+.name-resalt p,
+.name-resalt {
+    color: #666666;
+}
+/*.search-window img {
+    margin-bottom: 5px;
+}*/
+.search-window hr {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.all-results {
+    cursor: pointer;
+}
+.all-results{
+    color: $mainColor;
+    transition: all  0.3s ease-in-out 0.1s;
+    opacity: 0.7;
+    line-height: 28px;
+    display: inline-block;
+}
+.all-results:hover{
+    font-size: 20px;
+    opacity: 1;
+    line-height: 28px;
+}
+.searchResaltsInner{
+    padding: 20px;
+}
+
+/*vertical-menu*/
+.form-search {
+    width: $width;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-top: $padding-top;
+    padding-bottom: $padding-bottom;
+    margin-left: $margin-left;
+    margin-right: $margin-right;
+    margin-top: $margin-top;
+    margin-bottom: $margin-bottom;
+}
+input[type="text"]::-webkit-input-placeholder {
+    color: $color;
+    font-family: $font-family;
+}
+input[type="search"]::-moz-placeholder {
+    color: $color;
+    font-family: $font-family;
+}
+.form-search .form-control {
+    background-color: transparent;
+    height: $height;
+    color: $color;
+    font-size: $font-size;
+    letter-spacing: $letter-spacing;
+    border: none;
+    border-bottom: 1px solid $color;
+    box-shadow: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+input.form-control {
+    font-size: $font-size;
+}
+.form-search .form-control:focus {
+    border-left: none;
+    outline: none;
+    box-shadow: none;
+}
+.form-search .input-group-btn button{
+    height: $height;
+    border: none;
+    padding-bottom: 0;
+    border-radius: 0;
+    border-bottom: 1px solid $color;
+    background-color: transparent;
+    margin-bottom: 0;
+}
+.form-search .input-group-btn button:hover,
+.form-search .input-group-btn button:focus{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $color;
+    outline: none;
+}
+.searchresults
+/*.mobile-wrapper .form-search  {
+    width:200px;
+}*/
+.mobile-wrapper .search-button {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    color: rgba(255, 255, 255, 0.35);
+}
+

@@ -1,0 +1,47 @@
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+        menu-sections-pug
+            div(class="hover-top-menu")
+                div(class="text-center myMenu",id="wrapperForSections")
+                    ul(class="nav-center catalogDropDownMenu")
+                        - for (var i = 0; i < sectionsMenu.length; i++)
+                            - var section=sectionsMenu[i]
+                            li(id=section.id,class="mainli")
+                                a(class="section-name",href=section.allCategiriesHref)
+                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                        !=section.name
+                                if(section.innerData)
+                                    div(class="innerDiv text-center", id=section.innerId)
+                                        div(class="container-menu text-left", style="display:inline-block")
+                                            if(section.child && section.child.length)
+                                                ul(class="nested-menu")
+                                                    each child in section.child
+                                                        li(class="section-in-section")
+                                                            a(class="category-name",href=child.href)
+                                                                span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                    !=child.name
+                                                            ul(class="sub-menu")
+                                                                each category in child.categories
+                                                                    li(class="category-in-section")
+                                                                        a(class="category-in-section-name",href=category.href)
+                                                                            span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                                !=category.name
+                                            if(section.categories.length)
+                                                ul
+                                                    if(store.newTag && section.newLink)
+                                                        li(class="category-in-section")
+                                                            a(class="category-in-section new",href=section.tagHref + store.newTag)
+                                                                span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                    !=lang.new
+                                                    if(store.saleTag && section.saleLink)
+                                                        li(class="category-in-section")
+                                                            a(class="category-in-section sale",href=section.tagHref + store.saleTag)
+                                                                span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                    !=lang.sale
+                                                    each category in section.categories
+                                                        li(class="category-in-section")
+                                                            a(class="category-in-section-name",href=category.href)
+                                                                span(set-animate=dj[key].animate,data-animation=dj[key].animate)
+                                                                    !=category.name
+
+

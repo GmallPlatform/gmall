@@ -1,0 +1,8 @@
+.border-box {
+    /*display: table-row;*/
+    border: 1px solid #ccc;
+}
+
+.border-left-box {
+    border-left: 1px solid #ccc;
+}

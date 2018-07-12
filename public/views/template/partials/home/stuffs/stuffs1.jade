@@ -1,0 +1,31 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="home-stuffs")
+            div(class="container")
+                if(dj[key].name)
+                    h2(class="text-center")=dj[key].name
+                - var className  ="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                if(dj[key].stuffs.length == 1)
+                    - className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                else if(dj[key].stuffs.length == 2)
+                    - className="col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                else if(dj[key].stuffs.length == 3)
+                    - className='col-lg-4 col-md-4 col-sm-4 col-xs-12'
+                else if(dj[key].stuffs.length == 4 || dj[key].stuffs.length == 8 || dj[key].stuffs.length == 12)
+                    - className="col-lg-3 col-md-3 col-sm-6 col-xs-12"
+
+                each stuff in dj[key].stuffs
+                    - var ngclick="global.get('functions').val.orderStuffFromHP('"+stuff.url+"')"
+                    div(class=className,home-page-stuff=stuff._id)
+                        img(class="img-responsive",src=photoHost + '/' + stuff.gallery[0].thumbSmall,alt=stuff.gallery[0].alt)
+                        div(class="btn-box text-center")
+                            if(stuff.orderType == 1)
+                                a(class="btn  btn-project btn-border",ng-click="$ctrl.stuff.order()",ng-bind="$ctrl.global.get('lang').val.toOrder")
+                            else if(stuff.orderType == 2)
+                                a(class="btn  btn-project btn-border",ng-click="$ctrl.global.get('functions').val.witget('dateTime',{stuff:$ctrl.stuff})",ng-bind="$ctrl.global.get('lang').val.enroll")
+                            else if(stuff.orderType == 3)
+                                a(class="btn  btn-project btn-border",ui-sref="stuffs.stuff($ctrl.stuff.linkData)",ng-bind="$ctrl.global.get('lang').val.more")
+                            else if(stuff.orderType == 4)
+                                a(class="btn  btn-project btn-border",ng-click="$ctrl.stuff.getBonus()",ng-bind="$ctrl.global.get('store').val.bonusButtonText")
+
+                div( class="clearfix")

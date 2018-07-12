@@ -1,0 +1,33 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div( class="home-news")
+            div(class="container")
+                if(dj[key].name)
+                    h3(class="text-center")=dj[key].name
+                - var className  ="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-news-content"
+                if(dj[key].news.length == 1)
+                    - className="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-news-content"
+                else if(dj[key].news.length == 3)
+                    - className='col-lg-4 col-md-4 col-sm-4 col-xs-12 home-news-content'
+                each newsOne in dj[key].news
+                    div(class=className)
+                        div(class="col-lg-6 col-md-6 col-sm-12 col-xs-12 news-home-img",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
+                            - var datalink="/news/"+newsOne.url
+                            if(newsOne.img)
+                                a(href=datalink)
+                                    img(class="img-responsive" src=photoHost+'/'+newsOne.img,alt=newsOne.alt)
+                            if(newsOne.video && !newsOne.img)
+                                div
+                                    | !{newsOne.video}
+                        div(class="col-lg-6 col-md-6 col-sm-12 col-xs-12 news-home-desk",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
+                            div(class="news-desc")
+                                h1(set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=newsOne.name
+                                - var desc=(newsOne.desc)?newsOne.desc.clearTag().substring(0,350):'';
+                                p
+                                    | !{desc}
+                            div(class="text-center")
+                                a(class="btn btn-project btn-border btn-banner",href=datalink)
+                                    span=lang['readMore']
+                        a(class="all-news" href="/news")
+                            span(ng-bind="$ctrl.global.get('lang').val.allNews")
+                    div(class="clearfix")

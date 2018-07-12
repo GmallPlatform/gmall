@@ -1,0 +1,130 @@
+<div ng-hide="prop.editFilter">
+    <a ng-click="newFilter()">создать фильтр</a>
+
+    <!-- Template for a normal list item -->
+    <script type="text/ng-template" id="category.html">
+        <div class="input-group">
+            <span class="input-group-addon">Категория </span>
+            <input focus-element="category.focus" lost-focus="saveCategoryName(category,section)"dnd-nodrag class="form-control" ng-model="category.name">
+            <a class="input-group-addon" ng-click="editCategory(category._id)"><span class="glyphicon glyphicon-edit"></span></a>
+            <a class="input-group-addon" ng-click="deleteCategory(section,$index)"><span class="glyphicon glyphicon-trash"></span></a>
+        </div>
+
+        <!--<div class="item">category {{category.name}}</div>-->
+    </script>
+
+    <script type="text/ng-template" id="filter.html">
+        <div class="input-group">
+            <div class="input-group">
+                <span ng-click="filter.showTags=!filter.showTags" class="glyphicon glyphicon-chevron-right input-group-addon" ng-class="{'glyphicon-chevron-right': !filter.showTags, 'glyphicon-chevron-down': filter.showTags}"></span>
+                <input focus-element="filter.focus" lost-focus="saveFilter(filter,'name')" class="form-control" dnd-nodrag ng-model="section.name">
+                <a class="input-group-addon"ng-if="!section.child.length && !section.categories.length" ng-click="deleteSection(parentSection,section)"><span class="glyphicon glyphicon-trash"></span></a>
+            </div>
+            <ul dnd-list="section.child"
+                dnd-drop="dropSectionCallback(item,section)"
+                dnd-allowed-types="['section']">
+                <li dnd-nodrag ><a ng-click="section.showList=true;addSection(section)">новый подраздел</a></li>
+            </ul>
+            <ul dnd-list="section.categories" dnd-allowed-types="['category']"
+                dnd-drop="dropCategoryCallback(item,section)"
+            >
+                <li dnd-nodrag ><a ng-click="section.showList=true;addCategory(section)">новая категория</a></li>
+            </ul>
+            <ul ng-if=" section.showList"
+                dnd-list="section.child"
+                dnd-drop="dropSectionCallback(item,section)"
+                dnd-allowed-types="['section']" ng-init="parentSection=section">
+                <!--<li ng-if="!section.child.length">новый подраздел</li>-->
+                <li ng-repeat="section in section.child"
+                    dnd-draggable="section"
+                    dnd-type="'section'"
+                    dnd-effect-allowed="move"
+                    dnd-moved="parentSection.child.splice($index,1)"
+                    dnd-selected="models.selected = item"
+                    ng-class="{selected: models.selected === item}"
+                    ng-include="'section.html'">
+                </li>
+            </ul>
+            <ul ng-if=" section.showList"
+                dnd-list="section.categories"
+                dnd-allowed-types="['category']"
+                dnd-drop="dropCategoryCallback(item,section)">
+
+                <!--<li ng-if="!section.categories.length">новая категория</li>-->
+                <li ng-repeat="category in section.categories track by $index"
+                    dnd-draggable="category"
+                    dnd-type="'category'"
+                    dnd-effect-allowed="move"
+                    dnd-moved="section.categories.splice($index,1)"
+                    dnd-selected="models.selected = item"
+                    ng-class="{selected: models.selected === item}"
+                    class="tree-node-category"
+                    ng-include="'category.html'">
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </script>
+
+
+    <!-- Main area with dropzones and source code -->
+    <div class="row">
+        <div ng-repeat="filter in filterss" class="col-md-6">
+            <div >
+                <div ng-include="'filter.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-if="prop.editFilter">
+    <filter-edit id="{{filterId}}" edit="prop.editFilter"></filter-edit>
+</div>
+
+
+
+
+
+
+<!-- Sidebar -->
+<!--<div class="col-md-2">
+
+    <div class="toolbox box box-grey box-padding">
+        <h3>New Elements</h3>
+        <ul>
+            &lt;!&ndash; The toolbox only allows to copy objects, not move it. After a new
+                 element was created, dnd-copied is invoked and we generate the next id &ndash;&gt;
+            <li ng-repeat="item in models.templates"
+                dnd-draggable="item"
+                dnd-effect-allowed="copy"
+                dnd-copied="item.id = item.id + 1"
+            >
+                <button type="button" class="btn btn-default btn-lg" disabled="disabled">{{item.type}}</button>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-if="models.selected" class="box box-grey box-padding">
+        <h3>Selected</h3>
+        <strong>Type: </strong> {{models.selected.type}}<br>
+        <input type="text" ng-model="models.selected.name" class="form-control" style="margin-top: 5px" />
+    </div>
+
+    <div class="trashcan box box-grey box-padding">
+        &lt;!&ndash; If you use [] as referenced list, the dropped elements will be lost &ndash;&gt;
+        <h3>Trashcan</h3>
+        <ul dnd-list="[]">
+            <li><img src="nested/trashcan.jpg"></li>
+        </ul>
+    </div>
+
+</div>-->
+
+
+
+<!--
+<div class="sectionsList col-lg-4" ng-repeat="section in sections">
+    <i-section class="tree-nodes"section="section"></i-section>
+
+</div>
+-->
+

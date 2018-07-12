@@ -1,0 +1,42 @@
+/*la (hover)*/
+.vertical-menu li{
+    list-style: none;
+}
+.menu-hover li{
+    list-style: none;
+}
+.menu-hover .info-page {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.menu-hover {
+    display: none;
+    background-color: $background-color;
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transition: all ease-in-out 0.5s;
+    -o-transition: all  ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+}
+.menu-hover a:hover {
+    background-color: #eeeeee;
+}
+/*.menu-hover > li > a {
+    padding: 10px 20px 15px 20px;
+}*/
+.nav-group.info.dropdown .info-page li {
+    list-style: none;
+    float: left;
+}
+.menu-hover a {
+    @if $font-size {
+        font-size: $font-size*0.8;
+    }
+}
+.info:hover>.menu-hover {
+   /* -webkit-transform: translateY(100px);
+    -ms-transform: translateY(100px);
+    transform:translateY(100px);*/
+    display: block;
+}
+

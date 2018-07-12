@@ -1,0 +1,314 @@
+<!--This works as expected.-->
+<div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+    <p class="no_story">
+        Таких товаров нет в каталоге
+    </p>
+</div>
+<div class="nav-box-stuff">
+    <!--<a class="btn btn-fab btn-fab-mini " onclick="window.history.back()">
+            <i class="material-icons link-warning">reply</i>
+        </a>-->
+
+    <div class="tab-nav-stuff">
+        <a class="btn btn-fab btn-fab-mini btn-success"
+           ng-click="$ctrl.createItem()"
+           title="создать новый товар">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+    <div class="tab-nav-stuff">
+        <a class="btn btn-fab btn-fab-mini btn-raised" title="фильтры товаров" ng-click="$ctrl.filterList()">
+            <i class="material-icons">filter_list</i>
+        </a>
+    </div>
+    <!--<div class="tab-nav-stuff">
+        <a class="btn btn-fab btn-fab-mini btn-raised" title="синхронизировать индексы" ng-click="$ctrl.alignmentIndex()">
+            <i class="material-icons">sort_by_alpha</i>
+        </a>
+    </div>-->
+
+    <div class="tab-nav-stuff">
+        <a class="btn btn-fab btn-fab-mini"
+           ng-click="$ctrl.getList(true)"
+           title="обновить">
+            <i class="material-icons link-success">cached</i>
+        </a>
+    </div>
+
+    <div class="tab-nav-stuff">
+        <div class="dropdown">
+            <a class="btn btn-fab btn-fab-mini btn-raised dropdown-toggle" title="дополнительные настройки" data-toggle="dropdown" data-target="#">
+                <!--<i class="material-icons">gps_fixed</i>-->
+                <i class="material-icons link-pink">settings</i>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <button class="btn btn-raised"  ng-disabled="$ctrl.fixDesable" ng-click="$ctrl.fixData()" style="width: 100%; margin-top: 5px; margin-bottom: 5px">
+                        фиксировать структуру данных
+                    </button>
+                </li>
+
+                <li>
+                    <button class="btn btn-raised" ng-disabled="$ctrl.reNewKeyWordsDisable" ng-click="$ctrl.reNewKeyWords()" style="width: 100%; margin-top: 5px; margin-bottom: 5px">
+                        обновить ключевые слова для поиска товара
+                    </button>
+                </li>
+                <li>
+                    <button class="btn btn-raised" ng-click="$ctrl.alignmentIndex()" style="width: 100%; margin-top: 5px; margin-bottom: 5px">
+                        синхронизировать индексы
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-nav-stuff">
+        <div class="dropdown">
+            <a class="btn btn-fab btn-fab-mini btn-raised dropdown-toggle" title="фильтровать список по видимости" data-toggle="dropdown" data-target="#">
+                <!--<i class="material-icons">gps_fixed</i>-->
+                <i class="material-icons link-primary">remove_red_eye</i>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a ng-disabled="$ctrl.fixDesable" ng-click="$ctrl.changeListCriteria()">
+                        показывать все
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="$ctrl.changeListCriteria('actived',true)">
+                        только опубликованные
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="$ctrl.changeListCriteria('actived',false)">
+                        только не опубликованные
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="$ctrl.changeListCriteria('archived',true)">
+                        только архивные
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-nav-stuff">
+        <div class="dropdown">
+            <a class="btn btn-fab btn-fab-mini btn-raised dropdown-toggle" title="показывать по" data-toggle="dropdown" data-target="#">
+                <i class="material-icons link-warning">format_list_numbered</i>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a ng-click="$ctrl.changeRows(50)">
+                        50 <span ng-bind="$ctrl.global.get('lang').val.position"></span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="$ctrl.changeRows(100)">
+                        100 <span ng-bind="$ctrl.global.get('lang').val.position"></span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="$ctrl.changeRows(200)">
+                        200 <span ng-bind="$ctrl.global.get('lang').val.position"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-nav-stuff pull-right search">
+        <form ng-submit1="$ctrl.searchItem(searchStr)">
+            <input title="поиск товара в каталоге" type="text"
+                   ng-model-options="{'updateOn':'default blur','debounce':{'default':1000,'blur':0}}"
+                   ng-change="$ctrl.searchItem(searchStr)"
+                   placeholder="поиск товара в каталоге"  class="search-fluid"  ng-model="searchStr"/>
+            <a ng-click="$ctrl.clearSearch()" class="btn btn-fab btn-fab-mini">
+                <i class="material-icons link-warning" title="очистить строку поиска">clear</i>
+            </a>
+        </form>
+    </div>
+    <!--<div class="tab-nav-stuff">
+        <button ng-disabled="$ctrl.fixDesable" ng-click="$ctrl.fixBrands()">fix data structure</button>
+    </div>-->
+
+
+    <!--<div class="tab-nav-stuff pull-right">
+        <div class="form-group label-floating filter-off">
+            <input placeholder="быстрая фильтрация на странице"
+                    ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                   type="text" class="form-control" id="filterStr"
+                   ng-model="$ctrl.filterStr">
+        </div>
+    </div>-->
+
+    <div class="clearfix"></div>
+    <div class="tab-nav-stuff action"  ng-if="!$ctrl.mobile" >
+        <div class="checkbox">
+            <label>
+                <input  ng-model="$ctrl.mark" type="checkbox" ng-change="$ctrl.markAllStuffs($ctrl.mark)">
+                выбрать все
+            </label>
+        </div>
+    </div>
+    <div class="tab-nav-stuff action action-select"  ng-if="!$ctrl.mobile" >
+        <ui-select ng-model="$ctrl.action"
+                   skip-focusser="true"
+                   search-enabled="false"
+                   title="выберите действие"
+                   ng-change="$ctrl.changeAction()">
+            <ui-select-match  placeholder="действие">{{$select.selected.value}}</ui-select-match>
+            <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfActions">{{ opt.value }}</ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="tab-nav-stuff paginator pull-right">
+        <paginator-main
+                paginate="$ctrl.paginate"
+                getlist="$ctrl.getList()"
+                scroll="{{scrollId}}">
+        </paginator-main>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+<div  class="wrapper-stuffs-list">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul dnd-list22="$ctrl.items"
+            dnd-drop22="$ctrl.dropCallback(item)" style="padding-left: 0">
+            <li dnd-draggable22="stuff"
+                dnd-effect-allowed22="move"
+                dnd-moved22="$ctrl.items.splice($index,1)"
+                ng-repeat="stuff in $ctrl.items|filter:$ctrl.filteringList"
+                id="stuff{{stuff._id}}">
+                <div class="block-stuff stuff-admin">
+                    <div class="col-lg-5 col-md-4 col-sm-8 col-xs-12">
+                        <div class="row">
+                            <div class="pull-left form-group label-action">
+                                <div  ng-class="{'checkbox':true}">
+                                    <label>
+                                        <input  type="checkbox" ng-model="stuff.select">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group label-floating name-goods pull-left">
+                                <!--<label for="name1" class="control-label">наименование товара</label>-->
+                                <input type="text"id="name1" class="form-control name"
+                                       ng-model="stuff.name"
+                                       placeholder="наименование товара"
+                                       required
+                                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveField(stuff,'name')"/>
+
+                            </div>
+                            <div class="togglebutton pull-left">
+                                <label for="actived22{{$index}}">
+                                    <span ng-class="{'active':!stuff.actived}"> не опубликован</span>
+                                    <input type="checkbox"
+                                           id="actived22{{$index}}"
+                                           ng-model="stuff.actived"
+                                           ng-change="$ctrl.saveField(stuff,'actived')">
+                                    <span ng-class="{'active':stuff.actived}">опубликован</span>
+                                </label>
+                            </div>
+                            <div class="form-group pull-right" style="margin-top: 0">
+                                <div class="checkbox">
+                                    <label>
+                                        <span ng-if="!stuff.archived">в архив</span>
+                                        <span ng-if="stuff.archived">уже в архиве</span>
+                                        <input type="checkbox" ng-model="stuff.archived" ng-change="$ctrl.saveField(stuff,'archived')">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                        <div class="form-group label-floating articul">
+                            <label  for="articul" class="control-label">артикул</label>
+                            <input ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField(stuff,'artikul')"
+                                   name="rur" type="text" class="form-control" id="articul"
+                                   ng-model="stuff.artikul">
+                        </div>
+                        <p><span ng-bind="stuff.brand.name"></span></p>
+                    </div>
+                    <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
+
+                        <div class="pull-right form-group">
+                            <!--<a  class="btn btn-fab btn-fab-mini move" ng-if="!$ctrl.mobile">
+                                <i class="material-icons link-success" title="передвинуть">import_export</i>
+                            </a>-->
+                            <a class="btn btn-fab btn-fab-mini" ui-sref="frame.stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url,block:'mainInfo'})">
+                                <i class="link-success material-icons md-42" title="редактировать">create</i>
+                            </a>
+                            <a class="btn btn-fab btn-fab-mini"  ng-click="$ctrl.createItem(stuff,'clone')">
+                                <i class="material-icons md-42" title="клонировать товар">add_to_photos</i>
+                            </a>
+                            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.deleteItem(stuff)">
+                                <i class="link-warning material-icons md-42" title="удалить товар">delete</i>
+                            </a>
+                        </div>
+                        <p class="price-block">
+                            <span class="price"  ng-if="stuff.sort && stuff.stock[stuff.sort].priceCampaign">
+                                <label>акция</label><br>
+                                <span ng-bind="stuff.stock[stuff.sort].priceCampaign"></span>
+                            </span>
+                            <span class=" price" ng-if="stuff.priceSale">
+                                <label>sale</label><br>
+                                <span ng-bind="stuff.stock[stuff.sort].priceSale"></span>
+                            </span>
+                            <!--<span class="price" ng-if="$ctrl.global.get('store').val.seller.retail">
+                                <label>розн</label><br>
+                                <span ng-bind="stuff.stock[stuff.sort].retail"></span>
+                            </span>-->
+                            <span class=" price">
+                                <label>цена</label><br>
+                                <span ng-bind="stuff.stock[stuff.sort].price"></span>
+                            </span>
+                        </p>
+
+
+
+                        <div class="form-group label-floating index pull-left" >
+                            <label  for="index" class="control-label">индекс</label>
+                            <input ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField(stuff,'index')" name="index" type="text" class="form-control" id="index"
+                                   ng-model="stuff.index" pattern="[0-9-\.]{1,7}">
+                        </div>
+                        <div class="pull-left form-group">
+                            <a class="btn btn-fab btn-fab-mini"  ng-click="$ctrl.zoomImg(stuff)">
+                                <i class="material-icons link-success visibility-photo md-42" title="посмотреть фото товара">photo_camera</i>
+                            </a>
+                        </div>
+                        <!--</div>-->
+                        <!--</div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-right form-group">-->
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="checkbox pull-right">
+                                <label class="form-check-inline" ng-repeat="tag in stuff.stockKeysArray">
+                                    <span ng-show="tag.name!='notag'" ng-bind="tag.name"></span>
+                                    <input class="form-check-input"
+                                            type="checkbox" ng-model="tag.quantity"
+                                           ng-true-value=1 ng-false-value=0
+                                           ng-change="$ctrl.changeStock(stuff,tag)">
+                                </label>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+
+<a href="#" class="back-to-top">
+    <i class="fa fa-angle-double-up fa-3x" ></i>
+</a>
+

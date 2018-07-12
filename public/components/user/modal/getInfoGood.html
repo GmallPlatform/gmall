@@ -1,0 +1,113 @@
+<!--http://stackoverflow.com/questions/27005608/angularjs-ui-bootstrap-modal-with-google-places-->
+<style>
+    .pac-container {
+        z-index: 100000;
+    }
+</style>
+
+<div class="ship">
+    
+    <h2 class="text-center modal-header">контактные данные</h2>
+    <!--<a type="button" ng-click="$ctrl.cancel()">
+        <img class="clear" src="../../../img/icon/clear.png">
+    </a>-->
+    <div class="clearfix"></div>  
+    <div class="ship-box col-sm-12 col-lg-12 col-md-12 col-xs-12">
+        <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok()" novalidate>
+            <div class="form-group" ng-class="{ 'has-success': formProfile.email.$valid,'has-error': formProfile.email.$invalid}">
+                <input  name="email" type="email" class="form-control" required
+                        ng-model="$ctrl.user.email" ng-disabled="$ctrl.user._id"
+                        placeholder="email"/>
+                <div class="help-block text-danger" ng-if="formProfile.email.$dirty" ng-messages="formProfile.email.$error">
+                    <div ng-message="required">введите e-mail</div>
+                    <div ng-message="pattern">неправильный формат e-mail</div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-success': formProfile.fio.$valid,'has-error': formProfile.fio.$invalid}">
+                <input  name="fio" type="text" class="form-control mb-10 cart"
+                        pattern="[A-Za-zА-Яа-я0-9.\s-]{3,100}"
+                        ng-minlength="3"
+                        ng-maxlength="70"
+                        required
+                        ng-model="$ctrl.user.profile.fio"
+                        placeholder="ФИО"/>
+                                        <span class="help-block"  ng-show="formProfile.fio.$error.required">
+                                            необходимо указать ФИО
+                                        </span>
+                                        <span class="help-block"  ng-show="formProfile.fio.$error.minlength">
+                                            не менее 3-ти символов
+                                        </span>
+                                        <span class="help-block"  ng-show="formProfile.fio.$error.maxlength">
+                                            не более 70-ти символов
+                                        </span>
+            </div>
+            <div class="form-group">
+                <input   type="text" class="form-control mb-10 cart"
+                         pattern="[0-9.\s-+()]{0,40}"
+                         name="phone"
+                         ng-model="$ctrl.user.profile.phone"
+                         placeholder="телефон"/>
+                    <span class="help-block"  ng-show="formProfile.phone.$error.pattern">
+                                            неверный формат
+                                        </span>
+            </div>
+            <!--<div class="form-group">
+                <input type="text" class="form-control mb-10 cart"
+                       pattern="[0-9-]{0,10}"
+                       placeholder="Индекс"
+                       name="zip"
+                       ng-model="$ctrl.user.profile.zip"/>
+                    <span class="help-block"  ng-show="formProfile.zip.$error.pattern">
+                                            неверный формат
+                                        </span>
+            </div>-->
+            <div class="form-group" ng-class="{ 'has-success': formProfile.cityId.$valid,'has-error': formProfile.cityId.$invalid}">
+                <input name="cityId" required data-ng-model="$ctrl.user.profile.cityId" type="hidden">
+                <input type="text"   class="form-control mb-10 cart"
+                       ng-autocomplete-city  user="$ctrl.user"/>
+                    <span class="help-block"  ng-show="formProfile.cityId.$error.required">
+                        выберите город из предлагаемого списка, появляющегося после начала набора
+                    </span>
+            </div>
+
+            <!--<div class="form-group">
+                <input  ng-maxlength="100"
+                        name="address"
+                        type="text" class="form-control mb-10 cart" pattern="[0-9A-Za-zА-Яа-я.,/\s-]{0,100}" ng-model="$ctrl.user.profile.address" placeholder="Улица дом кв"/>
+                    <span class="help-block"  ng-show="formProfile.address.$error.maxlength">
+                                            не более 100-ти символов
+                                        </span>
+            </div>-->
+            <div class="form-group">
+                <input  ng-maxlength="100"
+                        name="transporter"
+                        type="text" class="form-control mb-10 cart" pattern="[0-9A-Za-zА-Яа-я.,/\s-]{0,100}" ng-model="$ctrl.user.profile.transporter"
+                        placeholder="транспортная компания(перевозчик)"/>
+                    <span class="help-block"  ng-show="formProfile.transporter.$error.maxlength">
+                                            не более 100-ти символов
+                                        </span>
+            </div>
+            <div class="form-group">
+                <input  ng-maxlength="40"
+                        name="transporterOffice"
+                        type="text" class="form-control mb-10 cart" pattern="[0-9A-Za-zА-Яа-я.,/\s-]{0,100}" ng-model="$ctrl.user.profile.transporterOffice"
+                        placeholder="отделение транспортной компании"/>
+                    <span class="help-block"  ng-show="formProfile.transporterOffice.$error.maxlength">
+                                            не более 40-ти символов
+                                        </span>
+            </div>
+            <textarea class="form-control mb-10 cart" rows="4" placeholder="комментарии к заказу" data-ng-model="$ctrl.order.comment"></textarea>
+            <div class="clearfix"></div>
+            <div class="text-center">
+                <button class="btn btn-block btn-primary" type="submit">ЗАКАЗАТЬ</button>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-block btn-primary" type="submit">ЗАПИСАТЬСЯ</button>
+            </div>
+        </form>
+        </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

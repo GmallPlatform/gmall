@@ -1,0 +1,13 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        p(itemprop="description", class="description")
+            |!{item.desc}
+        if(item.service)
+            div(ng-if="!$ctrl.item.service")
+                a(ui-sref="stuffs({'groupUrl':$ctrl.item.groupUrl,'categoryUrl':$ctrl.item.categoryUrl,parentGroup:$ctrl.item.parentGroup})")
+                    | все
+                    span=item.categoryName
+                    span=item.brandName
+        if(item.single)
+            hr
+        div(class="clearfix")

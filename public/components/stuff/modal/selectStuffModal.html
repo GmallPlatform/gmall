@@ -1,0 +1,39 @@
+<style>
+    .select-stuff .goods-box {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid transparent;
+    }
+    .select-stuff .goods-box:hover {
+        border: 1px solid #ccc;
+    }
+</style>
+<div class="select-stuff select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выбор товара</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group" ng-init="focus=true">
+            <label>введите наименование товара</label>
+            <input class="form-control" type="text"
+                   ng-model="$ctrl.name"
+                   ng-model-options="{ debounce: 300 }"
+                   ng-change="$ctrl.search($ctrl.name)"
+                   simple-focus-element=""/>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 goods-box text-center" ng-repeat="stuff in $ctrl.stuffs">
+            <a ng-click="$ctrl.selectStuff(stuff)">
+                <img class="img-responsive " ng-src="{{stuff.gallery[0].thumbSmall||stuff.gallery[0].thumb||'img/upload/no.png'}}">
+
+                <p class="good-name">
+                    <span ng-bind="stuff.name"></span>
+                    <span ng-if="stuff.artikul" ng-bind="stuff.artikul"></span>
+                </p>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+

@@ -1,0 +1,318 @@
+<div class="cabinet">
+    <div class="container">
+        <h1 class="cabinet-header text-center" ng-bind="$ctrl.global.get('lang').val.cabinet"></h1>
+        <div uib-tabset  justified="true" active="$ctrl.activeTabIndex">
+            <uib-tab ng-hide="$ctrl.global.get('store').val.orderis" index="0" heading={{$ctrl.global.get('lang').val.orders}}>
+                <ul class="cabinet-list">
+                    <li ng-repeat="order in $ctrl.orders" >
+                        <div class="header-order">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                <a ng-click="$ctrl.orderDetail(order)">
+                                    <span>№</span> <span  ng-bind="order.num"></span>
+                                    <span  ng-bind="order.date"></span>
+                                </a>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                    <span class="status" ng-switch="order.status">
+                                       <span  ng-switch-when="1" ng-bind="$ctrl.global.get('langOrder').val.entered"></span>
+                                       <span  ng-switch-when="2" ng-bind="$ctrl.global.get('langOrder').val.accepted"></span>
+                                       <span  ng-switch-when="3" ng-bind="$ctrl.global.get('langOrder').val.paid"></span>
+                                       <span  ng-switch-when="4" ng-bind="$ctrl.global.get('langOrder').val.shipped"></span>
+                                       <span  ng-switch-when="5" ng-bind="$ctrl.global.get('langOrder').val.delivered"></span>
+                                       <span class="delete" ng-switch-when="6" ng-bind="$ctrl.global.get('langOrder').val.deleted"></span>
+                                    </span>
+                                <span ng-if="order.status==4 && order.shipDetail && order.shipDetail.length">
+                                        <span ng-repeat="ship in order.shipDetail">
+                                            <span ng-bind="ship.ttn"></span>
+                                        </span>
+                                    </span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <span class="">
+                                        <span  ng-bind="$ctrl.global.get('lang').val.sum"></span>
+                                        <span ng-bind="(order.paySum+((order.totalPay)?order.totalPay:0)).toFixed(2)"></span>
+                                        <span>&nbsp{{order.currencyStore[order.currency][2]}}</span>
+                                    </span>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <span class="pull-right btn-pay" ng-if="order.checkOutLiqpayHtmlIs">
+                                    <span ng-bind-html="order.checkOutLiqpayHtml|unsafe"></span>
+                                </span>
+                                <span class="pull-right" ng-if="order.pay && order.pay.length">
+                                    <span></span>
+                                    <span ng-bind="order.pay[0].date"></span>
+                                </span>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                <span class="pull-right" ng-show="order.status==1">
+                                    <a ng-click="$ctrl.deleteOrder(order)">
+                                        <span ng-bind="$ctrl.global.get('lang').val.delete"></span>
+                                    </a>
+
+                                </span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="order-box" uib-collapse="!order.collapse">
+                            <div ng-repeat="(idx,good) in order.cart.stuffs track by $index" >
+                                <!--<pre>{{good|json}}</pre>-->
+                                <div class="cart-inner"  id="cart-inner{{$index}}">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 img-box">
+                                        <div class="col-lg-4  col-md-5 col-sm-5 col-xs-4 img-box">
+                                            <a href="{{good.link}}">
+                                                <span ng-if="good.img" >
+                                                       <img class="img-responsive  cart-img" ng-src="{{good.img}}">
+                                                   </span>
+                                            </a>
+                                        </div>
+                                        <div  class="col-lg-8  col-md-7 col-sm-7 col-xs-8 cart-box">
+                                            <a  href="{{good.link}}" class="name-models">
+                                                <p>
+                                                    <span ng-bind="good.name"></span>
+                                                    <span ng-bind="good.artikul"></span>
+                                                </p>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cart-box">
+                                        <span class="size" ng-bind="good.filterName"></span>
+                                        <span  ng-bind="good.sortName"></span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cart-box">
+                                        <span class="" ng-bind="good.groupName"></span>
+                                        <span  ng-bind="good.groupTagName"></span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cart-box">
+                                        <span ng-bind="$ctrl.global.get('lang').val.quantity"></span>
+                                        <span ng-bind="good.quantity"></span>
+                                        <!--{{good.unitOfMeasure}}-->
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cart-box sum">
+                                        <span>{{(order.kurs*(good.sum=good.cena*good.quantity)).toFixed(2)}}
+                                            &nbsp{{order.currencyStore[order.currency][2]}}
+                                        </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">
+                                        <div class=" img-box">
+                                            <a href="{{good.link}}">
+                                                <span ng-if="good.img" >
+                                                       <img class="img-responsive  cart-img" ng-src="{{good.img}}">
+                                                   </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-11 col-md-11 col-sm-1 col-xs-6">
+
+                                        <div  class="col-lg-3  col-md-7 col-sm-7 col-xs-8 cart-box">
+                                            <a  href="{{good.link}}" class="name-models">
+                                                <p>
+                                                    <span ng-bind="good.name"></span>
+                                                    <span ng-bind="good.artikul"></span>
+                                                </p>
+                                            </a>
+                                        </div>
+
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cart-box">
+                                            <span class="size" ng-bind="good.filterName"></span>
+                                            <span  ng-bind="good.sortName"></span>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cart-box">
+                                            <span class="" ng-bind="good.groupName"></span>
+                                            <span  ng-bind="good.groupTagName"></span>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cart-box">
+                                            <span ng-bind="$ctrl.global.get('lang').val.quantity"></span>
+                                            <span ng-bind="good.quantity"></span>
+                                            &lt;!&ndash;{{good.unitOfMeasure}}&ndash;&gt;
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 cart-box sum">
+                                            <span>{{(order.kurs*(good.sum=good.cena*good.quantity)).toFixed(2)}}
+                                                &nbsp{{order.currencyStore[order.currency][2]}}
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>-->
+                                </div>
+                            </div>
+                            <p ng-if="order.coupon">
+                                <span ng-bind="(order.kurs*(order.sum=order.getTotalSum())).toFixed(2)"></span>
+                                <span>&nbsp{{order.currencyStore[order.currency][2]}}</span>
+
+                            </p>
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 coupon total-left" ng-if="order.coupon">
+                                <p ng-bind="$ctrl.global.get('langOrder').val.basedcoupon"></p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 coupon total-right" ng-if="order.coupon">
+                                <p>
+                                    <span ng-bind="(order.kurs*order.getCouponSum()).toFixed(2)"></span>
+                                    <span>&nbsp{{order.currencyStore[order.currency][2]}}</span>
+                                </p>
+                            </div>
+                            <div ng-if="order.shipCost">
+                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 total-left">
+                                    <p ng-bind="$ctrl.global.get('langOrder').val.delivery"></p>
+                                </div>
+                                <div class="col-lg-4 col-mdsm-4 col-sm-6 col-xs-6 total-right">
+                                    <p><span ng-bind="order.shipCost"></span>&nbsp{{order.currencyStore[order.currency][2]}}</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 total  total-left">
+                                <p ng-bind="$ctrl.global.get('lang').val.intotal"></p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 total total-right">
+                                <p>
+                                    <span ng-bind="(order.paySum+((order.totalPay)?order.totalPay:0)).toFixed(2)"></span>
+                                    <span>&nbsp{{order.currencyStore[order.currency][2]}}</span>
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                        </div>
+                    </li>
+                </ul>
+                <paginator-main paginate="$ctrl.paginate" getlist="$ctrl.getOrders()"></paginator-main>
+            </uib-tab>
+            <uib-tab ng-hide="$ctrl.global.get('store').val.onlineis" index="1" heading="{{$ctrl.global.get('lang').val.online}}">
+                <ul class="cabinet-list">
+                    <li ng-repeat="entry in $ctrl.entries" >
+                        <div class="header-order">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <span  ng-bind="entry.dateString"></span>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <span ng-bind="entry.service.name"></span>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                    <span ng-bind="entry.master.name"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <span class="pull-right btn-pay" ng-if="entry.checkOutLiqpayHtmlIs">
+                                    <span ng-bind-html="entry.checkOutLiqpayHtml|unsafe"></span>
+                                </span>
+                                <span class="pull-right" ng-if="entry.pay && entry.pay.date">
+                                    <span ng-bind="$ctrl.global.get('langOrder').val.paid"></span>
+                                    <span ng-bind="entry.pay.date"></span>
+                                </span>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12" ng-show="entry.cancel && (!entry.pay || !entry.pay.date)">
+                                <span class="pull-right">
+                                    <a class="cancel-entry" ng-click="$ctrl.cancelEntry(entry)">
+                                        <span ng-bind="$ctrl.global.get('lang').val.cancel"></span>
+                                    </a>
+                                </span>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+                <paginator-main paginate="$ctrl.paginateEntry" getlist="$ctrl.getEntries()"></paginator-main>
+            </uib-tab>
+            <uib-tab ng-hide="$ctrl.global.get('store').val.datais" index="2" heading="{{$ctrl.global.get('lang').val.personalData}}">
+                <div class="user-profile">
+                    <div class="my-switch-container" >
+                        <div class="profile-inner" ng-if="$ctrl.user.val">
+                            <p class="data">
+                                <span class=" date-label col-lg-2 col-md-2 col-sm-3 col-xs-3">Login</span>
+                                <span class="col-lg-10 col-md-10 col-sm-9 col-xs-9" ng-bind="$ctrl.user.val.name"></span>
+                                <span class="clearfix"></span>
+                            </p>
+                            <p class="data">
+                                <span class="date-label col-lg-2 col-md-2 col-sm-3 col-xs-3">E-mail </span>
+                                <span  class="col-lg-6 col-md-6 col-sm-6 col-xs-9" ng-bind="$ctrl.user.val.email"></span>
+                                <a  class="col-lg-4 col-md-4 col-sm-3 col-xs-12 text-right change" ng-click="$ctrl.changeEmail()">{{$ctrl.global.get('langForm').val.changeEmail}}</a>
+                                <span class="clearfix"></span>
+                            </p>
+                            <p class="data">
+                                <span class="date-label col-lg-2 col-md-2 col-sm-3 col-xs-3" ng-bind="$ctrl.global.get('langForm').val.password"></span>
+                                <span  class="col-lg-6 col-md-6 col-sm-6 col-xs-9">*****************</span>
+                                <a  class="col-lg-4 col-md-4 col-sm-3 col-xs-12 text-right change"ng-click="$ctrl.changePswd(item._id)">
+                                    <span ng-bind="$ctrl.global.get('langForm').val.changePassword"></span>
+                                </a>
+                                <span class="clearfix"></span>
+                            </p>
+                            <h3 class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" ng-bind="$ctrl.global.get('langOrder').val.aboutdelivery"></h3>
+                            <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.saveProfile(formProfile)" novalidate>
+                                <div class="date-label col-lg-2 col-md-2 col-sm-3 col-xs-12" ng-bind="$ctrl.global.get('langForm').val.fullname"></div>
+                                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                                    <div class="form-group control-group">
+                                        <input ng-class="{'has-error': formProfile.fio.$invalid}"
+                                               name="fio" type="text"
+                                               class=" form-control cart"
+                                               ng-minlength="3"
+                                               ng-maxlength="70"
+                                               required
+                                               ng-model="$ctrl.user.val.profile.fio"
+                                               ng-model-options="{'updateOn':'default blur','debounce':{'default':600,'blur':0}}"
+                                               placeholder="{{$ctrl.global.get('langForm').val['fullname']}}"/> <!--pattern="[A-Za-zА-Яа-я0-9ЁёЇїІіЄє'\s-]{3,100}"-->
+                                    </div>
+                                    <span class="help-block"  ng-show="formProfile.fio.$error.required">{{$ctrl.global.get('langError').val.entername}}</span>
+                                    <span class="help-block"  ng-show="formProfile.fio.$error.minlength">{{$ctrl.global.get('langError').val.nameshort}}</span>
+                                    <span class="help-block"  ng-show="formProfile.fio.$error.maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+                                </div>
+
+                                <div class="date-label col-lg-2  col-md-2 col-sm-3 col-xs-12" ng-bind="$ctrl.global.get('langOrder').val.phone"></div>
+                                <div class="form-group col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                                    <div enter-phone-numder="$ctrl.user.val.profile.phone" change-foo="$ctrl.changePhone(phone)"></div>
+                                </div>
+                                <div class="date-label col-lg-2  col-md-2 col-sm-3 col-xs-12" ng-bind="$ctrl.global.get('langOrder').val.city"></div>
+                                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                                    <div class="form-group ">
+                                        <input name="cityId" required data-ng-model="$ctrl.user.val.profile.cityId"
+                                               type="hidden">
+                                        <input type="text"   class="form-control cart" ng-autocomplete-city  user="$ctrl.user.val"/>
+                                    </div>
+                                    <span class="help-block"  ng-show="formProfile.cityId.$error.required">{{$ctrl.global.get('langError').val.selectcity}}</span>
+                                </div>
+                                <div class="date-label col-lg-2  col-md-2 col-sm-3 col-xs-12" ng-bind="$ctrl.global.get('langForm').val.carrier"></div>
+                                <div class="control-group form-group col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                                    <div class="control-group form-group">
+                                        <input  ng-maxlength="100"
+                                                name="transporter"
+                                                type="text"
+                                                class="form-control cart"
+                                                ng-model="$ctrl.user.val.profile.transporter"
+                                                ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                                placeholder="{{$ctrl.global.get('langForm').val['carrier']}}"/>
+                                    </div>
+                                    <span class="help-block"  ng-show="formProfile.transporter.$error.maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <button class="btn btn-project btn-border" type="submit">
+                                        <span ng-bind="$ctrl.global.get('langForm').val.saveData"></span>
+                                    </button>
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </uib-tab>
+            <uib-tab ng-hide="$ctrl.global.get('store').val.subis" index="3" heading="{{$ctrl.global.get('lang').val.subManagement}}">
+                <div class="form-group text-center cancel-sub">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="$ctrl.user.val.subscription"
+                                   ng-change="$ctrl.changeSubscription()">
+                            <span ng-show="$ctrl.user.val.subscription">{{$ctrl.global.get('langForm').val.cancelSubscription}}</span>
+                            <span ng-show="!$ctrl.user.val.subscription">{{$ctrl.global.get('langForm').val.subscribe}}</span>
+                        </label>
+                    </div>
+                </div>
+            </uib-tab>
+        </div>
+    </div>
+</div>

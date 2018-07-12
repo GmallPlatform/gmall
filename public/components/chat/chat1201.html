@@ -1,0 +1,146 @@
+<div class="panel panel-violet">
+    <div class="panel-heading">
+        <!--<span class="glyphicon glyphicon-user"></span>--> ДИАЛОГ с tatiana-lux
+    </div>
+    <div id="innerChat"class="panel-body" scroll-up="chatCtrl.messages">
+        <ul class="chat">
+            <li class="text-center" ng-if="chatCtrl.totalCount>chatCtrl.localCount">
+                <a ng-click="chatCtrl.getMoreMessage()">
+                    <span class="col-lg-4"><hr></span>
+                    <span class="col-lg-4 text-center">ранее</span>
+                    <span class="col-lg-4"><hr></span>
+                    <div class="clearfix"></div>
+                </a>
+            </li>
+            <li class="row message" ng-repeat="message in chatCtrl.messages"
+                ng-init="message.who=chatCtrl.getWho(message.recipient)">
+                <div ng-if="message.who=='me'">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="message-me">
+                                <small class="text-muted">
+                                    <span class="glyphicon glyphicon-time"></span>{{moment(message.date).format('LLL')}}
+                                </small>
+                                <p ng-bind="message.message"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <img class="img-message" src="../../../views/tatiana/img/icon/dialog16.png">
+                        <strong class="name-message"  ng-bind="message.name"></strong>
+                        <!--<span class="info-chat-mini">Я</span>-->
+                        <!--<img src="http://placehold.it/50/55C1E7/fff&text=Я" class="img-circle" />-->
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div ng-if="message.who=='he'">
+                    <div class="col-lg-3 text-center">
+                        <img class="img-message" src="../../../views/tatiana/img/icon/dialog17.png">
+                        <!--<img src="http://placehold.it/50/FA6F57/fff&text=TLUX" class="img-circle" />-->
+                        <strong class="name-message"  ng-bind="message.name"></strong>
+                    </div>
+                    <div class="col-lg-9 text-right">
+                        <div class="row">
+                            <div class="message-he">
+                                <small class="text-muted ">
+                                    <span class="glyphicon glyphicon-time"></span>{{moment(message.date).format('LLL')}}
+                                </small>
+                                <p ng-bind="message.message"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <form novalidate name='formChat' ng-submit="chatCtrl.sendMessage(formChat)">
+            <div class="form-group" ng-class="{ 'has-success': formChat.message.$valid && chatCtrl.submitted,
+                                                      'has-error': formChat.message.$invalid && chatCtrl.submitted }">
+                <input id="btn-input form-control" type="text"
+                       ng-minlength="3"
+                       ng-maxlength="200"
+                       required
+                       name="message"
+                       ng-model="chatCtrl.message" class="form-control input-sm" placeholder="введите Ваше сообщение здесь..." />
+                <span class="help-block" ng-show="(formChat.message.$error.minlength ||
+                                                          formChat.message.$error.required) && chatCtrl.submitted">
+                    введено менее 3-х символов
+                </span>
+                <span class="help-block" ng-show="formChat.message.$error.maxlength && chatCtrl.submitted">
+                    введено более 200-ти символов
+                </span>
+                <!--<span class="input-group-btn">
+                    <button class="btn btn-warning btn-sm" id="btn-chat"
+                                    ng-disabled="order && order.status>5">&lt;!&ndash;ng-click="chatCtrl.sendMessage(chatCtrl.message)"&ndash;&gt;
+                        Отправить
+                    </button>
+                </span>-->
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .chat
+    {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .chat li
+    {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px dotted #B3A9A9;
+    }
+
+    .chat li.left .chat-body
+    {
+        margin-left: 60px;
+    }
+
+    .chat li.right .chat-body
+    {
+        margin-right: 60px;
+    }
+
+
+    .chat li .chat-body p
+    {
+        margin: 0;
+        color: #777777;
+    }
+
+    .panel .slidedown .glyphicon, .chat .glyphicon
+    {
+        margin-right: 5px;
+    }
+
+    .panel-body
+    {
+        overflow-y: scroll;
+        height: 250px;
+    }
+
+    ::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar
+    {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
+</style>

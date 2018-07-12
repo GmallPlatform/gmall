@@ -1,0 +1,126 @@
+.stuffEdit {
+    margin-top: 120px;
+}
+.stuffEdit .name-box {
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #6d7f8f;
+}
+.stuffEdit .tab-nav-stuff.active{
+    border-bottom: 1px solid rgb(255, 113, 72);
+}
+.stuffEdit .comment-detail {
+    margin-bottom: 30px;
+}
+.stuffEdit .date {
+    font-size: 12px;
+}
+.stuffEdit .comment-detail .thumbnail {
+    padding: 10px 15px;
+}
+.stuffEdit .comment-detail .response-name {
+    font-size: 14px;
+}
+.stuffEdit .tab-nav-link {
+    font-size: 14px;
+}
+
+@media (max-width: 1278px){
+    .stuffEdit .tab-nav-link {
+        font-size: 14px;
+    }
+}
+.stuffEdit .content-tab-box {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.stuffEdit .cart-detail .block-edit {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #b2b2b2;
+    background-color: #fff;
+}
+
+.stuffEdit .active {
+    color:  rgb(255, 113, 72);
+}
+
+.stuffEdit .code {
+    color:  rgb(255, 113, 72);
+}
+.stuffEdit input[type="number"] {
+    width: 100px;
+    display: inline-block;
+}
+.stuffEdit .name-box {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.stuffEdit .select-filter {
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.stuffEdit .name-filtarTag {
+    margin-right: 10px;
+    text-transform:  lowercase;
+    font-size: 18px;
+}
+
+/*gallery*/
+.stuffEdit .gallery-photo .delete {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.stuffEdit .gallery-photo .edit {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.gallery-item-ul li p,
+.gallery-item-ul li h4{
+    color: #666;
+    overflow: hidden;
+
+}
+
+/*table*/
+.stuffEdit .table>tbody>tr>td,
+.stuffEdit .table>tbody>tr>th,
+.stuffEdit .table>tfoot>tr>td,
+.stuffEdit .table>tfoot>tr>th,
+.stuffEdit .table>thead>tr>td,
+.stuffEdit .table>thead>tr>th {
+    vertical-align: middle;
+}
+.stuffEdit .table>tbody>tr>td input {
+    text-align: center;
+}
+.stuffEdit .table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f5f5f5;
+}
+.stuffEdit td.price-box {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.stuffEdit .btn-default-focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.stuffEdit .ui-select-container .ui-select-match .btn-default {
+    margin-top: 15px;
+    padding-left: 5px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.stuffEdit .currency-chois .ui-select-container i.glyphicon-remove {
+    display: none;
+}
+.stuffEdit .add-goods {
+    font-size: 24px;
+}
+.stuffEdit .add-goods i {
+    font-size: 36px;
+}

@@ -1,0 +1,115 @@
+/*smak, tatiana*/
+.slide-fade,
+.home-slides {
+    position: relative;
+}
+.substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+.mytoggle-page {
+    width: 100%;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.icon-next-img {
+    vertical-align: middle;
+    transition: opacity 0.5s ease-out 0s;
+    z-index: 2500;
+}
+.icon-prev-img {
+    vertical-align: middle;
+    transition: opacity 0.5s ease-out 0s;
+    z-index: 2500;
+}
+.home-slides:hover .icon-prev-img,
+.home-slides:hover .icon-next-img {
+    opacity: 1;
+}
+.carousel-indicators {
+    left: 0;
+    margin: 0;
+    z-index: 1025;
+    width: 100%;
+}
+.carousel-box {
+    display: inline-block;
+}
+.carousel-indicators li{
+    width: auto;
+    border-radius: 0;
+    opacity: 0.6;
+    margin: 0 5px;
+    text-indent: 0;
+}
+.carousel-indicators li.active {
+    background-color: transparent;
+    opacity: 0.9;
+}
+
+.mytoggle {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity:0;
+}
+.mytoggle.ng-enter {
+    opacity: 0;
+}
+.mytoggle.ng-enter-active {
+    opacity: 1;
+}
+.mytoggle.ng-leave {
+    opacity: 1;
+}
+.mytoggle.ng-leave-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-add {
+
+    opacity: 1;
+    display: block !important;
+}
+.mytoggle.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-remove {
+    opacity: 0;
+    display: block !important;
+}
+.mytoggle.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+.zoom-plus {
+    position: absolute;
+    top:200px;
+    left: 45%;
+}

@@ -1,0 +1,27 @@
+<div  ng-if="::$ctrl.item.sort && !$ctrl.item.service"
+        ng-class="::{'stdetail-quantity':!$ctrl.item.quantity.class,
+        'stdetail-quantity1':$ctrl.item.quantity.class==1,
+        'stdetail-quantity2':$ctrl.item.quantity.class==2,
+        'stdetail-quantity3':$ctrl.item.quantity.class==3,
+        'stdetail-quantity4':$ctrl.item.quantity.class==4,
+        'stdetail-quantity5':$ctrl.item.quantity.class==5,}"
+        class="quantity col-lg-4  col-md-4 col-sm-6 col-xs-5"  ng-if="!$ctrl.item.single">
+    <div class="row">
+        <ui-select ng-model="$ctrl.item.quantity"
+                   theme="bootstrap"
+                   on-select="$ctrl.item.onSelected()"
+                   append-to-body="true"
+                   search-enabled="false">
+            <ui-select-match>{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="qty in [1,2,3,4,5,6,7,8,9,10] track by $index">
+                <span ng-bind="qty | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+        <!--<input class="form-control"
+               type="number" min='1' max='1000'
+               ng-model="$ctrl.item.quantity"
+               ng-change="$ctrl.save.item.quantity()">-->
+        <span class="unit" ng-bind="$ctrl.item.unitOfMeasure"></span><!--единицы измеренеия-->
+    </div>
+
+</div>

@@ -1,0 +1,29 @@
+.view-email .news-head h2{
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.view-email .logo {
+    width: 150px;
+    display: inline-block;
+}
+.view-email .news-banner,
+.view-email .news-photo-box img,
+.view-email .news-good-box{
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.view-email .news-good-box a {
+    color: #93b1c6;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+.view-email .news-good-box a:hover {
+    color: #999;
+}
+.view-email .modal-content .modal-footer .btn{
+    width: 100%;
+}

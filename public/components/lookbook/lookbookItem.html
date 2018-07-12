@@ -1,0 +1,136 @@
+<div class="lookbook-item">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff text-center">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.lookbook">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff">
+            <div class="form-group date">
+                <input ng-if="$ctrl.item.date" date-range-picker class="date-picker form-control"
+                       type="text" ng-model="$ctrl.item.date" id="{{$index}}"
+                       options="$ctrl.datePickerOptions" ng-blur="$ctrl.saveField('date',200)"/>
+            </div>
+
+        </div>
+        <div class="tab-nav-stuff ">
+            <div class="form-group pull-left text-center">
+                <div class="togglebutton">
+                    <label for="look">
+                        <span ng-class="{'active':!$ctrl.item.actived}">не опубликовано</span>
+                        <input type="checkbox"
+                               id="look"
+                               ng-model="$ctrl.item.actived"
+                               ng-change="$ctrl.saveField('actived')">
+                        <span ng-class="{'active':$ctrl.item.actived}">опубликовано</span>
+                    </label>
+                </div>
+            <!--<div class=" checkbox">
+                <label>
+                    <input  type="checkbox" ng-model="$ctrl.item.actived"  ng-change="$ctrl.saveField('actived')">
+                    <span ng-if="!$ctrl.item.actived">опубликовать</span>
+                    <span ng-if="$ctrl.item.actived">опубликовано</span>
+                </label>
+            </div>-->
+            </div>
+        </div>
+
+        <div class="tab-nav-stuff pull-right">
+            <a class="btn btn-success" ng-click="$ctrl.sendEmail()">отправить как рассылку</a>
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+
+    <div class="content-tab-box col-lg-12">
+        <div class="col-lg-12 pages-header">
+            <h3 class="text-center name-page">редактирование обложки для lookbook</h3>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="cart-detail">
+                    <div class="form-group label-floating">
+                        <label class="control-label">наименование</label>
+                        <input class="form-control name" ng-model="$ctrl.item.name"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('name')">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="cart-detail">
+                    <div class="form-group label-floating">
+                        <label class="control-label">вставьте ссылку на фото (доску в Pinterest или альбом на google photo)</label>
+                        <input class="form-control"ng-model="$ctrl.item.link"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('link')">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="cart-detail">
+                    <h3 class="text-center">текстовый блок</h3>
+                    <div class="editor form-group">
+                        <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                             ng-change="$ctrl.saveField('desc',200)"
+                             ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                             ng-model="$ctrl.item.desc"
+                             ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                             ta-html-editor-class="border-around">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="cart-detail gallery-photo">
+                    <h3 class="text-center">фотографии для обложки</h3>
+                    <div class="galleryWrapper">
+                        <div class="galleryTable">
+                            <div class="galleryRow">
+                                <ul class="gallery-item-ul">
+                                    <li  class="gallery-item">
+                                        <span class="helper"></span>
+                                        <load-image
+                                                no-load="noLoad"
+                                                no-change="noChange"
+                                                upload-url="/api/collections/Photo/fileUploadBig?collectionName=Lookbook"
+                                                item-id="{{$ctrl.item._id}}"
+                                                item-url="{{$ctrl.item.url}}"
+                                                item-resourse="$ctrl.Items"
+                                                file-src="fileSrc"
+                                                name-img="imgs"
+                                                gallery="$ctrl.item.imgs">
+                                        </load-image>
+                                    </li>
+                                </ul>
+                                <ul dnd-list="$ctrl.item.imgs"
+                                    dnd-horizontal-list="true" class="gallery-item-ul">
+                                    <li ng-repeat="image in $ctrl.item.imgs" class="gallery-item"
+                                        dnd-draggable="image"
+                                        dnd-effect-allowed="move"
+                                        dnd-dragend="$ctrl.movedSlide()"
+                                        dnd-moved="$ctrl.item.imgs.splice($index, 1)">
+                                        <span class="helper"></span>
+                                        <img  ng-src="{{image.img}}">
+                                        <a class="btn  btn-fab delete" ng-click="$ctrl.deleteSlide($index)">
+                                            <i class="material-icons link-danger">delete</i>
+                                        </a>
+                                        <a class="btn  btn-fab edit" ng-click="$ctrl.editSlide($index)">
+                                            <i class="material-icons link-success">edit</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

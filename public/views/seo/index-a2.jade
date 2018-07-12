@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  gmall-promo
+
+  script(src='scripts/myPrototype.js')
+  script(src='scripts/angular-node.js')
+
+  script(src="bower_components/jquery/dist/jquery.js")
+
+  // Twitter Bootstrap
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+
+  //material Design for Bootstrap
+  script(src="bower_components/arrive/src/arrive.js")
+  script(src="bower_components/bootstrap-material-design/dist/js/material.js")
+  script(src="bower_components/bootstrap-material-design/dist/js/ripples.js")
+
+  // Dropdown.js
+  script(src="assets/jquery.dropdown.js")
+  script(src="assets/jquery.nicescroll/jquery.nicescroll.js")
+
+
+
+  script(src="node_modules/es6-shim/es6-shim.min.js")
+  script(src="node_modules/systemjs/dist/system-polyfills.js")
+  script(src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js")
+
+  script(src="node_modules/angular2/bundles/angular2-polyfills.js")
+  script(src="node_modules/systemjs/dist/system.src.js")
+  script(src="node_modules/rxjs/bundles/Rx.js")
+  script(src="node_modules/angular2/bundles/angular2.dev.js")
+  script(src="node_modules/angular2/bundles/router.dev.js")
+  script(src="node_modules/angular2/bundles/http.dev.js")
+
+
+  script.
+    System.config( {
+      packages: {
+        module: {
+          format: 'register',
+          defaultExtension: 'js'
+        },
+        component: {
+          format: 'register',
+          defaultExtension: 'js'
+        }
+      },
+      map: {
+        module:'modules',
+        component:"components"
+      }
+    })
+    System.import( 'modules/promo/app/main').then( null, console.error.bind( console ) );
+
+
+
+
+
+
+

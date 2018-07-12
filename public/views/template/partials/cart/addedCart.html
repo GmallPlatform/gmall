@@ -1,0 +1,30 @@
+<style>
+    .gotoinCart {
+        line-height: 28px;
+        transition: all 0.3s ease-in-out 0.1s
+    }
+</style>
+<div class="addItem" ng-if="$ctrl.addItem">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="row">
+            <img ng-if="$ctrl.addItem.img" class="img-responsive cart-img"  ng-src="{{$ctrl.addItem.img}}">
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <a class="name-goods" ng-click="$ctrl.goToStuff({groupUrl:'group',categoryUrl:'category',stuffUrl:$ctrl.addItem.url})">
+            <p ><!--ng-bind="$ctrl.addItem.name+' '+$ctrl.addItem.artikul+(($ctrl.addItem.sortName)?' '+$ctrl.addItem.sortName:'')"-->
+                <span ng-bind="$ctrl.addItem.name"></span><br>
+                <span class="artikul" ng-bind="$ctrl.addItem.artikul"></span><br>
+                <span ng-bind="$ctrl.addItem.sortName"></span>
+            </p>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+    <hr>
+    <div class="text-center">
+        <a class="gotoinCart" href="/cart">
+            <span ng-bind="$ctrl.global.get('lang').val.gotoCart"></span>
+        </a>
+    </div>
+
+</div>

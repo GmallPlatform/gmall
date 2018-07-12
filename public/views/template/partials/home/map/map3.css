@@ -1,0 +1,8 @@
+.block-map iframe {
+    width: 100%;
+}
+.mobile-wrapper iframe {
+    width: 100%;
+    margin: 0 auto;
+    height: 80vh;
+}

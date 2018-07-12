@@ -1,0 +1,134 @@
+<div class="sort-of-stuff">
+    <div class="cart-detail">
+        <table>
+            <tr class="different-photo">
+                <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center border-right-top">
+                    <div>
+                        <h4 class="name-box">разновидности с разными фотографиями</h4>
+                    </div>
+                    <div class="add-good" ng-if="!$ctrl.stuff.sortsOfStuff">
+                        <a  ng-click="$ctrl.createSort()" class="btn btn-success">создать<br> разновидность</a>
+                    </div>
+                    <div ng-if="$ctrl.stuff.sortsOfStuff">
+                        <div class="label-floating form-group text-left">
+                            <label class="control-label">наименование блока</label>
+                            <input class="form-control" type="text"
+                                   ng-model="$ctrl.stuff.sortsOfStuff.name"
+                                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveFieldsortsOfStuff('name')">
+                        </div>
+                        <div class="add-good text-center">
+                            <a  ng-click="$ctrl.selectStuff()"
+                                class="btn btn-success">добавить товар <br>из уже созданных</a>
+                        </div>
+                        <div class="add-good">
+                            <button  ng-click="$ctrl.createAndAddStuff()" class="btn btn-warning">
+                                создать новый <br>
+                                товар и добавить
+                            </button>
+                        </div>
+                        <div class="add-good border" >
+                            <p class="name-filters" ng-bind="$ctrl.stuff.sortsOfStuff.filterGroup.name"></p>
+                            <a ng-click="$ctrl.clearFilterGroup()" title="удалить характеристику" ng-if="$ctrl.stuff.sortsOfStuff.filterGroup.name.length"><span class="cancel" style="top: 10px; right: 10px"></span></a>
+                            <a ng-click="$ctrl.selectFilterGroup()" class="btn btn-success">выбрать<br> характеристику<br>для отображения<br>в группе</a>
+                        </div>
+                    </div>
+                </td>
+
+                <td  ng-if="$ctrl.stuff.sortsOfStuff.filter" class="col-lg-1 border-right-top"></td>
+                <td  class="col-lg-2 border-right-top"  ng-repeat="stuff in $ctrl.stuff.sortsOfStuff.stuffs">
+                    <div class="text-center">
+                        <div>
+                            <a ui-sref="frame.stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url,block:(stuff.gallery[0].thumbSmall || stuff.gallery[0].thumb)?'mainInfo':'gallery'})">
+                                <img class="img-responsive"
+                                     ng-src="{{stuff.gallery[0].thumbSmall || stuff.gallery[0].thumb || '/img/upload/no.png'}}"></a>
+                        </div>
+                        <p class="name-good">
+                            <span ng-bind="stuff.name"></span>&nbsp
+                            <span ng-bind="stuff.artikul"></span>
+                        </p>
+                        <div class="checkbox" ng-if="stuff.stock.notag">
+                            <label>
+                                <input type="checkbox" ng-model="stuff.stock.notag.quantity" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.changeStock(stuff,null,stuff.stock.notag.quantity)">
+                                в наличии
+                            </label>
+                        </div>
+                        <a ng-click="$ctrl.deleteStuffFromSort(stuff,$index)" class="btn btn-warning">
+                            удалить
+                        </a>
+                    </div>
+                </td>
+                <td class="col-lg-2" ng-if="$ctrl.stuff.sortsOfStuff"></td>
+                <td class="col-lg-2" ng-if="$ctrl.stuff.sortsOfStuff"></td>
+                <td class="col-lg-2" ng-if="$ctrl.stuff.sortsOfStuff"></td>
+
+            </tr>
+            <tr  class="same-photo" ng-show="!$ctrl.stuff.sortsOfStuff.filter" class=" text-center">
+                <td   class="col-lg-1 border-right-top text-center">
+                    <div>
+                        <h4 class="name-box">разновидности с одинаковыми фотографиями</h4>
+                    </div>
+                    <div ng-if="!$ctrl.filterTwo" class="add-good" >
+                        <a ng-click="$ctrl.selectFilter('filterTwo')" class="btn btn-success">
+                            выбрать<br>
+                            <span >
+                                характеристику <br>для разновидности
+                            </span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="text-center same-photo" ng-repeat="tag in $ctrl.stuff.sortsOfStuff.filter.tags">
+                <td ng-if="$index===0" rowspan="{{$ctrl.stuff.sortsOfStuff.filter.tags.length}}" class="col-lg-1 text-center border-right-top">
+                    <div>
+                        <h4 class="name-box">разновидности с одинаковыми фотографиями</h4>
+                    </div>
+                    <div >
+
+                        <div class="add-good border" >
+                            <p class="name-filters" ng-bind="$ctrl.stuff.sortsOfStuff.filter.name"></p>
+                            <a ng-click="$ctrl.selectFilter()" class="btn btn-success">изменить<br> характеристику<br>для разновидности</a>
+                        </div>
+                        <div class="add-good">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="$ctrl.stuff.sortsOfStuff.differentPrice"
+                                    ng-change="$ctrl.changeDifferentPrice()">
+                                    разная цена
+                                </label>
+                            </div>
+                        </div>
+                        <!--<div class="add-good">
+                            <a ng-click="$ctrl.additionalInfo()" class="btn btn-info">таблица <br> параметров</a>
+                        </div>-->
+                    </div>
+
+                </td>
+                <td class="col-lg-1 border-right-center">
+                    <span ng-bind="tag.name"></span>
+                </td>
+                <td сlass="co-lg-2 border-right-center" ng-repeat="stuff in $ctrl.stuff.sortsOfStuff.stuffs" style="border-right: 2px solid #ccc; padding: 15px">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="stuff.stock[tag._id].quantity" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.changeStock(stuff,tag,stuff.stock[tag._id].quantity)">
+                            в наличии
+                        </label>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="label-floating  form-group text-left" ng-if="$ctrl.stuff.sortsOfStuff.differentPrice">
+                            <label class="control-label">цена</label>
+                            <input ng-model="stuff.stock[tag._id].price"
+                                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.changeStock(stuff)"
+                                   class="form-control" type="text"/>
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="clearfix"></div>
+    </div>
+</div>

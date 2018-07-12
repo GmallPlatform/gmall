@@ -1,0 +1,14 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12",set-animate=dj[key].animate&&!mobile,data-animation=dj[key].animate)
+            if(dj[key].name)
+                h2=dj[key].name
+            div(class='google-place-reviews',id="google-reviews")
+            if(dj[key].desc)
+                p
+                    | !{dj[key].desc}
+            if(dj[key].button && dj[key].button.is && store.glPlaceId)
+                a(class="btn btn-project",href="https://search.google.com/local/writereview?placeid="+store.glPlaceId,target="_blank")
+                    span=dj[key].button.text
+        div( class="clearfix")
+

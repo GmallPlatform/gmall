@@ -1,0 +1,25 @@
+<div class="content" ng-if="$state.current.name=='frame'">
+    <div class="" ng-repeat="lang in global.get('store').val.langArr" ng-show="lang!=global.get('store').val.lang">
+        <a  ui-sref="frame.translate({lang:lang})" class="content-box-link">
+            <div class=" panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" style="cursor: default">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">work</i>
+                        </span>
+                        {{lang}}</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов сайта на выбранный язык                 </span>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+<div ui-view></div>

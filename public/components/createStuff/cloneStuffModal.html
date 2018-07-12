@@ -1,0 +1,10 @@
+<div class="clone-stuff-modal-box">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" ng-if="clone">клонирование товара</h3>
+        <h3 class="modal-title text-center" ng-if="!clone">создание товара</h3>
+        <a class="cancel" type="button" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <create-new-stuff clone="clone" stuff="$ctrl.stuff"></create-new-stuff>
+    </div>
+</div>

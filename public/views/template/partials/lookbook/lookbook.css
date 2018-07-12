@@ -1,0 +1,111 @@
+/*indian,clinic*/
+.look-book .slider-fade .navleft-carousel {
+    display: none;
+}
+.look-book .slider-fade .navright-carousel {
+    display: none;
+}
+.look-book .slider-fade .carousel-indicators {
+    bottom: 15%;
+}
+.look-book {
+    margin-top: 140px;
+}
+.look-book-box {
+    position: relative;
+}
+.look-book-box .slider {
+    margin-bottom: 60px;
+}
+.look-book-desc {
+    position: absolute;
+    padding: 20px;
+    z-index: 1000;
+    background-color:  #fff;
+    opacity: .7;
+    width: 80%;
+    bottom: 160px;
+    text-align: right;
+}
+.look-book-desc h1 {
+    font-family: hermesctt;
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+/*
+@media (max-width: 1670px) {
+    .look-book-box .slider {
+        height: 550px;
+    }
+}
+@media (max-width: 1560px){
+    .look-book-box .slider {
+        height: 550px;
+    }
+}
+@media (max-width: 1400px){
+    .look-book-box .slider {
+        height: 440px;
+    }
+}
+@media (max-width: 1350px){
+    .look-book-box .slider {
+        height: 440px;
+    }
+}
+@media (max-width: 1270px){
+    .look-book-box .slider {
+        height: 400px;
+    }
+}
+@media (max-width: 1194px) {
+    .look-book-box .slider {
+        height: 800px;
+    }
+}
+@media (max-width: 1150px){
+    .look-book-box .slider {
+        height: 750px;
+    }
+    .look-book-desc {
+        bottom: 200px;
+    }
+}
+@media (max-width: 1050px) {
+    .look-book-box .slider {
+        height: 680px;
+    }
+    .look-book-desc {
+        bottom: 180px;
+    }
+}
+@media (max-width: 980px){
+    .look-book-box .slider {
+        height: 620px;
+    }
+}
+@media (max-width: 840px){
+    .look-book-box .slider {
+        height: 580px;
+    }
+}
+@media (max-width: 770px){
+    .look-book-box .slider {
+        height: 500px;
+    }
+}
+@media (max-width: 680px){
+    .look-book-box .slider {
+        height: 450px;
+    }
+}
+
+@media (max-width: 380px){
+    .look-book-box .slider {
+        height: 350px;
+    }
+    .look-book-desc {
+        width: 100%;
+        bottom: 0;
+    }
+}*/

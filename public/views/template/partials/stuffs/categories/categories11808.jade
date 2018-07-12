@@ -1,0 +1,22 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        categories-for-list-template1(padding="padding")
+            div(class="categories-for-list")
+                if(dj[key].categories.length && dj[key].categories.length > 1)
+                    div(class="")
+                        a(class="categories-stuff",href=dj[key].allCategoriesLink,ng-class="{'active':$ctrl.category=='category'}")
+                            span(class="icon-categories-img")
+                            span(class="text-center")=store.langData.allCategories
+                        if(dj[key].section && dj[key].section.saleLink && store.saleTag)
+                            a(class="categories-stuff",ng-click="$ctrl.changeCategory('category','sale')")
+                                span(class="icon-categories-img")
+                                span(class="text-center",ng-class="{'category-active':$ctrl.queryTag=='sale'}")=store.langData.sale
+                        if(dj[key].section && dj[key].section.newLink && store.newTag)
+                            a(class="categories-stuff",ng-click="$ctrl.changeCategory('category','new')")
+                                span(class="icon-categories-img")
+                                span(class="text-center",ng-class="{'category-active':$ctrl.queryTag=='new'}")=store.langData.new
+                        each category in dj[key].categories
+                            a(class="categories-stuff",href=category.link,ng-class="{'active':$ctrl.category=='" + category.url + "'}")
+                                span(class="icon-categories-img")
+                                span(class="text-center")=category.name
+                        div(class="clearfix")

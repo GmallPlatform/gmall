@@ -1,0 +1,342 @@
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+.simpleDemo ul[dnd-list],
+.simpleDemo ul[dnd-list] > li {
+    position: relative;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.simpleDemo ul[dnd-list] {
+    min-height: 32px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.simpleDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.simpleDemo ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #E6E3EE;
+    min-height: 32px;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.simpleDemo ul[dnd-list] li {
+    background-color: #eee;;
+    /*border: 1px solid #ddd;*/
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+.simpleDemo ul[dnd-list] li:hover{
+    background-color: #e0deee;
+    text-decoration: none;
+}
+.btn.btn-fab {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+/*link*/
+.link-danger {
+    color: #ff4437;
+}
+.link-danger:hover, .link-danger:focus {
+    text-decoration: none;
+    /*color: rgba(228, 43, 77, 0.69);*/
+    color: #ed3421;
+
+}
+.link-warning{
+    color: #ff5722;
+}
+.link-warning:hover,
+.link-danger:focus  {
+    color: #df3806;
+}
+.link-info {
+    color: #03a9f4;
+}
+.link-info:hover,
+.link-info:focus  {
+    color: #0385c3;
+}
+.link-success {
+    color: #4caf50;
+}
+.link-success:hover,
+.link-success:focus  {
+    color: #3a833d;
+}
+.link-primary {
+    color: #009688;
+}
+.link-primary:hover,
+.link-primary:focus  {
+    color: #007469;
+}
+/*link end*/
+/*material-icons*/
+.material-icons {
+    margin-right: 10px;
+}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36,
+.btn.btn-fab i.material-icons.md-36,
+.input-group-btn .btn.btn-fab i.material-icons.md-36{
+    font-size: 36px;
+    transform: translate(-17px, -11px);
+}
+.material-icons.md-48 { font-size: 48px; }
+/*material-icons end*/
+.order-cart-detail {
+    box-shadow: 0px 8px 17px 0px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+fieldset.scheduler-border {
+    border: 1px groove #ddd;
+    padding: 0 1em 1em 1em;
+    margin: 0 0 1em 0;
+}
+
+legend.scheduler-border {
+    font-weight: bold;
+    text-align: left ;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+.order-cart-detail legend {
+    font-size: 26px !important;
+    text-transform: lowercase;
+    font-weight: bold;
+}
+.cart-detail {
+    font-size: 18px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 2px 3px #666;
+    box-shadow: 0px 8px 17px 0px #999;
+    margin-bottom: 10px;
+    padding: 20px;
+    transition: all .1s ease-out;
+}
+.cart-detail:hover {
+    box-shadow: 0px 4px 6px #666;
+    /*box-shadow: 0px 8px 17px 0px;*/
+
+}
+.cart-detail hr {
+    border-top-color: #999;
+}
+.cart-detail a:hover,
+.cart-detail a:focus{
+   text-decoration: none;
+}
+.cart-detail a:hover,
+.cart-detail a:focus {
+    color: rgba(81, 149, 150, 0.71);
+}
+.sticker {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    background-color: transparent;
+    width: 40px;
+    opacity: 0.8;
+}
+.group-name {
+    font-weight: bold;
+}
+.index {
+    position: absolute;
+    left: 25px;
+    font-size: 20px;
+}
+.name-models {
+    font-size: 20px;
+}
+.name-models:hover,
+.name-models:focus{
+    text-decoration: none;
+}
+input.number {
+    height: 40px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.sum {
+    font-weight: bold;
+    font-size: 20px;
+}
+.font-mobile .sum,
+.sum.font-mobile{
+    font-size: 18px;
+}
+.name-models.font-mobile,
+.cart-detail.font-mobile{
+    font-size: 16px;
+}
+.font-mobile .delete {
+    font-size: 14px;
+    margin-top: 30px;
+    height: 20px;
+}
+
+
+/*chat*/
+/*.panel-violet .panel-heading {
+    background-color: #575768;
+    color: #fff;
+    padding: 20px 15px;
+    font-size: 22px;
+    text-align: center;
+    border: 10px solid #f5f5f5;
+    box-shadow: 0 0 4px #666;
+    margin-bottom: 2px;
+}
+.panel-violet .panel-footer {
+    background-color: #eee;
+    border-top: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+.panel-violet .panel-footer input{
+    font-size: 18px;
+    border: 1px solid #52a8a1;
+    padding: 3px 20px;
+    margin-bottom: 0;
+}
+.panel-violet .panel-footer input:focus {
+    box-shadow: 0px 1px 2px rgba(0, 117, 91, 0.55) inset, 0 0 2px rgba(0, 142, 115, 0.26)
+}
+.chat-content {
+    margin: 10px;
+}
+.panel-violet .panel-body {
+    background-color: #eee;
+    padding: 10px;
+}
+.panel-violet .panel-body li {
+    padding:10px;
+    margin: 0;
+}
+.panel-violet .btn-default {
+    background-color: #575768;
+}
+.chat{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body{
+    margin-right: 60px;
+}
+.chat li .chat-body p{
+    margin: 0;
+    color: #777777;
+}
+.chat-content {
+    margin: 10px;
+}
+.panel .slidedown .glyphicon,
+.chat .glyphicon{
+    margin-right: 5px;
+}
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+.name-message {
+    font-size: 12px;
+}
+.img-message {
+    max-width: 40px;
+}
+.text-muted {
+    font-size: 12px;
+}
+.message-me {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+     border: 1px solid #575768;
+    box-shadow: 2px 3px 6px #575768;
+    box-shadow: -1px 3px 6px rgba(87, 87, 104, 0.59);
+}
+.message-he {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+     border: 1px solid #575768;
+    box-shadow: 0 3px 6px #006952;
+    box-shadow: 1px 1px 6px rgba(0, 109, 88, 0.48);
+}*/
+.order-cart-detail .panel-footer {
+    border: 2px solid #52a8a1;
+    padding-bottom: 0;
+}
+.order-cart-detail .panel-footer .form-group {
+    padding-bottom: 0;
+
+}
+.order-cart-detail .panel-violet .panel-footer input,
+.order-cart-detail .panel-violet .panel-footer input:focus{
+    border: none;
+    box-shadow: none;
+}
+
+
+

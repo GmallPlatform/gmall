@@ -1,0 +1,47 @@
+<div  class="time-box">
+    <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center time-item">
+        <span class="time-block col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <span class="time">{{$ctrl.ddays}} </span><br>
+            <span class="time-name">{{$ctrl.gethumanizeDay($ctrl.days)}}</span>
+        </span>
+        <span class="separator-block col-lg-3  col-sm-3 col-xs-3">
+            <span class="separator">:</span>
+        </span>
+    </span>
+    <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3  text-center time-item">
+        <span class="time-block col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <span class="time">{{$ctrl.hhours}}</span><br>
+            <span class="time-name">{{$ctrl.gethumanizeHour($ctrl.hours)}}</span>
+        </span>
+        <span class="separator-block col-lg-3 col-sm-3 col-xs-3">
+            <span class="separator">:</span>
+        </span>
+    </span>
+    <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3  text-center time-item">
+        <span class="time-block col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <span class="time">{{$ctrl.mminutes}}</span><br>
+            <span class="time-name">{{$ctrl.gethumanizeMin($ctrl.minutes)}}</span>
+        </span>
+        <span class="separator-block col-lg-3 col-sm-3 col-xs-3">
+            <span class="separator">:</span>
+        </span>
+    </span>
+    <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3  text-center time-item">
+        <span class="time-block col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <span class="time">{{$ctrl.sseconds}}</span><br>
+            <span class="time-name">{{$ctrl.gethumanizeSec($ctrl.seconds)}}</span>
+         </span>
+    </span>
+</div>
+
+
+
+
+<!--
+<div>
+    <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center time-item"><span class="time">{{$ctrl.ddays}} </span><br> {{$ctrl.gethumanizeDay($ctrl.days)}}</span>
+    <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3  text-center time-item"><span class="time">{{$ctrl.hhours}}</span><br>{{$ctrl.gethumanizeHour($ctrl.hours)}}  </span>
+    <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3  text-center time-item"><span class="time">{{$ctrl.mminutes}}</span><br>{{$ctrl.gethumanizeMin($ctrl.minutes)}} </span>
+    <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3  text-center time-item"><span class="time">{{$ctrl.sseconds}}</span><br>{{$ctrl.gethumanizeSec($ctrl.seconds)}}</span>
+    <div class="clearfix"></div>
+</div>-->

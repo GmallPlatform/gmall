@@ -1,0 +1,5 @@
+.btn-project {
+  @if $font-size {
+    font-size: $fonnt-size*1.5;
+  }
+}

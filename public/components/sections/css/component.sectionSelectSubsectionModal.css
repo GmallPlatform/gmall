@@ -1,0 +1,58 @@
+.section-select-subsection-modal .modal-header {
+    background-color:  #eee;
+    padding: 12px 20px;
+    border-bottom: 3px solid #d5d5d5;
+}
+.section-select-subsection-modal .cancel {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 15px;
+    height: 15px;
+    background: url("../../../img/icon/clear.png");
+    background-size: 15px;
+}
+.section-select-subsection-modal .modal-body .box-control {
+    padding:0;
+    background-color: #fff
+}
+.section-select-subsection-modal li {
+    list-style: none;
+}
+.section-select-subsection-modal .modal-body .section-box{
+    border: 4px solid #ff7148;
+    /*border-bottom:2px solid #767c89;*/
+
+    color: #ff7148;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 18px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+/*.section-select-subsection-modal .modal-body .category-box {
+    border: 4px solid #93b1c6;
+    padding: 10px 15px ;
+    color: #93b1c6;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 18px;
+    cursor: pointer;
+}*/
+.section-select-subsection-modal .modal-body .section-box:hover{
+    background-color: rgba(255, 113, 72, 0.50);
+}
+.section-select-subsection-modal .modal-body .box-border-top {
+    margin-top: 42px;
+    border-top: 2px solid #767c89;
+    padding-right: 0;
+}
+.section-select-subsection-modal .category-tree {
+    padding-left: 0;
+    margin-top: 42px;
+    /*margin-left: 100px;*/
+    border-left: 2px solid #767c89;
+}
+.section-select-subsection-modal .bind-category-modal .section-category{
+    cursor: default;
+}

@@ -1,0 +1,25 @@
+div(class="info-block")
+    div(class="container")
+        div(class="col-lg-3 col-md-3 col-sm-12 col-xs-12 menu-left")
+            each item in info
+                a(href='/info/'+item.url)
+                    h2
+                        span(ng-class="{'active':$ctrl.$stateParams.id=='"+item.url+"'}")
+                            span=item.name
+        div(class="col-lg-9 col-md-9 col-sm-12 col-xs-12")
+            uib-accordion(ng-init="$ctrl.isOpen={}")
+                - for(var i =0; i< dj[key].itemDetail.blocks.length; i++)
+                    div(uib-accordion-group,class="panel-default",is-open="$ctrl.isOpen['"+dj[key].itemDetail.blocks[i]._id+"']",ng-init="$ctrl.isOpen['"+dj[key].itemDetail.blocks[i]._id+"']=false")
+                        uib-accordion-heading
+                            div(ng-click="$ctrl.openBlock('"+dj[key].itemDetail.blocks[i]._id+"')")
+                                div(class="pull-left info-name")
+                                    span()
+                                        |#{dj[key].itemDetail.blocks[i].name}
+                                div(class="pull-right up-down",style="display:inline-block")
+                                    span(class="icon-downslide-img",ng-show="!$ctrl.isOpen['"+dj[key].itemDetail.blocks[i]._id+"']")
+                                    span(class="icon-upslide-img",ng-show="$ctrl.isOpen['"+dj[key].itemDetail.blocks[i]._id+"']")
+                                div(class="clearfix")
+                        |!{dj[key].itemDetail.blocks[i].desc}
+
+        div(class="clearfix")
+div(class="clearfix")

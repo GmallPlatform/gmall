@@ -1,0 +1,108 @@
+<style>
+    .custom-list {
+        margin-top: 140px;
+    }
+</style>
+<div ng-hide="$ctrl.$state.current.name!='frame.customLists'" class="custom-list">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff">
+            <a class="btn btn-fab btn-fab-mini btn-success"
+               ng-click="$ctrl.createItem()"
+               title="добавить список">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff">
+            <form ng-submit="$ctrl.searchItem(searchStr)">
+                <input type="text"  class="search-fluid"  ng-model="searchStr"/>
+                <input type="submit" class="enter" tabindex="-1" />
+            </form>
+        </div>
+
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
+            <paginator-main
+                    paginate="$ctrl.paginate"
+                    getlist="$ctrl.getList()"
+                    scroll="{{scrollId}}">
+            </paginator-main>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <div class="master col-lg-12">
+        <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <p class="no_story">
+                по вашему запросу нет записей
+            </p>
+        </div>
+        <div class="clearfix"></div>
+        <h3 ng-if="$ctrl.items.length" class="text-center name-page">настраиваемые списки</h3>
+        <div class="cart-detail" ng-if="$ctrl.items.length">
+            <div class="dropzone">
+                <ul dnd-list="$ctrl.items" dnd-drop="$ctrl.dropCallback(item)">
+                    <li dnd-draggable="item"
+                        dnd-effect-allowed="move"
+                        dnd-moved="$ctrl.items.splice($index,1)"
+                        ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
+                        ng-repeat="item in $ctrl.items">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <i class="material-icons link-success pull-left" style="margin-top: 20px">swap_vert</i>
+                            <div class=" form-group label-floating pull-left">
+                                <label for="name1" class="control-label">имя</label>
+                                <input type="text" id="name1" class="form-control name"
+                                       ng-model="item.name"
+                                       ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                                       required
+                                       lost-focus="$ctrl.saveField(item,'name')"/>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class=" form-group label-floating">
+                                <label for="position" class="control-label">url списка</label>
+                                <input type="text" id="position" class="form-control name"
+                                       ng-model="item.link"
+                                       ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                                       lost-focus="$ctrl.saveField(item,'link')"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group">
+                                <div class="togglebutton">
+                                    <label for="actived{{$index}}-ds">
+                                        <span ng-class="{'active':!item.actived}">не опубликовано</span>
+                                        <input type="checkbox"
+                                               id="actived{{$index}}-ds"
+                                               ng-model="item.actived"
+                                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                               ng-change="$ctrl.saveField(item,'actived')">
+                                        <span ng-class="{'active':item.actived}">опубликовано</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 head-box">
+                            <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.deleteItem(item)">
+                                <i class="material-icons link-warning">delete</i>
+                            </a>
+                            <a class="btn btn-fab btn-fab-mini pull-right" ui-sref="frame.customLists.item({id:item._id})">
+                                <i class="material-icons link-success">edit</i>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!--<a href="#" class="back-to-top">
+        <i class="fa fa-angle-double-up fa-3x" ></i>
+    </a>-->
+
+</div>
+<div ui-view></div>
+
+

@@ -1,0 +1,35 @@
+<div class="select-stuff select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">
+            в списке на сайте
+        </h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+
+    </div>
+    <div class="modal-body text-center">
+        <!--<div  class="checkbox">
+            <label>
+                <input  ng-model="$ctrl.actived" type="checkbox">
+                <span ng-if="$ctrl.actived">опубликовать товар</span>
+                <span ng-if="!$ctrl.actived">скрыть товар</span>
+            </label>
+        </div>-->
+        <div class="togglebutton">
+            <label for="full">
+                <span ng-class="{'active':!$ctrl.actived}">скрыть товар</span>
+                <input type="checkbox"
+                       id="full"
+                       ng-model="$ctrl.actived"
+                       ng-change="$ctrl.saveField('$ctrl.actived')">
+                <span ng-class="{'active':$ctrl.actived}">опубликовать товар </span>
+            </label>
+        </div>
+    </div>
+
+    <div class="modal-footer col-lg-12">
+        <a class="btn btn-success btn-block" type="button"
+           ng-click="$ctrl.ok()">Применить</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+

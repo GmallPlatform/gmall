@@ -1,0 +1,59 @@
+/*create-servise-master*/
+/*create-master*/
+.create-master .modal-header,
+.create-servise-master .modal-header {
+    background-color:  #eee;
+    padding: 12px 20px;
+    border-bottom: 3px solid #d5d5d5;
+
+}
+.create-master .help-block,
+.create-servise-master .help-block {
+    color: #ff7148;
+}
+.create-master .form-group input,
+.create-servise-master .form-group input {
+    margin-bottom: 0;
+}
+
+.create-master .form-group.is-focused .ui-select-container,
+.create-master .form-group.is-focused .form-control .ui-select-match input,
+.create-servise-master .form-group.is-focused .ui-select-container,
+.create-servise-master .form-group.is-focused .form-control .ui-select-match input{
+    background-color: rgba(147, 177, 198, 0.33);
+    background-color: rgba(198, 47, 78, 0.33);
+    background-color: #93b1c6;
+    color: #fff;
+
+}
+.create-master .form-group.is-focused ::-webkit-input-placeholder,
+.create-servise-master .form-group.is-focused ::-webkit-input-placeholder {
+    color:#fff;
+}
+.create-master .form-group.is-focused ::-moz-placeholder,
+.create-servise-master .form-group.is-focused ::-moz-placeholder          {
+    color:#fff;
+}/* Firefox 19+ */
+.create-master .form-group.is-focused :-moz-placeholder,
+.create-servise-master .form-group.is-focused :-moz-placeholder           {
+    color:#fff;
+}/* Firefox 18- */
+.create-master .form-group.is-focused :-ms-input-placeholder,
+.create-servise-master .form-group.is-focused :-ms-input-placeholder      {
+    color:#fff;
+}
+.create-master .the-legend,
+.create-servise-master .the-legend {
+    border-style: none;
+    border-width: 0;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+}
+.create-servise-master .the-fieldset {
+    border: 2px groove threedface #444;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+}
+
+

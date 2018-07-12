@@ -1,0 +1,26 @@
+<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  box-border-top"></div>
+<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10  form-group  tag-box">
+    <div class="control-box col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+        <a class="text-center border-right control" ui-sref="frame.filters.tag({id:tag._id})" >
+            <i class="material-icons link-success">add_a_photo</i>
+        </a>
+    </div>
+    <div class="label-floating col-lg-10 col-md-10 col-sm-9 col-xs-10 ">
+        <label class="control-label">признак</label>
+        <input ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+               ng-change="$ctrl.saveTag(tag,'name')"
+               dnd-nodrag class="form-control" ng-model="tag.name">
+    </div>
+    <div class="control-box col-lg-1 col-md-1 col-sm-2 col-xs-1 ">
+        <a class="text-center border-left control" ng-click="$ctrl.deleteTag(filter,$index)">
+            <i class="material-icons link-warning">delete</i>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
+
+
+
+
+

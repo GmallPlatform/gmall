@@ -1,0 +1,54 @@
+<div class="login-box">
+    <div>
+        <form method="post" ng-submit="$ctrl.sendCodeToPhone()" name="loginFormPhone">
+            <div class="form-group has-feedback">
+                <input ng-class="{ 'has-error' : loginFormPhone.displayName.$invalid}" class="form-control input-lg"
+                       type="text"
+                       name="displayName"
+                       required
+                       ng-model="$ctrl.name"
+                       placeholder="{{$ctrl.global.get('langForm').val['name']}}"
+                       ng-maxlength="50"
+                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+                <span class="ion-person form-control-feedback"></span>
+            </div>
+            <span class="help-block text-danger" ng-show="loginFormPhone.displayName.$invalid" ng-messages="loginFormPhone.displayName.$error">
+            <span ng-message="maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+            <span ng-message="required">{{$ctrl.global.get('langError').val.nameshot}}</span>
+        </span>
+
+
+            <div enter-phone-numder="$ctrl.phone"></div>
+            <button type="submit" ng-disabled="loginFormPhone.$invalid || $ctrl.sendCodeDisable" class="btn btn-block btn-project">
+                <span ng-bind="$ctrl.global.get('langForm').val.sendCode"></span>
+
+            </button>
+            <p class="text-help" ng-show="$ctrl.codeSent"><a ng-click="$ctrl.sendCodeToPhone()">{{$ctrl.global.get('langForm').val.notCode}}</a></p>
+        </form>
+        <hr>
+
+        <form novalidate name="smscode" ng-submit="$ctrl.verifyCode(smscode)">
+            <h4 class="text-center">{{$ctrl.global.get('langForm').val.enterCode}}</h4>
+            <div class="form-group text-center">
+                <input  ng-class="{'has-error': smscode.smscode.$invalid && smscode.smscode.$dirty}" class="form-control input-code"
+                        type="text"
+                        ng-model="$ctrl.code"
+                        ui-mask="9 9 9 9 9 9"
+                        ui-mask-placeholder
+                        ui-mask-placeholder-char="_"
+                        ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                        name="smscode"
+                        placeholder="{{$ctrl.global.get('langForm').val.code}}"
+                        required/>
+
+            </div>
+            <span class="help-block" ng-show="smscode.smscode.$invalid && smscode.smscode.$dirty" ng-messages="smscode.smscode.$error">
+                    <span ng-message="required">{{$ctrl.global.get('langError').val.enterCode}}</span>
+                </span>
+            <span class="help-block" ng-show="$ctrl.wrongCode && smscode.smscode.$dirty">
+                    <span>{{$ctrl.global.get('langError').val.errorCode}}</span>
+                </span>
+            <button class="btn btn-block  btn-project" type="submit" ng-disabled="$ctrl.sendVerifyCodeDisable">{{$ctrl.global.get('langForm').val.logIn}}</button>
+        </form>
+    </div>
+</div>

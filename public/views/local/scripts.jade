@@ -1,0 +1,224 @@
+- var socketHref=socketHost+'/socket.io/socket.io.js'
+script(type='text/javascript').
+  var storeHost = !{JSON.stringify( storeHost )};
+  var socketHost = !{JSON.stringify( socketHost )};
+  var notificationHost = !{JSON.stringify( notificationHost )};
+  var userHost = !{JSON.stringify( userHost )};
+  var stuffHost = !{JSON.stringify( stuffHost )};
+  var orderHost = !{JSON.stringify( orderHost )};
+  var photoHost = !{JSON.stringify( photoHost )};
+  var globalStoreId = !{JSON.stringify( store._id )};
+  var globalCrawler =!{JSON.stringify(globalCrawler)};
+  var facebookAppID =!{JSON.stringify((store.fb&& store.fb.id)?store.fb.id:null)};
+  var googleAppID =!{JSON.stringify((store.gl&& store.gl.id)?store.gl.id:null)};
+  var vkAppID =!{JSON.stringify((store.vk&& store.vk.id)?store.vk.id:null)};
+  var filtersFromServer = !{filters}
+  var brandsFromServer = !{brands}
+
+
+
+if(!crawler)
+  script(src=socketHref)
+  script(type="text/javascript",src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzzOEL5DctMotIDgUTCGJsu7YM1rEY0gA&libraries=places")
+if(store.payData && store.payData.liqPay && store.payData.liqPay.is)
+  script(src="//static.liqpay.com/libjs/checkout.js",async)
+
+  script(src="crawler.scripts164low.min.js")
+
+  if(true)
+    script(src='bower_components/jquery/dist/jquery.min.js')
+    script(src='bower_components/angular-1.6.4/angular.min.js'),
+    script(src='bower_components/angular-1.6.4/angular-touch.min.js')
+    script(src='bower_components/angular-1.6.4/angular-animate.min.js')
+    script(src='bower_components/angular-1.6.4/angular-route.min.js')
+    script(src='bower_components/angular-1.6.4/angular-resource.min.js')
+    script(src='bower_components/angular-1.6.4/angular-sanitize.min.js')
+    script(src='bower_components/angular-1.6.4/angular-messages.min.js')
+    //'node_modules/angular-ui-router/release/angular-ui-router.min.js',
+    //'node_modules/angular-ui-router/release/stateEvents.min.js',
+    script(src='bower_components/angular-ui-bootstrap/ui-bootstrap-tpls-2.5.0.min.js')
+    script(src='bower_components/momentjs/min/moment-with-locales.min.js')
+    script(src='assets/ui-select-master/dist/select.min.js')
+    script(src='bower_components/satellizer/satellizer.min.js')
+  //script(src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js")
+  script(src="dev_scripts.js")
+  //script(src="bower_components/angular-1.6.4/i18n/angular-locale_ru.js")
+  //script(src="bower_components/angular-1.6.4/i18n/angular-locale_ru-ru.js")
+  script(src="bower_components/angular-1.6.4/i18n/angular-locale_ru-ua.js")
+
+
+
+
+
+  script(src='scripts/myPrototype.js')
+  script(src='scripts/angular-node.js')
+  script(src='scripts/globalVariable.js')
+
+  script(src='scripts/designQuery.js')
+  script(src='scripts/SectionClass.js')
+
+  script(src='scripts/app.js')
+  script(src='scripts/controllers.js')
+  script(src='scripts/services.js')
+  script(src='scripts/directives.js')
+  script(src='scripts/filters.js')
+  script(src='scripts/modules.js')
+  script(src='scripts/lazyImg.js')
+
+
+
+
+
+  script(src="components/sign-login/scripts/sign-login.component.js")
+  script(src='components/directives/check-password-match.directive.js')
+
+
+
+
+
+  script(src="components/services/interceptor.factory.js")
+  script(src="components/services/factory.exeption.js")
+  script(src="components/services/confirm.factory.js")
+  script(src="components/services/seo-content.service.js")
+  script(src='components/services/service.print.js')
+  script(src='components/paps/scripts/paps.service.js')
+  script(src='components/loadImage/scripts/service.fileUpload.js')
+
+
+  //menu
+  script(src='components/menu/scripts/directive.menu.js')
+  //users
+  script(src='components/user/scripts/service.user.js')
+  script(src='components/user/scripts/shipInfo.component.js')
+  //stats
+  script(src='components/PROMO/campaign/scripts/campaign.service.js')
+
+  script(src='scripts/service.helper.js')
+  script(src='scripts/service.email.js')
+
+
+  script(src='components/notification/scripts/service.notification.js')
+  // гостевой чат
+  script(src='components/guest.dialog/scripts/directive.dialog.js')
+  script(src='components/guest.dialog/scripts/controller.dialog.js')
+  script(src='components/dialogs/scripts/service.dialog.js')
+  // chat
+  script(src='components/chat/scripts/service.chat.js')
+  script(src='components/chat/scripts/controller.chat.js')
+  script(src='components/chat/scripts/chat.component.js')
+  script(src='components/chat/scripts/directive.chat.js')
+  // call
+  script(src='components/call/scripts/controller.call.js')
+  script(src='components/call/scripts/directive.call.js')
+  // callback
+  script(src='components/feedback/scripts/controller.feedback.js')
+  script(src='components/feedback/scripts/directive.feedback.js')
+
+  //script(src='scripts/service.print.js')
+  script(src='scripts/service.global.js')
+  //script(src="components/services/seo-content.service.js")
+
+  //sections
+  script(src='components/sections/scripts/service.sections.js')
+  // filters
+  script(src='components/filters/scripts/service.filters.js')
+  script(src='components/filters/scripts/filterTags.service.js')
+  //cart
+  script(src='components/cart/scripts/cart.component.js')
+  // brands
+  script(src='components/brand/scripts/service.brands.js')
+  //stuffs
+  script(src='components/stuff/scripts/controller.stuff.js')
+  script(src='components/stuff/scripts/stuff.service.js')
+  script(src='components/stuff/scripts/stuff-list.component.js')
+  script(src='components/stuff/scripts/stuff-detail.component.js')
+
+  script(src='components/stuff/scripts/directive.filterForStuffs.js')
+  script(src='components/stuff/scripts/directive.stuffsAdminListWithPaginate.js')
+  script(src='components/additionalInfo/scripts/component.additionalInfo.js')
+  //orders
+  script(src='components/order/scripts/service.order.js')
+  script(src='components/order/scripts/order.service.js')
+  script(src='components/order/scripts/cart-in-order.service.js')
+
+  // news
+  script(src="components/news/scripts/service.news.js")
+  script(src="components/news/scripts/component.newsList.js")
+  script(src="components/news/scripts/component.newsItem.js")
+
+
+  script(src='components/socialHub/directive.socialHub.js')
+  //components
+  script(src="components/homePage/scripts/component.homePage.js")
+  script(src="components/paginator/scripts/component.paginator.js")
+  script(src="components/subscription/scripts/subscription.component.js")
+  script(src="components/categoriesForList/scripts/component.categoriesForList.js")
+  script(src='components/directives/mongoose-error.component.js')
+  script(src='components/directives/ng-autocomplite-city.directive.js')
+
+
+  script(src='components/TEMPLATE/witget/scripts/witget.component.js')
+  script(src="components/staticPage/scripts/staticPage.service.js")
+  script(src="components/TEMPLATE/slider/slider.component.js")
+
+  script(src='scripts/modulesJquery.js')
+  script(src='components/comment/scripts/module.comment.js')
+
+
+  // new scripts for gRUNT
+  script(src='components/directives/directive.focus-element.js')
+
+  //lookbook
+  script(src="components/lookbook/scripts/component.lookbookList.js")
+  script(src="components/lookbook/scripts/lookbook.service.js")
+  //info
+  script(src='components/info/scripts/info.service.js')
+  script(src='components/info/scripts/info-list.component.js')
+  script(src='components/info/scripts/info-item.component.js')
+
+  //masters
+  script(src='components/CONTENT/master/scripts/master.service.js')
+  script(src='components/CONTENT/master/scripts/master-list.component.js')
+  script(src='components/CONTENT/master/scripts/master-item.component.js')
+
+  script(src='components/CONTENT/catalog/scripts/catalog.component.js')
+  script(src='components/CONTENT/lists/component.lists.js')
+
+
+  //dateTimeEntry
+  script(src='components/TEMPLATE/dateTimeEntry/dateTimeEntry.component.js')
+
+  script(src='components/sections/scripts/category.service.js')
+
+  script(src="components/SEO/seopages/scripts/seo-page.service.js")
+  script(src="components/SEO/keywords/scripts/keywords.service.js")
+
+  script(src="components/PROMO/campaign/scripts/component.campaignItem.js")
+
+
+
+  //26.06
+  script(src="components/staticPage/scripts/component.staticPage.js")
+
+  script(src="components/PROMO/coupon/scripts/coupon.service.js")
+
+  script(src='components/paps/scripts/pap.component.js')
+  script(src='components/ORDERS/online/scripts/online.service.js')
+  script(src='components/search/search.component.js')
+  script(src='components/TEMPLATE/cabinet/cabinet.component.js')
+  script(src='components/CONTENT/price/price.component.js')
+
+  script(src="bower_components/angular-moment-picker/dist/angular-moment-picker.min.js")
+
+  script(src="scripts/dayOfMonth.components.js")
+
+
+
+
+  //script(src="bower_components/angularjs-slider/dist/rzslider.js")
+  //link(rel="stylesheet",type="text/css",href="bower_components/angularjs-slider/dist/rzslider.css")
+
+
+  if(!crawler && store.subDomain=='gmall')
+    script(src='components/cloneStore/scripts/cloneStore.component.js')
+    script(src="components/storeSetting/scripts/store-seller.service.js")

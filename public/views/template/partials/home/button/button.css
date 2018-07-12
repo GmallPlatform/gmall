@@ -1,0 +1,77 @@
+/*tatiana, cliniq*/
+.home-banner{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: $height;
+    width: 100%;
+    background-attachment:fixed;
+    background-size: cover;
+}
+.home-banner img {
+    width: 100%;
+}
+
+.tablet-wrapper .banner-content {
+    width: 100%;
+}
+.mobile-wrapper .banner-content {
+    width: 100%;
+
+}.tablet-wrapper .home-banner,
+.mobile-wrapper .home-banner {
+    height: 80vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 90% 20% !important;
+}
+
+@media only screen and (max-width : 320px)  {
+    .home-banner {
+        background-attachment: scroll;
+    }
+}
+@media only screen and (max-width : 480px)  {
+    .home-banner  {
+        background-attachment: scroll;
+    }
+}
+
+@media only screen and (max-width : 1024px)  {
+    .home-banner {
+        background-attachment: scroll;
+    }
+}
+@media (min-width : 1025px)  {
+    .home-banner {
+        background-attachment: fixed;
+    }
+}
+
+
+/*
+.img-one {
+    position: absolute;
+    height: 80vh;
+    right: 0;
+    -o-fit-object: cover;
+    object-fit: cover;
+    z-index: -1;
+}
+.tablet-wrapper .img-one {
+    height: 100vh;
+    -o-fit-object: cover;
+    object-fit: cover;
+    object-position: 70% 50%;
+    -o-object-position: 70% 50% ;
+    z-index: -1;
+}
+.mobile-wrapper .img-one {
+    height: 100vh;
+    -o-fit-object: cover;
+    object-fit: cover;
+    object-position: 70% 50%;
+    -o-object-position: 70% 50% ;
+}*/

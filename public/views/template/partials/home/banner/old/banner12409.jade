@@ -1,0 +1,20 @@
+if(i && i==1)
+    - var id='arrowDownDiv'
+    arrow-down
+//- var id=(i && i==1)?'arrow-down':'';
+div(id=id,ng-class="::{'home1-banner':!homeCtrl.template.banner.class,'home1-banner1':homeCtrl.template.banner.class==1, 'home1-banner2':homeCtrl.template.banner.class==2, 'home1-banner3':homeCtrl.template.banner.class==3, 'home1-banner4':homeCtrl.template.banner.class==4, 'home1-banner5':homeCtrl.template.banner.class==5,}",ng-if="homeCtrl.data.bannerSrc")
+    img(class="img-responsive banner-static",ng-src="{{homeCtrl.data.bannerSrc}}")
+    div(class="banner-content" ng-if="homeCtrl.data.banner.button")
+        h1(class="banner-header")
+            span(ng-bind="homeCtrl.data.banner.desc")
+        span(ng-switch="homeCtrl.data.banner.link")
+            span(ng-switch-when="subscription")
+                a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-banner",ng-click="global.get('functions').val.witget('subscription')",ng-bind="homeCtrl.data.banner.text")
+            span(ng-switch-when="feedback")
+                a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-banner",ng-click="global.get('functions').val.witget('feedback')",ng-bind="homeCtrl.data.banner.text")
+            span(ng-switch-when="call")
+                a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-banner",ng-click="global.get('functions').val.witget('call')",ng-bind="homeCtrl.data.banner.text")
+            span(ng-switch-when="dateTime")
+                a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-banner",ng-click="global.get('functions').val.witget('dateTime')",ng-bind="homeCtrl.data.banner.text")
+            span(ng-switch-default="")
+                a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-banner",href="{{homeCtrl.data.banner.link}}",ng-bind="homeCtrl.data.banner.text")

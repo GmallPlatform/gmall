@@ -1,0 +1,20 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="footer-up")
+            each b in dj[key].blocks
+                div(class="col-lg-4 col-md-4 col-sm-4 col-xs-12 info-top")
+                    if(b)
+                        - var link = '/info/'+b.url
+                        a(class="info-link",href=link)
+                            if(b.img)
+                                img(src=photoHost+'/'+b.img)
+                            span
+                                | #{b.name}
+            //div(class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center")
+                if(dj[key].use)
+                    a(class="chat-link",ng-click="global.get('functions').val.openChatWitget('chatMenu')")
+                        span(class="chat-click icon-chat-img")
+                        span(class="call-click icon-call-img")
+                        span(class="dialog-click icon-envelope-img")
+            div(class="clearfix")
+

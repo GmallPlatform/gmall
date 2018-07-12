@@ -1,0 +1,86 @@
+<style>
+    .phoneForm {
+        width: 100%;
+    }
+    .phoneForm .add-phone {
+        width:20%;
+        float:left;
+        height: 40px;
+    }
+
+    .phoneForm .phone-mask {
+        width: 80%;
+        float: left;
+    }
+    .phoneForm .add-phone .ui-select-choices {
+        width: auto;
+
+    }
+    .phoneForm .add-phone .ui-select-choices li a{
+        padding: 10px 5px;
+        font-size: 16px;
+    }
+    /*.phoneForm .form-control {
+        height: 41px;
+    }*/
+    .phoneForm .add-phone .ui-select-match .btn-default {
+        height: 40px;
+        border: none;
+        border-bottom: 1px solid #999;
+        box-shadow: none;
+        background-color: transparent;
+        padding-top: 8px;
+    }
+    .phoneForm .phone-mask input {
+        margin-bottom: 0;
+    }
+    .help-block {
+        color: #f02222;
+        margin-top: -13px;
+        font-style: italic;
+        letter-spacing: 1px;
+        margin-bottom: 0;
+        font-size: 10px;
+        height: 13px;
+    }
+    @media (max-width: 380px){
+        .modalProject .modal-content .phoneForm input{
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .modalProject .modal-content .phoneForm .btn-default {
+            width: 60px;
+            padding: 10px 3px 0 10px;
+        }
+    }
+</style>
+<form class="select-modal" name="phoneForm">
+    <div class="phoneForm">
+        <div class="add-phone">
+            <ui-select search-enabled="false" ng-model="$ctrl.phoneCode" skip-focusser="true"  ng-change="$ctrl.changePhone()">
+                <ui-select-match>{{$select.selected.code}}</ui-select-match>
+                <ui-select-choices repeat="opt.code as opt in $ctrl.phoneCodes">{{opt.code}}({{opt.country}})</ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="phone-mask">
+            <input  ng-class="{'has-error': phoneForm.phone.$invalid}"
+                    type="text"
+                    class="form-control"
+                    ng-model="$ctrl.phone"
+                    ui-mask="( 9 9 9 )  9 9 9 - 9 9 9 9"
+                    ui-mask-placeholder
+                    ui-mask-placeholder-char="_"
+                    ng-change="$ctrl.changePhone()"
+                    name="phone" ng-model-options="{'updateOn':'default blur','debounce':{'default':600,'blur':0}}"
+                    placeholder="{{$ctrl.global.get('langForm').val.phone}}"
+                    required/>
+        </div>
+        <div class="clearfix"></div>
+        <span class="help-block" ng-messages="phoneForm.phone.$error" role="alert">
+            <span ng-message="required">{{$ctrl.global.get('langError').val.enterPhone}}</span>
+            <span ng-message="mask">{{$ctrl.global.get('langError').val.phonenotformat}}</span>
+        </span>
+    </div>
+
+</form>
+<div class="clearfix"></div>

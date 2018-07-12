@@ -1,0 +1,167 @@
+<!--<div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+    <p class="no_story">
+        Такого заказа нет в списке
+    </p>
+</div>-->
+<div class="nav-box-stuff">
+
+    <div ng-hide="$ctrl.$state.current.name!='frame.orders'">
+        <div ng-if="$ctrl.mobile">
+            <div class="tab-nav-stuff">
+                <a class="btn btn-fab btn-fab-mini " ui-sref="frame">
+                    <i class="material-icons link-warning">reply</i>
+                </a>
+            </div>
+            <div class="tab-nav-stuff">
+                <a class="btn btn-fab btn-fab-mini btn-success"
+                   ng-if="$ctrl.global.get('seller').val"
+                   ng-click="$ctrl.newOrder()"
+                   title="создать новый ордер">
+                    <i class="material-icons">add</i>
+                </a>
+                <!--<a class="link-success add-goods" ng-if="$ctrl.global.get('seller').val" ng-click="$ctrl.newOrder()">
+                    <i class="material-icons link-success">add_box</i>
+                </a>-->
+            </div>
+            <div class="tab-nav-stuff">
+                <form ng-submit="$ctrl.searchItem(searchStr)">
+                    <input type="text"  class="search-fluid"  ng-model="$ctrl.searchStr"/>
+                    <input type="submit" class="enter" tabindex="-1" />
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div ng-if="!$ctrl.mobile">
+            <div class="tab-nav-stuff">
+                <a class="btn btn-fab btn-fab-mini " ui-sref="frame">
+                    <i class="material-icons link-warning">reply</i>
+                </a>
+            </div>
+            <div class="tab-nav-stuff form-group">
+                <a class="btn btn-fab btn-fab-mini btn-success"
+                   ng-if="$ctrl.global.get('seller').val"
+                   ng-click="$ctrl.newOrder()"
+                   title="создать новый ордер">
+                    <i class="material-icons">add</i>
+                </a>
+                <!--<a class="link-success add-goods" ng-if="$ctrl.global.get('seller').val" ng-click="$ctrl.newOrder()">
+                    <i class="material-icons link-success" title="создать новый ордер">add_box</i>
+                </a>-->
+            </div>
+            <div class="tab-nav-stuff">
+                <form>
+                    <input title="поиск ордера по номеру" type="text"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':1000,'blur':0}}"
+                           ng-change="$ctrl.searchItem(searchStr)"
+                           placeholder="поиск ордера по номеру"  class="search-fluid"  ng-model="searchStr"/>
+                    <!--<input type="submit" class="enter" tabindex="-1" />-->
+                    <a ng-click="searchStr='';$ctrl.reloadOrders()" class="btn btn-fab btn-fab-mini">
+                        <i class="material-icons link-warning" title="очистить строку поиска">clear</i>
+                    </a>
+                </form>
+            </div>
+            <div class="tab-nav-stuff">
+                <paginator-main
+                        paginate="$ctrl.paginate"
+                        getlist="$ctrl.getList()"
+                        scroll="{{scrollId}}">
+                </paginator-main>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-right">
+                <div class="form-group label-floating">
+                    <div class="input-group">
+                        <input  date-range-picker
+                                class="form-control date-picker"
+                                type="text" ng-model="$ctrl.datePicker.date"
+                                options="$ctrl.options" required/>
+                    <span class="input-group-btn">
+                        <a type="button"
+                           ng-click="$ctrl.reloadOrders()">
+                            <i class="material-icons link-warning">cached</i>
+                        </a>
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <!--<form ng-submit="$ctrl.searchItem(searchStr)">
+                <div class=" col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                    <div class="search form-group label-floating">
+                        <label class="control-label">поиск ордера</label>
+                        <input type="text"  class="form-control"  ng-model="$ctrl.searchStr"/>
+                    </div>
+                </div>
+                <input type="submit" class="enter" tabindex="-1" />
+            </form>-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<section class="order" ng-hide="$ctrl.$state.current.name!='frame.orders'" ng-cloak>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div ng-class="{'row':$ctrl.global.get('mobile').val}">
+            <div  ng-repeat="order in $ctrl.orders|filter:$ctrl.filterOrderList" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div bs-component>
+                    <div  id="{{order._id}}" class="thumbnail" ng-click="$ctrl.$state.go('frame.orders.order',{id:order._id})">
+                        <div>
+                            <div class="col-lg-3 col-sm-3 col-xs-6 col-sm-6">
+                                <span>№ <strong  ng-bind="order.num"></strong> </span><br>
+                                <!--<span>сумма - <strong ng-bind="(order.paySum).toFixed(2)"></strong>&nbsp{{order.currency}}</span>-->
+                                <span>сумма - <strong ng-bind="(order.paySum+((order.totalPay)?order.totalPay:0)).toFixed(2)"></strong>&nbsp{{order.currency}}</span>
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-xs-6 col-sm-6">
+                                <span class=" order-date"> от <span  ng-bind="$ctrl.moment(order.date).format('LLL')"></span></span><br>
+                                    <span ng-switch="order.status">
+                                        <span class="status" ng-switch-when="1">поступил</span>
+                                        <span class="status" ng-switch-when="2">принят</span>
+                                        <span class="status" ng-switch-when="3">оплачен</span>
+                                        <span class="status" ng-switch-when="5">доставлен</span>
+                                        <span class="status del" ng-switch-when="6">удален</span>
+                                    </span>
+                            </div>
+                            <div class="col-lg-5 col-sm-5 col-xs-12 col-sm-12">
+                                <span class="pull-left">
+                                    <span>клиент <strong ng-bind="order.profile.fio"> </strong></span><br>
+                                    <span ng-if="order.online"><span class="link-success on-line">в сети</span></span>
+                                </span>
+
+                                <span class="pull-right chat-badge"  ng-if="order.chatMessages=$ctrl.getUnReadChatMessages(order)">
+                                    <span>в чате сообщения</span>
+                                    <a ng-click="$ctrl.$state.go('frame.orders.order',{id:order._id,block:'chat'})"
+                                            class="btn btn-fab btn-fab-mini btn-danger"><i class="material-icons" >message</i></a>
+                                    <span class="badge"ng-bind="order.chatMessages" style="position: absolute;right:10px; top:0"></span>
+                                </span>
+                                <div class="clearfix"></div>
+
+                            </div>
+                            <div class="col-lg-1 col-sm-1 col-xs-12 col-sm-12 text-right">
+
+                                <a class="btn btn-fab btn-fab-mini"  ng-if2="order.status<2" ng-click="$ctrl.deleteItem(order,$event)">
+                                    <i class="material-icons link-warning">delete</i>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+    <empty-list items="$ctrl.itemsCount" message="По вашему запросу нет данных"></empty-list>
+    <div class="clearfix"></div>
+    <paginator-main
+            paginate="$ctrl.paginate"
+            getlist="$ctrl.getList()"
+            scroll="{{scrollId}}">
+    </paginator-main>
+
+</section>
+<div ui-view>
+</div>
+
+
+

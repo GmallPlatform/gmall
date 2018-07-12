@@ -1,0 +1,191 @@
+/*dance*/
+
+/*меню с раскрытием без второго меню*/
+.catalogDropDownMenu,
+.catalogDropDownMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.catalogDropDownMenu ul {
+    float: left;
+}
+.section-in-section {
+    float: left;
+}
+.catalogDropDownMenu .mainli{
+    position: relative;
+}
+.catalogDropDownMenu a {
+    padding-top: $padding-top;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-bottom: $padding-bottom;
+    display: block;
+    text-decoration: none;
+    text-transform: lowercase;
+    color: $color;
+}
+.catalogDropDownMenu a.section-name {
+    padding-top: $padding-top;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-bottom: $padding-bottom;
+    font-size: $font-size;
+    text-transform: $text-transform;
+    color: $color;
+}
+
+/* Level 1 Drop Down */
+.catalogDropDownMenu .mainli {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: -4px; /* solve the 4 pixels spacing between list-items */
+}
+
+/* Level 2 */
+.catalogDropDownMenu .innerDiv {
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+   /* padding-top: 50px;
+    padding-bottom: 50px;*/
+    display: none;
+    position: absolute;
+    top: 77px;
+    left: 0;
+    width: auto;
+    z-index: 1029; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
+    border-top: 1px solid #ccc;
+}
+.category-name{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+}
+.section-in-section {
+    border-left: 1px solid #ccc;
+}
+/*.myMenu .catalogDropDownMenu a.section-name {
+    padding: 25px 10px;
+    text-transform: lowercase;
+    font-size: 20px;
+    !*color: #333;*!
+    color: $color;
+}*/
+@media (max-width: 1200px) {
+    .myMenu .catalogDropDownMenu a.section-name {
+        font-size: 16px
+    }
+}
+/*.myMenu .catalogDropDownMenu a.section-name:hover {
+    opacity: 0.8;
+}*/
+.myMenu .catalogDropDownMenu li {
+    float: left;
+}
+/*.myMenu .catalogDropDownMenu .innerDiv {
+    padding-top: 20px;
+    padding-bottom: 15px;
+}*/
+@media (max-width: 1024px) {
+    .innerDiv .container{
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .catalogDropDownMenu a {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+.mobile-wrapper .myMenuV .catalog-menu {
+    padding-left: 0;
+}
+.mobile-wrapper .myMenuV .catalog-menu li {
+    list-style: none;
+}
+
+
+
+
+
+
+/*
+.myMenuV > ul.catalog-menu {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.myMenuV > ul > li {
+    list-style: none;
+}
+.myMenuV > ul > li a {
+    color: $color;
+    letter-spacing: 1px;
+}
+.myMenuV > ul > li a.section-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.myMenuV > ul > li a.section-name span {
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+}
+.myMenuV > ul > li a.category-name span{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.myMenuV > ul > li a.category-name span {
+    margin-top: 5px;
+}
+.myMenuV > ul > li > div {
+    display: none;
+    z-index: 999999;
+}
+.myMenuV  ul  li  ul  li {
+    list-style: none;
+    margin-bottom: 8px;
+}
+
+.mobile-wrapper .myMenuV > ul > li a.section-name {
+    font-size: 16px;
+}*/
+
+
+/*hover*/
+/*.nav-center {
+    font-size: 14px;
+    padding-left: 0;
+}*/
+/*.catalog {
+    display: inline-block;
+    margin-bottom: 0;
+}
+.catalog li {
+    list-style: none;
+    float: left;
+    padding: 0 17px;
+}
+.catalog li:hover,
+.catalog li:active {
+    border-bottom: 2px solid #4e4e4e;
+}
+.catalog li a {
+    font-family: texgyreheroscn;
+    display: inline-block;
+    !*font-stretch: ultra-condensed*!;
+    height: 57px;
+    line-height: 57px;
+    letter-spacing: 1px;
+    color: #3a230d;
+
+}
+.catalog li a span{
+    line-height: 57px;
+}
+.catalog li a:hover,
+.catalog li a:focus {
+    color: #553412;
+
+}*/
+

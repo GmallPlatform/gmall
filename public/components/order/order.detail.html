@@ -1,0 +1,940 @@
+<style>
+    .animate.ng-enter,
+    .animate.ng-leave {
+        -webkit-transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        -moz-transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        -ms-transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        -o-transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        position: relative;
+        display: block;
+    }
+    }
+
+    .animate.ng-leave.ng-leave-active,
+    .animate.ng-enter {
+        -webkit-transform: scaleY(0.5) scaleX(0.2);
+        -moz-transform: scaleY(0.5) scaleX(0.2);
+        -ms-transform: scaleY(0.5) scaleX(0.2);
+        -o-transform: scaleY(0.5) scaleX(0.2);
+        transform: scaleY(0.5) scaleX(0.2);
+        height: 0px;
+        opacity: 0;
+    }
+
+    .animate.ng-enter.ng-enter-active,
+    .animate.ng-leave {
+        -webkit-transform: scaleY(1) scaleX(1);
+        -moz-transform: scaleY(1) scaleX(1);
+        -ms-transform: scaleY(1) scaleX(1);
+        -o-transform: scaleY(1) scaleX(1);
+        transform: scaleY(1) scaleX(1);
+        height: 30px;
+        opacity: 1;
+    }
+
+</style>
+<!--<style>
+    .animate.ng-enter,
+    .animate.ng-leave {
+        -webkit-transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        -moz-transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        -ms-transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        -o-transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        transition: 825ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+        position: relative;
+        display: block;
+    }
+
+    .animate.ng-leave.ng-leave-active,
+    .animate.ng-enter {
+        -webkit-transform: scaleY(0.5) scaleX(0.2);
+        -moz-transform: scaleY(0.5) scaleX(0.2);
+        -ms-transform: scaleY(0.5) scaleX(0.2);
+        -o-transform: scaleY(0.5) scaleX(0.2);
+        transform: scaleY(0.5) scaleX(0.2);
+        height: 0px;
+        opacity: 0;
+    }
+
+    .animate.ng-enter.ng-enter-active,
+    .animate.ng-leave {
+        -webkit-transform: scaleY(1) scaleX(1);
+        -moz-transform: scaleY(1) scaleX(1);
+        -ms-transform: scaleY(1) scaleX(1);
+        -o-transform: scaleY(1) scaleX(1);
+        transform: scaleY(1) scaleX(1);
+        height: 30px;
+        opacity: 1;
+    }
+
+</style>-->
+
+<!--<div ng-init="names=['Igor Minar', 'Brad Green', 'Dave Geddes', 'Naomi Black', 'Greg Weber', 'Dean Sofer', 'Wes Alvaro', 'John Scott', 'Daniel Nadasi'];">
+    <div class="well" style="margin-top: 30px; width: 200px; overflow: hidden;">
+        <form class="form-search">
+            <div class="input-append">
+                <input type="text" ng-model="search" class="search-query" style="width: 80px">
+                <button type="submit" class="btn">Search</button>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="animate" ng-repeat="name in names | filter:search">
+                    <a href="#"> {{name}} </a>
+                </li>
+            </ul>
+        </form>
+    </div>
+
+</div>-->
+<!--<div id="dropdown-menu">
+    <div class="sample" >
+        <div class="form-group">
+            <label for="s1">Your favorite pastry</label>
+            <select id="s1" class="form-control" select-drop-down>
+                <option value="Apple fritter">Apple fritter</option>
+                <option value="Croissant">Croissant</option>
+                <option value="Donut">Donut</option>
+            </select>
+        </div>
+    </div>
+</div>-->
+
+<div ng-intro-options="IntroOptions" ng-intro-method="CallMe" class="order-detail">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <a class="btn btn-fab btn-fab-mini btn-danger undo-mini"
+                    ng-if="orderEditCtrl.mobile" ui-sref="frame.orders({reload: true})">
+                <i class="material-icons">undo</i>
+            </a>
+            <a class="btn btn-fab btn-danger undo"
+                    ng-if="!orderEditCtrl.mobile" ui-sref="frame.orders({reload: true})">
+                <i class="material-icons md-36">undo</i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="order-cart-detail ">
+            <fieldset>
+                <div class=" col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1  col-sm-5 col-sm-offset-1  col-xs-12 col-xs-offset-0  mb-10 order-name">
+                    <span>№ заказа - <strong  ng-bind="orderEditCtrl.order.num"></strong> </span>&nbsp;&nbsp;
+                    <span class="order-date"> от
+                        <span  ng-bind="moment(orderEditCtrl.order.date).format('LLL')"></span>
+                    </span><br>
+                    клиент <strong ng-bind="orderEditCtrl.order.profile.fio"> </strong>
+
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label class="control-label" for="comment">комментарий к заказу</label>
+                        <textarea rows='1' id="comment" class="form-control" ng-model="orderEditCtrl.order.comment"></textarea>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class=" col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1  col-sm-5 col-sm-offset-1  col-xs-12 col-xs-offset-0 ">
+                    <edit-note obj="orderEditCtrl.order" field="note" ng-blur="orderEditCtrl.updateOrderField('note')"></edit-note>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-if="orderEditCtrl.order.status<2">
+                    <ui-select ng-model="orderEditCtrl.stuff" on-select="orderEditCtrl.selectStuff($item)">
+                        <ui-select-match placeholder="добавить товар  в ордер">
+                                <span ng-bind="$select.selected.name+' '+$select.selected.artikul+' '+$select.selected.addCriterionName">
+
+                                </span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in (orderEditCtrl.stuffs | filter: $select.search) track by $index"
+                                           refresh="orderEditCtrl.refresStuffs($select.search)"
+                                           refresh-delay="100">
+                            <span ng-bind="item.name+' '+item.artikul+' '+item.addCriterionName"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div ng-repeat="(idx,good) in orderEditCtrl.order.cart.stuffs track by $index" >
+                        <div class="mb-10 clearfix" ng-if="$index==0">
+                            <div class="col-lg-4">
+                                <hr>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <h4 class="group-name" ng-bind="good.groupName || good.groupUrl"></h4>
+                            </div>
+                            <div class="col-lg-4">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="mb-10 clearfix">
+                            <h3  ng-if="$index!=0 &&
+                                      orderEditCtrl.order.cart.stuffs[$index].groupUrl!=orderEditCtrl.order.cart.stuffs[$index-1].groupUrl"
+                                 ng-bind="good.groupName || good.groupUrl">
+                            </h3>
+                        </div>
+                        <div class="cart-detail"   ng-class="{'font-mobile':orderEditCtrl.mobile}"   id="cart-inner{{$index}}">
+                            <div class="mb-10 clearfix">
+                                <span class="index">{{idx+1}}</span>
+                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-if="!orderEditCtrl.mobile">
+                                            <span ng-if="good.img" >
+                                                <img class="img-responsive" ng-src="{{good.img}}" style="width: 100%">
+                                            </span>
+                                            <span ng-if="good.sticker" >
+                                                <img class="sticker"  ng-src="{{good.sticker}}">
+                                            </span>
+                                </div>
+                                <div  ng-class="{'col-lg-10 col-md-9 col-sm-8':!orderEditCtrl.mobile,'col-xs-12':orderEditCtrl.mobile}">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <a  class="name-models" ng-click="orderEditCtrl.goToStuff(good)" ng-class="{'font-mobile':orderEditCtrl.mobile}" >
+                                            <p>
+                                                <span ng-bind="good.name"></span>
+                                                <span ng-bind="good.artikul"></span>
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 ">
+                                        <p >
+                                            <span class="size">Размер</span>
+                                            <span  ng-bind="good.addCriterionName"></span>
+                                        </p>
+                                        <!--это поддержка старого формата, надо будет брать в середине 2016 года-->
+                                        <!--<span ng-if="good.addCriterionName.length">
+                                           <span ng-repeat-start="criterionName in good.addCriterionName">
+                                             <span ng-if="$index">,</span>
+                                           </span>
+                                          <span ng-repeat-end ng-bind="criterionName"></span>
+                                        </span>-->
+                                        <p >
+                                            <span ng-if="!orderEditCtrl.mobile">Количество</span>
+                                            <input class="number"
+                                                   type="number" min='1' max='20'
+                                                   ng-model="good.quantity"
+                                                   ng-disabled="good.single || orderEditCtrl.order.status>=2"
+                                                   ng-change="orderEditCtrl.saveCart()">
+                                            {{good.unitOfMeasure}}
+
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" ng-if="!orderEditCtrl.mobile">
+                                        <p class=" text-right">цена опт</p>
+                                        <p class=" text-right">{{(orderEditCtrl.order.kurs*(good.price)).toFixed(2)}}&nbsp{{orderEditCtrl.order.currency}}</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                        <p class=" text-right" ng-if="!orderEditCtrl.mobile">цена со скидкой</p>
+                                        <p class="sum text-right">{{(orderEditCtrl.order.kurs*(good.cena=orderEditCtrl.order.getPrice(idx))).toFixed(2)}}&nbsp{{orderEditCtrl.order.currency}}</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                </div>
+                                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-5">
+                                        <a class="btn btn-fab btn-fab-mini"   ng-if="orderEditCtrl.order.status<2">
+                                            <span ng-click="orderEditCtrl.removeItem($index)">
+                                                <i class="material-icons link-danger md-24">delete</i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-7 sum text-right">
+                                        <span>{{(orderEditCtrl.order.kurs*(good.sum=good.cena*good.quantity)).toFixed(2)}}&nbsp{{orderEditCtrl.order.currency}}</span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-xs-6 text-right">
+                        <div class="row">
+                            <p>Сумма</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-6 text-right">
+                        <p><span ng-bind="(orderEditCtrl.order.kurs*(orderEditCtrl.order.getTotalSum(true))).toFixed(2)"></span>&nbsp{{orderEditCtrl.order.currency}}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-10 col-xs-6 text-right">
+                        <div class="row">
+                            <p>Сумма с учетом скидки</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-6 text-right">
+                        <p> <span ng-bind="(orderEditCtrl.order.kurs*(orderEditCtrl.order.sum=orderEditCtrl.order.getTotalSum())).toFixed(2)"></span>&nbsp{{orderEditCtrl.order.currency}}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div ng-if="orderEditCtrl.order.coupon">
+                        <div class="col-lg-10 col-xs-6 text-right">
+                            <div class="row">
+                                <p>Сумма с учетом купона!!</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-xs-6 text-right">
+                            <p><span ng-bind="(orderEditCtrl.order.kurs*orderEditCtrl.order.getCouponSum()).toFixed(2)"></span>&nbsp{{orderEditCtrl.order.currency}}</p>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-lg-10 col-xs-6 text-right">
+                        <div class="row">
+                            <p>Доставка</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-6 text-right">
+                        <p><span ng-bind="orderEditCtrl.order.shipCost"></span>&nbsp{{orderEditCtrl.order.currency}}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-10 col-xs-6 text-right">
+                        <div class="row">
+                            <p>Оплачено</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-6 text-right">
+                        <p><span ng-bind="orderEditCtrl.order.totalPay"></span>&nbsp{{orderEditCtrl.order.currency}}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-10 col-xs-6 text-right">
+                        <div class="row">
+                            <p>Итого к оплате</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-6 text-right">
+                        <p class="sum" ng-class="{'font-mobile':orderEditCtrl.mobile}" >
+                            <span ng-bind="(orderEditCtrl.order.paySum=(orderEditCtrl.order.kurs*orderEditCtrl.order.getCouponSum()+orderEditCtrl.order.shipCost-orderEditCtrl.order.totalPay)).toFixed(2)"></span>
+                            &nbsp{{orderEditCtrl.order.currency}}
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-lg-12 col-md-12 col-xs-12 text-right">
+                        <h1>l;sd;lsdlk;sdfkl;</h1>
+                        <pre>{{$ctrl.coupon}}</pre>
+                        <div ng-if="$ctrl.coupon && !$ctrl.order.coupon._id">
+                            <pre> {{$ctrl.coupon.name}}</pre>
+                            <a ng-click="$ctrl.setCoupon($ctrl.coupon)">применить купон</a>
+                        </div>
+                        <div ng-if="$ctrl.order.coupon._id">
+                            <p>{{$ctrl.order.coupon.name}}</p>
+                            <a ng-click="$ctrl.deleteCoupon({})">отменить купон</a>
+                        </div>
+                        <!--<p ng-if="orderEditCtrl.order.coupon">использован купон - {{orderEditCtrl.order.coupon.name}}</p>-->
+                    </div>
+                    <!--<div class="col-lg-12 col-xs-6">
+                        <button class="btn btn-fab btn-primary pull-right" ng-click="orderEditCtrl.updateOrder()">
+                            <i class="material-icons md-36">save</i>
+                        </button>
+                    </div>-->
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="order-cart-detail" style="margin: 10px auto">
+
+            <div class="tab-nav col-lg-12 text-center">
+                <a class="btn btn-fab"
+                   ng-class="{'btn-fab-mini':orderEditCtrl.mobile}"
+                   ng-click="block='chat'"
+                   type="button"
+                   data-toggle="tooltip"
+                   data-placement="bottom"
+                   data-original-title="чат">
+                    <i class="material-icons link-info"
+                       ng-class="{'md-36':!orderEditCtrl.mobile}">chat</i>
+                </a>
+                <a class="btn btn-fab"
+                   ng-class="{'btn-fab-mini':orderEditCtrl.mobile}"
+                   ng-click="block='price'"
+                   data-toggle="tooltip"
+                   data-placement="bottom"
+                   data-original-title="управление ценой">
+                    <i class="material-icons link-primary"
+                       ng-class="{'md-36':!orderEditCtrl.mobile}">assessment</i>
+                </a>
+                <a class="btn btn-fab"
+                   ng-class="{'btn-fab-mini':orderEditCtrl.mobile}"
+                   data-toggle="tooltip"
+                   ng-click="block='order'"
+                   data-placement="bottom"
+                   data-original-title="управление ордером">
+                    <i class="material-icons link-success"
+                       ng-class="{'md-36':!orderEditCtrl.mobile}">content_paste</i>
+                </a>
+                <a class="btn btn-fab"
+                   ng-class="{'btn-fab-mini':orderEditCtrl.mobile}"
+                   ng-click="block='pay'"
+                   data-toggle="tooltip"
+                   data-placement="bottom"
+                   data-original-title="данные по оплате">
+                    <i class="material-icons link-danger"
+                       ng-class="{'md-36':!orderEditCtrl.mobile}">credit_card</i>
+                </a>
+
+                <a class="btn btn-fab"
+                   ng-class="{'btn-fab-mini':orderEditCtrl.mobile}"
+                   ng-click="block='delivery'"
+                   data-toggle="tooltip"
+                   data-placement="bottom"
+                   data-original-title="данные по доставке">
+                    <i class="material-icons link-warning"
+                       ng-class="{'md-36':!orderEditCtrl.mobile}">flight_takeoff</i>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div ng-init="block='chat'">
+                <div ng-show="block=='chat'">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <chat-box order="orderEditCtrl.order"
+                                  participant="orderEditCtrl.participant"
+                                  seller="orderEditCtrl.order.seller"
+                                  user="orderEditCtrl.order.user">
+                        </chat-box>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--<hr>-->
+                </div>
+                <div class="clearfix"></div>
+                <div ng-show="block=='pay'"  ng-init="displayHelp=false" >
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8  col-xs-12">
+                        <a ng-click="orderEditCtrl.order.pay.push({date:orderEditCtrl.getNow()})"
+                           uib-popover="{{orderEditCtrl.popover.pay.content}}"
+                           popover-trigger="mouseenter"
+                           popover-title="{{orderEditCtrl.popover.pay.title}}"
+                           class="btn btn-primary btn-raised btn-block">
+                            добавить оплату
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 pull-right text-center">
+                        <a class="btn btn-fab"  ng-click="displayHelp=!displayHelp">
+                            <i class="material-icons link-info md-36">info_outline</i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+
+                    <div ng-repeat="pay in orderEditCtrl.order.pay" class="col-lg-4 col-md-6 col-sm-12 col-xs-12 " >
+                        <div class="cart-detail">
+                            <div sum class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group label-floating">
+                                <label for="sp{{$input}}" class="control-label">сумма</label>
+                                <input  type="number" class="form-control" id="sp{{$input}}" ng-model="pay.sum" class="form-control">
+                                <!--<span ng-if="pay.sum"> {{orderEditCtrl.order.currency}}</span>-->
+                            </div>
+                            <div data class="col-lg-8 col-md-8 col-sm-8 col-xs-8 form-group label-floating">
+                                <label for="dp{{$index}}" class="control-label">дата</label>
+                                <input date-range-picker class="form-control date-picker"
+                                       type="text" id="dp{{$index}}" ng-model="pay.date"
+                                       options="orderEditCtrl.datePickerOptions" required/>
+                            </div>
+                            <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group label-floating">
+                                <label class="control-label">заметки</label>
+                                <textarea rows='1'  class="form-control mb" ng-model="pay.info"></textarea>
+                                <!--<span class="inline-textarea" value="pay.info" empty="доп.инфр." id="di{{$index}}"></span>-->
+                            </div>
+                            <div class="clearfix"></div>
+                            <a class="btn btn-fab  btn-fab-mini btn-primary" ng-click="orderEditCtrl.updateOrderField('pay')" >
+                                <i class="material-icons">save</i>
+                            </a>
+                            <a ng-click="orderEditCtrl.sendNotification('pay',pay)" ng-if="!global.get('seller').val" class="btn btn-fab btn-fab-mini">
+                                <i class="material-icons link-primary">message</i>
+                            </a>
+
+                            <a class="btn btn-fab btn-fab-mini pull-right"
+                               ng-click="orderEditCtrl.order.pay.splice($index,1)" >
+                                <i class="material-icons link-danger md-24">delete</i>
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12" ng-show="!orderEditCtrl.order.pay.length || displayHelp"><!-- ng-show="!orderEditCtrl.order.pay.length"-->
+                        <div class="cart-detail info text-center">
+                            <h3>Справка</h3>
+                            <p>
+                                Блок оплат. Для внесения оплаты по данному ордеру необходимо нажать кнопку "добавить оплату" и в появившемся окне ввести сумму,
+                                дату и необходимые заметки. Не забудьте сохранить изменения!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div ng-show="block=='price'"  ng-init="displayHelp=false"  >
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    </div>
+                    <div class="col-lg-8  col-md-8 col-sm-8 col-xs-12">
+                        <a ng-model="orderEditCtrl.order.discount.type" uib-btn-radio="0" uncheckable
+                           class="btn btn-raised btn-block btn-primary">
+                            <span>сброс изменений</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 pull-right text-center">
+                        <!--<a class="btn btn-fab">
+                            <i class="material-icons link-primary md-36">settings</i>
+                        </a>-->
+                        <button class="btn btn-fab btn-primary pull-left" ng-click="orderEditCtrl.updateOrder()">
+                            <i class="material-icons md-36">save</i>
+                        </button>
+                        <h1>kdkdkdkdkdk!!</h1>
+                        <a class="btn btn-fab pull-right"   ng-click="displayHelp=!displayHelp">
+                            <i class="material-icons link-info md-36">info_outline</i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+
+                    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-init='orderEditCtrl.focusPriceChange=false'>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="list-group">
+                                        <div class="list-group-item" >
+                                            <div class="row-action-primary">
+                                                <label  uib-popover="{{orderEditCtrl.popover.priceRule[1].content}}"
+                                                        popover-trigger="mouseenter"
+                                                        popover-title="{{orderEditCtrl.popover.priceRule[1].title}}"
+                                                        class="btn btn-default btn-raised btn-block"
+                                                        ng-model="orderEditCtrl.order.discount.type"
+                                                        uib-btn-radio="1"
+                                                        uncheckable>
+                                                </label>
+                                                <!--<i class="material-icons">touch_app</i>-->
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">ОПТОВАЯ ЦЕНА</h4>
+
+                                                <p class="list-group-item-text">Принудительное изменение всех цен в ордере на оптовые.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-action-primary">
+                                                <label  uib-popover="{{orderEditCtrl.popover.priceRule[2].content}}"
+                                                        popover-trigger="mouseenter"
+                                                        popover-title="{{orderEditCtrl.popover.priceRule[2].title}}"
+                                                        class="btn  btn-default btn-raised btn-block"
+                                                        ng-model="orderEditCtrl.order.discount.type"
+                                                        uib-btn-radio="2"
+                                                        uncheckable>
+                                                </label>
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">ОПТОВАЯ ЦЕНА БЕЗ SALE</h4>
+                                                <p class="list-group-item-text">Изменение цен в ордере на оптовые, кроме цены SALE.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-action-primary">
+                                                <label  ng-click="orderEditCtrl.focusPriceChange=true"
+                                                        uib-popover="{{orderEditCtrl.popover.priceRule[3].content}}"
+                                                        popover-trigger="mouseenter"
+                                                        popover-title="{{orderEditCtrl.popover.priceRule[3].title}}"
+                                                        class="btn  btn-default  btn-raised btn-block"
+                                                        ng-model="orderEditCtrl.order.discount.type"
+                                                        uib-btn-radio="3"
+                                                        uncheckable>
+                                                </label>
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">ОПТОВАЯ СКИДКА</h4>
+
+                                                <p class="list-group-item-text">Изменение всех цен на оптовые.
+                                                    Скидка на все позиции в ордере - % от оптовой цены.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-action-primary">
+                                                <label ng-click="orderEditCtrl.focusPriceChange=true"  
+                                                uib-popover="{{orderEditCtrl.popover.priceRule[4].content}}"
+                                                        popover-trigger="mouseenter"
+                                                        popover-title="{{orderEditCtrl.popover.priceRule[4].title}}"
+                                                        class="btn  btn-default btn-raised btn-block"
+                                                        ng-model="orderEditCtrl.order.discount.type"
+                                                        uib-btn-radio="4" uncheckable>
+                                                </label>
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">ОПТОВАЯ СКИДКА  БЕЗ SALE</h4>
+
+                                                <p class="list-group-item-text">Изменение цен на оптовые кроме цен SALE.
+                                                    Скидка на позиции ордера (кроме позиций SALE) - % от оптовой цены. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-action-primary">
+                                                <label  ng-click="orderEditCtrl.focusPriceChange=true"uib-popover="{{orderEditCtrl.popover.priceRule[5].content}}"
+                                                        popover-trigger="mouseenter"
+                                                        popover-title="{{orderEditCtrl.popover.priceRule[5].title}}"
+                                                        class="btn  btn-default btn-raised btn-block btn-block"
+                                                        ng-model="orderEditCtrl.order.discount.type"
+                                                        uib-btn-radio="5" uncheckable>
+                                                </label>
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">ОПТОВАЯ СКИДКА %</h4>
+
+                                                <p class="list-group-item-text">Изменение цен на оптовые кроме позиций SALE.
+                                                    Скидка на все позиции в ордере (%).</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-action-primary">
+                                                <label  ng-click="orderEditCtrl.focusPriceChange=true"uib-popover="{{orderEditCtrl.popover.priceRule[6].content}}"
+                                                        popover-trigger="mouseenter"
+                                                        popover-title="{{orderEditCtrl.popover.priceRule[6].title}}"
+                                                        class="btn  btn-default btn-raised btn-block"
+                                                        ng-model="orderEditCtrl.order.discount.type"
+                                                        uib-btn-radio="6" uncheckable>
+                                                </label>
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">СКИДКА НА КОРЗИНУ (%)</h4>
+
+                                                <p class="list-group-item-text">Скидка на всю сумму корзины в %.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="row-action-primary">
+                                                <label  ng-click="orderEditCtrl.focusPriceChange=true"uib-popover="{{orderEditCtrl.popover.priceRule[7].content}}"
+                                                        popover-trigger="mouseenter"
+                                                        popover-title="{{orderEditCtrl.popover.priceRule[7].title}}"
+                                                        class="btn  btn-default btn-raised btn-block"
+                                                        ng-model="orderEditCtrl.order.discount.type"
+                                                        uib-btn-radio="7" uncheckable>
+                                                </label>
+                                            </div>
+                                            <div class="row-content">
+                                                <h4 class="list-group-item-heading">СКИДКА НА КОРЗИНУ (СУММА)</h4>
+
+                                                <p class="list-group-item-text">Скидка на всю корзину - фиксированная сумма.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12 label-floating"
+                                 ng-if="orderEditCtrl.order.discount.type==3 || orderEditCtrl.order.discount.type==4
+                                  ||orderEditCtrl.order.discount.type==5 || orderEditCtrl.order.discount.type==6 || orderEditCtrl.order.discount.type==7">
+                                <div class="row">
+                                    <label>введите значение скидки</label>
+                                    <input class="form-control" focus-element="orderEditCtrl.focusPriceChange"
+                                           type="number" min="0" max="1000" ng-model="orderEditCtrl.order.discount.value"><!--todo убрать ограничения по вводу-->
+                                    <span class="help-block">сумма или %</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12" ng-show="!orderEditCtrl.order.pay.length || displayHelp">
+                            <div class="cart-detail info text-center">
+                                <!--<a class="btn btn-fab "   ng-click="displayHelp=!displayHelp">
+                                    <i class="material-icons link-info md-36">info_outline</i>
+                                </a>-->
+                                <p>
+                                    Блок управления ценами в ордере. Блок содержит все возможные варианты изменения цен в ордере и
+                                    автоматический пересчет суммы ордера с учетом внесенных изменений и скидок.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--<label  uib-popover="{{orderEditCtrl.popover.priceRule[2].content}}"
+                                popover-trigger="mouseenter"
+                                popover-title="{{orderEditCtrl.popover.priceRule[2].title}}"
+                                class="btn  btn-default btn-raised btn-block" ng-model="orderEditCtrl.order.discount.type" uib-btn-radio="2" uncheckable>ОЦ без sale</label>-->
+                        <!--</div>-->
+                        <!--<div class="btn-group btn-group-justified">-->
+                        <!--<label  uib-popover="{{orderEditCtrl.popover.priceRule[3].content}}"
+                                popover-trigger="mouseenter"
+                                popover-title="{{orderEditCtrl.popover.priceRule[3].title}}"
+                                class="btn  btn-default btn-raised btn-block" ng-model="orderEditCtrl.order.discount.type" uib-btn-radio="3" uncheckable>ОЦ - скидка для всех</label>
+                        --><!--<label  uib-popover="{{orderEditCtrl.popover.priceRule[4].content}}"
+                                    popover-trigger="mouseenter"
+                                    popover-title="{{orderEditCtrl.popover.priceRule[4].title}}"
+                                    class="btn  btn-default btn-raised btn-block" ng-model="orderEditCtrl.order.discount.type" uib-btn-radio="4" uncheckable>ОЦ - скидка без sale</label>
+                            <label uib-popover="{{orderEditCtrl.popover.priceRule[5].content}}"
+                                   popover-trigger="mouseenter"
+                                   popover-title="{{orderEditCtrl.popover.priceRule[5].title}}"
+                                   class="btn  btn-default btn-raised btn-block btn-block" ng-model="orderEditCtrl.order.discount.type" uib-btn-radio="5" uncheckable>ОЦ без sale - скидка</label>
+                            &lt;!&ndash;</div>&ndash;&gt;
+                        &lt;!&ndash;<div class="btn-group btn-group-justified">&ndash;&gt;
+                            <label uib-popover="{{orderEditCtrl.popover.priceRule[6].content}}"
+                                   popover-trigger="mouseenter"
+                                   popover-title="{{orderEditCtrl.popover.priceRule[6].title}}"
+                                   class="btn  btn-default btn-raised btn-block" ng-model="orderEditCtrl.order.discount.type" uib-btn-radio="6" uncheckable>скидка на корзину - %</label>
+                            <label uib-popover="{{orderEditCtrl.popover.priceRule[7].content}}"
+                                   popover-trigger="mouseenter"
+                                   popover-title="{{orderEditCtrl.popover.priceRule[7].title}}"
+                                   class="btn  btn-default btn-raised btn-block" ng-model="orderEditCtrl.order.discount.type" uib-btn-radio="7" uncheckable>скидка на корзину - сумма</label>
+                            --><!--</div>-->
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--<hr>-->
+                </div>
+                <div ng-show="block=='order'"   ng-init="displayHelp=false" >
+                    <div class="col-lg-3  col-md-3 col-sm-3 col-xs-12  text-right">
+                        <h3>ордер</h3>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+
+
+                        <!--<select select-drop-down ng-model="orderEditCtrl.status"
+                                ng-change="orderEditCtrl.order.status=orderEditCtrl.status.value;orderEditCtrl.updateOrderField('status')"
+                                ng-disabled="!global.get('seller').val"
+                                ng-options="item.status as item.status for item in (orderEditCtrl.statusArray | filter: $select.search) track by item.value">
+                        </select>-->
+                        <ui-select class="status"
+                                ng-model="orderEditCtrl.status"
+                                   on-select="orderEditCtrl.order.status=orderEditCtrl.status.value;orderEditCtrl.updateOrderField('status')"
+                                   ng-disabled="!global.get('seller').val">
+
+                            <ui-select-match>
+                                <span ng-bind="$select.selected.status"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in (orderEditCtrl.statusArray | filter: $select.search) track by item.value">
+                                <span ng-bind="item.status"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-3 col-xs-12 pull-right text-center">
+                        <!--<a class="btn btn-fab">
+                            <i class="material-icons link-primary md-36">settings</i>
+                        </a>-->
+                        <a class="btn btn-fab pull-right"  ng-click="displayHelp=!displayHelp">
+                            <i class="material-icons link-info md-36">info_outline</i>
+                        </a>
+                        <a ng-if="orderEditCtrl.order.status>=2 && global.get('seller').val"
+                           ng-click="orderEditCtrl.sendNotification('accepted',null,'user')"  class="btn btn-fab" >
+                            <i class="material-icons link-success md-36">mail_outline</i>
+                        </a>
+                        <a class="btn btn-fab"
+                           ng-click="orderEditCtrl.printOrder()">
+                            <i class="material-icons link-primary md-36">print</i>
+                        </a>
+                        <a ng-if="orderEditCtrl.order.status>=2 && global.get('seller').val"
+                           ng-click="orderEditCtrl.sendNotification('invoice',null,'user')"  class="btn  btn-fab">
+                            <i class="material-icons link-success md-36">assignment</i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-20">
+                        <ui-select ng-model="orderEditCtrl.currency"
+                                   on-select="orderEditCtrl.changeCurrency()"
+                                   ng-disabled="orderEditCtrl.order.status>=2">
+                            <ui-select-match>
+                                <span ng-bind="$select.selected[1]"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in (orderEditCtrl.currencyArray | filter: $select.search) track by item[1]">
+                                <span ng-bind="item[1]"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  mb-20">
+                        <ui-select ng-if="orderEditCtrl.coupons.length && !orderEditCtrl.order.coupon"
+                                   ng-model="orderEditCtrl.order.coupon"
+                                   on-select="orderEditCtrl.setCoupon($item)"
+                                   theme="bootstrap">
+                            <ui-select-match placeholder="выбрать купон" >
+                                <span class="coupon-name"  ng-bind="$select.selected.name"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in (orderEditCtrl.coupons) track by $index">
+                                <span ng-bind="item.name"></span>
+                            </ui-select-choices>
+                        </ui-select>
+
+                        <p ng-if="orderEditCtrl.order.coupon">
+                            <span>использован купон - </span>
+                            <span class="coupon-name" ng-bind="orderEditCtrl.order.coupon.name"></span><span>&nbsp</span>
+                            <a class="btn btn-fab btn-fab-mini"
+                               ng-if="orderEditCtrl.order.status<2" ng-click="orderEditCtrl.deleteCoupon()">
+                                <i class="material-icons link-danger md-24">delete</i>
+                            </a>
+                        </p>
+                    </div>-->
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12"  ng-show="!orderEditCtrl.order.pay.length || displayHelp">
+                        <div class="cart-detail info text-center">
+                            <h4>Справка</h4>
+                            <!--<a class="btn btn-fab "  ng-click="displayHelp=!displayHelp">
+                                <i class="material-icons link-info md-36">info_outline</i>
+                            </a>-->
+                            <p>
+                                Блок управления ордером. Содержит блок статуса заказа,блок валют и блок использования купона.
+                                Печать ордера.
+                                При изменении статуса заказа с "поступил" на "принят" дальнейшие изменения количества единиц в ордере становится невозможной.
+                                Появляется возможность выставить счет на оплату и отправить письмо покупателю с содержанием заказа.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div ng-show="block=='delivery'"   ng-init="displayHelp=false" class="delivery">
+                    <div class="col-lg-3  col-md-3 col-sm-3 col-xs-12 ">
+                    </div>
+                    <div class="col-lg-6  col-md-6 col-sm-6 col-xs-12 ">
+                        <a  ng-click="orderEditCtrl.order.shipDetail.push({date:orderEditCtrl.getNow(),stuffs:[]})"
+                            uib-popover="{{orderEditCtrl.popover.addShip.content}}"
+                            popover-trigger="mouseenter"
+                            popover-title="{{orderEditCtrl.popover.addShip.title}}"
+                            id="step1"
+                           class="btn btn-raised btn-block btn-primary">
+                            <span>добавить доставку</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-3  col-md-3 col-sm-3 col-xs-12  pull-right text-center">
+                        <!--<a class="btn btn-fab">
+                            <i class="material-icons link-primary md-36">settings</i>
+                        </a>-->
+
+                        <a ng-click="orderEditCtrl.sendNotification('shipOrder')" class="btn btn-fab rull-left">
+                            <i class="material-icons link-success md-36 ">mail_outline</i>
+                        </a>
+                        <a class="btn btn-fab pull-left"    ng-click="orderEditCtrl.printShip()">
+                            <i class="material-icons link-primary md-36">print</i>
+                        </a>
+                        <a class="btn btn-fab pull-right"   ng-click="displayHelp=!displayHelp">
+                            <i class="material-icons link-info md-36">info_outline</i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+
+                    <!--<a class="btn"  ng-click="orderEditCtrl.updateOrderField('shipDetail')">
+                        <i class="material-icons link-primary">save</i>
+                        <span  ng-if="!orderEditCtrl.mobile">сохранить данные</span>
+                    </a>-->
+                    <!--<a ng-click="orderEditCtrl.sendNotification('shipOrder')" class="btn">
+                        <i class="material-icons link-success">mail_outline</i>
+                        <span  ng-if="!orderEditCtrl.mobile">отправить информацию</span>
+                    </a>
+                </div>-->
+                    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div ng-repeat="shipDetail in orderEditCtrl.order.shipDetail track by $index" class="clearfix ship-detail" ng-init="shipDetail.open=true">
+                            <h4>
+                                ДОСТАВКА
+                                <span ng-bind="$index+1"></span><!--todo сделать номер доставки по порядку-->
+                            </h4>
+                            <div stuffs class="col-lg-4 col-md-6 col-sm-12 col-xs-12 tags simpleDemo">
+                                <div ng-class="{'row':orderEditCtrl.mobile}">
+                                    <div class="mb-10">
+                                        <a id="{{($index===0)?'step2':null}}"
+                                           ng-show="!showSelect"ng-click="showSelect=true;" class="btn btn-block btn-default btn-raised">
+                                            <!--<i class="material-icons link-warning">add</i>--> добавить товар из ордера</a>
+                                        <a ng-show="showSelect" ng-click="showSelect=false;" class="btn btn-block btn-default btn-raised">
+                                             отменить</a>
+                                        <select class="form-control" ng-model="stuff" ng-show="showSelect"ng-change="showSelect=false;shipDetail.stuffs.push(stuff)">
+                                            <option ng-repeat="opt in orderEditCtrl.listStuffForShip" value="{{opt}}">{{opt}}</option>
+                                        </select>
+                                    </div>
+                                    <ul dnd-list="shipDetail.stuffs" ng-init="shipDetail.selected=null">
+                                        <li ng-repeat="item in shipDetail.stuffs track by $index"
+                                            dnd-draggable="item"
+                                            dnd-moved="shipDetail.stuffs.splice($index, 1)"
+                                            dnd-effect-allowed="move"
+                                            dnd-selected="shipDetail.selected = item"
+                                            ng-class="{'selected': shipDetail.selected === item}">
+                                            <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-click="shipDetail.stuffs.splice(idx,1)">
+                                               <i class="material-icons link-danger remove">remove_circle</i>
+                                            </span>
+                                            <span class="col-lg-10 col-md-10 col-sm-10 col-xs-10">{{item}}</span>
+                                            <span class="clearfix"></span>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div ttn class="col-lg-4 col-md-6 col-sm-12 col-xs-12 label-floating form-group">
+                                <div ng-class="{'row':orderEditCtrl.mobile}">
+                                    <label class="control-label">данные для доставки</label>
+                                    <textarea rows='3' class="form-control" ng-model="shipDetail.info"></textarea>
+                                </div>
+                            </div><!--info-->
+                            <div class="col-lg-4">
+                                <div ng-class="{'row':orderEditCtrl.mobile}">
+                                    <div sum class="col-lg-6 col-md-6 col-sm-6 col-xs-6 label-floating form-group ">
+                                        <label for="sd{{$input}}" class="control-label">сумма за доставку</label>
+                                        <input  type="number" class="form-control" id="sd{{$input}}" ng-model="shipDetail.sum" class="form-control">
+                                    </div>
+                                    <div data class="col-lg-6 col-md-6 col-sm-6 col-xs-6 label-floating form-group ">
+                                        <label for="dd{{$index}}" class="control-label">дата</label>
+                                        <input date-range-picker class="form-control date-picker" type="text" id="dd{{$index}}" ng-model="shipDetail.date" options="orderEditCtrl.datePickerOptions" required/>
+                                    </div>
+                                    <div sum class="col-lg-6 col-md-6 col-sm-6 col-xs-12 label-floating form-group ">
+                                        <label for="nd{{$input}}" class="control-label">ТТН</label>
+                                        <input  type="text" class="form-control" id="nd{{$input}}" ng-model="shipDetail.ttn" class="form-control">
+                                    </div>
+                                    <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <a class="btn btn-fab btn-fab-mini btn-primary"   ng-click="orderEditCtrl.updateOrderField('shipDetail')">
+                                            <i class="material-icons">save</i>
+                                        </a>
+                                        <a class="btn btn-fab btn-fab-mini"   ng-click="orderEditCtrl.sendNotification('shipDetail',shipDetail,'user')" ng-if="global.get('seller').val">
+                                            <i class="material-icons link-primary">message</i>
+                                        </a>
+                                        <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="orderEditCtrl.order.shipDetail.splice($index,1)">
+                                            <i class="material-icons link-danger">delete</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                        </div>
+
+                        <!--расчет суммы доставки-->
+                        <span ng-hide="true" ng-bind="orderEditCtrl.order.shipCost=orderEditCtrl.order.getShipCost()"></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12" ng-show="!orderEditCtrl.order.pay.length || displayHelp">
+                        <div class="cart-detail info text-center">
+                            <h4>Справка</h4>
+                            <!--<a class="btn btn-fab "   ng-click="displayHelp=!displayHelp">
+                                <i class="material-icons link-info md-36">info_outline</i>
+                            </a>-->
+                            <p>
+                                Блок доставки.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>
+

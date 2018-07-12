@@ -1,0 +1,201 @@
+<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 section">
+<div ng-hide="$state.current.name!='frame.sections'">
+
+   <!-- <span class="section-add-label">добавить раздел</span>
+    <a class="btn btn-fab btn-fab-mini btn-primary" ng-click="newSection()">
+
+        <i class="material-icons">add</i>
+    </a>-->
+    <!-- <span class="section-add-label"></span>-->
+    <a class="btn btn-raised btn-block btn-primary btn-lg" ng-click="newSection()">добавить раздел
+
+        <i class="material-icons">add</i>
+    </a>
+    <!--<a ng-click="newSection()">
+        <span class="section-add">создать новый раздел</span>
+        <a class="btn btn-fab btn-fab-mini btn-danger">
+
+            <i class="material-icons">add</i>
+        </a>
+    </a>-->
+    <!-- Template for a normal list item -->
+    <script type="text/ng-template" id="category.html">
+        <!--<i class="material-icons" style="position: absolute; left: -36px; top: 30%; font-size: 40px">trending_flat</i>-->
+        <div class="input-group section-category">
+            <span class="input-group-addon">категория </span>
+            <div class="form-group">
+                <input focus-element="category.focus" lost-focus="saveCategoryName(category,section)"dnd-nodrag class="form-control" ng-model="category.name">
+            </div>
+            <span class="input-group-addon">
+                <div class="pull-right">
+                    <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.sections.category({id:category._id})">
+                        <i class="material-icons link-success md-24">mode_edit</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="deleteCategory(section,$index)">
+                        <i class="material-icons link-danger md-24">delete</i>
+                    </a>
+                </div>
+            </span>
+            <!--<a class="input-group-addon" ui-sref="frame.sections.category({id:category._id})">
+                <span class="glyphicon glyphicon-edit"></span>
+            </a>
+            <a class="input-group-addon" ng-click="deleteCategory(section,$index)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>-->
+        </div>
+
+        <!--<div class="item">category {{category.name}}</div>-->
+    </script>
+
+    <script type="text/ng-template" id="section.html">
+        <div ng-init="section.showList=true">
+            <div class="input-group section-block">
+                <div class="input-group section-one">
+                    <!--<i class="material-icons">swap_vert</i>-->
+                    <span ng-click="section.showList=!section.showList" class="glyphicon glyphicon-chevron-right input-group-addon" ng-class="{'glyphicon-chevron-right': !section.showList, 'glyphicon-chevron-down': section.showList}"></span>
+                    <span class="input-group-addon"ng-if="section.level===0">РАЗДЕЛ</span>
+                    <span class="input-group-addon"ng-if="section.level!==0">ПОДРАЗДЕЛ</span>
+                    <div class="form-group">
+                        <input focus-element="section.focus" lost-focus="saveSection(section)" class="form-control" dnd-nodrag ng-model="section.name">
+                    </div>
+                    <span class="input-group-addon">
+                        <div class="pull-right">
+                            <a class="btn btn-fab btn-fab-mini" ng-if="!section.child.length && !section.categories.length" ng-click="deleteSection(parentSection,section)">
+                                <i class="material-icons link-danger md-24">delete</i>
+                            </a>
+                        </div>
+                    </span>
+                   <!-- <a class="input-group-addon" ng-if="!section.child.length && !section.categories.length" ng-click="deleteSection(parentSection,section)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>-->
+                </div>
+                <ul class="section-one-add pull-left" dnd-list="section.child"
+                    dnd-drop="dropSectionCallback(item,section)"
+                    dnd-allowed-types="['section']">
+                    <li dnd-nodrag >
+                        <!--<span class="section-add-label">добавить подраздел</span>
+                        <a class="btn btn-fab btn-fab-mini btn-primary" ng-click="section.showList=true;addSection(section)">
+                            <i class="material-icons">add</i>
+                        </a>-->
+
+                        <a class="btn   btn-primary" ng-click="section.showList=true;addSection(section)">добавить подраздел
+                            <i class="material-icons">add</i>
+                        </a>
+                    </li>
+                </ul>
+                <ul  class="section-one-add pull-right" dnd-list="section.categories" dnd-allowed-types="['category']"
+                    dnd-drop="dropCategoryCallback(item,section)">
+                    <li dnd-nodrag >
+                        <a class="btn   btn-primary" ng-click="section.showList=true;addCategory(section)">добавить подраздел
+                            <i class="material-icons">add</i>
+                        </a>
+                        <!--<span class="section-add-label">добавить категорию</span>
+                        <a class="btn btn-fab btn-fab-mini btn-primary" ng-click="section.showList=true;addCategory(section)">
+                            <i class="material-icons">add</i>
+                        </a>-->
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+                <ul ng-if=" section.showList"
+                    dnd-list="section.child"
+                    dnd-drop="dropSectionCallback(item,section)"
+                    dnd-allowed-types="['section']" ng-init="parentSection=section">
+                    <!--<li ng-if="!section.child.length">новый подраздел</li>-->
+                    <li ng-repeat="section in section.child"
+                        dnd-draggable="section"
+                        dnd-type="'section'"
+                        dnd-effect-allowed="move"
+                        dnd-moved="parentSection.child.splice($index,1)"
+                        dnd-selected="models.selected = item"
+                        ng-class="{selected: models.selected === item}"
+                        ng-include="'section.html'">
+                    </li>
+                </ul>
+                <ul ng-if=" section.showList"
+                    dnd-list="section.categories"
+                    dnd-allowed-types="['category']"
+                    dnd-drop="dropCategoryCallback(item,section)">
+
+                    <!--<li ng-if="!section.categories.length">новая категория</li>-->
+                    <li ng-repeat="category in section.categories track by $index"
+                        dnd-draggable="category"
+                        dnd-type="'category'"
+                        dnd-effect-allowed="move"
+                        dnd-moved="section.categories.splice($index,1)"
+                        dnd-selected="models.selected = item"
+                        ng-class="{selected: models.selected === item}"
+                        class="tree-node-category"
+                        ng-include="'category.html'">
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            </div>
+    </script>
+
+
+    <!-- Main area with dropzones and source code -->
+    <div class="row">
+        <div ng-repeat="section in sections" class="col-md-12">
+            <div >
+                <div ng-include="'section.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-view>
+
+</div>
+</div>
+<!--<div ng-if="prop.editCategory">
+    <category-edit id="{{categoryId}}" edit="prop.editCategory"></category-edit>
+</div>-->
+
+
+
+
+
+
+<!-- Sidebar -->
+<!--<div class="col-md-2">
+
+    <div class="toolbox box box-grey box-padding">
+        <h3>New Elements</h3>
+        <ul>
+             The toolbox only allows to copy objects, not move it. After a new
+                 element was created, dnd-copied is invoked and we generate the next id
+            <li ng-repeat="item in models.templates"
+                dnd-draggable="item"
+                dnd-effect-allowed="copy"
+                dnd-copied="item.id = item.id + 1"
+            >
+                <button type="button" class="btn btn-default btn-lg" disabled="disabled">{{item.type}}</button>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-if="models.selected" class="box box-grey box-padding">
+        <h3>Selected</h3>
+        <strong>Type: </strong> {{models.selected.type}}<br>
+        <input type="text" ng-model="models.selected.name" class="form-control" style="margin-top: 5px" />
+    </div>
+
+    <div class="trashcan box box-grey box-padding">
+        If you use [] as referenced list, the dropped elements will be lost
+        <h3>Trashcan</h3>
+        <ul dnd-list="[]">
+            <li><img src="nested/trashcan.jpg"></li>
+        </ul>
+    </div>
+
+</div>-->
+
+
+
+<!--
+<div class="sectionsList col-lg-4" ng-repeat="section in sections">
+    <i-section class="tree-nodes"section="section"></i-section>
+
+</div>
+-->
+

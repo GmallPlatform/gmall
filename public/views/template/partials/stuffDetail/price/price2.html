@@ -1,0 +1,34 @@
+<div class="price-box col-lg-6 col-md-6 col-sm-6 col-xs-12"
+     ng-if="::(!$ctrl.item.service && $ctrl.item.sort)"
+     ng-class="{'container-price-goods':!$ctrl.item.service,'container-price-service':$ctrl.item.service}">
+    <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <span class="price" ng-class="{'line':$ctrl.item.sale}" itemprop="price" ng-if="::$ctrl.item.sort">
+            <span ng-bind="$ctrl.item.stock[$ctrl.item.sort].price*$ctrl.rate.val| currency:'':0"
+                      ng-class="{'line':$ctrl.item.sale ||$ctrl.item.stock[$ctrl.item.sort].priceCampaign}"></span>
+            <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+            <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+        </span>
+        <span class="sale" ng-if="::($ctrl.item.sale && $ctrl.item.sort)">
+            <span> / </span>
+            <span ng-bind="$ctrl.item.stock[$ctrl.item.sort].priceSale*$ctrl.rate.val| currency:'':0"></span>
+            <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+            <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+        </span>
+        <span ng-if="::($ctrl.global.get('store').val.seller.retail && $ctrl.item.sort)">
+            <span ng-bind="$ctrl.item.stock[$ctrl.item.sort].retail*$ctrl.rate.val| currency:'':0"></span>
+            <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+            <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+        </span>
+        <span class="sale"  ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign">
+            <span> / </span>
+            <span ng-bind="$ctrl.item.stock[$ctrl.item.sort].priceCampaign*$ctrl.rate.val| currency:'':0"></span>
+            <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+            <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+        </span>
+        <p class="text-right" ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign">
+            <a ui-sref="campaign.detail({id:$ctrl.item.campaignUrl})">условия акции</a>
+        </p>
+    </p>
+
+    <div class="clearfix"></div>
+</div>

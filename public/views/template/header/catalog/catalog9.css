@@ -1,0 +1,86 @@
+/*fasnion*/
+
+/*меню с раскрытием без второго меню*/
+.catalogDropDownMenu,
+.catalogDropDownMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.catalogDropDownMenu ul {
+    float: left;
+}
+.myMenu .catalogDropDownMenu li {
+    float: left;
+}
+.section-in-section {
+    float: left;
+}
+.catalogDropDownMenu .mainli{
+    position: relative;
+}
+.catalogDropDownMenu a {
+    padding-top: $padding-top;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-bottom: $padding-bottom;
+    display: block;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+.catalogDropDownMenu a.section-name {
+    padding-top: $padding-top;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+    padding-bottom: $padding-bottom;
+    font-size: $font-size;
+    text-transform: $text-transform;
+}
+
+/* Level 1 Drop Down */
+.catalogDropDownMenu .mainli {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: -4px; /* solve the 4 pixels spacing between list-items */
+}
+
+/* Level 2 */
+.catalogDropDownMenu .innerDiv {
+    background-color: $background-color;
+    display: none;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: auto;
+    z-index: 1029; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
+    /*border-top: 1px solid $color;
+    border-bottom: 1px solid $color;*/
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+@media (max-width: 1200px) {
+    .myMenu .catalogDropDownMenu a.section-name {
+        font-size: 16px
+    }
+}
+@media (max-width: 768px) {
+    .catalogDropDownMenu a {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+/*@media (max-width: 1200px) {
+    .innerDiv .container{
+        width: 100%;
+    }
+}*/
+/*.mobile-wrapper .myMenuV .catalog-menu {
+    padding-left: 0;
+}
+.mobile-wrapper .myMenuV .catalog-menu li {
+    list-style: none;
+}*/
+
+
+

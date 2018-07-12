@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html data-ng-app="angularApplication">
+<head lang="ko">
+	<meta charset="utf-8">
+	<link href="angular.panels.css" rel="stylesheet" type="text/css">
+
+	<script src="angular.min.js"></script>
+	<script src="angular.panels.js"></script>
+</head>
+
+<body data-ng-controller="defaultController">
+
+	<div class="container-fluid content-section">
+		<div class="container">
+			<div class="row">
+				<h2><i class="fa fa-play-circle"></i> Example</h2>
+
+				<p>Type any message you want to show on the panel in the input box below, and press the button "LEFT OPEN".</p>
+
+				<div class="form-group">
+					<input class="form-control input-lg" type="text" data-ng-model="message" placeholder="Message for panels..">
+				</div>
+
+				<div class="btn-group btn-group-justified">
+					<a href="" data-ng-click="leftOpen()" class="btn btn-default">Left Open</a>
+					<a href="" data-ng-click="rightOpen()" class="btn btn-default">Right Open</a>
+					<a href="" data-ng-click="topOpen()" class="btn btn-default">Top Open</a>
+					<a href="" data-ng-click="bottomOpen()" class="btn btn-default">Bottom Open</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div data-panels="true"></div>
+
+	<script>
+
+		var app = angular.module('angularApplication', ['angular.panels']);
+
+		//add panels
+		app.config(['panelsProvider', function (panelsProvider) {
+
+		    panelsProvider
+		        .add({
+		            id: 'test01',
+		            position: 'left',
+		            size: '700px',
+		            templateUrl: 'left.html',
+		            controller: 'leftCtrl'
+		        })
+		        .add({
+		            id: 'test02',
+		            position: 'right',
+		            size: '50%',
+		            templateUrl: '../resources/template/right.html',
+		            controller: 'rightCtrl'
+		        })
+		        .add({
+		            id: 'test03',
+		            position: 'top',
+		            size: '20%',
+		            templateUrl: '../resources/template/top.html',
+		            controller: 'topCtrl'
+		        })
+		        .add({
+		            id: 'test04',
+		            position: 'bottom',
+		            size: '80%',
+		            templateUrl: '../resources/template/bottom.html',
+		            controller: 'testpanelCtrl',
+		            closeCallbackFunction: 'bottomClose'
+		        });
+		}]);
+
+		//default controller
+		app.controller('defaultController', ['$scope', 'panels', function ($scope, panels) {
+
+			$scope.leftOpen = function () {
+				$scope.$broadcast('leftHello', {message : $scope.message});
+			};
+
+			$scope.rightOpen = function () {
+				$scope.$broadcast('rightHello', {message : $scope.message});
+			};
+
+			$scope.topOpen = function () {
+				$scope.$broadcast('topHello', {message : $scope.message});
+			};
+
+			$scope.bottomOpen = function () {
+				$scope.$broadcast('bottomHello', {message : $scope.message});
+			};
+
+		}]);
+
+		//left panel controller
+		app.controller('leftCtrl', ['$scope', 'panels', function ($scope, panels) {
+
+			$scope.$on('leftHello', function(event, args) {
+
+				$scope.message = args.message;
+
+				panels.open("test01");
+			});
+		}]);
+
+
+		//right panel controller
+		app.controller('rightCtrl', ['$scope', 'panels', function ($scope, panels) {
+
+			$scope.$on('rightHello', function(event, args) {
+
+				$scope.message = args.message;
+
+				panels.open("test02");
+			});
+		}]);
+
+
+		//top panel controller
+		app.controller('topCtrl', ['$scope', 'panels', function ($scope, panels) {
+
+			$scope.$on('topHello', function(event, args) {
+
+				$scope.message = args.message;
+
+				panels.open("test03");
+			});
+		}]);
+
+
+		//bottom panel controller
+		app.controller('bottomCtrl', ['$scope', 'panels', function ($scope, panels) {
+
+			$scope.$on('bottomHello', function(event, args) {
+
+				$scope.message = args.message;
+
+				panels.open("test04");
+			});
+
+			//close callback
+			$scope.bottomClose = function () {
+
+				window.alert('Close Callback!!');
+			};
+		}]);
+
+	</script>
+</body>
+</html>

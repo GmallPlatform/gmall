@@ -1,0 +1,26 @@
+/*cake*/
+
+.page-stat.enter-block.nav-group {
+    padding: 25px;
+}
+.page-stat.enter-block.nav-group a {
+    color: #333;
+}
+.page-stat.enter-block.nav-group a:hover {
+    color: #666;
+}
+
+
+
+.page-stat.enter-block a {
+    color: #333 ;
+}
+.mobile-wrapper .page-stat.enter-block a {
+    padding-right: 0 ;
+}
+@media (max-width: 768px) {
+    .page-stat.enter-block.nav-group {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}

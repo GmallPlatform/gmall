@@ -1,0 +1,65 @@
+if(dj[key].stuffs && dj[key].stuffs.length)
+    div(class=dj[key].wrapclass)
+        div(class=mobileWrapper)
+            div(class="home-stuffs stuffs-home",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
+                div(class="container",home-page-stuff-owl="owlstuff"+dj[key].id,stuffs2=JSON.stringify(dj[key].stuffs))
+                    div(class="stuffs-header")
+
+                        if(dj[key].name)
+                            h2(class="text-center",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimat)=dj[key].name
+
+                    div(class="carousel-box")
+                        div(class="nav-left")
+                            i(class="icon-prev-img")
+                        div(id="owlstuff"+dj[key].id, class="owl-carousel owl-theme")
+                            each stuff,index in dj[key].stuffs
+                                div(stuff-in-list=JSON.stringify(stuff))
+                                    a(href=stuff.link)
+                                        div(class="img-box")
+                                            img(class="img-responsive",src=photoHost+'/'+stuff.img,alt=stuff.alt)
+                                            div(class="title-block text-center")
+                                                div(class="see")
+                                                    span(class="icon-see-img")
+                                                    p(class="see-master",ng-bind="$ctrl.global.get('lang').val.more")
+
+                                        div(class="name-box")
+                                            if(stuff.name)
+                                                h4(class="stuff-name")
+                                                    span=stuff.name
+                                                    | &nbsp;
+                                                    span=stuff.artikul
+                                                p
+                                                    span(class="from")=lang.from
+                                                    span &nbsp;
+                                                    span(class="price" ng-class="{'line':stuff.priceSale}", ng-if="stuff.sort")
+                                                        span(class="long2",ng-bind="$ctrl.getAveragePrice(stuff.stock[stuff.sort].price)| currency:'':$ctrl.formatPrice",ng-class="{'line':stuff.sale||stuff.campaignUrl}")
+                                                        //span(class="long0",ng-bind="stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val| currency:'':0",ng-class="{'line':stuff.sale||stuff.campaignUrl}")
+                                                        //span(class="long2",ng-bind="(stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val).toFixed(2)", ng-class="{'line':stuff.sale||stuff.campaignUrl}")
+                                                        span &nbsp;
+                                                        span(ng-bind="stuff.currencySymbol")
+
+                                                    span(class="sale", ng-if="(stuff.sort && stuff.priceSale)")
+                                                        span(class="flash") /
+                                                        span(class="long2",ng-bind="$ctrl.getAveragePrice(stuff.stock[stuff.sort].priceSale)| currency:'':$ctrl.formatPrice")
+                                                        //span(class="long2",ng-bind="(stuff.stock[stuff.sort].priceSale*$ctrl.global.get('rate').val).toFixed(2)")
+                                                        span &nbsp;
+                                                        span(ng-bind="stuff.currencySymbol")
+                                                    span &nbsp;&nbsp;&nbsp;
+                                                    if(stuff.timePart)
+                                                        span(ng-bind="stuff.timePart*15")
+                                                        span &nbsp;
+                                                        span=lang.minute
+                                                    span(class="clearfix")
+                                                pre=stuff.orderType
+                                                if(stuff.orderType == 1)
+                                                    a(class="btn  btn-project btn-border",ng-click="stuff.order()",ng-bind="$ctrl.global.get('lang').val.toOrder")
+                                                else if(stuff.orderType == 2)
+                                                    a(class="btn  btn-project btn-border",ng-click="$ctrl.global.get('functions').val.witget('dateTime',{stuff:stuff})",ng-bind="$ctrl.global.get('lang').val.enroll")
+                                                else if(stuff.orderType == 3)
+                                                    a(class="btn  btn-project btn-border",href=stuff.link,ng-bind="$ctrl.global.get('lang').val.more")
+                                                else if(stuff.orderType == 4)
+                                                    a(class="btn  btn-project btn-border",ng-click="$ctrl.stuff.getBonus()",ng-bind="$ctrl.global.get('store').val.bonusButtonText")
+
+                        div(class="clearfix")
+                        div(class="nav-right")
+                            i(class="icon-next-img")

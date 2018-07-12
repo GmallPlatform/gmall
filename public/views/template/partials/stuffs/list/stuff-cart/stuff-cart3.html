@@ -1,0 +1,23 @@
+<div id="stuff-cart.html" class="stuffs">
+    <div class="stuff-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="stuff-cart-min-height" ng-if="::!stuff._id">
+        </div>
+        <div id="list{{::stuff._id}}" class="goods-container-img " style="position: relative; " ng-if='::stuff._id'>
+            <a ng-click="stuff.zoomImg(0)" >
+                <img class="sticker" ng-src="{{stuff.sticker}}">
+                <img class="img-responsive img-goods" ng-src="{{stuff.gallery[0].thumb||'/img/upload/no.png'}}" />
+            </a>
+            <div class="box-overlay"></div>
+            <div class="half-shadow" ng-click="stuff.zoomImg(0)" >
+                <div class="see">
+                    <span class="icon-see-img"></span>
+                </div>
+                <h3 class="text-center" >
+                    <span ng-bind="::stuff.name"></span>
+                    <span ng-bind="::stuff.artikul"></span>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

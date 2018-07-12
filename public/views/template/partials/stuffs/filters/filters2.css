@@ -1,0 +1,81 @@
+/*tatiana*/
+
+.filters-of-stuff span{
+    vertical-align: middle;
+}
+.filter-box {
+    font-size: 14px;
+}
+.filter-box .checkbox .checkbox-material .check {
+    margin-right: 3px;
+}
+.brand-name {
+    font-size: 16px;
+}
+
+.collection-name {
+    display: inline-block;
+    vertical-align: middle;
+}
+.tag {
+    margin-top: 0;
+}
+.tag,
+.tag-row {
+    margin-bottom: 5px;
+}
+.checkbox{
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.panel-group .panel-heading+.panel-collapse>.list-group,
+.panel-group .panel-heading+.panel-collapse>.panel-body {
+    border: none;
+}
+.panel-group .panel + .panel {
+    margin-top: 0;
+}
+/*a {
+    color: #333333;
+}
+a{
+    display: block;
+    width: 100%;
+}*/
+.checkbox input[type=checkbox],
+.checkbox-inline input[type=checkbox],
+.radio input[type=radio],
+.radio-inline input[type=radio] {
+    width: 20px;
+    height: 20px;
+    margin-left: -25px;
+}
+.brand-name {
+    display: inline-block;
+    padding-top: 5px;
+}
+.checkbox label,
+.checkbox-inline label {
+    padding-left: 30px;
+}
+.up-down{
+    display: inline-block;
+}
+.icon-up-img,
+.icon-down-img {
+    width: 18px;
+    height: 18px;
+    background-size: 18px;
+    transition: 0.4s ease-in-out 0.1s;
+    margin-right: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tablet-wrapper .block-left {
+    width: 90%;
+}
+.tablet-wrapper .block-right {
+    width: 10%;
+}

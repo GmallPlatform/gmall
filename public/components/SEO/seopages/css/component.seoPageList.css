@@ -1,0 +1,160 @@
+/*dnd*/
+/*gallery*/
+.seopage-list ul[dnd-list],
+.seopage-list ul[dnd-list] > li {
+    position: relative;
+}
+
+/***************************** Dropzone Styling *****************************/
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.seopage-list .dropzone ul[dnd-list] {
+    min-height: 59px;
+    /*margin: 0px;
+    padding-left: 0px;*/
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.seopage-list .dropzone li {
+    display: block;
+}
+
+/**
+ * Reduce opacity of elements during the drag operation. This allows the user
+ * to see where he is dropping his element, even if the element is huge. The
+ * .dndDragging class is automatically set during the drag operation.
+ */
+
+.seopage-list .dropzone .dndDragging {
+    opacity: 0.7;
+}
+
+/**
+ * The dndDraggingSource class will be applied to the source element of a drag
+ * operation. It makes sense to hide it to give the user the feeling that he's
+ * actually moving it. Note that the source element has also .dndDragging class.
+ */
+.seopage-list .dropzone .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be added as child of the dnd-list
+ * while the user is dragging over it.
+ */
+.seopage-list .dropzone .dndPlaceholder {
+    background-color: #d6d6d6 !important;
+    min-height: 59px;
+    display: block;
+    position: relative;
+}
+
+.seopage-list-container {
+    margin-top: 160px;
+    padding-bottom: 40px;
+}
+.seopage-list-container .checkbox,
+.seopage-list-container .form-group{
+    margin: 0;
+    padding-bottom: 0;
+}
+.seopage-list  .nav-box-stuff {
+    position: fixed;
+    background-color: #fff;
+    top: 60px;
+    z-index: 100;
+    width: 100%;
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 4px;
+}
+.seopage-list .tab-nav-stuff a {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+.seopage-list .nav-box-stuff .tab-nav-stuff {
+    margin-top: 20px;
+}
+.seopage-list .content-tab-nav-stuff {
+    width: 100%;
+}
+
+.head-box  {
+    font-weight: bold;
+}
+.name-menu {
+    font-size: 20px;
+    color: #767c89;
+    font-weight: bold;
+}
+.menu-box {
+    padding: 20px;
+}
+.box-component {
+    padding: 20px 60px;
+}
+.bgcolor_one{
+    background-color: #eee;
+    border: 1px dotted #999;
+}
+.bgcolor_one:hover,
+.bgcolor_two:hover{
+    background-color: #dddddd;
+}
+
+.bgcolor_two{
+    background-color: #fff;
+    border: 1px dotted #999;
+}
+
+seopage-list ul li {
+    list-style: none;
+    padding: 10px;
+}
+.info-item .nav-box {
+    position: fixed;
+    background-color: #eee;
+    top: 60px;
+    z-index: 101;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 2px 2px 2px #ccc;
+    padding-bottom: 4px;
+}
+
+.info-item .name-box {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.info-item .add-goods {
+    font-size: 20px;
+}
+.info-item .add-goods i {
+    font-size: 36px;
+}
+.info-item .tab-nav {
+    padding: 10px 15px;
+}
+.info-item .tab-nav-stuff {
+    margin-top: 25px;
+}
+.info-item  .info-page {
+    margin-top: 130px;
+}
+.info-item-list ul {
+    padding-left: 0;
+}
+.info-item-list .form-group,
+.info-item-list .control-label
+{
+    padding-left: 20px;
+}

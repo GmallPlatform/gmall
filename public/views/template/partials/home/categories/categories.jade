@@ -1,0 +1,21 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(id=id,class="home-categories")
+            div(class="container")
+                if(dj[key].name)
+                    h3(class="text-center")=dj[key].name
+                - var className  ="col-lg-6 col-md-6 col-sm-6 col-xs-12 home-section text-center"
+                if(dj[key].categories.length == 1|| dj[key].categories.length == 5)
+                    - className="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-section text-center"
+                else if(dj[key].categories.length == 3 || dj[key].categories.length == 6)
+                    - className='col-lg-4 col-md-4 col-sm-6 col-xs-12 home-section text-center'
+                each c in dj[key].categories
+                    div(class=className)
+                        div(class="row wrapForScale")
+                            a(href=c.link)
+                                img(class="img-responsive img-scale",src=photoHost+'/'+c.img,scale-img,alt=c.alt)
+                                h1(class="categories-name")=c.name
+                div(class="clearfix")
+
+
+

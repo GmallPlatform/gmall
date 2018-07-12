@@ -1,0 +1,20 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">подтверждение email</h3>
+        <a class="cancel"  ng-click="$ctrl.cancel()">
+            <span class="icon-cancel-img"></span>
+        </a>
+    </div>
+    <div class="modal-body">
+        <div class="form-search">
+            <form ng-submit="$ctrl.ok(websiteName)" name="websiteName">
+                <div class="form-group">
+
+                </div>
+                <button class="btn btn-raised btn-block" type="submit" >подтвержден</button>
+            </form>
+            <a ng-click="$ctrl.confirmEmailRepeat()"><span>отослать еще одно письмо со ссылкой на подтверждение email</span></a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

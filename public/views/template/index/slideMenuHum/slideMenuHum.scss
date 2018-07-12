@@ -1,0 +1,24 @@
+/*slideMenuhumburger*/
+.humburger {
+  color:$color;
+  cursor: pointer;
+  z-index: 1050;
+}
+/*  гамбургер для бокового меню */
+.navbar-toggle {
+  display: block;
+  width: 60px;
+  height: 60px;
+  z-index: 2000;
+  border: none;
+}
+
+.navbar-toggle .icon-bar {
+  background-color: $color;
+  height: 3px;
+  width: 100%;
+}
+.navbar-toggle:hover .icon-bar {
+  background-color: $color;
+
+}

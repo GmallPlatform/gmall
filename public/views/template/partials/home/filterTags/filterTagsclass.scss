@@ -1,0 +1,263 @@
+/*@if $className=="container" {
+    .container {
+        @if $width==100% {
+            width: 100%;
+        }
+        @if $width==85% {
+            width: 85%;
+        }
+    }
+
+    @media  (max-width: 1200px) {
+        .container {
+            @if $width==65%{
+                width: 70%;
+            }
+            @if $width==85% {
+                width: 85%;
+            }
+            @if $width==100% {
+                width: 100%;
+            }
+        }
+    }
+
+    @media  (max-width: 1100px) {
+        .container {
+            @if $width==85% {
+                width: 85%;
+            }
+
+            @if $width==100% {
+                width: 100%;
+            }
+            width: 75%;
+        }
+    }
+    @media  (max-width: 992px) {
+        .container {
+            @if $width==85% {
+                width: 85%;
+            }
+            @if $width==100% {
+                width: 100%;
+            }
+            width: 80%;
+        }
+    }
+    .tablet-wrapper {
+        .container {
+            @if $width==85% {
+                width: 85%;
+            }
+            @if $width==100% {
+                width: 100%;
+            }
+        }
+    }
+    .mobile-wrapper {
+        .container {
+            @if $width==85% {
+                width: 85%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            !*@if $width==85%{
+                width: 100%;
+            }*!
+            @if $padding-left{
+                padding-left: $padding-left*0.5;
+            }
+            @if $padding-right{
+                padding-right: $padding-right*0.5;
+            }
+            @if $width==100% {
+                width: 100%;
+            }
+            !*width: 100%;*!
+        }
+    }
+}
+@if $className=="half-shadow" {
+    @media  (max-width: 1500px){
+        @if $top {
+            top: $top*0.9;
+        }
+        @if $bottom {
+            bottom: $bottom*1.2;
+        }
+        @if $right {
+            right: $right*0.9;
+        }
+        @if $left {
+            left: $left*0.9;
+        }
+    }
+}*/
+/*@if $className=="btn-project" {
+    @media  (max-width: 1500px) {
+        .btn-project {
+            @if $top {
+                top: $top*0.9;
+            }
+            @if $bottom {
+                bottom: $bottom*0.9;
+            }
+            @if $right {
+                right: $right*0.9;
+            }
+            @if $left {
+                left: $left*0.9;
+            }
+        }
+    }
+    @media  (max-width: 1300px) {
+        .btn-project {
+            @if $top {
+                top: $top*0.8;
+            }
+            @if $bottom {
+                bottom: $bottom*0.8;
+            }
+            @if $right {
+                right: $right*0.8;
+            }
+            @if $left {
+                left: $left*0.8;
+            }
+        }
+    }
+
+    .tablet-wrapper {
+        .btn-project {
+            @if $top {
+                top: $top*0.75;
+            }
+            @if $bottom {
+                bottom: $bottom*0.7;
+            }
+            @if $right {
+                right: $right*0.7;
+            }
+            @if $left {
+                left: $left*0.7;
+            }
+        }
+    }
+    .mobile-wrapper {
+        .btn-project {
+            @if $top {
+                top: $top*0.5;
+            }
+            @if $bottom {
+                bottom: $bottom*0.5;
+            }
+            @if $left {
+                left: $left*0.5;
+            }
+            @if $right {
+                right: $right*0.5;
+            }
+            @if $font-size {
+                font-size: $font-size*0.7;
+            }
+        }
+    }
+}*/
+
+/*
+@if $className=="nav-box" {
+    @media  (max-width: 1500px) {
+        .nav-box {
+            @if $top {
+                top: $top*0.9;
+            }
+            @if $bottom {
+                bottom: $bottom*0.9;
+            }
+            @if $right {
+                right: $right*0.9;
+            }
+            @if $left {
+                left: $left*0.9;
+            }
+        }
+    }
+    @media  (max-width: 1300px) {
+        .nav-box {
+            @if $top {
+                top: $top*0.8;
+            }
+            @if $bottom {
+                bottom: $bottom*0.8;
+            }
+            @if $right {
+                right: $right*0.8;
+            }
+            @if $left {
+                left: $left*0.8;
+            }
+        }
+        .nav-box span {
+            width: 30px;
+            height: 30px;
+        }
+        .icon-next-img {
+            background-size: 30px;
+        }
+        .icon-prev-img {
+            background-size: 30px;
+        }
+    }
+    @media  (max-width: 1000px) {
+        .nav-box {
+            @if $top {
+                top: $top*0.7;
+            }
+            @if $bottom {
+                bottom: $bottom*0.7;
+            }
+            @if $right {
+                right: $right*0.7;
+            }
+            @if $left {
+                left: $left*0.7;
+            }
+        }
+    }
+    .tablet-wrapper {
+        .nav-box {
+            @if $top {
+                top: $top*0.75;
+            }
+            @if $bottom {
+                bottom: $bottom*0.7;
+            }
+            @if $right {
+                right: $right*0.7;
+            }
+            @if $left {
+                left: $left*0.7;
+            }
+        }
+    }
+    .mobile-wrapper {
+        .nav-box {
+            @if $top {
+                top: $top*0.5;
+            }
+            @if $bottom {
+                bottom: $bottom*0.5;
+            }
+            @if $right {
+                right: $right*0.5;
+            }
+            @if $left {
+                right: $left*0.5;
+            }
+            @if $font-size {
+                font-size: $font-size*0.7;
+            }
+        }
+    }
+}*/

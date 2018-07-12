@@ -1,0 +1,21 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        if(dj[key].arrowDownDiv)
+            arrow-down
+        #{dj[key].element}(ng-click=dj[key].ngClick,href=dj[key].href)
+            div(id=dj[key].id,class="home-banner half-section-banner col-lg-6 col-md-6 col-sm-6 col-xs-12" + dj[key].additionalClass,set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat,data-animation-delay=dj[key].animateDelay)
+                div(class="container")
+                    div(class="banner-content")
+                        a(ng-click=dj[key].ngClick,href=dj[key].href)
+                            div(class="img-box")
+                                img(class="img-responsive img-header" src=dj[key].img,alt=dj[key].alt)
+                                div(class="box-overlay")
+                            div(class="desc-box")
+                                if(dj[key].name)
+                                    h1(class="banner-header",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)
+                                        | !{dj[key].name}
+                                if(dj[key].desc)
+                                    div(class="banner-desc")
+                                        | !{dj[key].desc}
+                                if(dj[key].button && dj[key].button.is)
+                                    a(class="btn btn-project btn-banner",ng-click=dj[key].button.ngClick,href=dj[key].button.href,set-animate=dj[key].button.animate,data-animation=dj[key].button.animate)=dj[key].button.text

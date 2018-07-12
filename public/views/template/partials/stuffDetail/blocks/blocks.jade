@@ -1,0 +1,6 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="row")
+            div(class="col-lg-12 col-md-12 description",ng-repeat="block in $ctrl.item.blocks|filter:{is:true}",id="blocks{{$ctrl.item.url}}{{$index}}")
+                div(directive-block-stuff="{{block.type}}" block-templ="{{block.templ}}",ng-class='"'+dj[key].wrapclass+'{{$index}}"')
+            div(class="clearfix")

@@ -1,0 +1,35 @@
+<!--<style>
+    .has-error .help-block {
+        color: #f02222;
+        font-size: 12px;
+    }
+    .has-error .form-control,
+    .has-error .form-control:focus {
+        box-shadow: none;
+        border-color: #f02222;
+    }
+</style>-->
+<div class="chat-content">
+    <div class="chat-body">
+        <form novalidate name='formCall' ng-submit="callCtrl.pushNotification(formCall)">
+            <!--<div class="form-group" >&lt;!&ndash;ng-class="{ 'has-success': formCall.name.$valid && callCtrl.submitted,
+                'has-error': formCall.name.$invalid && callCtrl.submitted}"&ndash;&gt;
+                <input class="form-control"
+                       ng-model="callCtrl.phone"
+                       ng-minlength="7"
+                       ng-maxlength="20"
+                       ng-required="true"
+                       ng-disabled="callCtrl.blockButton"
+                       name="phone"
+                       ng-pattern="phoneNumberPattern"
+                       type="text"
+                       placeholder="{{$ctrl.global.get('langForm').val.enterphone}}">
+                <span class="help-block" ng-show="formCall.phone.$error.required">{{$ctrl.global.get('langError').val.enterphone}}</span>
+                <span class="help-block" ng-show="formCall.phone.$error.minlength||formCall.phone.$error.maxlength||formCall.phone.$error.pattern">{{$ctrl.global.get('langError').val.phonenotformat}}</span>
+
+            </div>-->
+            <div enter-phone-numder="$ctrl.user.val.profile.phone"></div>
+            <button class="btn btn-project btn-block"  ng-disabled="formCall.$invalid" name="submit" type="submit">{{$ctrl.global.get('langForm').val['requestCall']}}</button><!--заказать обратный звонок-->
+        </form>
+    </div>
+</div>

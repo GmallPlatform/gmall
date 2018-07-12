@@ -1,0 +1,40 @@
+/*tatiana*/
+.box-overlay {
+    background: none repeat scroll 0 0 #fff;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.home-section:hover .box-overlay {
+    opacity: 0.8;
+}
+.half-shadow {
+    z-index: 1029;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: opacity 0.4s cubic-bezier(0.39, 0.575, 0.565, 1),transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+}
+a:hover .half-shadow {
+    opacity: 1;
+    transform: translateY(-35%);
+}
+.title-block {
+    transition: all 0.5s ease-out 0s;
+}
+
+a:hover .title-block  {
+    color: $color;
+    text-shadow: none;
+    bottom: 40px;
+}
+@media (max-width: 1200px){
+    .half-shadow,
+    .title-block{
+        display: block;
+    }
+}

@@ -1,0 +1,146 @@
+@media  (max-width: 1500px) and (min-width: 1301px) {
+  h3 {
+    @if $top {
+      top: $top*0.9;
+    }
+    @if $bottom {
+      bottom: $bottom*0.9;
+    }
+    @if $right {
+      right: $right*0.9;
+    }
+    @if $left {
+      right: $left*0.9;
+    }
+    @if ($font-size){
+      @if ($font-size>60px) {
+        font-size: $font-size*0.9;
+      }
+      @if ($font-size<20px) {
+        font-size: $font-size;
+      }
+      @if ($font-size==20px) {
+        font-size: $font-size;
+      }
+    }
+    @if $margin-right {
+      margin-right: $margin-right*0.9;
+    }
+    @if $margin-left {
+      margin-left: $margin-left*0.9;
+    }
+
+  }
+}
+@media  (max-width: 1300px) and (min-width: 1025px){
+  h3 {
+    @if ($font-size){
+      @if ($font-size<20px){
+        font-size: $font-size;
+      }
+      @if ($font-size==20px){
+        font-size: $font-size;
+      }
+      @if ($font-size>60px){
+        font-size: $font-size*0.8;
+      }
+    }
+
+    @if $letter-spacing {
+      letter-spacing: $letter-spacing*0.8;
+    }
+
+    @if $margin-right {
+      margin-right: $margin-right*0.8;
+    }
+    @if $margin-left {
+      margin-left: $margin-left*0.8;
+    }
+  }
+}
+@media  (max-width: 992px) and (min-width: 380px){
+  h3 {
+    @if ($font-size){
+      /*@if ($font-size<20px){
+        font-size: $font-size;
+      }
+      @if ($font-size==20px) {
+        font-size: $font-size;
+      }*/
+      /*@if($font-size>60px ){
+        font-size: $font-size*0.7;
+      }*/
+    }
+
+    @if $letter-spacing {
+      letter-spacing: $letter-spacing*0.7;
+    }
+
+    @if $margin-right {
+      margin-right: $margin-right*0.7;
+    }
+    @if $margin-left {
+      margin-left: $margin-left*0.7;
+    }
+  }
+}
+/*.tablet-wrapper {
+ h3 {
+   /f $top {
+     top: $top*0.75;
+   }
+   @if $bottom {
+     bottom: $bottom*0.75;
+   }
+   @if $right {
+     right: $right*0.75;
+   }
+   @if $left {
+     left: $left*0.75;
+   }*/
+
+    /*@if $margin-right {
+      margin-right: $margin-right*0.75;
+    }
+    @if $margin-left {
+      margin-left: $margin-left*0.75;
+    }
+  }
+}*/
+.mobile-wrapper {
+  h3 {
+    /*@if $top {
+      top: $top*0.4;
+    }
+    @if $bottom {
+      bottom: $bottom*0.4;
+    }
+    @if $right {
+      right: $right*0.4;
+    }
+    @if $left {
+      left: $left*0.4;
+    }*/
+    /* @if ($font-size){
+     @if $font-size==20px {
+        font-size: $font-size*0.8;
+      }
+      @if $font-size<20px {
+        font-size: $font-size*0.9;
+      }*/
+
+      /*@if($font-size>60px ){
+        font-size: $font-size*0.5;
+      }
+    }*/
+
+    /*@if $margin-right {
+      margin-right: $margin-right*0;
+    }
+    @if $margin-left {
+      margin-left: $margin-left*0;
+    }*/
+    /*line-height: 1;*/
+  }
+}
+

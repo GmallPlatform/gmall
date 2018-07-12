@@ -1,0 +1,453 @@
+/*date-time*/
+
+.modal-title{
+  padding: 20px;
+  background-color: #fff;
+  @if $color {
+    color: $color;
+  }
+}
+.logo {
+  text-align: center;
+}
+.img-logo {
+  display: inline-block;
+  width: 40px;
+}
+.panel-title {
+  font-size: 18px;
+}
+.panel-group {
+    text-align: left;
+}
+.accordion-name {
+    position: relative;
+}
+.panel-heading {
+    padding: 30px 20px;
+}
+.panel-body {
+    font-size: 16px;
+    padding: 0;
+}
+.service-name {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0;
+}
+.service-name:hover {
+    background-color: #f5f5f5;
+}
+.name {
+    display:block;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ececec;
+}
+.name-all {
+    font-size: 16px;
+}
+.icon-time-img,
+.value{
+    display: inline-block;
+    vertical-align: middle;
+}
+.service-box a {
+    transition-duration: 0s;
+}
+.icon-downslide-img,
+.icon-upslide-img {
+    width: 22px;
+    height: 22px;
+    background-size: 22px;
+}
+#wrapper-for-entry1{
+    height: 100%;
+    width:100%;
+    overflow: hidden;
+}
+#wrapper-for-entry2{
+  position: relative;
+  left: 0;
+  margin: 0;
+  height: 100%;
+  width: 500%;
+  text-align: left;
+  -webkit-transition: margin-left 0.5s; /* Safari 3.1 to 6.0 */
+  transition: margin-left 0.5s;
+}
+#wrapper-for-entry2 .innerBlock{
+  height: 100%;
+  min-height: 90vh;
+  width:20%;
+  float:left;
+}
+.select-block,
+.select-block-master {
+  margin: 20px;
+}
+.service-choice {
+    margin: 20px 20px 140px 20px;
+}
+.service-choice-nav {
+    margin-bottom: 20px;
+}
+.service-box {
+    color: #302f2f;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    padding: 5px;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.value-choice {
+    font-size: 14px;
+}
+.order-service .service-box {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.back {
+    position: absolute;
+    top:10px;
+    left: 10px;
+}
+.service-box button {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+.service-box button:active,
+.service-box button:focus {
+    outline: none;
+}
+.before {
+    display: inline-block;
+    vertical-align: top;
+}
+.range-of-services {
+    position: absolute;
+    top:10px;
+    left:20px;
+    color: #ffffff;
+    font-weight: 400;
+    text-shadow: 1px 1px 1px #000;
+}
+.icon-prev-img,
+.icon-next-img {
+    width: 25px;
+    height: 25px;
+    background-size: 23px;
+    cursor: pointer;
+}
+.icon-cancel-img {
+    cursor: pointer;
+    margin-top: 2px;
+}
+.select-block-list {
+    position: relative;
+    text-align: left;
+}
+
+/*.select-block-list p {
+    margin-top: 10px;
+
+}*/
+.select-block-list p span {
+    display: inline-block;
+}
+.select-block-list hr {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.control {
+    display: block;
+    margin: -31px 0 0;
+    width: 42px;
+    height: 62px;
+    position: absolute;
+    top: 50%;
+    right: -6px;
+    outline: 0;
+    cursor: pointer;
+    padding: 18px 0 18px 18px;
+}
+.accordion-name .control {
+    width: 51px;
+    padding: 20px 9px 20px 18px;
+}
+
+.order-service {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+    margin-bottom: 20px;
+}
+.panel-group .panel {
+    background-color: #ffffff;
+    color: #302f2f;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.panel-default>.panel-heading {
+    background-color: #ffffff;
+    color: #302f2f;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    padding: 40px 20px;
+    text-transform: uppercase;
+
+}
+
+/*#wrapper-for-entry1 .panel-default>.panel-heading .panel-title {
+    font-size: 18px;
+}*/
+.master-choice-box {
+    background-color: #ffffff;
+    color: #302f2f;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    transition: all .2s ease-out;
+}
+.master-choice-box.active {
+    box-shadow: 2px 1px 6px 0px #000000;
+}
+.master-select {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    opacity: 0;
+    transition: opasity 1s;
+}
+.master-select.active {
+    opacity: 1;
+}
+.name-master {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    transition: opacity;
+    color: #666;
+}
+.img-master {
+    margin-top: 5px;
+    width: 100px;
+    min-width: 100px;
+}
+.position {
+    color: #666;
+}
+.master-choice-box img {
+    border-radius: 50%;
+}
+.date-choice-nav {
+    min-height: 40px;
+}
+.date-block {
+    background-color: #666666;
+    color: #ffffff;
+}
+.date-block h3 {
+    margin-top: 0;
+    padding-top: 10px;
+}
+.nav-left {
+    padding-right: 0;
+}
+.nav-right {
+    padding-left: 0;
+}
+.btn-info {
+    background-color: #666666;
+}
+
+.owl-item a{
+    color: #ffffff;
+    display: inline-block;
+}
+.owl-item .active {
+    font-size: 26px;
+    font-weight: bold;
+}
+.date-box {
+    width: 100%;
+    display:inline-block;
+    min-height:290px;
+}
+.well{
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    border-radius: 0;
+    box-shadow: none;
+}
+.well table {
+    width: 100%
+}
+.date-box .well table tr,
+.date-box .well table th,
+.date-box .well table td {
+    border: none;
+}
+.date-box .well table td button {
+    border:none;
+}
+.date-box .well table td button:active,
+.date-box .well table td button:focus {
+    outline: none;
+}
+.well .btn.disabled, .well .btn[disabled], .well fieldset[disabled] .btn {
+  color: #fff;
+}
+.date-box .well table tr {
+    height: 50px;
+
+}
+.date-box .well table th {
+    font-size: 20px;
+}
+.date-box .well table td.h6 {
+    background-color: #f5f5f5;
+}
+.date-box .well table thead tr:first-child {
+    height: 80px;
+    background-color: #666;
+}
+.date-box .well table thead tr:first-child th {
+    background-color: #666;
+
+}
+.date-box .well table thead tr:first-child th button {
+    background-color: #666;
+    color: #fff;
+    height: 100%;
+    border: none;
+    text-transform: uppercase;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+.clock-box {
+    padding: 0 0 120px 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+}
+.order-box {
+    padding: 20px;
+}
+.clock-choice {
+    display: inline-block;
+    margin: 20px 5px;
+}
+
+.clock-choice a{
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 5px;
+}
+.clock-choice a:hover {
+    background-color: #ededed;
+}
+.clock-choice a span {
+    display: inline-block;
+    width: 40px !important;
+}
+.input-code {
+    font-size: 22px;
+    width: 100px;
+    display: inline-block;
+}
+.send-code {
+    color:$mainColor;
+}
+/*#wrapper-for-entry1 .remember-online .remember-online-label {
+    display: none;
+}*/
+.service-choice.clock-box {
+    margin-bottom: 20px;
+    text-align: left;
+}
+.remember-online .radio label input{
+    margin-top: 5px;
+}
+.cancel {
+    position: relative;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+.choice {
+    color: #999;
+}
+.service-bg {
+  position: relative;
+}
+.btn-info.active,
+.btn-info:active{
+    background-color: #666;
+    outline: none;
+}
+.btn-default.active {
+    outline: none;
+}
+.btn-info.active .text-info,
+.btn-info:active .text-info{
+    color: #fff;
+}
+.adress-box {
+    width: 100%;
+    padding: 20px;
+    background-color: #666;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+}
+@media (max-width: 320px){
+    .modal-title .record-time {
+        font-size: 18px;
+    }
+    .master-bg {
+        background-size: 500px;
+    }
+    .service-bg {
+        background-size: 500px;
+    }
+    .date-bg {
+        background-size: 500px;
+    }
+    .clock-bg {
+        background-size: 500px;
+    }
+    .order-bg {
+        background-size: 500px;
+    }
+    .service-choice {
+        margin: 0 5px;
+    }
+    .service-choice .service-choice-nav {
+        margin-bottom: 10px;
+    }
+    /*#wrapper-for-entry1  .date-box .well table td.h6 {
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+        font-size: 12px;
+        width: 20px !important;
+    }
+    #wrapper-for-entry1  .date-box .well table tr {
+        height: 40px;
+    }*/
+    .date-box .well table th {
+        font-size: 14px;
+    }
+    .date-box .well table thead tr:first-child th button {
+        font-size: 18px;
+    }
+    .date-box table {
+        font-size: 14px;
+    }
+    .h6 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}

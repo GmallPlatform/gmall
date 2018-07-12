@@ -1,0 +1,123 @@
+/*web*/
+.home-feedback{
+    overflow: hidden;
+}
+.home-feedback .home-section {
+    padding-left: 0;
+    padding-right: 0;
+}
+.home-feedback .feedback-box {
+    /*position: absolute;
+    width: 50%;
+    right: 40px;
+    bottom: 100px*/;
+}
+.home-feedback .container{
+    position: relative;
+}
+.form-control{
+    height: 40px;
+    background-color: transparent;
+    font-size: 14px;
+    margin-bottom: 5px;
+    border:none;
+    border-bottom: 1px solid #666;
+    border-radius: 0;
+    box-shadow: none;
+}
+.form-control:focus {
+    box-shadow: none;
+}
+.home-feedback img {
+    min-width: 1000px;
+    opacity: 0.8;
+}
+.box-overlay {
+    background: none repeat scroll 0 0 #fff;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.home-feedback  .half-shadow {
+    /*position: absolute;*/
+    /*width: 100%;*/
+    z-index: 1029;
+    /*top:50%;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/*.home-feedback  .half-shadow .feedback-box h2 {
+    opacity: 1;
+}*/
+/*.home-feedback  .half-shadow .feedback-box {
+    opacity: 0.5;
+}
+.home-feedback:hover .half-shadow {
+    transform: translateY(-10%);
+}
+.home-feedback:hover .feedback-box {
+    opacity: 1;
+
+}*/
+
+/*
+input[type="text"]::-webkit-input-placeholder {
+    color: #f0f0f0;
+}
+input[type="search"]::-moz-placeholder {
+    color: #f0f0f0;
+}*/
+@media (max-width: 1480px){
+
+}
+@media (max-width: 1350px){
+    h2 {
+        font-size: 26px;
+    }
+}
+@media (max-width: 1180px) {
+
+    .home-feedback h3 {
+        font-size: 36px;
+    }
+    .home-feedback p {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1024px) {
+
+}
+.tablet-wrapper .home-feedback .half-shadow,
+.mobile-wrapper .home-feedback .half-shadow {
+    width: 100%;
+    right: 0;
+    padding: 30px 0 0 0 ;
+}
+.tablet-wrapper .home-feedback h2,
+.mobile-wrapper .home-feedback h2{
+
+    font-size: 30px;
+}
+.mobile-wrapper .home-feedback h3 {
+    font-size: 24px;
+}
+.mobile-wrapper .home-feedback .half-shadow .feedback-box {
+    opacity: 1;
+}
+.mobile-wrapper .home-feedback p {
+    font-size: 14px;
+}
+.mobile-wrapper .home-feedback {
+    margin-bottom: 5px;
+}
+.mobile-wrapper .has-feedback input{
+    height: 30px;
+}
+.mobile-wrapper .btn-project {
+    font-size: 16px;
+}

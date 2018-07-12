@@ -1,0 +1,77 @@
+<div class="store-list">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff">
+            <ui-select ng-model="$ctrl.type" search-enabled="false" append-to-body="true" skip-focusser="true"
+                       ng-change="$ctrl.selectType($ctrl.type)">
+                <ui-select-match placeholder="Выберите тип данных">
+                    <span ng-bind="$select.selected.name"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item.key as item in $ctrl.propertiesOfConfigData">
+                    <span ng-bind="item.name"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="store-list-container">
+        <div class="stuff-admin col-lg-6 col-md-6 col-sm-12 col-xs-12"  ng-repeat="item in $ctrl.items">
+            <div class="cart-detail">
+
+                <!--<a ng-click="$ctrl.saveField(item,'data')">сохранить</a>-->
+                <div class="form-group">
+                    <tag-manager tags="item.data" header="{{item.lang}}"></tag-manager>
+
+                </div>
+                <button ng-click="$ctrl.saveField(item,'data')" class="btn btn-raised btn-success btn-block" type="submit">сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<style>
+    .tab-nav-stuff {
+        margin: 0;
+    }
+    .tags {
+        margin: 10px 0;
+    }
+    .tags .tag {
+        display: inline-block;
+        border-radius: 6px;
+        background-color: #EFEFEF;
+        border: 1px solid #DDD;
+        padding: 5px 10px;
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+    .tags .tag:hover {
+        color: #ff7148;
+        text-decoration: none;
+    }
+    .form-group .input-group-btn a.btn-fab {
+        border-radius: 5px;
+    }
+    input {
+        margin-bottom: 0px !important;
+    }
+    .config-date h3 {
+        font-size: 24px;
+        font-weight: 500;
+        color: #767c89;
+        letter-spacing: 2px;
+        text-align: center;
+    }
+    .tag-list {
+        display: inline-block;
+        border-radius: 6px;
+        background-color: #EFEFEF;
+        border: 1px dotted #DDD;
+        padding: 5px 10px;
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+    .tag-list:hover {
+        color: #72ad66;
+    }
+</style>

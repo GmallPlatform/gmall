@@ -1,0 +1,197 @@
+/*zefir*/
+.filters-wrap{
+    position: absolute;
+    top:0;
+    lef:0;
+    /*float:left;*/
+}
+.stuff-list-wrapper{
+    position: relative;
+}
+.filterWrapFixedBottom{
+    position: fixed;
+    z-index: 100;
+    /*top: -100px;*/
+}
+.filterWrapFixedTop{
+    position: fixed;
+    z-index: 100;
+
+}
+
+.stuff-list-wrapper table{
+    width: 100%;
+    margin-top: 40px;
+
+}
+.stuff-list-wrapper table td {
+    vertical-align: top;
+}
+.stuff-box  .img-goods {
+    width: 100%;
+    border: none;
+}
+.stuffs-box .container{
+    width:100%
+}
+.sticker {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    background-color: transparent;
+    width: 70px;
+    opacity: 0.8;
+}
+.service-desc {
+    padding: 0 10px;
+    min-height: 230px;
+}
+.goods-desc {
+    padding: 10px 10px 20px;
+}
+
+.goods-desc .price {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.goods-desc .sale {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: $mainColor;
+}
+.goods-record img{
+    width: 100%;
+    margin-bottom: 40px;
+}
+.goods-record-name {
+    font-size: 60px;
+    color: #333;
+}
+.goods-record-desc {
+    position: absolute;
+    width: 100%;
+    top: 150px;
+}
+.goods-record-desc .btn {
+    width: 300px;
+}
+.content-tab-nav-stuff {
+    padding: 5px 20px;
+
+}
+.desription-page {
+    text-align: justify;
+    padding: 20px;
+}
+.line {
+    text-decoration: line-through;
+}
+.price-block a {
+    cursor: default;
+}
+.price-block a:hover {
+    color: $color
+}
+.sort-box {
+    text-align: center;
+
+}
+.sort {
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.5s ease-out 0.1s;
+}
+.sort span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+
+}
+.sort.sort-active {
+    border: 2px solid $mainColor;
+    background-color: transparentize($mainColor,.82);
+}
+.price-box {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.stuff-box:hover .box-overlay{
+    opacity: 0.6;
+}
+.half-shadow {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+.title-block {
+    padding: 20px;
+}
+.title-block {
+    color: #333;
+    text-shadow: 0 0 20px #fff;
+}
+.stuff-box:hover .half-shadow {
+    display: block;
+    z-index: 1025;
+}
+.stuff-box:hover .title-block h3 {
+    color: #fff;
+    text-shadow: none;
+}
+.sort-of-stuff {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url("../../../../fashion/img/icon/filter.png");
+    background-size: 32px;
+    vertical-align: middle;
+}
+.filters-block a {
+    color: #666;
+}
+.filters-block a:hover {
+    color: #999;
+}
+.filters-block .form-group {
+    margin-top: 10px;
+}
+.mobile-wrapper .filters-of-stuff{
+    font-size: 16px;
+}
+.mobile-wrapper .form-group {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+@media (max-width: 1200px){
+    .stuff-box .half-shadow,
+    .stuff-box .title-block{
+        display: block;
+        text-shadow: 0 0 2px #000;
+    }
+    .stuff-box .stuff-name {
+        color: #fff;
+    }
+}
+@media (max-width: 768px){
+    .stuff-box .stuff-name {
+        font-size: 36px;
+    }
+}

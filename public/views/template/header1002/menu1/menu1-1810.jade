@@ -1,0 +1,14 @@
+div(class=dj[key].wrapclass)
+  div(class=mobileWrapper)
+    section
+      - var c='navbar navbar-'+dj[key].fixed+'-'+dj[key].position;
+      - var fon=(dj[key].background)?dj[key].background:''
+      nav(class=c,slide-menu-after-scroll="menu1",set-fon-after-start-scroll=fon,menu-bottom=dj[key].position,id='menu1-section')
+        div(ng-class="{'navbar-toggle-slide-mini':$state.current.name!='home'}",class="wrap-for-horizontel-menu navbar-toggle-slide")
+          div(class="center-menu")
+
+          div(class="right-nav-menu  pull-left")
+
+          div(class="right-nav-menu  pull-right")
+
+          div(class="clearfix")

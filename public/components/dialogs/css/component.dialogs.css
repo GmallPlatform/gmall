@@ -1,0 +1,23 @@
+.dialogsStuff {
+    margin-top: 100px;
+}
+.dialogsStuff .cart-detail {
+    cursor: pointer;
+}
+.dialogsStuff hr{
+    border-top-color: #ccc;
+    background-color: #eee;
+}
+.dialogsStuff .order-cart a:hover,
+.dialogsStuff .order-cart a:focus{
+   text-decoration: none;
+}
+.dialogsStuff .on-line {/*ok*/
+    font-size: 18px;
+    font-weight: bold;
+}
+.dialogsStuff .btn-clear{
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+}

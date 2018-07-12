@@ -1,0 +1,214 @@
+<div class="template-list" ng-show="$ctrl.block=='homePage'"  ng-init="displayHelp=false">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">компоненты главной страницы слева </h3>
+        <div class="cart-detail">
+            <div class="menu-box">
+                <div class="col-lg-6">
+                    <ui-select ng-model="$ctrl.blockForAdd" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.addBlockForMainPage($ctrl.blockForAdd,$ctrl.item.main.left)">
+                        <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForMainPage">{{ opt.value }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box"></div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название компонента</div>
+                <!--<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 head-box">наличие</div>-->
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">класс</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">количество блоков</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название блока</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">анимация</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">удалить</div>
+                <div class="clearfix"></div>
+                <hr>
+                <!--<pre>{{$ctrl.item.main|json}}</pre>-->
+                <div class="part-box">
+                    <div class="dropzone">
+                        <div class="homePage">
+                            <ul dnd-list="$ctrl.item.main.left"
+                                dnd-drop="$ctrl.dropCallbackHP(item)"
+                                dnd-allowed-types="['homePage']">
+                                <li ng-repeat="component in $ctrl.item.main.left"
+                                    dnd-draggable="component"
+                                    dnd-type="'homePage'"
+                                    dnd-effect-allowed="move"
+                                    dnd-moved="$ctrl.item.main.left.splice($index,1)"
+                                    ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
+                                    >
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box form-group">
+                                        <i class="material-icons link-success">swap_vert</i>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                        <span ng-bind="$ctrl.listOfBlocksForMainPage[component.name]"></span>
+                                    </div>
+                                   <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input ng-change="$ctrl.saveField('main')" ng-model="component.is" type="checkbox"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <!--<pre>{{component.templ|json}}</pre>-->
+                                        <ui-select ng-model="component.class" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveField('main')">
+                                            <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <!--<pre>{{component.templ|json}}</pre>-->
+                                        <ui-select ng-model="component.templ" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveField('main')">
+                                            <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <div ng-if="component.name!='info' && component.name!='slider'&& component.name!='banner'&& component.name!='video'&& component.name!='mission'&& component.name!='text'">
+                                            <ui-select ng-model="component.qty" skip-focusser="true" search-enabled="false"
+                                                       ng-change="$ctrl.saveField('main')">
+                                                <ui-select-match placeholder="количество">{{$select.selected}}</ui-select-match>
+                                                <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12]">{{ opt }}</ui-select-choices>
+                                            </ui-select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-2  col-md-2 col-sm-2 col-xs-2">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">название для блока</label>
+                                            <input type="text" class="form-control mb" ng-model="component.namebox"
+                                                   lost-focus="$ctrl.saveField('main')"/>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-1  col-md-1 col-sm-1 col-xs-1 form-group">
+                                        <a ng-click="$ctrl.changeAnimations(component)">
+                                            <i class="material-icons link-success" >assistant</i>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-1  col-md-1 col-sm-1 col-xs-1 form-group">
+
+                                        <a ng-click="$ctrl.item.main.left.splice($index,1);$ctrl.saveField('main')">
+                                            <i class="material-icons link-warning" title="удалить из списка">delete</i>
+                                        </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                <div class="clearfix"></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">компоненты главной страницы справа</h3>
+        <div class="cart-detail">
+            <div class="menu-box">
+                <div class="col-lg-6">
+                    <ui-select ng-model="$ctrl.blockForAdd" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.addBlockForMainPage($ctrl.blockForAdd,$ctrl.item.main.right)">
+                        <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForMainPage">{{ opt.value }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box"></div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название компонента</div>
+                <!--<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 head-box">наличие</div>-->
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">класс</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">количество блоков</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название блока</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">анимация</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">удалить</div>
+                <div class="clearfix"></div>
+                <hr>
+                <!--<pre>{{$ctrl.item.main|json}}</pre>-->
+                <div class="part-box">
+                    <div class="dropzone">
+                        <div class="homePage">
+                            <ul dnd-list="$ctrl.item.main.right"
+                                dnd-drop="$ctrl.dropCallbackHP(item)"
+                                dnd-allowed-types="['homePage']">
+                                <li ng-repeat="component in $ctrl.item.main.right"
+                                    dnd-draggable="component"
+                                    dnd-type="'homePage'"
+                                    dnd-effect-allowed="move"
+                                    dnd-moved="$ctrl.item.main.right.splice($index,1)"
+                                    ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box form-group">
+                                        <i class="material-icons link-success">swap_vert</i>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                        <span ng-bind="$ctrl.listOfBlocksForMainPage[component.name]"></span>
+                                    </div>
+                                    <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input ng-change="$ctrl.saveField('main')" ng-model="component.is" type="checkbox"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <!--<pre>{{component.templ|json}}</pre>-->
+                                        <ui-select ng-model="component.class" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveField('main')">
+                                            <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <!--<pre>{{component.templ|json}}</pre>-->
+                                        <ui-select ng-model="component.templ" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveField('main')">
+                                            <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <div ng-if="component.name!='info' && component.name!='slider'&& component.name!='banner'&& component.name!='video'&& component.name!='mission'&& component.name!='text'">
+                                            <ui-select ng-model="component.qty" skip-focusser="true" search-enabled="false" title="количество блоков"
+                                                       ng-change="$ctrl.saveField('main')">
+                                                <ui-select-match placeholder="количество">{{$select.selected}}</ui-select-match>
+                                                <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12]">{{ opt }}</ui-select-choices>
+                                            </ui-select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-2  col-md-2 col-sm-2 col-xs-2">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">название для блока</label>
+                                            <input type="text" class="form-control mb" ng-model="component.namebox"
+                                                   lost-focus="$ctrl.saveField('main')"/>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-1  col-md-1 col-sm-1 col-xs-1 form-group">
+                                        <a ng-click="$ctrl.changeAnimations(component)">
+                                            <i class="material-icons link-success" >assistant</i>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-1  col-md-1 col-sm-1 col-xs-1 form-group">
+                                        <a ng-click="$ctrl.item.main.right.splice($index,1);$ctrl.saveField('main')">
+                                            <i class="material-icons link-warning" title="удалить из списка">delete</i>
+                                        </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                <div class="clearfix"></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

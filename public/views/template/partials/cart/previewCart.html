@@ -1,0 +1,53 @@
+<div ng-transclude></div>
+<div class="cartItems" ng-show="$ctrl.loaded">
+    <div ng-repeat="stuff in $ctrl.order.cart.stuffs track by $index">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <div class="row">
+                <img ng-if="stuff.img" class="img-responsive cart-img"  ng-src="{{stuff.img}}">
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <div class="row">
+                    <a class="name-goods"  href="/{{stuff.groupUrl}}/{{stuff.categoryUrl}}/{{stuff.url}}">
+                        <!--<p ng-bind="stuff.name+' '+stuff.artikul+((stuff.sortName)?' '+stuff.sortName:'')">-->
+                        <p>
+                            <span ng-bind="stuff.name"></span>
+                            <span class="artikul" ng-bind="stuff.artikul"></span>
+                            <span ng-bind="stuff.sortName"></span>
+                        </p>
+                    </a>
+                    <p>
+                        <span ng-bind="stuff.quantity"></span>
+                        <span>x</span>
+                        <span ng-bind="($ctrl.order.kurs*(stuff.cena=$ctrl.order.getPrice($index))).toFixed(2)"></span>
+                        <span>=</span>
+                        <span ng-bind="($ctrl.order.kurs*(stuff.sum=stuff.cena*stuff.quantity)).toFixed(2)"></span>
+                        <span ng-bind="$ctrl.order.currencyStore[$ctrl.order.currency][2]"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <a class="info">
+                    <span class="icon-cancel-img" ng-click="$ctrl.removeItem($index)"></span>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+    <div class="clearfix"></div>
+    <div class="text-right">
+        <span ng-bind="$ctrl.global.get('lang').val.intotal"></span>        &nbsp;
+        <span ng-bind="($ctrl.order.paySum=$ctrl.order.kurs*($ctrl.order.sum=$ctrl.order.getTotalSum())).toFixed(2)"></span>        &nbsp;
+        <span ng-bind="$ctrl.order.currencyStore[$ctrl.order.currency][2]"></span>
+    </div>
+    <hr>
+    <div class="text-center">
+        <a class="gotoinCart" href="/cart">
+            <span ng-bind="$ctrl.global.get('lang').val.gotoCart"></span>
+           <!-- <span ng-bind="$ctrl.global.get('lang').val.addToCart"></span>-->
+
+        </a>
+    </div>
+</div>

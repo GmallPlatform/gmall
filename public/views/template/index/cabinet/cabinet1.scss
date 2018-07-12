@@ -1,0 +1,8 @@
+@if $color {
+  color:$color;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+  background-color: transparent;
+  border-bottom: 1px solid #000;
+}

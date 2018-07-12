@@ -1,0 +1,66 @@
+<div class="info-item" ng-if="$ctrl.item">
+    <div class="nav-box">
+        <div class="tab-nav col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.info">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <form ng-submit="$ctrl.addNewTag()">
+                <div class="form-group">
+                    <input class="form-control"ng-model="$ctrl.newTag" pattern="^[a-zA-Z][a-zA-Z0-9-].{2,20}" required>
+                </div>
+                <button type="submit" class="add-goods link-success">
+                    <span class="link-success">создать новый тег</span>
+                    <i class="material-icons link-success">add_box</i>
+                </button>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="info-page col-lg-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pages-header">
+            <h3 class="text-center name-page">редактирование языковой карты</h3>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <div class="form-group label-floating">
+                    <label class="control-label">название</label>
+                    <input class="form-control name" ng-model="$ctrl.item.name" ng-blur="$ctrl.saveField('name',$ctrl.item.name,true)">
+                </div>
+               <!-- <a class="link-success new-info" ng-if="$ctrl.item.blocks.length<40" ng-click="$ctrl.saveEmbeddedField({name:'новый подраздел'},'name')">создать новый подраздел</a>-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        <h3>tag</h3>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="l in $ctrl.langs">
+                        <h3>{{l}}</h3>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <h3>desc</h3>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        <h3>delete</h3>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="(tag,item) in $ctrl.item.tags">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        <h3>{{tag}}</h3>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="l in $ctrl.langs">
+                        <input class="form-control"ng-model="item[l]" ng-blur="$ctrl.saveField(tag+'.'+l,item[l])">
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <input class="form-control"ng-model="item.desc" ng-blur="$ctrl.saveField(tag+'.desc',item.desc)">
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        <a ng-click="$ctrl.deleteTag(tag)">delete</a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

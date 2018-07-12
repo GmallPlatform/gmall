@@ -1,0 +1,15 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-map",set-animate=dj[key].animate&&!mobile,data-animation=dj[key].animate)
+            div(class="map-box")
+                p
+                    | !{dj[key].map}
+
+            div(class="desc-box")
+                if(dj[key].name)
+                    h2=dj[key].name
+                if(dj[key].desc)
+                    | !{dj[key].desc}
+
+        div( class="clearfix")
+

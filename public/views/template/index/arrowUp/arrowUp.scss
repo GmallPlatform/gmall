@@ -1,0 +1,19 @@
+.to-top.toTopDispalay{
+    opacity: 1;
+-webkit-transition: all 0.2s ease-out 1s;
+-moz-transition: all 0.2s ease-out 1s;
+-o-transition: all 0.2s ease-out 1s;
+transition: all 0.2s ease-out 1s;
+z-index: 20000;
+}
+.to-top.toTopDispalayNone{
+    display: none;
+
+}
+.to-top span {
+    position: $position;
+    bottom: $bottom;
+    right: $right;
+    z-index: $z-index;
+}
+

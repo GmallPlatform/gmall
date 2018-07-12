@@ -1,0 +1,152 @@
+display: table;
+height: 100%;
+width: 100%;
+/*main style*/
+/*smak*/
+.navbar{
+    min-height: 0;
+}
+.navbar-toggle-slide {
+    position: relative;
+}
+.menuColor {
+    background-color: $background-color;
+}
+.center-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.center-wrap {
+    display:inline-block;
+}
+.left-nav-menu {
+    position:absolute;
+    left:0;
+}
+.right-nav-menu {
+    position:absolute;
+    right:0
+}
+.catalogDropDownMenu,
+.catalogDropDownMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.catalogDropDownMenu ul {
+    float: left;
+}
+.section-in-section {
+    float: left;
+}
+.catalogDropDownMenu .mainli{
+    position: relative;
+}
+.catalogDropDownMenu a {
+    padding: 5px 20px;
+    display: block;
+    text-decoration: none;
+}
+.catalogDropDownMenu a.section-name {
+    padding: 10px 20px;
+    /*font-size: 16px;*/
+    text-transform: $text-transform;
+    color: $color;
+}
+
+/* Level 1 Drop Down */
+.catalogDropDownMenu .mainli {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: -4px; /* solve the 4 pixels spacing between list-items */
+}
+/* Level 2 */
+.catalogDropDownMenu .innerDiv {
+    border-bottom: 1px solid $color;
+    background-color: $background-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: auto;
+    z-index: 999999; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
+    /*z-index: 1049;*/
+}
+.category-name{
+    text-transform: uppercase;
+    color: $color;
+}
+.category-in-section {
+    float: left;
+}
+@media (max-width: 1350px) {
+    .container.container-menu {
+        width: 80%;
+    }
+}
+.nav-center {
+    font-size: 14px;
+    padding-left: 0;
+}
+.mobile-wrapper .navbar-toggle-slide {
+    padding: 0 10px;
+}
+
+/*menu-vertical*/
+.menu-section-vertical {
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: 20% 50px;
+    background-color: $background-color;
+}
+.menu-section-vertical ul {
+    margin-bottom: 0;
+}
+.menu-section-vertical li {
+    list-style: none;
+}
+.vertical-menu a {
+    padding: 10px 0;
+    font-size: 16px;
+}
+.myMenuV{
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+}
+.myMenuV .section-name {
+    padding: 10px 0;
+    text-transform: uppercase;
+}
+.myMenuV a {
+    color: $color;
+    padding: 5px;
+}
+
+.myMenuV .catalog-menu {
+    padding-left: 0;
+}
+
+.myMenuV .catalog-menu .mainli {
+    padding: 0;
+ }
+.tablet-wrapper .menu-section-vertical,
+.mobile-wrapper .menu-section-vertical {
+    padding: 30% 20px;
+}
+.tablet-wrapper .catalog-menu ul,
+.mobile-wrapper .catalog-menu ul {
+    padding-left: 20px;
+}
+.tablet-wrapper .menu-section-vertical .page-stat a,
+.mobile-wrapper .menu-section-vertical .page-stat a {
+    text-transform: uppercase;
+}
+

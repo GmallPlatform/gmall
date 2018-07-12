@@ -1,0 +1,8 @@
+.background-logo {
+    background: url($backgroundImg) no-repeat;
+    background-position: bottom center;
+    color:$color;
+}
+.mobile-wrapper p{
+        font-size: 16px;
+    }

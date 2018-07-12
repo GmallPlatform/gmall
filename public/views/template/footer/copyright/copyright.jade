@@ -1,0 +1,14 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="footer-copy")
+            span(class="text-copy")
+                span(class="text-copy1")
+                    if(store.texts.copyrightText && store.texts.copyrightText[store.lang])
+                        | !{store.texts.copyrightText[store.lang]}
+                span(class="text-copy2")
+                    if(store.texts.copyrightText1 && store.texts.copyrightText1[store.lang])
+                        | !{store.texts.copyrightText1[store.lang]}
+            if(store.copyrightImg)
+                img(class="img-responsive img-copy",src=photoHost+'/'+store.copyrightImg)
+
+

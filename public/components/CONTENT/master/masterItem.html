@@ -1,0 +1,223 @@
+
+<div class="master-item" ng-init="$ctrl.block='mainInfo'">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff text-center action">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.master">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='mainInfo'}">
+            <a ng-click="$ctrl.block='mainInfo'" title="о специалисте">
+                <i class="material-icons link-warning">folder_shared</i>
+                <p ng-if="!global.get('mobile')">специалист</p>
+            </a>
+        </div>
+
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='comments'}">
+            <a ng-click="$ctrl.block='comments'" title="отзывы">
+                <i class="material-icons link-warning">comment</i>
+                <p ng-if="!global.get('mobile')">отзывы</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='account'}">
+            <a ng-click="$ctrl.block='account'" title="отзывы">
+                <i class="material-icons link-warning">account_box</i>
+                <p ng-if="!global.get('mobile')">аккаунт</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff add-block pull-right" ng-if="$ctrl.block=='mainInfo'">
+            <ui-select ng-model="$ctrl.newBlock" skip-focusser="true" search-enabled="false" ng-change="$ctrl.addBlock($ctrl.newBlock)">
+                <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForMasterPage|filter:$ctrl.filterBlocks">{{ opt.value }}</ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div ng-hide="$ctrl.addMode" ng-if="$ctrl.block=='comments'" class="tab-nav-stuff action text-center pull-right">
+            <a class="btn btn-fab btn-success" title="добавить отзыв" ng-click="$ctrl.toggleAdd()" href="javascript:;">
+                <i class="material-icons" style="color: #fff">add</i>
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <div ng-if="$ctrl.item && $ctrl.item._id">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-show="$ctrl.block=='mainInfo'">
+            <blocks-edit
+                        item="$ctrl.item"
+                        refresh-blocks="$ctrl.refreshBlocks()"
+                        type="Master">
+            </blocks-edit>
+            <!--save-foo="$ctrl.saveField(field,value)"
+                                    delete-foo="$ctrl.deleteBlock(block)"-->
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-show="$ctrl.block=='comments'">
+            <form name="addReview" ng-show="$ctrl.addMode" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cart-detail">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="form-group label-floating">
+                        <label for="name" class="control-label">имя</label>
+                        <input type="text" class="form-control" id="name" ng-model="$ctrl.newReview.name" required />
+                    </div>
+                    <div class="form-group label-floating">
+                        <label for="address" class="control-label">отзыв</label>
+                        <textarea class="form-control" id="address" ng-model="$ctrl.newReview.desc" required></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <a type="submit" ng-click="$ctrl.addReview('true')" ng-disabled="!addReview.$valid" class="btn btn-fab">
+                        <i class="material-icons link-success" title="добавить отзыв на сайт">add</i>
+                    </a>
+                    <a type="button" title="закрыть окно" ng-click="$ctrl.toggleAdd()" class="btn btn-fab ">
+                        <i class="material-icons link-warning">clear</i>
+                    </a>
+                </div>
+            </form>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cart-detail" ng-repeat="item in $ctrl.item.reviews">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 ">
+                    <div class="form-group label-floating">
+                        <p ng-hide="item.editMode">{{ item.name }}</p>
+                        <label for="name" class="control-label">имя</label>
+                        <input class="form-control"  ng-show="item.editMode" type="text" ng-model="item.name" />
+                    </div>
+
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 form-group">
+                    <span ng-bind="$ctrl.moment(item.date).format('LL')"></span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8 ">
+                    <div class="form-group label-floating">
+                        <p ng-hide="item.editMode">{{ item.desc }}</p>
+                        <label for="name" class="control-label">отзыв</label>
+                        <input class="form-control"  ng-show="item.editMode" type="text" ng-model="item.desc" />
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                    <p ng-hide="item.editMode">
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.toggleEdit(item)" href="javascript:; ">
+                            <i class="material-icons link-success" title="редактировать">create</i>
+                        </a>
+                        <a class="btn btn-fab btn-fab-mini"  ng-confirm-click="Удалить отзыв?" ng-click="$ctrl.deleteReview($index)" href="javascript:;">
+                            <i class="material-icons link-warning" title="удалить">delete</i>
+                        </a>
+                    </p>
+                    <p ng-show="item.editMode">
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveReview(item)" href="javascript:;">
+                            <i class="material-icons link-success">save</i>
+                        </a>
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.toggleEdit(item)" href="javascript:;">
+                            <i class="material-icons link-warning" title="закрыть окно редактирования">clear</i>
+                        </a></p>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-show="$ctrl.block=='account'">
+            <div class="cart-detail">
+                <h4 class="name-box text-center">привязка к рабочему месту</h4>
+                <a ng-click="$ctrl.getWorkplaces()" ng-show="!$ctrl.workplaces.length">добавить</a>
+                <ui-select ng-model="$ctrl.workplace" skip-focusser="true" search-enabled="false" ng-change="$ctrl.addWorkplace($ctrl.workplace)" ng-show="$ctrl.workplaces.length">
+                    <ui-select-match placeholder="добавить рабочее место">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt in $ctrl.workplaces">{{ opt.name }}</ui-select-choices>
+                </ui-select>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <span ng-repeat="wp in $ctrl.item.workplaces">
+                        <span ng-bind="wp.name"></span><span ng-click="$ctrl.deleteWorkplace($index)">x</span>&nbsp;
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="cart-detail">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                    <div class="togglebutton">
+                        <label for="workplace">
+                            <span ng-class="{'active':!$ctrl.item.workplace}">специалист</span>
+                            <input type="checkbox"
+                                   id="workplace"
+                                   ng-model="$ctrl.item.workplace"
+                                   ng-change="$ctrl.saveField('workplace',$ctrl.item.workplace)">
+                            <span ng-class="{'active':$ctrl.item.workplace}">рабочее место</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                    <div class="form-group label-static">
+                        <label class="control-label">ссылка на страницу соцсети</label>
+                        <input class="form-control" ng-model="$ctrl.item.link"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 700,'blur': 0}}"
+                               ng-change="$ctrl.saveField('link',$ctrl.item.link)">
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                    <div class="form-group label-static">
+                        <label class="control-label">телефон мастера для сообщений</label>
+
+                        <div enter-phone-numder="$ctrl.item.phone" change-foo="$ctrl.savePhone(phone)"></div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="radio radio-primary" style="float: left;margin-top: -5px">
+                        <label>
+                            <input type="radio" name="notification" ng-change="$ctrl.saveField('notification',$ctrl.item.notification)"ng-model="$ctrl.item.notification"value=0>
+                            без уведомления мастеру
+                        </label>
+                    </div>
+                    <div class="radio radio-primary" style="float: left;margin-top: -5px">
+                        <label>
+                            <input type="radio" name="notification" ng-change="$ctrl.saveField('notification',$ctrl.item.notification)"ng-model="$ctrl.item.notification"value=1>
+                            уведомление только мастеру
+                        </label>
+                    </div>
+                    <div class="radio radio-primary" style="float: left;margin-top: -5px">
+                        <label>
+                            <input type="radio" name="notification" ng-change="$ctrl.saveField('notification',$ctrl.item.notification)"ng-model="$ctrl.item.notification"value=2>
+                            уведомление мастеру и админу
+                        </label>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="name-box text-center">привязка пользователя к аккаунту мастера</h4>
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                    <ui-select ng-model="$ctrl.user" reset-search-input="false" ng-change="$ctrl.changeUser($ctrl.user)">
+                        <ui-select-match allow-clear="true" placeholder="введите телефон имя или email">
+                            {{$select.selected.name}}  +{{$select.selected.profile.phone}}  {{$select.selected.email}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="user in $ctrl.users track by $index"
+                                           refresh="$ctrl.refreshUsers($select.search)"
+                                           refresh-delay="0">
+                            <strong ng-bind="user.name"></strong>  <span ng-bind="'+'+user.profile.phone"></span> <span ng-bind="user.email"></span>
+
+                        </ui-select-choices>
+                    </ui-select>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <span ng-if="$ctrl.item.user">
+                            <p>
+                                <strong class="pull-left" ng-bind="$ctrl.item.user.profile.fio|| $ctrl.item.user.name"></strong>
+                                <a class="pull-right" ng-show="$ctrl.item.user" ng-click="$ctrl.clearUser()"><i class="material-icons link-warning">clear</i></a>
+                                <span class="clearfix"></span>
+                            </p>
+                            <p><span ng-bind="$ctrl.item.user.email"></span></p>
+
+                        </span>
+
+                </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

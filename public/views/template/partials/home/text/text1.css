@@ -1,0 +1,31 @@
+/*zefir-news,smart-master*/
+.icon-left-img,
+.icon-right-img,
+.details {
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+}
+.details:hover {
+    -o-transform: translateX(20px);
+    -moz-transform: translateX(20px);
+    -webkit-transform: translateX(20px);
+    transform: translateX(20px);
+}
+.details:hover .icon-right-img {
+    left: -30px;
+    opacity: 1;
+}
+.details-desc {
+    opacity: 0;
+    -webkit-transition: 0.5s opacity 0.5s ease;
+    -moz-transition: 0.5s opacity 0.5s ease;
+    -ms-transition: 0.5s opacity 0.5s ease;
+    -o-transition: 0.5s opacity 0.5s ease;
+    transition: 0.5s opacity 0.5s ease;
+}
+.in .details-desc {
+    opacity: 1;
+}

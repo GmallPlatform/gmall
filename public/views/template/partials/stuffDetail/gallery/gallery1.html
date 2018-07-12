@@ -1,0 +1,30 @@
+<div class="gallery">
+    <!--<img ng-src="{{$ctrl.item.sticker}}"  class="sticker">
+    <div ng-repeat="item in $ctrl.item.gallery">
+        <img itemprop="image" class="img-responsive img-detail" ng-src="{{item.thumb}}"
+             alt="{{::$ctrl.item.categoryName}} {{::$ctrl.item.name}}"
+                >
+    </div>-->
+
+    <!--<div class="pull-right" ng-if="$ctrl.objShare">
+        <social-hub></social-hub>
+    </div>-->
+    <div ng-if="$ctrl.item.gallery">
+        <uib-carousel active="active" ng-if="::!$ctrl.crawler">
+            <uib-slide ng-repeat="slide in $ctrl.item.gallery track by $index" index="$index">
+                <a ng-click="$ctrl.item.zoomImg($index)">
+                    <img ng-src="{{slide.thumb}}" style="margin:auto;">
+                    <span class="zoom-plus"></span>
+                </a>
+            </uib-slide>
+        </uib-carousel>
+        <ul ng-if="::$ctrl.crawler">
+            <li ng-repeat="slide in $ctrl.item.gallery track by $index">
+                <img class="img-responsive"
+                     alt="{{::$ctrl.item.categoryName}} {{::$ctrl.item.name}}"
+                     ng-src="{{slide.thumb}}" style="margin:auto;">
+            </li>
+        </ul>
+    </div>
+</div>
+

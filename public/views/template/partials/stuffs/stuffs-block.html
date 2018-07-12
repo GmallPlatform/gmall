@@ -1,0 +1,193 @@
+
+<div class="content-tab-nav-stuff" ng-if="$ctrl.filtersBlock">
+    <div class="tab-nav-stuff form-group  col-lg-1 col-md-1 col-sm-1 col-xs-2 text-center">
+        <a class="sort-of-stuff" ng-click="$ctrl.filterList()">
+            сортировать
+        </a>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-5 text-center">
+        <paginator-main
+                paginate="$ctrl.paginate"
+                getlist="$ctrl.getList()"
+                scroll="{{scrollId}}">
+        </paginator-main>
+
+    </div>
+    <form ng-submit="$ctrl.searchItem(searchStr)">
+        <div class=" col-lg-2 col-md-2 col-sm-2 col-xs-3 pull-right ">
+            <div class="search form-group label-floating">
+                <input type="text" placeholder="поиск товара" class="form-control" ng-model="searchStr"/>
+            </div>
+        </div>
+        <input type="submit" class="enter" tabindex="-1" />
+    </form>
+    <div class="clearfix"></div>
+</div>
+
+<div class="goods-record">
+    <a>
+        <img src="../../../../views/clinic/img/banners/2.jpg" >
+    </a>
+
+    <div class=" goods-record-desc text-center" set-animate data-animation="animated6" data-animation-delay="03">
+        <h3 class="goods-record-name">
+            <span>бесплатная консультация</span><br>
+            <span> по телефону</span>
+        </h3>
+
+        <a class="btn btn-primary"  ng-click="$ctrl.global.get('functions').val.witget('call')">
+            записаться
+        </a>
+    </div>
+</div>
+<categories-for-list-tatiana padding="padding"></categories-for-list-tatiana>
+<div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+    <p class="no_story">
+        Таких товаров нет в каталоге
+    </p>
+</div>
+<div class="stuffs"  ng-repeat="stuff in $ctrl.items">
+    <!--<pre>{{$ctrl.category|json}}</pre>-->
+    <p></p>
+    <!--<div ng-switch on="stuff.index">
+        <div class="col-lg-12" ng-switch-when="99999">
+            <div class="row goods-record">
+                <a>
+                    <img ng-src="{{stuff.gallery[0].img||'/img/upload/no.png'}}" >
+                </a>
+
+                <div class=" goods-record-desc text-center" set-animate data-animation="animated6" data-animation-delay="03">
+                    <h3 class="goods-record-name">
+                        <span  ng-bind="stuff.name"></span><br>
+                        <span  ng-bind="stuff.artikul"></span>
+                    </h3>
+
+                    <a class="btn btn-primary"  ng-click="stuff.order()">
+                        записаться
+                    </a>
+                </div>
+            </div>
+            <categories-for-list-tatiana padding="padding"></categories-for-list-tatiana>
+        </div>-->
+
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"><!-- ng-switch-default=""-->
+            <div class="row goods-container" ng-class="{'mobil':$ctrl.mobile}">
+                <a ui-sref="stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url})">
+                    <img class="sticker" ng-src="{{stuff.sticker}}">
+                    <img class="img-responsive img-goods" ng-src="{{stuff.gallery[0].thumb||'/img/upload/no.png'}}" />
+                </a>
+                <div class="text-center"  ng-class="{'goods-desc':!stuff.service,'service-desc':stuff.service }"><!---->
+                    <h3 class="stuff-name" ng-bind="stuff.name"></h3>
+                    <div ng-if="!stuff.service">
+
+                    <!--<h3 ng-bind="stuff.artikul"></h3>-->
+                    <div ng-if="stuff.sortsOfStuff.filter">
+                        <p>
+                            выберите {{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}
+                        </p>
+                        <span ng-init="stuff.stock[stuff.sort].name=$ctrl.getTagName(stuff.sort)"
+                              class="sort" ng-repeat="(tag,sort) in stuff.stock|filter:stuff.filterSorts" ng-class="{'sort-active':stuff.sort==tag}">
+                            <span
+                                    ng-click="stuff.sort=tag;stuff.changeSortOfStuff()">{{sort.value.name=$ctrl.getTagName(tag)}}
+                            </span>
+                        </span>
+                        <!--<p class="col-lg-12">
+                            выберите {{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}
+                        </p>
+                        <div>
+
+                            <ui-select
+                                    ng-init="stuff.stock[stuff.sort].name=$ctrl.getTagName(stuff.sort)"
+                                    ng-model="stuff.sort"
+                                    ng-change="stuff.changeSortOfStuff()"
+                                    on-select="$ctrl.onSelected($item)"
+                                    append-to-body="true"
+                                    search-enabled="false">
+                                <ui-select-match placeholder="из {{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}">
+                                    &lt;!&ndash; <span ng-bind="getTagName($select.selected.tag)"></span>&ndash;&gt;
+                                    {{$ctrl.getTagName($select.selected.tag)}}
+                                </ui-select-match>
+                                <ui-select-choices ui-disable-choice="!sort.value.quantity"
+                                                   repeat="sort.tag as (tag,sort) in stuff.stock|filter:stuff.filterSorts">
+                                    <span>{{sort.value.name=$ctrl.getTagName(sort.tag)}}</span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>-->
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p>
+                    <span ng-class="{'line':stuff.sale}">
+                       <span class="price" ng-bind="::(stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val).toFixed(2)" ng-class="{'line':stuff.sale}"></span><!-- -->
+                        <span ng-bind="$ctrl.global.get('currency').val"></span>
+                    </span>
+                    <span ng-if="stuff.sale">
+                        <!--<label>sale</label><br>-->
+                        <span> / </span>
+                        <span class="sale" ng-bind="::(stuff.stock[stuff.sort].priceSale*$ctrl.global.get('rate').val).toFixed(2)"></span>
+                        <span ng-bind="$ctrl.global.get('currency').val"></span>
+                    </span>
+                    <span ng-if="$ctrl.global.get('store').val.seller.retail">
+                        <label>розница</label><br>
+                        <span ng-bind="stuff.stock[stuff.sort].retail*$ctrl.global.get('rate').val"></span>
+                        <span ng-bind="$ctrl.global.get('currency').val"></span>
+                    </span>
+                    <p ng-if="stuff.campaignUrl">
+                        <!--<label>акционная цена</label><br>-->
+                        <span> / </span>
+                        <span class="sale" ng-bind="::(stuff.stock[stuff.sort].priceCampaign*$ctrl.global.get('rate').val).toFixed(2)"></span>
+                        <span ng-bind="$ctrl.global.get('currency').val"></span>
+                        <p ng-if="stuff.campaignUrl" class="text-right" ng-if="stuff.campaignUrl">
+                            <a ui-sref="campaign.detail({url:stuff.campaignUrl})">страница акции</a>
+                        </p>
+                    </p>
+
+
+                        </p>
+                        <div class="clearfix"></div>
+                    </div>
+                    </div>
+                    <div class="row" ng-if="!stuff.service">
+                        <a class="btn  btn-primary btn-border"
+                           ng-click="stuff.addItemToOrder()">
+                            в корзину
+                        </a>
+                    </div>
+                    <div class="row" ng-if="stuff.service">
+                        <a class="btn  btn-primary btn-border"
+                           ng-click="stuff.order()">
+                            заказать услугу
+                        </a>
+                    </div>
+                    <div class="row">
+                        <!-- <a class="btn  btn-primary btn-border"
+                            ng-click="stuff.addItemToOrder()">
+                             добавить в корзину
+                         </a>-->
+
+
+                    </div>
+                </div>
+
+                <!--</div>-->
+
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+
+    <!--</div>-->
+</div>
+<div class="clearfix"></div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+    <paginator-main
+            paginate="$ctrl.paginate"
+            getlist="$ctrl.getList()"
+            scroll="{{scrollId}}">
+    </paginator-main>
+
+</div>
+<!--
+<a href="#" class="back-to-top">
+    <i class="fa fa-angle-double-up fa-3x" ></i>
+</a>
+-->

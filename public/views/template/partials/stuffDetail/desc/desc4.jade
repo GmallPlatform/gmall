@@ -1,0 +1,15 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div
+            div(itemprop="description", class="description",ng-bind-html="$ctrl.item.desc|unsafe")
+                | !{item.desc}
+            //div(ng-if="!$ctrl.item.service")
+                a(ui-sref="stuffs({'groupUrl':$ctrl.item.groupUrl,'categoryUrl':$ctrl.item.categoryUrl,brand:$ctrl.item.brandUrl,brandTag:null,queryTag:null,serachStr:null})")
+                    span(ng-bind="$ctrl.global.get('lang').val.all")
+                    | &nbsp;
+                    span(ng-bind="$ctrl.item.categoryName")
+                    | &nbsp;
+                    span(ng-bind="$ctrl.item.brandName")
+            if(item.single)
+                hr
+            div(class="clearfix")

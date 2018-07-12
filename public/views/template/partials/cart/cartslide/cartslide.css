@@ -1,0 +1,133 @@
+/*.cart-box {
+    padding: 20px;
+}*/
+.back {
+    opacity: 0;
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    z-index: 2;
+}
+.back.show {
+    opacity: 1;
+}
+.innder-cart-slide {
+    margin-top: 80px;
+}
+.sticker {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 15px;
+    top:0;
+}
+.name-goods {
+    color: #999999;
+}
+.cart-inner {
+    margin-bottom: 20px;
+    position: relative;
+}
+/*.cart-inner .qty-box .form-control {
+    width: 80%;
+}*/
+.cart-inner .form-control {
+    background-color: transparent;
+}
+.cart-inner hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top: 1px solid #e2e2e2
+}
+.name-sort {
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.qty-box p,
+.qty-box input{
+    margin-bottom: 0;
+}
+.unit {
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.qty-box input {
+    width: 40px;
+    padding-right: 0;
+    padding-left: 0;
+    text-align: center;
+    border-bottom: 0;
+    font-size: 20px;
+}
+.qty-box .qty-plus,
+.qty-box .qty-minus{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dcdcdc;
+    text-align: center;
+    padding-top: 5px;
+    font-weight: 600;
+    background-color: #fbfbfb;
+}
+.qty-box .qty-plus:hover,
+.qty-box .qty-minus:hover {
+    background-color: #e2e2e2;
+    border: 1px solid #cacaca;
+}
+
+.sum {
+    padding-right: 0;
+}
+.index {
+    position: absolute;
+    left: 0;
+}
+.price-block {
+    font-size: 16px;
+}
+.coupon {
+    color:$mainColor;
+    font-size: 18px;
+}
+.coupon-block {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.cart-box {
+    min-height: 350px;
+}
+.line {
+    text-decoration:line-through;
+}
+.info {
+    font-size: 14px;
+    /*color: $mainColor;*/
+}
+.total {
+    font-size: 20px;
+}
+
+#wrapper-for-cartslide111{
+    position: relative;
+    margin: 0;
+    height: 100%;
+    /*width: 300%;*/
+    text-align: left;
+    -webkit-transition: margin-left 0.5s; /* Safari 3.1 to 6.0 */
+    transition: margin-left 0.5s;
+}
+#wrapper-for-cartslide111 .innder-cart-slide{
+    height: 100%;
+    width:33.33%;
+    float:left;
+    left: 0;
+}
+
+#wrapper-for-cartslide .carousel-control,
+#wrapper-for-cartslide .carousel-indicators{
+    display: none;
+}

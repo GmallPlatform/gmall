@@ -1,0 +1,70 @@
+<div class="name-block">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 img-box">
+        <div class="editor form-group">
+            <!--<h3 class="name-action text-center" >добавить/изменить текст в блоке</h3>--><!--ng-click="isCollapsed[$index] = !isCollapsed[$index]"-->
+            <div text-angular ng-model-options="{'updateOn': 'default blur',
+                 'debounce': {'default': 700,'blur': 0}}"
+                 ng-change="$ctrl.saveField('blocks.'+block.i+'.desc',block.desc1)"
+                 ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                 ng-model="block.desc1"
+                 ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                 ta-html-editor-class="border-around"><!-- uib-collapse="!isCollapsed[$index]"-->
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group label-floating">
+                <div class="form-group label-floating">
+                    <label class="control-label">заголовок блока</label>
+                    <input class="form-control" ng-model="block.name"
+                           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 700,'blur': 0}}"
+                           ng-change="block.nameL[$ctrl.global.get('store').val.lang]=block.name;$ctrl.saveField('blocks.'+block.i+'.name',block.name)">
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="control-label" style="margin-top: 0">анимация заголовка</label>
+                <ui-select ng-model="block.nameAnimate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField(block,$index,'nameAnimate')">
+                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <h4 class=" name-action"  ng-click="isCollapsed2[$index+100] = !isCollapsed2[$index+100]">добавить/изменить ссылку для блока</h4>
+            <create-link title='false' uib-collapse="!isCollapsed2[$index+100]"  link="block.link" change="$ctrl.saveField('blocks.'+block.i+'.link',block.link)" edit-seo-page="true"></create-link>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="togglebutton">
+                <label for="button4w{{$index}}">
+                    <span ng-class="{'active':!block.button.is}">кнопки нет</span>
+                    <input type="checkbox"
+                           id="button4w{{$index}}"
+                           ng-model="block.button.is"
+                           ng-change="$ctrl.saveField('blocks.'+block.i+'.button',block.button)">
+                    <span ng-class="{'active':block.button.is}">кнопка есть</span>
+                </label>
+            </div>
+            <div class="form-group label-floating">
+                <label class="control-label">текст на кнопке</label>
+                <input ng-model="block.button.text" class="form-control"
+                       ng-model-options="{'updateOn': 'default blur',
+                                 'debounce': {'default': 700,'blur': 0}}"
+                       ng-change="$ctrl.saveField('blocks.'+block.i+'.button',block.button)">
+            </div>
+            <div class="form-group ">
+                <label class="control-label" style="margin-top: 0">анимация кнопки</label>
+                <ui-select ng-model="block.button.animate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('blocks.'+block.i+'.button',block.button)">
+                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="link-box form-group">
+                <h4 class="name-action"  ng-click="isCollapsedB[$index+101] = !isCollapsedB[$index+101]">добавить/изменить ссылку для кнопки</h4>
+                <create-link  uib-collapse="!isCollapsedB[$index+101]" link="block.button.link" change="$ctrl.saveField('blocks.'+block.i+'.button',block.button)"></create-link>
+            </div>
+        </div>
+
+    <div class="clearfix"></div>
+
+</div>

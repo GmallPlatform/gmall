@@ -1,0 +1,68 @@
+<div class="col-lg-12 col-md-12 col=sm-12 col-xs-12 text-center  loadImageModal">
+    <form id="uploadImgForm" name="$ctrl.uploadForm" class="img-upload-box box" role="form" enctype="multipart/form-data" ng-disabled="$ctrl.isBusy">
+        <div class="form-group img-list" ng-show="$ctrl.hasFiles">
+            <h4>Файл для загрузки</h4>
+            <ul class="list-unstyled">
+                <li ng-repeat="file in $ctrl.files">
+                    <p ng-bind="file.name"></p>
+                </li>
+                <li class="clearfix"></li>
+            </ul>
+            <div class="clearfix"></div>
+            <div class="form-group" ng-show="$ctrl.hasFiles && !$ctrl.isUploading">
+                <a class="btn btn-fab"  ng-click="$ctrl.uploadFiles()" title="загрузить видео">
+                    <i class="material-icons link-primary md-36">archive</i>
+                </a>
+                <button class="btn btn-fab" title="отменить выбор" type="reset" value="Cancel">
+                    <i class="material-icons link-warning md-36">cancel</i>
+                </button>
+                <!--<input class="btn btn-primary" type="button" ng-click="$ctrl.uploadFiles()" value="Upload">
+                <input class="btn btn-warning" type="reset" value="Cancel">-->
+            </div>
+            <div class="form-group" ng-show="$ctrl.isUploading">
+                <img class="img-responsive" src="../../img/spinner.gif">
+            </div>
+            <div class="clearfix" style="margin-bottom: 50px"></div>
+        </div>
+        <span class="add-photo-bg">
+            <a class="btn btn-fab add">
+                <i class="material-icons link-success md-36">add_circle</i>
+            </a>
+
+        </span>
+        <div class="box__input">
+            <input id="inputFilesUpload" class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple/>
+            <br>
+            <label class="label-box-input" for="file">Добавьте видео<br>выберите файл<span class="box__dragndrop"> или пертащите его мышкой в это окно</span></label>
+        </div>
+
+
+
+    </form>
+
+
+
+
+
+
+    <!--<div class="add-photo">
+        <div>
+            <a type="button" class="btn btn-fab" title="добавить фото"  ng-click="clickFile();">
+                <i class="material-icons md-36 link-success">add_a_photo</i>
+            </a>
+            <a class="btn  btn-fab " ng-if="!noLoad" title="загрузить" ng-click="$ctrl.uploadImg()">
+                <i class="material-icons">get_app</i>
+            </a>
+            &lt;!&ndash;<a type="button" class="btn btn-fab" ng-click="deleteImg()" title="удалить фото" ng-if="fileSrc && !gallery" >
+                <i class="material-icons link-warning">delete</i>
+            </a>&ndash;&gt;
+        </div>
+        <div class="col-lg-12">
+            <img src="img/spinner.gif">
+        </div>
+        <div class="clearfix"></div>
+        <input type="file" file-read-src="fileSrc" my-file="myFile" name="image" id="imagefile{{now}}" style='visibility: hidden;'/>
+    </div>-->
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>

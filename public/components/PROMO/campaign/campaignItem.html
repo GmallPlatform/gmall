@@ -1,0 +1,500 @@
+<div class="campaign-item">
+    <div class="nav-box-stuff" ng-init="block='campaignInfo'">
+        <div class="tab-nav-stuff action text-center">
+            <a class="btn btn-fab btn-fab-mini" ui-sref="frame.campaigns" onclick="window.history.back()">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':block=='campaignInfo'}">
+            <a ng-click="block='campaignInfo'">
+                <i class="material-icons link-warning">description</i>
+                <p>описание</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':block=='campaignGoods'}">
+            <a ng-click="block='campaignGoods'"><!--todo mobile--><!--ng-class="{'btn-fab-mini':global.get('mobile')}"-->
+                <i class="material-icons link-warning">card_giftcard</i>
+                <p>товары</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':block=='campaignIf'}">
+            <a ng-click="block='campaignIf'">
+                <i class="material-icons link-warning">date_range</i>
+                <p>условия</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff  action pull-right">
+            <a class="btn btn-fab btn-fab-mini btn-success"
+               ng-click="$ctrl.createNews()"
+               title="создать новость об акции">
+                <i class="material-icons link-white">fiber_new</i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="content-tab-box" ng-show="block=='campaignInfo'"  ng-init="displayHelp=false">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="cart-detail">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="block-edit">
+                            <div class="form-group label-floating ">
+                                <label class="control-label">наименование</label>
+                                <input class="form-control name" ng-model="$ctrl.item.name" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveField('name')">
+                            </div>
+                            <div class="form-group text-center">
+                                <div class="togglebutton">
+                                    <label for="service">
+                                        <span ng-class="{'active':!$ctrl.item.actived}">не активная</span>
+                                        <input type="checkbox"
+                                               id="service"
+                                               ng-model="$ctrl.item.actived"
+                                               ng-change="$ctrl.saveField('actived')">
+                                        <span ng-class="{'active':$ctrl.item.actived}">активная</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group data-picker">
+                                <label class="control-label">период действия акции</label>
+                                <p class="form-control">
+                                    <span class="date-article"  ng-class="{'active-date':$ctrl.item.openStart}"
+                                           ng-bind="$ctrl.item.dateStart|date"
+                                           ng-click="$ctrl.item.openStart=true"></span>
+                                    <input type="hidden"
+                                           uib-datepicker-popup="{{locale.DATETIME_FORMATS.shortDate}}"
+                                           datepicker-options="$ctrl.item.dateOptions"
+                                           ng-model="$ctrl.item.dateStart"
+                                           show-button-bar="false"
+                                           is-open="$ctrl.item.openStart"
+                                           ng-required="true"
+                                           ng-change="$ctrl.item.openEnd=true;$ctrl.saveField('dateStart')"/>
+                                    <span  class="date-article">&nbsp; - &nbsp;</span>
+                                    <span  class="date-article"  ng-class="{'active-date':$ctrl.item.openEnd}"ng-bind="$ctrl.item.dateEnd|date" ng-click="$ctrl.item.openEnd=true"></span>
+                                    <input type="hidden"
+                                           uib-datepicker-popup="{{locale.DATETIME_FORMATS.shortDate}}"
+                                           datepicker-options="$ctrl.item.dateOptions"
+                                           ng-model="$ctrl.item.dateEnd"
+                                           is-open="$ctrl.item.openEnd"
+                                           show-button-bar="false"
+                                           ng-change="$ctrl.saveField('dateEnd')"
+                                           ng-required="true" />
+                                </p>
+                            </div>
+                            <p>Введите тип и размер скидки на акционный товар</p>
+
+                            <div class="form-group">
+                                <div class="togglebutton">
+                                    <label for="campaign">
+                                        <span ng-class="{'active':$ctrl.item.condition=='sum'}">сумма</span>
+                                        <input type="checkbox"
+                                               id="campaign"
+                                               ng-model="$ctrl.item.condition"
+                                               ng-true-value="'percent'" ng-false-value="'sum'"
+                                               ng-change="$ctrl.showConditionInput($ctrl.item.condition);$ctrl.saveField('condition')">
+                                        <span ng-class="{'active':$ctrl.item.condition=='percent'}">процент</span>
+                                    </label>
+                                </div>
+                                <div class=" form-group label-floating">
+                                    <label for="campaignsum" class="control-label">введите скидку на единицу товара</label>
+                                    <input ng-if="$ctrl.showCondition['percent']" id="campaignsum" class="form-control "
+                                           ng-model="$ctrl.item.percent"
+                                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                           ng-change="$ctrl.saveField('percent')"/>
+                                    <input ng-if="$ctrl.showCondition['sum']" id="campaignsum" class="form-control "
+                                           ng-model="$ctrl.item.sum"
+                                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                           ng-change="$ctrl.saveField('sum')"/>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="block-edit">
+                            <div class="sticker img-box thumbnail">
+                                <h4 class="text-center name-box">стикер акции</h4>
+                                <load-image
+                                        upload-url="/api/collections/Photo/fileUploadSticker?collectionName=Campaign"
+                                        item-id="{{$ctrl.item._id}}"
+                                        item-url="{{$ctrl.item.url}}"
+                                        item-resourse="$ctrl.Items"
+                                        file-src="$ctrl.item.sticker"
+                                        name-img="sticker">
+                                </load-image>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="block-edit">
+                            <div class="thumbnail img-box banner">
+                                <h4 class="text-center name-box">баннер</h4>
+                                <load-image
+                                        upload-url="/api/collections/Photo/fileUploadBig?collectionName=Campaign"
+                                        item-id="{{$ctrl.item._id}}"
+                                        item-url="{{$ctrl.item.url}}"
+                                        item-resourse="$ctrl.Items"
+                                        file-src="$ctrl.item.img"
+                                        name-img="img">
+                                </load-image>
+                            </div>
+                        </div>
+
+                        <div class="block-edit">
+                            <h4 class="text-center name-box">добавить/изменить текстовый блок</h4><!-- ng-click="isCollapsed[$index] = !isCollapsed[$index]"-->
+                            <div class="editor form-group">
+                                <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                     ng-change="$ctrl.saveField('desc',200)"
+                                     ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                                     ng-model="$ctrl.item.desc"
+                                     ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                                     ta-text-editor-class="border-around"
+                                     ta-html-editor-class="border-around"><!-- uib-collapse="!isCollapsed[$index]"-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+
+    <div class="content-tab-box col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="block=='campaignGoods'"  ng-init="displayHelp1=false" >
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 all-goods">
+                    <div class="step">
+                        <h3 class="text-center name-box"><span>ШАГ 1</span>  - выберите тип акции</h3>
+                        <ul>
+                            <li>
+                                если Вы хотите включить в акцию все товары, за исключением каких-либо групп или товаров,
+                                то установите метку "акция действует на все товары" и выберите коллекции, признаки или товары,
+                                которые Вы хотите исключить из списка акционных товаров.
+                            </li>
+                            <li>
+                                если Вы хотите включить в акцию одну или несколько групп товаров или отдельный товар/товары,
+                                то установите метку "акция действует на группу товаров" и выберите коллекции, признаки или товары,
+                                которые Вы хотите включить в список акционных товаров.
+                            </li>
+                        </ul>
+                        <div class="togglebutton text-center">
+                            <label for="revers">
+                                <span ng-class="{'active':!$ctrl.item.revers}">акция действует на группу товаров</span>
+                                <input type="checkbox"
+                                       id="revers"
+                                       ng-model="$ctrl.item.revers"
+                                       ng-change="$ctrl.saveField('revers')">
+                                <span ng-class="{'active':$ctrl.item.revers}">акция действует на все товары</span>
+                            </label>
+                        </div>
+
+                    <!--<div class=" checkbox">
+                        <label>
+                            <input  type="checkbox"  ng-model="$ctrl.item.revers" ng-change="$ctrl.saveField('revers')">
+                            <span>акция действует на все товары</span>
+                        </label>
+                    </div>-->
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <div class="text-center step">
+                        <h3 class="name-box">выбор типа карточки</h3>
+                        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-lg-offset-3 col-xs-12 col-xs-offset-0">
+                            <ui-select ng-model="$ctrl.item.cartType" append-to-body="true" skip-focusser="true" search-enabled="false"
+                                       ng-change="$ctrl.saveField('cartType')">
+                                <ui-select-match placeholder="тип карточки в списке" allow-clear="true">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="opt.type as opt in $ctrl.cartTypes">{{ opt.name}}</ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <hr>
+                    <div ng-if="!$ctrl.item.revers">
+                        <div class="step">
+                            <h3 class="text-center name-box"><span>ШАГ 2 пояснение</span> - выберите группу товаров или товары, участвующие в акции</h3>
+                            <p>Для организации акционной кампании выберите группу  товаров,
+                                на которую будет действовать акционная скидка<br>
+                            </p>
+                            <p>В акции могут участвовать товары как из одной группу, так и из разных групп товаров.</p>
+                            <ul>
+                                <li>для создания акции на две и более коллекций выберите их  - товары выбранных коллекций будут объединены в акции</li>
+                                <li>для создания акции, объединяющий два и более признака товара, выберите эти признаки -
+                                    товары с выбранными признаками будут объединены в акции
+                                    (например, все товары синего цвета + все товары в размере S)</li>
+                                <li> для создания акции, в которой товары должны удовлетворять одновременно двум критериям - и коллекции и признаку
+                                    (например, все товары в размере S из коллекции лето 2016) - выберите необходимую коллекцию и признак</li>
+                                <li>для создания акции явно выбранных товаров выберите конкретные товары из полного перечня товаров</li>
+                            </ul>
+                            <p>В акции могут участвовать также любые группы и отдельные товары. Размер скидки на все указанные товары будет одинаковым (сумма или процент для каждой единицы)</p>
+
+
+                        </div>
+                    </div>
+                    <div ng-if="$ctrl.item.revers">
+                        <div class="step">
+                            <h3 class="name-box text-center"><span>ШАГ 2 пояснение</span>  - выберите группу товаров или товары, которые нужно исключить из акции</h3>
+                            <p>Из акции могут быть исключены товары как одной группу, так и разных групп товаров.</p>
+                            <ul>
+                                <li>для создания акции, в которой не участвуют две и более коллекции -  выберите их  - товары выбранных коллекций будут исключены из акции</li>
+                                <li>для создания акции, в которой не участвуют два и более признака товара, выберите эти признаки -
+                                    товары с выбранными признаками будут исключены из акции
+                                    (например, все товары синего цвета + все товары в размере S)</li>
+                                <li> для создания акции, в которой ен участвуют товары, удовлетворяющие одновременно двум критериям - и коллекции и признаку
+                                    (например, все товары в размере S из коллекции лето 2016) - выберите необходимую коллекцию и признак - эти товары будут исключены из акции</li>
+                                <li>для создания акции, в которой не участвуют некоторые товары, выберите конкретные товары из полного перечня товаров - на них не будет действовать акционная цена.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <div class="step">
+                        <h3 class="text-center name-box" ng-if="!$ctrl.item.revers"><span>ШАГ 3</span>  - выберите группу товаров или товары, которые участвуют в акции</h3>
+                        <h3 class="text-center name-box" ng-if="$ctrl.item.revers"><span>ШАГ 3</span>  - выберите группу товаров или товары, которые нужно исключить из акции</h3>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-20">
+                            <a ng-click="$ctrl.selectBrandTag()">
+                                <p>выбрать коллекцию</p>
+                                <!--<i class="material-icons link-warning">cached</i>-->
+                            </a>
+                            <div class="text-left">
+                                <p ng-repeat="item in $ctrl.item.brandTags">
+                                    <span class="collection-name col-lg-8 col-md-8 col-sm-8 col-xs-8" ng-bind="item.name"></span>
+                                    <a ng-click="$ctrl.deleteBrandTag($index)">
+                                        <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="material-icons link-warning">clear</i></span>
+                                    </a>
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-20">
+                            <a ng-click="$ctrl.selectStuff()">
+                                <p>выбрать товар</p>
+                                <!--<i class="material-icons link-warning">cached</i>-->
+                            </a>
+                            <div class="text-left">
+                                <p ng-repeat="item in $ctrl.item.stuffs">
+                                <span class="collection-name col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                    <span ng-bind="item.name"></span><span> </span><span ng-bind="item.artikul"></span>
+                                </span>
+                                    <a ng-click="$ctrl.deleteStuff($index)">
+                                        <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><i class="material-icons link-warning">clear</i></span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-20">
+                            <a ng-click="$ctrl.selectCategory()">
+                                <p>выбрать категорию</p>
+                                <!--<i class="material-icons link-warning">cached</i>-->
+                            </a>
+                            <div class="text-left">
+                                <p ng-repeat="item in $ctrl.item.categories">
+                                    <span class="collection-name col-lg-8 col-md-8 col-sm-8 col-xs-8" ng-bind="item.name"></span>
+                                    <a ng-click="$ctrl.deleteCategory($index)">
+                                        <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="material-icons link-warning">clear</i></span>
+                                    </a>
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-20">
+                            <a ng-click="$ctrl.selectFilterTag()">
+                                <p>выбрать группу (признак)</p>
+                                <!--<i class="material-icons link-warning">cached</i>-->
+                            </a>
+                            <div class="text-left">
+                                <p ng-repeat="item in $ctrl.item.tags">
+                                    <span class="collection-name col-lg-10 col-md-10 col-sm-10 col-xs-10" ng-bind="item.name"></span>
+                                    <a ng-click="$ctrl.deleteFilterTag($index)">
+                                        <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><i class="material-icons link-warning">clear</i></span>
+                                    </a>
+                                </p>
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-20" >
+                            <a ng-click="$ctrl.selectBrand()">
+                                <p>выбрать бренд</p>
+                                <!--<i class="material-icons link-warning">cached</i>-->
+                            </a>
+                            <div class="text-left">
+                                <p ng-repeat="item in $ctrl.item.brands">
+                                    <span class="collection-name col-lg-10 col-md-10 col-sm-10 col-xs-10" ng-bind="item.name"></span>
+                                    <a ng-click="$ctrl.deleteBrand($index)">
+                                        <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><i class="material-icons link-warning">clear</i></span>
+                                    </a>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                    </div>
+
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="content-tab-box"  ng-show="block=='campaignIf'"  ng-init="displayHelp1=false" >
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <h3 class="name-box  text-center">Условия применения акционной цены</h3>
+                <div class="step">
+                    <h3 class="name-box text-center"><span>ШАГ 1 </span> - выбрать тип условий акции</h3>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left all-goods">
+                        <ul>
+                            <li>если любые товары из вашего каталога являются условием начала действия акционной цены,
+                                то установите метку "все товары" - в этом случае акционная цена будет применяться ко всем акционным товарам в корзине
+                            </li>
+                            <li>
+                                если условием применения акционной цены к акционным товарам является наличие в корзине неакционных товаров, то установите метку "группа товаров"
+                            </li>
+                        </ul>
+
+                        <div class="togglebutton text-center">
+                            <label for="forAll">
+                                <span ng-class="{'active':!$ctrl.item.forAll}">группа товаров</span>
+                                <input type="checkbox"
+                                       id="forAll"
+                                       ng-model="$ctrl.item.forAll"
+                                       ng-change="$ctrl.saveField('forAll')">
+                                <span ng-class="{'active':$ctrl.item.forAll}">все товары</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <hr>
+                <div class="step text-center" ng-if="!$ctrl.item.forAll">
+                    <h3 class="name-box"><span>ШАГ 2 </span> - установить кратность неакционных товаров</h3>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-init="$ctrl.array10=[1,2,3,4,5,6,7,8,9,10]">
+                        <p class=" text-left"> Укажите количество неакционных товаров в корзине (кратность),
+                            при котором начнет действовать акционная цена для акционных товаров.</p>
+                        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-lg-offset-3 col-xs-12 col-xs-offset-0">
+                            <ui-select
+                                    ng-model="$ctrl.item.ratio"
+                                    ng-change="$ctrl.saveField('ratio')"
+                                    on-select="$ctrl.onSelected($item)"
+                                    search-enabled="false">
+                                <ui-select-match placeholder="выберите количество">{{$select.selected}}</ui-select-match>
+                                <ui-select-choices repeat="item in $ctrl.array10">
+                                    <div ng-bind="item"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </div>
+                <div class="step" ng-if="!$ctrl.item.forAll">
+                    <h3 class="name-box text-center"><span>ШАГ 3 </span> - выбрать группы товаров-условий применения акционной цены</h3>
+
+                    <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Для организации акции,
+                        которая действует при условии наличия в корзине неакционных товаров (например, 2+1),
+                        укажите группы, коллекции или товары, наличие которых в корзине определяет начало действия акционной цены</p>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <a ng-click="$ctrl.selectConditionBrandTag()">
+                            <p>выбрать коллекцию</p>
+                            <!--<i class="material-icons link-warning">cached</i>-->
+                        </a>
+                        <div class="text-left">
+                            <p ng-repeat="item in $ctrl.item.conditionBrandTags">
+                                <span class="collection-name col-lg-8 col-md-8 col-sm-8 col-xs-8" ng-bind="item.name"></span>
+                                <a ng-click="$ctrl.deleteConditionBrandTag($index)">
+                                    <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="material-icons link-warning">clear</i></span>
+                                </a>
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <a ng-click="$ctrl.selectConditionBrand()">
+                            <p>выбрать бренд</p>
+                            <!--<i class="material-icons link-warning">cached</i>-->
+                        </a>
+                        <div class="text-left">
+                            <p ng-repeat="item in $ctrl.item.conditionBrands">
+                                <span class="collection-name col-lg-8 col-md-8 col-sm-8 col-xs-8" ng-bind="item.name"></span>
+                                <a ng-click="$ctrl.deleteConditionBrand($index)">
+                                    <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="material-icons link-warning">clear</i></span>
+                                </a>
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <a ng-click="$ctrl.selectConditionStuff()">
+                            <p>выбрать товар</p>
+                            <!--<i class="material-icons link-warning">cached</i>-->
+                        </a>
+                        <div class="text-left">
+                            <p ng-repeat="item in $ctrl.item.conditionStuffs">
+                                <span class="collection-name col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                    <span ng-bind="item.name"></span><span> </span><span ng-bind="item.artikul"></span>
+                                </span>
+                                <a ng-click="$ctrl.deleteConditionStuff($index)">
+                                    <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><i class="material-icons link-warning">clear</i></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <a ng-click="$ctrl.selectConditionCategory()">
+                            <p>выбрать категорию</p>
+                            <!--<i class="material-icons link-warning">cached</i>-->
+                        </a>
+                        <div class="text-left">
+                            <p ng-repeat="item in $ctrl.item.conditionCategories">
+                                <span class="collection-name col-lg-8 col-md-8 col-sm-8 col-xs-8" ng-bind="item.name"></span>
+                                <a ng-click="$ctrl.deleteConditionCategory($index)">
+                                    <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><i class="material-icons link-warning">clear</i></span>
+                                </a>
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <a ng-click="$ctrl.selectConditionFilterTag()">
+                            <p>выбрать группу (признак)</p>
+                            <!--<i class="material-icons link-warning">cached</i>-->
+                        </a>
+                        <div class="text-left">
+                            <p ng-repeat="item in $ctrl.item.conditionTags">
+                                <span class="collection-name col-lg-10 col-md-10 col-sm-10 col-xs-10" ng-bind="item.name"></span>
+                                <a ng-click="$ctrl.deleteConditionFilterTag($index)">
+                                    <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><i class="material-icons link-warning">clear</i></span>
+                                </a>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <hr>
+                    <!--<h5>тип карточки</h5>
+                    <ui-select ng-model="$ctrl.item.cartTypeCondition" append-to-body="true" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.saveField('cartTypeCondition')">
+                        <ui-select-match placeholder="тип карточки в списке" allow-clear="true">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="opt.type as opt in $ctrl.cartTypes">{{ opt.name}}</ui-select-choices>
+                    </ui-select>-->
+
+                    <div class="clearfix"></div>
+                
+            </div>
+        </div>
+    </div>
+</div>

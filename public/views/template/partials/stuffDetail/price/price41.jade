@@ -1,0 +1,57 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="price-box", ng-if="($ctrl.item.sort)")
+            p(itemprop="offers",itemscope,itemtype="http://schema.org/Offer")
+                span(ng-if="stuff.expected", ng-bind="$ctrl.global.get('lang').val.expected")
+                span(class="price", ng-class="{'line':$ctrl.item.priceSale}", itemprop="price")
+                    span(class="",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.item.stock[$ctrl.item.sort].price*$ctrl.global.get('rate').val| currency:'':$ctrl.global.get('store').val.formatPrice",ng-class="{'line':$ctrl.item.sale||stuff.campaignUrl}")
+                span(class="sale", ng-if="($ctrl.item.priceSale && $ctrl.item.sort)")
+                    span(class="slash") /
+                    span(class="",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.item.stock[$ctrl.item.sort].priceSale*$ctrl.global.get('rate').val| currency:'':$ctrl.global.get('store').val.formatPrice")
+                span(class="sale", ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign")
+                    span(class="slash") /
+                    span(class="",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.item.stock[$ctrl.item.sort].priceCampaign*$ctrl.global.get('rate').val| currency:'':$ctrl.global.get('store').val.formatPrice")
+                br
+                span(class="retail",ng-if="($ctrl.global.get('store').val.seller.retail && $ctrl.item.sort)")
+                    span(ng-bind="$ctrl.global.get('lang').val.retail")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.item.stock[$ctrl.item.sort].retail*$ctrl.global.get('rate').val| currency:'':$ctrl.global.get('store').val.formatPrice")
+
+                p(class="campaign-detail", ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign")
+                    a(ui-sref="campaign.detail({id:$ctrl.item.campaignUrl})",ng-bind="$ctrl.global.get('lang').val.actions")
+        div(class="price-box", ng-if="!$ctrl.item.sort")
+            p(itemprop="offers",itemscope,itemtype="http://schema.org/Offer")
+                span(class="price", ng-class="{'line':$ctrl.item.priceSale}", itemprop="price")
+                    span(class="",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.item.price*$ctrl.global.get('rate').val| currency:'':$ctrl.global.get('store').val.formatPrice",ng-class="{'line':$ctrl.item.sale||stuff.campaignUrl}")
+                span(class="sale", ng-show="($ctrl.item.priceSale && !$ctrl.item.priceCampaign)")
+                    span(class="slash") /
+                    span(class="",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.item.priceSale*$ctrl.global.get('rate').val| currency:'':$ctrl.global.get('store').val.formatPrice")
+                span(class="sale", ng-show="$ctrl.item.priceCampaign")
+                    span(class="slash") /
+                    span(class="",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.item.priceCampaign*$ctrl.global.get('rate').val| currency:'':$ctrl.global.get('store').val.formatPrice")
+                br
+                span(class="retail",ng-if="($ctrl.global.get('store').val.seller.retail && $ctrl.item.sort)")
+                    span(ng-bind="$ctrl.global.get('lang').val.retail")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]")
+                    span &nbsp;
+                    span(class="",ng-bind="$ctrl.item.retail*$ctrl.global.get('rate').val| currency:'':$ctrl.global.get('store').val.formatPrice")
+
+                p(class="campaign-detail", ng-if="$ctrl.item.stock[$ctrl.item.sort].priceCampaign")
+                    a(ui-sref="campaign.detail({id:$ctrl.item.campaignUrl})",ng-bind="$ctrl.global.get('lang').val.actions")
+
+        div(class="clearfix")

@@ -1,0 +1,9 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        ul(class="footer-stat")
+            each s in stat
+                li
+                    - var href='/stat/'+s.url
+                    a(href=href)
+                        =s.name
+        div(class="clearfix")

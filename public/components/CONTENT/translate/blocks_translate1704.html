@@ -1,0 +1,94 @@
+<style>
+    .content-box {
+        background-color: #ffffff;
+        margin-bottom: 20px;
+        padding: 20px;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+    }
+    .img-box {
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+    .editor .ta-toolbar .btn-group {
+        background-color: #eeeeee;
+        margin-top: 0;
+        width: 100%;
+    }
+    .editor .ta-toolbar .btn-group .btn {
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px dotted #ccc;
+    }
+</style>
+<p>
+    <span class="pull-left">всего символов на странице -
+        <span ng-bind="$ctrl.allChars"></span>
+    </span>
+
+    <button class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.translateGoogle()" title="авто перевод всех текстов на странице" ng-disabled="$ctrl.translatingGoogle">
+        <i class="material-icons link-info md-42">open_with</i>
+    </button>
+</p>
+<div class="clearfix"></div>
+<div class="name-block content-box" ng-repeat="($index,item) in $ctrl.items">
+    <div class=" col-sm-12 col-xs-12 " ng-class="{'col-lg-3 col-md-3':item.extend,'col-lg-5 col-md-5':!item.extend}">
+        <p class="link-info">исходный текст</p>
+        <div class="img-box" id="sourceText{{$index}}">
+            <div ng-switch on="item.type">
+                <div ng-switch-when="input">
+                    <p ng-bind="item.data[$ctrl.lang]"></p>
+                </div>
+                <div ng-switch-when="text">
+                    <p ng-bind-html="item.data[$ctrl.lang]|unsafe"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class=" col-sm-12 col-xs-12" ng-class="{'col-lg-8 col-md-8':item.extend,'col-lg-6 col-md-6':!item.extend}">
+        <p class="link-info">перевод</p>
+        <div ng-switch on="item.type">
+            <div ng-switch-when="input">
+                <input class="form-control" ng-model="item.data[$ctrl.translateLang]">
+            </div>
+            <div class="editor" ng-switch-when="text">
+                <!--<div text-angular
+                     ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','wordcount', 'charcount','html']]"
+                     ng-model="item.data[$ctrl.translateLang]"
+                     ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                     ta-html-editor-class="border-around">
+                </div>-->
+                <textarea id2="editingText{{$index}}" ui-tinymce="item.tinymceOption" ng-model="item.data[$ctrl.translateLang]">
+
+            </textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+        <p>
+            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.save(item)">
+                <i class="material-icons link-success md-42">save</i>
+            </a>
+        </p>
+
+        <p>
+            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.copyContent(item)" title="скопировать исходный текст в окно перевода">
+                <i class="material-icons link-warning md-42">forward</i>
+            </a>
+        </p>
+
+        <p>
+            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.extendText(item,$index)" title="увеличить/восстановить окно перевода">
+                <i class="material-icons link-info md-42">open_with</i>
+            </a>
+        </p>
+        <p>
+            <button class="btn btn-fab btn-fab-mini" ng-click="$ctrl.translateGoogle(item)" title="авто перевод" ng-disabled="$ctrl.translatingGoogle">
+                <i class="material-icons link-info md-42">open_with</i>
+            </button>
+        </p>
+
+    </div>
+    <hr style="color:darkred">
+    <div class="clearfix"></div>
+</div>

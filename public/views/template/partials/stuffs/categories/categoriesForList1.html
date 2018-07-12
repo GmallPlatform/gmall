@@ -1,0 +1,17 @@
+<!--ideal-->
+<div class="categories-for-list" >
+    <div class="" ng-if="$ctrl.parentSection.categories.length">
+        <a class="categories-stuff" ng-click="$ctrl.changeCategory('category')"  ng-class="{'active':$ctrl.category=='category'}">
+            <span class="icon-categories-img"></span>
+            <span class="text-center" ng-bind="$ctrl.global.get('lang').val.allCategories"></span>
+        </a>
+
+        <a class="categories-stuff" ui-sref="stuffs(item.linkData)"   ng-repeat="item in $ctrl.parentSection.categories"
+           ng-class="{'active':$ctrl.category==item.url}"  ng-show="!item.notActive">
+            <span class="icon-categories-img"></span>
+            <span class="text-center" ng-bind="item.name"></span>
+        </a>
+
+        <div class="clearfix"></div>
+    </div>
+</div>

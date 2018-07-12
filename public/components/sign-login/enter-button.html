@@ -1,0 +1,29 @@
+<div class="enter-button-box">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <a class="link-collapsed pull-right"  ng-click="collapsed = !collapsed">{{$ctrl.global.get('langForm').val['forgotpassword']}}</a>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="!collapsed">
+        <p class="text-help">{{$ctrl.global.get('langForm').val['loginbutton']}}</p>
+        <form method="post" ng-submit="$ctrl.getEnterButton(resetPassword)" name="resetPassword" novalidate>
+            <div class="form-group has-feedback">
+                <input ng-class="{ 'has-error' : resetPassword.email.$invalid}"
+                       class="form-control input-lg"
+                       type="email"
+                       id="emailReset"
+                       name="email"
+                       ng-model="$ctrl.user.email"
+                       placeholder="e-mail"
+                       required>
+                <span class="ion-at form-control-feedback"></span>
+            </div>
+            <div class="help-block text-danger" ng-messages="resetPassword.email.$error">
+                <div ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</div>
+                <div ng-message="email">{{$ctrl.global.get('langError').val.formatnot}}</div>
+            </div>
+            <button type="submit" ng-disabled22="signupForm.$invalid || $ctrl.blockButton" class="btn btn-lg btn-block  btn-project">{{$ctrl.global.get('langForm').val.send}}</button>
+            <p class="text-help">{{$ctrl.global.get('langForm').val['spam']}}</p>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>
+

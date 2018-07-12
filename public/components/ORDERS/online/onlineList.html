@@ -1,0 +1,206 @@
+<style>
+    .ui-select-choices-group-label {
+        font-size: 20px;
+    }
+    .fix-to-top {
+        position: fixed;
+        top :60px
+    }
+</style>
+<div  class="online-list">
+    <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 select-servise">
+        <div  class="cart-detail">
+            <h3 class="name-page text-center" ng-show="!$ctrl.hideMastersList">таблица он-лайн записи</h3>
+
+            <p ng-show="!$ctrl.hideMastersList">Выбор услуги и выбор мастера - не взаимосвязаны и используются только для формирования таблицы специалистов при он-лайн записи из админпанели.
+            Если производится запись на услугу (маcтер не важен, то выберите услугу и в таблице будут только специалисты, выполняющие данную услугу.
+            Если клиент хочет записаться к определенному специалисту - выберите его и остальные специалисты будут временно скрыты</p>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <!--<label for="dp{{$index}}" class="control-label">выбрать дату</label>-->
+                <p class="input-group date-picker-new">
+                    <input uib-datepicker-popup="dd-MMMM-yyyy" class="form-control"
+                           id="dp{{$index}}"
+                           type="text"
+                           ng-model="$ctrl.date"
+                           ng-change="$ctrl.changeDate()"
+                           is-open="$ctrl.opened"
+                           required
+                           ng-click="$ctrl.opened=true"
+                           close-text="Close"
+                           current-text="{{$ctrl.global.get('lang').val['today']}}"
+                           clear-text="Reset"
+                           datepicker-options="$ctrl.datePickerOptions"/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-fab btn-fab-mini" ng-click="$ctrl.opened=true">
+                            <i class="material-icons link-warning md-36">today</i>
+                        </button>
+                    </span>
+                </p>
+
+            </div>
+
+            <div data class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-show="!$ctrl.hideMastersList">
+                <ui-select class="servise-add"  ng-model="$ctrl.selStuff" ng-change="$ctrl.selectStuff($ctrl.selStuff)" >
+                    <ui-select-match  allow-clear="true" placeholder="выбрать услугу">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices group-by="'category'" repeat="s in $ctrl.items | filter:$select.search">
+                        {{s.name}} {{s.duration}} {{$ctrl.global.get('lang').val.minute}} / {{s.price}} {{s.currencyName}}
+                    </ui-select-choices>
+                </ui-select>
+                <div class="clearfix"></div>
+            </div>
+            <div data class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-show="!$ctrl.hideMastersList">
+                <ui-select class="servise-add" ng-model="$ctrl.selectedMaster" ng-change="$ctrl.selectMaster($ctrl.selectedMaster)" >
+                    <ui-select-match  allow-clear="true" placeholder="выбрать мастера">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices group-by="'category'" repeat="s in $ctrl.masters | filter:$select.search">
+                        {{s.name}}
+                    </ui-select-choices>
+                </ui-select>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+
+
+
+
+            <div class="online-box">
+                <div class="online-table" ng-hide="$ctrl.selectedMaster">
+                    <div class="online-table-header" set-class-when-at-top="fix-to-top">
+                        <div class="text-center  master-name"  ng-repeat="master in $ctrl.masters" ng-show="master.show" ng-repeat-end-watch="mastersRepeatDone">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 time">
+                                <div class="text-center">
+                                    <div>
+                                        время
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 master">
+                                <div class="">
+                                    <p>
+                                        {{master.name}}
+                                    </p>
+
+                                    <span ng-bind="$ctrl.moment($ctrl.date).format('L')"></span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div style="display: table-row">
+                        <div class="text-center servise-entry"  ng-repeat="master in $ctrl.masters" ng-show="master.show">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 time-entry ">
+                                <div class="time-entry-box" ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePart">
+                                    <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 servise-entry-box">
+                                <div>
+                                    <div class="servise-box"  ng-repeat="item in master.entryTimeTable|filter:$ctrl.filterTimePartForMaster"
+                                         ng-click="$ctrl.newBooking(master,item)"
+                                         ng-class2="{'busyEntry':item.busy,borderBottom:!item.noBorder}"
+                                         ng-class="{
+                                     'busyEntry':item.busy  && !item.reservation,
+                                     'reservation':item.busy  && item.reservation,
+                                     'borderTop':!item.noBorder,
+                                     'disabled':item.out||$ctrl.disabledTimePart(item,idx.id)}">
+                                        <div class="entry" ng-class="{'timepartDisabled':item.out}">
+                                            <span ng-show="::item.out">недоступно для записи</span>
+                                            <span ng-hide="item.service=='reserved' && item.comment"><span  ng-bind="::item.service"></span></br></span>
+                                            <span ng-bind="::item.user"></span>
+                                            <span class="phone"  ng-bind="::item.phone"></span><br>
+                                            <span ng-show="::item.service=='reserved'" ng-bind="item.comment"></span>
+
+                                            <!--<span  ng-bind="::item.email"></span><br>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div ng-show="$ctrl.selectedMaster" style="overflow: auto">
+                    <div class="week-box week-table-header" >
+                        <div class="">
+                            <div  class="box-day" ng-repeat="i in [0,1,2,3,4,5,6]" ng-class="{'active':i==$ctrl.week}">
+                                <a class="week" ng-click="$ctrl.changeWeek(i)">
+                                    {{$ctrl.global.get('langForm').val.thisWeek}}
+                                    <span ng-show="i">+ {{i}}</span> </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <!--<div class="week-box" style="height: 40px"></div>-->
+
+                    <div class="online-table" style="width: 2500px; overflow: auto">
+                        <div ng-repeat="idx in $ctrl.slideMasterWeekArry" index="idx.id" active="idx.active" style="float: left">
+                            <div class="online-table-header" >
+                                <div class="text-center  master-name" >
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 time">
+                                        <div class="text-center">
+                                            <div>
+                                                <span ng-bind="$ctrl.currentMonth"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 master">
+                                        <div class="">
+                                            <span ng-bind="$ctrl.getDateObj($ctrl.datesOfWeeks[idx.id].date)"></span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="online-table-body">
+                                <div  class="col-lg-3 col-md-3 col-sm-3 col-xs-3 online-table-day online-table-header-left">
+                                    <div class="time-entry-box" ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePartWeek">
+                                        <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 online-table-day">
+                                    <div class="box-day" ng-repeat="item in $ctrl.selectedMaster.week[$ctrl.datesOfWeeks[idx.id].date].entryTimeTable|filter:$ctrl.filterTimePartForMasterWeek">
+
+                                        <div class="servise-box"
+                                             ng-click="item.ngClickOnEntry($ctrl.datesOfWeeks[idx.id].date,idx.id)"
+                                             ng-class="{
+                                     'busyEntry':item.busy  && !item.reservation,
+                                     'reservation':item.busy && item.reservation,
+                                     'borderTop':!item.noBorder,
+                                     'disabled':item.out||$ctrl.disabledTimePart(item,idx.id)}">
+
+                                            <div class="entry">
+                                                <span ng-bind="item.usedTime"></span><br>
+                                                <span ng-bind="item.user.name"></span><br>
+                                                <span ng-bind="item.phone"></span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="clearfix"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+

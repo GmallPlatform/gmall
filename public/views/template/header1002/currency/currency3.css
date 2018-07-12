@@ -1,0 +1,82 @@
+/*fashion*/
+.currency-box span {
+    vertical-align: middle;
+}
+.dropdown-menu {
+    border-radius: 0;
+    right: 0;
+    left: auto;
+}
+.currency-box ul li {
+    list-style: none;
+}
+.currency-box > li > a,
+.dropdown-menu > li > a {
+    color: $color;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.currency-box > li > a:hover,
+.dropdown-menu > li > a:hover {
+    background-color: transparent;
+    color: #ccc;
+}
+
+
+/*
+.right-nav-menu .currency-box {
+    text-align: left;
+}
+.right-nav-menu .currency-box a {
+    margin: 20px 0;
+}
+.right-nav-menu .currency-box a:hover {
+    margin: 20px 0;
+}
+.right-nav-menu .currency-box a:hover img {
+    margin-right: 10px;
+}
+.currency-box .currency {
+    display: inline-block;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+}
+
+.currency-box ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+.currency-box ul li a .currency{
+    display: inline-block;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.dropdown-menu {
+    border-radius: 0;
+    right: 0;
+    left: auto;
+}
+.currency-box ul.dropdown-menu li a {
+    padding: 10px 20px;
+}
+.currency-box ul.dropdown-menu .currency {
+    margin-top: 0px;
+}
+.currency-box ul.dropdown-menu li a .currency {
+    display: block;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    padding-bottom: 0;
+}
+.currency-box .dropdown-menu {
+    margin-top: 0;
+}
+.mobile-wrapper  .currency-box .currency {
+    margin-left: 5px;
+}*/

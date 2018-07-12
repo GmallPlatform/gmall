@@ -1,0 +1,88 @@
+<style>
+    .action-btn {
+        background-color: #eee;
+        border-top: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        height: 50px;
+        margin-left: -20px;
+        margin-right:-20px;
+        cursor: pointer;
+        padding-top: 10px;
+    }
+</style>
+<div  class="dialogsStuff col-lg-12 col-md-12  col-sm-12  col-xs-12" ng-hide="$state.current.name!='frame.dialogs'">
+    <div class="cart-detail">
+        <div ng-show="global.get('seller').val && global.get('admin').val && !dialogsCtrl.activeDialog"
+                 class="col-lg-4 col-md-4  col-sm-6  col-xs-12">
+            <choice-user on-selected="dialogsCtrl.startDialog(null,user)"></choice-user>
+        </div>
+
+        <!--<div ng-if="!dialogsCtrl.items.length && !global.get('seller').val && !dialogsCtrl.activeDialog"
+                 class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+            <a ng-click="dialogsCtrl.startDialog()" class="btn btn-default">начать</a>
+        </div>-->
+        <div class="action-btn text-center" ng-if="!dialogsCtrl.items.length && !global.get('seller').val && !dialogsCtrl.activeDialog">
+            <a ng-click="dialogsCtrl.startDialog()" class="link-success">начать</a>
+        </div>
+
+        <div class="clearfix"></div>
+        <div ng-repeat="dialog in dialogsCtrl.items">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div class="cart-detail" title="продолжить диалог" ng-click="$state.go('frame.dialogs.dialog',{id:dialog._id})">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>дата начала </label><br>
+                        <span class="order-date" ng-bind="moment(dialog.date).format('LLL')"></span>
+                        <p>
+                           <span ng-if="dialog.chatMessages=dialogsCtrl.getUnReadChatMessages(dialog)">
+                                <label>чат</label> <span class="badge badge-danger" ng-bind="dialog.chatMessages">
+
+                           </span>
+                            </span>
+                                <span class="link-success on-line" ng-if="dialog.online">
+                                в сети
+                            </span>
+                        </p>
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="pull-left">
+                            <p>
+                                <label>продавец</label>  <span>
+                                <strong ng-bind="dialog.sellerName"></strong></span>
+                            </p>
+                            <p>
+                                <label  ng-if=":: dialogsCtrl.getGuest(dialog)">гость</label>
+                                <label ng-if=":: !dialogsCtrl.getGuest(dialog)">пользователь  </label>
+                                <span><strong ng-bind="dialog.userName"></strong></span>
+                            </p>
+                        </div>
+
+
+                        <a class="btn btn-fab btn-fab-mini pull-right">
+                            <i class="material-icons link-warning" ng-click="dialogsCtrl.deleteDialog(dialog._id,$event)">delete</i>
+                        </a>
+                    <!--<div class="btn-clear">
+                        <a class="btn btn-default"
+                           ng-click="dialogsCtrl.deleteDialog(dialog._id,$event)">
+                            <span class="link-warning">удалить диалог</span>
+                        </a>
+                    </div>-->
+                        <!--<a ng-click="dialogsCtrl.deleteDialog(dialog._id)" class="btn btn-error">удалить</a>-->
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+    <paginator-main
+            paginate='dialogsCtrl.paginate'
+            getlist="dialogsCtrl.getList()"
+            scroll="true">
+    </paginator-main>
+</div>
+<div ui-view=""></div>
+
+

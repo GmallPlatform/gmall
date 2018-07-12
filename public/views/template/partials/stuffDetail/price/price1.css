@@ -1,0 +1,21 @@
+/*zefir*/
+
+.price-box {
+    text-align: right;
+}
+.price-box a {
+    cursor: default;
+}
+.stuff-detail .sale {
+    font-size: 26px;
+}
+.line {
+    text-decoration: line-through;
+}
+.retail {
+    font-size: 20px;
+}
+/*
+.retail {
+    font-size: $font-size*0.8;
+}*/

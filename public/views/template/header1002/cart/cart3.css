@@ -1,0 +1,96 @@
+/*fashion*/
+.img-bag {
+    opacity: 1;
+    position: relative;
+}
+.img-bag:hover {
+    opacity: 0.8;
+}
+.img-bag .inCart{
+    font-weight: bold;
+    font-size: 20px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+    top: 25px;
+    left: 10px;
+    color: $mainColor;
+}
+/*
+.menu-static-left .img-bag{
+     margin-top: 15px;
+     margin-bottom: 15px;
+
+ }
+.menu-static-left .img-bag {
+    color: #333;
+}*/
+@media (max-width: 1060px) {
+    .right-nav-menu .nav-group {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media (max-width: 768px) {
+    .right-nav-menu .nav-group.img-bag{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .img-bag .inCart {
+        left: 8px;
+    }
+
+}
+.preview-cart{
+    position: relative;
+}
+.preview-cart .cartItems {
+    position: absolute;
+    top:77px;
+    width: 350px;
+    right: 0px;
+    background-color: #fff;
+    padding: 20px 10px;
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 2000;
+}
+.preview-cart .cartItems .name-goods {
+    padding: 0;
+    font-size: 14px;
+}
+.preview-cart .cartItems  .icon-cancel-img {
+    width: 15px;
+    height: 15px;
+}
+.gotoinCart {
+    color: $mainColor;
+    transition: all  0.3s ease-in-out 0.1s;
+    line-height: 26px;
+}
+.gotoinCart:hover {
+    color: $mainColor;
+    font-size: 22px;
+}
+
+.added-cart{
+    position: fixed;
+    top:0px;
+    right: 0px;
+    background-color: #ffffff;
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    mix-height: 100px;
+    width: 350px;
+    z-index: 2000;
+}
+.addItem .name-goods {
+    padding: 0;
+}
+.addItem{
+    padding: 20px 10px;
+}

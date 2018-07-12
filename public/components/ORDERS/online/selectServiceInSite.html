@@ -1,0 +1,21 @@
+<div class="select-service">
+    <div class="modal-header-project">
+        <h3 class="modal-title text-center">
+            <span class="name-modal">{{$ctrl.global.get('lang').val.choose}}</span>
+            <a class="cancel" ng-click="$ctrl.cancel()">
+                <span class="icon-cancel-img"></span>
+            </a>
+        </h3>
+    </div>
+    <div class="modal-body-project text-center">
+        <div class="col-lg-3 col-sm-3 col-sm-3 col-xs-6 name-service-box" ng-repeat="item in $ctrl.items">
+            <div class="name-service">
+                <a class="name-service-link" ng-click="$ctrl.ok(item)">
+                    <h4 ng-bind="item.name"></h4>
+                </a>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

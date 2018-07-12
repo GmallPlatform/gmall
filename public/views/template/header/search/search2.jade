@@ -1,0 +1,16 @@
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+        - var c = 'form-search'
+        if(dj[key].cache_key=='menu1M')
+            div(class="search-button")
+                button(type="button",class="btn btn-default",ng-click="global.get('functions').val.searchModal()")
+                    span(class="icon-search-img")
+        else
+            div(class=c,ng-cloak)
+                div(class="input-group")
+                    input(ng-show="globalProperty.displaySearch",class="form-control",type="text",ng-model="searchStr",placeholder=lang.search,ng-change="global.get('functions').val.searchStuffList(searchStr)",ng-blur="global.get('functions').val.searchLostFocus()",ng-focus="global.get('functions').val.searchStuffList(searchStr)")
+                    span(class="input-group-btn")
+                        button(type="button",class="btn btn-default",ng-click="globalProperty.displaySearch=!globalProperty.displaySearch")
+                            span(class="icon-search-img")
+                div(ng-show="globalProperty.stuffSearchList && globalProperty.stuffSearchList.length",class="searchresults")
+                    div(search-stuff-list="globalProperty.stuffSearchList",search-str="searchStr")

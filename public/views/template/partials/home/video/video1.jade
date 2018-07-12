@@ -1,0 +1,37 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="container")
+            if(dj[key].i && dj[key].i==1)
+                - var id='arrowDownDiv'
+                arrow-down
+            - var clickLink=''
+            if(dj[key].button && dj[key].button.link)
+                - clickLink="global.get('functions').val.action('"+dj[key].button.link+"')"
+            if(dj[key].button && dj[key].button.is)
+                - var element = "div"
+            else
+                - var element = "a"
+            #{element}(ng-click=clickLink)
+                div(id=id,class="half-section-video")
+                    div(class="text-center")
+                        div(class="video-box")
+                            if(dj[key].mobile)
+                                img(class="img-responsive",src=photoHost+'/'+dj[key].videoCover)
+                            else
+                                video(preload="true",poster=photoHost+'/'+dj[key].videoCover, ,controls=dj[key].videoControl,autoplay,style="width: 100%",audio-mute=audio,type='video/mp4')
+                                    if(dj[key].video)
+                                        source(src=photoHost + '/' + dj[key].video,type="video/mp4")
+                                    if(dj[key].videoOgg)
+                                        source(src=photoHost + '/' + dj[key].videoOgg,type="video/ogg")
+                                    else
+                                        img(class="img-responsive",src=poster)
+                        div(class="video-content text-center")
+                            if(dj[key].name)
+                                h1(class="video-header")
+                                    span=dj[key].desc
+                            if(dj[key].desc)
+                                div(class="banner-desc")
+                                    | !{dj[key].desc}
+                            if(dj[key].button && dj[key].button.is)
+                                a(set-animate=dj[key].animate && !mobile,data-animation=dj[key].animate,class="btn btn-project btn-banner",ng-click=clickLink)=dj[key].button.text
+

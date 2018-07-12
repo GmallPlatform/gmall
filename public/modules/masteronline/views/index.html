@@ -1,0 +1,45 @@
+<div class="content" ng-show="$state.current.name=='frame.master'">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+        <a   ui-sref="frame.master.online" class="content-box-link">
+            <div class="panel content-box">
+                <div class="panel-heading">
+                    <h3 class="panel-title">запись он-лайн</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <i class="material-icons">alarm</i>
+                    </p>
+                    <p class="plot">
+                        таблица записи к специалисту (мастеру) на дату и время
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+        <a   ui-sref="frame.master.schedule" class="content-box-link">
+            <div class="panel content-box">
+                <div class="panel-heading">
+                    <h3 class="panel-title">расписание</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <i class="material-icons">list</i>
+                    </p>
+                    <p class="plot">
+                        таблица расписания
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+<div ui-view></div>
+
+
+
+
+

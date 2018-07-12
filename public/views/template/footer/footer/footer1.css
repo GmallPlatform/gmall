@@ -1,0 +1,28 @@
+@if $color {
+    background-color:$color;
+
+}
+.mobile-wrapper .footer-left {
+    float: left;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.mobile-wrapper .footer-center {
+    float: right;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.mobile-wrapper .footer-right {
+    float: right;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.mobile-wrapper  .container{
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+}
+.mobile-wrapper .wrap-center {
+    width: auto;
+    display: inline-block;
+}

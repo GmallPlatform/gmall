@@ -1,0 +1,59 @@
+<a ui-sref="frame.filters">назад</a>
+<script type="text/ng-template" id="category.html">
+    <form class="form-inline">
+    <div class="input-group">
+        <div class="form-group">
+            <span class="input-group-addon" ng-bind="category.name"></span>
+        </div>
+        <div class="form-group">
+            <input type="checkbox"ng-click="bindFilter(category,section)" ng-model="category.checked">
+        </div>
+    </div>
+    </form>
+    <!--<div class="item">category {{category.name}}</div>-->
+</script>
+
+<script type="text/ng-template" id="section.html">
+    <div>
+        <div class="input-group" ng-init="section.showList=true">
+            <form class="form-inline">
+            <div class="input-group">
+                <div class="form-group">
+                <span ng-click="section.showList=!section.showList" class="glyphicon glyphicon-chevron-right input-group-addon" ng-class="{'glyphicon-chevron-right': !section.showList, 'glyphicon-chevron-down': section.showList}"></span>
+                <span class="input-group-addon"ng-if="section.level===0">Раздел</span>
+                <span class="input-group-addon"ng-if="section.level!==0">Подраздел></span>
+                </div>
+                <div class="form-group" >
+                <input  class="form-control" ng-disabled="true" ng-model="section.name">
+                </div>
+                </div>
+                <div class="form-group" ng-if="section.showCheck">
+                    <input type="checkbox" ng-model="section.checkAll"ng-click="bindFilterForSection(section,section.checkAll)">
+                </div>
+                <!--<a class="input-group-addon"><input class="checkbox"></a>-->
+            </div>
+            </form>
+            <ul ng-if=" section.showList" ng-init="parentSection=section">
+                <li ng-repeat="section in section.child"
+                    ng-include="'section.html'">
+                </li>
+            </ul>
+            <ul ng-if=" section.showList">
+                <li ng-repeat="category in section.categories track by $index" ng-include="'category.html'">
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</script>
+
+
+<!-- Main area with dropzones and source code -->
+<div class="row">
+    <div ng-repeat="section in sections" class="col-md-6">
+        <div >
+            <div ng-include="'section.html'"></div>
+        </div>
+    </div>
+</div>
+

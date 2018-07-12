@@ -1,0 +1,30 @@
+
+<div
+        ng-class="::{'home-brands':!homeCtrl.template.brands.class,
+        'home-brands1':homeCtrl.template.brands.class==1,
+        'home-brands2':homeCtrl.template.brands.class==2,
+        'home-brands3':homeCtrl.template.brands.class==3,
+        'home-brands4':homeCtrl.template.brands.class==4,
+        'home-brands5':homeCtrl.template.brands.class==5,}"class="brands-home">
+    <!--<div class="row">-->
+        <div class="container">
+            <h2 class="text-center" ng-if="::homeCtrl.template.brands.namebox" ng-bind="::homeCtrl.template.brands.namebox"></h2>
+            <div class=" home-section full text-center"
+                 ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.data.brands.length==2||homeCtrl.data.brands.length==4,
+                            'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.data.brands.length==3,
+                            'col-lg-12 col-md-12 col-sm-12 col-xs-12': homeCtrl.data.brands.length==1}"
+                 ng-repeat="item in homeCtrl.data.brands"
+                 set-animate data-animation="animated8" data-animation-delay="02">
+                <div class="row">
+                    <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',brand:item.url})">
+                        <img class="img-responsive imgForScale" ng-src="{{item.img}}">
+                        <div class="home-section-header-big" >
+                            <h3 ng-bind="item.name"></h3>
+                            <p ng-bind-html="image.desc|unsafe"></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <!--</div>-->
+</div>

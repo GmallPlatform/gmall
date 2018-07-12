@@ -1,0 +1,176 @@
+<h1>cabinet1</h1>
+<uib-tabset  justified="true">
+    <uib-tab index="0" heading="заказы">
+        <ul>
+           <li ng-repeat="order in $ctrl.orders" >
+               <div class="col-lg-3 col-sm-3 col-xs-6 col-sm-6">
+                   <a ng-click="$ctrl.orderDetail(order)">
+                       <span>№ <strong  ng-bind="order.num"></strong> </span>
+                       <span>сумма - <strong ng-bind="(order.paySum+((order.totalPay)?order.totalPay:0)).toFixed(2)"></strong>&nbsp{{order.currency}}</span>
+                   </a>
+
+               </div>
+               <div class="col-lg-3 col-sm-3 col-xs-6 col-sm-6">
+                   <span class=" order-date"> от <span  ng-bind="$ctrl.moment(order.date).format('LLL')"></span></span>
+               </div>
+               <div class="col-lg-3 col-sm-3 col-xs-6 col-sm-6">
+                   <span ng-switch="order.status">
+                                        <span class="status" ng-switch-when="1">поступил</span>
+                                        <span class="status" ng-switch-when="2">принят</span>
+                                        <span class="status" ng-switch-when="3">оплачен</span>
+                                        <span class="status" ng-switch-when="5">доставлен</span>
+                                        <span class="status del" ng-switch-when="6">удален</span>
+                                    </span>
+               </div>
+               <div class="clearfix"></div>
+               <div uib-collapse="!order.collapse">
+                   <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                       <div ng-repeat="(idx,good) in order.cart.stuffs track by $index" >
+                           <div class="mb-10 clearfix" ng-if="$index==0">
+                               <div class="col-lg-4">
+                                   <hr>
+                               </div>
+                               <div class="col-lg-4 text-center">
+                                   <h4 class="group-name" ng-bind="good.groupName || good.groupUrl"></h4>
+                               </div>
+                               <div class="col-lg-4">
+                                   <hr>
+                               </div>
+                           </div>
+                           <div class="mb-10 clearfix">
+                               <h3  ng-if="$index!=0 &&
+                                      order.cart.stuffs[$index].groupUrl!=order.cart.stuffs[$index-1].groupUrl"
+                                    ng-bind="good.groupName || good.groupUrl">
+                               </h3>
+                           </div>
+                           <div class="cart-detail"   ng-class="{'font-mobile':$ctrl.global.get('mobile').val}"   id="cart-inner{{$index}}">
+                               <div class="mb-10 clearfix">
+                                   <span class="index">{{idx+1}}</span>
+                                   <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-if="!$ctrl.global.get('mobile').val">
+                                            <span ng-if="good.img" >
+                                                <img class="img-responsive" ng-src="{{good.img}}" style="width: 100%">
+                                            </span>
+                                       <span ng-if="good.sticker" >
+                                                <img class="sticker"  ng-src="{{good.sticker}}">
+                                            </span>
+                                   </div>
+                                   <div  ng-class="{'col-lg-10 col-md-9 col-sm-8':!$ctrl.global.get('mobile').val,'col-xs-12':$ctrl.global.get('mobile').val}">
+                                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                           <a  class="name-models" ng-click="$ctrl.goToStuff(good)" ng-class="{'font-mobile':$ctrl.global.get('mobile').val}" >
+                                               <p>
+                                                   <span ng-bind="good.name"></span>
+                                                   <span ng-bind="good.artikul"></span>
+                                               </p>
+                                           </a>
+                                       </div>
+                                   </div>
+                                   <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
+                                       <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 ">
+                                           <p >
+                                               <span class="size">Размер</span>
+                                               <span  ng-bind="good.addCriterionName"></span>
+                                           </p>
+                                           <!--это поддержка старого формата, надо будет брать в середине 2016 года-->
+                                           <!--<span ng-if="good.addCriterionName.length">
+                                              <span ng-repeat-start="criterionName in good.addCriterionName">
+                                                <span ng-if="$index">,</span>
+                                              </span>
+                                             <span ng-repeat-end ng-bind="criterionName"></span>
+                                           </span>-->
+                                           <p >
+                                               <span ng-if="!$ctrl.global.get('mobile').val">Количество</span>
+                                               <span ng-bind="good.quantity"></span>
+                                               {{good.unitOfMeasure}}
+
+                                           </p>
+                                       </div>
+                                       <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" ng-if="$ctrl.global.get('mobile').val">
+                                           <p class=" text-right">цена опт</p>
+                                           <p class=" text-right">{{(order.kurs*(good.price)).toFixed(2)}}&nbsp{{order.currency}}</p>
+                                       </div>
+                                       <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                           <p class=" text-right" ng-if="!$ctrl.global.get('mobile').val">цена со скидкой</p>
+                                           <p class="sum text-right">{{(order.kurs*(good.cena=order.getPrice(idx))).toFixed(2)}}&nbsp{{order.currency}}</p>
+                                       </div>
+                                       <div class="clearfix"></div>
+                                       <hr>
+                                   </div>
+                                   <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
+                                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-7 sum text-right">
+                                           <span>{{(order.kurs*(good.sum=good.cena*good.quantity)).toFixed(2)}}&nbsp{{order.currency}}</span>
+                                       </div>
+                                   </div>
+                                   <div class="clearfix"></div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="col-lg-10 col-xs-6 text-right">
+                           <div class="row">
+                               <p>Сумма</p>
+                           </div>
+                       </div>
+                       <div class="col-lg-2 col-xs-6 text-right">
+                           <p><span ng-bind="(order.kurs*(order.getTotalSum(true))).toFixed(2)"></span>&nbsp{{order.currency}}</p>
+                       </div>
+                       <div class="clearfix"></div>
+                       <div class="col-lg-10 col-xs-6 text-right">
+                           <div class="row">
+                               <p>Сумма с учетом скидки</p>
+                           </div>
+                       </div>
+                       <div class="col-lg-2 col-xs-6 text-right">
+                           <p> <span ng-bind="(order.kurs*(order.sum=order.getTotalSum())).toFixed(2)"></span>&nbsp{{order.currency}}</p>
+                       </div>
+                       <div class="clearfix"></div>
+                       <div ng-if="order.coupon">
+                           <div class="col-lg-10 col-xs-6 text-right">
+                               <div class="row">
+                                   <p>Сумма с учетом купона!!</p>
+                               </div>
+                           </div>
+                           <div class="col-lg-2 col-xs-6 text-right">
+                               <p><span ng-bind="(order.kurs*order.getCouponSum()).toFixed(2)"></span>&nbsp{{order.currency}}</p>
+                           </div>
+                       </div>
+
+                       <div class="clearfix"></div>
+                       <div class="col-lg-10 col-xs-6 text-right">
+                           <div class="row">
+                               <p>Доставка</p>
+                           </div>
+                       </div>
+                       <div class="col-lg-2 col-xs-6 text-right">
+                           <p><span ng-bind="order.shipCost"></span>&nbsp{{order.currency}}</p>
+                       </div>
+                       <div class="clearfix"></div>
+                       <div class="col-lg-10 col-xs-6 text-right">
+                           <div class="row">
+                               <p>Оплачено</p>
+                           </div>
+                       </div>
+                       <div class="col-lg-2 col-xs-6 text-right">
+                           <p><span ng-bind="order.totalPay"></span>&nbsp{{order.currency}}</p>
+                       </div>
+                       <div class="clearfix"></div>
+                       <div class="col-lg-10 col-xs-6 text-right">
+                           <div class="row">
+                               <p>Итого к оплате</p>
+                           </div>
+                       </div>
+                       <div class="col-lg-2 col-xs-6 text-right">
+                           <p class="sum" ng-class="{'font-mobile':$ctrl.global.get('mobile').val}" >
+                               <span ng-bind="(order.paySum=(order.kurs*order.getCouponSum()+order.shipCost-order.totalPay)).toFixed(2)"></span>
+                               &nbsp{{order.currency}}
+                           </p>
+                       </div>
+                       <div class="clearfix"></div>
+                   </div>
+               </div>
+           </li>
+        </ul>
+    </uib-tab>
+    <uib-tab index="1" heading="личные данные">
+        Short Labeled Justified content
+    </uib-tab>
+    <!--<uib-tab index="2" heading="Long Justified">Long Labeled Justified content</uib-tab>-->
+</uib-tabset>

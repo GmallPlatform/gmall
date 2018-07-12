@@ -1,0 +1,112 @@
+<div id="stuff-cart1.html" class="stuffs">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{'mobil':$ctrl.mobile}">
+        <div class="row">
+            <div class="stuff-cart-min-height" ng-if="::!stuff._id">
+            </div>
+            <div id="list{{::stuff._id}}"class="goods-container-img" style="position: relative; " ng-if='::stuff._id'>
+                <a ui-sref="stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url,parentGroup:null,categoryList:null,searchStr:null})" >
+                    <div class="stuff-box">
+                        <img class="sticker" ng-src="{{stuff.sticker}}">
+                        <img class="img-responsive img-goods"
+                             ng-src="{{stuff.gallery[0].thumb||'/img/upload/no.png'}}" />
+                        <div class="box-overlay"></div>
+                        <div class="half-shadow" id="divforfix" ng-if='stuff._id'>
+                            <div class="title-block text-center">
+                                <h3 class="stuff-name">
+                                    <span ng-bind="::stuff.name"></span>
+                                    <span ng-bind="stuff.artikul"></span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="text-center"  ng-class="{'goods-desc':!stuff.service,'service-desc':stuff.service }" ng-if="stuff._id">
+                <div ng-if="::!stuff.service">
+                    <div class="sort-box" ng-if="::(stuff.sortsOfStuff.filter && stuff.sort)">
+                        <!--выберите {{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}<br>-->
+                        <span ng-init="stuff.stock[stuff.sort].name=$ctrl.getTagName(stuff.sort)"
+                              class="sort" ng-repeat="(tag,sort) in stuff.stock|filterSorts" ng-class="{'sort-active':stuff.sort==tag}">
+                            <span ng-click="stuff.sort=tag;stuff.changeSortOfStuff()">{{sort.value.name=$ctrl.getTagName(tag)}} </span>
+                        </span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p>
+                            <span ng-if="::!stuff.sort">ожидается</span>
+                            <span class="price" ng-class="{'line':stuff.sale||stuff.campaignUrl}" ng-if="::stuff.sort">
+                                <span ng-bind="stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val| currency:'':0" ng-class="{'line':stuff.sale||stuff.campaignUrl}"></span>
+                                <!--<span ng-bind="(stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val).toFixed(2)" ng-class="{'line':stuff.sale||stuff.campaignUrl}"></span>-->
+                                <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                            </span>
+                            <span class="sale" ng-if="::(stuff.sort && stuff.sale)">
+                                <span> / </span>
+                                <span ng-bind="stuff.stock[stuff.sort].priceSale*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                <!--<span ng-bind="(stuff.stock[stuff.sort].priceSale*$ctrl.global.get('rate').val).toFixed(2)"></span>-->
+                                <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                            </span>
+
+                            <span class="sale" ng-if="::(stuff.campaignUrl && stuff.sort)">
+                                <span> / </span>
+                                <span ng-bind="stuff.stock[stuff.sort].retail*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                <!--<span ng-bind="(stuff.stock[stuff.sort].priceCampaign*$ctrl.global.get('rate').val).toFixed(2)"></span>-->
+                                <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                            </span>
+
+                            <span class="clearfix"></span>
+                            <span ng-if="::(stuff.sort && $ctrl.global.get('store').val.seller.retail)">
+                                <span>розница</span>
+                                <span ng-bind="stuff.stock[stuff.sort].retail*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                            </span>
+                            <p ng-if="stuff.campaignUrl" class="campaign-label" ng-if="stuff.campaignUrl">
+                                <a ui-sref="campaign.detail({id:stuff.campaignUrl})">подробнее об акции</a>
+                            </p>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div ng-switch="stuff.orderType" ng-if="::stuff.sort">
+                    <div class="row" ng-switch-when='1'>
+                        <a class="btn  btn-project btn-no-border"
+                           ng-click="stuff.order()">
+                            заказать
+                        </a>
+                    </div>
+                    <div class="row" ng-switch-when='2'>
+                        <a class="btn  btn-project btn-no-border"
+                           ng-click="$ctrl.global.get('functions').val.witget('dateTime',stuff)">
+                            записаться
+                        </a>
+                    </div>
+                    <div class="row" ng-switch-when='3'>
+                        <a class="btn  btn-project btn-no-border"
+                           ui-sref="stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url,parentGroup:null,categoryList:null,searchStr:null})" >
+                            подробнее
+                        </a>
+                    </div>
+                    <div class="row" ng-switch-default>
+                        <span ng-switch="stuff.checkInCart()">
+                            <span ng-switch-when=true>
+                                <a class="btn  btn-project btn-border" disabled="disabled">
+                                    уже  в корзине
+                                </a>
+                            </span>
+                            <span ng-switch-default>
+                                <a  class="btn  btn-project btn-border"
+                                    ng-click="stuff.addItemToOrder()">
+                                    в корзину
+                                </a>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

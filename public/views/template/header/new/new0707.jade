@@ -1,0 +1,9 @@
+if((positionMenu=='top' ||positionMenu=='bottom') && position=='center')
+    - var c = 'page-stat nav-group'
+else if((positionMenu=='top' ||positionMenu=='bottom') && position!='center')
+    - var c = 'page-stat nav-group pull-'+position
+else
+    - var c = 'page-stat'
+div(class=c,ng-if2="global.get('store').val.newTag")
+    a(href="/group/category?queryTag=")
+        span new

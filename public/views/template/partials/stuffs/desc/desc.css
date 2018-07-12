@@ -1,0 +1,26 @@
+.blur {
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    z-index: 1;
+    height: 200px;
+    -webkit-filter: blur(16px);
+    -moz-filter: blur(16px);
+    -ms-filter: blur(16px);
+    filter: blur(16px);
+}
+.blur img {
+    position: absolute;
+    bottom: 0;
+}
+.page-desc-box {
+    position: relative;
+    background-color: rgba(255,255,255,0.5);
+    z-index: 5;
+    height: 200px;
+}
+.desc-box {
+    margin: 0 auto;
+}

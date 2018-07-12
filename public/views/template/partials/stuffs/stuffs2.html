@@ -1,0 +1,13 @@
+<div id='mainContent' class="stuffs-box">
+    <div ui-view></div>
+    <div ng-hide1="$state.current.name!='stuffs'" class="stuffs-admin" ng-init="padding=null" ng-class="{'padding-top-160':padding}">
+        <!--div menu-sections='fixed'></div>-->
+        <!--<categories-for-list-tatiana padding="padding"></categories-for-list-tatiana>-->
+        <div class="clearfix"></div>
+        <stuff-list-template-table></stuff-list-template-table>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+
+

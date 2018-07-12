@@ -1,0 +1,233 @@
+/*rk*/
+.home-slides {
+    position: relative;
+}
+.home-slides .substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.home-slides img {
+    -o-fit-object:cover;
+    object-fit:cover;
+    object-position:50%50%;
+    -o-object-position:50%50%
+}
+.slide-fade{
+    position: relative;
+}
+.home-slides {
+    position: relative;
+}
+.mytoggle,
+.home-slides img{
+    width: 100%
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+.mytoggle-page {
+    width: 100%;
+}
+.half-shadow {
+    z-index: 1029;
+}
+.next {
+    display: block;
+    height: 100%;
+    width: 40px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    z-index: 1024;
+}
+.icon-next-img {
+    position: absolute;
+    top: 45%;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity 0.5s ease-out 0s;
+}
+.prev {
+    display: block;
+    height: 100%;
+    width: 40px;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    z-index: 1024;
+}
+.icon-prev-img {
+    position: absolute;
+    top: 45%;
+    left: 20px;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity 0.4s;
+    transition: opacity 0.5s ease-out 0s;
+}
+.home-slides:hover .icon-prev-img,
+.home-slides:hover .icon-next-img {
+    opacity: 1;
+}
+.carousel-indicators {
+    left: 0;
+    margin: 0;
+    text-align: center;
+    z-index: 1025;
+    width: 100%;
+}
+.carousel-box {
+    display: inline-block;
+}
+.set-slide {
+    width: 80px;
+    border-radius: 0;
+    opacity: 0.6;
+}
+.set-slide.active {
+    background-color: transparent;
+    opacity: 0.9;
+    margin: 1px 5px;
+}
+.mytoggle {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity:0;
+}
+.mytoggle.ng-enter {
+    opacity: 0;
+}
+.mytoggle.ng-enter-active {
+    opacity: 1;
+}
+.mytoggle.ng-leave {
+    opacity: 1;
+}
+.mytoggle.ng-leave-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-add {
+
+    opacity: 1;
+    display: block !important;
+}
+.mytoggle.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-remove {
+    opacity: 0;
+    display: block !important;
+}
+.mytoggle.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+.zoom-plus {
+    position: absolute;
+    top:200px;
+    left: 45%;
+}
+.mobile-wrapper .carousel-indicators {
+    position: relative;
+}
+.mobile-wrapper .carousel-indicators li{
+    border: 2px solid $color;
+    width: 40px;
+    height: 2px;
+    border-width: 2px;
+    margin-bottom: 0;
+}
+.mobile-wrapper .home-slides .carousel-indicators .active {
+    border-width: 2px
+}
+.mobile-wrapper .navleft-carousel,
+.mobile-wrapper .navright-carousel {
+    display: none;
+}
+.mobile-wrapper .slide-fade {
+    height: 80vh;
+
+}
+.mobile-wrapper .half-shadow {
+    bottom: 10px;
+}
+.mobile-wrapper h1 {
+    font-size: 24px;
+}
+.mobile-wrapper .home-slides img{
+    height: 80vh;
+    object-fit: cover;
+    object-position: 75% 100%
+}
+
+
+/*chudo*/
+/*.home-slides .container {
+    width: 65%;
+    padding: 40px 0;
+}
+.home-slides .slide-box {
+    padding: 0;
+}
+.home-slides .pull-slide .container{
+    padding-left: 0;
+    padding-right: 0;
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+.mytoggle-page {
+    width: 100%;
+}
+.mobile-wrapper   .home-slides .container {
+    width: 100%;
+}
+@media (max-width: 1200px) {
+      .home-slides .container {
+        width: 75%;
+    }
+}
+
+.img-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    padding: 5px 30px
+}
+
+.desc-wrap {
+    padding: 5px 20px;
+     display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.mobile-wrapper   h1  {
+    font-size: 28px;
+}
+.mobile-wrapper   .home-slides .container {
+    width: 100%;
+    padding-top: 0
+}
+.mobile-wrapper   .img-wrap {
+    padding: 0 80px ;
+}*/

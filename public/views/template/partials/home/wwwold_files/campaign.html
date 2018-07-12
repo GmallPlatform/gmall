@@ -1,0 +1,11 @@
+<!--campaign-->
+<!--<div class="row">-->
+    <div class="col-lg-6" ng-repeat="item in global.get('campaign').val" ng-if="">
+            <a ui-sref="campaign.detail({url:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        <p ng-bind="item.gesc"></p>
+        </div>
+    </div>
+<!--</div>-->

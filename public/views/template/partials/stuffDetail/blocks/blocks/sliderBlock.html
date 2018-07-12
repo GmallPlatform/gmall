@@ -1,0 +1,5 @@
+<div ng-repeat="image in block.imgs" class="photo-item col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <a href="{{image.link}}"> <img class="img-responsive"  ng-src="{{image.img}}"></a>
+    <h1>{{image.name}}</h1>
+    <p ng-bind-html="image.desc|unsafe"></p>
+</div>

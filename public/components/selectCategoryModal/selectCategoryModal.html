@@ -1,0 +1,88 @@
+<div class="section-select-category-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center col-lg-11 col-md-11 col-sm-11 col-xs-11">выберите категорию</h3>
+        <a class="col-lg-1 col-md-1 col-sm-1 col-xs-1 cancel pull-right" ng-click="cancel()" >
+            <i class="material-icons">clear</i>
+        </a>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+    <div class="modal-body bind-category-modal">
+        <script type="text/ng-template" id="mainSection.html">
+            <div class="col-lg-11  col-md-11 col-sm-11 col-xs-11 form-group section-box" >
+                <span  ng-bind="section.name"></span>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="subSection.html">
+            <ul ng-init="parentSection=section"
+                class="subSectiondnd category-tree">
+                <li ng-repeat="section in section.child" ng-if="section.categories.length">
+                    <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6 " ng-init="section.showList=true;">
+                        <div class="row">
+                            <div class="col-lg-11  col-md-11 col-sm-11 col-xs-11  form-group section-box">
+                                <span ng-bind="section.name"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div ng-if="section.showList">
+                            <div ng-if="section.categories.length" ng-include="'categoryTree.html'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >
+                    <div ng-if="section.categories.length" ng-include="'categoryTree.html'">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 " ></div>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="categoryTree.html">
+            <ul class="category-tree">
+                <li ng-repeat="category in section.categories track by $index"
+                    class="tree-node-category"
+                    ng-include="'category.html'">
+                </li>
+            </ul>
+        </script>
+
+        <script type="text/ng-template" id="category.html">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  box-border-top"></div>
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  form-group  category-box ">
+                <div ng-click="$ctrl.ok(category)">
+                    <span ng-bind="category.name"></span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </script>
+
+        <div  class="col-lg-12">
+            <ul>
+                <li  ng-repeat="section in sections" style="padding-bottom: 20px">
+                    <div class="col-lg-5"  ng-include="'mainSection.html'"></div>
+                    <div class="col-lg-12" ng-init="section.showList=true;">
+                        <div uib-collapse="!section.showList" ng-include="'subSection.html'" ></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!--<a  class="  btn btn-fab btn-fab pull-right"  ng-click="$ctrl.cancel()">
+            <i class="material-icons link-warning">reply</i>
+        </a>-->
+    </div>
+</div>
+
+
+
+
+

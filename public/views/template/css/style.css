@@ -1,0 +1,138 @@
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+/*html,body{ -webkit-overflow-scrolling : touch !important; overflow: auto !important; height: 100% !important; }*/
+
+.abs-center-x {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.preloadPage {
+    height:100vh;
+    z-index:99999;position:fixed;top:0;left:0;width:100vw;background:white
+}
+
+
+.navbar.menuColor{
+    -webkit-transition: top  ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+    -moz-transition: top ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+    -ms-transition: top ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+    -o-transition: top  ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+    transition: top ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+}
+.navbar:not(.menuColor){
+    -webkit-transition: top ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+    -moz-transition: top ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+    -ms-transition: top ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+    -o-transition: top  ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+    transition: top ease-in-out 0.5s,background-color ease-in-out 0.5s,height ease-in-out 0.5s,opacity  ease-in-out 0.5s;
+}
+
+
+
+
+.preloadPage.hidden-preload-page{
+
+    -moz-transform: translateY(-2000px); /* Для Firefox */
+    -ms-transform: translateY(-2000px); /* Для IE */
+    -webkit-transform: translateY(-2000px); /* Для Safari, Chrome, iOS */
+    -o-transform: translateY(-2000px); /* Для Opera */
+    transform: translateY(-2000px);
+    /*-webkit-transition: height 0.5s linear;
+    -moz-transition: heigh 0.5s linear;
+    -ms-transition: height, 0.5s linear;
+    -o-transition: height, 0.5s linear;*/
+    transition: transform 1s linear;
+}
+
+
+
+#soundChat{
+    display:none;
+}
+.catalog-block {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: -15px;
+    margin-right: -15px;
+    border: 15px solid #fff;
+    text-align: center;
+    background-color: rgba(226, 226, 226, 0.62);
+    display: table-cell;
+    vertical-align: middle;
+    table-layout: fixed;
+}
+.animated1 {
+    -webkit-animation: bounceIn 1s ease-in 500ms both;
+    animation: bounceIn 1s ease-in 500ms both;
+    text-align: center;
+}
+.animated2 {
+    -webkit-animation: fadeInLeft 0.5s ease-in 250ms both;
+    animation: fadeInLeft 0.5s ease-in 250ms both;
+}
+.animated3 {
+    -webkit-animation: fadeInRight 0.5s ease-in 250ms both;
+    animation: fadeInRight 0.5s ease-in 250ms both;
+}
+.animated4 {
+    -webkit-animation: shake 1s ease-in 200ms both;
+    animation: shake 1s ease-in 200ms both;
+}
+.animated5 {
+    -webkit-animation: fadeInUpBig  1s ease-in 200ms both;
+    animation: fadeInUpBig  1s ease-in 200ms both;
+}
+.animated6 {
+    -webkit-animation: fadeOut  1s ease-in 200ms both;
+    animation: fadeOut  1s ease-in 200ms both;
+}
+.animated7 {
+    -webkit-animation: fadeInUpBig  1s ease-in 200ms both;
+    animation: fadeInUpBig  1s ease-in 200ms both;
+}
+.animated9 {
+    -webkit-animation: fadeOut  1s ease-in 200ms both;
+    animation: fadeOut  1s ease-in 200ms both;
+}
+.animated8 {
+    -webkit-animation: fadeInDown 0.5s ease-in 250ms both;
+    animation: fadeInDown 0.5s ease-in 250ms both;
+}
+.animated10 {
+    -webkit-animation: bounceIn 1s ease-in 300ms both;
+    animation: bounceIn 1s ease-in 300ms both;
+}
+а
+/*filter-list-stuff*/
+.filter-stuffs-list hr{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.filter-stuffs-list a {
+    text-decoration: none;
+}
+.filter-stuffs-list a.reset {
+    margin-left: 40px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.filter-stuffs-list ul li {
+    list-style: none;
+    border-left: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+.filter-stuffs-list .form-group.is-focused .radio label {
+    color: #93b1c6;
+}
+
+.filter-stuffs-list .checkbox input[type=checkbox]:checked + .checkbox-material .check,
+.filter-stuffs-list .checkbox input[type=checkbox]:checked + .checkbox-material .check:before{
+    color: #93b1c6;
+    border-color: #93b1c6;
+}

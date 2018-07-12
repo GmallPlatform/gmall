@@ -1,0 +1,24 @@
+div(class="",ng-hide="$ctrl.hideCart && $ctrl.$stateParams.id && $ctrl.$stateParams.id=='"+item.url+"'&&"+$index+">0")
+    div(class="thumbnail-master col-lg-12 col-md-12 col-sm-12 col-xs-12")
+        a(href=item.link)
+            div(class="box-overlay")
+            if(item.img)
+                img(class="img-responsive",style="width:100%",src=item.img)
+            if(item.video)
+                div
+                    |!{item.video}
+            if(item.imgs && item.imgs[0])
+                img(class="img-responsive",style="width:100%", src=item.imgs[0].img)
+            div(class="master-name")
+                div(class="see")
+                    span(class="icon-see-img")
+                    p(class="see-master",ng-bind="$ctrl.global.get('lang').val.more")
+
+    div(class="clearfix")
+
+    div(class="master")
+        a(href=item.link)
+            if(item.name)
+                h2=item.name
+            if(item.position)
+                h4=item.position

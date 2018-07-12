@@ -1,0 +1,16 @@
+/*cliniq*/
+
+.page-stat.news.nav-group {
+    padding: 0;
+    text-transform: lowercase;
+}
+.menu-section-vertical .page-stat.news a {
+    color: #3a230d ;
+}
+.page-stat.news {
+    text-transform: uppercase;
+    padding: 10px 10px 10px 0;
+}
+.mobile-wrapper .page-stat.news a {
+    font-size: 16px;
+}

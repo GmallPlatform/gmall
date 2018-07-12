@@ -1,0 +1,18 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="home-feedback")
+            div(class="container")
+                if(dj[key].name)
+                    h3=dj[key].name
+                div(class="home-section ")
+                    if(dj[key].img)
+                        div(class="feedback-img")
+                            if(dj[key].img)
+                                img(class='img-responsive',src=photoHost + '/' + dj[key].img,alt=dj[key].alt)
+
+                    div(class="box-overlay")
+                    div(class="half-shadow")
+                        div(class="feedback-box")
+                            if(dj[key].desc)
+                                | !{dj[key].desc}
+                            feedback-message

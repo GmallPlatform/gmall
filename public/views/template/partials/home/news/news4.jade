@@ -1,0 +1,18 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div( class="home-news")
+            div(class="container")
+                if(dj[key].name)
+                    h2(class="text-center")=dj[key].name
+                each newsOne in dj[key].news
+                    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-news-content")
+                        div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 news-home-desk",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
+                            div(class="news-desc")
+                                h3(set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=newsOne.name
+                                - var desc=(newsOne.desc)?newsOne.desc.clearTag().substring(0,250):'';
+                                p
+                                    span=newsOne.desc
+                                    | &nbsp;
+                                    a(class="all-news" href="/news/"+newsOne.url)
+                                        span=lang['readMore']
+                    div(class="clearfix")

@@ -1,0 +1,8 @@
+/*dtn*/
+/*.icon-prev-img {
+    background-size: 10px;
+}*/
+.tablet-wrapper .back-link,
+.mobile-wrapper .back-link {
+    display: none;
+}

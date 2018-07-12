@@ -1,0 +1,257 @@
+<style>
+    .calendar .dropdown-menu {
+        z-index: 100;
+        margin-top: 40px;
+    }
+</style>
+<div class="nav-box-stuff">
+    <div ng-hide="$ctrl.$state.current.name!='frame.orders'">
+        <div ng-if="$ctrl.mobile">
+            <div class="tab-nav-stuff" style="margin-right: 0">
+                <a class="btn btn-fab btn-fab-mini " ui-sref="frame">
+                    <i class="material-icons link-warning">reply</i>
+                </a>
+            </div>
+            <div class="tab-nav-stuff" style="margin-right: 0">
+                <a class="btn btn-fab btn-fab-mini btn-success"
+                   ng-if="$ctrl.global.get('seller').val"
+                   ng-click="$ctrl.newOrder()"
+                   title="создать новый ордер">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+            <div class="tab-nav-stuff search">
+                <form>
+                    <input title="поиск ордера" type="text"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':1000,'blur':0}}"
+                           ng-change="$ctrl.searchItem(searchStr)"
+                           placeholder="поиск ордера"  class="search-fluid"  ng-model="searchStr"/>
+                    <a ng-click="searchStr='';$ctrl.reloadOrders()" class="btn btn-fab btn-fab-mini">
+                        <i class="material-icons link-warning" title="очистить строку поиска">clear</i>
+                    </a>
+                </form>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div ng-if="!$ctrl.mobile">
+            <div class="tab-nav-stuff">
+                <a class="btn btn-fab btn-fab-mini " ui-sref="frame">
+                    <i class="material-icons link-warning">reply</i>
+                </a>
+            </div>
+            <div class="tab-nav-stuff form-group">
+                <a class="btn btn-fab btn-fab-mini btn-success"
+                   ng-if="$ctrl.global.get('seller').val"
+                   ng-click="$ctrl.newOrder()"
+                   title="создать новый ордер">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+            <div class="tab-nav-stuff">
+                <div class="dropdown">
+                    <a class="btn btn-fab btn-fab-mini btn-raised dropdown-toggle" title="показывать по" data-toggle="dropdown" data-target="#">
+                        <i class="material-icons link-warning">format_list_numbered</i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ng-click="$ctrl.changeRows(50)">
+                                50 <span ng-bind="$ctrl.global.get('lang').val.position"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="$ctrl.changeRows(100)">
+                                100 <span ng-bind="$ctrl.global.get('lang').val.position"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="$ctrl.changeRows(200)">
+                                200 <span ng-bind="$ctrl.global.get('lang').val.position"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-nav-stuff search" style="margin-right: 0">
+                <form>
+                    <input title="поиск ордера" type="text"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':1000,'blur':0}}"
+                           ng-change="$ctrl.searchItem(searchStr)"
+                           placeholder="поиск ордера"  class="search-fluid"  ng-model="searchStr"/>
+                    <a ng-click="searchStr='';$ctrl.reloadOrders()" class="btn btn-fab btn-fab-mini">
+                        <i class="material-icons link-warning" title="очистить строку поиска">clear</i>
+                    </a>
+                </form>
+            </div>
+            <div class="tab-nav-stuff pull-right calendar">
+                <p class="form-group input-group" style="width: 350px; margin-top: 0">
+                    <span class="form-control" style="width: 95%">
+                        <span class="date-article"  ng-class="{'active-date':$ctrl.openStart}"
+                              ng-bind="$ctrl.datePicker.date.startDate|date"
+                              ng-click="$ctrl.openStart=true">
+                    </span>
+                        <!--datepicker-options="$ctrl.item.dateOptions"-->
+                    <input type="hidden"
+                           uib-datepicker-popup="{{locale.DATETIME_FORMATS.shortDate}}"
+                           ng-model="$ctrl.datePicker.date.startDate"
+                           show-button-bar="false"
+                           is-open="$ctrl.openStart"
+                           ng-required="true"
+                           ng-change="$ctrl.item.openEnd=true"/>
+                    <span  class="date-article">&nbsp; - &nbsp;</span>
+                    <span  class="date-article"  ng-class="{'active-date':$ctrl.openEnd}"ng-bind="$ctrl.datePicker.date.endDate|date" ng-click="$ctrl.openEnd=true"></span>
+                        <!--datepicker-options="$ctrl.item.dateOptions"-->
+                    <input type="hidden"
+                           uib-datepicker-popup="{{locale.DATETIME_FORMATS.shortDate}}"
+                           ng-model="$ctrl.datePicker.date.endDate"
+                           is-open="$ctrl.openEnd"
+                           show-button-bar="false"
+                           ng-required="true" />
+                    </span>
+
+                    <span class="input-group-btn">
+                        <a class="btn btn-fab btn-fab-mini" type="button"
+                           ng-click="$ctrl.reloadOrders()">
+                            <i class="material-icons link-success md-42">cached</i>
+                        </a>
+                    </span>
+                </p>
+
+               <!-- <pre>{{$ctrl.datePicker.date|json}}</pre>
+                <div class="form-group label-floating">
+                    <div class="input-group">
+                        <input  date-range-picker
+                                class="form-control date-picker"
+                                type="text" ng-model="$ctrl.datePicker.date"
+                                options="$ctrl.options" required/>
+                    <span class="input-group-btn">
+                        <a class="btn btn-fab btn-fab-mini" type="button"
+                           ng-click="$ctrl.reloadOrders()">
+                            <i class="material-icons link-warning md-42">cached</i>
+                        </a>
+                    </span>
+                    </div>
+                </div>-->
+            </div>
+            <div class="clearfix"></div>
+            <div class="tab-nav-stuff action form-group" style="margin-top: 20px">
+                <div class="checkbox">
+                    <label>
+                        <input  ng-model="$ctrl.mark" type="checkbox" ng-change="$ctrl.markAllStuffs($ctrl.mark)">
+                        выбрать все
+                    </label>
+                </div>
+            </div>
+            <div class="tab-nav-stuff action action-select">
+                <ui-select ng-model="$ctrl.action"
+                           skip-focusser="true"
+                           search-enabled="false"
+                           title="выберите действие"
+                           ng-change="$ctrl.changeAction($ctrl.action)">
+                    <ui-select-match  placeholder="действие" style="width: 250px">{{$select.selected.value}}</ui-select-match>
+                    <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfActions">{{ opt.value }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="tab-nav-stuff pull-right">
+                <paginator-main
+                        paginate="$ctrl.paginate"
+                        getlist="$ctrl.getList()"
+                        scroll="{{scrollId}}">
+                </paginator-main>
+
+            </div>
+            <!--<form ng-submit="$ctrl.searchItem(searchStr)">
+                <div class=" col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                    <div class="search form-group label-floating">
+                        <label class="control-label">поиск ордера</label>
+                        <input type="text"  class="form-control"  ng-model="$ctrl.searchStr"/>
+                    </div>
+                </div>
+                <input type="submit" class="enter" tabindex="-1" />
+            </form>-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<section class="order" ng-hide="$ctrl.$state.current.name!='frame.orders'" ng-cloak>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div ng-class="{'row':$ctrl.global.get('mobile').val}">
+            <div  ng-repeat="order in $ctrl.orders|filter:$ctrl.filterOrderList" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div bs-component>
+                    <div  id="{{order._id}}" class="thumbnail">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">
+                            <div class="label-action">
+                                <div  ng-class="{'checkbox':true}">
+                                    <label>
+                                        <input  type="checkbox" ng-model="order.select">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6 text-right">
+                            <a class="btn btn-fab btn-fab-mini"  ng-if2="order.status<2" ng-click="$ctrl.deleteItem(order,$event)">
+                                <i class="material-icons link-warning  md-42">delete</i>
+                            </a>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" ng-click="$ctrl.$state.go('frame.orders.order',{id:order._id})">
+                            <div class="col-lg-3 col-sm-3 col-xs-6 col-sm-6">
+                                <span>№ <strong  ng-bind="order.num"></strong> </span><br>
+                                <!--<span>сумма - <strong ng-bind="(order.paySum).toFixed(2)"></strong>&nbsp{{order.currency}}</span>-->
+                                <span>сумма - <strong ng-bind="(order.paySum+((order.totalPay)?order.totalPay:0)).toFixed(2)"></strong>&nbsp{{order.currency}}</span>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-xs-6 col-sm-6">
+                                <span class=" order-date"> от <span  ng-bind="$ctrl.moment(order.date).format('LLL')"></span></span><br>
+                                    <span ng-switch="order.status">
+                                        <span class="status" ng-switch-when="1">поступил</span>
+                                        <span class="status" ng-switch-when="2">принят</span>
+                                        <span class="status" ng-switch-when="3">оплачен</span>
+                                        <span class="status" ng-switch-when="5">доставлен</span>
+                                        <span class="status del" ng-switch-when="6">удален</span>
+                                    </span>
+                            </div>
+                            <div class="col-lg-5 col-sm-5 col-xs-12 col-sm-12">
+                                <span>
+                                    <span>клиент <strong ng-bind="order.profile.fio"> </strong></span><br>
+                                    <span ng-if="order.online"><span class="link-success on-line">в сети</span></span>
+                                </span>
+                                <div class="danger-box">
+                                    <span ng-if="$ctrl.global.get('seller').val && order.priceSaleHandle" class="danger link-warning text-right">цена товара была изменена</span><br>
+                                    <span ng-if="$ctrl.global.get('seller').val && order.maxDiscountOver" class="danger link-warning text-right">превышен лимит скидки</span>
+                                </div>
+                                <span class="pull-right chat-badge"  ng-if="order.chatMessages=$ctrl.getUnReadChatMessages(order)">
+                                    <span>в чате сообщения</span>
+                                    <a ng-click="$ctrl.$state.go('frame.orders.order',{id:order._id,block:'chat'})"
+                                            class="btn btn-fab btn-fab-mini btn-danger"><i class="material-icons" >message</i></a>
+                                    <span class="badge"ng-bind="order.chatMessages" style="position: absolute;right:10px; top:0"></span>
+                                </span>
+                                <div class="clearfix"></div>
+
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+    <empty-list items="$ctrl.itemsCount" message="По вашему запросу нет данных"></empty-list>
+    <div class="clearfix"></div>
+    <paginator-main
+            paginate="$ctrl.paginate"
+            getlist="$ctrl.getList()"
+            scroll="{{scrollId}}">
+    </paginator-main>
+
+</section>
+<div ui-view>
+</div>
+
+
+

@@ -1,0 +1,37 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="campaign-detail")
+            div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12")
+                div(class="container")
+                    h1(class="text-center")=dj[key].itemDetail.name
+                    div(class=" campaign-desc")
+                        if(dj[key].itemDetail.desc)
+                            !=dj[key].itemDetail.desc
+                    div
+                        if(dj[key].itemDetail.dateEnd)
+                            h2(class="timer-box text-center")
+                                p(class="camp-time")=lang.endAction
+                                hr
+                            expiration-date(date=dj[key].itemDetail.dateEnd)
+                            div(class="clearfix")
+                            hr
+                            h2(class="text-center with-sticker")
+                                span(style="display:inline-block; margin-right:20px")=lang.withaSticker
+                                img(src=photoHost + '/' + dj[key].itemDetail.sticker)
+
+
+                div(class="clearfix")
+            if(!dj[key].itemDetail.revers)
+                div(ng-init="$ctrl.campaignStuff='stuffs'")
+                    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center")
+                        a(class="box-campaign", ng-click="$ctrl.campaignStuff='stuffs'", ng-class="{'active':$ctrl.campaignStuff=='stuffs'}")
+                            h3=lang.promotionalItems
+                        if((dj[key].itemDetail.conditionTags && dj[key].itemDetail.conditionTags.length)||(dj[key].itemDetail.conditionBrandTags &&dj[key].itemDetail.conditionBrandTags.length)||(dj[key].itemDetail.conditionStuffs && dj[key].itemDetail.conditionStuffs.length)||(dj[key].itemDetail.conditionCategories && dj[key].itemDetail.conditionCategories.length))
+                            a(class=" box-campaign", ng-click="$ctrl.campaignStuff='conditionsStuffs'", ng-class="{'active':$ctrl.campaignStuff=='conditionsStuffs'}")
+                                h3=lang.goodsConditions
+                    div(class="clearfix")
+                    stuff-list-template-campaign-list(ng-if="$ctrl.campaignStuff=='stuffs'",data-campaign=dj[key].itemDetail._id,data-cart=dj[key].itemDetail.cartType)
+                    stuff-list-template-campaign-list(ng-if="$ctrl.campaignStuff=='conditionsStuffs'",data-condition="conditionsStuffs",data-campaign=dj[key].itemDetail._id,data-cart=dj[key].itemDetail.cartType)
+
+
+            div(class="clearfix")

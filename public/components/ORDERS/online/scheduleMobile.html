@@ -1,0 +1,93 @@
+<style>
+    .marginLeft150 {margin-left:150px}
+</style>
+<div class="schedule">
+    <a name="schedule"></a>
+    <div class="container">
+        <!--<div class="booking">
+            <p class="type-block">
+                <span class="type type-vail"><span class="unavailable"></span><span class="time-action">{{$ctrl.global.get('lang').val.notAvailable}}</span></span>
+                <span class="type type-booked"><span class="booked"></span><span class="time-action">{{$ctrl.global.get('lang').val.booked}}</span></span>
+                <span class="type type-your"><span class="your"></span><span class="time-action">{{$ctrl.global.get('lang').val.chosenTime}}</span></span>
+                <span class="type type-reserv"><span class="reserv"></span><span class="time-action">{{$ctrl.global.get('lang').val.temporary}}</span></span>
+            </p>
+
+        </div>-->
+        <div class="online-box">
+            <div class="center-div">
+                <div class="online-table">
+                    <div class="week-box week-table-header1">
+                        <div uib-carousel active="$ctrl.week" interval="$ctrl.myInterval" no-wrap="$ctrl.noWrapSlides">
+                            <div uib-slide ng-repeat="i in [0,1,2,3,4,5,6]" index="i" style="min-height: 75px">
+                                <h3>
+                                    <a ng-click="$ctrl.changeWeek(i)">
+                                        <span>
+                                            <span ng-bind="$ctrl.weeksRange[i].startDateString"></span> -
+                                            <span ng-bind="$ctrl.weeksRange[i].endDateString"></span>
+                                        </span>
+                                        <!--{{$ctrl.global.get('langForm').val.thisWeek}}
+                                        <span ng-show="i">+ {{i}}</span>-->
+                                    </a>
+                                </h3>
+
+                            </div>
+                        </div>
+                    </div>
+                   <!-- <div class="week-box" style="height: 40px"></div>-->
+
+
+                    <div class="online-table-header" style="position: absolute;top:150;left:15px;background-color:white;z-index: 2;">
+                        <div class="online-table-day box-day" style="border-left:1px solid #ccc">
+                            <span ng-bind="$ctrl.currentMonth"></span>
+                        </div>
+                    </div>
+
+                    <div class="online-table-header">
+                        <!--<div class="online-table-day box-day" style="border-left:1px solid #ccc">
+                            <span ng-bind="$ctrl.currentMonth"></span>
+                        </div>-->
+                        <div  class="online-table-day box-day" ng-repeat="d in $ctrl.datesOfWeeks" ng-init="dateField=$ctrl.getDateObj(d.date)" ng-class="{'marginLeft150':$first}">
+                            <p ng-bind="dateField"></p>
+                        </div>
+                    </div>
+                    <div  class="online-table-day online-table-header-left" style="position: absolute;left:10;top:200;z-index: 2;background-color: white">
+                        <div class="box-day"  ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePart">
+                            <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="online-table-body">
+                        <!--<div  class="online-table-day online-table-header-left">
+                            <div class="box-day"  ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePart">
+                                <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>-->
+                        <div class="online-table-day" ng-repeat="(date,data) in $ctrl.selectedWorkplace.week" ng-class="{'marginLeft150':$first}">
+                            <div class="box-day" ng-repeat="item in data.entryTimeTable|filter:$ctrl.filterTimePartForMaster" style="z-index:{{item.zIndex}}" >
+                                <div class="servise-box" style="background-color: {{item.backgroundcolor}}"
+                                     ng-click="item.ngClickOnEntry(date,$parent.$index)"
+                                     ng-class="{'borderTop':!item.noBorder}">
+
+                                    <div class="entry">
+                                        <span ng-bind="item.usedTime"></span><br>
+                                        <a href="{{item.masterLink}}"><span ng-bind="item.masterName"></span></a></br>
+                                        <a href="{{item.serviceLink}}"><span ng-bind="item.service"></span></a></br>
+                                        <small><span style="color:grey" ng-bind="item.comment"></span></small>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,138 @@
+/*smakgittya*/
+.stuff-list-wrapper {
+    margin-top: 40px;
+}
+.stuff-box  {
+    margin-bottom: 20px;
+}
+.sticker {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    width: 50px;
+}
+/*.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+    cursor: pointer;
+}
+.stuff-box:hover .box-overlay{
+    opacity: 0.5;
+}*/
+
+/*.half-shadow img{
+    width: 50px;
+    transition: all  0.4s ease-in-out 0.1s;
+}*/
+.half-shadow .see {
+    z-index: 1025;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+
+}
+.half-shadow{
+    transition: all  0.2s ease-in-out 0.1s;
+    /*position: absolute;
+    width: 100%;
+    z-index: 1027;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+}
+/*.half-shadow {
+    height: 15%;
+}*/
+/*.half-shadow-stuff {
+    height: 32%;
+}*/
+.stuff-box:hover .half-shadow {
+    background-color: rgba(92, 92, 92, 0.63);
+}
+.half-shadow-stuff p {
+    margin-bottom: 0;
+    line-height: 22px;
+}
+.mobile-wrapper .half-shadow-stuff {
+    background-color: rgba(255, 255, 255, 0.45);
+    position: relative;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.mobile-wrapper .box-overlay{
+    display: none;
+}
+
+
+/*chudo*/
+/*.stuff-list-wrapper {
+    margin-top: 40px;
+}
+.stuff-box  {
+    margin-bottom: 20px;
+}
+.sticker {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    width: 50px;
+}
+.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+    cursor: pointer;
+}
+.stuff-box:hover .box-overlay{
+    opacity: 0.5;
+}
+.half-shadow img{
+    width: 50px;
+    transition: all  0.4s ease-in-out 0.1s;
+}
+.half-shadow .see {
+    z-index: 1025;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.half-shadow{
+    position: absolute;
+    width: 100%;
+    z-index: 1027;
+    bottom: 43%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+}
+.half-shadow {
+    height: 15%;
+}
+.half-shadow-stuff {
+    height: 32%;
+}
+.half-shadow-stuff p {
+    margin-bottom: 0;
+    line-height: 22px;
+}
+.mobile-wrapper .half-shadow-stuff {
+    background-color: rgba(255, 255, 255, 0.45);
+    position: relative;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}*/
+

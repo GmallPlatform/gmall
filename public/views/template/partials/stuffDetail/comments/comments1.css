@@ -1,0 +1,15 @@
+/*.comments {
+    font-size: 14px;
+}
+.comments-header {
+     border-bottom: 1px solic $color;
+ }*/
+.form-control {
+    background-color: transparent;
+}
+.tablet-wrapper .block-comments,
+.mobile-wrapper .block-comments {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}

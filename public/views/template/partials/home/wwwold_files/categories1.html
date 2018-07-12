@@ -1,0 +1,16 @@
+<!--categories-->
+<div>
+    <div>
+        <div
+             ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.data.categories.length==2||homeCtrl.data.categories.length==4,
+             'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.data.categories.length==3}"
+             ng-repeat="item in homeCtrl.data.categories">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+

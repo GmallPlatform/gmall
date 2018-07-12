@@ -1,0 +1,43 @@
+<div class="select-stuff select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">способ заказа товара/услуги</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body ">
+        <div class="form-group">
+            <label class="control-label">Тип заказа</label>
+            <div class="radio radio-primary">
+                <label>
+                    <input type="radio" ng-model="$ctrl.orderType" name="optionsRadios"value=0 >
+                    Корзина
+                </label>
+            </div>
+            <div class="radio radio-primary">
+                <label>
+                    <input type="radio"ng-model="$ctrl.orderType" value="1">
+                    В один клик
+                </label>
+            </div>
+            <div class="radio radio-primary">
+                <label>
+                    <input type="radio"ng-model="$ctrl.orderType" value="2">
+                    Запись на время
+                </label>
+            </div>
+            <div class="radio radio-primary">
+                <label>
+                    <input type="radio" ng-model="$ctrl.orderType" value="3">
+                    Только просмотр
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer col-lg-12">
+        <a class="btn btn-success btn-block" type="button"
+           ng-click="$ctrl.ok()">Применить</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+

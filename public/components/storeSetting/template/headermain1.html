@@ -1,0 +1,1482 @@
+<div class="template-list" ng-init="$ctrl.menuType='desctop'; displayHelp=false">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-tab">
+        <div class="row">
+            <div class="btn-group btn-group-justified btn-group-raised" style="height: 60px">
+                <a class="btn" ng-class="{'active':$ctrl.menuType=='desctop'}"ng-click="$ctrl.menuType='desctop'">
+                    <span class="link-success">компьютер</span>
+                </a>
+                <a class="btn" ng-class="{'active':$ctrl.menuType=='tablet'}"ng-click="$ctrl.menuType='tablet'">
+                    <span class="link-success">планшет</span>
+                </a>
+                <a class="btn" ng-class="{'active':$ctrl.menuType=='mobile'}"ng-click="$ctrl.menuType='mobile'">
+                    <span class="link-success">телефон</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="$ctrl.menuType=='desctop'">
+        <h3 class="text-center name-page">структура меню</h3>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">настройки меню 1</h3>
+            <hr>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">наличие меню</span>
+                <div class="togglebutton">
+                    <label for="menu1">
+                        <span ng-class="{'active':!$ctrl.item.menu1.is}">меню нет</span>
+                        <input type="checkbox"
+                               id="menu1"
+                               ng-model="$ctrl.item.menu1.is"
+                               ng-change="$ctrl.saveField('menu1')">
+                        <span ng-class="{'active':$ctrl.item.menu1.is}">меню есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фиксация меню в указанном положении</span>
+                <div class="togglebutton">
+                    <label for="fixed-menu1">
+                        <span ng-class="{'active':!$ctrl.item.menu1.fixed}">меню не fixed</span>
+                        <input type="checkbox"
+                               id="fixed-menu1"
+                               ng-model="$ctrl.item.menu1.fixed"
+                               ng-change="$ctrl.saveField('menu1')">
+                        <span ng-class="{'active':$ctrl.item.menu1.fixed}">меню fixed</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню на главной странице</span>
+                <div class="togglebutton">
+                    <label for="background-menu1">
+                        <span ng-class="{'active':!$ctrl.item.menu1.background}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-menu1"
+                               ng-model="$ctrl.item.menu1.background"
+                               ng-change="$ctrl.saveField('menu1')">
+                        <span ng-class="{'active':$ctrl.item.menu1.background}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню при скролле и наведении</span>
+                <div class="togglebutton">
+                    <label for="background-hover1">
+                        <span ng-class="{'active':!$ctrl.item.menu1.BGColorOnHover}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-hover1"
+                               ng-model="$ctrl.item.menu1.BGColorOnHover"
+                               ng-change="$ctrl.saveField('menu1')">
+                        <span ng-class="{'active':$ctrl.item.menu1.BGColorOnHover}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-centermb-20">
+                <span class="label-menu">расположение меню</span>
+                <ui-select ng-model="$ctrl.item.menu1.position" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menu1')">
+                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in ['left','right','top','bottom']">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">отступ для контента на главной странице</span>
+                <div class="togglebutton">
+                    <label for="margin-menu1">
+                        <span ng-class="{'active':!$ctrl.item.margin}">отступа нет</span>
+                        <input type="checkbox"
+                               id="margin-menu1"
+                               ng-model="$ctrl.item.margin"
+                               ng-change="$ctrl.saveField('margin')">
+                        <span ng-class="{'active':$ctrl.item.margin}">отступ есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">отступ для контента на других страницах</span>
+                <div class="togglebutton">
+                    <label for="margin-other1">
+                        <span ng-class="{'active':!$ctrl.item.menu1.marginOther}">отступ есть</span>
+                        <input type="checkbox"
+                               id="margin-other1"
+                               ng-model="$ctrl.item.menu1.marginOther"
+                               ng-change="$ctrl.saveField('menu1')">
+                        <span ng-class="{'active':$ctrl.item.menu1.marginOther}">отступа нет</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">меню1 прячется или нет при скролировании</span>
+                <div class="togglebutton">
+                    <label for="scroll-menu1">
+                        <span ng-class="{'active':!$ctrl.item.menu1.scrollSlide}">без скролл slide</span>
+                        <input type="checkbox"
+                               id="scroll-menu1"
+                               ng-model="$ctrl.item.menu1.scrollSlide"
+                               ng-change="$ctrl.saveField('menu1')">
+                        <span ng-class="{'active':$ctrl.item.menu1.scrollSlide}">скролл slide</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">номер стиля</span>
+                <ui-select ng-model="$ctrl.item.menu1.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menu1')">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">настройка стиля</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.menu1,'menu1')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center">
+                <span class="label-menu">изменение цвета элементов меню на инверсный</span>
+                <div class="togglebutton text-center">
+                    <label for="color-menu1">
+                        <span ng-class="{'active':!$ctrl.item.inverseColor.use}">цвет не изменяется</span>
+                        <input type="checkbox"
+                               id="color-menu1"
+                               ng-model="$ctrl.item.inverseColor.use"
+                               ng-change="$ctrl.saveField('inverseColor')">
+                        <span ng-class="{'active':$ctrl.item.inverseColor.use}">цвет изменяется</span>
+                    </label>
+                </div>
+                <div class="text-left" ng-show="$ctrl.item.inverseColor.use">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.inverseColor.startScroll"
+                                       ng-change="$ctrl.saveField('inverseColor')"> после начала скролирования
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.inverseColor.firstBanner"
+                                       ng-change="$ctrl.saveField('inverseColor')">
+                                при скролировании после окончания 1-го блока на главной странице
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.inverseColor.homePage"
+                                       ng-change="$ctrl.saveField('inverseColor')"> при переходе с главной страницы нв любую другую
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                <span class="label-menu">правила открытия каталога</span>
+                <div class="togglebutton">
+                    <label for="hover-menu1">
+                        <span ng-class="{'active':!$ctrl.item.clickMenu}">по наведению курсора</span>
+                        <input type="checkbox"
+                               id="hover-menu1"
+                               ng-model="$ctrl.item.clickMenu"
+                               ng-change="$ctrl.saveField('clickMenu')">
+                        <span ng-class="{'active':$ctrl.item.clickMenu}">по клику</span>
+                    </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="cart-detail">
+            <h3 class="text-center name-page">компоненты меню 1</h3>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" ng-if="$ctrl.showPhoneField($ctrl.item.menu1.parts)">
+                <div class="form-group label-floating">
+                    <label class="control-label">номер телефона для блока "телефон"</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.item.menu1.phone"
+                           ng-change="$ctrl.saveField('menu1.phone')">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название блока</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">положение блока</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер стиля</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">анимация</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">настройка стиля</div>
+            <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">удалить</div>-->
+            <div class="clearfix"></div>
+            <div class="part-box">
+                <div class="dropzone">
+                    <ul dnd-list="$ctrl.item.menu1.parts"
+                        dnd-drop="$ctrl.dropCallbackMenu1(item)">
+                        <li
+                                dnd-draggable="item"
+                                dnd-type="'menu1'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.menu1.parts.splice($index,1)"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
+                                ng-repeat="item in $ctrl.item.menu1.parts">
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                <i class="material-icons link-success">swap_vert</i>
+                                <span>
+                                    {{$ctrl.listOfBlocksForHeader[item.name]}}
+                                </span>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-change="$ctrl.saveFieldTemplate('menu1',$ctrl.item.menu1)" ng-model="item.is" type="checkbox"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.position" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menu1')">
+                                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in ['left','right','center']">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.templ" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menu1')">
+                                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.style" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menu1')">
+                                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                <ui-select ng-model="item.animate" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menu2')">
+                                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <a ng-click="$ctrl.setColor(item,'menu1')">
+                                        <i class="material-icons" title="настроить стили">opacity</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">настройки меню 2</h3>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">наличие меню</span>
+                <div class="togglebutton">
+                    <label for="menu2">
+                        <span ng-class="{'active':!$ctrl.item.menu2.is}">меню нет</span>
+                        <input type="checkbox"
+                               id="menu2"
+                               ng-model="$ctrl.item.menu2.is"
+                               ng-change="$ctrl.saveField('menu2')">
+                        <span ng-class="{'active':$ctrl.item.menu2.is}">меню есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фиксация меню в указанном положении</span>
+                <div class="togglebutton">
+                    <label for="fixed-menu2">
+                        <span ng-class="{'active':!$ctrl.item.menu2.fixed}">меню не fixed</span>
+                        <input type="checkbox"
+                               id="fixed-menu2"
+                               ng-model="$ctrl.item.menu2.fixed"
+                               ng-change="$ctrl.saveField('menu2')">
+                        <span ng-class="{'active':$ctrl.item.menu2.fixed}">меню fixed</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню на главной странице</span>
+                <div class="togglebutton">
+                    <label for="background-menu2">
+                        <span ng-class="{'active':!$ctrl.item.menu2.background}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-menu2"
+                               ng-model="$ctrl.item.menu2.background"
+                               ng-change="$ctrl.saveField('menu2')">
+                        <span ng-class="{'active':$ctrl.item.menu2.background}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center mb-20">
+                <span class="label-menu">правила открытия каталога</span>
+                <div class="togglebutton">
+                    <label for="hover-click2">
+                        <span ng-class="{'active':!$ctrl.item.clickMenu}">по наведению курсора</span>
+                        <input type="checkbox"
+                               id="hover-click2"
+                               ng-model="$ctrl.item.clickMenu"
+                               ng-change="$ctrl.saveField('clickMenu')">
+                        <span ng-class="{'active':$ctrl.item.clickMenu}">по клику</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">расположение меню</span>
+                <ui-select ng-model="$ctrl.item.menu2.position" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menu2')">
+                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in ['left','right','top','bottom']">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">ширина в px или %</span>
+                <div class="form-group" style="margin-top: 0">
+                    <input class="form-control" ng-change="$ctrl.saveField('menu2')" ng-model="$ctrl.item.menu2.slideMenuWidth"/>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">номер стиля</span>
+                <ui-select ng-model="$ctrl.item.menu2.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menu2')">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">настройка стиля</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.menu2,'menu2')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">компоненты меню 2</h3>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" ng-if="$ctrl.showPhoneField($ctrl.item.menu2.parts)">
+                <div class="form-group label-floating">
+                    <label class="control-label">номер телефона для блока "телефон"</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.item.menu2.phone"
+                           ng-change="$ctrl.saveField('menu2.phone')">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название блока</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">положение блока</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер стиля</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">анимация</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">настройка стиля</div>
+            <div class="clearfix"></div>
+            <div class="part-box">
+                <div class="dropzone">
+                    <ul
+                            dnd-list="$ctrl.item.menu2.parts"
+                            dnd-drop="$ctrl.dropCallbackMenu2(item)">
+                        <li
+                                dnd-draggable="item"
+                                dnd-type="'menu2'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.menu2.parts.splice($index,1)"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
+                                ng-repeat="item in $ctrl.item.menu2.parts">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                <i class="material-icons link-success">swap_vert</i>
+                                {{$ctrl.listOfBlocksForHeader[item.name]}}
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-change="$ctrl.saveFieldTemplate('menu2',$ctrl.item.menu2)" ng-model="item.is" type="checkbox"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.position" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menu2')">
+                                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in ['left','right','center']">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.templ" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menu2')">
+                                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.style" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menu2')">
+                                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                <ui-select ng-model="item.animate" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menu2')">
+                                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <a ng-click="$ctrl.setColor(item,'menu2')">
+                                        <i class="material-icons" title="настроить стили">opacity</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cart-detail">
+            <h3 class=" name-page text-center"> стилизация гамбургера</h3>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
+                <span class="label-menu">визуализация гамбургера</span>
+                <div class="togglebutton">
+                    <label for="humburger1">
+                        <span ng-class="{'active':!$ctrl.item.humburger.icon}">стандартное изображение</span>
+                        <input type="checkbox"
+                               id="humburger1"
+                               ng-model="$ctrl.item.humburger.icon"
+                               ng-change="$ctrl.saveField('humburger')">
+                        <span ng-class="{'active':$ctrl.item.humburger.icon}">использовать иконку</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3">
+                <span class="label-menu">использовать название</span>
+                <div class="form-group label-floating">
+                    <label class="control-label">введите название</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.store.humburgerL[$ctrl.global.get('store').val.lang]"
+                           ng-change="$ctrl.saveFieldStore('humburgerL')">
+                </div>
+
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                <span class="label-menu">настроить стили гамбургера</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.humburger,'humburger')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="$ctrl.menuType=='tablet'">
+        <h3 class="text-center name-page">структура меню</h3>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">настройки меню 1</h3>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <span class="label-menu">использование настроек</span>
+                <div class="togglebutton">
+                    <label for="settingt">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.use}">использовать стандартные настройки</span>
+                        <input type="checkbox"
+                               id="settingt"
+                               ng-model="$ctrl.item.menuTablet.use"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.use}">использовать установленные настройки</span>
+                    </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">наличие меню</span>
+                <div class="togglebutton">
+                    <label for="menu1t">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu1.is}">меню нет</span>
+                        <input type="checkbox"
+                               id="menu1t"
+                               ng-model="$ctrl.item.menuTablet.menu1.is"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu1.is}">меню есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фиксация меню в указанном положении</span>
+                <div class="togglebutton">
+                    <label for="fixed-menut">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu1.fixed}">меню не fixed</span>
+                        <input type="checkbox"
+                               id="fixed-menut"
+                               ng-model="$ctrl.item.menuTablet.menu1.fixed"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu1.fixed}">меню fixed</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню на главной странице</span>
+                <div class="togglebutton">
+                    <label for="background-menut">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu1.background}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-menut"
+                               ng-model="$ctrl.item.menuTablet.menu1.background"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu1.background}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню при скролле и наведении</span>
+                <div class="togglebutton">
+                    <label for="background-hovert">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu1.BGColorOnHover}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-hovert"
+                               ng-model="$ctrl.item.menu1.menuTablet.BGColorOnHover"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu1.BGColorOnHover}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-centermb-20">
+                <span class="label-menu">расположение меню</span>
+                <ui-select ng-model="$ctrl.item.menuTablet.menu1.position" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.item.menuTablet.menu1.position">
+                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in ['left','right','top','bottom']">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">отступ для контента на главной странице</span>
+                <div class="togglebutton">
+                    <label for="margin-menut">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.margin}">отступа нет</span>
+                        <input type="checkbox"
+                               id="margin-menut"
+                               ng-model="$ctrl.item.menuTablet.margin"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.margin}">отступ есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">отступ для контента на других страницах</span>
+                <div class="togglebutton">
+                    <label for="margin-othert">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu1.marginOther}">отступ есть</span>
+                        <input type="checkbox"
+                               id="margin-othert"
+                               ng-model="$ctrl.item.menuTablet.menu1.marginOther"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu1.marginOther}">отступа нет</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">меню1 прячется или нет при скролировании</span>
+                <div class="togglebutton">
+                    <label for="scroll-menut">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu1.scrollSlide}">без скролл slide</span>
+                        <input type="checkbox"
+                               id="scroll-menut"
+                               ng-model="$$ctrl.item.menuTablet.menu1.scrollSlide"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu1.scrollSlide}">скролл slide</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">номер стиля</span>
+                <ui-select ng-model="$ctrl.item.menuTablet.menu1.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menuTablet')">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">настройка стиля</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.menuTablet.menu1,'menuTablet')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center">
+                <span class="label-menu">изменение цвета элементов меню на инверсный</span>
+                <div class="togglebutton text-center">
+                    <label for="color-menut">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.inverseColor.use}">цвет не изменяется</span>
+                        <input type="checkbox"
+                               id="color-menut"
+                               ng-model="$ctrl.item.menuTablet.inverseColor.use"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.inverseColor.use}">цвет изменяется</span>
+                    </label>
+                </div>
+                <div class="text-left" ng-show="$ctrl.item.inverseColor.use">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.menuTablet.inverseColor.startScroll"
+                                       ng-change="$ctrl.saveField('menuTablet')"> после начала скролирования
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.menuTablet.inverseColor.firstBanner"
+                                       ng-change="$ctrl.saveField('menuTablet')">
+                                при скролировании после окончания 1-го блока на главной странице
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.menuTablet.inverseColor.homePage"
+                                       ng-change="$ctrl.saveField('menuTablet')"> при переходе с главной страницы нв любую другую
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                <span class="label-menu">правила открытия каталога</span>
+                <div class="togglebutton">
+                    <label for="open1t">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.clickMenu}">по наведению курсора</span>
+                        <input type="checkbox"
+                               id="open1t"
+                               ng-model="$ctrl.item.menuTablet.clickMenu"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.clickMenu}">по клику</span>
+                    </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="cart-detail">
+            <h3 class="text-center name-page">компоненты меню 1</h3>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6"  ng-show="$ctrl.showPhoneField($ctrl.item.menuTablet.menu1.parts)">
+                <div class="form-group label-floating">
+                    <label class="control-label">номер телефона для блока "телефон"</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.item.menuTablet.menu1.phone"
+                           ng-change="$ctrl.saveField('menuTablet')">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название блока</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">положение блока</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер стиля</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">анимация</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">настройка стиля</div>
+            <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">удалить</div>-->
+            <div class="clearfix"></div>
+            <div class="part-box">
+                <div class="dropzone">
+                    <ul dnd-list="$ctrl.item.menuTablet.menu1.parts"
+                        dnd-drop="$ctrl.dropCallbackMenuType(item,'menuTablet','menu1')">
+                        <li
+                                dnd-draggable="item"
+                                dnd-type="'menu1'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.menuTablet.menu1.parts.splice($index,1)"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
+                                ng-repeat="item in $ctrl.item.menuTablet.menu1.parts">
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                <i class="material-icons link-success">swap_vert</i>
+                                <span>
+                                    {{$ctrl.listOfBlocksForHeader[item.name]}}
+                                </span>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-change="$ctrl.saveFieldTemplate('menu1',$ctrl.item.menu1)" ng-model="item.is" type="checkbox"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.position" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuTablet')">
+                                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in ['left','right','center']">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.templ" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuTablet')">
+                                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.style" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuTablet')">
+                                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                <ui-select ng-model="item.animate" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuTablet')">
+                                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <a ng-click="$ctrl.setColor(item,'menuTablet')">
+                                        <i class="material-icons" title="настроить стили">opacity</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">настройки меню 2</h3>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">наличие меню</span>
+                <div class="togglebutton">
+                    <label for="menu2t">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu2.is}">меню нет</span>
+                        <input type="checkbox"
+                               id="menu2t"
+                               ng-model="$ctrl.item.menuTablet.menu2.is"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu2.is}">меню есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фиксация меню в указанном положении</span>
+                <div class="togglebutton">
+                    <label for="fixed-menu2t">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu2.fixed}">меню не fixed</span>
+                        <input type="checkbox"
+                               id="fixed-menu2t"
+                               ng-model="$ctrl.item.menuTablet.menu2.fixed"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu2.fixed}">меню fixed</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню на главной странице</span>
+                <div class="togglebutton">
+                    <label for="background-menu2t">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.menu2.background}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-menu2t"
+                               ng-model="$ctrl.item.menuTablet.menu2.background"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.menu2.background}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center mb-20">
+                <span class="label-menu">правила открытия каталога</span>
+                <div class="togglebutton">
+                    <label for="hover-clickt">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.clickMenu}">по наведению курсора</span>
+                        <input type="checkbox"
+                               id="hover-clickt"
+                               ng-model="$ctrl.item.menuTablet.clickMenu"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.clickMenu}">по клику</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">расположение меню</span>
+                <ui-select ng-model="$ctrl.item.menuTablet.menu2.position" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menuTablet')">
+                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in ['left','right','top','bottom']">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">ширина в px или %</span>
+                <div class="form-group" style="margin-top: 0">
+                    <input class="form-control" ng-change="$ctrl.saveField('menuTablet')" ng-model="$ctrl.item.menuTablet.menu2.slideMenuWidth"/>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">номер стиля</span>
+                <ui-select ng-model="$ctrl.item.menuTablet.menu2.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menuTablet')">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">настройка стиля</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.menuTablet.menu2,'menuTablet')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">компоненты меню 2</h3>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" ng-if="$ctrl.showPhoneField($ctrl.item.menuTablet.menu2.parts)">
+                <div class="form-group label-floating">
+                    <label class="control-label">номер телефона для блока "телефон"</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.item.menuTablet.menu2.phone"
+                           ng-change="$ctrl.saveField('menuTablet')">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название блока</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">положение блока</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер стиля</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">анимация</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">настройка стиля</div>
+            <div class="clearfix"></div>
+            <div class="part-box">
+                <div class="dropzone">
+                    <ul
+                            dnd-list="$ctrl.item.menuTablet.menu2.parts"
+                            dnd-drop="$ctrl.dropCallbackMenuType(item,'menuTablet','menu2')">
+                        <li
+                                dnd-draggable="item"
+                                dnd-type="'menu2'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.menuTablet.menu2.parts.splice($index,1)"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
+                                ng-repeat="item in $ctrl.item.menuTablet.menu2.parts">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                <i class="material-icons link-success">swap_vert</i>
+                                {{$ctrl.listOfBlocksForHeader[item.name]}}
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-change="$ctrl.saveFieldTemplate('menuTablet',$ctrl.item.menuTablet)" ng-model="item.is" type="checkbox"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.position" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuTablet')">
+                                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in ['left','right','center']">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.templ" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuTablet')">
+                                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.style" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuTablet')">
+                                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                <ui-select ng-model="item.animate" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuTablet')">
+                                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <a ng-click="$ctrl.setColor(item,'menuTablet')">
+                                        <i class="material-icons" title="настроить стили">opacity</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cart-detail">
+            <h3 class=" name-page text-center"> стилизация гамбургера</h3>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
+                <span class="label-menu">визуализация гамбургера</span>
+                <div class="togglebutton">
+                    <label for="humburgertd">
+                        <span ng-class="{'active':!$ctrl.item.menuTablet.humburger.icon}">стандартное изображение</span>
+                        <input type="checkbox"
+                               id="humburgertd"
+                               ng-model="$ctrl.item.menuTablet.humburger.icon"
+                               ng-change="$ctrl.saveField('menuTablet')">
+                        <span ng-class="{'active':$ctrl.item.menuTablet.humburger.icon}">использовать иконку</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3">
+                <span class="label-menu">использовать название одно для всех видов устройств</span>
+                <div class="form-group label-floating">
+                    <label class="control-label">введите название</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.store.humburgerL[$ctrl.global.get('store').val.lang]"
+                           ng-change="$ctrl.saveFieldStore('humburgerL')">
+                </div>
+
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                <span class="label-menu">настроить стили гамбургера</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.menuTablet.humburger,'menuTablet')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="$ctrl.menuType=='mobile'">
+        <h3 class="text-center name-page">структура меню</h3>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">настройки меню 1</h3>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <span class="label-menu">использование настроек</span>
+                <div class="togglebutton">
+                    <label for="settingm">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.use}">использовать стандартные настройки</span>
+                        <input type="checkbox"
+                               id="settingm"
+                               ng-model="$ctrl.item.menuMobile.use"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.use}">использовать установленные настройки</span>
+                    </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">наличие меню</span>
+                <div class="togglebutton">
+                    <label for="menu1m">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu1.is}">меню нет</span>
+                        <input type="checkbox"
+                               id="menu1m"
+                               ng-model="$ctrl.item.menuMobile.menu1.is"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu1.is}">меню есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фиксация меню в указанном положении</span>
+                <div class="togglebutton">
+                    <label for="fixed-menum">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu1.fixed}">меню не fixed</span>
+                        <input type="checkbox"
+                               id="fixed-menum"
+                               ng-model="$ctrl.item.menuMobile.menu1.fixed"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu1.fixed}">меню fixed</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню на главной странице</span>
+                <div class="togglebutton">
+                    <label for="background-menum">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu1.background}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-menum"
+                               ng-model="$ctrl.item.menuMobile.menu1.background"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu1.background}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню при скролле и наведении</span>
+                <div class="togglebutton">
+                    <label for="background-hoverm">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu1.BGColorOnHover}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-hoverm"
+                               ng-model="$ctrl.item.menu1.menuMobile.BGColorOnHover"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu1.BGColorOnHover}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-centermb-20">
+                <span class="label-menu">расположение меню</span>
+                <ui-select ng-model="$ctrl.item.menuMobile.menu1.position" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.item.menuMobile.menu1.position">
+                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in ['left','right','top','bottom']">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">отступ для контента на главной странице</span>
+                <div class="togglebutton">
+                    <label for="margin-menum">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.margin}">отступа нет</span>
+                        <input type="checkbox"
+                               id="margin-menum"
+                               ng-model="$ctrl.item.menuMobile.margin"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.margin}">отступ есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">отступ для контента на других страницах</span>
+                <div class="togglebutton">
+                    <label for="margin-otherm">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu1.marginOther}">отступ есть</span>
+                        <input type="checkbox"
+                               id="margin-otherm"
+                               ng-model="$ctrl.item.menuMobile.menu1.marginOther"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu1.marginOther}">отступа нет</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">меню1 прячется или нет при скролировании</span>
+                <div class="togglebutton">
+                    <label for="scroll-menum">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu1.scrollSlide}">без скролл slide</span>
+                        <input type="checkbox"
+                               id="scroll-menum"
+                               ng-model="$$ctrl.item.menuMobile.menu1.scrollSlide"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu1.scrollSlide}">скролл slide</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">номер стиля</span>
+                <ui-select ng-model="$ctrl.item.menuMobile.menu1.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menuMobile')">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">настройка стиля</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.menuMobile.menu1,'menuMobile')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 text-center">
+                <span class="label-menu">изменение цвета элементов меню на инверсный</span>
+                <div class="togglebutton text-center">
+                    <label for="color-menum">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.inverseColor.use}">цвет не изменяется</span>
+                        <input type="checkbox"
+                               id="color-menum"
+                               ng-model="$ctrl.item.menuMobile.inverseColor.use"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.inverseColor.use}">цвет изменяется</span>
+                    </label>
+                </div>
+                <div class="text-left" ng-show="$ctrl.item.inverseColor.use">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.menuMobile.inverseColor.startScroll"
+                                       ng-change="$ctrl.saveField('menuMobile')"> после начала скролирования
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.menuMobile.inverseColor.firstBanner"
+                                       ng-change="$ctrl.saveField('menuMobile')">
+                                при скролировании после окончания 1-го блока на главной странице
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.item.menuMobile.inverseColor.homePage"
+                                       ng-change="$ctrl.saveField('menuMobile')"> при переходе с главной страницы нв любую другую
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                <span class="label-menu">правила открытия каталога</span>
+                <div class="togglebutton">
+                    <label for="open1m">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.clickMenu}">по наведению курсора</span>
+                        <input type="checkbox"
+                               id="open1m"
+                               ng-model="$ctrl.item.menuMobile.clickMenu"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.clickMenu}">по клику</span>
+                    </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="cart-detail">
+            <h3 class="text-center name-page">компоненты меню 1</h3>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6"  ng-show="$ctrl.showPhoneField($ctrl.item.menuMobile.menu1.parts)">
+                <div class="form-group label-floating">
+                    <label class="control-label">номер телефона для блока "телефон"</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.item.menuMobile.menu1.phone"
+                           ng-change="$ctrl.saveField('menuMobile')">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название блока</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">положение блока</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер стиля</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">анимация</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">настройка стиля</div>
+            <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">удалить</div>-->
+            <div class="clearfix"></div>
+            <div class="part-box">
+                <div class="dropzone">
+                    <ul dnd-list="$ctrl.item.menuMobile.menu1.parts"
+                        dnd-drop="$ctrl.dropCallbackMenuType(item,'menuMobile','menu1')">
+                        <li
+                                dnd-draggable="item"
+                                dnd-type="'menu1'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.menuMobile.menu1.parts.splice($index,1)"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
+                                ng-repeat="item in $ctrl.item.menuMobile.menu1.parts">
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                <i class="material-icons link-success">swap_vert</i>
+                                <span>
+                                    {{$ctrl.listOfBlocksForHeader[item.name]}}
+                                </span>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-change="$ctrl.saveFieldTemplate('menu1',$ctrl.item.menu1)" ng-model="item.is" type="checkbox"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.position" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuMobile')">
+                                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in ['left','right','center']">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.templ" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuMobile')">
+                                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.style" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuMobile')">
+                                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                <ui-select ng-model="item.animate" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuMobile')">
+                                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <a ng-click="$ctrl.setColor(item,'menuMobile')">
+                                        <i class="material-icons" title="настроить стили">opacity</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">настройки меню 2</h3>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">наличие меню</span>
+                <div class="togglebutton">
+                    <label for="menu2m">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu2.is}">меню нет</span>
+                        <input type="checkbox"
+                               id="menu2m"
+                               ng-model="$ctrl.item.menuMobile.menu2.is"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu2.is}">меню есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фиксация меню в указанном положении</span>
+                <div class="togglebutton">
+                    <label for="fixed-menu2m">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu2.fixed}">меню не fixed</span>
+                        <input type="checkbox"
+                               id="fixed-menu2m"
+                               ng-model="$ctrl.item.menuMobile.menu2.fixed"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu2.fixed}">меню fixed</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-center mb-20">
+                <span class="label-menu">фон меню на главной странице</span>
+                <div class="togglebutton">
+                    <label for="background-menu2m">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.menu2.background}">фона нет</span>
+                        <input type="checkbox"
+                               id="background-menu2m"
+                               ng-model="$ctrl.item.menuMobile.menu2.background"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.menu2.background}">фон есть</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center mb-20">
+                <span class="label-menu">правила открытия каталога</span>
+                <div class="togglebutton">
+                    <label for="hover-clickm">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.clickMenu}">по наведению курсора</span>
+                        <input type="checkbox"
+                               id="hover-clickm"
+                               ng-model="$ctrl.item.menuMobile.clickMenu"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.clickMenu}">по клику</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">расположение меню</span>
+                <ui-select ng-model="$ctrl.item.menuMobile.menu2.position" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menuMobile')">
+                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in ['left','right','top','bottom']">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">ширина в px или %</span>
+                <div class="form-group" style="margin-top: 0">
+                    <input class="form-control" ng-change="$ctrl.saveField('menuMobile')" ng-model="$ctrl.item.menuMobile.menu2.slideMenuWidth"/>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">номер стиля</span>
+                <ui-select ng-model="$ctrl.item.menuMobile.menu2.style" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.saveField('menuMobile')">
+                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                <span class="label-menu">настройка стиля</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.menuMobile.menu2,'menuMobile')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h3 class="text-center name-page">компоненты меню 2</h3>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" ng-if="$ctrl.showPhoneField($ctrl.item.menuMobile.menu2.parts)">
+                <div class="form-group label-floating">
+                    <label class="control-label">номер телефона для блока "телефон"</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.item.menuMobile.menu2.phone"
+                           ng-change="$ctrl.saveField('menuMobile')">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название блока</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">положение блока</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер стиля</div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">анимация</div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">настройка стиля</div>
+            <div class="clearfix"></div>
+            <div class="part-box">
+                <div class="dropzone">
+                    <ul
+                            dnd-list="$ctrl.item.menuMobile.menu2.parts"
+                            dnd-drop="$ctrl.dropCallbackMenuType(item,'menuMobile','menu2')">
+                        <li
+                                dnd-draggable="item"
+                                dnd-type="'menu2'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.menuMobile.menu2.parts.splice($index,1)"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
+                                ng-repeat="item in $ctrl.item.menuMobile.menu2.parts">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-group">
+                                <i class="material-icons link-success">swap_vert</i>
+                                {{$ctrl.listOfBlocksForHeader[item.name]}}
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-change="$ctrl.saveFieldTemplate('menuMobile',$ctrl.item.menuMobile)" ng-model="item.is" type="checkbox"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.position" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuMobile')">
+                                    <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in ['left','right','center']">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.templ" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuMobile')">
+                                    <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <ui-select ng-model="item.style" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuMobile')">
+                                    <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10]">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                <ui-select ng-model="item.animate" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('menuMobile')">
+                                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">
+                                <div class="form-group">
+                                    <a ng-click="$ctrl.setColor(item,'menuMobile')">
+                                        <i class="material-icons" title="настроить стили">opacity</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cart-detail">
+            <h3 class=" name-page text-center"> стилизация гамбургера</h3>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
+                <span class="label-menu">визуализация гамбургера</span>
+                <div class="togglebutton">
+                    <label for="humburgertdf">
+                        <span ng-class="{'active':!$ctrl.item.menuMobile.humburger.icon}">стандартное изображение</span>
+                        <input type="checkbox"
+                               id="humburgertdf"
+                               ng-model="$ctrl.item.menuMobile.humburger.icon"
+                               ng-change="$ctrl.saveField('menuMobile')">
+                        <span ng-class="{'active':$ctrl.item.menuMobile.humburger.icon}">использовать иконку</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3">
+                <span class="label-menu">использовать название одно для всех видов устройств</span>
+                <div class="form-group label-floating">
+                    <label class="control-label">введите название</label>
+                    <input class="form-control"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-model="$ctrl.store.humburgerL[$ctrl.global.get('store').val.lang]"
+                           ng-change="$ctrl.saveFieldStore('humburgerL')">
+                </div>
+
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                <span class="label-menu">настроить стили гамбургера</span>
+                <div class="form-group">
+                    <a ng-click="$ctrl.setColor($ctrl.item.menuMobile.humburger,'menuMobile')">
+                        <i class="material-icons" title="настроить стили">opacity</i>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

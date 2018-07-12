@@ -1,0 +1,35 @@
+<h1>dd</h1>
+<h1>dd</h1>
+<h1>dd</h1>
+<h1>dd</h1>
+
+<div ng-hide="$ctrl.$state.current.name!='frame.help'">
+    <ul>
+        <li ng-repeat="section in $ctrl.sections">
+            <span ng-bind="section.name"></span>
+            <ul>
+                <li ng-repeat="child in section.child">
+                    <span ng-bind="child.name"></span>
+                    <ul>
+                        <li ng-repeat="category in child.categories">
+                            <a ui-sref="frame.help.category({category:category._id,store:$ctrl.helpStoreId})">
+                                <span ng-bind="category.name"></span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+            <ul>
+                <li ng-repeat="category in section.categories">
+                    <a ui-sref="frame.help.category({category:category._id,store:$ctrl.helpStoreId})">
+                        <span ng-bind="category.name"></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div ui-view="">
+
+</div>

@@ -1,0 +1,10 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="feedback-form",title=lang.feedback)
+            a(class="feedback-header",ng-click="global.get('functions').val.action('feedback')")
+                if(dj[key].name)
+                    h2=dj[key].nameBlock
+            a(class="input-group",ng-click="global.get('functions').val.action('feedback')")
+                span(class="input-group-addon")
+                    span.icon-subscription-img
+                input(type="text" class="form-control",placeholder=lang.feedback,disabled)

@@ -1,0 +1,9 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(ng-if="::$ctrl.item.sort && !$ctrl.item.service && !$ctrl.item.single",class="quantity col-lg-4  col-md-4 col-sm-6 col-xs-5")
+            ui-select(ng-model="$ctrl.item.quantity",theme="bootstrap",on-select="$ctrl.item.onSelected()",append-to-body="true",search-enabled="false")
+                ui-select-match
+                    span(ng-bind="$select.selected")
+                ui-select-choices(repeat="qty in [1,2,3,4,5,6,7,8,9,10] track by $index")
+                    span(ng-bind="qty | highlight: $select.search")
+                span(class="unit" ng-bind="$ctrl.item.unitOfMeasure")

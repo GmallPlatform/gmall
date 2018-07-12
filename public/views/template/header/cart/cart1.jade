@@ -1,0 +1,21 @@
+- var pullClass=''
+if(dj[key].position!='center' && (dj[key].positionMenu=='top' ||dj[key].positionMenu=='bottom'))
+    - pullClass=' pull-'+dj[key].position
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+        if(dj[key].positionMenu=='top' ||dj[key].positionMenu=='bottom')
+            - var c = 'nav-group preview-cart'
+        else
+            - var c = 'preview-cart'
+        div(class="added-cart",added-cart)
+        div(class=c,preview-cart=(!mobile && !tablet))
+            if(store.cartSetting && store.cartSetting.slide && !mobile)
+                - var click="checkedMenu.cart=true"
+                - var sref=null;
+            else
+                - var click=null
+                - var sref="cart";
+            a(class="img-bag text-center",ui-sref=sref,ng-click=click)
+                | !{lang.cart}
+
+

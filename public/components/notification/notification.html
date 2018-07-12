@@ -1,0 +1,76 @@
+<div class="notification">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff">
+            <a class="btn btn-fab btn-fab-mini" onclick="window.history.back()">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class=" tab-nav-stuff">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="notificationCtrl.checkAll" ng-change="notificationCtrl.setCheckAll()">
+                    отметить все &nbsp;
+                </label>
+                <a class="btn btn-fab btn-fab-mini" ng-click="notificationCtrl.deleteItem()"
+                   ng-disabled="!notificationCtrl.deleteEnable()">
+                    <i class="material-icons link-warning md-42">delete</i>
+                </a>
+            </div>
+
+         </div>
+        <div class="tab-nav-stuff note-type">
+            <a ng-click="notificationCtrl.changeType(type)"
+               ng-repeat="(type,val) in notificationCtrl.notifications.val"
+               ng-class="{'active':type==notificationCtrl.type}">
+                <label ng-bind="type"></label>&nbsp;
+                <span class="badge badge-danger" ng-bind="val"></span>
+            </a>
+        </div>
+        <div class="tab-nav-stuff note-type">
+            <a ng-click="notificationCtrl.allNote()" ng-if="notificationCtrl.typeNote">all</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 box-notification">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 "  ng-repeat="note in notificationCtrl.items">
+            <div class="cart-detail" >
+                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="note.check">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-10 note-desc">
+                    <h4 class="link-success"><strong ng-bind="notificationCtrl.notificationsTypeLang[note.type][notificationCtrl.lang]"></strong></h4>
+                    <span go-to-order='note.order' ng-bind-html="notificationCtrl.trustHtml(note.content)"></span>
+                </div>
+
+                <div class="col-lg-5 col-md-5 col-sm-3 col-xs-8">
+                    <div class="form-group label-floating">
+                        <label class="control-label" for="comment">добавить заметку</label>
+                        <input id="comment" class="form-control" style="width:100%" ng-model="note.note"
+                                  ng-blur="notificationCtrl.saveNote(note)">
+                    </div>
+                    <p class="text-right">
+                        <label>дата просмотра </label>
+                        <span  ng-bind="moment(note.dateNote).format('LLL')"></span>
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                    <a class="btn btn-fab btn-fab-mini pull-right">
+                        <i class="material-icons link-warning md-42"ng-click="notificationCtrl.deleteItem(note._id)">delete</i>
+                    </a>
+                </div>
+
+
+
+                <div class="clearfix"></div>
+
+            </div> 
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<paginator-main paginate='notificationCtrl.paginate'  getlist="notificationCtrl.getList()"></paginator-main>

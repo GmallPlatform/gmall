@@ -1,0 +1,1894 @@
+<div class="store-setting" id="filterBlock" ng-init="$ctrl.block='components'" ng-if2="$ctrl.item && $ctrl.item._id"
+     xmlns="http://www.w3.org/1999/html">
+    <div class="nav-box-stuff"  ng-class="{'mini-nav':$ctrl.global.get('mobile').val}">
+       <!-- <div class="tab-nav-stuff text-center" ng-class="{'mini-tab':$ctrl.global.get('mobile').val}">
+            <a class="btn btn-fab" onclick="window.history.back()" ng-class="{'btn-fab-mini':$ctrl.global.get('mobile').val}">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>-->
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='components','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='components'">
+                <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">settings</i>
+                <p class="mini-text" ng-if="$ctrl.global.get('mobile').val"> база</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">базовые<br> настройки</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='media','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='media'">
+                <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">airplay</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">медиа</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">медиа<br> контент</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff  text-center" ng-class="{'active':$ctrl.block=='blocks','mini-tab':$ctrl.global.get('mobile').val}">
+            <a  ng-click="$ctrl.block='blocks'">
+                <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">format_color_text</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">тексты</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">тексты</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff  text-center" ng-class="{'active':$ctrl.block=='technics','mini-tab':$ctrl.global.get('mobile').val}">
+            <a  ng-click="$ctrl.block='technics'">
+                <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">perm_data_setting</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">SEO</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">технические<br> и SEO данные</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff  text-center" ng-class="{'active':$ctrl.block=='seo','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='seo'"><!-- "-->
+                <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">mail</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">письма</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">письма</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='shop','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='shop'">
+                <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">card_travel</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">продажи</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">настройки<br> продаж</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='content','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.block='content'">
+                <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">dvr</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">контент</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">настройки<br> контента</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='shop','mini-tab':$ctrl.global.get('mobile').val}">
+            <a ng-click="$ctrl.clearCashe()">
+                <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">settings_backup_restore</i>
+                <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">кеш</p>
+                <p ng-if="!$ctrl.global.get('mobile').val">сброс<br> кеша</p>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="content-tab-box" ng-show="$ctrl.block=='components'"  ng-init="displayHelp=false">
+        <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4 class="text-center name-page">настройки сайта</h4>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">основные компоненты</h4>
+                        <div class="form-group">
+                            <label for="name" class="control-label">название сайта</label>
+                            <input type="text"
+                                   id="name"
+                                   class="form-control name"
+                                   ng-model="$ctrl.item.name"
+                                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('name')"
+                                   required/>
+                        </div>
+                        <div class="form-group label-floating">
+                            <label for="name" class="control-label">url</label>
+                            <span class="form-control">
+                                    <strong>http://{{$ctrl.item.subDomain}}.gmall.io</strong>
+                                </span>
+                        </div>
+                        <h4 class="text-center name-box">адрес для обратной связи</h4>
+                        <div  class="form-group">
+                            <label for="feedbackEmail" class="control-label">адрес для обратной связи</label>
+                            <input type="text" id="feedbackEmail" class="form-control mb" ng-model="$ctrl.item.feedbackEmail"
+                                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('feedbackEmail')"/>
+                        </div>
+                        <p>укажите адрес электронной почты, на которую будут приходить письма из формы обратной связи</p>
+                    </div>
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">администраторы</h4>
+                        <p ng-show="!$ctrl.item.showOwner">
+                            <a ng-click="$ctrl.getOwner()">показать администратора</a>
+                        </p>
+                        <div ng-show="$ctrl.item.showOwner">
+                            <p>
+                                <a class="link-success" ng-click="$ctrl.addOwner()">добавить администратора</a>
+                            </p>
+                            <ul class="owner">
+                                <li ng-repeat="user in $ctrl.item.owner">
+                                    <span>{{user.name}}|{{user.email}}</span>
+                                    <a><i class="material-icons link-warning" ng-click="$ctrl.deleteOwner($index)" style="font-size: 16px">clear</i></a>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">переводчики</h4>
+                        <p ng-show="!$ctrl.item.showTranslaters">
+                            <a ng-click="$ctrl.getTranslaters()">показать преводчиков</a>
+                        </p>
+                        <div ng-show="$ctrl.item.showTranslaters">
+                            <p>
+                                <a class="link-success" ng-click="$ctrl.addTranslater()">добавить преводчика</a>
+                            </p>
+                            <ul class="owner">
+                                <li ng-repeat="user in $ctrl.item.translaters">
+                                    <span>{{user.name}}|{{user.email}}</span>
+                                    <a><i class="material-icons link-warning" ng-click="$ctrl.deleteTranslater($index)" style="font-size: 16px">clear</i></a>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">наличие общего функционала</h4>
+                        <div class="togglebutton">
+                            <label for="hp">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.hpWithList}">не показывать главную в списке товаров</span>
+                                <input type="checkbox"
+                                       id="hp"
+                                       ng-model="$ctrl.item.hpWithList"
+                                       ng-change="$ctrl.saveField('hpWithList')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.hpWithList}">показывать главную в списке товаров</span>
+                            </label>
+                        </div>
+                        <div class="togglebutton">
+                            <label for="feedback">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.cabinetNot}">кабинет (авторизация) есть</span>
+                                <input type="checkbox"
+                                       id="feedback"
+                                       ng-model="$ctrl.item.cabinetNot"
+                                       ng-change="$ctrl.saveField('cabinetNot')">
+                                <span  class="lr" ng-class="{'active':$ctrl.item.cabinetNot}">кабинета (авторизации) нет</span>
+                            </label>
+                        </div>
+
+                        <div class="togglebutton">
+                            <label for="full">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.cabinetFull}">стандартный кабинет</span>
+                                <input type="checkbox"
+                                       id="full"
+                                       ng-model="$ctrl.item.cabinetFull"
+                                       ng-change="$ctrl.saveField('cabinetFull')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.cabinetFull}">расширенный кабинет </span>
+                            </label>
+                        </div>
+                        <h4 class="text-center name-box">наличие блоков в кабинете</h4>
+                        <div class="togglebutton">
+                            <label for="order">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.orderis}">блок заказов есть</span>
+                                <input type="checkbox"
+                                       id="order"
+                                       ng-model="$ctrl.item.orderis"
+                                       ng-change="$ctrl.saveField('orderis')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.orderis}">блока заказов нет </span>
+                            </label>
+                        </div>
+                        <div class="togglebutton">
+                            <label for="onlineis">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.onlineis}">блок он-лай записи есть</span>
+                                <input type="checkbox"
+                                       id="onlineis"
+                                       ng-model="$ctrl.item.onlineis"
+                                       ng-change="$ctrl.saveField('onlineis')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.onlineis}">блока он-лай записи  нет </span>
+                            </label>
+                        </div>
+                        <div class="togglebutton">
+                            <label for="datais">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.datais}">блок личных данных есть</span>
+                                <input type="checkbox"
+                                       id="datais"
+                                       ng-model="$ctrl.item.datais"
+                                       ng-change="$ctrl.saveField('datais')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.datais}">блока личных данных  нет </span>
+                            </label>
+                        </div>
+                        <div class="togglebutton">
+                            <label for="fileis">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.fileis}">блок скачивания каталогов есть</span>
+                                <input type="checkbox"
+                                       id="fileis"
+                                       ng-model="$ctrl.item.fileis"
+                                       ng-change="$ctrl.saveField('fileis')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.fileis}">блок скачивания каталогов  нет </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="cart-detail">
+                        <h4  class="name-box text-center">объекты для новинок и распродажи</h4>
+                        <p class="text-center">выберите группу товаров, на которую будет переходить покупатель </p>
+                        <div class="row">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                                <h4>при нажатии на ссылку NEW</h4>
+                                <a ng-click="$ctrl.selectTag('newTag')">
+                                    <span ng-bind="$ctrl.item.newTag.name"></span>
+                                    <i class="material-icons link-success">cached</i>
+                                </a>
+                                <a  ng-click="$ctrl.deleteTag('newTag')">
+                                    <i class="material-icons link-warning">delete</i>
+                                </a>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                                <h4>при нажатии на ссылку SALE</h4>
+                                <a  ng-click="$ctrl.selectTag('saleTag')">
+                                    <span ng-bind="$ctrl.item.saleTag.name"></span>
+                                    <i class="material-icons link-success">cached</i>
+                                </a>
+                                <a ng-click="$ctrl.deleteTag('saleTag')">
+                                    <i class="material-icons link-warning">delete</i>
+                                </a>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">единицы измерения товаров</h4>
+                        <div  class="form-group" ng-if="$ctrl.config">
+                            <label  class="control-label">единицы измерения, используемые на сайте</label>
+                            <ui-select multiple ng-model="$ctrl.item.unitOfMeasure" on-select="$ctrl.onSelected()"
+                                       ng-change="$ctrl.saveField('unitOfMeasure')">
+                                <ui-select-match placeholder="выбрать единицы измерения для сайта">{{$item}}</ui-select-match>
+                                <ui-select-choices repeat="opt in $ctrl.configData.unitOfMeasure">{{ opt }}</ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                    </div>
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">языки</h4>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div  class="form-group">
+                                <label  class="control-label">языки используемые на сайте</label>
+                                <ui-select multiple ng-model="$ctrl.item.langArr" skip-focusser="true"
+                                           ng-change="$ctrl.saveField('langArr')">
+                                    <ui-select-match placeholder="выбрать язык">{{$item}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in $ctrl.config.langs">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div  class="form-group" ng-if="$ctrl.item.mainCurrency && $ctrl.item.currencyArr.length">
+                                <label  class="control-label">основной язык сайта</label>
+                                <ui-select ng-if="$ctrl.item.lang" ng-model="$ctrl.item.lang"skip-focusser="true"
+                                           ng-change="$ctrl.saveField('lang')">
+                                    <ui-select-match placeholder="выбрать язык">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in $ctrl.item.langArr">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="$ctrl.item.displayLang" type="checkbox" ng-change="$ctrl.saveField('displayLang')"/>
+                                        показывать все языки на сайте
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">телефонные коды</h4>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div  class="form-group">
+                                <label  class="control-label">коды стран используемые на сайте</label>
+                                <ui-select multiple ng-model="$ctrl.item.phoneCodes" skip-focusser="true"
+                                           ng-change="$ctrl.changePhoneCodes()">
+                                    <ui-select-match placeholder="выбрать код">{{$item.code}} {{$item.country}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in $ctrl.config.phoneCodes">{{opt.code}}({{opt.country}})</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div  class="form-group">
+                                <label  class="control-label">основной код</label>
+                                <ui-select ng-model="$ctrl.item.phoneCode" skip-focusser="true"
+                                           ng-change="$ctrl.saveField('phoneCode')">
+                                    <ui-select-match placeholder="выбрать код">{{$select.selected.code}}({{$select.selected.country}})</ui-select-match>
+                                    <ui-select-choices repeat="opt in $ctrl.item.phoneCodes">{{opt.code}}({{opt.country}})</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cart-detail">
+                        <div class="row">
+                            <h4 class="text-center name-box">работа с шаблоном сайта</h4>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <p>для сохранения настроек и конфигурации данного шаблона в библиотеку шаблонов нажмите "выгрузить шаблон"</p>
+                                <div class="form-group">
+                                    <a class="btn btn-raised link-success" ng-click="$ctrl.saveTemplate()">выгрузить шаблон</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <p>если вы хотите полностью изменить шаблон сайта, то выберите другой шаблон (фотографии и настройки данной конфигурации будут изменены)</p>
+                                <div class="form-group">
+                                    <label  class="control-label">сменить шаблон</label>
+                                    <ui-select  ng-model="$ctrl.templateFile" skip-focusser="true"
+                                                ng-change="$ctrl.changeTemplate($ctrl.templateFile)">
+                                        <ui-select-match placeholder="выбрать шаблон">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in $ctrl.templates">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">валюты</h4>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="currency-order form-group">
+                                <label class="control-label">порядок валют в меню</label>
+                                <ul dnd-list="$ctrl.currencyList">
+                                    <li ng-repeat="item in $ctrl.currencyList"
+                                        dnd-draggable="item"
+                                        dnd-moved="$ctrl.currencyList.splice($index, 1)"
+                                        dnd-effect-allowed="move"
+                                        dnd-selected="$ctrl.selected = item"
+                                        ng-class="{'selected': $ctrl.selected === item}"
+                                        dnd-dragend="$ctrl.changeCurrencyOrder()">
+                                        <span>
+                                            <i class="material-icons link-success">swap_vert</i>
+                                        </span>
+                                        <span>
+                                            {{item.name}}
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div  class="form-group">
+                                <label  class="control-label">валюты используемые на сайте</label>
+                                <ui-select multiple ng-model="$ctrl.item.currencyArr" skip-focusser="true"
+                                           ng-change="$ctrl.saveField('currencyArr')">
+                                    <ui-select-match placeholder="выбрать валюту">{{$item}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in $ctrl.config.currency">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div  class="form-group" ng-if="$ctrl.item.mainCurrency && $ctrl.item.currencyArr.length">
+                                <label  class="control-label">основная валюта сайта</label>
+                                <ui-select ng-if="$ctrl.item.currencyArr" ng-model="$ctrl.item.mainCurrency" skip-focusser="true"
+                                           ng-change="$ctrl.saveField('mainCurrency')">
+                                    <ui-select-match placeholder="выбрать валюту">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in $ctrl.item.currencyArr">{{ opt }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="$ctrl.item.displayCurrency" type="checkbox" ng-change="$ctrl.saveField('displayCurrency')"/>
+                                        показывать все валюты на сайте
+                                    </label>
+                                </div>
+                            </div>
+                            <p> после изменения валют установите курсы в разделе "управление заказами"</p>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">формат цены при отображении на сайте</h4>
+                        <div>
+                            <div class="currency-order form-group">
+                                <ul style="padding-left:0">
+                                    <li ng-repeat="item in $ctrl.item.currency" class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <h4 class="link-warning">
+                                                {{item[1]}}
+                                        </h4>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <div  class="form-group">
+                                                <label  class="control-label">округление (до выбранного формата)</label>
+                                                <ui-select  ng-model="item[4]" skip-focusser="true"
+                                                            ng-change="$ctrl.saveField('currency')">
+                                                    <ui-select-match placeholder="выбрать формат округления">{{$ctrl.formatAverage[item[4]]}}</ui-select-match>
+                                                    <ui-select-choices repeat="opt in [0,1,2,3,4]">{{ $ctrl.formatAverage[opt] }}</ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div  class="form-group">
+                                                <label  class="control-label">количество знаков после запятой</label>
+                                                <input type="number"  min="0" max="2" class="form-control" ng-model="item[5]" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                                       ng-change="$ctrl.saveField('currency')"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                            <div  class="form-group">
+                                                <label  class="control-label">показывать эту валюту основной для</label>
+                                                <ui-select multiple ng-model="item[3]"  title="выберите страну" ng-change="$ctrl.saveField('currency')">
+                                                    <ui-select-match placeholder="Выберите страну из списка">{{$item.name}}</ui-select-match>
+                                                    <ui-select-choices repeat="country.code as country in $ctrl.countriesList | filter: $select.search">
+                                                        <span ng-bind-html="country.name | highlight: $select.search"></span>
+                                                        <small ng-bind-html="country.code | highlight: $select.search"></small>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <hr>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="clearfix"></div>
+                    </div>
+
+
+
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">страница preload</h4>
+                        <div class="togglebutton">
+                            <label for="preload">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.preload.use}">preload нет</span>
+                                <input type="checkbox"
+                                       id="preload"
+                                       ng-model="$ctrl.item.preload.use"
+                                       ng-change="$ctrl.saveField('preload')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.preload.use}">preload есть</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="$ctrl.item.preload.desctop" type="checkbox" ng-change="$ctrl.saveField('preload')"/>
+                                    десктоп
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="$ctrl.item.preload.tablet" type="checkbox" ng-change="$ctrl.saveField('preload')"/>
+                                    таблетка
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="$ctrl.item.preload.mobile" type="checkbox" ng-change="$ctrl.saveField('preload')"/>
+                                    мобайл
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div  class="form-group">
+                                <label  class="control-label">время показа</label>
+                                <ui-select  ng-model="$ctrl.item.preload.duration" skip-focusser="true"
+                                            ng-change="$ctrl.saveField('preload')">
+                                    <ui-select-match placeholder="секунд">{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9]">{{ opt}}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div  class="form-group">
+                                <label  class="control-label">анимация</label>
+                                <ui-select ng-model="$ctrl.item.preload.animate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                                           ng-change="$ctrl.saveField('preload')">
+                                    <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-show="$ctrl.block=='media'"  ng-init="displayHelp=false">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h4 class="text-center name-page">основные изображения для сайта</h4>
+            <div class="cart-detail">
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="favicon thumbnail ">
+                            <h4 class="text-center name-box">favicon</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUploadSticker?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.favicon"
+                                    name-img="favicon">
+                            </load-image>
+                            <hr>
+                            <p>значок в формате .ico, который будет отображаться на вкладке страницы</p>
+                        </div>
+                    </div>
+                </div>
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="logo thumbnail">
+                            <h4 class="text-center name-box">логотип (основное изображение)</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.logo"
+                                    name-img="logo">
+                            </load-image>
+                            <hr>
+                            <p>логотип компании в формате .png на прозрачном фоне </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="logo thumbnail">
+                            <h4 class="text-center name-box">логотип (инверсное изображение)</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.logoInverse"
+                                    name-img="logoInverse">
+                            </load-image>
+                            <hr>
+                            <p>логотип компании (инверсное изображение) формате .png на прозрачном фоне </p>
+                        </div>
+                    </div>
+                </div>
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="logo thumbnail">
+                            <h4 class="text-center name-box">фото для расшаривания в соцсетях</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.fbPhoto"
+                                    name-img="fbPhoto">
+                            </load-image>
+                            <hr>
+                            <p>используйте рекомендованный размер фото для соцсетей</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="background thumbnail">
+                            <h4 class="text-center name-box">background для сайта</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUploadFullImg?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.backgroundImg"
+                                    name-img="backgroundImg">
+                            </load-image>
+                            <hr>
+                            <p>для фона сайта используйте только бесшовное паттерное изображение</p>
+                            <div class="togglebutton">
+                                <label for="backgroundImgUse">
+                                    <span class="ll" ng-class="{'active':!$ctrl.item.backgroundImgUse}">не использовать</span>
+                                    <input type="checkbox"
+                                           id="backgroundImgUse"
+                                           ng-model="$ctrl.item.backgroundImgUse"
+                                           ng-change="$ctrl.saveField('backgroundImgUse')">
+                                    <span class="lr" ng-class="{'active':$ctrl.item.backgroundImgUse}">использовать</span>
+                                </label>
+                            </div>
+                            <div class="togglebutton">
+                                <label for="backgroundImgUseHome">
+                                    <span class="ll" ng-class="{'active':!$ctrl.item.backgroundImgUseHome}">для всего сайта</span>
+                                    <input type="checkbox"
+                                           id="backgroundImgUseHome"
+                                           ng-model="$ctrl.item.backgroundImgUseHome"
+                                           ng-change="$ctrl.saveField('backgroundImgUseHome')">
+                                    <span class="lr" ng-class="{'active':$ctrl.item.backgroundImgUseHome}">только для главной страницы</span>
+                                </label>
+                            </div>
+
+                            <small>backgroundImgUseHome</small>
+                        </div>
+                        <div class="background thumbnail">
+                            <h4 class="text-center name-box">фото для блока записи на время</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.dateTimeImg"
+                                    name-img="dateTimeImg">
+                            </load-image>
+                            <hr>
+                            <p>фото будет размещено в блоке записи на время</p>
+                        </div>
+                    </div>
+                </div>
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="background thumbnail">
+                            <h4 class="text-center name-box">фото для ссылки "все категории"</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.allCategories"
+                                    name-img="allCategories">
+                            </load-image>
+                            <hr>
+                            <p>фото будет размещено в списке товаров в списке категорий</p>
+                        </div>
+                    </div>
+                </div>
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="background thumbnail">
+                            <h4 class="text-center name-box">фото для товаров без фото</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.nophoto"
+                                    name-img="nophoto">
+                            </load-image>
+                            <hr>
+                            <p>фото будет размещено в списке товаров вместо оригинального фото товара</p>
+                        </div>
+                    </div>
+                </div>
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="background thumbnail">
+                            <h4 class="text-center name-box">фото для пустого списка товаров</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.emptyList"
+                                    name-img="emptyList">
+                            </load-image>
+                            <hr>
+                            <p>фото будет размещено на странице списка товаров, если список будет пуст</p>
+                        </div>
+                    </div>
+                </div>
+                <div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="background thumbnail">
+                            <h4 class="text-center name-box">фото для блока copyright</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.copyrightImg"
+                                    name-img="copyrightImg">
+                            </load-image>
+                            <hr>
+                            <p>фото будет размещено в футере в блоке copyright</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div  ng-class="{'row':$ctrl.global.get('mobile').val}">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="background thumbnail">
+                            <h4 class="text-center name-box">фото для страницы 404</h4>
+                            <load-image
+                                    upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                                    item-id="{{$ctrl.item._id}}"
+                                    item-resourse="$ctrl.Items"
+                                    file-src="$ctrl.item.notfoundImg"
+                                    name-img="notfoundImg">
+                            </load-image>
+                            <hr>
+                            <p>фото будет размещено на странице с ошибкой 404</p>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-if="$ctrl.item && $ctrl.item._id" ng-show="$ctrl.block=='blocks'"  ng-init="displayHelp=false">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 class="name-page text-center">тексты в в модальных окнах</h3>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <!--<span class="text-center" ng-repeat="lng in $ctrl.item.langArr">
+                <a class="btn btn-fab lang-btn" ng-click="$parent.lang=lng">
+                    <span ng-bind="lng" ng-class="{'active':$parent.lang==lng}"></span>
+                </a>
+            </span>-->
+            <div class="cart-detail">
+                <h4 class="text-center name-box">текст для окна подписки</h4>
+                <p>укажите текст, который будет отображаться в модальном окне подписки</p>
+
+                <div  class="form-group  label-floating">
+                    <label for="subscriptionName" class="control-label">заголовок в окне подписки</label>
+                    <input type="text" id="subscriptionName" class="form-control mb" ng-model="$ctrl.item.texts.subscriptionName[$ctrl.lang]"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldTemplate('texts.subscriptionName',$ctrl.item.texts.subscriptionName)"/>
+                </div>
+                <div  class="form-group  label-floating">
+                    <label for="subscriptionText" class="control-label">текст в окне подписки</label>
+                    <textarea type="text" id="subscriptionText" class="form-control mb" ng-model="$ctrl.item.texts.subscriptionText[$ctrl.lang]"
+                              ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                              ng-change="$ctrl.saveFieldTemplate('texts.subscriptionText',$ctrl.item.texts.subscriptionText)"/></textarea>
+                </div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-box">текст для окна расширенной подписки</h4>
+                <p>укажите текст, который будет отображаться в модальном окне расширенной подписки</p>
+
+                <div  class="form-group  label-floating">
+                    <label for="subscriptionAddName" class="control-label">заголовок в окне расширенной подписки</label>
+                    <input type="text" id="subscriptionAddName" class="form-control mb" ng-model="$ctrl.item.texts.subscriptionAddName[$ctrl.lang]"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldTemplate('texts.subscriptionAddName',$ctrl.item.texts.subscriptionAddName)"/>
+                </div>
+                <div  class="form-group  label-floating">
+                    <label for="subscriptionAddText" class="control-label">текст в окне расширенной подписки</label>
+                    <textarea type="text" id="subscriptionAddText" class="form-control mb" ng-model="$ctrl.item.texts.subscriptionAddText[$ctrl.lang]"
+                              ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                              ng-change="$ctrl.saveFieldTemplate('texts.subscriptionAddText',$ctrl.item.texts.subscriptionAddText)"/></textarea>
+                </div>
+                <div  class="form-group  label-floating">
+                    <label for="subscriptionAddButton" class="control-label">кнопка в окне расширенной подписки</label>
+                    <input type="text" id="subscriptionAddButton" class="form-control mb" ng-model="$ctrl.item.texts.subscriptionAddButton[$ctrl.lang]"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldTemplate('texts.subscriptionAddButton',$ctrl.item.texts.subscriptionAddButton)"/>
+                </div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-box">текст для окна заказа обратного звонка</h4>
+                <p>укажите текст, который будет отображаться в модальном окне заказа обратного звонка</p>
+                <div  class="form-group  label-floating">
+                    <label for="callName" class="control-label">заголовок в окне заказа звонка</label>
+                    <input type="text" id="callName" class="form-control mb" ng-model="$ctrl.item.texts.callName[$ctrl.lang]"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldTemplate('texts.callName',$ctrl.item.texts.callName)"/>
+                </div>
+                <div  class="form-group  label-floating">
+                    <label for="callText" class="control-label">текст в окне заказа звонка</label>
+                    <textarea type="text" id="callText" class="form-control mb" ng-model="$ctrl.item.texts.callText[$ctrl.lang]"
+                              ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                              ng-change="$ctrl.saveFieldTemplate('texts.callText',$ctrl.item.texts.callText)"/></textarea>
+                </div>
+            </div>
+            <div class="cart-detail">
+
+                <h4 class="text-center name-box">текст для окна обратной связи</h4>
+                <p>укажите текст, который будет отображаться в модальном окне обратной связи</p>
+                <div  class="form-group  label-floating">
+                    <label for="feedbackName" class="control-label">заголовок в окне обратной связи</label>
+                    <input type="text" id="feedbackName" class="form-control mb" ng-model="$ctrl.item.texts.feedbackName[$ctrl.lang]"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldTemplate('texts.feedbackName',$ctrl.item.texts.feedbackName)"/>
+                </div>
+                <div  class="form-group  label-floating">
+                    <label for="feedbackText" class="control-label">текст в окне обратной связи</label>
+                    <textarea type="text" id="feedbackText" class="form-control mb" ng-model="$ctrl.item.texts.feedbackText[$ctrl.lang]"
+                              ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                              ng-change="$ctrl.saveFieldTemplate('texts.feedbackText',$ctrl.item.texts.feedbackText)"/></textarea>
+                </div>
+            </div>
+            <div class="cart-detail">
+                <div class="editor">
+                    <div class="block-edit">
+                        <h4 class="name-box">текст для формы записи на время</h4>
+                        <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                             ng-change="$ctrl.saveFieldTemplate('texts.dateTimeText',$ctrl.item.texts.dateTimeText)"
+                             ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                             ng-model="$ctrl.item.texts.dateTimeText[$ctrl.lang]"
+                             ta-paste="global.get('functions').val.taPaste($html)"
+                             ta-text-editor-class="border-around"
+                             ta-html-editor-class="border-around">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="text-center name-box">текст на кнопке получения бонуса</h4>
+                <p>укажите текст на кнопке получения бонуса</p>
+                <div  class="form-group  label-floating">
+                    <label for="mailText" class="control-label">текст в на кнопке</label>
+                    <input class="form-control" type="text" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('bonusButtonText')"ng-model="$ctrl.item.bonusButtonText" >
+                </div>
+
+                <h4 class="text-center name-box">форма для оформления подарочного заказа</h4>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked disabled/>
+                                e-mail
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked disabled/>
+                                имя
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-change="$ctrl.saveField('bonusForm')" ng-model="$ctrl.item.bonusForm.phone"/>
+                                телефон
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-change="$ctrl.saveField('bonusForm')" ng-model="$ctrl.item.bonusForm.city"/>
+                                город
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+                    <!--<div ng-repeat="field in $ctrl.item.bonusForm.fields">
+                    </div>-->
+                    <h4 class="text-center">
+                        создание и редактирование дополнительных полей для формы
+                    </h4>
+                    <a class="btn btn-fab" ng-click="$ctrl.bonusFormAdditionFields()">
+                        <i class="material-icons link-success">assignment</i>
+                    </a>
+                </div>
+
+                <div class="clearfix"></div>
+                <hr>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-box">текст для блока copyright</h4>
+                <p>укажите текст, который будет отображаться в футере в блоке copyright</p>
+
+                <div class="editor">
+                    <div class="block-edit">
+                        <h4 class="name-box">первый блок</h4>
+                        <div text-angular id="feedbackName22"
+                             ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                             ta-paste="global.get('functions').val.taPaste($html)"
+                             ta-text-editor-class="border-around"
+                             ta-html-editor-class="border-around"
+                             ng-model="$ctrl.item.texts.copyrightText[$ctrl.lang]"
+                             ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                             ng-change="$ctrl.saveFieldTemplate('texts.copyrightText',$ctrl.item.texts.copyrightText)">
+                        </div>
+                    </div>
+                </div>
+                <div class="editor">
+                    <div class="block-edit">
+                        <h4 class="name-box">второй блок</h4>
+                        <div text-angular id="feedbackName333"
+                             ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                             ta-paste="global.get('functions').val.taPaste($html)"
+                             ta-text-editor-class="border-around"
+                             ta-html-editor-class="border-around"
+                             ng-model="$ctrl.item.texts.copyrightText1[$ctrl.lang]"
+                             ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                             ng-change="$ctrl.saveFieldTemplate('texts.copyrightText1',$ctrl.item.texts.copyrightText1)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <div class="content-tab-box" ng-if="$ctrl.item && $ctrl.item._id" ng-show="$ctrl.block=='technics'"  ng-init="displayHelp=false">
+        <h3 class="name-page text-center">технические данные</h3>
+        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="cart-detail">
+                <h4 class="name-box text-center">кеширование</h4>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="text-center">
+                        <p>общее кеширование</p>
+                        <div class="togglebutton">
+                            <label for="cacheAll">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.cache.all}">не применять</span>
+                                <input type="checkbox"
+                                       id="cacheAll"
+                                       ng-model="$ctrl.item.cache.all"
+                                       ng-change="$ctrl.saveField('cache')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.cache.all}">применять</span>
+                            </label>
+                        </div>
+                        <a class="btn btn-raised" ng-click="$ctrl.clearCache('all')">
+                            <span>сброс кеша</span>
+                        </a>
+                    </div>
+                    <div  class="text-center">
+                        <p>кеширование списков новостей</p>
+                        <div class="togglebutton">
+                            <label for="cacheListNews">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.cache.list.news}">не применять</span>
+                                <input type="checkbox"
+                                       id="cacheListNews"
+                                       ng-model="$ctrl.item.cache.list.news"
+                                       ng-change="$ctrl.saveField('cache')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.cache.list.news}">применять</span>
+                            </label>
+                        </div>
+                        <p>режим production</p>
+                        <div class="togglebutton">
+                            <label for="cacheListNewsff">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.cache.productMode}">не применять</span>
+                                <input type="checkbox"
+                                       id="cacheListNewsff"
+                                       ng-model="$ctrl.item.cache.productMode"
+                                       ng-change="$ctrl.saveField('cache')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.cache.productMode}">применять</span>
+                            </label>
+                        </div>
+                        <a class="btn btn-raised" ng-click="$ctrl.clearCache('list.news')">
+                            <span>сброс кеша</span>
+                        </a>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="text-center">
+                        <div class="form-group">
+                            <label  class="control-label">изменить время кеширования</label>
+                            <ui-select  ng-model="$ctrl.item.cache.seconds" skip-focusser="true"
+                                        ng-change="$ctrl.saveField('cache')">
+                                <ui-select-match placeholder="выбрать время">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="value.val as value in $ctrl.cacheTime">{{ value.name }}</ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="name-box text-center">адрес папки с архивами фото</h4>
+                <p>здесь вводится ссылка на папку из облачного диска в которой храняться файлы дояступные для скачивания вашим клиентам их раздела - скачать прайс</p>
+                <div  class="form-group label-floating">
+                    <label for="domain2" class="control-label">ссылка на папку с архивами фото
+                    </label>
+                    <input type="text" id="domain2" class="form-control" ng-model="$ctrl.item.seller.archImages" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldSeller('archImages')"/>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="name-box text-center"> html код подтверждения прав на домен для google search console</h4>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="googleSearchConsole" class="control-label">html код</label>
+                        <input class="form-control" ng-model="$ctrl.item.googleSearchConsole" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('googleSearchConsole')">
+                    </div>
+                </div>
+                <h4 class="name-box text-center"> счетчики слежения</h4>
+                <p>
+                    в яндекс метрике убрать номер счетчика из переменной try { w.yaCounter
+                    и заменить все двойные кавычки на одинарные,
+                    убрать все теги и полностью удалить тег noscript со всем содержимым,
+                    оставить чистым JS
+                </p>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <h3>google Tag Manager</h3>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="googleAnalytics" class="control-label">код google analytics</label>
+                            <input id="googleAnalytics" class="form-control" ng-model="$ctrl.item.googleAnalytics" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('googleAnalytics')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <h3>google map key</h3>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="glMap" class="control-label">код google analytics</label>
+                            <input id="glMap" class="form-control" ng-model="$ctrl.item.glMap" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('glMap')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <h3>google map place id for reviews</h3>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="glMap" class="control-label">id места из  google map </label>
+                            <input id="glMap" class="form-control" ng-model="$ctrl.item.glPlaceId" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('glPlaceId')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <h3>https://api.ipstack.com YOUR_ACCESS_KEY</h3>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="ipstack" class="control-label">ACCESS_KEY </label>
+                            <input id="ipstack" class="form-control" ng-model="$ctrl.item.ipstack" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('ipstack')">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-raised btn-lg" ng-if="!$ctrl.item.counters || $ctrl.item.counters.length<6" ng-click="$ctrl.item.counters.push({name:'',code:''})">
+                        <span class="link-success">ДОБАВИТЬ СЧЕТЧИК</span>
+                    </a>
+                </div>
+
+                <div ng-repeat="counter in $ctrl.item.counters">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <div  class="form-group label-floating ">
+                            <label for="namecounter{{$index}}" class="control-label">название счетчика</label>
+                            <input type="text" id="namecounter{{$index}}" class="form-control" ng-model="counter.name" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('counters')"/>
+                        </div>
+                        <div  class="form-group">
+                            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.item.counters.splice($index,1);$ctrl.saveField('counters')">
+                                <i class="material-icons link-warning md-42">delete</i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="pageDescription" class="control-label">код счетчика</label>
+                            <textarea rows="10" id="codecounter{{$index}}" class="form-control" ng-model="counter.code" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                      ng-change="$ctrl.saveField('counters')"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--<ul>
+             <li ng-repeat="not in listEditCtrl.config.notification">
+                            <div class="form-group label-floating">
+                                <label for="rad{{$index}}" class="control-label">{{not}}</label>
+                                <input type="checkbox" class="form-control" id="rad{{$index}}" ng-model="$ctrl.item.notification[not]">
+
+                            </div>
+                        </li>
+                    </ul>-->
+        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="cart-detail">
+
+                <h4 class="name-box text-center">данные для настройки сервиса отправки рассылок</h4>
+                <p>для настройки сервиса отправки рассылок необходимо внести следующие данные</p><!--todo сынок должен здесь написать и указать ссылку на нужный сайт-->
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="api_key" class="control-label">api_key из mailgun</label>
+                        <input type="text" id="api_key" class="form-control" ng-model="$ctrl.item.seller.mailgun.api_key"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveFieldSeller('mailgun')"/>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="domain" class="control-label">domain из mailgun</label>
+                        <input type="text" id="domain" class="form-control" ng-model="$ctrl.item.seller.mailgun.domain"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveFieldSeller('mailgun')"/>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <h4 class="name-box text-center">данные для настройки сервиса disqus</h4>
+                <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="api_key" class="control-label">Your website shortname</label>
+                        <input type="text" id="api_key" class="form-control" ng-model="$ctrl.item.disqus"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('disqus')"/>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!--<p>SMTP data</p>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="api_key1" class="control-label">Default SMTP Login
+                        </label>
+                        <input type="text" id="api_key1" class="form-control" ng-model="$ctrl.item.seller.mailgun.user" lost-focus="$ctrl.saveFieldSeller('mailgun')"/>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="domain2" class="control-label">Default Password
+                        </label>
+                        <input type="text" id="domain2" class="form-control" ng-model="$ctrl.item.seller.mailgun.pass" lost-focus="$ctrl.saveFieldSeller('mailgun')"/>
+                    </div>
+                </div>
+                <div class="clearfix"></div>-->
+            </div>
+            <div class="cart-detail">
+                <h4 class="name-box text-center">данные для настройки сервиса отправки СМС</h4>
+                <p class="text-center">для настройки сервиса отправки СМС необходимо внести следующие данные</p><!--todo сынок должен здесь написать и указать ссылку на нужный сайт-->
+                <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+                    <span>сервис TurboCMC</span>
+                    <div class="togglebutton">
+                        <label for="cacheAllss">
+                            <span class="ll" ng-class="{'active':!$ctrl.item.turbosms.is}">не использовать</span>
+                            <input type="checkbox"
+                                   id="cacheAllss"
+                                   ng-model="$ctrl.item.turbosms.is"
+                                   ng-change="$ctrl.saveField('turbosms')">
+                            <span class="lr" ng-class="{'active':$ctrl.item.turbosms.is}">использовать</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="api_key20" class="control-label">login</label>
+                        <input type="text" id="api_key20" class="form-control" ng-model="$ctrl.item.turbosms.login"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('turbosms')"/>
+                    </div>
+
+                    <div  class="form-group label-floating">
+                        <label for="domain33" class="control-label">password</label>
+                        <input type="text" id="domain33" class="form-control" ng-model="$ctrl.item.turbosms.password"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('turbosms')"/>
+                    </div>
+
+                    <div  class="form-group label-floating">
+                        <label for="domain333" class="control-label">sender</label>
+                        <input type="text" id="domain333" class="form-control" ng-model="$ctrl.item.turbosms.sender"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('turbosms')"/>
+                    </div>
+                </div>
+
+
+
+                <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+                    <span>сервис альфаSMS</span>
+                    <div class="togglebutton">
+                        <label for="cacheAllssw">
+                            <span class="ll" ng-class="{'active':!$ctrl.item.alphasms.is}">не использовать</span>
+                            <input type="checkbox"
+                                   id="cacheAllssw"
+                                   ng-model="$ctrl.item.alphasms.is"
+                                   ng-change="$ctrl.saveField('alphasms')">
+                            <span class="lr" ng-class="{'active':$ctrl.item.alphasms.is}">использовать</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div  class="form-group label-floating">
+                        <label for="api_key20w" class="control-label">login</label>
+                        <input type="text" id="api_key20w" class="form-control" ng-model="$ctrl.item.alphasms.login"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('alphasms')"/>
+                    </div>
+
+                    <div  class="form-group label-floating">
+                        <label for="domain33w" class="control-label">password</label>
+                        <input type="text" id="domain33w" class="form-control" ng-model="$ctrl.item.alphasms.password"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('alphasms')"/>
+                    </div>
+                    <div  class="form-group label-floating">
+                        <label for="domain33wd" class="control-label">key</label>
+                        <input type="text" id="domain33wd" class="form-control" ng-model="$ctrl.item.alphasms.key"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('alphasms')"/>
+                    </div>
+
+                    <div  class="form-group label-floating">
+                        <label for="domain333w" class="control-label">sender</label>
+                        <input type="text" id="domain333w" class="form-control" ng-model="$ctrl.item.alphasms.sender"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('alphasms')"/>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="name-box text-center">данные для настройки сервиса оповещений на вайбер</h4>
+                <div  class="form-group">
+                    <label for="viber" class="control-label">данные для оповещений на вайбер</label>
+                    <input type="text"  id="viber" class="form-control" ng-model="$ctrl.item.seller.viber" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldSeller('viber')"/>
+                </div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="name-box text-center">подтверждение авторских прав</h4>
+                <p>
+                    Некоторые сервисы для подтверждения владения сайтом просят вставить их HTML код в ваш index.html файл.
+                    Данный раздел предназначен для этих кодов.
+                </p>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <h3>яндекс</h3>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="yandex" class="control-label">код yandex-verification</label>
+                            <input id="yandex" class="form-control" ng-model="$ctrl.item.yandex" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('yandex')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <h3>пинтерест</h3>
+                    </div>
+
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="pin" class="control-label">код</label>
+                            <input id="pin" class="form-control" ng-model="$ctrl.item.pinterest" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('pinterest')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-detail">
+                <h4 class="name-box text-center">коды приложений для авторизации через социальные сети</h4>
+                <p>
+                    id  app
+                </p>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <h3>facebook</h3>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="facebook" class="control-label">идентификатор приложения</label>
+                            <input id="facebook" class="form-control" ng-model="$ctrl.item.fb.id" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('fb')">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="facebook1" class="control-label">секрет приложения</label>
+                            <input id="facebook1" class="form-control" ng-model="$ctrl.item.fb.secret" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('fb')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <h3>google+</h3>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="gl" class="control-label">идентификатор приложения</label>
+                            <input id="gl" class="form-control" ng-model="$ctrl.item.gl.id" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('gl')">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="gl1" class="control-label">секрет приложения</label>
+                            <input id="gl1" class="form-control" ng-model="$ctrl.item.gl.secret" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('gl')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <h3>vk</h3>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="vk" class="control-label">идентификатор приложения</label>
+                            <input id="vk" class="form-control" ng-model="$ctrl.item.vk.id" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('vk')">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <div  class="form-group label-floating">
+                            <label for="vk1" class="control-label">секрет приложения</label>
+                            <input id="vk1" class="form-control" ng-model="$ctrl.item.vk.secret" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                   ng-change="$ctrl.saveField('vk')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail clearfix">
+                <p>Добавьте локацию сайта, указав город и/или страну</p>
+                <div class="form-group label-floating">
+                    <label for="location" class="control-label">локация</label>
+                    <input type="text"
+                           id="location"
+                           class="form-control name"
+                           ng-model="$ctrl.item.location"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('location')"
+                           required/>
+                </div>
+
+                <h4 class="text-center name-box">SEO - данные для метатегов по умолчанию</h4>
+                <p>Внесите стандартные значения метатегов description keywords title, которые будут отображаться на страницах сайта,
+                    если дополнительно не будут созданы отдельные SEO-блоки для каждой страницы в отдельности</p>
+                <div  class="form-group label-floating">
+                    <label for="title" class="control-label">заголовок</label>
+                    <input type="text" id="title" class="form-control mb" ng-model="$ctrl.item.seo.title"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('seo')"/>
+                </div>
+                <div  class="form-group label-floating">
+                    <label for="pageKeyWords" class="control-label">ключевые слова</label>
+                    <textarea ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                              ng-change="$ctrl.saveField('seo')"
+                              rows="10" id="pageKeyWords" class="form-control" ng-model="$ctrl.item.seo.keywords"></textarea>
+                </div>
+
+                <div  class="form-group label-floating">
+                    <label for="pageDescription" class="control-label">описание</label>
+                    <textarea ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                              ng-change="$ctrl.saveField('seo')"
+                              rows="4"id="pageDescription" class="form-control" ng-model="$ctrl.item.seo.description"></textarea>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-if="$ctrl.item && $ctrl.item._id" ng-show="$ctrl.block=='seo'"  ng-init="displayHelp=false">
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 class="name-page text-center">тексты в письмах</h3>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="cart-detail clearfix">
+                    <h4 class="text-center name-box">письмо о подписке</h4>
+                    <div class="form-group  label-floating">
+                        <label for="mailName" class="control-label">заголовок в письме о подписке</label>
+                        <input type="text" id="mailName" class="form-control mb" ng-model="$ctrl.item.texts.mailName[$ctrl.lang]"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveFieldTemplate('texts.mailName',$ctrl.item.texts.mailName)"/>
+                    </div>
+                    <div  class="form-group  label-floating">
+                        <label for="mailText" class="control-label">текст в письме о подписке</label>
+                        <textarea rows="5" type="text" id="mailText" class="form-control mb" ng-model="$ctrl.item.texts.mailText[$ctrl.lang]"
+                                  ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                  ng-change="$ctrl.saveFieldTemplate('texts.mailText',$ctrl.item.texts.mailText)"/></textarea>
+                    </div>
+                    <h4 class="text-center name-box">подтверждение электронного адреса</h4>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input ng-model="$ctrl.item.confirmEmail" type="checkbox" ng-change="$ctrl.saveField('confirmEmail')"/>
+                                подтверждение електронного адреса в письме подписки
+                            </label>
+                        </div>
+                    </div>
+                    <div  class="form-group  label-floating">
+                        <label for="confirmemail" class="control-label">текст о подтверждении e-mail (если такое действие необходимо)</label>
+                        <textarea rows="5" type="text" id="confirmemail" class="form-control mb" ng-model="$ctrl.item.texts.confirmemail[$ctrl.lang]"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveFieldTemplate('texts.confirmemail',$ctrl.item.texts.confirmemail)"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="cart-detail clearfix">
+                    <h4 class="text-center name-box">письмо с уведомлением о  том, что пользователь уже подписан на рассылку</h4>
+                    <div  class="form-group  label-floating">
+                        <label for="mailTextRepeat" class="control-label">текст уведомления</label>
+                        <textarea  rows="5" type="text" id="mailTextRepeat" class="form-control mb" ng-model="$ctrl.item.texts.mailTextRepeat[$ctrl.lang]"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveFieldTemplate('texts.mailTextRepeat',$ctrl.item.texts.mailTextRepeat)"></textarea>
+
+
+                    </div>
+                </div>
+                <div class="cart-detail clearfix">
+                    <h4 class="text-center name-box">первое письмо о заказа</h4>
+                    <div  class="form-group  label-floating">
+                        <label for="mailTextRepeat22" class="control-label">текст в первом письме о заказе</label>
+                        <textarea  rows="5" type="text" id="mailTextRepeat22" class="form-control mb" ng-model="$ctrl.item.texts.orderMailText[$ctrl.lang]"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveFieldTemplate('texts.orderMailText',$ctrl.item.texts.orderMailText)"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="cart-detail clearfix">
+                <h4 class="text-center name-box">кнопка и пароль авторизации (используются в разных письмах)</h4>
+                <div  class="form-group  label-floating">
+                    <label for="buttonAuth" class="control-label">текст для кнопки авторизации</label>
+                    <input type="text" id="buttonAuth" class="form-control mb" ng-model="$ctrl.item.texts.buttonAuth[$ctrl.lang]"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldTemplate('texts.buttonAuth',$ctrl.item.texts.buttonAuth)"/>
+                </div>
+                <div  class="form-group  label-floating">
+                    <label for="auth" class="control-label">текст на кнопке авторизации</label>
+                    <input type="text" id="auth" class="form-control mb" ng-model="$ctrl.item.texts.auth[$ctrl.lang]"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveFieldTemplate('texts.auth',$ctrl.item.texts.auth)"/>
+                </div>
+                <div  class="form-group  label-floating">
+                    <label for="pswd" class="control-label">текст о пароле для авторизации</label>
+                    <textarea rows="5" type="text" id="pswd" class="form-control mb" ng-model="$ctrl.item.texts.pswd[$ctrl.lang]"
+                              ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                              ng-change="$ctrl.saveFieldTemplate('texts.pswd',$ctrl.item.texts.pswd)"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="cart-detail clearfix">
+                <h4 class="text-center name-box">пердложение отписаться от рассылки (используется в разных письмах)</h4>
+                    <div  class="form-group  label-floating">
+                        <label for="unsubscribeText" class="control-label">текст в предложении</label>
+                        <textarea rows="5" type="text" id="unsubscribeText" class="form-control mb" ng-model="$ctrl.item.texts.unsubscribeText[$ctrl.lang]"
+                                  ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                  ng-change="$ctrl.saveFieldTemplate('texts.unsubscribeText',$ctrl.item.texts.unsubscribeText)"/></textarea>
+                    </div>
+                    <div  class="form-group  label-floating">
+                        <label for="unsubscribeName" class="control-label">текст на кнопке в предложении</label>
+                        <input type="text" id="unsubscribeName" class="form-control mb" ng-model="$ctrl.item.texts.unsubscribeName[$ctrl.lang]"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveFieldTemplate('texts.unsubscribeName',$ctrl.item.texts.unsubscribeName)"/>
+                    </div>
+                </div>
+            </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail clearfix">
+                <h4 class="text-center name-box">данные для оплаты в письме о подтверждении заказа</h4>
+                <p>Внесите данные, по которым покупатель сможет оплатить оформленный заказ.
+                    Эти данные будут отображаться в письме,
+                    которое приходит покупателю после подтверждения заказа</p>
+                    <div  class="form-group label-floating">
+                        <label for="payInfo" class="control-label">данные для оплаты</label>
+                        <textarea rows='10' id="payInfo" class="form-control" ng-model="$ctrl.item.seller.payInfo"
+                                  ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                  ng-change="$ctrl.saveFieldSeller('payInfo')"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="content-tab-box" ng-if="$ctrl.item && $ctrl.item._id" ng-show="$ctrl.block=='shop'"  ng-init="displayHelp=false">
+        <!--<uib-tabset active="activeJustified" justified="true">
+            <uib-tab index="0" heading="продажи">Justified content</uib-tab>
+            <uib-tab index="1" heading="запись он-лайн">Short Labeled Justified content</uib-tab>
+            <uib-tab index="2" heading="доставка">Long Labeled Justified content</uib-tab>
+            <uib-tab index="3" heading="Long Justified">Long Labeled Justified content</uib-tab>
+        </uib-tabset>-->
+
+
+
+
+        <div ng-init="$ctrl.type='selling'">
+            <div class="btn-group btn-group-justified btn-group-raised" style="height: 60px">
+                <a class="btn" ng-class="{'active':$ctrl.type=='selling'}"ng-click="$ctrl.type='selling'"><span class="link-success">продажи</span></a>
+                <a class="btn" ng-class="{'active':$ctrl.type=='date'}"ng-click="$ctrl.type='date'"><span class="link-success">запись он-лайн</span></a>
+                <a class="btn" ng-class="{'active':$ctrl.type=='delivery'}"ng-click="$ctrl.type='delivery'"><span class="link-success">доставка</span></a>
+                <a class="btn" ng-class="{'active':$ctrl.type=='paiment'}"ng-click="$ctrl.type='paiment'"><span class="link-success">оплата</span></a>
+            </div>
+        </div>
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div ng-show="$ctrl.type=='selling'"><!---->
+                <h3 class="text-center name-page">настройки продаж</h3>
+                <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="cart-detail clearfix">
+                        <h4 class="text-center name-box">данные для уведомлений о заказах и он-лайн записи</h4>
+                        <div class=" col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                            <div  class="form-group">
+                                <label for="salemail" class="control-label">адрес для уведомлений о заказах</label>
+                                <input type="text"  id="salemail" class="form-control" ng-model="$ctrl.item.seller.salemail" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveFieldSeller('salemail')"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                            <div  class="form-group">
+                                <label class="control-label">телефон для уведомлений sms</label>
+                                <div enter-phone-numder="$ctrl.item.seller.phone"></div>
+
+                            </div>
+                            <a title="сохранить номер" class="btn btn-raised btn-default btn-block" ng-click="$ctrl.savePhoneForSale()">
+                                <span class="link-success"> coхранить номер</span>
+                                <!--<i class="material-icons link-success md-42">save</i>-->
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <div class="cart-detail">
+
+
+                        <h4 class="text-center name-box">базовые настройки для расчета цен</h4>
+                        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                            <p> внесите базовые размеры наценки для розницы и скидки для распродажи в %, количество единиц,
+                                с которого начиает действовать оптовая цена</p>
+
+                        </div>
+                        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div  class="form-group">
+                                <label for="quantity" class="control-label">опт с колличества</label>
+                                <input type="text" id="quantity" class="form-control" ng-model="$ctrl.item.seller.opt.quantity" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveFieldSeller('opt')"/>
+                            </div>
+
+                            <div  class="form-group">
+                                <label  class="control-label">% наценки для розницы</label>
+                                <input type="text"  class="form-control" ng-model="$ctrl.item.seller.retail" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveFieldSeller('retail')"/>
+                            </div>
+
+                            <div  class="form-group">
+                                <label  class="control-label">% скидки для распродажи</label>
+                                <input type="text"  class="form-control" ng-model="$ctrl.item.seller.sale" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveFieldSeller('sale')"/>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="cart-detail">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h4 class="text-center name-box">условия покупки при оформлении заказа</h4>
+                            <div class="togglebutton">
+                                <label for="conditions">
+                                    <span class="ll" ng-class="{'active':!$ctrl.item.orderCondition}">условия покупки не используются</span>
+                                    <input type="checkbox"
+                                           id="conditions"
+                                           ng-model="$ctrl.item.orderCondition"
+                                           ng-change="$ctrl.saveField('orderCondition')">
+                                    <span class="lr" ng-class="{'active':$ctrl.item.orderCondition}">условия покупки используются</span>
+                                </label>
+                            </div>
+                            <div class="editor">
+                                <div class="block-edit">
+                                    <h4 class="name-box">текст для формы регистрации об условиях покупки</h4>
+                                    <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                         ng-change="$ctrl.saveField('textCondition')"
+                                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                                         ng-model="$ctrl.item.textCondition"
+                                         ta-paste="global.get('functions').val.taPaste($html)"
+                                         ta-text-editor-class="border-around"
+                                         ta-html-editor-class="border-around">
+                                    </div>
+
+                                    <!--<textarea class="form-control" type="text"
+                                              ng-model="$ctrl.item.textCondition"
+                                              ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                              ng-change="$ctrl.saveField('textCondition')"
+                                    ></textarea>-->
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div  class="form-group label-floating">
+                                <label for="sum" class="control-label">опт с суммы</label>
+                                <input type="text" id="sum" class="form-control" ng-model="$ctrl.item.seller.opt.sum"/>
+                            </div>
+                        </div>-->
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div ng-show="$ctrl.type=='date'">
+                <h3 class="name-box text-center">запись он-лайн</h3>
+
+                <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="cart-detail">
+                        <h4 class="name-box text-center">режим работы магазина/салона</h4>
+
+                        <div ng-repeat="day in $ctrl.weekDays">
+                            <div class="pull-left">{{day[$ctrl.global.get('store').val.lang]}}</div>
+                            <div class="togglebutton pull-right ">
+                                <!--<label for="activedE{{::$index}}">
+                                    <span ng-class="{'active':!$ctrl.item.timeTable[$index].is}"> рабочий</span>
+                                    <input type="checkbox"
+                                           id="activedE{{::$index}}"
+                                           ng-model="$ctrl.item.timeTable[$index].is"
+                                           ng-change="$ctrl.saveField('timeTable')">
+                                    <span ng-class="{'active':$ctrl.item.timeTable[$index].is}">выходной</span>
+                                </label>-->
+                                <label for="activedE{{::$index}}">
+                                    <span class="ll" ng-class="{'active':!$ctrl.item.timeTable[$index].is}">выходной</span>
+                                    <input type="checkbox"
+                                           id="activedE{{::$index}}"
+                                           ng-model="$ctrl.item.timeTable[$index].is"
+                                           ng-change="$ctrl.saveField('timeTable')">
+                                    <span class="lr" ng-class="{'active':$ctrl.item.timeTable[$index].is}">рабочий</span>
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div style="margin-top: 10px">
+                                <p> установите длительность рабочего дня (1 деление - 1 час)</p>
+                                <rzslider rz-slider-model="$ctrl.item.timeTable[$index].start"
+                                              rz-slider-high="$ctrl.item.timeTable[$index].end"
+                                              rz-slider-options="$ctrl.sliderOptions"></rzslider>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                        </div>
+
+                    </div>
+                </div>
+                <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="cart-detail">
+                        <!--<div class="text-center">
+                            <h4 class="name-box text-center">наличие на сайте он-лайн записи</h4>
+                            <div class="togglebutton">
+                                <label for="online">
+                                    <span ng-class="{'active':!$ctrl.item.online}">запись он-лайн есть</span>
+                                    <input type="checkbox"
+                                           id="online"
+                                           ng-model="$ctrl.item.online"
+                                           ng-change="$ctrl.saveField('onlineNot')">
+                                    <span ng-class="{'active':$ctrl.item.online}">записи он-лайн нет</span>
+                                </label>
+                            </div>
+                        </div>-->
+                        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <h4 class="name-box text-center">минимальная длительность услуги</h4>
+                            <p>в зависимости от выбранного значения будет составляться таблица он-лайн записи (шаг записи будет соответствовать выбранному значению)</p>
+                            <label  class="control-label">минимальная длительность услуги в минутах</label>
+                            <ui-select  ng-model="$ctrl.item.seller.minDurationForService" skip-focusser="true" ng-change="$ctrl.saveFieldSeller('minDurationForService')">
+                                <ui-select-match placeholder="выбрать длительность услуги">{{$select.selected}}</ui-select-match>
+                                <ui-select-choices repeat="opt in [15,30,60,90,120]">{{ opt}}</ui-select-choices>
+                            </ui-select>
+
+                            <h4 class="name-box text-center">время резервирования</h4>
+                            <p>Не оплаченная запись будет удалена через установленное время после бронирования</p>
+                            <label  class="control-label">время резервирования записи</label>
+                            <ui-select  ng-model="$ctrl.item.onlineReservation" skip-focusser="true" ng-change="$ctrl.saveField('onlineReservation')">
+                                <ui-select-match allow-clear="true" placeholder="выбрать длительность резервирования">{{$select.selected}}</ui-select-match>
+                                <ui-select-choices repeat="opt in [5,7,15,20,30,45,60,90,120]">{{ opt}}</ui-select-choices>
+                            </ui-select>
+
+
+                        </div>
+
+                        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <h4 class="name-box text-center">название для работников</h4>
+                            <h4>введите, как именно в окне записи на время будут называться работники - мастера, специалисты или т.п.</h4>
+                            <div class="form-group">
+                                <label for="masterName" class="control-label">название</label>
+                                <input type="text" id="masterName" class="form-control mb" ng-model="$ctrl.item.texts.masterName[$ctrl.lang]"
+                                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveFieldTemplate('texts.masterName',$ctrl.item.texts.masterName)"/>
+                            </div>
+                            <h4 class="name-box text-center">привязка к рабочему месту</h4>
+                            <p>установите, будет ли производиться запись с обязательной привязкой к рабочему месту или нет. привязка к рабочему месту используется, если есть возможность работы мастера сразу на нескольких рабочих местах</p>
+                            <div class="togglebutton text-center">
+                                <label for="dateTimeWithWorkplace">
+                                    <span class="ll" ng-class="{'active':!$ctrl.item.dateTimeWithWorkplace}">без привязки</span>
+                                    <input type="checkbox"
+                                           id="dateTimeWithWorkplace"
+                                           ng-model="$ctrl.item.dateTimeWithWorkplace"
+                                           ng-change="$ctrl.saveField('dateTimeWithWorkplace')">
+                                    <span class="lr" ng-class="{'active':$ctrl.item.dateTimeWithWorkplace}">с привязкой</span>
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h4 class="name-box text-center">настройка оповещений</h4>
+                            <div class="togglebutton text-center">
+                                <label for="activedViber22">
+                                    <span class="ll" ng-class="{'active':!$ctrl.item.submitDateTime}">автоматическая отправка</span>
+                                    <input type="checkbox"
+                                           id="activedViber22"
+                                           ng-model="$ctrl.item.submitDateTime"
+                                           ng-change="$ctrl.saveField('submitDateTime')">
+                                    <span class="lr" ng-class="{'active':$ctrl.item.submitDateTime}">подтверждение записи</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cart-detail">
+                        <h4 class="name-box text-center">режим работы мастеров</h4>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <h4>выбрать месяц</h4>
+                            <a class="month" ng-repeat="month in $ctrl.months" ng-click="$ctrl.changeMonth($index)" ng-class="{'active':$index==$ctrl.selectedMonth}">
+                                <span>{{month}}</span>
+                            </a>
+                        </div>
+                        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label  class="control-label">выбрать мастера</label>
+                                <ui-select  ng-model="$ctrl.selectedMaster" skip-focusser="true" ng-change="$ctrl.changeMaster()">
+                                    <ui-select-match placeholder="выбрать мастера">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in $ctrl.masters">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.selectedMaster">
+                            <h3 class="text-center">
+                                <span>расписание на </span>
+                                <span ng-bind="$ctrl.months[$ctrl.selectedMonth]"></span>&nbsp;&nbsp;
+                                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.syncWithStore()" title="синхронизировать с расписанием магазина">
+                                    <i class="material-icons link-success md-42">sync</i>
+                                </a>
+                            </h3>
+                            <div>
+                                <div class="mb-10" ng-repeat-start="day in $ctrl.selectedMaster.timeTable" ng-if="$index>=$ctrl.monthDayDelta&&$index<$ctrl.monthDayDelta+$ctrl.currentMonthDays">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 mt-25">
+                                        <span ng-bind="$index-$ctrl.monthDayDelta+1"></span>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 mt-25">
+                                        <span ng-bind="$ctrl.getDayOfWeek($index-$ctrl.monthDayDelta+1)"></span>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 mt-25">
+                                        <div class="togglebutton pull-left">
+                                            <label for="activedEd{{$index}}">
+                                                <span class="ll" ng-class="{'active':!day.is}">выходной</span>
+                                                <input type="checkbox"
+                                                       id="activedEd{{$index}}"
+                                                       ng-model="day.is">
+                                                <span class="lr" ng-class="{'active':day.is}">рабочий</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                        <rzslider rz-slider-model="day.s"
+                                                  rz-slider-high="day.e"
+                                                  rz-slider-options="$ctrl.sliderOptionsForMsster"></rzslider>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div ng-repeat-end class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <a class="btn btn-default btn-raised btn-block" ng-click="$ctrl.saveMasterSchedule()">
+                            <span class="link-success">сохранить изменения</span>
+                        </a>
+
+                        <!--<uib-tabset active="self.activeMonth" justified="true">
+                            <uib-tab index="{{$index}}" heading="{{month}}"  ng-repeat="month in $ctrl.months" select="$ctrl.changeMonth($index)">
+                                <div ng-if="$ctrl.selectedMaster">
+                                    <div ng-repeat-start="day in $ctrl.selectedMaster.timeTable" ng-if="$index>=$ctrl.monthDayDelta&&$index<$ctrl.monthDayDelta+$ctrl.currentMonthDays">
+                                        {{$index-$ctrl.monthDayDelta+1}}
+
+                                    </div>
+                                    <div ng-repeat-end class="clearfix"></div>
+                                </div>
+                            </uib-tab>
+                        </uib-tabset>-->
+                        </p>
+                        <div class="row">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div ng-show="$ctrl.type=='delivery'"></div>
+            <div ng-show="$ctrl.type=='paiment'">
+                <h3 class="name-box text-center">он-лайн оплата</h3>
+                <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-offset-0 col-xs-12">
+                    <div class="cart-detail clearfix text-center">
+                        <div class="togglebutton">
+                            <label for="paiment">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.onlinePay}">он-лайн оплаты ордера нет</span>
+                                <input type="checkbox"
+                                       id="paiment"
+                                       ng-model="$ctrl.item.onlinePay"
+                                       ng-change="$ctrl.saveField('onlinePay')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.onlinePay}">он-лайн оплата ордера есть</span>
+                            </label>
+                        </div>
+                        <div class="togglebutton">
+                            <label for="paiment2">
+                                <span class="ll" ng-class="{'active':!$ctrl.item.onlinePayEntry}">он-лайн оплаты записи нет</span>
+                                <input type="checkbox"
+                                       id="paiment2"
+                                       ng-model="$ctrl.item.onlinePayEntry"
+                                       ng-change="$ctrl.saveField('onlinePayEntry')">
+                                <span class="lr" ng-class="{'active':$ctrl.item.onlinePayEntry}">он-лайн оплата записи  есть</span>
+                            </label>
+                        </div>
+                        <h4 class="name-box">сервисы для оплаты доступные на сайте</h4>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="$ctrl.item.payData.liqPay.is" type="checkbox" ng-change="$ctrl.saveField('payData')"/>
+                                    Liqpay
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group label-floating">
+                                <label class="control-label">public key</label>
+                                <input class="form-control" ng-model="$ctrl.item.payData.liqPay.public_key" type="text" ng-change="$ctrl.saveField('payData')"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group label-floating">
+                                <label class="control-label">private key</label>
+                                <input class="form-control" ng-model="$ctrl.item.payData.liqPay.private_key" type="text" ng-change="$ctrl.saveField('payData')"/>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="content-tab-box" ng-show="$ctrl.block=='content'"  ng-init="displayHelp=false">
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 class="name-box text-center">настройка отображения элементов контента</h3>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="cart-detail clearfix text-center">
+                    <h4 class="name-box">наличие разновидностей при создании товара</h4>
+                    <div class="togglebutton">
+                        <label for="tagname">
+                            <span class="ll" ng-class="{'active':!$ctrl.item.settingContent.admin.sortsDisable}">все в наличии</span>
+                            <input type="checkbox"
+                                   id="tagname"
+                                   ng-model="$ctrl.item.settingContent.admin.sortsDisable"
+                                   ng-change="$ctrl.saveField('settingContent')">
+                            <span class="lr" ng-class="{'active':$ctrl.item.settingContent.admin.sortsDisable}">нет в наличии</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

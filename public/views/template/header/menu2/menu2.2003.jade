@@ -1,0 +1,24 @@
+if(dj[key].position=='left'||dj[key].position=='right')
+  div(class="menu",pageslide,ps-body-class="true",ps-overflow="auto",ps-open="checkedMenu.slideMenu",ps-side=dj[key].position,ps-class="menu-box ng-pageslide",ps-speed="0.3",ps-size="{{slideMenuWidth}}",click-outside="global.get('functions').val.closeMenu()",id='slideMenu')
+    a(ng-click="checkedMenu.slideMenu=false",class="button")
+      span(class="cancel")
+    div(class=dj[key].wrapclass)
+      div(class=mobileWrapper)
+        div(class="vertical-menu")
+          div(class="menu-section-vertical")
+            div
+            div
+            div
+else if(dj[key].position=='top')
+  div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+      nav(class=dj[key].navClass,set-fon-after-start-scroll=(dj[key].background) ? dj[key].background : '',id='menu2-section',slide-menu-after-scroll="menu2")
+        div(ng-class="{'navbnavbarar-toggle-slide-mini':$state.current.name!='home'}",class="navbar-toggle-slide")
+          div(class="center-menu text-center")
+            div(class="center-wrap")
+              div
+          div(class="left-nav-menu  pull-left")
+            div
+          div(class="right-nav-menu  pull-right")
+            div
+          div(class="clearfix")

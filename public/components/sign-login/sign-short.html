@@ -1,0 +1,30 @@
+<div class="sign-short">
+    <form method="post" ng-submit="$ctrl.signup()" name="signupForm" ng-init="$ctrl.user.type='subscription'">
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
+            <input class="form-control input-lg"
+                   type="email"
+                   id="email"
+                   name="email"
+                   ng-model="$ctrl.user.email"
+                   placeholder="e-mail"
+                   required
+                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+            <span class="ion-at form-control-feedback"></span>
+        </div>
+        <span class="help-block" ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
+                <span ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</span>
+                <span ng-message="email">{{$ctrl.global.get('langError').val.formatnot}}</span>
+            <!--<span class="help-block" ng-show="formCall.phone.$error.required">{{$ctrl.global.get('langError').val.enterphone}}</span>
+            <span class="help-block" ng-show="formCall.phone.$error.minlength||formCall.phone.$error.maxlength||formCall.phone.$error.pattern">{{$ctrl.global.get('langError').val.phonenotformat}}</span>
+-->
+            </span>
+        <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-block btn-project">{{$ctrl.global.get('langForm').val.subscribe}}</button>
+            <!--<div col-lg-4>
+                <div vc-recaptcha key="'6LfW0gcUAAAAAPBl-LPkiKPpF2E84zUPTzg8WEKl'"
+                ng-model="$ctrl.user.myRecaptchaResponse"></div>
+            </div>-->
+
+            <!--<button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-block btn-project">{{$ctrl.buttonName}}</button>-->
+    </form>
+</div>
+

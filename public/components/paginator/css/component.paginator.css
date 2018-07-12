@@ -1,0 +1,45 @@
+/*paginator*/
+.pagination {
+    margin: 20px 0 0 0;
+}
+.pagination>li>a,
+.pagination>li>span {
+    color: #93b1c6;
+    border: none;
+    background-color: transparent;
+    font-weight: normal;
+}
+.pagination>li>a:hover {
+    font-weight: bold;
+}
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: transparent;
+    border:none;
+    color: #6d7f8f;
+    font-weight: bold;
+}
+
+.pagination>.disabled>a,
+.pagination>.disabled>a:focus,
+.pagination>.disabled>a:hover,
+.pagination>.disabled>span,
+.pagination>.disabled>span:focus,
+.pagination>.disabled>span:hover {
+    background-color: transparent;
+    border: none;
+    color: #6d7f8f;
+}
+.pagination i.material-icons {
+    margin-right: 0;
+}
+@media (max-width: 770px) {
+    .pagination>li>a {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}

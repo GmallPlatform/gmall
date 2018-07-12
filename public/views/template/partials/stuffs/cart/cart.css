@@ -1,0 +1,21 @@
+/*webdeal*/
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    opacity: 0;
+    z-index: 1020;
+}
+.stuff-box:hover .box-overlay{
+    opacity: 1;
+}
+.stuff-box:hover .half-shadow {
+    display: block;
+}

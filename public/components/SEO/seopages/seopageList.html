@@ -1,0 +1,105 @@
+<div ng-hide="$ctrl.$state.current.name!='frame.seoPages'"  class="seopage-list">
+    <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-8 col-sm-8 col-lg-8 text-center">
+        <p class="no_story">
+            по вашему запросу нет записей
+        </p>
+    </div>
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff action text-center form-group">
+            <a class="btn btn-fab btn-fab-mini btn-success"
+               ng-click="$ctrl.createItem()"
+               title="создать новую страницу">
+                <i class="material-icons link-white">add</i>
+            </a>
+        </div>
+        <!--<div class="tab-nav-stuff form-group  col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <a class="btn btn-fab btn-fab-mini add-goods link-success"  ng-click="$ctrl.createItem()">
+                <i class="material-icons link-success">add_box</i>
+            </a>
+        </div>-->
+        <div class="tab-nav-stuff form-grouptext-center">
+            <a ui-sref="frame.keywords">
+                ключевые слова
+            </a>
+        </div>
+        <div class="tab-nav-stuff text-center">
+            <paginator-main
+                    paginate="$ctrl.paginate"
+                    getlist="$ctrl.getList()"
+                    scroll="{{scrollId}}">
+            </paginator-main>
+        </div>
+        <div class="tab-nav-stuff pull-right">
+            <form ng-submit="$ctrl.searchItems(searchStr)">
+                <div class="search form-group label-floating">
+                    <label class="control-label">поиск страницы</label>
+                    <input type="text"  class="form-control" ng-model="searchStr"/>
+                </div>
+                <input type="submit" class="enter" tabindex="-1" />
+            </form>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 seopage-list-container">
+        <div class="cart-detail">
+            <div>
+                <ul>
+                    <li>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">название</div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">для URL</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">активная</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">удалить</div>
+                        <div class="clearfix"></div>
+                    </li>
+
+                </ul>
+                <ul
+                        dnd-list="$ctrl.items"
+                        dnd-drop="$ctrl.dropCallback(item)"
+                        dnd-allowed-types="['sp']">
+                    <li ng-repeat="item in $ctrl.items"
+                        dnd-draggable="item"
+                        dnd-effect-allowed="move"
+                        dnd-moved="$ctrl.items.splice($index,1)"
+                        dnd-type="'sp'"
+                        ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <a ui-sref="frame.seoPages.page({id:item._id})">
+                                    <span ng-bind="item.name"></span>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <span ng-bind="item.link"></span>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-change="$ctrl.saveField(item,'actived')" ng-model="item.actived" type="checkbox"/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <a ng-click="$ctrl.deleteItem(item)">
+                                    <i class="material-icons link-warning">delete</i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<div ui-view></div>
+
+

@@ -1,0 +1,46 @@
+<div class="template-list" ng-show="$ctrl.block=='components'"  ng-init="displayHelp=false">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="cart-detail">
+            <!--<h4 class="text-center name-box">базовые компоненты</h4>-->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="form-group label-floating">
+                    <label for="name" class="control-label">название</label>
+                    <input type="text" placeholder="название" id="name" class="form-control mb"
+                           ng-model="$ctrl.item.name"
+                           required
+                           lost-focus="$ctrl.saveField('name')"/>
+                </div>
+            </div>
+            <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="form-group label-floating">
+                    <label for="name" class="control-label">папка</label>
+                    <input type="text" placeholder="папка" id="folder" class="form-control mb"
+                           ng-model="$ctrl.item.folder"
+                           lost-focus="$ctrl.saveField('folder')"/>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="form-group label-floating">
+                    <label  class="control-label">индекс</label>
+                    <input type="text" placeholder="индекс"
+                           class="form-control mb" ng-model="$ctrl.item.index"
+                           lost-focus="$ctrl.saveField('index')"/>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="form-group">
+
+                    <div class="checkbox">
+                        <label>
+                            <input ng-change="$ctrl.saveField('margin')" ng-model="$ctrl.item.margin" type="checkbox"/>
+                            отступ для контента
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

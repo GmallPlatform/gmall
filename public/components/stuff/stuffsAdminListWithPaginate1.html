@@ -1,0 +1,180 @@
+<div ng-show="!items.length" ng-cloak class="col-xs-12 col-md-8 col-sm-8 col-lg-8 text-center">
+    <p class="no_story">
+        Таких товаров нет в каталоге!
+    </p>
+</div>
+<div class="nav-box-stuff">
+    <div class="content-tab-nav-stuff">
+        <div class="tab-nav-stuff form-group  col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+            <a ng-click="createNewStuff()">
+                создать товар
+            </a>
+        </div>
+        <div class="tab-nav-stuff form-group  col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+            <a class="" ng-click="filterList()">
+                признаки
+            </a>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
+            <paginator-main
+                    rows='paginate.rows'
+                    page='paginate.page'
+                    items="paginate.totalItems"
+                    getlist="getList(page,rows)"
+                    scroll="{{scrollId}}">
+            </paginator-main>
+
+        </div>
+        <form ng-submit="searchStuff(searchStr)">
+        <div class="search col-lg-3 col-md-3 col-sm-3 col-xs-3 pull-right form-group label-floating">
+            <label class="control-label">поиск товара</label>
+            <input type="text"  class="form-control" ng-model="searchStr"/>
+
+        </div>
+            <input type="submit"
+                   style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+                   tabindex="-1" />
+        </form>
+
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="block-stuff stuff-admin col-lg-6 col-md-6 col-sm-12 col-xs-12"  ng-repeat="stuff in items">
+    <div class="thumbnail" ng-class="{'mobil':global.get('mobile')}">
+            <div class="content-tab-nav">
+                <div class="tab-nav col-lg-3 col-md-3 col-sm-3 col-xs-3  text-center" ng-class="{'active':block=='mainInfo'}">
+                    <a class="tab-nav-link"
+                       ui-sref="frame.stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url,block:'mainInfo'})"
+                       type="button">
+                        описание
+                        <!--<i class="material-icons link-info" ng-if="global.get('mobile')">description</i>--><!--todo mobile-->
+                    </a>
+                </div>
+                <div class="tab-nav col-lg-3 col-md-3 col-sm-3 col-xs-3  text-center" ng-class="{'active':block=='filter'}">
+                    <a class="tab-nav-link"
+                       ng-class="{'btn-fab-mini':global.get('mobile')}"
+                       ui-sref="frame.stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url,block:'filter'})"
+                    ><!--todo mobile-->
+                        характеристики
+                    </a>
+                </div>
+                <div class="tab-nav col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center" ng-class="{'active':block=='group'}">
+                    <a class="tab-nav-link"
+                       ng-class="{'btn-fab-mini':global.get('mobile')}"
+                       ui-sref="frame.stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url,block:'group'})"
+                       data-toggle="tooltip"
+                       data-placement="bottom"
+                       data-original-title="управление группами"><!--todo mobile-->
+                        разновидности
+                    </a>
+                </div>
+                <div class="tab-nav col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center" ng-class="{'active':block=='comments'}">
+                    <a class="tab-nav-link"
+                       ui-sref="frame.stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url,block:'comment'})">
+                        комментарии
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="col-lg-4 thumbnail-in" ui-sref="frame.stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url,block:'mainInfo'})"> <!--id="s{{stuff.url}}">-->
+                <img class="img-responsive" ng-src="{{stuff.gallery[0].thumb||'/img/upload/no.png'}}" />
+                <a class="photo link-white" ui-sref="frame.stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url,block:'mainInfo'})">
+                   <!--ui-sref="frame.stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url,block:'gallery'})"-->
+                    <i class="material-icons">font_download</i><br>
+                    <span>редактировать</span>
+                </a>
+
+            </div>
+
+
+
+        <div class="half-shadow-stuff col-lg-8" ng-class="{'mobil':global.get('mobile')}">
+            <div class="title-block-stuff text-center" ng-class="{'mobil':global.get('mobile')}">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group label-floating">
+                    <label for="name1" class="control-label">название</label>
+                    <input type="text" placeholder="" id="name1" class="form-control"
+                           ng-model="stuff.name"
+                           ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                           required
+                           lost-focus="saveStuff(stuff,'name')"/>
+                </div>
+                <div class="col-lg-6 form-group label-floating">
+                    <label  for="articul" class="control-label">артикул</label>
+                    <input lost-focus="saveStuff(stuff,'artikul')"
+                            name="rur" type="text" class="form-control" id="articul"
+                           ng-model="stuff.artikul"
+                           ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-group label-floating" >
+                    <label  for="index" class="control-label">индекс</label>
+                    <input ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                            lost-focus="saveStuff(stuff,'index')" name="index" type="text" class="form-control" id="index" ng-model="stuff.index" pattern="[0-9-\.]{1,7}">
+                </div>
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="stuff.sortsOfStuff.filter">
+                    <div ng-init="stuff.sort='needToSet'" style="margin-bottom: 10px">
+                        <label class="col-lg-12">
+                            выберите разновидность
+                        </label>
+                        <select ng-model="stuff.sort" ng-change="changeSortOfStuff(stuff)" select-drop-down="defer">
+                            <option value="needToSet">{{getFilterName(stuff.sortsOfStuff.filter)}}</option>
+                            <option ng-if="sort.quantity" ng-repeat="(key,sort) in stuff.stock" value="{{key}}">{{getTagName(key)}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 20px">
+                    <span class="col-lg-4 price">
+                        <label>цена</label><br>
+                        <span ng-bind="stuff.price"></span>
+                    </span>
+                    <span class="col-lg-4 price" ng-if="stuff.sale">
+                        <label>sale</label><br>
+                        <span ng-bind="stuff.priceSale"></span>
+                    </span>
+                    <span class="col-lg-4 price" ng-if="global.get('store').val.seller.retail">
+                        <label>розница</label><br>
+                        <span ng-bind="stuff.retail"></span></span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="checkbox col-lg-12 text-left">
+                    <label>
+                        <input  type="checkbox" ng-model="stuff.actived"  ng-change="saveStuff(stuff,'actived')" lost-focus>
+                        <span ng-if="!stuff.actived">опубликовать</span>
+                        <span ng-if="stuff.actived">опубликован</span>
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+            <a class="btn btn-info pull-left"
+               ng-click="cloneStuff(stuff)">
+                клонировать
+            </a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+            <a class="btn btn-warning pull-right" ng-click="deleteStuff(stuff)">
+                <!--<i class="material-icons link-warning">delete</i>-->
+                удалить
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+
+
+<a href="#" class="back-to-top">
+    <i class="fa fa-angle-double-up fa-3x" ></i>
+</a>
+
+
+
+
+

@@ -1,0 +1,38 @@
+div(class=dj[key].wrapclass+pullClass)
+    div(class=mobileWrapper)
+        ul(class="social-links list-inline col-lg-12 col-md-12 col-sm-12 col-xs-12")
+            if(sn.fb && sn.fb.is)
+                li
+                    a(class="sn",href=sn.fb.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate) Facebook
+
+            if(sn.gl && sn.gl.is)
+                li
+                    a(class="sn",href=sn.gl.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate) Google+
+
+            if(sn.inst && sn.inst.is)
+                li
+                    a(class="sn",href=sn.inst.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate) Instagram
+
+            if(sn.ok && sn.ok.is)
+                li
+                    a(class="sn",href=sn.ok.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate) OK
+
+            if(sn.pin && sn.pin.is)
+                li
+                    a(class="sn",href=sn.pin.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate) Pinterest
+
+            if(sn.tw && sn.tw.is)
+                li
+                    a(class="sn",href=sn.tw.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate) Twitter
+            if(sn.vk && sn.vk.is)
+                li
+                    a(class="sn",href=sn.vk.link,target="_blank")
+                        span(set-animate=dj[key].animate,data-animation=dj[key].animate) VK
+            div(class="clearfix")
+        div(class="clearfix")

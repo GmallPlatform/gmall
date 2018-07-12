@@ -1,0 +1,107 @@
+<div ng-if="stuffCtrl.categories.length">
+    <uib-accordion close-others="true">
+        <uib-accordion-group ng-if="stuffCtrl.categories.length">
+            <uib-accordion-heading>
+                <a class="panel-head" ng-click="stuffCtrl.p.displayFilters=!stuffCtrl.p.displayFilters">
+                    <h4>
+                        <span class=" filter-name">КАТЕГОРИЯ</span>
+                        <span ng-if="!stuffCtrl.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                        <span ng-if="stuffCtrl.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                    </h4>
+                    <div class="clearfix"></div>
+                </a>
+            </uib-accordion-heading>
+            <label class="filter-value">
+                <input type="radio" ng-model="stuffCtrl.query.category" value="" ng-click="stuffCtrl.changeFilter(true)">
+                <span >ВСЕ КАТЕГОРИИ</span>
+            </label>
+            <label for="co{{$index}}" ng-repeat="c in stuffCtrl.categories|orderBy:'index'" class="filter-value">
+                <input ng-click="stuffCtrl.changeFilter(true)"
+                       type="radio"
+                       name="category"
+                       ng-model="stuffCtrl.query.category"
+                       ng-value="c._id"
+                       id="co{{$index}}">
+                <span >{{c.name}}</span>
+            </label>
+        </uib-accordion-group>
+        <uib-accordion-group ng-repeat="(key,filter) in stuffCtrl.filters"  ng-init="stuffCtrl.initQueryTags(i)">
+            <uib-accordion-heading>
+                <a class="panel-head" ng-click="stuffCtrl.p.displayFilters=!stuffCtrl.p.displayFilters">
+                    <h4>
+                        <span class=" filter-name" ng-bind="filter.name| uppercase"></span>
+                        <span ng-if="!stuffCtrl.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                        <span ng-if="stuffCtrl.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                    </h4>
+                    <div class="clearfix"></div>
+                </a>
+
+            </uib-accordion-heading>
+            <label class="filter-value ">
+                <a class="cancel" ng-click="stuffCtrl.query.tags[key].length=0;stuffCtrl.changeFilter()">
+                    отменить все
+                </a>
+            </label>
+            <label ng-repeat="tag in filter.tags|orderBy:'index'"  class="filter-value" >
+                <input type="checkbox" checklist-model="stuffCtrl.query.tags[key]" checklist-value="tag._id" ng-click="stuffCtrl.changeFilter()">
+                <span>{{tag.name}}</span>
+            </label>
+
+            <div class="clearfix"></div>
+
+        </uib-accordion-group>
+        <uib-accordion-group  ng-if="stuffCtrl.brands.length">
+            <uib-accordion-heading>
+                <a class="panel-head" ng-click="stuffCtrl.p.displayFilters=!stuffCtrl.p.displayFilters">
+                    <h4>
+                        <span class=" filter-name">Бренды</span>
+                        <span ng-if="!stuffCtrl.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                        <span ng-if="stuffCtrl.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                    </h4>
+
+                </a>
+            </uib-accordion-heading>
+            <label class="filter-value">
+                <input type="radio" ng-model="stuffCtrl.query.brand"value="" ng-click="stuffCtrl.changeFilter()">
+                <span >ВСЕ БРЕНДЫ</span>
+            </label>
+            <label for="br{{$index}}" ng-repeat="c in stuffCtrl.brands|orderBy:'index'" class="filter-value">
+                <input ng-click="stuffCtrl.changeFilter()"
+                       type="radio"
+                       name="brand"
+                       ng-model="stuffCtrl.query.brand"
+                       ng-value="c._id"
+                       id="br{{$index}}">
+                <span >{{c.name}}</span>
+            </label>
+        </uib-accordion-group>
+        <uib-accordion-group ng-if="stuffCtrl.brandCollections.length">
+            <uib-accordion-heading>
+                <a class="panel-head" ng-click="stuffCtrl.p.displayFilters=!stuffCtrl.p.displayFilters">
+                    <h4>
+                        <span class=" filter-name">Коллекции</span>
+                        <span ng-if="!stuffCtrl.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                        <span ng-if="stuffCtrl.p.displayFilters"class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                    </h4>
+
+                </a>
+            </uib-accordion-heading>
+            <label class="filter-value">
+                <input type="radio" ng-model="stuffCtrl.query.brandTag"value="" ng-click="stuffCtrl.changeFilter()">
+                <span >ВСЕ КОЛЛЕКЦИИ</span>
+            </label>
+            <label for="collection{{$index}}" ng-repeat="c in stuffCtrl.brandCollections" class="filter-value">
+                <input ng-click="stuffCtrl.changeFilter()"
+                       type="radio"
+                       name="collection"
+                       ng-model="stuffCtrl.query.brandTag"
+                       ng-value="c._id"
+                       id="collection{{$index}}">
+                <span >{{c.name}}</span>
+            </label>
+        </uib-accordion-group>
+    </uib-accordion>
+
+</div>
+
+

@@ -1,0 +1,351 @@
+<div class="template-list">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="cart-detail">
+            <h3 class="text-center name-page">компоненты подвала (footer)
+                <a ng-click="$ctrl.downloadPartOfTemplate('footer')" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                </a>
+            </h3>
+            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right style-box">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 text-center">
+                    <ui-select ng-model="$ctrl.item.footer.style" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.saveField('footer')">
+                        <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 text-center">
+                    <h4 class="name-box text-center">структура footer (разделение на столбцы шириной в %)</h4>
+                    <div class="radio radio-primary float-left">
+                        <label>
+                            <input type="radio" ng-change="$ctrl.saveFieldTemplate('footer.ratio',$ctrl.item.footer.ratio)"ng-model="$ctrl.item.footer.ratio" name="optionsRatio1"  value="0" >
+                            33/33/33
+                        </label>
+                    </div>
+                    <div class="radio radio-primary float-left">
+                        <label>
+                            <input type="radio" ng-change="$ctrl.saveFieldTemplate('footer.ratio',$ctrl.item.footer.ratio)"ng-model="$ctrl.item.footer.ratio" name="optionsRatio1"  value="1">
+                            50/50/0
+                        </label>
+                    </div>
+                    <div class="radio radio-primary float-left">
+                        <label>
+                            <input type="radio" ng-change="$ctrl.saveFieldTemplate('footer.ratio',$ctrl.item.footer.ratio)"ng-model="$ctrl.item.footer.ratio" name="optionsRatio1"  value="2">
+                            30/70/0
+                        </label>
+                    </div>
+                    <div class="radio radio-primary float-left">
+                        <label>
+                            <input type="radio" ng-change="$ctrl.saveFieldTemplate('footer.ratio',$ctrl.item.footer.ratio)"ng-model="$ctrl.item.footer.ratio" name="optionsRatio1" value="3">
+                            70/30/0
+                        </label>
+                    </div>
+                    <div class="radio radio-primary float-left">
+                        <label>
+                            <input type="radio" ng-change="$ctrl.saveFieldTemplate('footer.ratio',$ctrl.item.footer.ratio)"ng-model="$ctrl.item.footer.ratio" name="optionsRatio1" value="4">
+                            100/0/0
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 text-center">
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.footer,'footer')">
+                        <i class="material-icons link-info md-42" title="установить стиль">opacity</i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="menu-box">
+                <div  ng-if="!$ctrl.global.get('mobile').val">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box"></div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">название</div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">наличие</div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">положение блока</div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">номер шаблона</div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">номер стиля</div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box">заголовок блока</div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box">стиль блока</div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="part-box">
+                    <div class="dropzone">
+                        <div class="footer">
+                            <ul dnd-list="$ctrl.item.footer.parts"
+                                dnd-drop="$ctrl.dropCallbackFooter(item)"
+                                dnd-allowed-types="['footer']">
+                                <li ng-repeat="component in $ctrl.item.footer.parts"
+                                    dnd-draggable="component"
+                                    dnd-type="'footer'"
+                                    dnd-effect-allowed="move"
+                                    dnd-moved="$ctrl.item.footer.parts.splice($index,1)"
+                                    ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 head-box form-group">
+                                        <i class="material-icons link-success">swap_vert</i>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-8 form-group">
+                                         <span ng-repeat="(key,part) in $ctrl.listBlocksForFooter" ng-if="component.name==key">
+                                             <span>
+                                                 {{part}}
+                                             </span>
+                                         </span>
+                                    </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 text-center">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input ng-change="$ctrl.saveFieldTemplate('footer',$ctrl.item.footer)" ng-model="component.is" type="checkbox"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <ui-select ng-if="component.name!='infoline'"ng-model="component.position" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveFieldTemplate('footer',$ctrl.item.footer)">
+                                            <ui-select-match placeholder="положение">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in ['left','right','center']">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 text-center">
+                                        <!--<pre>{{component.templ|json}}</pre>-->
+                                        <ui-select ng-model="component.templ" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveFieldTemplate('footer',$ctrl.item.footer)">
+                                            <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6 text-center">
+                                        <ui-select ng-model="component.style" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveFieldTemplate('footer',$ctrl.item.footer)">
+                                            <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 text-center">
+                                        <div class="form-group" style="margin-top: 0">
+                                            <input class="form-control" ng-change="$ctrl.saveFieldTemplate('footer',$ctrl.item.footer)" ng-model="component.nameBlock" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6 text-center">
+                                        <div class="form-group">
+                                            <a class="btn btn-fab btn-fab-mini"  ng-click="$ctrl.setColor(component,'footer')" style="margin: 0">
+                                                <i class="material-icons link-info md-42" title="установить стиль блока">opacity</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                    <div ng-if="component.blocks">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 block-info" ng-repeat="b in component.blocks track by $index">
+                                            <p class="pull-left" ng-if="b.name">
+                                                <span ng-bind="b.name"></span>
+                                            </p>
+                                            <div class="pull-right">
+                                                <a class=" btn btn-fab btn-fab-mini" ng-click="$ctrl.addInfoBlock(component.blocks,$index)">
+                                                    <i class="material-icons link-success md-42" title="выбрать раздел инфо">add</i>
+                                                </a>
+                                                <a class="btn btn-fab btn-fab-mini" ng-click="component.blocks[$index]={};$ctrl.saveFieldTemplate('footer',$ctrl.item.footer)">
+                                                    <i class="material-icons link-warning md-42">delete</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-chat">
+                                            <div class="togglebutton form-group text-center col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <p>наличие чата</p>
+                                                <label for="block-chat">
+                                                    <span ng-class="{'active':!$ctrl.item.footer.communication.use}">не использовать чат</span>
+                                                    <input type="checkbox"
+                                                           id="block-chat"
+                                                           ng-model="$ctrl.item.footer.communication.use"
+                                                           ng-change="$ctrl.saveFieldTemplate('footer.communication',$ctrl.item.footer.communication)">
+                                                    <span ng-class="{'active':$ctrl.item.footer.communication.use}">использоватеь чат</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  block-info">
+                                                <p>наличие компонентов</p>
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="$ctrl.item.footer.communication.chat"
+                                                                   ng-change="$ctrl.saveFieldTemplate('footer.communication',$ctrl.item.footer.communication)"> чат
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="$ctrl.item.footer.communication.call"
+                                                                   ng-change="$ctrl.saveFieldTemplate('footer.communication',$ctrl.item.footer.communication)"> обратный звонок
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="$ctrl.item.footer.communication.feedback"
+                                                                   ng-change="$ctrl.saveFieldTemplate('footer.communication',$ctrl.item.footer.communication)"> форма обратной связи
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <!--<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-repeat="b in component.blocks">
+                                        <p ng-if="b.name"><span ng-bind="b.name"></span> <a ng-click="component.blocks[$index]={};$ctrl.saveFieldTemplate('footer',$ctrl.item.footer)">del</a></p>
+                                        <a ng-click="$ctrl.addInfoBlock(component.blocks,$index)">установить инфо раздел </a>
+                                    </div>-->
+
+
+
+                                </li>
+                                <div class="clearfix"></div>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+            <h4 class="text-center name-box">вид каталога в футере</h4>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" >
+                <a ng-click="$ctrl.addGroup()"><h4>выбрать раздел</h4></a>
+                <span class="select-block" ng-repeat="g in $ctrl.item.footer.catalog.groups track by $index">
+                    <span ng-bind="$ctrl.getGroupName(g)"></span>
+                    <a ng-click="$ctrl.deleteGroup($index)"><i class="material-icons link-warning clear-icon" >clear</i></a>
+                </span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                <a ng-click="$ctrl.addCategory()"><h4>выбрать категорию</h4></a>
+                <span  class="select-block" ng-repeat="c in $ctrl.item.footer.catalog.categories track by $index">
+                    <span ng-bind="$ctrl.getCategoryName(c)"></span>
+                    <a ng-click="$ctrl.deleteCategory($index)"><i class="material-icons link-warning clear-icon" >clear</i></a>
+                </span>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" ng-if="$ctrl.store">
+                <h4 class="text-center name-box">текст 1 в футере</h4>
+                <p>для отображения контактной или какой-либо другой дополнительной информации в футере сайта внесите ее в этот блок </p>
+                <div class="editor form-group">
+                    <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                         ng-change="$ctrl.saveFieldStore('footer',200)"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="$ctrl.store.footer.textL[$ctrl.global.get('store').val.lang]"
+                         ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" ng-if="$ctrl.store">
+                <h4 class="text-center name-box">текст 2 в футере</h4>
+                <p>для отображения контактной или какой-либо другой дополнительной информации в футере сайта внесите ее в этот блок </p>
+                <div class="editor form-group">
+                    <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                         ng-change="$ctrl.saveFieldStore('footer',200)"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="$ctrl.store.footer.text1L[$ctrl.global.get('store').val.lang]"
+                         ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <h4 class="name-box">укажите ссылки на страницы социальных сетей</h4>
+                <p>для перехода с сайта на страницы ваших соцсетей поставьте соответствующие метки и вставьте адрес страниц</p>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.store.sn.fb.is" type="checkbox" ng-change="$ctrl.saveFieldStore('sn')"id="fb"/>
+                            fb
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"  ng-if="$ctrl.store.sn.fb.is">
+                        <label for="fb1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.store.sn.fb.link" lost-focus="$ctrl.saveFieldStore('sn')"id="fb1" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.store.sn.vk.is" type="checkbox" id="vk" ng-change="$ctrl.saveFieldStore('sn')"/>
+                            vk
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.store.sn.vk.is">
+                        <label for="vk1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.store.sn.vk.link" lost-focus="$ctrl.saveFieldStore('sn')"id="vk1" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.store.sn.tw.is" type="checkbox" id="tw" ng-change="$ctrl.saveFieldStore('sn')"/>
+                            tw
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.store.sn.tw.is">
+                        <label for="tw1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.store.sn.tw.link" lost-focus="$ctrl.saveFieldStore('sn')"id="tw1"  class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.store.sn.gl.is" type="checkbox" id="gl" ng-change="$ctrl.saveFieldStore('sn')"/>
+                            gl+
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.store.sn.gl.is">
+                        <label for="gl1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.store.sn.gl.link" lost-focus="$ctrl.saveFieldStore('sn')"id="gl1"  class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.store.sn.pin.is" type="checkbox" id="pin" ng-change="$ctrl.saveFieldStore('sn')"/>
+                            pinterest
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.store.sn.pin.is">
+                        <label for="pin1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.store.sn.pin.link" lost-focus="$ctrl.saveFieldStore('sn')"id="pin1"  class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.store.sn.inst.is" type="checkbox" id="inst" ng-change="$ctrl.saveFieldStore('sn')"/>
+                            instagram
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.store.sn.inst.is">
+                        <label for="inst1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.store.sn.inst.link" lost-focus="$ctrl.saveFieldStore('sn')"id="inst1"  class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="$ctrl.store.sn.ok.is" type="checkbox" id="ok" ng-change="$ctrl.saveFieldStore('sn')"/>
+                            ok
+                        </label>
+                    </div>
+                    <div class="form-group label-floating"   ng-if="$ctrl.store.sn.ok.is">
+                        <label for="ok1" class="control-label">ссылка</label>
+                        <input ng-model="$ctrl.store.sn.ok.link" lost-focus="$ctrl.saveFieldStore('sn')"id="ok1"  class="form-control"/>
+                    </div>
+                </div>
+            </div>
+-->
+
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

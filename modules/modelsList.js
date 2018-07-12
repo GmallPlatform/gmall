@@ -1,0 +1,29 @@
+var models=[
+    'Additional',
+    'Brand',
+    'BrandTags',
+    'Campaign',
+    'Category',
+    'Group',
+    'Comment',
+    'Coupon',
+    'ExternalCatalog',
+    'Filter',
+    'FilterTags',
+    'HomePage',
+    'Info',
+    'Lookbook',
+    'Master',
+    'News',
+    'Paps',
+    'Seopage',
+    'Keywords',
+    'Stat',
+    'Stuff',
+    'SortsOfStuff',
+    'AddInfo',
+    'Witget'
+]
+module.exports = {
+    models:models
+}

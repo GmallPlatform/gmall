@@ -1,0 +1,15 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="banner-col col-lg-6 col-md-6 col-sm-12 col-sx-12")
+            div(class="container")
+                div(class="img-box")
+                    img(class="img-responsive img-header" src=dj[key].img,alt=dj[key].alt)
+        div(class="banner-col col-lg-6 col-md-6 col-sm-12 col-sx-12")
+            div(class="desc-box")
+                if(dj[key].name)
+                    h2=dj[key].name
+                if(dj[key].desc)
+                    div
+                        | !{dj[key].desc}
+
+        div(class="clearfix")

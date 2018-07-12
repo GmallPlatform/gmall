@@ -1,0 +1,47 @@
+/*smart-stat*/
+.home-slides {
+    text-align: center;
+}
+.box-wrapper {
+    display: inline-block;
+}
+.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+    border-radius: 100%;
+}
+.img-box:hover .box-overlay {
+    opacity: 0.4;
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+.mytoggle-page {
+    width: 100%;
+}
+.img-stat {
+    border-radius: 100%;
+    padding: 7px;
+    border: 1px solid #bfbfbf;
+}
+.home-section:hover .see {
+    display: block;
+}
+
+/*.mobile-wrapper .home-slides .home-section {
+    min-width: 360px;
+}*/
+@media (max-width: 1450px) {
+    .container {
+        width: 100%;
+    }
+}

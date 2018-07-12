@@ -1,0 +1,24 @@
+
+/*cake*/
+  .home-filterTags {
+    border: 5px solid #fff;
+}
+  .home-filterTags img {
+    border: 10px solid #fff;
+}
+  .home-filterTags .title-block {
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0.7;
+}
+  .home-filterTags .home-section:hover .title-block {
+    opacity: 1;
+}
+  .home-filterTags .title-block span {
+    display: inline-block;
+    font-size: 40px;
+    margin-bottom: 15px;
+}

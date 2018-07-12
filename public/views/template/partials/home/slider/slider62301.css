@@ -1,0 +1,182 @@
+/*clinic, tatiana - zoom*/
+/*.zoom-plus {
+    position: absolute;
+    width: 100%;
+    z-index: 1027;
+    top:45%;
+}*/
+/*.icon-see-img {
+   opacity: 0.8;
+   display: inline-block;
+}*/
+
+
+/*.home-slides .container {
+    padding-left: 0;
+    padding-right: 0;
+}*/
+/*.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}*/
+.mytoggle-page {
+    width: 100%;
+}
+.home-slides .substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.home-slides .slide-fade{
+    position: relative;
+}
+.home-slides {
+    position: relative;
+}
+.home-slides h1 {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 100px;
+    font-family: rosa;
+    color: #fff;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    background-color: #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.home-slides:hover .box-overlay {
+    opacity: 0.3;
+}
+
+.navright-carousel {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1024;
+}
+.home-slides .navright-carousel span {
+    position: absolute;
+    top: 45%;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    opacity: 0.7;
+}
+.navleft-carousel {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1024;
+}
+.home-slides .navleft-carousel span {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    opacity: 0.7;
+    transition: opacity 0.4s;
+}
+.home-slides .navleft-carousel:hover img,
+.home-slides .navright-carousel:hover img {
+    opacity: 1;
+}
+
+.home-slides .carousel-indicators {
+  z-index: 1025;
+    width: 100%;
+    margin-left: -50%;
+}
+.home-slides .carousel-indicators li{
+    height: 3px;
+    opacity: 0.6;
+    @if $color {
+        background-color: $color;
+        border: 2px solid $color;
+    }
+
+
+}
+.home-slides .carousel-indicators .active {
+    height: 3px;
+    background-color: transparent;
+    opacity: 1;
+    @if $color {
+        border: 2px solid $color;
+    }
+}
+
+.mytoggle {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity:0;
+}
+.mytoggle.ng-enter {
+    opacity: 0;
+}
+.mytoggle.ng-enter-active {
+    opacity: 1;
+}
+.mytoggle.ng-leave {
+    opacity: 1;
+}
+.mytoggle.ng-leave-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-add {
+
+    opacity: 1;
+    display: block !important;
+}
+.mytoggle.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-remove {
+    opacity: 0;
+    display: block !important;
+}
+.mytoggle.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+.icon-zoom-img {
+    display: inline-block;
+}
+.zoom-plus:hover .icon-zoom-img {
+    display: none;
+}
+.icon-zoom-inverse {
+    display: none;
+}
+.zoom-plus:hover .icon-zoom-inverse {
+    display: inline-block;
+}

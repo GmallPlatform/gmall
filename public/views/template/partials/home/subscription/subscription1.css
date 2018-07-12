@@ -1,0 +1,14 @@
+/*balance*/
+.form-control{
+    height: 40px;
+    background-color: transparent;
+    font-size: 14px;
+    margin-bottom: 5px;
+    border:none;
+    border-bottom: 1px solid #666;
+    border-radius: 0;
+    box-shadow: none;
+}
+.form-control:focus {
+    box-shadow: none;
+}

@@ -1,0 +1,32 @@
+<!--clinic-->
+<div class="categories-for-list"  ng-if="$ctrl.checkInnerData()">
+    <a class="categories-stuff" ng-click="$ctrl.changeCategory('category')"
+       ng-class="{'active':$ctrl.category=='category'}">
+        <img class="img-responsive" ng-src="{{$ctrl.global.get('store').val.allCategories}}">
+        <span class="text-center" ng-bind="$ctrl.global.get('lang').val.allCategories"></span>
+
+    </a>
+    <a ng-if="$ctrl.parentSection.saleLink && $ctrl.global.get('store').val.saleTag" class="categories-stuff" ng-click="$ctrl.changeCategory('category','sale')"
+       ng-class="{'active':$ctrl.queryTag=='sale'}">
+        <!--<img class="img-responsive" ng-src="{{$ctrl.global.get('store').val.allCategories}}">-->
+        <span class="text-center" ng-bind="$ctrl.global.get('lang').val.sale"></span>
+    </a>
+    <a ng-if="$ctrl.parentSection.newLink && $ctrl.global.get('store').val.newTag" class="categories-stuff" ng-click="$ctrl.changeCategory('category','new')"
+       ng-class="{'active':$ctrl.queryTag=='new'}">
+        <!--<img class="img-responsive" ng-src="{{$ctrl.global.get('store').val.allCategories}}">-->
+        <span class="text-center" ng-bind="$ctrl.global.get('lang').val.new"></span>
+    </a>
+    <a class="categories-stuff" ng-click="$ctrl.changeCategory(item.url)"   ng-repeat="item in $ctrl.parentSection.categories"
+       ng-class="{'active':$ctrl.category==item.url}"
+       ng-show="!item.notActive">
+        <img class="img-responsive" ng-src="{{item.smallimg}}">
+        <span class="text-center" ng-bind="item.name"></span>
+    </a>
+    <div class="clearfix"></div>
+    <div class="breadcrumbs">
+        <span class="breadcrumbs-box" ng-repeat="item in $ctrl.breadcrumbs" >
+            <span ng-bind="item.name"></span>
+            <span class="icon-cancel-img" ng-click="$ctrl.deleteCrumb($index)"></span>
+        </span>
+    </div>
+</div>

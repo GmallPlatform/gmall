@@ -1,0 +1,76 @@
+<style>
+    .page-list{
+        list-style:none;
+        padding: 0;
+
+    }
+    .page-list .page {
+        padding-left: 20px;
+        text-transform: uppercase;
+    }
+
+</style>
+<div class="create-news">
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-lg-5">
+                <h3 class="modal-title pull-left">привязка слова к странице</h3>
+            </div>
+            <div class="col-lg-5">
+                <div class="search form-group label-floating" ng-init="$ctrl.searchStr=''">
+                    <label class="control-label">поиск страницы</label>
+                    <input type="text"  class="form-control" ng-model="$ctrl.searchStr"/>
+                </div>
+            </div>
+            <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.cancel()">
+                <i class="material-icons link-warning">clear</i>
+            </a>
+        </div>
+        <hr>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-5 form-group">
+                название
+            </div>
+            <div class="col-lg-5 form-group">
+                URL
+            </div>
+            <div class="col-lg-2 form-group">
+                <i class="material-icons link-violet">link</i>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="page-list">
+                <li ng-repeat="item in $ctrl.items|filter:{name:$ctrl.searchStr}"
+                    ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                    <div class="row">
+                        <div class="col-lg-5 form-group">
+                            <strong class="page"ng-bind="item.name"></strong>
+                        </div>
+                        <div class="col-lg-5 form-group">
+                            <span ng-bind="item.link"></span>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                          <input ng-model="item.is" ng-change="$ctrl.change(item)" type="checkbox">
+                                    </label>
+                                </div>
+                                <p class="help-block">отметьте для того что бы слово использовалось на данной странице</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer col-lg-12">
+        <a class="btn btn-success btn-block" type="button" ng-click="$ctrl.ok()">Готово</a>
+        <!--<a class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</a>-->
+    </div>
+    <div class="clearfix"></div>
+</div>

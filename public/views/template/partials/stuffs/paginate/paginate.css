@@ -1,0 +1,85 @@
+/*all*/
+
+ul.pagination {
+    width: 100%;
+    margin: 20px 10px 20px 10px;
+    font-size: 18px;
+}
+.pagination-block {
+    display: inline-block;
+}
+
+.pagination > li > a {
+    display: inline-block;
+    padding: 33px 0;
+    font-size: 24px;
+    color: $color;
+    border: 1px solid #ccc;
+    height: 100px;
+    border-radius: 0;
+}
+.page {
+    width: 100px;
+}
+.left-right {
+    width: 150px;
+}
+.icon-right-img,
+.icon-left-img {
+    width: 16px;
+    height: 16px;
+    background-size: 16px;
+}
+.pagination > li > a span {
+    display: inline-block;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.pagination > li > a:hover,
+.pagination > li > a:active,
+.pagination > li > a:focus {
+    color: $mainColor;
+    background-color: rgba(204, 204, 204, 0.22);
+    border: 1px solid #ccc;
+}
+.pagination > .active > a,
+.pagination > .active > a.grey {
+    background-color: rgba(204, 204, 204, 0.64);
+
+}
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+
+    background-color: rgba(165, 165, 165, 0.64);
+}
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover {
+    color: $color;
+
+}
+@media (max-width:1200px) {
+    .pagination > li > a {
+        height: 80px;
+        padding: 26px 0;
+        font-size: 20px;
+    }
+    .page {
+        width: 80px;
+    }
+
+}
+@media (max-width:992px) {
+    .pagination > li > a {
+        height: 60px;
+        padding: 16px 0;
+        font-size: 20px;
+    }
+    .page {
+        width: 60px;
+    }
+
+}

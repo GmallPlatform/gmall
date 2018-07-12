@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-md-12
+      .error-template
+        h1=dj['404'].header
+        h2=dj['404'].subHeader
+        .error-detail
+          span=dj['404'].desc
+        .error-actions
+          a(href=dj['404'].homeHref,class="btn btn-primary btn-lg")
+            span(class="glyphicon glyphicon-home")
+            span=dj['404'].home_text
+          a(href=dj['404'].homeHref+"?action=feedback",class="btn btn-primary btn-lg")
+            span(class="glyphicon glyphicon-envelope")
+            span=dj['404'].feedback_text

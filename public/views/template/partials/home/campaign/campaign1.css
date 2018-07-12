@@ -1,0 +1,111 @@
+/*chudo*/
+.home-campaign {
+    min-height: 250px;
+}
+.home-campaign .container {
+    width:50%;
+    text-align: center;
+}
+.home-campaign h3{
+    text-align: center;
+}
+   .home-campaign .time-box {
+    margin: 0 auto;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+   .home-campaign .time-box-inline {
+    display: block;
+    padding: 0;
+
+}
+   .home-campaign .time-box-inline li {
+    list-style: none;
+    float: left;
+    margin: 15px 10px;
+}
+
+   .home-campaign .time {
+    display: inline-block;
+    text-align: center;
+    width: 72px;
+    height: 72px;
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+    box-shadow: -1.3px 1.5px 8px #e2e2e2;
+    border-radius: 50%;
+    color: #fdb813;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 70px;
+}
+   .home-campaign .time-name {
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center;
+}
+   .home-campaign .time-item,
+   .home-campaign .time-block,
+   .home-campaign .separator-block {
+    padding: 0;
+}
+   .home-campaign .separator {
+    left: 100px;
+    color: #d0d0d0;
+    vertical-align: top;
+    line-height: 70px;
+    font-size: 55px;
+    font-family: roboto;
+    font-weight: 700;
+    width: 35px;
+    text-align: center;
+}
+@media (max-width: 1400px) {
+       .home-campaign .container {
+        width: 60%;
+    }
+}
+@media (max-width: 1250px) {
+       .home-campaign .container {
+        width: 70%;
+    }
+}
+@media (max-width: 950px) {
+       .home-campaign .container {
+        width: 80%;
+    }
+}
+@media (max-width: 768px) {
+       .home-campaign .container {
+        width: 90%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+.mobile-wrapper    .home-campaign .container {
+    width:100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.mobile-wrapper    .home-campaign h3 {
+    font-size: 30px;
+}
+.mobile-wrapper    .time-box {
+    margin-left: 0;
+}
+.mobile-wrapper    .time {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 24px;
+}
+.mobile-wrapper    .time-name {
+    font-size: 14px;
+}
+
+.mobile-wrapper    .home-campaign .separator {
+    font-size: 44px;
+    line-height: 40px;
+}

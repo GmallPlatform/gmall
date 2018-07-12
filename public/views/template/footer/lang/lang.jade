@@ -1,0 +1,25 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="lang-box")
+            ul()
+                each l in store.langArr
+                    li
+                        a(ng-click="global.get('functions').val.changeLang('"+l+"')",ng-class="{'active':global.get('store').val.lang=='"+l+"'}")
+                            span()=l
+                div(class="clearfix")
+        //div(class=currency-box,uib-dropdown,id="changeCurrencyUl")
+            a(href="",class="dropdown-toggle",uib-dropdown-toggle)
+                - var c = 'currency icon-'+store.lang+'-img'
+                span(class=c,ng-class=currencyNgClass)
+                span(ng-bind="global.get('store').val['lang']")
+                    !=store.lang
+                span(class="caret")
+            if(store.langArr && store.langArr.length)
+                ul(class="dropdown-menu",role="menu",uib-dropdown-menu)
+                    -for(var i=0;i<store.langArr.length;i++)
+                        -var l = store.langArr[i];
+                        li
+                            - var str = "global.get('functions').val.changeLang('"+l+"')"
+                            a(ng-click=str)
+                                -var iconClass = 'currency icon-'+l+'-img'
+                                span(class=iconClass)=l

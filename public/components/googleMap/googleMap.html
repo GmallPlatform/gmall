@@ -1,0 +1,14 @@
+<h4>Статическая страница</h4>
+<div class="collg-3">
+    <load-image
+            no-load="noLoad"
+            no-change="noChange"
+            upload-url="/api/collections/Photo/fileUploadGallery?collectionName=Stat"
+            item-id="{{$ctrl.item._id}}"
+            item-resourse="$ctrl.Items"
+            file-src="$ctrl.item.gallery[1].thumb"
+            name-img="gallery"
+            gallery="$ctrl.item.gallery"
+            index="2">
+    </load-image>
+</div>

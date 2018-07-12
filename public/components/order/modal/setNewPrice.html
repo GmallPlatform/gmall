@@ -1,0 +1,30 @@
+
+<!--для price-->
+<div class="change-price select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">изменение цены</h3>
+        <a  class="cancel" ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <form ng-submit="$ctrl.ok()">
+        <div class="modal-body">
+            <p class="text-center">Ведите новое значение цены для данного товара. Сумма ордера будет рассчитана с учетом внесенных изменений.</p>
+            <div class="text-center qty">
+                <div class="form-group label-floating text-left" style="display: inline-block">
+                    <label class="control-label">введите значение</label>
+                    <input class="form-control" ng-model="$ctrl.price" style="width: 200px">
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-project">
+                <span>сохранить</span>
+            </button>
+
+        </div>
+    </form>
+
+</div>
+<!--end price-->

@@ -1,0 +1,40 @@
+/*ideal*/
+/*
+.sort-stuff {
+    padding-left: 0;
+}
+.sort {
+    margin-bottom: 10px;
+    text-shadow: none;
+}*/
+.sort-stuff {
+    padding-left: 0;
+
+}
+.sort-box {
+    margin-bottom: 10px;
+}
+.color-box {
+    margin-bottom: 10px;
+}
+.sort {
+    /*padding: 4px;*/
+    margin: 5px;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.5s ease-out 0.1s;
+}
+.sort span {
+    display: inline-block;
+    /*min-width: 25px;
+    min-height: 25px;*/
+
+}
+.sort-active {
+    border-bottom: 1px solid $mainColor;
+    /*background-color: transparentize($mainColor,.82);*/
+}
+.nosort {
+    cursor: default;
+}

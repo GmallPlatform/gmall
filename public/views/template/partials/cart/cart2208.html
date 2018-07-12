@@ -1,0 +1,155 @@
+
+<div id="dimScreen" spinner-arrtibute="sendCart" ng-show="sendCart">
+    <img src="../img/spinner.gif" style="position: fixed; bottom:50%; left: 45%; ">
+</div>
+<!-- <spinner  enable="sendCart"></spinner> -->
+<div class="cart-box">
+    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0" elem-ready="$ctrl.ready()" style="margin-bottom: 60px">
+        <div class="row">
+            <div class="">
+                <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 cart-inner">
+                    <h2 class="page-section col-lg-12 text-center">
+                        ваш заказ
+                    </h2>
+                    <p class="text-center" ng-if="$ctrl.order.quantity>0">
+                        <a class="btn  btn-project btn-border pull-right"
+                           ng-click="$ctrl.clearCart()">
+                            очистить корзину
+                        </a>
+                    </p>
+                    <div class="clearfix"></div>
+                </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-cart">
+                        <div  ng-show="$ctrl.order.cart.stuffs.length" ng-repeat="(idx,stuff) in $ctrl.order.cart.stuffs track by $index" class="cart-detail"  id="cart-inner">
+                            <div class=" clearfix">
+                                <span class="index">{{idx+1}}</span>
+                                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                                    <span ng-if="stuff.img" >
+                                        <img class="img-responsive cart-img" ng-src="{{stuff.img}}">
+                                    </span>
+                                    <span ng-if="stuff.sticker" >
+                                        <img class="sticker"  ng-src="{{stuff.sticker}}">
+                                    </span>
+
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-6">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+                                        <a ng-click="$ctrl.goToStuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url})">
+                                            <p  class="name-goods"  ng-bind="stuff.name+' '+stuff.artikul"></p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <p  ng-class="{'half':$ctrl.mobile}" ng-if="stuff.sortName">
+                                            <!--<span class="size">Разновидность</span>-->
+                                            <span  ng-bind="stuff.sortName"></span>
+
+                                        </p>
+                                        <p  ng-if="!stuff.single" ng-class="{'half':$ctrl.mobile}">
+                                            <!--<span ng-if="!$ctrl.mobile">количество</span>-->
+                                            <input class="form-control" ng-class="{'cart-mobile':$ctrl.mobile}"
+                                                   type="number" min='1' max='1000'
+                                                   ng-model="stuff.quantity"
+                                                   ng-disabled="stuff.single"
+                                                   ng-change="$ctrl.saveCart()">
+                                                {{stuff.unitOfMeasure}}
+
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <div ng-if="stuff.price>stuff.cena">
+                                            <p class=" text-right" >цена</p>
+                                            <p class=" text-right">{{($ctrl.order.kurs*(stuff.price)).toFixed(2)}}&nbsp{{$ctrl.order.currency}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+
+                                        <p class=" text-right">
+                                            <span ng-if="stuff.price>stuff.cena">цена со скидкой</span>
+                                            <span ng-if="stuff.price<=stuff.cena">цена</span>
+
+                                        </p>
+                                        <p class="text-right">{{($ctrl.order.kurs*(stuff.cena=$ctrl.order.getPrice(idx))).toFixed(2)}}&nbsp{{$ctrl.order.currency}}</p>
+                                    </div>
+                                    <div class="mb-10 clearfix">
+                                    <hr>
+                                </div>
+                                <div class="mb-10 clearfix"></div>
+                                <hr>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <a  class="info">
+                                        <span ng-click="$ctrl.removeItem($index)">удалить из корзины</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 sum text-right">
+                                    <span>{{($ctrl.order.kurs*(stuff.sum=stuff.cena*stuff.quantity)).toFixed(2)}}&nbsp{{$ctrl.order.currency}}</span>
+                                </div>
+                                    <div class="mb-10 clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--http://plnkr.co/edit/a3KlK8dKH3wwiiksDSn2?p=preview
+                https://github.com/angular-ui/ui-select-->
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <!--<div ng-if="$ctrl.coupon && !$ctrl.order.coupon._id && $ctrl.disabledCheckOut()">-->
+                    <div ng-if="$ctrl.coupon && !$ctrl.order.coupon._id">
+                        <p><span>вам доступен</span>
+                            <strong> {{$ctrl.coupon.name}}</strong>
+                            <a class="coupon" ng-click="$ctrl.order.setCoupon($ctrl.coupon)">применить купон</a>
+                    </div>
+                    <div ng-if="$ctrl.order.coupon._id">
+                        <p>{{$ctrl.coupon.name}}</p>
+                        <a class="coupon" ng-click="$ctrl.order.setCoupon(null)">отменить купон</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
+                    <p id="cartProfile" ng-if="$ctrl.order.coupon._id">итого:
+                        <span class="sum">{{$ctrl.order.quantity=$ctrl.order.getTotalQuantity()}} шт.&nbsp;&nbsp;
+                                {{($ctrl.order.kurs*($ctrl.order.sum=$ctrl.order.getTotalSum())).toFixed(2)}}&nbsp{{$ctrl.order.currency}}</span><br>
+                        <span ng-if="$ctrl.order.coupon._id"> с учетом скидки по купону
+                            <span class="sum">{{($ctrl.order.paySum=$ctrl.order.kurs*$ctrl.order.getCouponSum()).toFixed(2)}}&nbsp{{$ctrl.order.currency}}
+                            </span>
+                        </span>
+                    </p>
+                    <p id="cartProfile" ng-if="!$ctrl.order.coupon || !$ctrl.order.coupon._id">итого:
+                        <span>{{$ctrl.order.quantity=$ctrl.order.getTotalQuantity()}} шт.&nbsp;&nbsp;
+                                <span class="sum">{{($ctrl.order.paySum=$ctrl.order.kurs*($ctrl.order.sum=$ctrl.order.getTotalSum())).toFixed(2)}}&nbsp{{$ctrl.order.currency}}</span></span><br>
+                    </p>
+                    <p ng-if="$ctrl.order.getTotalDiscount()>0">общая скидка -
+                        <span ng-bind="$ctrl.order.getTotalDiscount()"></span>%
+                    </p>
+
+
+                </div>
+                    <!--<div class="col-lg-12"ng-if="$ctrl.enableCheckOut()" ng-if="!global.get('user').val">
+                        <a class="btn btn-lg btn-warning btn-block mb-40"
+                           ng-click="$ctrl.checkOut()">
+                            ОФОРМИТЬ ЗАКАЗ
+                        </a>
+
+                    </div>-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.disabledMessage&& $ctrl.order.quantity<$ctrl.opt">
+                    <h3 class="text-center no-order">Оформление заказа невозможно. Минимальный объем - <span>{{$ctrl.opt}}</span> единиц(ы). Добавьте товары в корзину.</h3>
+                </div>
+                <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.enableCheckOut()" ng-disabled="$ctrl.disabledCheckOut()">
+                    <a class="btn btn-lg btn-project pull-right col-lg-3 col-md-3 col-sm-3 col-xs-3"
+                        ng-click="$ctrl.checkOut()">
+                        ОФОРМИТЬ ЗАКАЗ
+                    </a>
+
+                </div>
+                    <!--<div class="clearfix"></div> -->
+                </div>
+                <div class="clearfix"></div>
+               <!-- //********** login-->
+
+            </div>
+        </div>
+    </div>
+</div>
+

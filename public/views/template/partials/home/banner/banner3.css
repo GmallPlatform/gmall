@@ -1,0 +1,85 @@
+/*webdeal*/
+/*.logo-out {
+    transform: translateX(-30%);
+    transition: transform  1s ease-in 0s;
+}*/
+/*.tablet-wrapper .img-one {
+    height: 100vh;
+    -o-fit-object: cover;
+    object-fit: cover;
+    z-index: -1;
+}*/
+/*.tablet-wrapper img {
+    min-height: 50vh;
+    -o-fit-object: cover;
+    object-fit: cover;
+    object-position: 0% 0%;
+    -o-object-position: 0% 0%;
+}*/
+/*.mobile-wrapper img {
+    height: 100vh;
+    -o-fit-object: cover;
+    object-fit: cover;
+    object-position: 0% 0%;
+    -o-object-position: 0% 0%;
+}*/
+
+
+
+
+/*stat-zefir-old*/
+/*
+.home-banner{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: $height;
+    width: 100%;
+    background-attachment:fixed;
+    background-position: right top;
+    background-size: cover;
+}
+.home-banner img {
+    width: 100%;
+}
+.home-banner .banner-header {
+    text-shadow: -1px 1px 2px rgba(51, 51, 51, 0.98);
+}
+
+.tablet-wrapper .home-banner,
+.mobile-wrapper .home-banner {
+    !*height: 80vh;*!
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 10% 20% !important;
+}
+
+@media only screen and (max-width : 320px)  {
+    .home-banner {
+        background-attachment: scroll;
+    }
+}
+@media only screen and (max-width : 480px)  {
+    .home-banner  {
+        background-attachment: scroll;
+    }
+}
+
+@media only screen and (max-width : 1024px)  {
+    .home-banner {
+        background-attachment: scroll;
+        overflow-y: scroll;
+    }
+    .banner-content {
+        width: 80% ;
+        height: auto !important;
+    }
+}
+@media (min-width : 1025px)  {
+    .home-banner {
+        background-attachment: fixed;
+    }
+
+}*/

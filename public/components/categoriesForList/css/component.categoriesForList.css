@@ -1,0 +1,37 @@
+.categories-for-list {
+    position: fixed;
+    top: 120px;
+    right: 0;
+    background-color: #eee;
+    z-index: 999;
+    box-shadow: 4px 2px 8px #ccc;
+    width: 80%;
+
+}
+.categories-for-list .active {
+    color: #6d7f8f;
+}
+.categories-for-list .form-group .radio label {
+    margin-right: 20px;
+    padding-left: 40px;
+}
+@media (max-width: 1540px) {
+    .categories-for-list {
+        width: 76%;
+    }
+}
+@media (max-width: 1280px) {
+    .categories-for-list {
+        width: 70%;
+    }
+}
+@media (max-width: 1050px) {
+    .categories-for-list {
+        width: 65%;
+    }
+}
+@media (max-width: 1050px) {
+    .categories-for-list {
+        width: 60%;
+    }
+}

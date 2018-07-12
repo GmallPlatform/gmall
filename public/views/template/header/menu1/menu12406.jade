@@ -1,0 +1,21 @@
+if(menuData.position=='top'||menuData.position=='bottom')
+  section
+    - var c='navbar navbar-'+menuData.fixed+'-'+menuData.position;
+    - var fon=(menuData.background)?menuData.background:''
+    nav(class=c,set-fon-after-start-scroll=fon,menu-bottom=menuData.position,id='menu1-section')
+      div(ng-class="{'navbar-toggle-slide-mini':$state.current.name!='home'}",class="navbar-toggle-slide text-center")
+        div(class="text-center center-menu")
+          | !{menu.center}
+        div(class="right-nav-menu  pull-left")
+          | !{menu.left}
+        div(class="right-nav-menu  pull-right")
+          | !{menu.right}
+
+        div(class="clearfix")
+else
+  section
+    - var c = 'menu-static-'+menuData.position;
+    div(class=c,set-fon-after-start-scroll=menuData.background)
+      | !{menu.left}
+      | !{menu.center}
+      | !{menu.right}

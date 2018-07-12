@@ -1,0 +1,29 @@
+/*dance*/
+
+.currency-box ul {
+    position: absolute;
+    top:0px;
+    z-index: 1050;
+    background-color: $background-color;
+    margin-left: 90px;
+    border: 1px solid $color;
+    border-radius: 5px;
+    padding-left: 0;
+    min-width: $width;
+}
+.currency-box ul li {
+    list-style: none;
+}
+.currency-box > li > a,
+.dropdown-menu > li > a {
+    color: $color;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.currency-box > li > a:hover,
+.dropdown-menu > li > a:hover {
+    background-color: transparent;
+    color: #ccc;
+
+}

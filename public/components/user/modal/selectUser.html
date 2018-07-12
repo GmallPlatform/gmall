@@ -1,0 +1,36 @@
+<div class="select-user select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выбор покупателя</h3>
+        <a class="cancel"  ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group label-floating" ng-init="focus=true">
+            <label class="control-label">введите имя, или e-mail, или ФИО</label>
+            <input class="form-control" type="text"
+                   ng-model="$ctrl.name"
+                   ng-model-options="{ debounce: 300 }"
+                   ng-change="$ctrl.search($ctrl.name)"
+                   focus-element="focus"/>
+        </div>
+    </div>
+    <table ng-if="$ctrl.items.length" class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Логин</th>
+                <th>email</th>
+                <th>ФИО</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in $ctrl.items" ng-click="$ctrl.selectItem(item)" style="cursor: pointer">
+            <td><span ng-bind="item.name"></span></td>
+            <td><span ng-bind="item.email"></span></td>
+            <td><span ng-bind="item.profile.fio"></span></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="clearfix"></div>
+    </div>
+</div>
+

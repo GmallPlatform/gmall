@@ -1,0 +1,112 @@
+/*dtn-mobile*/
+.img-bag {
+    position: relative;
+}
+.img-bag  .icon-cart-img{
+    display: none;
+}
+/*
+.menuColorIcon  .img-bag .cart-img {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url("../../../../img/cart/shopping-cart.png") center center no-repeat;
+}
+.menuColorIcon:hover .img-bag .cart-img {
+    background: url("../../../../img/cart/cart.png") center center no-repeat;
+}
+*/
+.img-bag .inCart{
+    /*position:absolute;*/
+    /*background-color: transparent;
+    border-radius: 15px;*/
+    color: $mainColor;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    -o-transition: all  ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+.img-bag .inCart b{
+    color:$color;
+}
+.img-bag .newInCart {
+    position:absolute;
+    color: $mainColor;
+    font-size:35px ;
+    width: 60px;
+    height: 60px;
+    padding-top: 5px;
+    top: -20px;
+    right: -20px;
+    border-radius: 30px;
+    opacity: 1;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    -o-transition: all  ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+    z-index: 1300;
+}
+/*.text-bag a{
+    color:#333;
+    opacity: 1;
+}
+.text-bag a:hover {
+    opacity: 0.8;
+}*/
+/*preview-cart*/
+.preview-cart .cartItems {
+    position: absolute;
+    top:77px;
+    width: 350px;
+    right: 0px;
+    background-color: #fff;
+    padding: 20px 10px;
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 2000;
+}
+.preview-cart .cartItems .name-goods {
+    padding: 0;
+    font-size: 14px;
+}
+.preview-cart .cartItems  .icon-cancel-img {
+    width: 15px;
+    height: 15px;
+}
+.gotoinCart {
+    color: $mainColor;
+    transition: all  0.3s ease-in-out 0.1s;
+    line-height: 28px;
+}
+.gotoinCart:hover {
+    color: $mainColor;
+    font-size: 18px;
+}
+
+.added-cart{
+    position: fixed;
+    top:0px;
+    right: 0px;
+    background-color: #ffffff;
+    opacity: 1;
+    /*border: 1px solid rgba(0, 0, 0, .15);*/
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    mix-height: 100px;
+    width: 350px;
+    z-index: 2001;
+}
+.addItem {
+    padding: 10px;
+}
+.addItem .name-goods {
+    padding: 0;
+}
+.addItem{
+    padding: 20px 10px;
+}

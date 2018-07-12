@@ -1,0 +1,153 @@
+<div ng-hide="prop.editFilter || prop.bindFilter || $state.current.name!='frame.filters'">
+    <a ng-click="newFilter()">создать фильтр</a>
+
+    <!-- Template for a normal list item -->
+    <script type="text/ng-template" id="tag.html">
+        <div class="input-group">
+            <span class="input-group-addon">Тег </span>
+            <input focus-element="category.focus" lost-focus="saveTag(tag,'name url')"dnd-nodrag class="form-control" ng-model="tag.name">
+            <a class="input-group-addon" ui-sref="frame.filters.tag({id:tag._id})"><span class="glyphicon glyphicon-edit"></span></a>
+            <a class="input-group-addon" ng-click="deleteTag(filter,$index)"><span class="glyphicon glyphicon-trash"></span></a>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="filter.html">
+        <div class="input-group container-element box box-blue">
+            <form class="form-inline" role="form">
+                <div class="input-group">
+                    <span ng-click="filter.showTags=!filter.showTags" class="glyphicon glyphicon-chevron-right input-group-addon" ng-class="{'glyphicon-chevron-right': !filter.showTags, 'glyphicon-chevron-down': filter.showTags}"></span>
+                    <span class="input-group-addon">фильтр </span>
+                    <div class="form-group">
+                        <input focus-element="filter.focus" lost-focus="saveFilter(filter,'name url')" class="form-control" dnd-nodrag ng-model="filter.name">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" ng-model="filter.type" ng-change="saveFilter(filter,'type')">
+                        <option value="1">единичный</option>
+                        <option value="2">множественный</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="togglebutton">
+                            <label>
+                                <span ng-class="{'active':!filter.actived}">не активный</span>
+                                <input type="checkbox" ng-model="filter.actived" ng-change="saveFilter(filter,'actived')">
+                                <span ng-class="{'active':filter.actived}">активный</span>
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <a ui-sref="frame.filters.category({id:filter._id})">категории</a>
+                        <!--<a ng-click="bindToCategories(filter)">категории</a>-->
+                    </div>
+                    <a class="input-group-addon"ng-if="!filter.tags.length " ng-click="deleteFilter(filter,$index)"><span class="glyphicon glyphicon-trash"></span></a>
+                </div>
+            </form>
+            <ul dnd-list="filter.tags"
+                dnd-drop="dropTagCallback(item,index,filter)"
+                dnd-allowed-types="['tag']">
+                <li dnd-nodrag ><a ng-click="filter.showTags=true;addTag(filter)">новый тег</a></li>
+            </ul>
+            <ul ng-if="filter.showTags"
+                dnd-list="filter.tags"
+                dnd-allowed-types="['tag']"
+                dnd-drop="dropTagCallback(item,index,filter)"
+                class="itemlist">
+                <li ng-repeat="tag in filter.tags track by $index"
+                    dnd-draggable="tag"
+                    dnd-type="'tag'"
+                    dnd-effect-allowed="move"
+                    dnd-moved="tagMoved(filter,tag,$index)"
+                    dnd-inserted="tagInserted(index)"
+                    dnd-selected="models.selected = item"
+                    ng-class="{selected: models.selected === item}"
+                    class="tree-node-category"
+                    ng-include="'tag.html'">
+                </li>
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+    </script>
+
+
+    <!-- Main area with dropzones and source code -->
+    <div class="row advancedDemo">
+        <div class="dropzone box box-yellow ng-scope">
+            <ul dnd-list="filters"
+                dnd-drop="dropFilterCallback(item)"
+                dnd-allowed-types="['filter']">
+                <!--<li ng-if="!section.child.length">новый подраздел</li>-->
+                <li ng-repeat="filter in filters"
+                    dnd-draggable="filter"
+                    dnd-type="'filter'"
+                    dnd-effect-allowed="move"
+                    dnd-moved="filters.splice($index,1)"
+                    dnd-selected="models.selected = item"
+                    ng-class="{selected: models.selected === item}"
+                    ng-include="'filter.html'">
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<!--<div ng-if="prop.editFilter">
+    <filter-edit id="{{filterId}}" edit="prop.editFilter"></filter-edit>
+</div>-->
+<div ui-view>
+
+</div>
+<!--<div ng-if="prop.bindFilter">
+    <bind-filter-to-category id="{{filterId}}" edit="prop.bindFilter"></bind-filter-to-category>
+</div>-->
+
+
+
+
+
+
+<!-- Sidebar -->
+<!--<div class="col-md-2">
+
+    <div class="toolbox box box-grey box-padding">
+        <h3>New Elements</h3>
+        <ul>
+            &lt;!&ndash; The toolbox only allows to copy objects, not move it. After a new
+                 element was created, dnd-copied is invoked and we generate the next id &ndash;&gt;
+            <li ng-repeat="item in models.templates"
+                dnd-draggable="item"
+                dnd-effect-allowed="copy"
+                dnd-copied="item.id = item.id + 1"
+            >
+                <button type="button" class="btn btn-default btn-lg" disabled="disabled">{{item.type}}</button>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-if="models.selected" class="box box-grey box-padding">
+        <h3>Selected</h3>
+        <strong>Type: </strong> {{models.selected.type}}<br>
+        <input type="text" ng-model="models.selected.name" class="form-control" style="margin-top: 5px" />
+    </div>
+
+    <div class="trashcan box box-grey box-padding">
+        &lt;!&ndash; If you use [] as referenced list, the dropped elements will be lost &ndash;&gt;
+        <h3>Trashcan</h3>
+        <ul dnd-list="[]">
+            <li><img src="nested/trashcan.jpg"></li>
+        </ul>
+    </div>
+
+</div>-->
+
+
+
+<!--
+<div class="sectionsList col-lg-4" ng-repeat="section in sections">
+    <i-section class="tree-nodes"section="section"></i-section>
+
+</div>
+-->
+

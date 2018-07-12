@@ -1,0 +1,152 @@
+<style>
+    .clear {
+        background:none;
+        border:none;
+        cursor:pointer;
+        padding:5px 10px;
+        position:absolute;
+        right:30px;
+        top:4px;
+    }
+    .keywords-list{
+        list-style:none;
+        padding: 0;
+
+    }
+    .keywords-list .keyword {
+        padding-left: 20px;
+        text-transform: uppercase;
+    }
+
+</style>
+
+<div class="create-news">
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-lg-5">
+                <h3 class="modal-title pull-left">привязка слова к странице</h3>
+            </div>
+            <div class="col-lg-5">
+                <!--<form >-->
+                    <div class="search form-group label-floating" ng-init="$ctrl.searchStr=''">
+                        <label class="control-label">поиск слова</label>
+                        <div class="input-group">
+                        <input type="text"  class="form-control" ng-model="$ctrl.searchStr"/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-xs" type="submit"
+                                    ng-click="$ctrl.clearSearchStr()">x</button>
+                            <button class="btn btn-primary" ng-click="$ctrl.addKeyword($ctrl.searchStr)">добавить</button>
+                        </span>
+
+                        </div>
+                    </div>
+
+                   <!-- <input type="submit" class="enter" tabindex="-1"  />-->
+               <!-- </form>-->
+
+            </div>
+            <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.cancel()">
+                <i class="material-icons link-warning">clear</i>
+            </a>
+        </div>
+        <hr>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <span>ключевое слово</span>
+            </div>
+            <div class="col-lg-3 " ng-init="$ctrl.frequency=undefined">
+                <div  class="btn-group btn-group-justified btn-group-raised">
+                    <a class="btn  btn-raised btn-xs"
+                       ng-click="$ctrl.frequency=undefined"
+                       ng-class="{'active':!$ctrl.frequency}">
+                        <i class="material-icons link-success">network_check</i></a>
+                    <a  ng-repeat='(key,f) in $ctrl.frequencies'
+                        class="btn  btn-raised btn-xs"
+                        ng-class="{'active':$ctrl.frequency==key}"
+                        ng-click="$ctrl.frequency=key">
+                        <span ng-bind="f"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 " ng-init2="$ctrl.competitive=undefined">
+                <div class="btn-group btn-group-justified btn-group-raised">
+                    <a class="btn  btn-raised btn-xs"
+                       ng-click="$ctrl.competitive=undefined"
+                       ng-class="{'active':!$ctrl.competitive}">
+                        <i class="material-icons link-success">timeline</i></a>
+                    <a  ng-repeat='(key,f) in $ctrl.competitives'
+                        class="btn  btn-raised btn-xs"
+                        ng-class="{'active':$ctrl.competitive==key}"
+                        ng-click="$ctrl.competitive=key">
+                        <span ng-bind="f"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 ">
+                <i class="material-icons link-violet">link</i>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="keywords-list">
+                <li ng-repeat="item in $ctrl.items|filter:{word:$ctrl.searchStr,f:$ctrl.frequency,c:$ctrl.competitive}"
+                    ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <strong class='keyword' ng-bind="item.word"></strong>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <!--<span ng-bind="$ctrl.getF(item.f)"></span>-->
+                            <ui-select ng-model="item.f"
+                                       ng-change="$ctrl.saveField(item,'f')"
+                                       title="частотность" search-enabled="false" skip-focusser="true">
+                                <ui-select-match placeholder="частотность">
+                                    {{$select.selected.value}}
+                                    <button class="clear" ng-click="$ctrl.clear($event,item,'f')">X</button>
+                                </ui-select-match>
+                                <ui-select-choices repeat="frequency.key as (key, frequency) in $ctrl.frequencies">
+                                    <span ng-bind="frequency.value"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-lg-3">
+                            <!--<span ng-bind="$ctrl.getC(item.c)"></span>-->
+                            <ui-select ng-model="item.c"
+                                       ng-change="$ctrl.saveField(item,'c')"
+                                       title="онкурентность" search-enabled="false" skip-focusser="true">
+                                <ui-select-match placeholder="конкурентность">
+                                    {{$select.selected.value}}
+                                    <button class="clear" ng-click="$ctrl.clear($event,item,'c')">X</button>
+                                </ui-select-match>
+                                <ui-select-choices repeat="competitive.key as (key, competitive) in $ctrl.competitives">
+                                    <span ng-bind="competitive.value"></span>
+                                    <!--<button class="clear" ng-click="$ctrl.clear($event)">X</button>-->
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-lg-2  text-center">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                          <input ng-model="item.is" ng-change="$ctrl.change(item)" type="checkbox">
+                                    </label>
+                                </div>
+                                <p class="help-block">отметьте для того что бы слово использовалось на данной странице</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer col-lg-12">
+        <a class="btn btn-success btn-block" type="button" ng-click="$ctrl.ok()">Готово</a>
+        <!--<a class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</a>-->
+    </div>
+    <div class="clearfix"></div>
+</div>

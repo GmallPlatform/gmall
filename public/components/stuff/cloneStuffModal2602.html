@@ -1,0 +1,156 @@
+<!--<div class="clone-stuff-modal select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" ng-if="$ctrl.clone">клонирование товара</h3>
+        <h3 class="modal-title text-center" ng-if="!$ctrl.clone">создание товара</h3>
+        <a  class="cancel" ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <div class="modal-body">
+        <form ng-submit="$ctrl.createNewStuff()">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-8  col-md-8 col-sm-8 col-xs-6">
+                    <div class=" form-group  label-floating">
+                        <label class="control-label">наименование товара или услуги</label>
+                        <input type="text" id="name" class="form-control"
+                               simple-focus-element=""
+                               ng-model="$ctrl.stuff.name" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-4 col-sm-4 col-xs-6">
+                    <div class="form-group label-floating">
+                        <label  for="articulnew" class="control-label">артикул(SKU)</label>
+                        <input name="articulnew" type="text" class="form-control"
+                               id="articulnew"  ng-model="$ctrl.stuff.artikul"
+                               autocomplete="off"/>
+                    </div>
+                </div>
+                <div class=" col-lg-4  col-md-4 col-sm-12 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label  for="price" class="control-label">цена</label>
+                        <input name="price" type="text" class="form-control"
+                               id="price" ng-model="$ctrl.stuff.price" autocomplete="off" pattern="[0-9-\.]{1,7}">
+                    </div>
+                </div>
+                <div ng-hide="$ctrl.clone">
+                    <div class="col-lg-4  col-md-4 col-sm-12 col-xs-12 text-right">
+                        <a class="link-success text-center" ng-click="$ctrl.selectCategory()">
+                            <h3 ng-if="!$ctrl.stuff.category">связать с категорией</h3>
+                            <h3 ng-if="$ctrl.stuff.category">сменить категорию</h3>
+                        </a>
+                    </div>
+                    <div class=" col-lg-4  col-md-4 col-sm-12 col-xs-12 form-group text-left">
+                        <label>категория </label>&nbsp; &nbsp;<span class="create-stuff-category"  ng-bind="$ctrl.stuff.category.name"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div  ng-show="$ctrl.alertMessage2" class="link-warning text-center">
+                    <strong>необходимо ввести наименование и выбрать категорию</strong>
+                </div>
+                <button type="submit" class="btn btn-raised btn-block">
+                    <span>создать</span>
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>-->
+<!--для min-max-->
+<!--<div class="clone-stuff-modal select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">ограничение продажи</h3>
+        <a  class="cancel" ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group text-center">
+                <p>максимальное количество для заказа</p>
+                <div class="togglebutton">
+                    <label for="single">
+                        <span ng-class="{'active':!item.single}">без ограничения</span>
+                        <input type="checkbox"
+                               id="single"
+                               ng-model="item.single"
+                               ng-change="saveField(item,'single')">
+                        <span ng-class="{'active':item.single}">ограничить</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group label-floating" ng-show="item.single" style="display: inline-block">
+                <label class="control-label">max количество</label>
+                <input class="form-control" ng-model="item.maxQty"
+                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                       ng-change="saveField(item,'maxQty')" style="width: 200px">
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group text-center">
+                <p>минимальное количество для заказа</p>
+                <div class="togglebutton">
+                    <label for="singlemin">
+                        <span ng-class="{'active':!item.multiple}">без ограничения</span>
+                        <input type="checkbox"
+                               id="singlemin"
+                               ng-model="item.multiple"
+                               ng-change="saveField(item,'multiple')">
+                        <span ng-class="{'active':item.multiple}">ограничить</span>
+                    </label>
+                </div>
+
+            </div>
+            <div class="form-group label-floating" ng-show="item.multiple">
+                <label class="control-label">min количество</label>
+                <input class="form-control"ng-model="item.minQty"ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                       ng-change="saveField(item,'minQty')" style="width: 200px">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-raised btn-block">
+                <span>сохранить</span>
+            </button>
+
+        </div>
+    </div>
+ </div>-->
+<!--end min-max-->
+<!--для price-->
+<div class="clone-stuff-modal select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">изменение цены</h3>
+        <a  class="cancel" ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group text-center">
+            <div class="togglebutton">
+                <label for="single">
+                    <span ng-class="{'active':!item.single}">процент</span>
+                    <input type="checkbox"
+                           id="single"
+                           ng-model="item.single"
+                           ng-change="saveField(item,'single')">
+                    <span ng-class="{'active':item.single}">сумма</span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group label-floating" ng-show="item.single" style="display: inline-block">
+            <label class="control-label">введите значение</label>
+            <input class="form-control" ng-model="item.maxQty"
+                   ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                   ng-change="saveField(item,'maxQty')" style="width: 200px">
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-raised btn-block">
+                <span>сохранить</span>
+            </button>
+
+        </div>
+    </div>
+</div>
+<!--end price-->

@@ -1,0 +1,76 @@
+<div ng-hide="$ctrl.$state.current.name!='frame.stats'" class="nav-box-stuff">
+    <div class="tab-nav-stuff">
+        <a class="btn btn-fab btn-fab-mini btn-success"
+           ng-click="$ctrl.createItem()"
+           title="создать новую страницу">
+            <i class="material-icons">add</i>
+        </a>
+
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="static-pages">
+    <div ng-hide="$ctrl.$state.current.name!='frame.stats'">
+        <div class="col-lg-12  col-md-12 col-sm-12  col-xs-12">
+            <ul dnd-effect-allowed="move"
+                dnd-list="$ctrl.items" class="gallery-item-ul">
+                <li ng-repeat="item in $ctrl.items" class="gallery-item"
+                    dnd-draggable="item"
+                    dnd-effect-allowed="move"
+                    dnd-dragend="$ctrl.movedItem()"
+                    dnd-moved="$ctrl.items.splice($index, 1)">
+                    <span class="helper"></span>
+                    <div class="cart-detail">
+                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 head-box" ng-if="!$ctrl.mobile" style="cursor: move">
+                            <i class="material-icons link-success form-group" title="передвинуть">swap_vert</i>
+                        </div>
+                        <div class="col-lg-5  col-md-4 col-sm-10  col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">название страницы</label>
+                                <input class="form-control" ng-model="item.name" lost-focus="$ctrl.saveField(item,'name')">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-5 col-sm-6  col-xs-12">
+                            <div class="form-group text-center">
+                                <div class="togglebutton">
+                                    <label for="actived{{$index}}-ds">
+                                        <span class="ll" ng-class="{'active':!item.actived}">не опубликовано</span>
+                                        <input type="checkbox"
+                                               id="actived{{$index}}-ds"
+                                               ng-model="item.actived"
+                                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                               ng-change="$ctrl.saveField(item,'actived')">
+                                        <span class="lr" ng-class="{'active':item.actived}">опубликовано</span>
+                                    </label>
+                                </div>
+                                <div class="togglebutton">
+                                    <label for="'preload'{{$index}}-ds">
+                                        <span ng-class="{'active':!item.preload}">обычная</span>
+                                        <input type="checkbox"
+                                               id="'preload'{{$index}}-ds"
+                                               ng-model="item.preload"
+                                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                               ng-change="$ctrl.saveField(item,'preload')">
+                                        <span ng-class="{'active':item.preload}">как прелоад экран</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2  col-md-2 col-sm-6  col-xs-12">
+                            <a class="btn  btn-fab btn-fab-mini" ui-sref="frame.stats.stat({id:item._id})">
+                                <i class="material-icons link-success md-42">edit</i>
+                            </a>
+                            <a class="btn  btn-fab btn-fab-mini" ng-click="$ctrl.deleteItem(item,$index)">
+                                <i class="material-icons link-warning md-42">delete</i>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div ui-view=""></div>
+</div>

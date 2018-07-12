@@ -1,0 +1,98 @@
+<div class="panel panel-violet">
+    <div class="panel-heading">
+        <span class="in-net" ng-if="$ctrl.online">{{$ctrl.global.get('langForm').val.dialoguenetwork}}</span>
+        <span class="out-net"ng-if=":: $ctrl.guest">{{$ctrl.global.get('langForm').val.withguest}}</span>
+    </div>
+    <div id="innerChat" class="panel-body" scroll-up="$ctrl.items" dont-scroll='{{$strl.dontscroll}}'>
+        <ul class="chat">
+            <li class="text-center" ng-if="$ctrl.paginate.items>$ctrl.items.length">
+                <a ng-click="$ctrl.getMoreMessage()">
+                    <span class="col-lg-4"><hr></span>
+                    <span class="col-lg-4 text-center">{{$ctrl.global.get('langForm').val.earlier}}</span>
+                    <span class="col-lg-4"><hr></span>
+                    <div class="clearfix"></div>
+                </a>
+            </li>
+            <li class="row message" ng-repeat="message in $ctrl.items">
+                <!--ng-init="$ctrl.getWho(message)">-->
+                <div ng-if="message.who=='me'">
+                    <div class="text-left">
+                        <span class="icon-messageme-img img-messageme-admin"></span>
+                        <span class="name-message"  ng-bind="message.name"></span>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+                        <div class="row">
+                            <div class="message-me">
+                                <small class="text-muted">
+                                    <span class="icon-time-img"></span>{{$ctrl.moment(message.date).format('LLL')}}
+                                </small>
+                                <p ng-bind="message.message"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div ng-if="message.who=='he'">
+                    <div class="text-right">
+                        <span class="name-message"  ng-bind="message.name"></span>
+                        <span class="icon-messagehe-img img-messagehe-admin"></span>
+
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 text-right">
+                        <div class="row">
+                            <div class="message-he">
+                                <small class="text-muted">
+                                    <span class="icon-time-img img-time-admin"></span>{{$ctrl.moment(message.date).format('LLL')}}
+                                </small>
+                                <p ng-bind="message.message"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <form novalidate name='formChat' ng-submit="$ctrl.sendMessage(formChat)">
+            <div class="form-group label-floating" ><!--ng-class="{ 'has-success': formChat.message.$valid && chatCtrl.submitted,
+                'has-error': formChat.message.$invalid && chatCtrl.submitted }"-->
+                <div class="input-group">
+                    <!--<label class="control-label" style="margin-left: 20px">{{$ctrl.global.get('langForm').val.entermessage}}</label>-->
+                    <textarea id="btn-input form-control" type="text" placeholder="{{$ctrl.global.get('langForm').val.entermessage}}"
+                              autocomplete="off"
+                              ng-maxlength="1000"
+                              required
+                              name="message"
+                              ng-model="$ctrl.text"
+                              ng-disabled="$ctrl.guest && !$ctrl.online"
+                              class="form-control "
+                              simple-focus-element="{{$ctrl.dontFocus}}">
+                    </textarea>
+                    <!--<input id="btn-input form-control" type="text"
+                           autocomplete="off"
+                           ng-maxlength="200"
+                           required
+                           name="message"
+                           ng-model="$ctrl.text"
+                           ng-disabled="$ctrl.guest && !$ctrl.online"
+                           class="form-control "
+                           simple-focus-element="{{$ctrl.dontFocus}}"/>-->
+                    <span class="input-group-btn">
+                        <button class="btn btn-send" id="btn-chat"
+                                type="submit">
+                            <span  class="icon-send-img img-send-admin"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,76 @@
+<div class="schedule">
+    <a name="schedule"></a>
+    <div class="container">
+        <div class="booking">
+            <p class="type-block">
+                <span class="type type-vail"><span class="unavailable"></span><span class="time-action">{{$ctrl.global.get('lang').val.notAvailable}}</span></span>
+                <span class="type type-booked"><span class="booked"></span><span class="time-action">{{$ctrl.global.get('lang').val.booked}}</span></span>
+                <span class="type type-your"><span class="your"></span><span class="time-action">{{$ctrl.global.get('lang').val.chosenTime}}</span></span>
+                <span class="type type-reserv"><span class="reserv"></span><span class="time-action">{{$ctrl.global.get('lang').val.temporary}}</span></span>
+            </p>
+
+        </div>
+        <h1>temp 111</h1>
+        <div class="online-box">
+            <div class="center-div">
+                <div class="online-table">
+                    <div class="week-box week-table-header">
+                        <div class="">
+                            <div  class="box-day" ng-repeat="i in [0,1,2,3,4,5,6]" ng-class="{'active':i==$ctrl.week}">
+                                <a ng-click="$ctrl.changeWeek(i)">
+                                    {{$ctrl.global.get('langForm').val.thisWeek}}
+                                    <span ng-show="i">+ {{i}}</span> </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="week-box" style="height: 40px"></div>
+
+                    <div class="online-table-header">
+                        <div class="online-table-day box-day" style="border-left:1px solid #ccc">
+                            <span ng-bind="$ctrl.currentMonth"></span>
+                        </div>
+                        <div  class="online-table-day box-day" ng-repeat="d in $ctrl.datesOfWeeks" ng-init="dateField=$ctrl.getDateObj(d.date)">
+                            <p ng-bind="dateField"></p>
+                        </div>
+                    </div>
+                    <div class="online-table-body">
+                        <div  class="online-table-day online-table-header-left">
+                            <div class="box-day"  ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePart">
+                                <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="online-table-day" ng-repeat="(date,data) in $ctrl.selectedWorkplace.week" ng-class="{'disabled':$index<$ctrl.currentDayOfWeek&& !$ctrl.week}">
+                            <div class="box-day" ng-repeat="item in data.entryTimeTable|filter:$ctrl.filterTimePartForMaster">
+                                <div class="servise-box"
+                                     ng-click="item.ngClickOnEntry(date,$parent.$index)"
+                                     ng-class="{
+                                     'busyEntry':item.busy && !item.temp && !item.reservation,
+                                     'reservation':item.busy && !item.temp && item.reservation,
+                                     'borderTop':!item.noBorder,'tempEntry':item.temp,'disabled':item.out||$ctrl.disabledTimePart(item,$parent.$index)}">
+
+                                    <div class="entry">
+                                        <span ng-bind="item.usedTime"></span><br>
+                                        <a href="{{item.masterLink}}"><span ng-bind="item.masterName"></span></a></br>
+                                        <a href="{{item.serviceLink}}"><span ng-bind="item.service"></span></a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <a class="btn btn-project btn-project-inv" ng-click="$ctrl.booking()">{{$ctrl.global.get('lang').val.bookIt}}</a>
+        </div>
+    </div>
+</div>
+
+
+
+

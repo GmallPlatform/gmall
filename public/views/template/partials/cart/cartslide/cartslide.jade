@@ -1,0 +1,154 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="cart-page")
+            a(class="back",ng-class="{'show':$ctrl.currentBlock}",ng-click="$ctrl.back()")
+                span(class="icon-left-img")
+            if(dj[key].desc)
+                h1=dj[key].name
+            if(dj[key].desc)
+                p=dj[key].desc.clearTag().substring(0.150)
+            //div(class='row')
+                div(class="col-lg-12")
+                    input(type="number",class="form-control",ng-model="$ctrl.currentBlock")
+            div(id="wrapper-for-cartslide",uib-carousel,no-wrap="noWrapSlides",active="$ctrl.currentBlock")
+                div(uib-slide,index="0",class="cart-box innder-cart-slide",style="margin-bottom: 60px")
+                    div(class="cart-box")
+                        div(class=" col-lg-12 col-md-12 col-sm-12 col-xs-12")
+                            h2(class="page-section text-center",ng-bind="$ctrl.global.get('lang').val.yourorder", ng-if="$ctrl.order.totalCount")
+
+                            h2(class="text-center", ng-if="!$ctrl.order.totalCount")
+                                span(ng-bind="$ctrl.global.get('lang').val.basketEmpty")
+                            hr
+                            div(class="cart-inner",ng-show="$ctrl.order.cart.stuffs.length", ng-repeat="(idx,stuff) in $ctrl.order.cart.stuffs track by $index", class="cart-detail", ng-init="stuff.filterName=$ctrl.getFilterName(stuff.sort)",id="cart-inner")
+                                span(class="index",ng-bind="idx + 1")
+                                div(class="col-lg-2 col-md-2 col-sm-3 col-xs-6")
+                                    span(ng-if="stuff.img" )
+                                        img(class="img-responsive cart-img", ng-src="{{stuff.img}}")
+                                    span(ng-if="stuff.sticker" )
+                                        img(class="sticker", ng-src="{{stuff.sticker}}")
+
+                                div(class="col-lg-10 col-md-10 col-sm-9 col-xs-6")
+                                    a(ng-click="$ctrl.goToStuff({groupUrl:'group',categoryUrl:'category',stuffUrl:stuff.url})")
+                                        p(class="name-goods",  ng-bind="stuff.name+' '+stuff.artikul")
+                                div(class="col-lg-10 col-md-10 col-sm-9 col-xs-12")
+                                    div(class="row")
+                                        div(class="col-lg-6 col-md-6 col-sm-6 col-xs-6 qty-box")
+                                            p(ng-if="stuff.sortName")
+                                                // здесь имя характеристики
+                                                span(class="name-sort",ng-if="stuff.filterName",ng-bind="stuff.filterName")
+                                                span - &nbsp;&nbsp;
+                                                span(ng-bind="stuff.sortName")
+                                            div(class="pull-left qty")
+                                                a(class="pull-left",ng-click="$ctrl.decreaseQty($index)")
+                                                    span(class="qty-minus") -
+                                                        //span(class="icon-menu-img",style="position: absolute; width: 16px; height:16px; right:10px")
+                                                //span(ng-bind="stuff.quantity")
+                                                input(class="form-control pull-left",ng-class="{'cart-mobile':$ctrl.mobile}",type="text",min='{{stuff.minQty}}', max='{{stuff.maxQty}}',ng-model="stuff.quantity",ng-change="$ctrl.saveCart()")
+                                                a(class="pull-left",ng-click="$ctrl.increaseQty($index)")
+                                                    span(class="qty-plus") +
+
+                                            p(class="pull-left unit")
+                                                //input(class="form-control pull-left",ng-class="{'cart-mobile':$ctrl.mobile}",type="number",min='{{stuff.minQty}}', max='{{stuff.maxQty}}',ng-model="stuff.quantity",ng-change="$ctrl.saveCart()")
+                                                span(ng-bind="stuff.unitOfMeasure")
+                                            span(class="clearfix")
+                                            a(class="info")
+                                                span(ng-click="$ctrl.removeItem($index)",ng-bind="$ctrl.global.get('lang').val.delete")
+                                        div(class="col-lg-3 col-md-3 col-sm-3 col-xs-6 price-block")
+                                            div(ng-if="stuff.price>stuff.cena")
+                                                p(class="text-right",ng-bind="$ctrl.global.get('lang').val.price")
+                                                p(class="text-right line")
+                                                    span(class="text-right",ng-bind="($ctrl.order.kurs *(stuff.price)).toFixed(2)")
+                                                    | &nbsp
+                                                    span(class="text-right",ng-bind="$ctrl.order.currencyStore[$ctrl.order.currency][2]")
+                                        div(class="col-lg-3 col-md-3 col-sm-3 col-xs-6 price-block")
+                                            p(class=" text-right")
+                                                span(ng-if="stuff.price>stuff.cena",ng-bind="$ctrl.global.get('lang').val.pricesale")
+                                                span(ng-if="stuff.price<=stuff.cena",ng-bind="$ctrl.global.get('lang').val.price")
+                                            p(class="text-right")
+                                                span(ng-bind="($ctrl.order.kurs*(stuff.cena=$ctrl.order.getPrice(idx))).toFixed(2)")
+                                                | &nbsp
+                                                span(ng-bind="$ctrl.order.currencyStore[$ctrl.order.currency][2]")
+                                            //pre {{stuff.cena}}
+
+                                        div(class="clearfix")
+                                        hr
+                                    div(class="col-lg-6 col-md-6 col-sm-6 col-xs-6")
+                                    div(class="col-lg-6 col-md-6 col-sm-6 col-xs-6 sum text-right")
+                                        span(ng-bind="($ctrl.order.kurs * (stuff.sum = stuff.cena * stuff.quantity)).toFixed(2)")
+                                        | &nbsp
+                                        span(ng-bind="$ctrl.order.currencyStore[$ctrl.order.currency][2]")
+                                div(class=" clearfix")
+                            div(class="col-lg-6 col-md-6 col-sm-6 col-xs-12",ng-show="$ctrl.enableCheckOut()")
+                                div(ng-if="$ctrl.coupon && !$ctrl.order.coupon._id")
+                                    p(class="coupon-block")
+                                        span(ng-bind="$ctrl.global.get('lang').val.available")
+                                        p(ng-repeat="c in $ctrl.coupons")
+                                            strong(ng-bind="c.name")
+                                            | &nbsp;&nbsp;&nbsp;
+                                            br
+                                            a(class="coupon", ng-click="$ctrl.setCouponForOrder(c,$event)",ng-bind="$ctrl.global.get('lang').val.usecoupon")
+                                div(ng-if="$ctrl.order.coupon._id")
+                                    p(class="coupon-block")
+                                        span(ng-bind="$ctrl.coupon.name")
+                                        br
+                                        a(class="coupon",ng-click="$ctrl.setCouponForOrder(null,$event)",ng-bind="$ctrl.global.get('lang').val.cancelcoupon")
+                            div(class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right",ng-show="$ctrl.enableCheckOut()")
+                                //общая сумма с учетом купона
+                                p(ng-if="$ctrl.order.coupon._id")
+                                    span(ng-bind="$ctrl.global.get('lang').val.intotal")
+                                    span &nbsp;&nbsp;&nbsp;
+                                    br
+                                    //span(ng-bind="$ctrl.order.quantity = $ctrl.order.getTotalQuantity()")
+                                        | &nbsp;&nbsp;&nbsp;
+                                    //span(ng-if="$ctrl.order.unitOfMeasure")
+                                        // если единиц измерения несколько, то не выводить они не выводятся ////
+                                        span(class="unit" ng-bind="$ctrl.order.unitOfMeasure")
+                                    span(class="sum")
+                                        span(ng-bind="($ctrl.order.kurs * ($ctrl.order.sum = $ctrl.order.getTotalSum())).toFixed(2)")
+                                        | &nbsp
+                                        span(ng-bind="$ctrl.order.currencyStore[$ctrl.order.currency][2]")
+                                    br
+                                    span(ng-if="$ctrl.order.coupon._id")
+                                        span(ng-bind="$ctrl.global.get('lang').val.withcoupon",style="font-size:14px")
+                                        | &nbsp;
+                                        span(class="sum total")
+                                            span(ng-bind="$ctrl.order.paySum = $ctrl.order.kurs * $ctrl.order.getCouponSum().toFixed(2)")
+                                            | &nbsp
+                                            span(ng-bind="$ctrl.order.currencyStore[$ctrl.order.currency][2]")
+                                //общая сумма
+                                p(class="total",ng-if="!$ctrl.order.coupon || !$ctrl.order.coupon._id")
+                                    span(ng-bind="$ctrl.global.get('lang').val.intotal")
+                                    span &nbsp;:&nbsp;
+                                    //span(ng-bind="$ctrl.order.quantity = $ctrl.order.getTotalQuantity()")
+                                        | &nbsp;
+                                    //span(ng-if="$ctrl.order.unitOfMeasure")
+                                        // если единиц измерения несколько, то они не выводятся ////
+                                        span(class="unit" ng-bind="$ctrl.order.unitOfMeasure")
+                                        | &nbsp;&nbsp;&nbsp;
+                                    span(class="sum")
+                                        span(ng-bind="($ctrl.order.paySum = $ctrl.order.kurs *($ctrl.order.sum = $ctrl.order.getTotalSum())).toFixed(2)")
+                                        | &nbsp
+                                    span(ng-bind="$ctrl.order.currencyStore[$ctrl.order.currency][2]")
+                            div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12",ng-if="$ctrl.disabledMessage&& $ctrl.order.totalCount<$ctrl.opt")
+                                h3(class="text-center no-order")
+                                    span(ng-bind="$ctrl.global.get('lang').val.checkoutimpossible")
+                                    | &nbsp; - &nbsp;
+                                    span(ng-bind="$ctrl.opt")
+                                        span(ng-bind="$ctrl.global.get('lang').val.unitsadd")
+                            div(class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center",ng-if="$ctrl.enableCheckOut()", ng-disabled="$ctrl.disabledCheckOut()")
+                                a(class="btn btn-lg btn-project btn-block",ng-click="$ctrl.checkOut()")
+                                    span(ng-bind="$ctrl.global.get('lang').val.checkout")
+                            div(class="clearfix")
+                div(uib-slide,index="1",class="innder-cart-slide")
+                    div(class="cart-box")
+                        div(class=" col-lg-12 col-md-12 col-sm-12 col-xs-12")
+                            div(ng-hide="$ctrl.global.get('user').val._id",ng-include="'/components/user/modal/login-sign.html'")
+                            div(ng-show="$ctrl.global.get('user').val._id")
+                                span &nbsp
+                div(uib-slide,index="2",class="innder-cart-slide")
+                    div(class="cart-box")
+                        div(class=" col-lg-12 col-md-12 col-sm-12 col-xs-12")
+                            user-ship-info
+
+                //div(class="clearfix")
+

@@ -1,0 +1,159 @@
+<!--http://stackoverflow.com/questions/27005608/angularjs-ui-bootstrap-modal-with-google-places-->
+<style>
+    .pac-container {
+        z-index: 100000;
+    }
+    .user-profile {
+        margin-top: 120px;
+    }
+    .phone-mask input.form-control {
+        height: 40px;
+    }
+    .user-profile .phoneForm .add-phone .ui-select-match .btn-default {
+        border-bottom: none;
+    }
+    .action-btn {
+        background-color: #eee;
+        border-top: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        height: 50px;
+        margin-left: -20px;
+        margin-right:-20px;
+        cursor: pointer;
+        padding-top: 10px;
+    }
+    .name-info {
+        margin-top: 10px;
+    }
+    .user-profile i {
+        font-size: 40px;
+    }
+    .user-profile .name-page {
+        text-transform: uppercase;
+    }
+</style>
+<div class="user-profile">
+    <div class="my-switch-container cart-detail col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12" >
+        <h3 class="name-page text-center">{{$ctrl.global.get('langForm').val.profileData}}</h3>
+        <div class="cart-inner" ng-if="$ctrl.user.val">
+            <div class="control-label col-lg-1 col-sm-1">
+                <i class="material-icons link-success" ng-click="$ctrl.changeEmail()">account_box</i>
+            </div>
+            <div class="col-lg-11 col-sm-11">
+                <h3 class="name-info">login - <span ng-bind="$ctrl.user.val.name"></span></h3>
+            </div>
+            <div class="clearfix"></div>
+            <div class="control-label col-lg-1 col-sm-1">
+                <i class="material-icons link-warning"ng-click="$ctrl.changeEmail()" title="{{$ctrl.global.get('langForm').val.changeEmail}}" style="cursor: pointer">email</i>
+            </div>
+            <div class="col-lg-11 col-sm-11">
+                <h3 class="name-info">email - <span ng-bind="$ctrl.user.val.email"></span></h3>
+            </div>
+            <div class="clearfix"></div>
+            <div class="control-label col-lg-1 col-sm-1">
+                <i class="material-icons link-warning" ng-click="$ctrl.changePswd(item._id)" title="{{$ctrl.global.get('langForm').val.changePassword}}" style="cursor: pointer">cached</i>
+            </div>
+            <div class="col-lg-11 col-sm-11">
+                <h3 class="name-info">password - <span>************</span></h3>
+            </div>
+            <div class="clearfix"></div>
+            <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.saveProfile(formProfile)" novalidate>
+                <div class="form-group control-group mb-10 " ng-class="{ 'has-success': formProfile.fio.$valid,'has-error': formProfile.fio.$invalid}">
+                    <div class="control-label col-lg-1 col-sm-1">
+                        <!--<i class="material-icons link-success" style="font-size: 40px">account_box</i>-->
+                        <i class="material-icons link-success">font_download</i>
+                    </div>
+                    <div class="col-lg-11 col-sm-11">
+                        <input  name="fio" type="text" class=" form-control cart"
+                                pattern="[A-Za-zА-Яа-я0-9ЁёЇїІіЄє'\s-]{3,100}"
+                                ng-minlength="3"
+                                ng-maxlength="70"
+                                required
+                                ng-model="$ctrl.user.val.profile.fio"
+                                ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                ng-change="$ctrl.saveField('fio')"
+                                placeholder="ФИО"/>
+                        <!--<span class="help-block"  ng-show="formProfile.fio.$error.required">
+                                                необходимо указать ФИО
+                                            </span>-->
+                        <span class="help-block"  ng-show="formProfile.fio.$error.minlength">
+                            {{$ctrl.global.get('langError').val.nameshort}}
+                        </span>
+                            <span class="help-block"  ng-show="formProfile.fio.$error.maxlength">
+                            {{$ctrl.global.get('langError').val.namelong}}
+                        </span>
+                        <!--<span class="help-block"  ng-show="formProfile.fio.$error.minlength">
+                                                не менее 3-ти символов
+                                            </span>
+                        <span class="help-block"  ng-show="formProfile.fio.$error.maxlength">
+                                                не более 70-ти символов
+                                            </span>-->
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="form-group mb-10 ">
+                    <div class="control-label col-lg-1 col-sm-1">
+                        <i class="material-icons link-success">ring_volume</i>
+                    </div>
+                    <div class="col-lg-11 col-sm-11">
+                        <div enter-phone-numder="$ctrl.user.val.profile.phone"></div>
+                        <span class="help-block"  ng-show="formProfile.phoneForm.$error.required">
+                        {{$ctrl.global.get('langError').val.enterphone}}
+                        </span>
+                        <span class="help-block"  ng-show="$ctrl.phoneExist">
+                            {{$ctrl.global.get('langError').val.dublePhone}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group mb-10 ">
+                    <div class="control-label col-lg-1 col-sm-1">
+                        <i class="material-icons link-success" >store_mall_directory</i>
+                    </div>
+                    <div class="col-lg-11 col-sm-11">
+                        <input name="cityId" required data-ng-model="$ctrl.user.val.profile.cityId"
+                               type="hidden">
+                        <input type="text"   class="form-control cart"
+                               ng-autocomplete-city  user="$ctrl.user.val"/>
+                        <span class="help-block"  ng-show="formProfile.cityId.$error.required">
+                            {{$ctrl.global.get('langError').val.selectcity}}
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="control-group form-group mb-10 ">
+                    <div class="control-label col-lg-1 col-sm-1">
+                        <i class="material-icons link-success" >local_shipping</i>
+                    </div>
+                    <div class="col-lg-11 col-sm-11">
+                        <input  ng-maxlength="100"
+                                name="transporter"
+                                type="text" class="form-control cart"
+                                pattern="[0-9A-Za-zА-Яа-я.,/\s-]{0,100}"
+                                ng-model="$ctrl.user.val.profile.transporter"
+                                ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                placeholder="{{$ctrl.global.get('langForm').val.carrier}}"/>
+                        <span class="help-block"  ng-show="formProfile.transporter.$error.maxlength">
+                            не более 100 символов
+                        </span>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </form>
+
+
+           <!-- <a class="btn btn-fab btn-success" title="изменить пароль" ng-click="$ctrl.changePswd(item._id)">
+                <i class="link-white material-icons">replay</i>
+            </a>смена пароля-->
+        </div>
+
+        <!--<div class="btn btn-block btn-raised" ng-click="$ctrl.changePswd(item._id)">
+            <i class="link-success material-icons">replay</i> изменить пароль
+        </div>-->
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+

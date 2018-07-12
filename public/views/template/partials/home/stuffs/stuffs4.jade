@@ -1,0 +1,22 @@
+if(dj[key].stuffs && dj[key].stuffs.length)
+    div(class=dj[key].wrapclass)
+        div(class=mobileWrapper)
+            div(class="home-stuffs col-lg-6 col-md-6 col-sm-6 col-xs-12")
+                div(class="container")
+                    if(dj[key].name)
+                        h3(class="text-center")=dj[key].name
+                    div(owl-carousel-with-attr,duration=dj[key].duration,items=1,autoplay="true",loop="true",class="owl-carousel owl-theme")
+                        - for (var i = 0; i < dj[key].stuffs.length; i++)
+                            a(href=dj[key].stuffs[i].link)
+                                div(class="img-box")
+                                    div(class="box-overlay")
+                                    if (dj[key].stuffs[i].img)
+                                        img(class="img-responsive img-news",src=photoHost + '/' + dj[key].stuffs[i].img,alt=dj[key].stuffs[i].alt)
+                                        div(class="news-home-desk")
+                                            div(class="news-desc")
+                                                h1=dj[key].stuffs[i].name
+
+                                                p
+                                                    | !{(dj[key].stuffs[i].desc)?dj[key].stuffs[i].desc.clearTag().substring(0,150):''}
+                                                    | ...
+                    div( class="clearfix")

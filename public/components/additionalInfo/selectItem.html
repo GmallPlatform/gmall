@@ -1,0 +1,58 @@
+<div class="tag-to-model select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center"  ng-bind="$ctrl.lang.selectObject">выберите объект</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div>
+            <ul>
+                <li ng-repeat="filter in $ctrl.filters" style="margin-bottom: 20px" ng-if="filter.addInfos.length">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
+                            <h3  ng-bind="filter.name" ></h3>
+                        </div>
+                        <div  class="col-lg-9 col-md-9 col-sm-7 col-xs-12">
+                            <form>
+                                <div>
+
+                                    <ul>
+                                        <li class=" form-group  tag-box"  ng-repeat="item in filter.addInfos">
+                                            <form>
+                                                <div ng-click="$ctrl.ok(item)">
+                                                    <span  ng-bind="item.name" ></span>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </li>
+                <hr>
+                <!--<li>
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  form-group  tag-box">
+                            <form>
+                                <div ng-click="$ctrl.ok(null)">
+                                    <span  ng-bind="$ctrl.lang.cancelAll" ></span>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-raised" type="button"  ng-click="$ctrl.ok(null)">
+            <span class="link-warning" ng-bind="$ctrl.lang.cancelAll" ></span>
+        </button>
+    </div>
+</div>
+
+
+
+

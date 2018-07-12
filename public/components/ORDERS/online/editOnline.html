@@ -1,0 +1,167 @@
+<div class="create-master">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">редактирование записи</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+        <div class="col-lg-6 text-center">
+                <h3>{{$ctrl.hour}} час  {{$ctrl.minutes}} минут</h3>
+        </div>
+        <div class="col-lg-6 text-center">
+                <h3>мастер - {{$ctrl.master.name}}</h3>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <h3>услугa</h3>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
+                    <h3 ng-bind="$ctrl.entry.service.name"></h3>
+                </div>
+
+            </div>
+            <div class="col-lg-12">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <h3>клиент</h3>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
+                    <h3>
+                        <span ng-bind="$ctrl.entry.user.name"></span>
+                        +<span ng-bind="$ctrl.entry.user.phone"></span>
+                        <span ng-bind="$ctrl.entry.user.email"></span>
+                    </h3>
+                    <!--<div >uib-collapse="$ctrl.editingUser"-->
+                </div>
+                <div class="col-lg-12">
+                    <button  ng-click="$ctrl.editingUser=true" class="btn btn-success btn-block">изменение данных клиента</button>
+
+
+                    <form name="form" ng-submit="$ctrl.updateUser()" uib-collapse="!$ctrl.editingUser">
+                        <fieldset class="well the-fieldset">
+                            <div class="col-lg-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">введите имя</label>
+                                    <input class="form-control" type="text"
+                                           ng-model="$ctrl.user.name"
+                                           ng-model-options="{ debounce: 300 }"
+                                           ng-minlength="3"
+                                           ng-maxlength="50"
+                                           name="name"
+                                           required
+                                    />
+                                </div>
+                                <div class="help-block" ng-messages="form.name.$error" role="alert">
+                                    <div ng-message="required">необходимо ввести имя</div>
+                                    <div ng-message="minlength">не менее 3 символов</div>
+                                    <div ng-message="maxlength">не более 25</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">введите email</label>
+                                    <input class="form-control" type="email"
+                                           ng-model="$ctrl.user.email"
+                                           ng-model-options="{ debounce: 300 }"
+                                           name="email"
+
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="control-label">введите телефон</label>
+                                <div class="row">
+                                    <ui-select class="col-lg-3" ng-model="$ctrl.phoneCode" skip-focusser="true" >
+                                        <ui-select-match>{{$select.selected.code}}</ui-select-match>
+                                        <ui-select-choices repeat="opt.code as opt in $ctrl.phoneCodes">{{opt.code}}({{opt.country}})</ui-select-choices>
+                                    </ui-select>
+                                    <div class="col-lg-9">
+                                        <input type="text"
+                                               class="form-control"
+                                               ng-model="$ctrl.user.phone"
+                                               ui-mask="(999) 999-9999"
+                                               ui-mask-placeholder
+                                               ui-mask-placeholder-char="_"
+                                               name="phone"
+                                               required
+                                        />
+                                        <div class="help-block" ng-messages="form.phone.$error" style="color:maroon" role="alert">
+                                            <div ng-message="required || mask">Необходимо ввести телефон в указанном формате</div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="pull-left">
+                                <a class="btn btn-fab btn-fab-mini" ng-disabled="!form.$valid" type="submit" title="сохранить изменения" ng-click="$ctrl.ok()">
+                                    <i class="material-icons link-success md-36 ">save</i>
+                                </a>
+                                <!--<a  class="btn btn-success btn-raised btn-block" ng-disabled="!form.$valid" type="submit">сохранить</a>-->
+                            </div>
+                            <div class="pull-right">
+                                <a class="btn btn-fab btn-fab-mini" ng-disabled="!form.$valid" type="submit" title="отменить изменения" ng-click="$ctrl.editingUser=false">
+                                    <i class="material-icons link-warning md-36 ">clear</i>
+                                </a>
+                                <!--<a class="btn btn-default btn-block"  ng-click="$ctrl.editingUser=false">отмена</a>-->
+                            </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+                <div class="clerfix"></div>
+
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+
+            <!--<div class="col-lg-8">
+                <h4>Услугa</h4>
+                <strong ng-bind="$ctrl.entry.service.name"></strong><br>
+            </div>-->
+            <div class="col-lg-12">
+
+                <div class="col-lg-8">
+                    <div class="checkbox" style="float: left; margin-right: 20px">
+                        <label>
+                            <input type="checkbox" ng-model="$ctrl.entry.used"> запись согласована
+                        </label>
+                    </div>
+                    <a class="btn btn-fab btn-fab-mini" title="отправить уведомление о согласовании записи">
+                        <i class="material-icons link-success md-36 ">notifications_active</i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+
+            <reminder-online></reminder-online>
+
+            <div class="col-lg-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="$ctrl.entry.used"> клиент пришел
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <div class="col-lg-6">
+            <a class="btn btn-success btn-raised btn-block" ng-click="$ctrl.ok()">
+                сохранить запись
+            </a>
+        </div>
+
+        <div class="col-lg-6">
+            <a class="btn btn-default btn-block" ng-click="$ctrl.delete()">
+                удалить запись
+            </a>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,13 @@
+.owl-item img {
+    width: 100%;
+    /*border: 2px solid transparent;*/
+    transition: all 0.5s ease-out 0.2s;
+}
+.owl-item {
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+.owl-item:hover img {
+    /*border: 2px solid transparent;*/
+    transform: scale(1.1);
+}

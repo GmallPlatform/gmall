@@ -1,0 +1,205 @@
+.container.container-menu {
+    width: 50%;
+}
+.catalogDropDownMenu,
+.catalogDropDownMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.catalogDropDownMenu ul {
+    float: left;
+}
+.section-in-section {
+    float: left;
+}
+.catalogDropDownMenu .mainli{
+    position: relative;
+}
+.catalogDropDownMenu a {
+    padding: 5px 20px;
+    display: block;
+    text-decoration: none;
+}
+.catalogDropDownMenu a.section-name {
+    padding: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+/* Level 1 Drop Down */
+.catalogDropDownMenu .mainli {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: -4px; /* solve the 4 pixels spacing between list-items */
+}
+.catalogDropDownMenu > li:first-child {
+    /*margin-left: 0;*/
+}
+
+/* Level 2 */
+/*.catalogDropDownMenu .innerDiv {
+    box-shadow: 2px 2px 15px 0 rgba(0,0,0, 0.5);
+
+}*/
+.catalogDropDownMenu .innerDiv {
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    /*min-height: 250px;*/
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: none;
+    position: absolute;
+    top: 60px;
+    /*top: 100%;*/
+    left: 0;
+    width: auto;
+    z-index: 999999; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
+}
+li.page-news {
+   display: inline-block;
+
+}
+li.page-news a{
+    padding: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #333;
+}
+/*
+.catalogDropDownMenu > li > div > ul {
+    text-align: left;
+    display: inline-block;
+}
+*/
+.category-name{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+
+}
+
+
+/*menu-section-vertical*//*
+
+
+.menu-section-vertical {
+    display: table;
+    height: 100%;
+    padding: 40% 40px;
+}
+.myMenuV{
+    display: table-cell;
+    width: 100%;
+    */
+/*vertical-align: middle;*//*
+
+    height: 100%;
+    font-size: 14px;
+}
+.myMenuV > ul.catalog-menu {
+    padding-left: 0;
+}
+.myMenuV > ul > li {
+    list-style: none;
+    margin-bottom: 15px;
+}
+.myMenuV > ul > li a {
+    color: #e5e5e5;
+    letter-spacing: 1px;
+}
+.myMenuV > ul > li a.section-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.myMenuV > ul > li a.section-name span,
+.myMenuV > ul > li a.category-name span{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.myMenuV > ul > li a.category-name span {
+    margin-top: 5px;
+}
+.myMenuV > ul > li > div {
+    display: none;
+    z-index: 999999;
+}
+.myMenuV  ul  li  ul  li {
+    list-style: none;
+    margin-bottom: 8px;
+}
+.myMenuV li.page-stat a,
+.menu-section-vertical  .page-stat a{
+    color: #e5e5e5;
+    padding: 20px 20px 20px 0;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.myMenuV li.page-stat a span,
+.menu-section-vertical .page-stat a span {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+.menu-section-vertical .page-stat a span.caret {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.menu-section-vertical .page-stat ul li {
+    list-style: none;
+}
+*/
+/*form-search*//*
+
+.vertical-menu  .form-search {
+    margin-top: 15px;
+    margin-left: 30px;
+    width: 250px;
+    height: 100%;
+    background-color: transparent;
+    z-index: 10000;
+    padding: 9px 5px;
+}
+.vertical-menu  input[type="text"]::-webkit-input-placeholder {
+    color: #dadada;
+}
+.vertical-menu input[type="search"]::-moz-placeholder {
+    color: #dadada;
+}
+.vertical-menu  .form-search .form-control {
+    background-color: transparent;
+    height: 40px;
+    color: #fff;
+    letter-spacing: 2px;
+    border-color: #e5e5e5;
+    border-left: none;
+}
+.vertical-menu  .form-search .form-control:focus {
+    */
+/*border-bottom: 2px solid #c6c6c6;*//*
+
+    border-left: none;
+}
+.vertical-menu  .form-search .input-group-btn button{
+    height: 40px;
+    border-color: #e5e5e5;
+    border-right: none;
+    background-color: transparent;
+}
+.vertical-menu .form-search .input-group-btn button:hover,
+.vertical-menu  .form-search .input-group-btn button:focus{
+    background-color: transparent;
+    border: 1px solid #e5e5e5;
+    border-right: none;
+    outline: none;
+}
+.vertical-menu  .form-search .input-group-btn button:hover span {
+    color: #cccccc;
+}*/

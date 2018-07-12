@@ -1,0 +1,20 @@
+/*dance*/
+.price-box {
+    cursor: default;
+}
+.price-box a {
+    cursor: default;
+}
+.stuff-detail .sale {
+    font-size: 26px;
+}
+.line {
+    text-decoration: line-through;
+}
+.retail {
+    font-size: 18px;
+}
+/*
+.sale {
+    color: $mainColor;
+}*/

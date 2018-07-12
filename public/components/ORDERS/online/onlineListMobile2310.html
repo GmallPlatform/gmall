@@ -1,0 +1,196 @@
+<style>
+    .ui-select-choices-group-label {
+        font-size: 20px;
+    }
+    .fix-to-top {
+        position: fixed;
+        top :60px
+    }
+</style>
+<div  class="online-list online-list-mobile">
+    <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 select-servise">
+        <div  class="">
+            <!--<h1>мобайл</h1>-->
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <p class="input-group date-picker-new">
+                    <input uib-datepicker-popup="dd-MMMM-yyyy" class="form-control"
+                           id="dp{{$index}}"
+                           type="text"
+                           ng-model="$ctrl.date"
+                           ng-change="$ctrl.changeDate()"
+                           is-open="$ctrl.opened"
+                           required
+                           ng-click="$ctrl.opened=true"
+                           close-text="Close"
+                           current-text="{{$ctrl.global.get('lang').val['today']}}"
+                           clear-text="Reset"
+                           datepicker-options="$ctrl.datePickerOptions"/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-fab btn-fab-mini" ng-click="$ctrl.opened=true">
+                            <i class="material-icons link-warning md-36">today</i>
+                        </button>
+                    </span>
+                </p>
+
+            </div>
+
+            <div data class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-hide="$ctrl.hideMastersList">
+                <ui-select class="servise-add"  ng-model="$ctrl.selStuff" ng-change="$ctrl.selectStuff($ctrl.selStuff)" >
+                    <ui-select-match  allow-clear="true" placeholder="выбрать услугу">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices group-by="'category'" repeat="s in $ctrl.items | filter:$select.search">
+                        {{s.name}} {{s.duration}} {{$ctrl.global.get('lang').val.minute}} / {{s.price}} {{s.currencyName}}
+                    </ui-select-choices>
+                </ui-select>
+                <div class="clearfix"></div>
+            </div>
+            <div data class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-show="!$ctrl.hideMastersList">
+                <ui-select class="servise-add" ng-model="$ctrl.selectedMaster" ng-change="$ctrl.selectMaster($ctrl.selectedMaster)" >
+                    <ui-select-match  allow-clear="true" placeholder="выбрать мастера">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices group-by="'category'" repeat="s in $ctrl.masters | filter:$select.search">
+                        {{s.name}}
+                    </ui-select-choices>
+                </ui-select>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="online-box">
+                <div ng-repeat="master in $ctrl.masters"ng-show="master.show" ng-hide="$ctrl.selectedMaster">
+                    <a ng-click="$ctrl.changeActiveSlide($index)"><span ng-bind="master.name"></span>&nbsp;</a>
+                </div>
+                <div uib-carousel active="$ctrl.activeSlide"  class="online-table" ng-hide="$ctrl.selectedMaster">
+                    <div uib-slide ng-repeat="master in $ctrl.masters"ng-show="master.show" active="master.active">
+                        <div class="online-table-header" >
+                            <div class="text-center  master-name" >
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 time">
+                                    <div class="text-center">
+                                        <div>
+                                            время
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 master">
+                                    <div class="">
+                                        {{master.name}}
+                                        <span ng-bind="$ctrl.moment($ctrl.date).format('L')"></span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div style="display: table-row" ng-swipe-left="$ctrl.changeActiveSlide1(0,'left')" ng-swipe-right="$ctrl.changeActiveSlide1(0,'right')">
+                            <div class="text-center servise-entry">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 time-entry ">
+                                    <div class="time-entry-box" ng-show="!$ctrl.dayoff" ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePart">
+                                        <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 servise-entry-box">
+                                    <div class="servise-box" ng-show="$ctrl.dayoff">
+                                        <div class="timepartDisabled">выходной</div>
+                                    </div>
+                                    <div ng-show="!$ctrl.dayoff">
+                                        <div class="servise-box"  ng-repeat="item in master.entryTimeTable|filter:$ctrl.filterTimePartForMaster"
+                                             ng-click="$ctrl.newBooking(master,item)"
+                                             ng-class="{'busyEntry':item.busy,borderBottom:!item.noBorder}">
+                                            <div class="entry" ng-class="{'timepartDisabled':item.out}">
+                                                <span ng-show="::item.out">недоступно для записи</span>
+                                                <span ng-bind="::item.service"></span></br>
+                                                <span ng-bind="::item.user"></span>
+                                                <span class="phone"  ng-bind="::item.phone"></span><br>
+
+                                                <!--<span  ng-bind="::item.email"></span><br>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="week-box week-table-header" ng-show="$ctrl.selectedMaster">
+                    <div class="">
+                        <div  class="box-day" ng-repeat="i in [0,1,2,3,4,5,6]" ng-class="{'active':i==$ctrl.week}">
+                            <a ng-click="$ctrl.changeWeek(i)">
+                                {{$ctrl.global.get('langForm').val.thisWeek}}
+                                <span ng-show="i">+ {{i}}</span> </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="week-box" style="height: 40px"></div>
+                <div uib-carousel ng-show="$ctrl.selectedMaster" class="online-table">
+                    <div uib-slide ng-repeat="idx in $ctrl.slideMasterWeekArry" index="idx.id" active="idx.active">
+                        <div class="online-table-header" >
+                            <div class="text-center  master-name" >
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 time">
+                                    <div class="text-center">
+                                        <div>
+                                            <span ng-bind="$ctrl.currentMonth"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 master">
+                                    <div class="">
+                                        <span ng-bind="$ctrl.getDateObj($ctrl.datesOfWeeks[idx.id].date)"></span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="online-table-body">
+                            <div  class="online-table-day online-table-header-left">
+                                <div class="box-day"  ng-repeat="row in $ctrl.timePartsForTable|filter:$ctrl.filterTimePartWeek">
+                                    <span ng-bind="$ctrl.timeTable15min[row.i]"></span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="online-table-day">
+                                <div class="box-day" ng-repeat="item in $ctrl.selectedMaster.week[$ctrl.datesOfWeeks[idx.id].date].entryTimeTable|filter:$ctrl.filterTimePartForMasterWeek">
+
+                                    <div class="servise-box"
+                                         ng-click="item.ngClickOnEntry($ctrl.datesOfWeeks[idx.id].date,idx.id)"
+                                         ng-class="{
+                                     'busyEntry':item.busy && !item.temp && !item.reservation,
+                                     'reservation':item.busy && !item.temp && item.reservation,
+                                     'borderTop':!item.noBorder,'tempEntry':item.temp,'disabled':item.out||$ctrl.disabledTimePart(item,idx.id)}">
+
+                                        <div class="entry">
+                                            <span ng-bind="item.usedTime"></span><br>
+                                            <span ng-bind="item.user.name"></span><br>
+                                            <span ng-bind="item.photo"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        </div>
+
+    <div class="clearfix"></div>
+</div>
+
+
+
+

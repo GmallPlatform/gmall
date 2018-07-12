@@ -1,0 +1,57 @@
+extends layout
+block content
+  if(preloadPage)
+    div(class="preloadPage",id='preloadPage',data-preload-animate-class=preloadPageAnimate)
+      a(id="hidePreloadPage")
+        span(class="icon-cancelmenu-img",style="z-index:100000")
+      |!{preloadPage}
+  div(id='dimScreen',content-loaded)
+    span(class="icon-gif-img")
+    //img(src='views/clinic/img/spinner.gif')
+  if(store.template.addcomponents && store.template.addcomponents.addbutton && store.template.addcomponents.addbutton.is)
+    - var clickLink=''
+    - var link=null;
+    if(store.template.addcomponents.addbutton.link == 'subscription' || store.template.addcomponents.addbutton.link == 'subscriptionAdd' || store.template.addcomponents.addbutton.link == 'feedback' || store.template.addcomponents.addbutton.link == 'dateTime' || store.template.addcomponents.addbutton.link == 'allBonus' || store.template.addcomponents.addbutton.link == 'call')
+      - clickLink="global.get('functions').val.action('"+store.template.addcomponents.addbutton.link+"')"
+    else
+      - link = store.addcomponents.addbutton.link;
+    div(id="addbutton")
+      a(class="btn btn-cross",ng-click=clickLink,href=link,set-animate=store.template.addcomponents.addbutton.animate,data-animation=store.template.addcomponents.addbutton.animate)
+        span=store.template.addcomponents.addbutton.nameL[store.lang]
+  div(id="firstDiv")
+    div(ng-controller="mainFrameCtrl",id="topPage")
+      //div(ui-view)
+      |!{htmlMenuHomeFooter}
+      if(!crawler)
+        pageslide(id="slideChat",ps-body-class="true",ps-open="checkedMenu.chatMenu",ps-side="right",ps-speed="0.3",ps-class="chat-box ng-pageslide",ps-size="{{mainFrameCtrl.sizeMenu}}")
+          div(class="checkedMenu",id="demo-left",click-outside="global.get('functions').val.closeChatWitget('chatMenu')")
+            a(ng-click="checkedMenuChange('chatMenu',false)",class="button",ng-show="checkedMenu.chatMenu",ng-cloak)
+              span(class="cancel-slide  icon-cancelmenu-inverse")
+            div(class="chat-content")
+              guest-dialog
+        div(id="slideEntry",pageslide,ps-body-class="true",ps-open="checkedMenu.entryTime",ps-side="right",ps-speed="0.3",ps-class="ng-pageslide",ps-size="{{checkedMenu.sizeEntryTime}}")
+          div(id="entryTimeElement",click-outside="global.get('functions').val.closeChatWitget('entryTime')")
+            a(ng-click="checkedMenuChange('entryTime',false)",class="button",ng-show="checkedMenu.entryTime",ng-cloak)
+              span(class="cancel-slide  icon-cancelmenu-inverse")
+            div
+              date-time-entry(stuff="globalProperty.entryStuff")
+        if(store.cartSetting && store.cartSetting.slide)
+          div(id="cartSlidePage",pageslide,ps-open="checkedMenu.cart",ps-body-class="true",ps-side="right",ps-speed="0.3",ps-size="{{checkedMenu.sizeCartSlide}}")
+            div(id="cartSlide",click-outside="global.get('functions').val.closeChatWitget('cart')")
+              a(ng-click="checkedMenuChange('cart',false)",class="button",ng-show="checkedMenu.cart",ng-cloak)
+                span(class="cancel-slide icon-cancelmenu-inverse")
+              div
+                cart-item
+        div(ng-class="{'to-top-mobile':global.get('mobile').val}")
+          .to-top
+            a(ng-click="mainFrameCtrl.scrollTo('topPage')")
+              span(class='icon-up-img')
+        audio(id="soundChat")
+          source(src='sounds/chat.mp3')
+  toaster-container(toaster-options="{'close-button': true}")
+  //if(!crawler)
+    div(id='dimScreen',content-loaded="contentLoaded")
+      img(src='views/clinic/img/spinner.gif')
+  div(id="liqpay_checkout")
+  //script(id="dsq-count-scr",src="//gmall.disqus.com/count.js",async)
+  include scripts.pug

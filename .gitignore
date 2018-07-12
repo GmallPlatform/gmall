@@ -1,0 +1,23 @@
+#
+# .gitignore
+#
+
+
+.idea
+*.log
+.git
+data
+dump*
+root
+stores
+uploads
+node_modules/
+public/images/
+public/bower_components/
+public/log/
+public/material-design-icons
+public/assets/material-design-icons
+public/stores
+
+
+

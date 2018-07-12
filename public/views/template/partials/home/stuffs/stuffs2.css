@@ -1,0 +1,14 @@
+/*ideal*/
+.stuff-box {
+    margin-bottom: 20px;
+}
+.stuff-name {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.48);
+    width: 100%;
+    margin-bottom: 0;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

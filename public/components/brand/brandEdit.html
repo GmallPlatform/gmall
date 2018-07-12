@@ -1,0 +1,76 @@
+<div class="category-edit">
+    <div class="col-lg-12 pages-header">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <a class="btn btn-fab "  ui-sref="frame.brands">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <h3 class="text-center name-page col-lg-8 col-md-8 col-sm-8 col-xs-7">
+            редактирование данных для бренда
+            <span>{{$ctrl.item.name}}</span>
+        </h3>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-lg-12">
+        <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="cart-detail tag-img">
+                <h4 class="text-center name-box">фото бренда</h4>
+                <div class="form-group">
+                    <load-image
+                            no-load="noLoad"
+                            no-change="noChange"
+                            upload-url="/api/collections/Photo/fileUploadBig?collectionName=Brand"
+                            item-id="{{$ctrl.item._id}}"
+                            item-url="{{$ctrl.item.url}}"
+                            item-resourse="$ctrl.Items"
+                            file-src="$ctrl.item.img">
+                    </load-image>
+                </div>
+            </div>
+            <div class="cart-detail sticker text-center">
+                <h4 class=" name-box">фото стикера бренда</h4>
+                <load-image
+                        upload-url="/api/collections/Photo/fileUploadSticker?collectionName=Brand"
+                        item-id="{{$ctrl.item._id}}"
+                        item-resourse="$ctrl.Items"
+                        file-src="$ctrl.item.sticker"
+                        name-img="sticker">
+                </load-image>
+
+            </div>
+        </div>
+        <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="cart-detail">
+                <div class="form-group label-floating ">
+                    <label for="name" class="control-label">наименование категории</label>
+                    <input type="text" id="name" class="form-control name"
+                           ng-model="$ctrl.item.name" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('name')"/>
+                </div>
+                <div class="togglebutton form-group" style="margin-top: 0">
+                    <label for="brand{{$ctrl.item._id}}">
+                        <span ng-class="{'active':!$ctrl.item.display}">не показывать в меню</span>
+                        <input type="checkbox"
+                               id="brand{{$ctrl.item._id}}"
+                               ng-model="$ctrl.item.display"
+                               ng-change="$ctrl.saveField('display')">
+                        <span ng-class="{'active':$ctrl.item.display}">показывать в меню</span>
+                    </label>
+                </div>
+                <h4 class="text-center name-box">описание</h4>
+                <div class="form-group editor">
+                    <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                         ng-change="$ctrl.saveField('desc',200)"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="$ctrl.item.desc"
+                         ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+

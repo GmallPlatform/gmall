@@ -1,0 +1,155 @@
+extends layout
+
+block content
+  div(id="o-wrapper" class="o-wrapper",ng-cloak,ng-init="displaySlideMenu=false;setInitData(#{JSON.stringify(store)},#{JSON.stringify(user)},#{JSON.stringify(admin)},#{JSON.stringify(mobile)},#{JSON.stringify(seller)})")
+
+    toaster-container
+    div(class="navbar navbar-default navbar-fixed-top" id='topMenu')
+      .container-fluid
+        button(type="button",class="navbar-toggle",data-toggle="collapse",data-target=".navbar-responsive-collapse")
+          span(class="icon-bar")
+          span(class="icon-bar")
+          span(class="icon-bar")
+        a(class="navbar-brand")
+          i(class="material-icons") reorder
+
+        a(ui-sref="frame",class="navbar-brand")
+          span(ng-if="global.get('seller').val") продавец&nbsp
+          span(ng-bind="global.get('user').val.name")
+
+
+        div(class="dropdown pull-right navbar-brand ")
+          a(class='dropdown-toggle',data-target="#",data-toggle="dropdown",style="color:#fff;")
+            i(class="material-icons") apps
+          ul(class="dropdown-menu",style="color:#666")
+            li
+              a(ng-click="changeLocation('/content')")
+                i(class="material-icons") apps
+            li
+              a(href="/setting")
+                i(class="material-icons") apps
+            li
+              a(href="/manage")
+                i(class="material-icons") apps
+        a(class='pull-right navbar-brand' ng-click="getHelp()")
+          i(class="material-icons") info_outline
+        a(class='pull-right navbar-brand' ng-if="helper.intro" ng-click="getIntro()")
+          i(class="material-icons") info_outline
+
+
+    div(style="margin-top:70px")
+      div(ui-view )
+  script(src='scripts/myPrototype.js')
+  script(src='scripts/angular-node.js')
+
+  script(src="bower_components/jquery/dist/jquery.js")
+
+  // Twitter Bootstrap
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+
+  //material Design for Bootstrap
+  script(src="bower_components/arrive/src/arrive.js")
+  script(src="bower_components/bootstrap-material-design/dist/js/material.js")
+  script(src="bower_components/bootstrap-material-design/dist/js/ripples.js")
+
+  // Dropdown.js
+  script(src="assets/jquery.dropdown.js")
+  script(src="assets/jquery.nicescroll/jquery.nicescroll.js")
+
+
+  script(src='bower_components/angular/angular.js')
+  script(src='bower_components/118n/angular-locale_ru-ua.js')
+  script(src='bower_components/angular-hint/dist/hint.js')
+  script(src='bower_components/angular-animate/angular-animate.js')
+
+  script(src='bower_components/angular-socket-io/socket.js')
+
+  script(src="bower_components/angular-ui-bootstrap/ui-bootstrap-tpls-0.14.3.min.js")
+  script(src='assets/ui-select-master/dist/select.js')
+
+  script(src='bower_components/angular-route/angular-route.js')
+  script(src='bower_components/angular-ui-router/release/angular-ui-router.js')
+  script(src='bower_components/angular-resource/angular-resource.js')
+  script(src='bower_components/angular-cookies/angular-cookies.js')
+  script(src='bower_components/angular-touch/angular-touch.js')
+
+
+  script(src="bower_components/AngularJS-Toaster/toaster.min.js")
+  script(src="bower_components/intro.js/minified/intro.min.js")
+  script(src="bower_components/angular-intro.js/src/angular-intro.js")
+
+  //textAngular
+  script(src='/bower_components/textAngular/dist/textAngular-rangy.min.js')
+  script(src='/bower_components/textAngular/dist/textAngular-sanitize.min.js')
+  script(src='/bower_components/textAngular/dist/textAngular.min.js')
+
+
+
+
+  // дата пикер
+  script(src="bower_components/moment/min/moment-with-locales.min.js")
+  script(src="bower_components/bootstrap-daterangepicker/daterangepicker.js")
+  script(src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js")
+  //script(src="bower_components/bootstrap-material-datepicker/js/bootstrap-material-datepicker.js")
+
+
+  script(src='scripts/angular-drag-and-drop-lists.js')
+
+  script(src='modules/promo/js/app.js')
+  script(src='modules/promo/js/controllers.js')
+  script(src='modules/promo/js/services.js')
+  script(src='modules/promo/js/directives.js')
+  script(src='modules/promo/js/filters.js')
+
+
+
+
+
+
+  script(src='scripts/service.global.js')
+  script(src='scripts/service.helper.js')
+
+  // sections
+  script(src='components/sections/scripts/service.sections.js')
+  script(src='components/sections/scripts/category.service.js')
+  // filters
+  script(src='components/filters/scripts/service.filters.js')
+  //stuff
+  script(src='components/stuff/scripts/stuff.service.js')
+  //brand
+  script(src='components/brand/scripts/service.brands.js')
+  //News
+  script(src='components/news/scripts/service.news.js')
+
+
+  //services
+  script(src='scripts/service.anchorSmoothScroll.js')
+  script(src="components/services/factory.exeption.js")
+  script(src="components/services/confirm.factory.js")
+
+  // components
+  script(src="components/paginator/scripts/component.paginator.js")
+  // campaign
+  script(src="components/PROMO/campaign/scripts/component.campaignList.js")
+  script(src="components/PROMO/campaign/scripts/component.campaignItem.js")
+  script(src="components/PROMO/campaign/scripts/campaign.service.js")
+  //growlNotificationh
+  script(src='components/growlNotification/scripts/directive.growlNotification.js')
+  // backtotop
+  script(src='components/backToTop/scripts/directive.back-to-top.js')
+  // file upload
+  script(src='components/loadImage/scripts/directive.loadImage.js')
+  script(src='components/loadImage/scripts/service.fileUpload.js')
+
+  // directives
+  script(src='components/directives/directive.lost-focus.js')
+  script(src='components/checklistmodel/scripts/directive.checklist.js')
+  script(src='components/directives/directive.select-drop-down.js')
+
+
+
+
+
+
+
+

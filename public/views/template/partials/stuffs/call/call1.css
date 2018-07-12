@@ -1,0 +1,35 @@
+/*all*/
+.goods-record {
+    overflow: hidden;
+}
+/*.goods-record img{
+    width: 100%;
+    margin-bottom: 40px;
+    min-width: 600px;
+}*/
+.blur {
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    z-index: 1;
+    height: 200px;
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+}
+.blur img {
+    position: absolute;
+    bottom: 0;
+}
+.goods-record-desc {
+    position: relative;
+    background-color: rgba(255,255,255,0.5);
+    z-index: 5;
+    height: 190px;
+}
+/*.goods-record-desc .btn {
+    width: 300px;
+}*/

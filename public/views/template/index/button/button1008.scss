@@ -1,0 +1,369 @@
+
+.btn {
+  transition: all .3s ease-out;
+}
+.btn,
+.btn:active,
+.btn:focus,
+.btn-lg,
+.btn-md,
+.btn-sm,
+.btn-xs{
+  letter-spacing: $letter-spacing;
+  border-radius: 0;
+  outline: none;
+  margin-bottom: 20px;
+}
+.btn:hover,
+.btn:active,
+.btn:focus {
+  box-shadow: none;
+}
+.btn-project {
+  min-width: $width;
+  padding-left: $padding-left;
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+  padding-right: $padding-right;
+  background-color: $backgroundcolorProjectTwo;
+  /*background-color: $backgroundcolorProjectOne;*/
+  border: 2px solid $colorProjectOne;
+  font-size: $font-size;
+  color: $colorProjectTwo;
+  /*color: $colorProjectOne;*/
+  font-weight: $font-weight;
+}
+.btn-project:hover,
+.btn-project:focus,
+.btn-project:active{
+  background-color: $colorProjectOne;
+  font-size: $font-size;
+  color: $colorProjectTwo;
+  border: 2px solid $colorProjectOne;
+}
+.btn-project:active:hover,
+.btn-project.active:hover,
+.open > .dropdown-toggle.btn-project:hover,
+.btn-project:active:focus,
+.btn-project.active:focus,
+.open > .dropdown-toggle.btn-project:focus,
+.btn-project:active.focus,
+.btn-project.active.focus,
+.open > .dropdown-toggle.btn-project.focus
+.btn.disabled, .btn[disabled]:hover,
+fieldset[disabled] .btn:hover {
+  background-color:  $backgroundcolorProjectTwo;
+  border: $colorProjectOne;
+  color: $colorProjectTwo;
+  border: 2px solid $colorProjectOne;
+}
+.btn-project.btn-border {
+  background-color: transparent;
+  border: 2px solid $colorProjectOne;
+  color: $colorProjectOne;
+}
+.btn-project.btn-border:hover,
+.btn-project.btn-border:focus {
+  background-color: $backgroundcolorProjectTwo;
+  border: 2px solid $colorProjectOne;
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  border: 2px solid $colorProjectOne;
+  background-color: $backgroundcolorProjectOne;
+  color: $colorProjectTwo;
+  cursor: not-allowed;
+}
+.btn.disabled:hover,
+.btn[disabled]:hover,
+fieldset[disabled] .btn:hover {
+  cursor: not-allowed;
+}
+.btn-project-inv {
+  min-width: $width;
+  padding-left: $padding-left;
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+  padding-right: $padding-right;
+  background-color: $colorProjectOne;
+  border: 2px solid $colorProjectOne;
+  font-size: $font-size;
+  color: $colorProjectTwo;
+  font-weight: $font-weight;
+}
+.btn-project-inv:hover,
+.btn-project-inv:focus,
+.btn-project-inv:active{
+  background-color: $backgroundcolorProjectOne;
+  font-size: $font-size;
+  color: $colorProjectTwo;
+  border: 2px solid $colorProjectOne;
+}
+.btn-project-inv:active:hover,
+.btn-project-inv.active:hover,
+.open > .dropdown-toggle.btn-project-inv:hover,
+.btn-project-inv:active:focus,
+.btn-project-inv.active:focus,
+.open > .dropdown-toggle.btn-project-inv:focus,
+.btn-project-inv:active.focus,
+.btn-project-inv.active.focus,
+.open > .dropdown-toggle.btn-project-inv.focus{
+  background-color:  $backgroundcolorProjectTwo;
+  border: $colorProjectOne;
+  color: $colorProjectTwo;
+  border: 2px solid $colorProjectOne;
+}
+
+.btn-project .icon-btn,
+.btn-project-inv .icon-btn{
+  display: inline-block;
+  width:30px;
+  height:30px;
+  background-size: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.btn-project  .btn-val,
+.btn-project-inv  .btn-val {
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-project-noborder {
+  color: $colorProjectTwo;
+  font-size: 24px;
+  -webkit-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+.btn-project-noborder:hover {
+  color: $colorProjectTwo;
+  /*font-size: 26px;*/
+  transform: scale(1.05);
+}
+.btn-project-noborder-inv {
+  color: $colorProjectOne;
+  font-size: 24px;
+}
+/*confirm*/
+.modal-body.confirm .btn-project.btn-modal{
+  min-width: 100px;
+}
+
+
+
+/*.mobile-wrapper .home-banner.half-section-banner .banner-content .btn-project {
+        font-size: 18px;
+    }
+
+.mobile-wrapper  .home-banner.half-section-banner .banner-content .btn-project {
+    letter-spacing: 0;
+}*/
+
+/*navbar-toggle*/
+/*
+.navbar-toggle {
+    display: block;
+    width: 60px;
+    height: 60px;
+    z-index: 2000;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+.navbar-toggle .icon-bar {
+    background-color: $color;
+    height: 3px;
+    width: 100%;
+    opacity: 1;
+}
+.navbar-toggle:hover .icon-bar {
+    background-color: $color;
+    opacity: 0.8;
+}*/
+
+/*animation*/
+.btn-animation {
+  /*background: none;
+  border: 0;
+  box-sizing: border-box;
+  margin: 1em;
+  padding: 1em 2em;*/
+
+  // Using inset box-shadow instead of border for sizing simplicity
+  box-shadow: inset 0 0 0 2px transparent;
+
+  // Required, since we're setting absolute on pseudo-elements
+  position: relative;
+  vertical-align: middle;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Inherits from .draw
+.meet {
+
+  &:hover {
+    color: $colorProjectTwo;
+  }
+
+  // Start ::after in same position as ::before
+  &::after {
+    top: 0;
+    left: 0;
+  }
+
+  // Change colors
+  &:hover::before {
+    border-top-color: $colorProjectTwo;
+    border-right-color: $colorProjectTwo;
+  }
+
+  &:hover::after {
+    border-bottom-color: $colorProjectTwo;
+    border-left-color: $colorProjectTwo;
+    transition: // Animate height first, then width
+            height 0.25s ease-out,
+            width 0.25s ease-out 0.25s;
+  }
+
+}
+
+// Does not inherit
+.center {
+  &:hover {
+    color: purple;
+  }
+
+  // Set up base styles, we're going to scale instead of animating width/height
+  &::before,
+  &::after {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform-origin: center; // Ensure scaling is done from the center (expands outwards)
+  }
+
+  // scale3d(<scale-horizontal>, <scale-vertical>, <scale-depth>);
+  &::before {
+    border-top: 2px solid purple;
+    border-bottom: 2px solid purple;
+    transform: scale3d(0,1,1); // Shrink only width
+  }
+
+  &::after {
+    border-left: 2px solid purple;
+    border-right: 2px solid purple;
+    transform: scale3d(1,0,1); // Shrink only height
+  }
+
+  &:hover::before,
+  &:hover::after {
+    transform: scale3d(1,1,1); // Show full-size
+    transition: transform 0.5s;
+  }
+}
+
+// Border spins around element
+// ::before holds three borders that appear separately, one at a time
+// ::after holds one border that spins around to cover ::before's borders, making their appearance seem smooth
+
+.spin {
+  width: 5em;
+  height: 5em;
+  padding: 0;
+
+  &:hover {
+    color: blue;
+  }
+
+  &::before,
+  &::after {
+    top: 0;
+    left: 0;
+  }
+
+  &::before {
+    border: 2px solid transparent; // We're animating border-color again
+  }
+
+  &:hover::before {
+    border-top-color: blue; // Show borders
+    border-right-color: blue;
+    border-bottom-color: blue;
+
+    transition:
+            border-top-color 0.15s linear, // Stagger border appearances
+            border-right-color 0.15s linear 0.10s,
+            border-bottom-color 0.15s linear 0.20s;
+  }
+
+  &::after {
+    border: 0 solid transparent; // Makes border thinner at the edges? I forgot what I was doing
+  }
+
+  &:hover::after {
+    border-top: 2px solid blue; // Shows border
+    border-left-width: 2px; // Solid edges, invisible borders
+    border-right-width: 2px; // Solid edges, invisible borders
+    transform: rotate(270deg); // Rotate around circle
+    transition:
+            transform 0.4s linear 0s,
+            border-left-width 0s linear 0.35s; // Solid edge post-rotation
+  }
+}
+
+.circle {
+  border-radius: 100%;
+  box-shadow: none;
+
+  &::before,
+  &::after {
+    border-radius: 100%;
+  }
+}
+
+.thick {
+  color: red;
+
+  &:hover {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  &::before {
+    border: 2.5em solid transparent;
+    z-index: -1;
+  }
+
+  &::after {
+    mix-blend-mode: color-dodge;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    background: red;
+    border-top-color: red;
+    border-right-color: red;
+    border-bottom-color: red;
+    transition:
+            background 0s linear 0.4s,
+            border-top-color 0.15s linear,
+            border-right-color 0.15s linear 0.15s,
+            border-bottom-color 0.15s linear 0.25s;
+  }
+
+  &:hover::after {
+    border-top: 2.5em solid red;
+    border-left-width: 2.5em;
+    border-right-width: 2.5em;
+  }
+}

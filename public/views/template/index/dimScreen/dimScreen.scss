@@ -1,0 +1,22 @@
+height:100vh;
+width:100%;
+background-color: $background-color;
+position:fixed;
+top:0;
+left:0;
+z-index:10000;
+padding:0;
+margin:0;
+opacity:1;
+display:none;
+
+@media (max-width: 768px){
+    .icon-gif-img {
+        width: 100px;
+        height: 80px;
+        background-size: 100px;
+        /*margin-right: 80px;
+        margin-top: 80px;*/
+        left: 40%;
+    }
+}

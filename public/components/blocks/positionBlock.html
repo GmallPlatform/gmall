@@ -1,0 +1,19 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+    <div class="">
+        <div class="form-group label-floating">
+            <label class="control-label">название</label>
+            <input class="form-control" ng-model="block.position"
+                ng-model-options="{'updateOn': 'default blur',
+                'debounce': {'default': 700,'blur': 0}}"
+                ng-change="$ctrl.saveField('blocks.'+block.i+'.position',block.position)">
+        </div>
+        <label class="control-label" style="margin-top: 0">анимация заголовка</label>
+        <ui-select ng-model="block.nameAnimate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                   ng-change="$ctrl.saveField(block,$index,'nameAnimate')">
+            <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,28 @@
+.collapsedText{
+    overflow-y: hidden;
+    height: 200px;
+    transition: all ease-in-out 0.5s;
+
+}
+.hideLink {
+    display: none;
+}
+.textInBlock {
+    transition: all ease-in-out 0.5s;
+}
+
+.textInBlock.collapsedText {
+    box-shadow: inset 0px -95px 70px -35px white;
+    transition: all ease-in-out 0.5s;
+}
+.textInBlock.collapsedText .desc {
+    position: relative;
+    z-index: -1;
+}
+.textInBlock .desc {
+    z-index: 1;
+}
+.mobile-wrapper .container{
+    width: 100%;
+}
+    

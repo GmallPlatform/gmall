@@ -1,0 +1,54 @@
+<div ng-hide="$ctrl.$state.current.name!='master'"  class="master-stuff">
+    <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <p class="no_story">
+            по вашему запросу нет записей
+        </p>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+        <paginator-main
+                paginate="$ctrl.paginate"
+                getlist="$ctrl.getList()"
+                scroll="{{scrollId}}">
+        </paginator-main>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-if="$ctrl.items.length">
+        <div class="background-logo-big">
+        <h1 class="text-center">сотрудники бьюти-клиники SMART CLINIQ</h1>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 master-box " ng-repeat="item in $ctrl.items">
+            <a ui-sref="master.item({id:item.url})">
+                <div class="thumbnail-master">
+                    <div class="box-overlay"></div>
+                    <img class="img-responsive" ng-src="{{item.img||'/img/upload/no.png'}}" />
+                    <div class="master-name">
+                        <div class="see">
+                            <img src="../../../../img/logo/logosmart.png">
+                            <p class="see-master">о специалисте</p>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-center" ng-bind="item.name"></h3>
+                <h4 class="text-center" ng-bind="item.position" ></h4>
+
+            </a>
+        </div>
+
+        <div class="clearfix"></div></div>
+                <!--<p class="text-justify" ng-bind="item.desc.clearTag()|cut:true:250:'...'"></p>-->
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div ui-view></div>
+
+
+<!--<form ng-submit="$ctrl.searchNews(searchStr)">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pull-right">
+                    <div class="search  form-group label-floating">
+                        <label class="control-label">поиск новости</label>
+                        <input type="text" placeholder="поиск новости" class="form-control" ng-model="searchStr"/>
+                    </div>
+                </div>
+                <input type="submit" class="enter" tabindex="-1"  />
+            </form>-->
+
+

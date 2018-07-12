@@ -1,0 +1,65 @@
+<div class="block-stuff col-xs-12 col-md-6 col-sm-6 col-lg-4"  ng-repeat-start="stuff in stuffCtrl.items">
+    <div class="thumbnail" ng-class="{'mobil':mainFrameCtrl.mobile}">
+        <a ui-sref="stuff.stuffDetail(mainFrameCtrl.getUrlParams(stuff))" id="{{stuff.url}}">
+            <div class="box-overlay-stuff"></div>
+            <img class="img-responsive" image-lazy-src="{{::stuff.gallery[0].thumb}}" alt="купить оптом {{::mainFrameCtrl.getCategoryName(stuff.category)}} {{stuff.name}} от {{::mainFrameCtrl.getBrandName(stuff.brand)}} от производителя" />
+            <img ng-if="stuff.sticker" class="sticker" ng-src="{{::stuff.sticker}}" ng-class="{'mobil':mainFrameCtrl.mobile}">
+            <img class="more" src="views/tatiana/img/icon/eye-icon1.png">
+        </a>
+        <div class="half-shadow-stuff" ng-class="{'mobil':mainFrameCtrl.mobile}">
+            <div class="title-block-stuff text-center" ng-class="{'mobil':mainFrameCtrl.mobile}">
+                <p class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <span class="name" ng-bind="::stuff.name"></span>
+                    &nbsp
+                    <span class="name" ng-bind="::stuff.artikul"></span><br>
+                    <a class="campaign" ui-sref="campaign.detail({url:stuff.campaignUrl})" ng-if="stuff.priceCampaign">условия акции</a>
+                </p>
+                <p class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <p class=" col-lg-6  col-md-6 col-sm-6 col-xs-6">
+                                        <span ng-if="stuff.retail">
+                                            <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 price-stuff pull-right"
+                                                  ng-bind="(mainFrameCtrl.rate.val*stuff.retail).toFixed(2)"></span><!-- ng-class="{'cross':stuff.priceSale}"-->
+                                            <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6"  ng-bind="mainFrameCtrl.currency.val"></span>
+                                            <span class="clearfix"></span>
+                                        </span>
+                                        <span ng-if="!stuff.priceSale">
+                                            <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 price-stuff pull-right"
+                                                  ng-bind="(mainFrameCtrl.rate.val*stuff.price).toFixed(2)"></span>
+                                            <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-bind="mainFrameCtrl.currency.val"></span>
+                                            <span class="clearfix"></span>
+                                        </span>
+                                        <span ng-if="stuff.priceSale">
+                                            <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 price-sale pull-right"
+                                                  ng-bind="(mainFrameCtrl.rate.val*stuff.priceSale).toFixed(2)"></span>
+                                            <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-bind="mainFrameCtrl.currency.val"></span>
+                                            <span class="clearfix"></span>
+                                        </span>
+                                        <span ng-if="stuff.priceCampaign">
+                                                <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right campaign"
+                                                      ng-bind="(mainFrameCtrl.rate.val*stuff.priceCampaign).toFixed(2)" ng-if="stuff.priceCampaign"></span>
+                                                <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-bind="mainFrameCtrl.currency.val"></span>
+                                            <span class="clearfix"></span>
+                                        </span>
+                </p>
+                <div class="clearfix"></div>
+                </p>
+                <div class="clearfix"></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right"  ng-repeat="ac in stuff.addCriterion">
+                    <select class="params"
+                            ng-model="stuff.addCriterionToCart[$index]"
+                            ng-options="o._id as o.name for o in ac.tags">
+                    </select>
+                </div>
+                <div class="col-xs-12">
+                    <button class="btn btn-success btn-lg btn-block" ng-click="stuff.addInCart()" ng-disabled="!stuff.unableCart()">
+                        добавить в корзину
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div ng-repeat-end></div>

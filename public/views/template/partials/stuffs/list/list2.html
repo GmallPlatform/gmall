@@ -1,0 +1,122 @@
+<div ng-switch="$ctrl.data.rows" class="stuff-list-wrapper">
+    <div ng-switch-when="1">
+        <table>
+            <tr>
+                <td>
+                    <div class="td-wrapper">
+                        <div class=" td-inner"
+                             ng-repeat="stuff in $ctrl.items"
+                             stuff-cart>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-switch-when="2">
+        <table class="table-50">
+            <tr>
+                <td>
+                    <div class="td-wrapper">
+                        <div class="td-inner"
+                             id="td-inner{{$index}}"
+                             ng-repeat="stuff in $ctrl.itemsArr2[0]"
+                             stuff-cart>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="td-wrapper">
+                        <div class="td-inner"
+                             ng-repeat="stuff in $ctrl.itemsArr2[1]"
+                             stuff-cart>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-switch-when="3">
+        <table class="table-33">
+            <tr>
+                <td>
+                    <div class="td-wrapper">
+                        <div class="td-inner"
+                             id="td-inner{{$index}}"
+                             ng-repeat="stuff in $ctrl.itemsArr3[0]"
+                             stuff-cart>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="td-wrapper">
+                        <div class=" td-inner"
+                             ng-repeat="stuff in $ctrl.itemsArr3[1]"
+                             stuff-cart>
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="td-wrapper">
+                        <div class=" td-inner"
+                             ng-repeat="stuff in $ctrl.itemsArr3[2]"
+                             stuff-cart>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-switch-when="4">
+        <table class="table-25">
+            <tr>
+                <td>
+                    <div class="td-wrapper">
+                        <div class="td-inner"
+                             id="td-inner{{$index}}"
+                             ng-repeat="stuff in $ctrl.itemsArr4[0]"
+                             stuff-cart>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="td-wrapper">
+                        <div class=" td-inner"
+                             ng-repeat="stuff in $ctrl.itemsArr4[1]"
+                             stuff-cart>
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="td-wrapper">
+                        <div class=" td-inner"
+                             ng-repeat="stuff in $ctrl.itemsArr4[2]"
+                             stuff-cart>
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="td-wrapper">
+                        <div class="td-inner"
+                             ng-repeat="stuff in $ctrl.itemsArr4[3]"
+                             stuff-cart>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<paginator-main
+        paginate="$ctrl.paginate"
+        getlist="$ctrl.getList()"
+        scroll="{{scrollId}}">
+</paginator-main>
+<div class="clearfix"></div>

@@ -1,0 +1,330 @@
+<div class="half-section" back-stretch="{{homeCtrl.data.bannerSrc}}" ng-if="homeCtrl.data.bannerSrc">
+    <div class=" text-center"><!--parallax__layer parallax__layer--back-->
+        <div class="main-wrapper" ng-if="homeCtrl.data.videoSrc">
+            <div class="banner-box" >
+                <video  loop  autoplay style="width: 100%">
+                    <source ng-src="{{homeCtrl.data.videoSrc | trustUrl}}" type="video/webm">
+                </video>
+            </div>
+        </div>
+    </div>
+    <div class=""><!--parallax__layer parallax__layer--base-->
+        <div class="banner-content text-center" ng-if="homeCtrl.data.banner.button">
+            <h1 class="banner-header">
+                <span ng-bind="homeCtrl.data.banner.desc"></span>
+            </h1>
+            <span ng-switch on="homeCtrl.data.banner.link">
+                <span ng-switch-when="subscription">
+                    <a set-animate data-animation="animated8" data-animation-delay="02" class="btn btn-primary btn-banner"
+                       ng-click="global.get('functions').val.witget('subscription')" ng-bind="homeCtrl.data.banner.text">
+                    </a>
+                </span>
+                <span ng-switch-when="call">
+                     <a set-animate data-animation="animated8" data-animation-delay="02" class="btn btn-primary btn-banner"
+                        ng-click="global.get('functions').val.witget('call')" ng-bind="homeCtrl.data.banner.text">
+                    </a>
+                </span>
+                <span ng-switch-default="">
+                    <a set-animate data-animation="animated8" data-animation-delay="02" class="btn btn-primary btn-banner"
+                       href="{{homeCtrl.data.banner.link}}" ng-bind="homeCtrl.data.banner.text">
+                    </a>
+                </span>
+            </span>
+        </div>
+        <div class="banner-content text-center"  ng-if="homeCtrl.data.video.button">
+            <h1 class="banner-header">
+                <span ng-bind="homeCtrl.data.video.desc"></span>
+            </h1>
+               <span ng-switch on="homeCtrl.data.video.link">
+                   <span ng-switch-when="subscription">
+                       <a set-animate data-animation="animated4" data-animation-delay="03" class="btn btn-primary btn-banner"
+                          ng-click="global.get('functions').val.witget('subscription')" ng-bind="homeCtrl.data.video.text">
+                       </a>
+                   </span>
+                   <span ng-switch-when="call">
+                        <a set-animate data-animation="animated4" data-animation-delay="03" class="btn btn-primary btn-banner"
+                           ng-click="global.get('functions').val.witget('call')" ng-bind="homeCtrl.data.video.text">
+                        </a>
+                   </span>
+                   <span ng-switch-default="">
+                       <a class="btn btn-primary btn-banner" href="{{homeCtrl.data.video.link}}" ng-bind="homeCtrl.data.video.text">
+                       </a>
+                   </span>
+                </span>
+        </div>
+        <!--<div class="down">
+            <a>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+
+        </div>-->
+    </div>
+    <!--<div class="parallax__layer parallax__layer--back text-center">
+       <div class="main-wrapper">
+           <div class="banner-box" ng-if="homeCtrl.data.videoSrc" >
+               <video  loop  autoplay style="width: 100%">
+                   <source ng-src="{{homeCtrl.data.videoSrc | trustUrl}}" type="video/webm">
+               </video>
+           </div>
+       </div>
+   </div>
+   <div class="parallax__layer parallax__layer--base">
+       <div class="banner-content text-center"  ng-if="homeCtrl.data.video.button">
+           <h1 class="banner-header">
+               <span ng-bind="homeCtrl.data.video.desc"></span>
+           </h1>
+               <span ng-switch on="homeCtrl.data.video.link">
+                   <span ng-switch-when="subscription">
+                       <a set-animate data-animation="animated4" data-animation-delay="03" class="btn btn-primary btn-banner"
+                          ng-click="global.get('functions').val.witget('subscription')" ng-bind="homeCtrl.data.video.text">
+                       </a>
+                   </span>
+                   <span ng-switch-when="call">
+                        <a set-animate data-animation="animated4" data-animation-delay="03" class="btn btn-primary btn-banner"
+                           ng-click="global.get('functions').val.witget('call')" ng-bind="homeCtrl.data.video.text">
+                        </a>
+                   </span>
+                   <span ng-switch-default="">
+                       <a class="btn btn-primary btn-banner" href="{{homeCtrl.data.video.link}}" ng-bind="homeCtrl.data.video.text">
+                       </a>
+                   </span>
+                </span>
+       </div>
+       <div class="down">
+           <a>
+               <span class="glyphicon glyphicon-chevron-down"></span>
+           </a>
+
+       </div>
+   </div>-->
+</div>
+<div class="background-white">
+    <div class="col-lg-12 col-md-12 col-xs-12 home-section background-logo">
+        <div class="row">
+            <div class="container mission text-center" set-animate data-animation="animated10" data-animation-delay="01">
+                <h2 class="smartcliniq" ng-bind="homeCtrl.data.name">
+                </h2>
+
+                <p ng-bind-html="homeCtrl.data.desc|unsafe">
+                </p>
+                    <span ng-switch on="homeCtrl.data.descButton.link">
+                        <span ng-switch-when="subscription">
+                            <a  class="btn btn-primary btn-border"
+                               ng-click="global.get('functions').val.witget('subscription')" ng-bind="homeCtrl.data.descButton.text">
+                            </a>
+                        </span>
+                        <span ng-switch-when="call">
+                             <a class="btn btn-primary btn-border"
+                                ng-click="global.get('functions').val.witget('call')" ng-bind="homeCtrl.data.descButton.text">
+                             </a>
+                        </span>
+                        <span ng-switch-default="" ng-if="homeCtrl.data.descButton.button">
+                            <a class="btn btn-primary  btn-border btn-banner" href="{{homeCtrl.data.descButton.link}}" ng-bind="homeCtrl.data.descButton.text"></a>
+                        </span>
+                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 home-section" ng-repeat="image in homeCtrl.data.imgs" set-animate data-animation="animated8" data-animation-delay="02">
+        <div class="row">
+            <a href="{{image.link}}">
+                <img class="img-responsive imgForScale" ng-src="{{image.img}}" scale-img data-div-id="img0{{$index+1}}">
+
+                <div class="home-section-header">
+                    <h3 ng-bind="image.name"></h3>
+                    <p ng-bind-html="image.desc|unsafe"></p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-section full text-center" ng-repeat="item in homeCtrl.data.brands"
+         set-animate data-animation="animated8" data-animation-delay="02">
+        <div class="row" >
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',brand:item.url})">
+                <img class="img-responsive imgForScale" ng-src="{{item.img}}">
+                <div class="home-section-header-big" >
+                    <h3 ng-bind="item.name"></h3>
+                    <p ng-bind-html="image.desc|unsafe">></p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-section   home-news-content " ng-repeat="item in homeCtrl.data.news" ng-if="homeCtrl.data.news">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" set-animate data-animation="fadeInLeft" data-animation-delay="03">
+            <a ui-sref="news.item({url:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" set-animate data-animation="fadeInRight" data-animation-delay="03">
+            <div class="news-desc">
+                <h3 ng-bind="item.name"></h3>
+                <p ng-bind="item.desc.clearTag()|cut:true:250:'...'"></p>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary btn-border btn-banner" ui-sref="news.item({url:item.url})">
+                    подробнее
+                </a>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <a class="all-news" href="/news"> все новости</a>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- текстовый блок-->
+<!--<div class="col-lg-10 col-lg-offset-1 block-white">
+    <h1><span class="title-block-white" ng-bind="homeCtrl.data.name"></span><br><br></h1>
+    <p ng-bind-html="homeCtrl.data.desc|unsafe"></p>
+    <div set-animate data-animation="animated8" data-animation-delay="03" ng-if="homeCtrl.data.descButton.button">
+        <a class="btn btn-1 btn-success btn-lg btn-border" href="{{homeCtrl.data.descButton.link}}" ng-bind="homeCtrl.data.descButton.text"></a>
+    </div>
+
+</div>-->
+
+<!--news-->
+<!-- <div class="col-lg-12 home-section  " ng-repeat="item in homeCtrl.data.news">
+     <div>
+         <a ui-sref="news.item({url:item.url})">
+             <img class="img-responsive" ng-src="{{item.img}}">
+             <div class="home-section-header-big">
+                 <h3 ng-bind="item.name"></h3>
+                 <p ng-bind-html="item.desc|unsafe">комплексная скидка на все услуги при семейном посещении клиники</p>
+             </div>
+         </a>
+     </div>
+ </div>-->
+
+<!--banner-->
+<!--<div class="banner-box">
+       <img class="img-responsive banner" ng-src="{{homeCtrl.data.bannerSrc}}">
+        <div class="banner-content text-center" ng-if="homeCtrl.data.banner.button">
+            <h1 class="banner-header">
+                <span ng-bind="homeCtrl.data.banner.desc"></span>
+            </h1>
+            <a class="btn btn-primary btn-border btn-banner" href="{{homeCtrl.data.banner.link}}" ng-bind="homeCtrl.data.banner.text">
+            </a>
+
+        </div>
+        <div class="down">
+            <a>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+
+        </div>
+    </div>-->
+<!--<div class="row">
+    <div class="col-lg-12">
+        <img class="img-responsive" ng-src="{{homeCtrl.data.bannerSrc}}">
+        <div style="position: absolute;left: 50%;top: 40%;transform: translate(-50%,-40%);" ng-if="homeCtrl.data.banner.button">
+            <a class="btn btn-1 btn-success btn-lg btn-border" href="{{homeCtrl.data.banner.link}}" ng-bind="homeCtrl.data.banner.text"></a>
+            <h3 ng-bind="homeCtrl.data.banner.desc"></h3>
+        </div>
+    </div>
+</div>-->
+
+
+
+<!--video-->
+<!--<div class="row">
+    <div class="col-lg-12" ng-if="homeCtrl.data.videoSrc" style="position:relative">
+        <video  loop  autoplay style="width: 100%">
+            <source ng-src="{{homeCtrl.data.videoSrc | trustUrl}}" type="video/webm">
+        </video>
+        <div style="position: absolute;left: 50%;top: 40%;transform: translate(-50%,-40%);" ng-if="homeCtrl.data.video.button">
+            <a class="btn btn-1 btn-success btn-lg btn-border" href="{{homeCtrl.data.video.link}}" ng-bind="homeCtrl.data.video.text"></a>
+            <h3 ng-bind="homeCtrl.data.video.desc"></h3>
+        </div>
+
+    </div>
+</div>-->
+
+
+<!--slider-->
+<!--<div class="row">
+    <div class="col-lg-3" ng-repeat="image in homeCtrl.data.imgs">
+        <a href="{{image.link}}">
+            <img  class="img-responsive" ng-src="{{image.img}}">
+        </a>
+        <h3 ng-bind="image.name">
+
+        </h3>
+        <div ng-bind-html="image.desc|unsafe">
+        </div>
+    </div>
+</div>-->
+
+<!--brands-->
+<!--<div class="row">
+    <div class="col-lg-3" ng-repeat="item in homeCtrl.data.brands">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',brand:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+    </div>-->
+
+
+    <!--filterTags-->
+    <!--<div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="item in homeCtrl.data.filterTags">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',queryTag:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>-->
+
+
+
+<!--brandTags-->
+    <!--<div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="item in homeCtrl.data.brandTags">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:'category',brandTag:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>-->
+
+<!--categories-->
+    <!--<div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="item in homeCtrl.data.categories">
+            <a ui-sref="stuffs({groupUrl:'group',categoryUrl:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+            </a>
+            <span ng-bind="item.name"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>-->
+
+
+    <!--stuffs-->
+   <!-- <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="item in homeCtrl.data.stuffs">
+            <a ui-sref="stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:item.url})">
+                <img class="img-responsive" ng-src="{{item.gallery[0].thumb}}">
+            </a>
+            <span ng-bind="item.name"></span> <span ng-bind="item.artikul"></span>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>-->
+
+
+

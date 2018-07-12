@@ -1,0 +1,29 @@
+
+/*cake*/
+  .home-mission{
+    background: url("../../../../../img/bg/cake.jpg") no-repeat top center;
+}
+  .home-mission .mission {
+    padding: 20px 70px 50px 70px;
+}
+  .home-mission .mission{
+    font-family: LuganskiyV;
+    font-size: 40px;
+    letter-spacing: 2px;
+
+}
+  .home-mission .mission h1{
+    font-family: Forum_Regular;
+}
+@media (max-width: 380px) {
+      .home-mission  .background-logo  {
+        height: auto;
+    }
+      .home-mission  .background-logo  .btn {
+        font-size: 16px;
+    }
+
+}
+.mobile-wrapper   .home-mission .mission {
+    padding: 0 10px;
+}

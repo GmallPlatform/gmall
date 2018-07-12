@@ -1,0 +1,118 @@
+<div id="stuff-cart.html" class="stuffs">
+    <div ng-class="{'mobil':$ctrl.mobile}">
+            <div class="stuff-cart-min-height" ng-if="::!stuff._id">
+            </div>
+            <div id="list{{::stuff._id}}" class="goods-container-img" style="position: relative; " ng-if='::stuff._id'>
+                <a ui-sref="stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url,parentGroup:null,categoryList:null,searchStr:null})" >
+                    <img class="sticker" ng-src="{{stuff.sticker}}">
+                    <img class="img-responsive img-goods" ng-src="{{stuff.gallery[0].thumb||'/img/upload/no.png'}}" />
+                </a>
+            </div>
+            <div class="text-center"  ng-class="{'goods-desc':!stuff.service,'service-desc':stuff.service }" ng-if="stuff._id">
+                <h3 class="stuff-name" ng-bind="::stuff.name"></h3>
+                <h3 ng-if="stuff.artikul.length" ng-bind="stuff.artikul"></h3>
+                <div ng-if="::!stuff.service">
+
+                    <div ng-if="::(stuff.sortsOfStuff.filter  && stuff.sort)">
+                        <div class="sort text-center">
+                            <ui-select
+                                    ng-init="stuff.stock[stuff.sort].name=$ctrl.getTagName(stuff.sort)"
+                                    ng-model="stuff.sort"
+                                    ng-change="stuff.changeSortOfStuff()"
+                                    on-select="stuff.onSelected()"
+                                    append-to-body="true"
+                                    search-enabled="false">
+                                <ui-select-match><!-- placeholder="{{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}"-->
+                                    <!-- <span ng-bind="getTagName($select.selected.tag)"></span>-->
+                                    {{$ctrl.getTagName($select.selected.tag)}}
+                                </ui-select-match>
+                                <ui-select-choices ui-disable-choice="!sort.value.quantity"
+                                                   repeat="sort.tag as (tag,sort) in stuff.stock|filter:stuff.filterSorts">
+                                    <span>{{sort.value.name=$ctrl.getTagName(sort.tag)}}</span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class=" price-block" ng-if="::stuff.orderType!=4">
+                        <p>
+                            <span ng-if="::!stuff.sort" ng-bind="$ctrl.global.get('lang').val.expected"></span>
+                            <span class="price" ng-class="{'line':stuff.priceSale||stuff.campaignUrl}" ng-if="::stuff.sort">
+                                    <span ng-bind="stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val| currency:'':0" ng-class="{'line':stuff.priceSale||stuff.campaignUrl}"></span>
+                                <!--<span ng-bind="$ctrl.global.get('currency').val"></span>-->
+                                    <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                    <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                                </span>
+
+                            <span class="sale" ng-if="::(stuff.sort && stuff.priceSale)">
+                                <span> / </span>
+                                <span ng-bind="stuff.stock[stuff.sort].priceSale*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                            </span>
+                            <span class="sale" ng-if="::(stuff.campaignUrl && stuff.sort)">
+                                <span> / </span>
+                                <span ng-bind="stuff.stock[stuff.sort].priceCampaign*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                            </span>
+
+                            <span ng-if="::(stuff.sort && $ctrl.global.get('store').val.seller.retail)">
+                                <label>розница</label><br>
+                                <span ng-bind="stuff.stock[stuff.sort].retail*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                <span ng-bind="$ctrl.global.get('currency').val"></span>
+                            </span>
+                            <p ng-if="stuff.campaignUrl" class="text-right " ng-if="stuff.campaignUrl">
+                                <a class="more" ui-sref="campaign.detail({id:stuff.campaignUrl})">подробности акции</a>
+                            </p>
+                        </p>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="half-btn" ng-switch="stuff.orderType" ng-if="::stuff.sort">
+                    <div ng-switch-when='1'>
+                        <a class="btn  btn-project btn-border"
+                           ng-click="stuff.order()"
+                           ng-bind="$ctrl.global.get('lang').val.toOrder">
+                        </a>
+                    </div>
+                    <div ng-switch-when='2'>
+                        <a class="btn  btn-project btn-border"
+                           ng-click="$ctrl.global.get('functions').val.witget('dateTime',{stuff:stuff})"
+                           ng-bind="$ctrl.global.get('lang').val.enroll">
+                        </a>
+                    </div>
+                    <div ng-switch-when='3'>
+                        <a class="btn  btn-project btn-border"
+                           ui-sref="stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url,parentGroup:null,categoryList:null,searchStr:null})"
+                           ng-bind="$ctrl.global.get('lang').val.more">
+                        </a>
+                    </div>
+                    <div ng-switch-default>
+                        <span ng-switch="stuff.checkInCart()">
+                            <span ng-switch-when=true>
+                                <a class="btn  btn-project btn-border" disabled="disabled"
+                                   ng-bind="$ctrl.global.get('lang').val.inCart">
+                                </a>
+                            </span>
+                            <span ng-switch-default>
+                                <a  class="btn  btn-project btn-border"
+                                    ng-click="stuff.addItemToOrder()"
+                                    ng-bind="$ctrl.global.get('lang').val.addToCart">
+                                </a>
+                            </span>
+                        </span>
+                    </div>
+                    <div ng-switch-when='4'>
+                        <a class="btn  btn-project btn-border"
+                           ng-click="stuff.getBonus()">
+                            {{$ctrl.global.get('store').val.bonusButtonText}}
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

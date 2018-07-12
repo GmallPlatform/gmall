@@ -1,0 +1,24 @@
+/*lastudio*/
+.prev-photo {
+    position: fixed;
+    left: 40px;
+    top:120px;
+    height: 100%;
+    width: 33%;
+    cursor: url(../../../../../img/icon/left-arrow102a.png), auto;
+}
+.next-photo {
+    position: fixed;
+    right: 40px;
+    top:120px;
+    height: 100%;
+    width: 33%;
+    cursor: url(../../../../../img/icon/right-arrow102a.png), auto;
+}
+.img-detail {
+    cursor: url(../../../../../img/icon/option.png), auto;
+}
+.mobile-wrapper .img-detail {
+    -o-fit-object:cover;
+    object-fit:cover;
+}

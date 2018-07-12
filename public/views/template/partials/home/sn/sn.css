@@ -1,0 +1,85 @@
+/*social-hub-zefir*/
+.ng-social-icon, .ng-social-counter {
+    display: none
+}
+ul.ng-social .ng-social-text{
+    font-size: 20px;
+}
+.ng-social-button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.social-hub {
+    width: 100%;
+    text-align: center;
+}
+.social-hub li {
+    float: left;
+    list-style:  none;
+
+}
+.social-hub  li a {
+    font-size: 24px;
+    color: #fff;
+    padding: 5px;
+}
+.fa-vk {
+    width: 23px;
+}
+.fa-facebook {
+    width: 9px;
+}
+.fa-google-plus {
+    width: 21px;
+}
+.fa-twitter {
+    width: 21px;
+}
+.fa-pinterest {
+    width: 23px;
+}
+.ng-social .ng-social-google-plus .ng-social-button,
+.ng-social-twitter .ng-social-button{
+    border-radius: 100%;
+    padding-left: 3px;
+    padding-right: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    /*background: none;*/
+    background-color: transparent;
+    border: none;
+}
+.ng-social-pinterest .ng-social-button {
+    border-radius: 100%;
+    padding-left: 0px;
+    padding-right: 5px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: transparent;
+    border: none;
+}
+.ng-social-vk .ng-social-button {
+    border-radius: 100%;
+    padding-left: 0px;
+    padding-right: 5px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: transparent;
+    border: none;
+}
+.ng-social-facebook .ng-social-button {
+    border-radius: 100%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: transparent;
+    border: none;
+}
+
+.ng-social,
+.ng-social-_widget {
+    display: inline-block;
+    vertical-align: middle;
+}
+

@@ -1,0 +1,31 @@
+if(padding)
+  - var m=' menu2-paddig'
+else
+  - var m=''
+if(position=='left'||position=='right')
+  div(class="menu",pageslide,ps-open="checkedMenu.slideMenu",ps-side=position,ps-speed="0.3",ps-size="{{slideMenuWidth}}",click-outside="global.get('functions').val.closeMenu()",id='slideMenu')
+    a(ng-click="checkedMenu.slideMenu=false",class="button")
+      span(class="cancel")
+      //img(class="close",src="views/template/img/icon/clear.png")
+    div(class=wrapclass)
+      div(class=mobileWrapper)
+        div(class="vertical-menu")
+          div(class="menu-section-vertical")
+            | !{menu.left}
+            | !{menu.center}
+            | !{menu.right}
+else if(position=='top')
+  div(class=wrapclass)
+    div(class=mobileWrapper)
+      section
+        - var f=(fixed)?'navbar-fixed-'+position:''
+        - var c='navbar '+f+m
+        nav(class=c,set-fon-after-start-scroll=background,id='menu2-section',slide-menu-after-scroll="menu2")
+          div(ng-class="{'navbar-toggle-slide-mini':$state.current.name!='home'}",class="navbar-toggle-slide")
+            div(class="right-nav-menu  pull-left")
+              | !{menu.left}
+            div(class="text-center")
+              | !{menu.center}
+            div(class="right-nav-menu  pull-right")
+              | !{menu.right}
+            div(class="clearfix")

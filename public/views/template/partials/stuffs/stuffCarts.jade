@@ -1,0 +1,19 @@
+div(class="home-stuffs stuffs-home")
+    - var className='col-lg-4 col-md-4 col-sm-4 col-xs-12'
+    each stuff in dj.stuffs
+        - var link="/group/category/"+stuff.url
+        div(class=className)
+            a(href=link)
+                if(stuff.gallery[0] && stuff.gallery[0].thumb)
+                    img(class="img-responsive" src=photoHost + '/' + stuff.gallery[0].thumb)
+                h4
+                    span=stuff.name
+                    if(stuff.artikul)
+                        span=stuff.artikul
+    div( class="clearfix")
+    p
+        |!{titles.desc}
+
+
+
+

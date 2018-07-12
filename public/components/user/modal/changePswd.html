@@ -1,0 +1,41 @@
+<div class="select-modal">
+    <div class="modal-header-project modal-header">
+        <h3 class="modal-title text-center">
+            <span class="name-modal">{{$ctrl.global.get('langForm').val.changePassword}}</span>
+            <a class="cancel" ng-click="$ctrl.cancel()">
+                <span class="icon-cancel-img"></span>
+            </a>
+        </h3>
+    </div>
+    <div class="ship-box">
+        <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok()">
+            <div class="modal-body">
+                <div class="form-group">
+                    <input  ng-class="{'has-error': formProfile.password.$invalid}"
+                            name="password"
+                            type="text"
+                            class="form-control mb-10 cart"
+                            ng-minlength="6"
+                            ng-maxlength="20"
+                            ng-model="$ctrl.user.password"
+                            placeholder="{{$ctrl.global.get('langForm').val.enterPswd}}"/>
+                </div>
+                <div class="help-block" ng-messages="formProfile.password.$error">
+                    <!--<span ng-message="minlength">{{$ctrl.global.get('langError').val.enterPassword}}</span>-->
+                    <span ng-message="minlength">{{$ctrl.global.get('langError').val.passshort}}</span>
+                    <span ng-message="maxlength">{{$ctrl.global.get('langError').val.passlong}}</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button ng-disabled="$ctrl.blockButton" class="btn btn-project" type="submit">{{$ctrl.global.get('langForm').val.changePassword}}</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="clearfix"></div>
+
+
+
+</div>

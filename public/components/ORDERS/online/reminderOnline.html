@@ -1,0 +1,24 @@
+<style>
+    .btn .text-muted {
+        font-size: 12px;
+    }
+</style>
+<div class="reminder row">
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-5">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="$ctrl.remind">
+                <span class="rem">
+                    {{$ctrl.global.get('langForm').val.reminder}}
+                </span>
+            </label>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-7 form-group timing pull-right">
+        <ui-select  search-enabled="false" ng-model="$ctrl.timeRemind" skip-focusser="true" append-to-body>
+            <ui-select-match placeholder="{{$ctrl.global.get('langForm').val.timeReminder}}">{{$select.selected.time}}</ui-select-match>
+            <ui-select-choices repeat="opt.part as opt in $ctrl.timeRemindArr">{{opt.time}}</ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="clearfix"></div>
+</div>

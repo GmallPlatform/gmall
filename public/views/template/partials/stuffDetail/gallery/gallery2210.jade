@@ -1,0 +1,6 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        img(src=item.sticker, class="sticker")
+        each photo in item.gallery
+            img(itemprop="image", class="img-responsive img-detail",src=photoHost+'/'+photo.thumb,alt=item.categoryName+' '+item.name)
+

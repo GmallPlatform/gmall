@@ -1,0 +1,39 @@
+<div ng-class="::{'home-video':!homeCtrl.template.video.class,
+        'home-video1':homeCtrl.template.video.class==1,
+        'home-video2':homeCtrl.template.video.class==2,
+        'home-video3':homeCtrl.template.video.class==3,
+        'home-video4':homeCtrl.template.video.class==4,
+        'home-video5':homeCtrl.template.video.class==5,}"
+        class="video-home" ng-if="homeCtrl.data.videoSrc">
+    <div class=" text-center"><!--parallax__layer parallax__layer--back-->
+        <div class="main-wrapper" ng-if="homeCtrl.data.videoSrc">
+            <div class="video-box" >
+                <video  poster="{{homeCtrl.data.videoCover}}" loop  autoplay style="width: 100%" audio-mute="{{homeCtrl.data.video.audio}}">
+                    <source ng-src="{{homeCtrl.data.videoSrc | trustUrl}}" type="video/webm">
+                </video>
+            </div>
+        </div>
+    </div>
+    <div class="video-content text-center"  ng-if="homeCtrl.data.video.button">
+            <h1 class="video-header">
+                <span ng-bind="homeCtrl.data.video.desc"></span>
+            </h1>
+               <span ng-switch on="homeCtrl.data.video.link">
+                   <span ng-switch-when="subscription">
+                       <a set-animate data-animation="animated4" data-animation-delay="03" class="btn btn-project btn-banner"
+                          ng-click="global.get('functions').val.witget('subscription')" ng-bind="homeCtrl.data.video.text">
+                       </a>
+                   </span>
+                   <span ng-switch-when="call">
+                        <a set-animate data-animation="animated4" data-animation-delay="03" class="btn btn-project btn-banner"
+                           ng-click="global.get('functions').val.witget('call')" ng-bind="homeCtrl.data.video.text">
+                        </a>
+                   </span>
+                   <span ng-switch-default="">
+                       <a class="btn btn-project btn-banner" href="{{homeCtrl.data.video.link}}" ng-bind="homeCtrl.data.video.text">
+                       </a>
+                   </span>
+                </span>
+        </div>
+</div>
+

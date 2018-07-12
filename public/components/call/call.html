@@ -1,0 +1,21 @@
+<div class="chat-content">
+    <div class="chat-body">
+        <form novalidate name='formCall' ng-submit="callCtrl.pushNotification(formCall)">
+            <div class="form-group name-input">
+                <input ng-class="{'has-error':feedbackBack.name.$invalid && feedbackBack.name.$dirty }"
+                       class="form-control"
+                       name="name" type="text"
+                       ng-model="$ctrl.user.val.fio"
+                       placeholder="{{$ctrl.global.get('lang').val.name}}"
+                       ng-maxlength="30"
+                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+            </div>
+            <span class="help-block" ng-show="feedbackBack.name.$dirty && feedbackBack.name.$invalid" ng-messages="feedbackBack.name.$error">
+                <span ng-message="maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+            </span>
+
+            <div enter-phone-numder="$ctrl.user.val.profile.phone"></div>
+            <button class="btn btn-project btn-block"  ng-disabled="formCall.$invalid" name="submit" type="submit">{{$ctrl.global.get('langForm').val['requestCall']}}</button><!--заказать обратный звонок-->
+        </form>
+    </div>
+</div>

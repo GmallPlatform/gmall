@@ -1,0 +1,49 @@
+section
+  - var c='navbar navbar-'+header.fixed+'-'+header.position;
+  nav(class=c,set-fon-after-start-scroll)
+
+    div(ng-class="{'navbar-toggle-slide-mini':$state.current.name!='home'}",class="navbar-toggle-slide",ng-if="global.get('store').val.slideMenu")
+      div(class="right-nav-menu  pull-left")
+        | !{menu.left}
+      div(class="text-center")
+        | !{menu.center}
+      div(class="right-nav-menu  pull-right")
+        | !{menu.right}
+      //div(class="right-nav-menu  pull-left")
+        |!{header.content.logo.html}
+        if(header.slide == 'left')
+          button(class="button navbar-toggle pull-left",ng-click="global.get('functions').val.openSlideMenu()",type="button")
+            span(class="sr-only") Toggle navigation
+            span(class="icon-bar")
+            span(class="icon-bar")
+            span(class="icon-bar")
+        if (header.content.logo.position=='left')
+          |!{header.content.logo.html}
+        if (header.content.info.position == 'left')
+          | !{header.content.info.html}
+        if (header.content.cart.position == 'left')
+          | !{header.content.cart}
+
+      //div(class="text-center")
+        if (header.content.logo.position == 'center')
+          | !{header.content.logo.html}
+        if (header.content.info.position == 'center')
+          | !{header.content.info.html}
+        if (header.content.cart.position == 'center')
+          | !{header.content.cart.html}
+
+      //div(class="right-nav-menu  pull-right")
+        if (header.content.info.position == 'right')
+          |!{header.content.info.html}
+        if (header.content.cart.position == 'right')
+          |!{header.content.cart.html}
+        if (header.content.logo.position == 'right')
+          | !{header.content.logo.html}
+        if(header.slide == 'right')
+          button(class="button navbar-toggle pull-right",ng-click="global.get('functions').val.openSlideMenu()",type="button")
+            span(class="sr-only") Toggle navigation
+            span(class="icon-bar")
+            span(class="icon-bar")
+            span(class="icon-bar")
+
+      div(class="clearfix")

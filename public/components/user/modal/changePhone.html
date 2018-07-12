@@ -1,0 +1,25 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">{{$ctrl.global.get('langForm').val.changePhone}}</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()">
+            <span class="icon-cancel-img"></span>
+        </a>
+    </div>
+    <div class="ship-box">
+        <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok()">
+            <div class="modal-body">
+                <div class="col-lg-12 col-lg-12 col-md-12 col-xs-12 form-group">
+                    <label class="control-label">{{$ctrl.global.get('langForm').val.enterphone}}</label>
+                    <div enter-phone-numder="$ctrl.phone"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button ng-disabled="$ctrl.blockButton" class="btn btn-project-inv" type="submit">{{$ctrl.global.get('langForm').val.changePhone}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

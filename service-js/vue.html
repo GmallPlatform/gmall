@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <div id="root">
+        <input v-model="message">
+        <p> the value of the input is: {{message}}.</p>
+    </div>
+    <script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            message:'Hello world!'
+        }
+    })
+</script>
+    <form method="POST"
+          action="https://www.liqpay.ua/api/3/checkout"
+          accept-charset="utf-8">
+        <input type="hidden" name="data"
+               value="eyJhY3Rpb24iOiJpbnZvaWNlX3NlbmQiLCJ2ZXJzaW9uIjoiMyIsImFtb3VudCI6MTc4NSwiY3VycmVuY3kiOiJVQUgiLCJkZXNjcmlwdGlvbiI6ItC+0L/Qu9Cw0YLQsCDQv9C+INC+0YDQtNC10YDRgyBOLTEyMzkiLCJvcmRlcl9pZCI6MTIzOSwibGFuZ3VhZ2UiOiJydSIsImdvb2RzIjpbeyJuYW1lIjoiTE9ORyBTTEVFVkUgREsxOCIsImFtb3VudCI6MjEwMCwiY291bnQiOjF9XSwicmVzdWx0X3VybCI6Imh0dHA6Ly9kdG44c3RvcmUuY29tL2FwaS9vcmRlcnMvY2hlY2tvdXRMaXFwYXlDb21wbGl0ZSIsInNlcnZlcl91cmwiOiJodHRwOi8vZHRuOHN0b3JlLmNvbS9hcGkvb3JkZXJzL2NoZWNrb3V0TGlxcGF5Q29tcGxpdGUvNThiNTk5ZjdkYjIzY2JiMjczOTgzMmMzIiwicHVibGljX2tleSI6Imk3NzY0MzU1MjQ4MiJ9" />
+        <input type="hidden" name="signature" value="Us9RSJwdzE/gjUUtcy9E2Ywjd6Q=" />
+        <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png" name="btn_text" /><
+        /form>
+</body>
+</html>

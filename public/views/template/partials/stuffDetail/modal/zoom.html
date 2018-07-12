@@ -1,0 +1,59 @@
+<style>
+    .zoom-modal-horizontal .modal-content,
+    .zoom-modal-horizontal .modal-dialog{
+        width:70vw;
+        height:auto;
+    }
+    .zoom-modal-vertical .modal-content{
+        height:93vh;
+    }
+    @media (max-width: 1500px){
+        .zoom-modal-horizontal .modal-content,
+        .zoom-modal-horizontal .modal-dialog {
+            width: 80vw;
+        }
+    }
+    @media (max-width: 1200px){
+        .zoom-modal-horizontal .modal-content,
+        .zoom-modal-horizontal .modal-dialog {
+            width: 90vw;
+        }
+    }
+    @media (max-width: 700px){
+        .zoom-modal-horizontal .modal-content,
+        .zoom-modal-horizontal .modal-dialog{
+            margin: 15px auto;
+        }
+    }
+    @media (max-width: 400px){
+        .zoom-modal-horizontal .modal-content,
+        .zoom-modal-horizontal .modal-dialog {
+            width: 95vw;
+            margin: 30% auto;
+        }
+        .zoom-modal-vertical .modal-content {
+            height: auto;
+        }
+        .zoom-slide .slide-img {
+            height: auto !important;
+            width: auto !important;
+        }
+        .icon-cancelzoom-img {
+            z-index: 10000
+        }
+    }
+</style>
+<div class="gallery zoom-slide">
+    <!--<img  ng-src="{{$ctrl.img}}" ng-if="$ctrl.img">-->
+
+    <div uib-carousel active="$ctrl.idx" >
+        <div uib-slide ng-repeat="slide in $ctrl.gallery track by $index" index="$index"  ng-swipe-left="$ctrl.next($index)" ng-swipe-right="$ctrl.prev($index)">
+            <a ng-click="$ctrl.next($index)">
+                <img class="slide-img img-responsive" ng-src="{{slide.img}}" style="{{$ctrl.style}}">
+            </a>
+        </div>
+    </div>
+    <a class="zoom-cancel" ng-click="$ctrl.cancel()">
+        <span class="icon-cancelzoom-img"></span>
+    </a>
+</div>

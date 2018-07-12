@@ -1,0 +1,70 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">управление ценой {{$ctrl.header}}</h3>
+        <a class="cancel" type="button" ng-click="$ctrl.cancel()"></a>
+
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+            <h4 class="name-box text-center">цена {{$ctrl.header}}</h4>
+            <div class="togglebutton">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="type" value=0 ng-model="$ctrl.item.type">
+                        отсутствует
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="type" value=1 ng-model="$ctrl.item.type">
+                        для данной модели
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="type" value=2 ng-model="$ctrl.item.type">
+                        из настроек магазина
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center" >
+            <h4 class="name-box">значение</h4>
+            <div class="togglebutton">
+                <label for="condition">
+                    <span ng-class="{'active':!$ctrl.item.condition}">сумма</span>
+                    <input type="checkbox"
+                           id="condition"
+                           ng-model="$ctrl.item.condition">
+                    <span ng-class="{'active':$ctrl.item.condition}">процент</span>
+                </label>
+            </div>
+            <div class="form-group ">
+                <label ng-show="$ctrl.item.condition"for="percent" class="control-label">скидка в %
+                    <input  type="text" id="percent" class="form-control" ng-model="$ctrl.item.percent"/>
+                </label>
+                <label ng-show="!$ctrl.item.condition"for="sum" class="control-label">сумма скидки
+                    <input  type="text" id="sum" class="form-control" ng-model="$ctrl.item.sum"/>
+                </label>
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" >
+            <div class="form-group ">
+                <label class="control-label">максимальная скидка в %
+                    <input  type="number" id="percent2" class="form-control" ng-model="$ctrl.item.maxDiscount"/>
+                </label>
+            </div>
+        </div>
+
+
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-lg btn-raised btn-block" type="button" ng-click="$ctrl.ok()">
+            сохранить
+        </a>
+    </div>
+</div>

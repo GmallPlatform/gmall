@@ -1,0 +1,7 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div
+            img(ng-src="{{$ctrl.item.sticker}}", class="sticker")
+            div(ng-repeat="item in $ctrl.item.gallery")
+                img(src=item.gallery[0].img,itemprop="image", class="img-responsive img-detail", ng-src="{{item.img}}",alt=item.altImg)
+

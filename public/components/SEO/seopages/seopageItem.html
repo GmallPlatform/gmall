@@ -1,0 +1,103 @@
+<div class="seo-page-item">
+    <div class="nav-box-stuff" ng-init="block='campaignInfo'">
+        <div class="tab-nav col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+            <a class="btn btn-fab btn-fab-mini" ui-sref="frame.seoPages">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff col-lg-4 col-md-4 col-sm-4 col-xs-4  text-center">
+            <a ui-sref='frame.keywords({page:$ctrl.item._id})'>
+                ключевые слова
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="seo-page-item-container" ng-if="$ctrl.item">
+        <div class="info-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="cart-detail">
+                    <div class="form-group label-floating ">
+                        <label class="control-label">наименование</label>
+                        <input class="form-control name" ng-model="$ctrl.item.name"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('name')">
+                    </div>
+                </div>
+                <div class="cart-detail">
+                    <h4 class="text-center name-box">keywords
+                        <a class="link-success" ng-click="$ctrl.addKeywords()">добавить</a>
+                    </h4>
+
+                    <!--http://stackoverflow.com/questions/30649447/css-for-drag-drop-ux-->
+                    <!--http://plnkr.co/edit/c8AUlbsyqUGlSIrq5YgK?p=preview-->
+                    <div class="tags-list">
+                        <div class="red col-lg-4 col-md-4 col-=sm-4 col-xs-4"><span >высокочастотые</span></div>
+                        <div class="green col-lg-4 col-md-4 col-=sm-4 col-xs-4"><span >среднечастотые</span></div>
+                        <div class="blue col-lg-4 col-md-4 col-=sm-4 col-xs-4"><span >низкочастотые</span></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="tags-list">
+                        <ul dnd-list="$ctrl.item.keywords"
+                            dnd-horizontal-list="true"
+                            dnd-drop="$ctrl.dropCallback(event, index, item, external, type)">
+                            <li ng-repeat="item in $ctrl.item.keywords"
+                                dnd-draggable="item"
+                                dnd-moved="$ctrl.item.keywords.splice($index,1)"
+                                ng-class="item.f">
+                                <div>
+                                    <span>{{item.word}}</span>
+                                    <a class="remove-button" ng-click="$ctrl.deleteKeyword($index)">×</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cart-detail">
+                    <h4>Сформируйте URL при котором будет отображаться введенная вами информация</h4>
+                    <create-link title='false' link="$ctrl.item.link" change="$ctrl.saveField('link')" edit-seo-page="true"></create-link>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="cart-detail">
+                    <h4 class="text-center name-box">title</h4>
+                    <div class="form-group label-floating">
+                        <label class="control-label">title</label>
+                        <textarea class="form-control descseo"
+                                  ng-model="$ctrl.item.seo.title" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                  ng-change="$ctrl.saveField('seo')">
+                        </textarea>
+                    </div>
+
+                </div>
+                <div class="cart-detail">
+                    <h4 class="text-center name-box">description</h4>
+                    <div class="form-group label-floating">
+                        <label class="control-label">description</label>
+                        <textarea class="form-control descseo"
+                                  ng-model="$ctrl.item.seo.description" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                  ng-change="$ctrl.saveField('seo')">
+                        </textarea>
+
+                    </div>
+                </div>
+                <div class="editor">
+                    <div class="cart-detail">
+                        <h4 class="text-center name-box">текстовый блок</h4>
+                        <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                             ng-change="$ctrl.saveField('desc',200)"
+                             ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                             ng-model="$ctrl.item.desc"
+                             ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                             ta-text-editor-class="border-around"
+                             ta-html-editor-class="border-around">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>

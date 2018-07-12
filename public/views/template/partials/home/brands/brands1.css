@@ -1,0 +1,42 @@
+/*dance*/
+.home-brands .container{
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: $background-color;
+}
+.home-brands .brands-desk {
+    position: absolute;
+    top: -50px;
+    text-align: center;
+    color: $color;
+    width: 100%;
+}
+.home-brands img {
+    width: 100%;
+}
+.home-brands .home-section {
+    padding: 0;
+}
+@media (max-width: 1050px){
+      .home-brands  .brands-desk {
+        left: 15%;
+        right: 15%;
+        width: 80%;
+    }
+}
+@media (max-width: 770px){
+      .home-brands  .brands-desk {
+        left: 10%;
+        right: 10%;
+        width: 80%;
+    }
+}
+.mobile-wrapper .brands-desk {
+    bottom: 10px;
+    padding-top: 0;
+}
+.mobile-wrapper  h3 {
+    font-size: 26px;
+}
+

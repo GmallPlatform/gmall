@@ -1,0 +1,82 @@
+<div class="category-to-filter select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">установите диапазон для характеристики</h3>
+        <a  class=" cancel" ng-click="$ctrl.cancel()" ></a>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="modal-body">
+        <div class="togglebutton text-center mb-20">
+            <label for="cacheListNews">
+                <span ng-class="{'active':!$ctrl.filter.count}">качественная характеристика</span>
+                <input type="checkbox"
+                       id="cacheListNews"
+                       ng-model="$ctrl.filter.count"
+                       ng-change="$ctrl.saveField('count')">
+                <span ng-class="{'active':$ctrl.filter.count}">количественная характеристика</span>
+            </label>
+        </div>
+        <!--<div class="checkbox">
+            <label>
+
+                <input type="checkbox" ng-model="$ctrl.filter.count" ng-change="$ctrl.saveField('count')">&nbsp{{tag.name}}
+                количественная характеристика
+            </label>
+        </div>-->
+        <div class="value-filters">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class=" form-group  label-floating">
+                    <label class="control-label">единица измерения</label>
+                    <input class="form-control" ng-model="$ctrl.filter.desc"ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('desc')">
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class=" form-group  label-floating">
+                    <label class="control-label">индекс для отображения в списке</label>
+                    <input class="form-control" placeholder="индекс" ng-model="$ctrl.filter.index"ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('index')">
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class=" form-group  label-floating">
+                    <label class="control-label">минимальное значение</label>
+
+                    <input class="form-control" placeholder="количественное значение" ng-model="$ctrl.filter.min"ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('min')">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class=" form-group  label-floating">
+                    <label class="control-label">максимальное значение</label>
+                    <input class="form-control" placeholder="количественное значение"ng-model="$ctrl.filter.max"ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                           ng-change="$ctrl.saveField('max')">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="togglebutton">
+                    <label for="cacheAllss1">
+                        <span class="ll" ng-class="{'active':!$ctrl.filter.price}">не ценовой фильтр</span>
+                        <input type="checkbox"
+                               id="cacheAllss1"
+                               ng-model="$ctrl.filter.price"
+                               ng-change="$ctrl.saveField('price')">
+                        <span class="lr" ng-class="{'active':$ctrl.filter.price}">ценовой</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="action-btn text-center">
+            <a class="btn btn-raised" ng-click="$ctrl.ok()">готово</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<style>
+    .app-modal-window .modal-dialog {
+        width: 60%;
+    }
+    hr {
+        border-top-color:#ff7148
+    }
+    .name-class .form-group{
+        margin-top: 0;
+    }
+    .change-style .input-group .form-group {
+        margin-top: 0;
+    }
+    .change-style .help-text {
+        font-size: 14px;
+    }
+</style>
+<div class="change-style select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">загрузка рисунка для списка</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <load-image
+                upload-url="/api/collections/Photo/fileUpload?collectionName=Store"
+                item-id="{{$ctrl.store._id}}"
+                item-resourse="$ctrl.Item"
+                file-src="$ctrl.store.template[$ctrl.field].img"
+                name-img="template.{{$ctrl.field}}.img">
+        </load-image>
+    </div>
+
+    <div class="clearfix"></div>
+</div>

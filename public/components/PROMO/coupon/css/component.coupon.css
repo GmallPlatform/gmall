@@ -1,0 +1,71 @@
+
+.coupon-list {
+    padding-bottom: 40px;
+}
+.coupon-list  .stuff-admin {
+    margin-top:150px
+}
+
+.coupon-list .nav-box-stuff {
+    position: fixed;
+    background-color: #fff;
+    top: 0px;
+    z-index: 100;
+    width: 100%;
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 4px;
+    padding-top: 60px;
+
+}
+.coupon-list .tab-nav-stuff{
+    margin-top: 15px;
+
+}
+.coupon-list .tab-nav-stuff a {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+/*.coupon-list .add-goods {
+    font-size: 20px;
+}
+.coupon-list .add-goods i {
+    font-size: 36px;
+}*/
+.coupon-list .active {
+    color: #ff7148;
+}
+.coupon-list .nav-box-stuff input.form-control {
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
+
+.coupon-list .thumbnail {
+    min-height: 300px;
+}
+.coupon-list .thumbnail img {
+    display: inline-block;
+}
+.coupon-list .cart-detail .block-edit {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #b2b2b2;
+    background-color: #fff;
+}
+
+.coupon-list  .btn-default-focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+
+
+
+
+
+
+
+
+

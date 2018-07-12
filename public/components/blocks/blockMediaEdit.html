@@ -1,0 +1,43 @@
+<div class="">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 img-box">
+        <h3 ng-click="$ctrl.loadPhoto(block,'img',$index)" class="text-center name-action">добавить/изменить фото</h3>
+        <div class="text-center" ng-if="block.img">
+            <div class="delete" style="position: absolute; top: 70px; width: 100%; text-align: center">
+                <a type="button" class="btn btn-fab"  ng-click="$ctrl.deleteImg(block,'img')" title="удалить фото"  style="display: inline-block">
+                    <i class="material-icons link-warning md-36">delete</i>
+                </a>
+            </div>
+            <img class="img-responsive" style="max-height: 400px; display: inline-block; width: auto !important" ng-src="{{block.img}}">
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 img-box">
+        <h3 class="text-center page-action" ng-click="$ctrl.loadPhoto(block,'video')">добавить/изменить видео</h3>
+        <div class="col-md-12 text-center upload-video" ng-if="block.video">
+            <div class="delete-video">
+                <a type="button" class="btn btn-fab"  ng-click="$ctrl.deleteImg(block,'video')" title="удалить видео">
+                    <i class="material-icons link-warning md-36">delete</i>
+                </a>
+            </div>
+            <!--<a ng-click="$ctrl.deleteImg(block,'video')">delete</a>-->
+            <div class="form-group text-center">
+                <video    class="fillHeigh" controls="controls">
+                    <source ng-src="{{block.video| trustUrl}}" type="video/webm">
+                </video>
+            </div>
+        </div>
+        <div class="togglebutton">
+            <label>
+                <span ng-class="{'active':!block.audio}">отключить звук</span>
+                <input type="checkbox" ng-model="block.audio" ng-change="$ctrl.saveField('blocks.'+block.i+'.audio',block.audio)">
+                <span ng-class="{'active':block.audio}">включить звук</span>
+            </label>
+        </div>
+        <div class="togglebutton">
+            <label>
+                <span ng-class="{'active':!block.videoControl}">отключить управление проигрывателем</span>
+                <input type="checkbox" ng-model="block.videoControl" ng-change="$ctrl.saveField('blocks.'+block.i+'.videoControl',block.videoControl)">
+                <span ng-class="{'active':block.videoControl}">включить управление проигрывателем</span>
+            </label>
+        </div>
+    </div>
+</div>

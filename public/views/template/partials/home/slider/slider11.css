@@ -1,0 +1,96 @@
+/*dtn*/
+
+.home-slides {
+    position: relative;
+}
+.home-slides .substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.home-slides .slide-fade{
+    position: relative;
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+.mytoggle-page {
+    width: 100%;
+}
+.helf-shadow {
+    z-index: 1029;
+}
+
+.title-block {
+    position: absolute;
+    bottom: 20%;
+    width: 100%;
+}
+
+.home-slides .navright-carousel {
+    z-index: 1024;
+}.home-slides .navleft-carousel span,
+.home-slides .navright-carousel span {
+
+    border: 1px solid #000;
+}
+.home-slides .navleft-carousel span {
+    border-right: none;
+}
+.home-slides .navleft-carousel {
+    z-index: 1024;
+}
+
+.home-slides .carousel-indicators {
+  display: none;
+}
+
+.mobile-wrapper .navleft-carousel,
+.mobile-wrapper .navright-carousel {
+    display: none;
+}
+.mytoggle {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity:0;
+}
+.mytoggle.ng-enter {
+    opacity: 0;
+}
+.mytoggle.ng-enter-active {
+    opacity: 1;
+}
+.mytoggle.ng-leave {
+    opacity: 1;
+}
+.mytoggle.ng-leave-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-add {
+
+    opacity: 1;
+    display: block !important;
+}
+.mytoggle.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+.mytoggle.ng-hide-remove {
+    opacity: 0;
+    display: block !important;
+}
+.mytoggle.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}

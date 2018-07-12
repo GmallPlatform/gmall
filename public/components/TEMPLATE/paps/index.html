@@ -1,0 +1,45 @@
+<div class="create-news">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" ng-bind="$ctrl.item.name"></h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+    <div class="modal-body">
+        <div ng-switch on="::$ctrl.item.type">
+            <div ng-switch-when="dateTime">
+                <date-time-entry toaster="true" modal-close="$ctrl.modalClose()"></date-time-entry>
+            </div>
+            <div ng-switch-default>
+                <div class="col-lg-12">
+                    <img class="img-responsive" ng-src="{{$ctrl.item.img}}">
+                </div>
+                <div class="col-lg-12">
+                    <div ng-bind-html="$ctrl.item.desc|unsafe"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="modal-footer col-lg-12">
+        <div ng-switch on="::$ctrl.item.type">
+            <div ng-switch-when="subscription">
+                <user-sign-short button-name="подписаться"toaster="true" close-modal="$ctrl.modalClose()"></user-sign-short>
+            </div>
+            <div ng-switch-when="call">
+                <call-from-store toaster="true" modal-close="$ctrl.modalClose()"></call-from-store>
+            </div>
+            <div ng-switch-when="dateTime">
+
+            </div>
+            <div ng-switch-default class="col-lg-6 col-lg-offset-3">
+                <a class="btn btn-project btn-block" type="button" ng-click="$ctrl.ok()">ok</a>
+            </div>
+        </div>
+
+        <!--<a class="btn btn-success btn-block" type="button" ng-click="$ctrl.ok('subscription')">получить</a>-->
+        <!--<a class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</a>-->
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,14 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="sort-stuff", ng-if="$ctrl.item.sortsOfStuff.filter")
+            div(class="sort-box")
+                ui-select(append-to-body,ng-model="$ctrl.item.sort",ng-change="$ctrl.item.changeSortOfStuff()",skip-focusser="true",search-enabled="false")
+                    ui-select-match
+                        span(ng-bind="$ctrl.item.stock[$select.selected.tag].name")
+                    ui-select-choices(ui-disable-choice="!sort.value.quantity",repeat="item in $ctrl.item.stockKeysArray")
+                        span(ng-bind="sort.value.name")
+
+
+
+
+

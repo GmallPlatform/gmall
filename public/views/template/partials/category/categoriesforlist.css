@@ -1,0 +1,94 @@
+/*ideal*/
+.categories-for-list1{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+.categories-for-list1 .categories-stuff .icon-btn {
+    width: 36px;
+    height: 36px;
+    border:2px solid #820f1e;
+    border-radius: 100%;
+    padding: 5px;
+    transition: all .3s ease-out;
+    background-color: #fff;
+}
+.categories-for-list1 .categories-stuff:hover .icon-btn {
+    transform: rotate(90deg)
+}
+
+.categories-for-list1 .categories-stuff  p {
+    color: #333;
+}
+.categories-for-list1 .categories-stuff .active span {
+    border-bottom: 1px solid #820f1e;
+}
+.categories-for-list1 .categories-stuff .active .icon-btn {
+    transform: rotate(90deg)
+}
+/*indian*/
+
+.categories-for-list2{
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding: 0 20px;
+}
+.categories-for-list2 .categories-stuff {
+    float: left;
+    margin-right: 20px;
+}
+.categories-for-list2 .categories-stuff a{
+    color: #999;
+}
+.categories-for-list2 .categories-stuff .icon-btn {
+    width: 36px;
+    height: 36px;
+   /* border:2px solid rgb(239, 105, 4);*/
+    border-radius: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    transition: all .3s ease-out;
+    background-color: #fff;
+}
+.categories-for-list2 .categories-stuff:hover .icon-btn {
+    transform: rotate(90deg)
+}
+
+.categories-for-list2 .categories-stuff  p {
+    color: #333;
+}
+.categories-for-list2 .categories-stuff .active span {
+    border-bottom: 1px solid rgb(239, 105, 4);
+}
+.categories-for-list2 .categories-stuff .active .icon-btn {
+    transform: rotate(90deg)
+}
+
+/*fashion*/
+.categories-for-list3{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    text-align: center;
+}
+.categories-for-list3 .categories-box {
+    display: inline-block;
+    margin: 0 auto;
+}
+.categories-for-list3 .categories-stuff {
+    float: left;
+    margin-right: 20px;
+}
+.categories-for-list3 .categories-stuff a{
+    color: #999;
+}
+
+.categories-for-list3 .categories-stuff  p {
+    color: #333;
+}
+.categories-for-list3 .categories-stuff .active span {
+    border-bottom: 2px solid rgb(248, 213, 223);
+    border-bottom: 2px solid #ed4262;
+}
+.mobile-wrapper .categories-for-list3 {
+    font-size: 16px;
+}

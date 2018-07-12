@@ -1,0 +1,25 @@
+<!--categories-->
+<div  ng-class="::{'home-categories':!homeCtrl.template.categories.class,
+        'home-categories1':homeCtrl.template.categories.class==1,
+        'home-categories2':homeCtrl.template.categories.class==2,
+        'home-categories3':homeCtrl.template.categories.class==3,
+        'home-categories4':homeCtrl.template.categories.class==4,
+        'home-categories5':homeCtrl.template.categories.class==5,}">
+    <!--<div class="row">-->
+        <div class="container">
+            <h2 class="text-center" ng-if="::homeCtrl.template.categories.namebox" ng-bind="::homeCtrl.template.categories.namebox"></h2>
+            <div class="home-section text-center" ng-class="::{'col-lg-6 col-md-6 col-sm-6 col-xs-12': homeCtrl.template.categories.qty==2||homeCtrl.template.categories.qty==4,
+             'col-lg-4 col-md-4 col-sm-4 col-xs-12': homeCtrl.template.categories.qty==3}"
+                 ng-repeat="item in homeCtrl.data.categories">
+                <a ui-sref="stuffs(global.get('categories').val.getOFA('url',item.url).linkData)">
+                    <img class="img-responsive" ng-src="{{item.img}}">
+                </a>
+                <h3 class="categories-name" ng-bind="item.name"></h3>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    <!--</div>-->
+</div>
+
+

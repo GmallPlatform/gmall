@@ -1,0 +1,62 @@
+/*fashion base*/
+.nav-group.info.dropdown {
+    padding: 0;
+}
+/*.nav-group.info.dropdown a {
+    color: #333;
+}*/
+.nav-group.info.dropdown .dropdown-menu a {
+    padding: 10px 20px;
+}
+.info.dropdown .dropdown-menu {
+    z-index: 1400;
+    min-width: 160px;
+    text-align: left;
+    transition: all ease-in-out 0.5s;
+    margin-top: 0;
+}
+.info.dropdown {
+    padding-left: 0;
+}
+.info.dropdown  li{
+    float: left;
+    list-style: none;
+}
+.info.dropdown  li a {
+    display: inline-block;
+    padding: 25px 10px;
+}
+.mobile-wrapper .info {
+    padding-left: 0;
+}
+.mobile-wrapper .info li{
+    list-style: none;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    /*font-size: 16px;*/
+}
+/*.mobile-wrapper li a {
+    color: #333;
+}
+.mobile-wrapper .info li a:hover,
+ .mobile-wrapper .info li a:focus {
+    color: rgba(58, 35, 13, 0.44);
+}*/
+@media (max-width: 768px) {
+    .nav-group.info.dropdown {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+/*
+.nav-group.info ul.info-page {
+    padding-left: 0;
+}
+.nav-group.info ul.info-page li {
+    float: left;
+    list-style: none;
+}
+.nav-group.info ul.info-page li a {
+    padding: 25px 10px;
+
+}*/

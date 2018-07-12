@@ -1,0 +1,34 @@
+<div>
+<script type="text/ng-template" id="categories.html">
+    <ul ng-if="section.categories.length">
+        <li ng-repeat="category in section.categories track by $index">
+            <a ui-sref="frame.stuffs(getCategoryUrlParams(section,category))" ui-sref-opts="{reload:true}">
+                <span ng-bind="category.name"></span>
+            </a>
+        </li>
+        <li ng-if="section.categories.length>1">
+            <a class="all-categories" ui-sref="frame.stuffs(getCategoryUrlParams(section))">
+                <span>все категории</span>
+            </a>
+        </li>
+    </ul>
+</script>
+<script type="text/ng-template" id="subsection.html">
+    <div ng-if="section.categories.length" class="categoryInSection" ng-include="'categories.html'"></div>
+    <div class="subsubsection"  ng-repeat="section in section.child track by $index">
+        <a class="section-name" ui-sref="frame.stuffs(getSectionUrlParams(section))" ui-sref-opts="{reload:true}">{{section.name}}</a>
+        <div ng-include="'subsection.html'"></div>
+    </div>
+</script>
+
+<div class="sectionHeightLevel">
+    <div class="section"  id="s{{section._id}}" ><!--todo растягивать высоту блока по высоте меню-->
+        <a ui-sref="frame.stuffs(getSectionUrlParams(section))" ng-bind="section.name"></a>
+    </div>
+    <div class="subsection" id="sub{{section._id}}"><!--todo растягивать высоту блока по высоте меню-->
+        <!--этот блок появляется при наведении-->
+        <div ng-include="'subsection.html'"></div>
+    </div>
+</div>
+</div>
+

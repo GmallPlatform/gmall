@@ -1,0 +1,15 @@
+<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 dialog-box" style="margin-top: 80px">
+    <p>
+        <a ui-sref="frame.dialogs" class="btn btn-default btn-raised btn-block">назад</a>
+    </p>
+</div>
+<div class="col-lg-6 col-lg-offset-3 col-md-12 col-md-offset-3 col-sm-12 col-xs-12">
+    <chat-dialog
+            ng-if="dialogCtrl.dialog"
+            participant="{{dialogCtrl.participant}}"
+            dialog="dialogCtrl.dialog">
+    </chat-dialog>
+</div>
+<div class="clearfix"></div>
+
+

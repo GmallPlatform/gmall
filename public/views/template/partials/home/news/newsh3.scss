@@ -1,0 +1,111 @@
+/*@media  (max-width: 1500px) {
+  h3 {
+    @if $top {
+      top: $top*0.9;
+    }
+    @if $bottom {
+      bottom: $bottom*0.9;
+    }
+    @if $right {
+      right: $right*0.9;
+    }
+    @if $left {
+      right: $left*0.9;
+    }
+    @if ($font-size) {
+      @if $font-size<20px {
+        font-size: $font-size;
+      }
+      @if $font-size==20px {
+        font-size: $font-size;
+      }
+      @if $font-size>60px {
+        font-size: $font-size*0.9;
+      }
+    }
+  }
+}
+@media  (max-width: 1300px) {
+  h3 {
+    @if ($font-size) {
+      @if $font-size<20px {
+        font-size: $font-size;
+      }
+      @if $font-size==20px {
+        font-size: $font-size;
+      }
+      @if $font-size>60px {
+        font-size: $font-size*0.8;
+      }
+    }
+    @if $letter-spacing {
+      letter-spacing: $letter-spacing*0.8;
+    }
+  }
+}
+@media  (max-width: 992px) {
+  h3 {
+    @if ($font-size) {
+      @if $font-size<20px {
+        font-size: $font-size;
+      }
+      @if $font-size==20px {
+        font-size: $font-size;
+      }
+      @if $font-size>60px {
+        font-size: $font-size*0.7;
+      }
+    }
+    @if $letter-spacing {
+      letter-spacing: $letter-spacing*0.7;
+    }
+    !*@if $letter-spacing==0 {
+      letter-spacing: 0
+    }*!
+  }
+}
+.tablet-wrapper {
+  h3 {
+    @if $top {
+      top: $top*0.75;
+    }
+    @if $bottom {
+      bottom: $bottom*0.7;
+    }
+    @if $right {
+      right: $right*0.7;
+    }
+    @if $left {
+      left: $left*0.7;
+    }
+  }
+}
+.mobile-wrapper {
+  h3 {
+    @if $top {
+      top: $top*0.5;
+    }
+    @if $bottom {
+      bottom: $bottom*0.5;
+    }
+    @if $right {
+      right: $right*0.1;
+    }
+    @if $left {
+      left: $left*0.1;
+    }
+    @if ($font-size) {
+      @if $font-size==20px {
+        font-size: $font-size*0.8;
+      }
+      @if $font-size<20px {
+        font-size: $font-size*0.9;
+      }
+      @if $font-size>60px {
+        font-size: $font-size*0.5;
+      }
+    }
+  }
+}
+
+*/

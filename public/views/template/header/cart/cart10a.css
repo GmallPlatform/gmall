@@ -1,0 +1,118 @@
+/*dance*/
+/*.right-nav-menu .nav-group.img-bag  {
+    float: left;
+}*/
+.right-nav-menu .nav-group.img-bag .cart-img {
+    width: $width;
+    height: $height;
+
+    /*background: url("../../img/cart/4.png") center center no-repeat;
+    background-size: 40px;*/
+}
+.icon-cart-inverse{
+    display: none;
+}
+
+.img-bag {
+    position: relative;
+}
+.img-bag a b{
+    color: $background-color;
+    font-size: $font-size;
+}
+.img-bag .inCart{
+    position:absolute;
+    border-radius: 15px;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    -o-transition: all  ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+/*.img-bag .newInCart {
+    position: absolute;
+    color: #ed4262;
+    font-size:35px ;
+    width: 45px;
+    height: 45px;
+    padding-top: 5px;
+    top: -20%;
+    left: 55px;
+    padding-left: 2px;
+    border-radius: 30px;
+    opacity: 1;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    -o-transition: all  ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+    z-index: 1300;
+}*/
+/*.menu-static-left .img-bag{
+     margin-top: 15px;
+     margin-bottom: 15px;
+
+ }
+.menu-static-left .img-bag {
+    color: #333;
+}*/
+.preview-cart{
+    position: relative;
+}
+.preview-cart .cartItems a {
+    color:$color;
+}
+.preview-cart .cartItems {
+    position: absolute;
+    top:77px;
+    width: 350px;
+    right: 0px;
+    background-color: #fff;
+    padding: 20px 10px;
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 2000;
+}
+.preview-cart .cartItems .name-goods {
+    padding: 0;
+    font-size: 14px;
+}
+.preview-cart .cartItems  .icon-cancel-img {
+    width: 15px;
+    height: 15px;
+}
+.preview-cart .cartItems .gotoinCart {
+    color: $mainColor;
+    transition: all  0.3s ease-in-out 0.1s;
+    line-height: 26px;
+}
+.gotoinCart:hover {
+    color: $mainColor;
+    font-size: 22px;
+}
+
+.added-cart{
+    position: fixed;
+    top:0px;
+    right: 0px;
+    background-color: #ffffff;
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    mix-height: 100px;
+    width: 350px;
+    z-index: 2000;
+}
+.added-cart a {
+    color: $color;
+}
+.addItem .name-goods {
+    padding: 0;
+}
+.addItem{
+    padding: 20px 10px;
+}

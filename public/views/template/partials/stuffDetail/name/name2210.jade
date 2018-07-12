@@ -1,0 +1,11 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="name")
+            h1(itemprop="name")
+                span(class="goods-name")=item.name
+                br
+                span=item.artikul
+                if(item.brand)
+                    p
+                        a(ui-sref="stuffs({'groupUrl':'group','categoryUrl':'category','brand':$ctrl.item.brandUrl})")
+                            span=item.brandName

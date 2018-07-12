@@ -1,0 +1,85 @@
+<style>
+    .mask-container {
+        margin-top: 100px;
+    }
+    .change-section {
+        display: inline-block;
+        text-transform: uppercase;
+    }
+    .title-element {
+        border: 1px dashed #999;
+        padding: 10px 0 10px 10px;
+        display: inline-block;
+        margin: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="mask-container">
+    <div class="info-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="cart-detail">
+            <h4 class="text-center name-page">
+                Создание маски для титла страницы товара или услуги
+            </h4>
+            <p class="text-center">
+                <a class="change-section link-success" ng-click="$ctrl.changeGroup()">
+                    выбрать или изменить раздел
+                </a>
+            </p>
+            <div ng-if="$ctrl.group">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label>элементы титла</label>
+                        <ui-select ng-model="$ctrl.maskElement" style="width: 300px;" title="Choose a element" ng-change="$ctrl.addMaskElement()">
+                            <ui-select-match placeholder="Выбрать элемент">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="el in $ctrl.oneArr track by $index">
+                                <span ng-bind="el"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="form-group">
+                        <label>разделители титла</label>
+                        <ui-select ng-model="$ctrl.maskElement" style="width: 300px;" title="Choose a element" ng-change="$ctrl.addMaskElement()">
+                            <ui-select-match placeholder="Выбрать разделитель">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="el in $ctrl.twoArr track by $index">
+                                <span ng-bind="el"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <p>раздел - <strong>{{$ctrl.group.name}}</strong></p>
+                    <p>
+                        <spen class="title-element" ng-repeat="el in $ctrl.group.mask track by $index">
+                            <span ng-bind="el"></span>
+                            <a ng-click="$ctrl.removeElementFromMask($index)">
+                                <i class="material-icons link-warning">close </i>
+                            </a>
+                        </spen>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4><strong>Порядок действий</strong></h4>
+                    <ol>
+                        <li>Выбрать раздел</li>
+                        <li>Выбрать элемент</li>
+                        <li>Выбрать разделитель</li>
+                        <li>Повторить 2 и 3 пункт столько раз, сколько элементов должно быть в титле</li>
+                        <li>Добавить служебные слова</li>
+                    </ol>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

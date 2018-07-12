@@ -1,0 +1,127 @@
+<div id="stuff-cart.html" class="stuffs">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{'mobil':$ctrl.mobile}">
+        <div class="row">
+            <div class="box-stuff">
+                <div class="stuff-cart-min-height" ng-if="::!stuff._id">
+                </div>
+                <div id="list{{::stuff._id}}" class="goods-container-img" style="position: relative; " ng-if='::stuff._id'>
+                    <a ui-sref="stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url,parentGroup:null,categoryList:null,searchStr:null})" >
+                        <div class="box-overlay"></div>
+                        <img class="sticker" ng-src="{{stuff.sticker}}">
+                        <img class="img-responsive img-goods"
+                             ng-src="{{stuff.gallery[0].thumb||'/img/upload/no.png'}}" />
+
+                    </a>
+                </div>
+                <div class="half-shadow">
+                    <div class="text-center"  ng-class="{'goods-desc':!stuff.service,'service-desc':stuff.service }" ng-if="stuff._id">
+                        <h3 class="stuff-name" ng-bind="::stuff.name"></h3>
+                        <div class="text-center price-block" ng-if="::stuff.orderType!=4">
+                            <p>
+                                <span ng-if="::!stuff.sort"  ng-bind="$ctrl.global.get('lang').val.expected"></span>
+                                <span class="price" ng-class="{'line':stuff.priceSale||stuff.campaignUrl}" ng-if="::stuff.sort">
+                                    <span ng-if="::stuff.service">от </span>
+                                    <span ng-bind="stuff.stock[stuff.sort].price*$ctrl.global.get('rate').val| currency:'':0" ng-class="{'line':stuff.priceSale||stuff.campaignUrl}"></span>
+                                    <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                    <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                                </span>
+
+                                <span class="sale" ng-if="::(stuff.sort && stuff.priceSale)">
+                                    <span> / </span>
+                                    <span ng-bind="stuff.stock[stuff.sort].priceSale*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                    <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                    <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                                </span>
+                                <span ng-if="::(stuff.sort && $ctrl.global.get('store').val.seller.retail)">
+                                    <span ng-bind="$ctrl.global.get('lang').val.retail"></span><br>
+                                    <span ng-bind="stuff.stock[stuff.sort].retail*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                    <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                    <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                                </span>
+                                <span class="sale" ng-if="::(stuff.campaignUrl && stuff.sort)">
+                                    <span> / </span>
+                                    <span ng-bind="stuff.stock[stuff.sort].priceCampaign*$ctrl.global.get('rate').val| currency:'':0"></span>
+                                    <span ng-if="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]"></span>
+                                    <span ng-if="!$ctrl.global.get('store').val.currency[$ctrl.global.get('currency').val][2]" ng-bind="global.get('currency').val"></span>
+                                </span>
+                                <p ng-if="stuff.campaignUrl" class="text-right" ng-if="stuff.campaignUrl">
+                                    <a ui-sref="campaign.detail({url:stuff.campaignUrl})" ng-bind="ctrl.global.get('lang').val.actions"></a>
+                                </p>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div><!-- ng-if="::!stuff.service"-->
+                            <!--<h3 ng-bind="stuff.artikul"></h3>-->
+                            <div ng-if="::(stuff.sortsOfStuff.filter && stuff.sort)">
+                                <div class="sort text-center">
+                                    <ui-select append-to-body
+
+                                            ng-model="stuff.sort"
+                                            ng-change="stuff.changeSortOfStuff()"
+                                               skip-focusser="true"
+                                            search-enabled="false">
+                                        <ui-select-match><!-- placeholder="{{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}"-->
+                                            <!-- <span ng-bind="getTagName($select.selected.tag)"></span>-->
+                                            {{stuff.stock[$select.selected.tag].name}}
+                                        </ui-select-match>
+                                        <ui-select-choices ui-disable-choice="!sort.value.quantity"
+                                                           repeat="sort.tag as (tag,sort) in stuff.stock">
+                                            <span>{{sort.value.name}}</span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div ng-switch="stuff.orderType" class="half-btn" ng-if="::stuff.sort">
+                            <div class="row" ng-switch-when='1'>
+                                <a class="btn  btn-project-noborder"
+                                   ng-click="stuff.order()">
+                                    <span ng-bind="$ctrl.global.get('lang').val.toOrder"></span>
+                                    <span class="icon-categories-img"></span>
+                                </a>
+                            </div>
+                            <div ng-switch-when='2'>
+                                <a class="btn  btn-project-noborder"
+                                   ng-click="$ctrl.global.get('functions').val.witget('dateTime',{stuff:stuff})">
+                                    <span ng-bind="$ctrl.global.get('lang').val.enroll"></span>
+                                    <span class="icon-categories-img"></span>
+                                </a>
+                            </div>
+                            <div ng-switch-when='3'>
+                                <a class="btn  btn-project-noborder"
+                                   ui-sref="stuffs.stuff({groupUrl:$ctrl.$stateParams.groupUrl,categoryUrl:$ctrl.$stateParams.categoryUrl,stuffUrl:stuff.url,parentGroup:null,categoryList:null,searchStr:null})"
+                                   ng-bind="$ctrl.global.get('lang').val.more">
+                                </a>
+                            </div>
+                            <div ng-switch-default>
+                                <span ng-switch="stuff.checkInCart()">
+                                    <span ng-switch-when=true>
+                                        <a class="btn  btn-project-noborder" disabled="disabled"
+                                           ng-bind="$ctrl.global.get('lang').val.inCart">
+                                        </a>
+                                    </span>
+                                    <span ng-switch-default>
+                                        <a  class="btn  btn-project-noborder"
+                                            ng-click="stuff.addItemToOrder()"
+                                            ng-bind="$ctrl.global.get('lang').val.addToCart">
+                                        </a>
+                                    </span>
+                                </span>
+                            </div>
+                            <div ng-switch-when='4'>
+                                <a class="btn  btn-project-noborder"
+                                   ng-click="stuff.getBonus()">
+                                    {{$ctrl.global.get('store').val.bonusButtonText}}
+                                    <span class="icon-categories-img"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

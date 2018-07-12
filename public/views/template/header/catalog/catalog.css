@@ -1,0 +1,109 @@
+/*cliniq*/
+/*.nav-group{
+    font-size: 20px;
+    border: none;
+    color: #fff;
+    padding: 25px 40px 25px 20px;
+}*/
+
+
+/*menu-section-vertical*/
+/*.myMenuV > ul.catalog-menu {
+    padding-left: 0;
+    margin-bottom: 0;
+}*/
+/*.myMenuV > ul > li {
+    list-style: none;
+}*/
+/*.myMenuV > ul > li a {
+    color: #3a230d;
+    letter-spacing: 1px;
+}
+.myMenuV > ul > li a.section-name {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.myMenuV > ul > li a.section-name span {
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+}
+.myMenuV > ul > li a.category-name span{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.myMenuV > ul > li a.category-name span {
+    margin-top: 5px;
+}
+.myMenuV > ul > li > div {
+    display: none;
+    z-index: 999999;
+}
+.myMenuV  ul  li  ul  li {
+    list-style: none;
+    margin-bottom: 8px;
+}*/
+/*.myMenuV li.page-stat a,
+.menu-section-vertical  .page-stat a{
+    color: #3a230d;
+    padding: 20px 20px 20px 0;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}*/
+/*.myMenuV li.page-stat a span,
+.menu-section-vertical .page-stat a span {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}*/
+/*.menu-section-vertical .page-stat a span.caret {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}*/
+
+
+
+
+/*.mobile-wrapper .myMenuV > ul > li a.section-name {
+    font-size: 16px;
+}*/
+
+
+/*hover*/
+/*.nav-center {
+    font-size: 14px;
+    padding-left: 0;
+}
+.catalog {
+    display: inline-block;
+    margin-bottom: 0;
+}
+.catalog li {
+    list-style: none;
+    float: left;
+    padding: 0 17px;
+}
+.catalog li:hover,
+.catalog li:active {
+    border-bottom: 2px solid #4e4e4e;
+}
+.catalog li a {
+    font-family: texgyreheroscn;
+    display: inline-block;
+    !*font-stretch: ultra-condensed*!;
+    height: 57px;
+    line-height: 57px;
+    letter-spacing: 1px;
+    color: #3a230d;
+
+}
+.catalog li a span{
+    line-height: 57px;
+}
+.catalog li a:hover,
+.catalog li a:focus {
+    color: #553412;
+
+}*/
+

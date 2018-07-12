@@ -1,0 +1,29 @@
+
+<div class="master-item">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff text-center action">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.workplace">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+
+        <div class="tab-nav-stuff add-block pull-right">
+            <ui-select ng-model="$ctrl.newBlock" skip-focusser="true" search-enabled="false" ng-change="$ctrl.addBlock($ctrl.newBlock)">
+                <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForWorkplacePage|filter:$ctrl.filterBlocks">{{ opt.value }}</ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.item && $ctrl.item._id">
+            <blocks-edit
+                    item="$ctrl.item"
+                    refresh-blocks="$ctrl.refreshBlocks()"
+                    type="Workplace">
+            </blocks-edit>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

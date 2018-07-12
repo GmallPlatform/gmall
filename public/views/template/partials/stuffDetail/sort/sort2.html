@@ -1,0 +1,28 @@
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 sort-stuff" ng-if="$ctrl.item.sortsOfStuff.filter">
+    <div ng-if="::$ctrl.item.sort">
+        <!--<p>
+            выберите {{$ctrl.getFilterName($ctrl.item.sortsOfStuff.filter)}}
+        </p>-->
+        <div class="sort" ng-init="stuff=$ctrl.item">
+            <ui-select
+                    ng-init="stuff.stock[stuff.sort].name=$ctrl.getTagName(stuff.sort)"
+                    ng-model="stuff.sort"
+                    ng-change="stuff.changeSortOfStuff()"
+                    on-select="stuff.onSelected()"
+                    append-to-body="true"
+                    search-enabled="false">
+                <ui-select-match placeholder="из {{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}">
+                    <!-- <span ng-bind="getTagName($select.selected.tag)"></span>-->
+                    {{$ctrl.getTagName($select.selected.tag)}}
+                </ui-select-match>
+                <ui-select-choices ui-disable-choice="!sort.value.quantity"
+                                   repeat="sort.tag as (tag,sort) in stuff.stock|filter:stuff.filterSorts">
+                    <span>{{sort.value.name=$ctrl.getTagName(sort.tag)}}</span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+</div>

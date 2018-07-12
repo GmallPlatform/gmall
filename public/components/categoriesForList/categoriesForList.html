@@ -1,0 +1,25 @@
+<div class="categories-for-list" ng-if="$ctrl.parentSection.categories.length">
+    <div class="categories-for-list">
+        <div class="radio form-group">
+            <label
+                   ng-class="{'active':$ctrl.category=='category'}">
+                <input type="radio" ng-model="$ctrl.category" value="category"
+                       ng-change="$ctrl.changeCategory($ctrl.category)">
+                ВСЕ КАТЕГОРИИ
+            </label>
+
+            <label for="co{{$index}}" ng-repeat="c in $ctrl.parentSection.categories|orderBy:'index'"
+                   ng-class="{'active':c.url==$ctrl.category}">
+                <input ng-change="$ctrl.changeCategory($ctrl.category)"
+                       type="radio"
+                       ng-model="$ctrl.category"
+                       ng-value="c.url"
+                       id="co{{$index}}">
+                {{c.name}}
+            </label>
+        </div>
+    </div>
+
+</div>
+
+<!--ng-model-options="{ debounce: 300 }"-->

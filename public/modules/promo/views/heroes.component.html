@@ -1,0 +1,5 @@
+<div *ngIf="heroes">
+    <div *ngFor="#hero of heroes" (click)="gotoDetail(hero)" class="col-1-4" >
+        <span>{{hero.name}}</span>
+    </div>
+</div>

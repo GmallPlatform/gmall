@@ -1,0 +1,18 @@
+<div class="col-lg-12" ng-show="paginator.pageCount()>1">
+    <ul class="pagination">
+        <li ng-click="paginator.perviousPage()" ng-class="paginator.isFirstPage() && 'disabled'">
+            <a>
+                <i class="material-icons" ng-class="paginator.isFirstPage() && 'icon-white'">skip_previous</i>
+            </a>
+        </li>
+        <li ng-click="paginator.setPage(i)" ng-repeat="i in arrayPage track by $index" ng-class="paginate.page==(i) && 'active'">
+            <a class="page">{{getPageStr(i)}}</a>
+        </li>
+        <li ng-click="paginator.nextPage()" ng-class="paginator.isLastPage() && 'disabled'">
+            <a>
+                <i class="material-icons" ng-class="paginator.isLastPage() && 'icon-white'">skip_next</i>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="clearfix"></div>

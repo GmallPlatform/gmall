@@ -1,0 +1,15 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(ng-if="$ctrl.item.addInfo")
+            h4(ng-bind="$ctrl.global.get('lang').val.tableOfSize")
+            table(class="table table-bordered")
+                tr
+                    th(class="col-lg-2")
+                        | #
+                    th(class="col-lg-2", ng-repeat="head in $ctrl.item.addInfo.headerTable[$ctrl.lang]")
+                        span(ng-bind="head")
+                tr(ng-repeat="(key,tr) in $ctrl.item.addInfo.table")
+                    td
+                        span(ng-bind="$ctrl.getTagName(key)")
+                    td(ng-repeat="td in tr[$ctrl.lang] track by $index")
+                        span(ng-bind="td")

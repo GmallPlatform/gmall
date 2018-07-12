@@ -1,0 +1,311 @@
+/*balance*/
+.container {
+     width: 100%;
+}
+.btn-project {
+    margin-bottom: 40px;
+}
+.online-box {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    margin: 0 auto;
+    white-space: nowrap;
+    margin-bottom: 30px;
+
+}
+.center-div {
+    margin: 0 auto;
+}
+.center-div-mobile {
+    margin: 0 auto; width: 640px
+}
+.week-box {
+    font-size: 12px;
+    text-align: center;
+    display: table-row;
+    width: 380px;
+    margin: 0 auto;
+}
+.box-day {
+    position: relative;
+}
+.week-table-header {
+    margin-bottom: 20px;
+}
+.week-box .box-day {
+    float: left;
+    width: 95px;
+    border:1px solid #ccc;
+    padding: 10px 5px;
+    margin-right: 15px ;
+    margin-left: 15px;
+    background-color: #f5f5f5;
+    height: auto;
+
+}
+.week-box .box-day:hover {
+    background-color: #ffffff;
+}
+.carousel,
+.carousel-inner {
+    width: 100%;
+}
+.carousel {
+    margin: 0 auto;
+}
+.carousel-indicators {
+    width: 90%;
+    margin-left: -45%;
+    margin-bottom: 10px;
+}
+li {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    border-radius: 0;
+    background-color: #fff;
+    border: 1px solid #333;
+}
+.carousel-indicators.mobile  {
+    margin-bottom: 15px;
+}
+.carousel h3 {
+    padding-top: 10px;
+}
+.carousel-indicators.mobile h3{
+    margin-top: 10px;
+}
+.carousel-control {
+    width: 5%;
+}
+.carousel-control.left,
+.carousel-control.right {
+    background-image: none;
+}
+.carousel-control.left.disabled,
+.carousel-control.right.disabled {
+    background: transparent;
+}
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+}
+.week-box .box-day.active:hover {
+    background-color: #333333;
+}
+.day-week {
+    text-transform: capitalize;
+}
+.online-table {
+    border-collapse: collapse;
+    border-bottom: 1px solid#ccc;
+
+}
+.online-table-mobile {
+    display: table;
+    width: 640px;
+    border-collapse: collapse;
+    border-bottom: 1px solid#ccc;
+
+}
+.online-table-header,
+.online-table-body{
+    display: table-row;
+}
+.online-table-header .box-day {
+    height: auto;
+}
+.online-table-day {
+    display: table-cell;
+    float: left;
+    width: 150px;
+}
+.online-table-day-mobile {
+    display: table-cell;
+    float: left;
+    width: 80px;
+    word-wrap: break-word;
+}
+.online-table-day-mobile.month {
+    width: 60px;
+    border-bottom:1px solid #ccc;
+    position: absolute;
+    z-index: 100;
+}
+.margin-box {
+    margin-left: 60px;
+}
+.online-table-header-left .box-day,
+.online-table-header .online-table-day{
+    background-color: #999;
+    color: #fff;
+}
+.online-table-header-left-mobile .box-day,
+.online-table-header .online-table-day-mobile{
+    background-color: #999;
+    color: #fff;
+}
+.online-table-header-left-mobile .box-day {
+    border-bottom:1px solid #ccc;
+}
+
+.online-table-day.box-day {
+    padding: 5px 20px;
+    height: 45px;
+    border-top: 1px solid #ccc;
+}
+.box-day {
+    text-align: center;
+    border-right: 1px solid#ccc;
+    height: 50px;
+    white-space: normal;
+    font-size: 12px;
+}
+.online-table-header-left {
+    border-left: 1px solid#ccc;
+}
+.online-table-header-left .box-day {
+    border-top: 1px solid #ccc;
+    padding: 10px ;
+}
+.servise-box {
+    height: 100%;
+    padding: 5px;
+    border-bottom: 1px solid transparent;
+}
+.online-table-mobile .servise-box {
+    line-height: 14px;
+}
+.disabled {
+    background-color: #eee;
+}
+.busyEntry{
+    border-top: none;
+}
+.reservation{
+    background-color: rgb(255, 214, 219);
+    border-top: none;
+}
+.borderTop{
+    border-top:  1px solid #d6d6d6;
+    overflow: visible;
+}
+
+.tempEntry {
+    background-color: rgb(118, 177, 226);
+}
+.unavailable,
+.booked,
+.your,
+.reserv{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.booking {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.booking .time-action {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.unavailable {
+    background-color: rgba(197, 236, 255, 0.49);
+}
+.booked {
+    background-color: rgb(203, 255, 192);
+}
+.your {
+    background-color: rgb(118, 177, 226);
+}
+.reserv {
+    background-color: rgb(255, 214, 219);
+}
+.type-block {
+    text-align: center;
+}
+.time {
+   font-size: 18px;
+}
+.days {
+    text-transform: uppercase;
+}
+.mobile-wrapper .booking {
+    font-size: 12px;
+   text-align: left;
+}
+.mobile-wrapper .booking .unavailable,
+.mobile-wrapper .booking .booked,
+.mobile-wrapper .booking .your,
+.mobile-wrapper .booking .reserv{
+    width: 20px;
+    height: 20px;
+}
+
+.mobile-wrapper .type-block {
+    text-align: left;
+}
+.mobile-wrapper .online-box {
+    white-space: normal;
+}
+.mobile-wrapper .type {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tempEntry:hover{
+    cursor:url(../../../../../img/icon/cancel-circle.png), auto
+}
+.week-box-mobile {
+    display: block !important;
+}
+.online-table-header-left-mobile {
+    width: 60px;
+    position: absolute;
+    z-index: 100;
+}
+@media screen and (min-width: 768px) {
+    .carousel-indicators {
+        bottom: 0
+    }
+}
+.mobile-wrapper .carousel-indicators {
+    width: 380px;
+    left: 50%;
+    margin-left: -50%;
+}
+.mobile-wrapper .carousel-control.right,
+.mobile-wrapper .carousel-control.left {
+    display: none;
+}
+/*scrollbar*/
+::-webkit-scrollbar-track:horizontal{
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar:horizontal{
+    width: 3px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb:horizontal{
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);
+    background-color: $color;
+}
+
+
+

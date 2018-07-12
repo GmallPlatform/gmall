@@ -1,0 +1,259 @@
+extends layout
+
+block content
+  div(id='dimScreenFull',ng-hide="global.get('user').val")
+  div( ng-cloak,ng-init="setInitData(#{JSON.stringify(store)},#{JSON.stringify(mobile)},#{JSON.stringify(local)})")
+    toaster-container
+    div(class="navbar navbar-fixed-top")
+        ul(class="left-menu")
+          li
+            a(ui-sref="frame", title="все заказы")
+              i(class="material-icons") homes
+            //li
+              a(ui-sref="frame.orders({order:null})",ui-sref-opts="{reload: true}")
+                i(class="material-icons") work
+                    //a(ng-show="$state.current.name=='frame.orders' && !$stateParams.order" ng-click="ordersCtrl.reloadOrders()",class="navbar-brand")
+                      i(class="material-icons") cached
+          li(ng-show="$state.current.name=='frame.orders' && $stateParams.order" ng-click="orderEditCtrl.updateOrder()")
+            a()
+                i(class="material-icons") save
+          li(class="seller")
+            a(ng-if="global.get('seller').val" ui-sref="frame.users({user:null})")
+              span(ng-bind="global.get('user').val.name")
+            a(ng-if="!global.get('seller').val" ui-sref="frame.user")
+              span(ng-bind="global.get('user').val.name")
+            span(class="location") управление заказами
+        ul(class="right-menu")
+              li(class="dropdown" ng-if="global.get('seller').val")
+                a(class='dropdown-toggle',data-target="#",data-toggle="dropdown",style="color:#fff;")
+                  i(class="material-icons menu-icon") apps
+
+                ul(class="dropdown-menu")
+                  li
+                    a(ng-click="changeLocation('/setting')")
+                      i(class="material-icons link-warning") settings_applications
+                      | настройки магазина
+                  li
+                    a(ng-click="changeLocation('/content')")
+                      i(class="material-icons link-warning") description
+                      | управление контентом
+                  li
+                    a(ng-click="changeLocation('/promo')")
+                      i(class="material-icons link-warning") dashboard
+                      | управление промо
+                  li
+                    a(ng-click="changeLocation('/seo')")
+                      i(class="material-icons link-warning") trending_up
+                      | управление продвижение SEO
+                  li
+                    a(href='/home',target="blank")
+                      i(class="material-icons link-warning") homes
+                      | перейти на сайт
+              li(class="dropdown" )
+                a(data-target="#",class="dropdown-toggle",data-toggle="dropdown")
+                  i(class="material-icons") record_voice_over
+                  span(class="badge badge-danger",ng-bind="getTotalUnreadMessage()")
+                  b(class="caret")
+                ul(class="dropdown-menu")
+                  li
+                    a(ui-sref="frame.dialogs") все
+                  li(ng-repeat="value in global.get('dialogs').val")
+                    //a(ng-click="$state.go('frame.dialogs',{dialog:value.dialog}, {destination: 'new-state'});")
+                    a(ng-if="!value.order",ui-sref="frame.dialogs.dialog({id:value.dialog})")
+                      span(ng-bind="value.participant")
+                      span(class="badge badge-danger pull-right",ng-bind="value.count")
+                    a(ng-if="value.order",ui-sref="frame.orders.order({id:value.order})")
+                      span ордер N-
+                      span(ng-bind="value.orderNum")
+                      span(class="badge badge-danger pull-right",ng-bind="value.count")
+              li(class="dropdown")
+                //ng-if='notificationsCount'
+                a(data-target="#",class="dropdown-toggle",data-toggle="dropdown")
+                  i(class="material-icons") notifications_active
+                  span(class="badge badge-danger",ng-bind="notificationsCount",ng-if='notificationsCount')
+                  b(class="caret")
+                ul(class="dropdown-menu")
+                  li
+                    a(ui-sref="frame.notification") все
+                  li(ng-repeat="(key,notification) in global.get('notifications').val" ng-if="notification")
+                    a(ui-sref="frame.notification({type:key})")
+                      span(ng-bind="key")
+                      span(class="badge badge-danger pull-right",ng-bind="notification")
+              li(class="dropdown" ng-if="chatMessagesCount")
+                a(data-target="#",class="dropdown-toggle",data-toggle="dropdown")
+                  i(class="material-icons") record_voice_over
+                  span(class="badge badge-danger",ng-bind="chatMessagesCount")
+                  b(class="caret")
+                ul(class="dropdown-menu")
+                  li(ng-repeat="(key,mes) in global.get('chatMessages').val")
+                    a(ng-if='mes.type=="order"',ui-sref="frame.orders({order:mes.order})",ui-sref-opts="{reload: true, notify: true}")
+                      span(ng-bind="key")
+                      span(class="badge badge-dangerpull-right",ng-bind="mes.count")
+                  //a(ng-if='mes.type=="user"',ui-sref="frame.users({user:mes.user})")
+                    span(ng-bind="key")
+                    span(class="badge pull-right",ng-bind="mes.count")
+              li(ng-if="!global.get('seller').val")
+                a(class="home link-success",href='/home',target="blank")
+                  | перейти
+                  br
+                  | на сайт
+              li(class="pull-right",style="padding:0")
+                a(class="btn btn-fab btn-fab-mini btn-lang",ng-repeat="lang in global.get('store').val.langArr",ng-click="changeLang(lang)")
+                  span(ng-class="{'active':lang==global.get('store').val.lang}",ng-bind="lang")
+        div()
+          a
+            span(class="for-saving save",ng-class="{'saving':global.get('saving').val}")
+              | сохранено
+
+
+    div( ui-view)
+    audio(id="soundChat",style='display:none;',controls='controls')
+      source(src='sounds/chat.mp3')
+      //source(src='"+arguments[0]+".ogg')
+
+  //if(local)
+    script(type='text/javascript').
+      var userHost = !{JSON.stringify( store.protocol )} + '://127.0.0.1:3001';
+  //if(local)
+    - var socketHref=store.protocol+'://127.0.0.1:3000/socket.io/socket.io.js'
+    script(type='text/javascript').
+      var socketHost = !{JSON.stringify( store.protocol )} + '://127.0.0.1:3000';
+      var notificationHost = !{JSON.stringify( store.protocol )} + '://127.0.0.1:3000';
+  - var socketHref=socketHost+'/socket.io/socket.io.js'
+  script(type='text/javascript').
+    var storeHost = !{JSON.stringify(storeHost)};
+    var socketHost = !{JSON.stringify( socketHost )};
+    var notificationHost = !{JSON.stringify( notificationHost )};
+    var userHost = !{JSON.stringify( userHost )};
+    var stuffHost = !{JSON.stringify( stuffHost )};
+    var orderHost = !{JSON.stringify( orderHost )};
+    var photoHost = !{JSON.stringify( photoHost )};
+    var photoUpload = !{JSON.stringify( photoUpload )};
+    var globalStoreId = !{JSON.stringify( store._id )}
+  script(src=socketHref)
+  - var favicon = photoHost+"/"+store.favicon
+  script.
+    (function () {
+      var link = document.createElement( 'link' );
+      link.type = 'image/x-icon';
+      link.rel = 'shortcut icon';
+      link.href = "#{favicon}";
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }());
+
+
+  -if(!local)
+    each counter in store.counters
+      script.
+          #{counter.code}
+  script(type="text/javascript",src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzzOEL5DctMotIDgUTCGJsu7YM1rEY0gA&libraries=places")
+  //include order.scripts.jade
+
+
+  //script(src='crawler.scripts.min.js')
+  //script(src='orderdev_scripts.min.js')
+  //script(src='order.scripts.min.js')
+  script(src='allorder_scripts.min.js')
+
+
+  if(false)
+    script(src='scripts/myPrototype.js')
+    script(src='scripts/angular-node.js')
+    script(src='modules/order/js/app.js')
+    script(src='modules/order/js/controllers.js')
+    script(src='modules/order/js/services.js')
+    script(src='modules/order/js/directives.js')
+
+
+      // auth
+    script(src='components/sign-login/scripts/sign-login.component.js')
+    script(src='components/directives/check-password-match.directive.js')
+
+      //services
+    script(src='components/services/factory.exeption.js')
+    script(src='components/services/confirm.factory.js')
+    script(src='components/services/interceptor.factory.js')
+    script(src='components/storeSetting/scripts/store-seller.service.js')
+
+    script(src='components/sections/scripts/service.sections.js')
+    script(src='components/sections/scripts/category.service.js')
+
+    script(src='components/brand/scripts/service.brands.js')
+    script(src='components/stuff/scripts/controller.stuff.js')
+    script(src='components/stuff/scripts/stuff.service.js')
+    script(src='components/stuff/scripts/stuff-download.component.js')
+    script(src='components/filters/scripts/service.filters.js')
+    script(src='components/filters/scripts/filterTags.service.js')
+
+
+    script(src='scripts/service.global.js')
+    script(src='scripts/service.helper.js')
+    script(src='scripts/service.email.js')
+
+      // order
+    script(src='components/order/scripts/service.order.js')
+    script(src='components/order/scripts/order.service.js')
+    script(src='components/order/scripts/cart-in-order.service.js')
+    script(src='components/order/scripts/controller.order.js')
+    script(src='components/order/scripts/directive.order.js')
+    script(src='components/order/scripts/order-list.component.js')
+    script(src='components/order/scripts/order-item.component.js')
+
+
+      // notification
+    script(src='components/notification/scripts/service.notification.js')
+    script(src='components/notification/scripts/controller.notification.js')
+
+      // chat
+    script(src='components/chat/scripts/service.chat.js')
+    script(src='components/chat/scripts/controller.chat.js')
+    script(src='components/chat/scripts/directive.chat.js')
+    script(src='components/chat/scripts/chat.component.js')
+
+      // dialogs
+    script(src='components/dialogs/scripts/service.dialog.js')
+    script(src='components/dialogs/scripts/controller.dialog.js')
+    script(src='components/dialogs/scripts/directive.dialog.js')
+
+      // user
+    script(src='components/user/scripts/service.user.js')
+    script(src='components/user/scripts/controller.user.js')
+    script(src='components/user/scripts/directive.user.js')
+      //comment
+    script(src='components/comment/scripts/service.comment.js')
+    script(src='components/comment/scripts/comment-list.component.js')
+      //store
+    script(src='components/storeSetting/scripts/store-seller.service.js')
+    script(src='components/storeSetting/scripts/component.storeSetting.js')
+
+      // directives
+    script(src='components/directives/directive.focus-element.js')
+    script(src='components/directives/directive.select-drop-down.js')
+    script(src='components/paginator/scripts/component.paginator.js')
+    script(src='components/directives/directive.lost-focus.js')
+    script(src='components/directives/ng-autocomplite-city.directive.js')
+
+
+
+    script(src='scripts/service.brandcollections.js')
+    script(src='scripts/service.anchorSmoothScroll.js')
+    script(src='components/services/service.print.js')
+
+    script(src='scripts/directive.datePicker.js')
+    script(src='scripts/directive.editNote.js')
+
+
+      // online entry
+    script(src='components/ORDERS/online/scripts/online.service.js')
+    script(src='components/ORDERS/online/scripts/online-list.component.js')
+
+    script(src='components/CONTENT/master/scripts/master.service.js')
+    script(src='components/PROMO/coupon/scripts/coupon.service.js')
+    script(src='components/call/scripts/directive.call.js')
+    script(src='components/externalCatalog/externalCatalog.component.js')
+    script(src='scripts/globalVariable.js')
+
+    //script(src='components/choiceUser/directive.js')
+    //script(type="text/javascript",src="http://maps.googleapis.com/maps/api/js?libraries=places")
+
+

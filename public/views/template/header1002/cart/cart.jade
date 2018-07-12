@@ -1,0 +1,19 @@
+li(class="nav-item")
+    - var pullClass=''
+    if(dj[key].position!='center' && (dj[key].positionMenu=='top' ||dj[key].positionMenu=='bottom'))
+        - pullClass=' pull-'+dj[key].position
+    div(class=dj[key].wrapclass+pullClass)
+        div(class=mobileWrapper)
+            if(dj[key].positionMenu=='top' ||dj[key].positionMenu=='bottom')
+                - var c = 'nav-group preview-cart'
+            else
+                - var c = 'preview-cart'
+            div(class="added-cart",added-cart,ng-cloak)
+            div(class=c,preview-cart=(!mobile && !tablet))
+                a(class="img-bag text-center",ui-sref="cart")
+                    span(id="mainCart",class="icon-cart-img")
+                    span(id="inverseCart",class="icon-cart-inverse")
+                    span(class="inCart")
+                        b(class="total",ng-bind="order.totalCount")
+
+

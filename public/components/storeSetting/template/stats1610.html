@@ -1,0 +1,341 @@
+<div class="template-list" ng-show="$ctrl.block=='stats'"  ng-init="displayHelp=false">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="text-center name-page">компоненты статической страницы</h3>
+        <div class="cart-detail">
+            <div class="menu-box">
+                <!--*************************-->
+                <h3 class="col-lg-12  col-md-12 col-sm-12 col-xs-12 name-page text-center">верхний блок</h3>
+                <div class="col-lg-6">
+                    <ui-select ng-model="$ctrl.blockForStatsAdd0" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.addBlockForStats($ctrl.blockForStatsAdd0,$ctrl.item.stats[0])">
+                        <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForStats|filter:$ctrl.filterStatsListH">{{ opt.value }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 head-box text-center">название компонента</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">номер шаблона</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">анимация</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">удалить</div>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="part-box">
+                    <div class="dropzone">
+                        <ul class="col-lg-12  col-md-12 col-sm-12 col-xs-12"
+                            dnd-list="$ctrl.item.stats[0]"
+                            dnd-drop="$ctrl.dropCallbackStats(item)"
+                            dnd-allowed-types="['stats']">
+                            <!--<li ng-if="!$ctrl.item.stats[0].length">
+                                <p>добавить</p>
+                            </li>-->
+                            <li ng-repeat="block in $ctrl.item.stats[0]"
+                                dnd-draggable="block"
+                                dnd-type="'stats'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.stats[0].splice($index,1)"
+                                dnd-selected="models.selected = item"
+                                ng-class="{selected: models.selected === item,bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box form-group text-center">
+                                    <i class="material-icons link-success">swap_vert</i>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group text-center">
+                                    <span ng-switch="block.name">
+                                         <span ng-switch-when="name">название</span>
+                                         <span ng-switch-when="banner">баннер</span>
+                                         <span ng-switch-when="gallery">галлерея</span>
+                                         <span ng-switch-when="desc">описание1</span>
+                                         <span ng-switch-when="desc1">описание2</span>
+                                         <span ng-switch-when="desc2">описание3</span>
+                                         <span ng-switch-when="map">карта</span>
+                                         <span ng-switch-when="video">видео</span>
+                                         <span ng-switch-when="masters">мастера</span>
+                                    </span>
+                                </div>
+                                <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input ng-change="$ctrl.saveField('stats')" ng-model="block.is" type="checkbox"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                    <ui-select ng-model="block.templ" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveField('stats')">
+                                        <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  form-group">
+                                    <a>
+                                        <i class="material-icons link-success" >assistant</i>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center form-group">
+                                    <a ng-click="$ctrl.item.stats[0].splice($index,1);$ctrl.saveField('stats')">
+                                        <i class="material-icons link-warning" title="удалить из списка">delete</i>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <hr>
+                <!--*******************************-->
+                <h3 class="col-lg-6  col-md-6 col-sm-6 col-xs-6 name-page text-center">левый блок</h3>
+                <h3 class="col-lg-6 col-md-6 col-sm-6 col-xs-6  name-page text-center">правый блок</h3>
+                <div class="clearfix"></div>
+                <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6">
+                    <ui-select ng-model="$ctrl.blockForStatsAdd1" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.addBlockForStats($ctrl.blockForStatsAdd1,$ctrl.item.stats[1])">
+                        <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForStats|filter:$ctrl.filterStatsListL">{{ opt.value }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6">
+                    <ui-select ng-model="$ctrl.blockForStatsAdd2" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.addBlockForStats($ctrl.blockForStatsAdd2,$ctrl.item.stats[2])">
+                        <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForStats|filter:$ctrl.filterStatsListR">{{ opt.value }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box text-center"></div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 head-box text-center">название компонента</div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 head-box text-center">номер шаблона</div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">анимация</div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">удалить</div>
+                </div>
+                <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box text-center"></div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 head-box text-center">название компонента</div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 head-box text-center">номер шаблона</div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">анимация</div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">удалить</div>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="part-box">
+                    <div class="dropzone">
+                        <ul class="col-lg-6  col-md-6 col-sm-12 col-xs-12"
+                                dnd-list="$ctrl.item.stats[1]"
+                                dnd-drop="$ctrl.dropCallbackStats(item)"
+                                dnd-allowed-types="['stats']">
+                                <!--<li ng-if="!$ctrl.item.stats[1].length">
+                                    <p>добавить</p>
+                                </li>-->
+                                <li ng-repeat="block in $ctrl.item.stats[1]"
+                                    dnd-draggable="block"
+                                    dnd-type="'stats'"
+                                    dnd-effect-allowed="move"
+                                    dnd-moved="$ctrl.item.stats[1].splice($index,1)"
+                                    dnd-selected="models.selected = item"
+                                    ng-class="{selected: models.selected === item,bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box form-group">
+                                        <i class="material-icons link-success">swap_vert</i>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+                                         <span ng-switch="block.name">
+                                             <span ng-switch-when="name">название</span>
+                                             <span ng-switch-when="banner">баннер</span>
+                                             <span ng-switch-when="gallery">галлерея</span>
+                                             <span ng-switch-when="desc">описание1</span>
+                                             <span ng-switch-when="desc1">описание2</span>
+                                             <span ng-switch-when="desc2">описание3</span>
+                                             <span ng-switch-when="map">карта</span>
+                                             <span ng-switch-when="video">видео</span>
+                                             <span ng-switch-when="masters">мастера</span>
+                                         </span>
+                                    </div>
+                                    <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input ng-change="$ctrl.saveField('stats')" ng-model="block.is" type="checkbox"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <ui-select ng-model="block.templ" skip-focusser="true" search-enabled="false"
+                                                   ng-change="$ctrl.saveField('stats')">
+                                            <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                        </ui-select>
+
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  form-group">
+                                        <a>
+                                            <i class="material-icons link-success" >assistant</i>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  form-group">
+                                        <a ng-click="$ctrl.item.stats[1].splice($index,1);$ctrl.saveField('stats')">
+                                            <i class="material-icons link-warning" title="удалить из списка">delete</i>
+                                        </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+                        <ul class="col-lg-6  col-md-6 col-sm-12 col-xs-12"
+                            dnd-list="$ctrl.item.stats[2]"
+                            dnd-drop="$ctrl.dropCallbackStats(item)"
+                            dnd-allowed-types="['stats']">
+                            <!--<li ng-if="!$ctrl.item.stats[2].length">
+                                <p>добавить</p>
+                            </li>-->
+                            <li ng-repeat="block in $ctrl.item.stats[2]"
+                                dnd-draggable="block"
+                                dnd-type="'stats'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.stats[2].splice($index,1)"
+                                dnd-selected="models.selected = item"
+                                ng-class="{selected: models.selected === item,bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 head-box form-group">
+                                    <i class="material-icons link-success">swap_vert</i>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+                                         <span ng-switch="block.name">
+                                             <span ng-switch-when="name">название</span>
+                                             <span ng-switch-when="banner">баннер</span>
+                                             <span ng-switch-when="gallery">галлерея</span>
+                                             <span ng-switch-when="desc">описание1</span>
+                                             <span ng-switch-when="desc1">описание2</span>
+                                             <span ng-switch-when="desc2">описание3</span>
+                                             <span ng-switch-when="map">карта</span>
+                                             <span ng-switch-when="video">видео</span>
+                                             <span ng-switch-when="masters">мастера</span>
+                                         </span>
+                                </div>
+                                <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input ng-change="$ctrl.saveField('stats')" ng-model="block.is" type="checkbox"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <ui-select ng-model="block.templ" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveField('stats')">
+                                        <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  form-group">
+                                    <a>
+                                        <i class="material-icons link-success" >assistant</i>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  form-group">
+                                    <a ng-click="$ctrl.item.stats[2].splice($index,1);$ctrl.saveField('stats')">
+                                        <i class="material-icons link-warning" title="удалить из списка">delete</i>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <hr>
+                <!--fffffffffffffffffffffffffffffffffffffffffffffff-->
+                <h3 class="col-lg-12  col-md-12 col-sm-12 col-xs-12 name-page text-center">нижний блок</h3>
+                <div class="col-lg-6">
+                    <ui-select ng-model="$ctrl.blockForStatsAdd3" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.addBlockForStats($ctrl.blockForStatsAdd3,$ctrl.item.stats[3])">
+                        <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForStats|filter:$ctrl.filterStatsListF">{{ opt.value }}</ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 head-box text-center">название компонента</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">номер шаблона</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">анимация</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">удалить</div>
+                <div class="clearfix"></div>
+                <hr>
+
+
+                <div class="part-box">
+                    <div class="dropzone">
+                        <ul class="col-lg-12  col-md-12 col-sm-12 col-xs-12"
+                            dnd-list="$ctrl.item.stats[3]"
+                            dnd-drop="$ctrl.dropCallbackStats(item)"
+                            dnd-allowed-types="['stats']">
+                            <!--<li ng-if="!$ctrl.item.stats[3].length">
+                                <p>добавить</p>
+                            </li>-->
+                            <li ng-repeat="block in $ctrl.item.stats[3]"
+                                dnd-draggable="block"
+                                dnd-type="'stats'"
+                                dnd-effect-allowed="move"
+                                dnd-moved="$ctrl.item.stats[3].splice($index,1)"
+                                dnd-selected="models.selected = item"
+                                ng-class="{selected: models.selected === item,bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box form-group">
+                                    <i class="material-icons link-success">swap_vert</i>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-group">
+                                         <span ng-switch="block.name">
+                                             <span ng-switch-when="name">название</span>
+                                             <span ng-switch-when="banner">баннер</span>
+                                             <span ng-switch-when="gallery">галлерея</span>
+                                             <span ng-switch-when="desc">описание1</span>
+                                             <span ng-switch-when="desc1">описание2</span>
+                                             <span ng-switch-when="desc2">описание3</span>
+                                             <span ng-switch-when="map">карта</span>
+                                             <span ng-switch-when="video">видео</span>
+                                             <span ng-switch-when="masters">мастера</span>
+                                         </span>
+                                </div>
+                                <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input ng-change="$ctrl.saveField('stats')" ng-model="block.is" type="checkbox"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <ui-select ng-model="block.templ" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveField('stats')">
+                                        <ui-select-match placeholder="номер">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  form-group">
+                                    <a>
+                                        <i class="material-icons link-success" >assistant</i>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center  form-group">
+                                    <a ng-click="$ctrl.item.stats[3].splice($index,1);$ctrl.saveField('stats')">
+                                        <i class="material-icons link-warning" title="удалить из списка">delete</i>
+                                    </a>
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+    </div>
+</div>

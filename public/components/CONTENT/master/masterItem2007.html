@@ -1,0 +1,198 @@
+
+<div class="master-item" ng-init="$ctrl.block='mainInfo'">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff text-center action">
+            <a class="btn btn-fab"  ui-sref="frame.master">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='mainInfo'}">
+            <a ng-click="$ctrl.block='mainInfo'" title="данные мастера">
+                <i class="material-icons link-warning">description</i>
+                <p ng-if="!global.get('mobile')">данные мастера</p>
+            </a>
+        </div>
+
+        <div class="tab-nav text-center" ng-class="{'active':$ctrl.block=='mainInfo'}">
+            <div class="togglebutton pull-right ">
+                <label for="workplace">
+                    <span ng-class="{'active':!$ctrl.item.workplace}">человек</span>
+                    <input type="checkbox"
+                           id="workplace"
+                           ng-model="$ctrl.item.workplace"
+                           ng-change="$ctrl.saveField('workplace',$ctrl.item.workplace)">
+                    <span ng-class="{'active':$ctrl.item.workplace}">рабочее место</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='comments'}">
+            <a ng-click="$ctrl.block='comments'" title="отзывы">
+                <i class="material-icons link-warning">comments</i>
+                <p ng-if="!global.get('mobile')">отзывы</p>
+            </a>
+        </div>
+        <div class="tab-nav-stuff add-block pull-right" ng-if="$ctrl.block=='mainInfo'">
+            <ui-select ng-model="$ctrl.newBlock" skip-focusser="true" search-enabled="false" ng-change="$ctrl.addBlock($ctrl.newBlock)">
+                <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForMasterPage|filter:$ctrl.filterBlocks">{{ opt.value }}</ui-select-choices>
+            </ui-select>
+        </div>
+        <div ng-hide="$ctrl.addMode" ng-if="$ctrl.block=='comments'" class="tab-nav-stuff action text-center pull-right">
+            <a class="btn btn-fab btn-success" title="добавить отзыв" ng-click="$ctrl.toggleAdd()" href="javascript:;">
+                <i class="material-icons" style="color: #fff">add</i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-show="$ctrl.block=='mainInfo'">
+            <div class="cart-detail">
+                <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+                    <ui-select ng-model="$ctrl.newBlock" skip-focusser="true" search-enabled="false" ng-change="$ctrl.addBlock($ctrl.newBlock)">
+                        <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                        <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocksForMasterPage|filter:$ctrl.filterBlocks">{{ opt.value }}</ui-select-choices>
+                    </ui-select>
+                </div>-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div ng-repeat="block in $ctrl.item.blocks">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 bl1px">
+                            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.deleteBlock(block,$index)">
+                                <i class="material-icons link-warning">delete</i>
+                            </a>
+                            <input type="number" class="form-control" ng-model="block.index" ng-blur="$ctrl.saveField('blocks.'+block.i+'.index',block.index)">
+                        </div>
+                        <div  class="col-lg-11 col-md-11 col-sm-11 col-xs-11" directive="{{block.type}}"></div>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-show="$ctrl.block=='comments'">
+
+            <form name="addReview" ng-show="$ctrl.addMode" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 cart-detail">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="form-group label-floating">
+                        <label for="name" class="control-label">имя</label>
+                        <input type="text" class="form-control" id="name" ng-model="$ctrl.newReview.name" required />
+                    </div>
+                    <div class="form-group label-floating">
+                        <label for="address" class="control-label">отзыв</label>
+                        <textarea class="form-control" id="address" ng-model="$ctrl.newReview.desc" required></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <a type="submit" ng-click="$ctrl.addReview('true')" ng-disabled="!addReview.$valid" class="btn btn-fab">
+                        <i class="material-icons link-success">add</i>
+                    </a>
+                    <a type="button" ng-click="$ctrl.toggleAdd()" class="btn btn-fab ">
+                        <i class="material-icons link-warning">block</i>
+                    </a>
+                </div>
+
+            </form>
+            <div class="col-md-12 cart-detail">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th>Имя</th>
+                            <th>дата</th>
+                            <th>отзыв</th>
+                            <th>edit/delete</th>
+                        </tr>
+                        <tr ng-repeat="item in $ctrl.item.reviews">
+                            <td>
+                                <p ng-hide="item.editMode">{{ item.name }}</p>
+                                <input class="form-control"  ng-show="item.editMode" type="text" ng-model="item.name" />
+                            </td>
+                            <td>
+                                <span ng-bind="$ctrl.moment(item.date).format('LL')"></span>
+                            </td>
+                            <td>
+                                <p ng-hide="item.editMode">{{ item.desc }}</p>
+                                <input class="form-control"  ng-show="item.editMode" type="text" ng-model="item.desc" />
+                            </td>
+                            <td>
+                                <p ng-hide="item.editMode">
+                                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.toggleEdit(item)" href="javascript:; ">
+                                        <i class="material-icons link-success" title="редактировать">create</i>
+                                    </a> |
+                                    <a class="btn btn-fab btn-fab-mini"  ng-confirm-click="Are you sure?" ng-click="$ctrl.deleteReview($index)" href="javascript:;">
+                                        <i class="material-icons link-warning" title="удалить">delete</i>
+                                    </a>
+                                </p>
+                                <p ng-show="item.editMode">
+                                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveReview(item)" href="javascript:;">
+                                        <i class="material-icons link-success">save</i>
+                                    </a> |
+                                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.toggleEdit(item)" href="javascript:;">
+                                        <i class="material-icons link-warning">block</i>
+                                    </a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <!--****************************************************************-->
+    <!--<div class="content-tab-box col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-show="$ctrl.block=='gallery'">
+                <div class="cart-detail gallery-photo">
+                    <h3 class="text-center">фотографии(дипломы сертификаты)</h3>
+                    <div class="galleryWrapper">
+                        <div class="galleryTable">
+                            <div class="galleryRow">
+                                <ul class="gallery-item-ul">
+                                    <li  class="gallery-item">
+                                        <span class="helper"></span>
+                                        <load-image
+                                                no-load="noLoad"
+                                                no-change="noChange"
+                                                upload-url="/api/collections/Master/fileUpload"
+                                                item-id="{{$ctrl.item._id}}"
+                                                item-resourse="$ctrl.Items"
+                                                file-src="fileSrc"
+                                                name-img="imgs"
+                                                gallery="$ctrl.item.imgs">
+                                        </load-image>
+                                    </li>
+                                </ul>
+                                <ul dnd-list="$ctrl.item.imgs"
+                                    dnd-horizontal-list="true" class="gallery-item-ul">
+                                    <li ng-repeat="image in $ctrl.item.imgs" class="gallery-item"
+                                        dnd-draggable="image"
+                                        dnd-effect-allowed="move"
+                                        dnd-dragend="$ctrl.movedSlide()"
+                                        dnd-moved="$ctrl.item.imgs.splice($index, 1)">
+                                        <span class="helper"></span>
+                                        <img  ng-src="{{image.img}}">
+                                        <h4 ng-bind="image.name"></h4>
+                                        <p ng-bind="image.desc"></p>
+                                        <a class="btn  btn-fab delete" ng-click="$ctrl.deleteSlide(image,$index)">
+                                            <i class="material-icons link-danger">delete</i>
+                                        </a>
+                                        <a class="btn  btn-fab edit" ng-click="$ctrl.editSlide(image,$index)">
+                                            <i class="material-icons link-success">edit</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>-->
+
+
+
+
+
+
+</div>

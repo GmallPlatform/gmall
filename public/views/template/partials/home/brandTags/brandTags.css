@@ -1,0 +1,72 @@
+/*fashion mobile*/
+.home-brandTags .container {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    background-color:  #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.home-section:hover .box-overlay {
+    opacity: 0.4;
+}
+.home-brandTags .home-section {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.home-brandTags  .half-shadow {
+    position: absolute;
+    width: 100%;
+    z-index: 1029;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+}
+.home-brandTags  .half-shadow{
+    height: 32%;
+}
+.home-brandTags  .title-block {
+    display: none;
+    bottom: 15px;
+}
+.home-brandTags a:hover .half-shadow {
+    display: block;
+}
+.home-brandTags a:hover .title-block  {
+    display: block;
+    color:$color;
+    text-shadow: none;
+}
+
+@media (max-width: 1200px){
+      .home-brandTags .half-shadow,
+      .home-brandTags .title-block{
+        display: block;
+        text-shadow: 0 0 2px #000;
+    }
+      .home-brandTags .banner-header {
+        font-size: 32px;
+    }
+}
+.mobile-wrapper .home-brandTags .half-shadow,
+.mobile-wrapper .home-brandTags .title-block{
+    display: block;
+    text-shadow: 0 0 2px #000;
+}
+.mobile-wrapper .home-brandTags .banner-header {
+    font-size: 40px;
+}

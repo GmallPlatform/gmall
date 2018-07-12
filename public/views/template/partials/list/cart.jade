@@ -1,0 +1,27 @@
+div(class="news-box",id='item-'+item._id,ng-hide2="$ctrl.hideCart && $ctrl.$stateParams.id && $ctrl.$stateParams.id=='"+item.url+"'&&"+$index+">0")
+    if(dj[key].img)
+        div(style="height:300px;width:400px")
+            img(src=photoHost + '/' + dj[key].img)
+    div(class="col-lg-5 col-md-12 col-sm-12 col-xs-12 left-inner "+item.pullRight)
+        a(href=item.link)
+            if(item.imgs && item.imgs.length)
+                .page-slides
+                    div(gmall-slider-page=(item.url) ? item.url : '/home')
+                        div(class="substrate")
+                            img(class="img-responsive",src=item.imgs[0].img)
+                        - for (var i = 0; i < item.imgs.length; ++i)
+                            div(id=item.wrapclass + item.i + 'page' + i,class="mytoggle-page")
+                                img(class="img-responsive",src=item.imgs[i].img)
+            if(item.img)
+                img(style="width:100%", src=item.img)
+            if(item.video)
+                div
+                    | !{item.video}
+    div(class="right-inner col-lg-7 col-md-12 col-sm-12 col-xs-12 "+item.pullLeft)
+        a(href=item.link)
+            h2=item.name
+        if(item.desc)
+            p=item.desc
+        //if(item.date)
+            h4=moment(item.date).format('LL')
+    div(class="clearfix")

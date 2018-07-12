@@ -1,0 +1,131 @@
+/*cliniq fachion and mobile*/
+.home-news {
+    background-color: $background-color;
+}
+
+.home-news .home-news-content {
+    padding: 20px;
+    background-color: $background-color;
+    color:$color;
+}
+.home-news .home-news-content iframe {
+    width: 100%;
+}
+ .home-news .home-news-content h3 {
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 26px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+ .home-news .home-news-content p{
+    margin-bottom: 20px;
+}
+ .home-news  .all-news {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+}
+/* .home-news .container{
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}*/
+ .home-news .news-home-img {
+    padding-left: 0;
+
+}
+.home-news .news-home-img img {
+    width: 100%;
+}
+.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+}
+.mytoggle-page {
+    width: 100%;
+}
+ .home-news .news-home-desc {
+    padding-right: 0;
+}
+.home-news .home-news-content {
+    text-align: center;
+}
+.home-news .home-news-content .news-desc {
+    padding: 0px 20px 10px 20px;
+}
+
+@media (max-width: 1194px) {
+     .home-news-content p {
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 1150px) {
+     .home-news-content .news-desc {
+        padding-bottom: 10px;
+    }
+}
+.mobile-wrapper .news-home-desk {
+    padding-right: 0;
+    padding-left: 0;
+    text-align: justify;
+}
+.mobile-wrapper .news-home-img {
+    padding-right: 0;
+}
+.mobile-wrapper .news-home-img iframe{
+    width: 100% !important;
+ }
+.mobile-wrapper .home-news-content .news-desc {
+    padding: 0px;
+}
+.mobile-wrapper  .home-news-content h1{
+    font-size: 22px;
+}
+.mobile-wrapper   .home-news-content p {
+        margin-bottom: 20px;
+}
+.mobile-wrapper  .home-news-content .btn {
+        font-size: 16px;
+}
+.mobile-wrapper .all-news {
+    bottom: 10px;
+    right: 20px;
+}
+
+
+.page-slides {
+    position: relative;
+}
+.page-slides  .substrate{
+    position: relative;
+    /*opacity: 0.1;*/
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+
+.mytoggle-page {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity: 0;
+}
+
+
+
+
+
+
+
+

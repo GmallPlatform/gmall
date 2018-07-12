@@ -1,0 +1,20 @@
+.background-logo {
+    background-color: $background-color;
+    color:$color;
+}
+.mobile-wrapper  h2 {
+    padding-top: 40px;
+}
+.mobile-wrapper p{
+    font-size: 16px;
+}
+.mobile-wrapper .text-box {
+    width: 100%;
+    padding-left: 30px;
+
+    margin-left: 0;
+}
+/*
+hr {
+    margin-top: -23px;
+}*/

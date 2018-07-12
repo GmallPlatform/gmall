@@ -1,0 +1,17 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="name")
+            h1(set-animate=dj[key].animate,data-animation=dj[key].animate,itemprop="name")
+                span(class="goods-name",ng-bind="$ctrl.item.name")
+                br
+                //span(ng-bind="$ctrl.item.artikul")
+                p(ng-if="$ctrl.item.brand",class="brand-stuff-detail")
+                    a(class="pull-left",ui-sref="stuffs({'groupUrl':$ctrl.item.groupUrl,'categoryUrl':'category','brand':$ctrl.item.brandUrl,brandTag:null,queryTag:null,serachStr:null})")
+                        span(ng-bind="$ctrl.item.brandName")
+                    span(class="pull-right",ng-if="$ctrl.item.brandTagName")
+                        span(ng-bind="$ctrl.global.get('lang').val.collection")
+                        | &nbsp;
+                        a(ui-sref="stuffs({'groupUrl':$ctrl.item.groupUrl,'categoryUrl':'category','brand':$ctrl.item.brandUrl,'brandTag':$ctrl.item.brandTagUrl,queryTag:null,serachStr:null})")
+                            span(ng-bind="$ctrl.item.brandTagName")
+                    span(class="clearfix")
+                hr

@@ -1,0 +1,110 @@
+/*autofan*/
+img {
+    width: 100%;
+    transition: all 0.5s ease-out 0s;
+}
+
+.img-box {
+    overflow: hidden;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    /*background-color: #000;*/
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.home-news:hover .box-overlay {
+    opacity: 0.8;
+}
+
+@media (max-width: 1194px) {
+    .home-news-content p {
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 1150px) {
+    .home-news-content .news-desc {
+        padding-bottom: 10px;
+    }
+}
+.tablet-wrapper .img-box,
+.tablet-wrapper .img-news{
+    height: 40vh;
+}
+.tablet-wrapper .img-news {
+    object-fit: cover;
+}
+.tablet-wrapper .news-home-desk {
+    top: 10%;
+}
+.mobile-wrapper .img-box,
+.mobile-wrapper .img-news{
+    height: 80vh;
+}
+.mobile-wrapper .img-news {
+    object-fit: cover;
+}
+.mobile-wrapper .news-home-desk {
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: justify;
+}
+.mobile-wrapper .news-home-img {
+    padding-right: 0;
+}
+.mobile-wrapper .news-home-img iframe{
+    width: 100% !important;
+}
+.mobile-wrapper .home-news-content .news-desc {
+    padding: 0px;
+}
+.mobile-wrapper  .home-news-content h1{
+    font-size: 22px;
+}
+.mobile-wrapper   .home-news-content p {
+    margin-bottom: 20px;
+}
+.mobile-wrapper  .home-news-content .btn {
+    font-size: 16px;
+}
+.mobile-wrapper .all-news {
+    bottom: 10px;
+    right: 20px;
+}
+
+
+.page-slides {
+    position: relative;
+}
+.page-slides  .substrate{
+    position: relative;
+    /*opacity: 0.1;*/
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+.mytoggle-page {
+    width: 100%;
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 100%;
+    z-index: 2;
+    opacity: 0;
+}

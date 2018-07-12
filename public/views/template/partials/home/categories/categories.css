@@ -1,0 +1,52 @@
+/*indian*/
+  .home-categories .home-section  {
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+  .home-categories .home-section.full img{
+    opacity: 1;
+}
+  .home-categories .home-section img{
+    opacity: 0.9;
+    width: 100%;
+    border: 5px solid #fff;
+    transition: opacity 0.5s ease-out 0s;
+}
+
+  .home-categories .home-section a:hover img {
+    opacity: 1;
+}
+  .home-categories .home-section-header {
+    background-color: rgba(255, 255, 255, 0.58);
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    padding: 15px;
+    color: #3a230d;
+    width: 350px;
+    text-align: center;
+
+}
+  .home-categories .home-section-header h3 {
+    margin-left: 10px;
+    font-size: 30px;
+    color: #3a230d;
+    letter-spacing: 1px;
+    font-family: agavantgardecy;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 0;
+}
+
+  .home-categories{
+    margin-bottom: 20px;
+}
+  .home-categories .categories-name{
+    margin-top: 0;
+    text-align: center;
+    text-transform: lowercase;
+    font-weight: bold;
+}
+
+

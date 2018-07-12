@@ -1,0 +1,14 @@
+<div class="set-icon select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выбор иконки для {{$ctrl.icon}}</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <a class="pull-left icon-box" ng-repeat="icon in $ctrl.icons track by $index" ng-click="$ctrl.done(icon)">
+            <img src="/img/icon/{{$ctrl.icon}}/{{icon}}"><br>
+            <span ng-bind="icon"></span>
+        </a>
+        <div class="clearfix"></div>
+    </div>
+
+</div>

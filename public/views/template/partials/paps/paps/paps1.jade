@@ -1,0 +1,7 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="thank col-lg-12 col-sm12 col-xs-12",ng-if="$ctrl.item")
+            h1(ng-bind="$ctrl.item.name")
+            img(class="img-responsive",ng-src="{{$ctrl.item.img}}")
+            p(ng-bind-html="$ctrl.item.desc|unsafe")
+

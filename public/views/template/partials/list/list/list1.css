@@ -1,0 +1,108 @@
+/*smart*/
+.thumbnail,
+.list-item {
+    position: relative;
+    padding-bottom: 20px;
+}
+.news-stuff-img {
+
+}
+.news-stuff-desk{
+    position: absolute;
+    /*background-color: rgba(255, 255, 255, 0.53);
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    height: 50%;*/
+    z-index: 3;
+   /* padding: 20px;*/
+}
+
+.page-slides  .substrate{
+    position: relative;
+    -webkit-transition: opacity 1.5s  ease-in-out 0.5s;
+    -moz-transition: opacity 1.5s  ease-in-out 0.5s;
+    -ms-transition: opacity 1.5s  ease-in-out 0.5s;
+    -o-transition: opacity 1.5s  ease-in-out 0.5s;
+    transition: opacity  1.5s ease-in-out 0.5s;
+}
+
+.mytoggle-page {
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: 2;
+    opacity: 0;
+}
+.news-stuff-img iframe{
+    width: 100% !important;
+    height: 300px;
+}
+.thumbnail-master {
+    padding-left: 0;
+    padding-right: 0;
+}
+.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.thumbnail-master:hover .box-overlay {
+    opacity: 0.5;
+}
+.thumbnail-master img {
+    width: 100%;
+}
+/*.master-name {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 180px;
+}*/
+.see {
+    display: inline-block;
+    color: #fff;
+}
+.icon-see-img {
+    width: 50px;
+    transition: all 0.4s ease-in-out 0.1s;
+}
+.thumbnail-master:hover .icon-see-img {
+    transform: rotate(180deg);
+}
+.mobile-wrapper .stuff-list-wrapper .news-stuff-img {
+    margin-bottom: 40px;
+    padding-right: 0;
+    padding-left: 0;
+}
+.tablet-wrapper .stuff-list-wrapper .news-stuff-img {
+    margin-bottom: 40px;
+}
+.mobile-wrapper .stuff-list-wrapper .td-list {
+    padding-right: 0;
+    padding-left: 0;
+}
+.mobile-wrapper .news-stuff-desk {
+    width: 100%;
+    bottom: 35px;
+    padding: 5px 10px;
+}
+.mobile-wrapper .news-stuff-desk h2 {
+    font-size: 18px;
+}
+.social-block li{
+    float: left;
+    list-style: none;
+}

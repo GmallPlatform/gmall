@@ -1,0 +1,196 @@
+@if $className=="banner-content" {
+  @media  (max-width: 1500px) and (min-width: 1301px) {
+    .banner-content {
+      @if $top {
+        top: $top*0.9;
+      }
+      @if $bottom {
+        bottom: $bottom*0.9;
+      }
+      @if $right {
+        right: $right*0.9;
+      }
+      @if $left {
+        left: $left*0.9;
+      }
+      @if ($font-size) {
+        font-size: $font-size*0.8;
+        /*@if $font-size>45px {
+          font-size: $font-size*0.9;
+        }
+        @if $font-size<45px {
+          font-size: $font-size*0.8;
+        }*/
+      }
+    }
+  }
+  @media  (max-width: 1300px) and (min-width: 1151px) {
+    .banner-content {
+      @if $top {
+        top: $top*0.8;
+      }
+      @if $bottom {
+        bottom: $bottom*0.8;
+      }
+      @if $right {
+        right: $right*0.8;
+      }
+      @if $left {
+        left: $left*0.8;
+      }
+      @if ($font-size) {
+        font-size: $font-size*0.8;
+        /*@if $font-size>45px {
+          font-size: $font-size*0.8;
+        }
+        @if $font-size<45px {
+          font-size: $font-size*0.7;
+        }*/
+      }
+    }
+
+  }
+  @media  (max-width: 1150px) and (min-width: 1025px) {
+    .banner-content {
+      @if $top {
+        top: $top*0.7;
+      }
+      @if $bottom {
+        bottom: $bottom*0.7;
+      }
+      @if $right {
+        right: $right*0.7;
+      }
+      @if $left {
+        left: $left*0.7;
+      }
+      @if ($font-size) {
+        font-size: $font-size*0.7;
+        /*@if $font-size>45px {
+          font-size: $font-size*0.7;
+        }
+        @if $font-size<45px {
+          font-size: $font-size*0.6;
+        }*/
+      }
+    }
+
+  }
+  /*@media  (max-width: 992px) {
+    .banner-content {
+      @if $top {
+        top: $top*0.6;
+      }
+      @if $bottom {
+        bottom: $bottom*0.6;
+      }
+      @if $right {
+        right: $right*0.6;
+      }
+      @if $left {
+        left: $left*0.6;
+      }
+      @if ($font-size) {
+        font-size: $font-size*0.6;
+
+      }
+    }
+
+  }*/
+  /*.tablet-wrapper {
+    .banner-content {
+      @if $top {
+        top: $top*0.6;
+      }
+      @if $bottom {
+        bottom: $bottom*0.6;
+      }
+      @if $right {
+        right: $right*0.6;
+      }
+      @if $left {
+        left: $left*0.6;
+      }
+      @if ($font-size) {
+        font-size: $font-size*0.6;
+      }
+    }
+  }
+  .mobile-wrapper {
+    .banner-content {
+      @if $top {
+        top: $top*0.5;
+      }
+      @if $bottom {
+        bottom: $bottom*0.5;
+      }
+      @if $left {
+        left: $left*0.5;
+      }
+      @if $right {
+        right: $right*0.5;
+      }
+      @if $font-size {
+        font-size: $font-size*0.5;
+      }
+
+      @if $padding-left {
+        padding-left: $padding-left*0.5;
+      }
+      @if $padding-right {
+        padding-right: $padding-right*0.5;
+      }
+      @else {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      @if $padding-top {
+        padding-top: $padding-top*0.5;
+      }
+      @if $padding-bottom {
+        padding-bottom: $padding-bottom*0.5;
+      }
+      @else {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      @if $margin-top {
+        margin-top: $margin-top*0.5;
+      }
+      @if $margin-bottom {
+        margin-bottom: $margin-bottom*0.5;
+      }
+    }
+  }*/
+}
+/*@if $className=="banner-content-box" {
+  .mobile-wrapper {
+      .banner-content-box {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+  }
+}*/
+/*
+@if $className=="banner-desc" {
+  .tablet-wrapper {
+    .banner-desc{
+      @if $font-size {
+        font-size: $font-size*0.7;
+      }
+    }
+  }
+  .mobile-wrapper {
+    .banner-desc{
+      @if $font-size {
+        font-size: $font-size*0.5;
+      }
+      @else {
+        font-size: 14px;
+      }
+    }
+
+  }
+}*/

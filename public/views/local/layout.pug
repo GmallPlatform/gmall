@@ -1,0 +1,85 @@
+doctype html
+html(ng-app="gmall",prefix="og: http://ogp.me/ns#")
+  head
+
+    //link(rel="publisher",href="https://plus.google.com/u/0/106574592575126022578/posts")
+    
+    meta(charset='utf8')
+    base(href='/')
+    title(ng-bind="global.get('titles').val.title")=titles.title
+    meta(name="keywords",content=titles.keywords)
+    meta(name="description",content=titles.description)
+    meta(property="og:type",content="website")
+    meta(property="og:title",content=titles.title)
+    meta(property="og:site_name",content=titles.domain)
+    meta(property="og:url", content=titles.canonical)
+    meta(property="og:description",content=titles.description)
+    //meta(property="fb:app_id",content="[1511240965819743]")
+    meta(property="og:image",content=titles.image)
+
+    meta(name="author",content=titles.author)
+    meta(name="fragment",content="!")
+    meta(name="viewport",id="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+
+    link(rel="canonical",href=titles.canonical)
+    link(rel="author",   href=titles.author)
+    link(type='image/x-icon',rel = 'shortcut icon',href=photoHost+"/"+store.favicon)
+    //link(rel="stylesheet", href="devstyles.min.css")
+
+
+    //link(rel="stylesheet", href="allstyles.min.css")
+
+    if(true)
+      link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.css")
+      //link(rel="stylesheet", href="bower_components/bootstrap-4.0.0/dist/css/bootstrap.css")
+      link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css" media="screen")
+      //link(rel='stylesheet', href="assets/angular-social/angular-social.css")
+      link(rel="stylesheet",href="assets/owl2/owl.carousel.min.css")
+      link(rel="stylesheet",href="assets/owl2/owl.theme.default.min.css")
+      link(rel='stylesheet', href='styles/animate.css')
+      link(rel='stylesheet', href='bower_components/intro.js/minified/introjs.min.css')
+      link(rel="stylesheet", href="bower_components/AngularJS-Toaster/toaster.min.css" )
+      link(rel='stylesheet', href='assets/ui-select-master/dist/select.css')
+      link(rel='stylesheet', href='assets/ui-select-master/dist/selectize.default.css')
+      link(rel="stylesheet", href="assets/google-places/google-places.css")
+      link(rel="stylesheet", href="bower_components/angularjs-slider/dist/rzslider.css")
+      link(rel="stylesheet", href="assets/nivoslider/nivo-slider.css")
+
+      //link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css")
+      //link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css")
+      //link(rel="stylesheet",href="https://cdn.rawgit.com/angular-ui/ui-select/master/dist/select.min.css")
+
+    //link(rel='stylesheet', href='assets/elastislide/css/elastislide.css')
+    //link(rel="stylesheet", href="bower_components/angular-moment-picker/dist/angular-moment-picker.min.css")
+    style(type="text/css")
+      | !{CSS}
+
+    //link(rel='stylesheet', href='components.min.css')
+    if(true)
+      link(rel='stylesheet', href='views/template/css/style.css')
+      //link(rel='stylesheet', href='views/template/partials/stuffDetail/modal/css/zoom.css')
+      //link(rel='stylesheet', href='views/template/css/chat-slide.css')
+      //link(rel='stylesheet', href='components/TEMPLATE/dateTimeEntry/dateTimeEntry.css')
+      //link(rel='stylesheet', href='views/template/partials/campaign/campaign.css')
+
+    //link(rel='stylesheet', href='assets/swiper/swiper.min.css')
+    //script(src='https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit')
+
+
+
+    if(store.yandex && !crawler)
+      meta(name="yandex-verification",content=store.yandex)
+    if(store.pinterest && !crawler)
+      meta(name="p:domain_verify" content=store.pinterest)
+    style.
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+
+    if(!local && !crawler)
+      each counter in store.counters
+        script.
+          #{counter.code}
+
+  body(id="body",ng-class="{'body-background':global.get('store').val.backgroundImgUse&&(!global.get('store').val.backgroundImgUseHome || (global.get('store').val.backgroundImgUseHome && $state.current.name=='home') )}")
+    block content

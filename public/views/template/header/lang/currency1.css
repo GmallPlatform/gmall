@@ -1,0 +1,42 @@
+/*indian*/
+.currency-box {
+    padding: 20px 20px 20px 0;
+}
+.currency-box .currency {
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 0px;
+}
+.currency-box a {
+    padding: 20px 20px 20px 0;
+    color: #333;
+    font-size: 18px;
+}
+.currency-box a:hover {
+    color: rgb(239, 105, 4);
+}
+.currency-box ul {
+    padding: 20px 20px 0px 40px;
+}
+.currency-box ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+.currency-box ul a{
+    font-size: 16px;
+}
+.currency-box .dropdown-menu .currency {
+    margin-top: 0px;
+}
+.currency-box ul.dropdown-menu li a .currency {
+    display: block;
+    width: 20px;
+    float: left;
+    margin-right: 5px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+}
+.currency-box .dropdown-menu {
+    margin-top: 0;
+}

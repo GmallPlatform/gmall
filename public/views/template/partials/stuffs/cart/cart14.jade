@@ -1,0 +1,58 @@
+div(class="stuffs")
+    div(id="list"+stuff._id,class="goods-container-img")
+        if(mobile || tablet)
+            div(class="title-block text-center")
+                h3(class="stuff-name")
+                    span(class="name")=stuff.name
+
+                    div(class="text-center action-box")
+                        if(!stuff.service)
+                            if(stuff.sortsOfStuff && stuff.sortsOfStuff.filter)
+                                div(class="sort-box",ng-if="stuff.sort")
+                                    span(class="sort",ng-show="sort.quantity", ng-repeat="sort in stuff.stockKeysArray",ng-class="{'sort-active':stuff.sort==sort._id}")
+                                        span(class="sort-name",ng-click="stuff.changeSortOfStuff(sort._id)",ng-show="sort.quantity",ng-bind="sort.name")
+        a(href=stuff.link)
+            div(class="stuff-box")
+                div(class="img-box")
+                    img(class="img-responsive img-goods",src=stuff.img||stuff.gallery[0].img,alt=stuff.name+' '+((stuff.artikul)?stuff.artikul:'')+' '+((stuff.brand && stuff.brand.name)?stuff.brand.name:''))
+                    div(class="box-overlay")
+                    div(class="half-shadow")
+                        - var desc=stuff.desc.clearTag().substring(0,450);
+                        div
+                            span
+                                | !{desc}
+                            span ...
+                        div(class="see")
+                            span(class="icon-see-img")
+                            p(class="see-master",ng-bind="$ctrl.global.get('lang').val.more")
+                        div(class="btn-box",ng-if="stuff.sort")
+                            if(stuff.orderType == '1')
+                                div
+                                    a(class="btn  btn-project", ng-click="stuff.order()", ng-bind="$ctrl.global.get('lang').val.toOrder")
+                            else if(stuff.orderType == '2')
+                                div
+                                    a(class="btn  btn-project", ng-click="$ctrl.global.get('functions').val.witget('dateTime',{stuff:stuff})",ng-bind="$ctrl.global.get('lang').val.enroll")
+                            else if(stuff.orderType == '3')
+                                div
+                                    a(class="btn  btn-project",ui-sref="stuffs.stuff(stuff.linkData)",ng-bind="$ctrl.global.get('lang').val.more")
+                            else if(stuff.orderType == '4')
+                                div
+                                    a(class="btn  btn-project",ng-click="stuff.getBonus()",ng-bind="$ctrl.global.get('store').val.bonusButtonText")
+                            else
+                                span(ng-show="stuff.checkInCart()")
+                                    a(class="btn  btn-project",ng-bind="$ctrl.global.get('lang').val.inCart",disabled="disabled")
+                                span(ng-hide="stuff.checkInCart()")
+                                    a( class="btn  btn-project",ng-click="stuff.addItemToOrder()",ng-bind="$ctrl.global.get('lang').val.addToCart")
+
+        if(!mobile && !tablet)
+            div(class="title-block text-center")
+                h3(class="stuff-name")
+                    span(class="name")=stuff.name
+                    div(class="text-center action-box")
+                        if(!stuff.service)
+                            if(stuff.sortsOfStuff && stuff.sortsOfStuff.filter)
+                                div(class="sort-box",ng-if="stuff.sort")
+                                    span(class="sort",ng-show="sort.quantity", ng-repeat="sort in stuff.stockKeysArray",ng-class="{'sort-active':stuff.sort==sort._id}")
+                                        span(class="sort-name",ng-click="stuff.changeSortOfStuff(sort._id)",ng-show="sort.quantity",ng-bind="sort.name")
+
+

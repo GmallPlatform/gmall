@@ -1,0 +1,172 @@
+/* -----------------------------------------------------------------------------
+  main container(добавить #mainContent в контент для сдвига при открытии меню)
+
+----------------------------------------------------------------------------- */
+.pl150{
+    padding-left: 160px;
+    padding-right: 160px;
+}
+.pl300{
+    padding-left: 320px;
+    padding-right: 0;
+}
+#mainContent{
+    -webkit-transition: padding-right 0.4s,padding-left 0.4s;;
+    -moz-transition: padding-right 0.4s,padding-left 0.4s;
+    transition: padding-right 0.4s,padding-left 0.4s;
+}
+
+/* -----------------------------------------------------------------------------
+  SLIDE AND PUSH MENUS COMPONENT
+
+----------------------------------------------------------------------------- */
+/**
+ * Menu overview.
+ * Menu overview.
+ */
+.c-menu {
+    position: fixed;
+    z-index: 200;
+    background-color: #eee;
+    padding-left: 20px;
+    padding-top: 90px;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+    border-right: 1px solid #ccc;
+}
+/*.menu-section-vertical {
+    width: 100%;
+    height: 100%;
+}*/
+.c-menu--push-left {
+    width: 400px;
+    height: 100%;
+    overflow-y: scroll;
+}
+@media (max-width: 380px) {/*all and*/
+    /*.c-menu--push-left {
+        width: 320px;
+    }
+    .pageslide {
+        width: 320px !important;
+    }*/
+
+}
+
+.c-menu--push-left .c-menu__item:first-child {
+    border-top: none;
+}
+
+.c-menu--push-left .c-menu__item:last-child {
+    border-bottom: none;
+}
+.c-menu a {
+    color: #93b1c6;
+}
+.c-menu a:hover {
+    text-decoration: none;
+    color: #666;
+
+    /*text-shadow: 0 0 2px #666;*/
+}
+.c-menu a:focus {
+    /*font-size: 18px;*/
+    text-decoration: none;
+    color: #666;
+}
+/*** Slide/Push Menu Left***/
+.c-menu--push-left {
+    top: 0;
+    left: 0;
+    /*padding-top: 50px;*/
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+@media (max-width: 380px) {/* all and*/
+    .c-menu--push-left {
+        -webkit-transform: translateX(-320px);
+        -ms-transform: translateX(-320px);
+        transform: translateX(-320px);
+    }
+}
+
+.c-menu--push-left.is-active {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+}
+
+
+/*** Catalog in slide menu***/
+
+.c-menu .section{
+    min-height: 35px;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-right:7px;
+    font-weight: 500;
+    clear: left;
+    text-transform: uppercase;
+
+}
+.c-menu .sectionChilds {
+    padding-left: 10px;
+    margin-left: 5px;
+    /*border-left: solid 1px black;*/
+}
+.c-menu .section-name,
+.c-menu .subsection-name{
+    color:#ff7148;
+    letter-spacing: 2px;
+    /*transform: translate3d(0px, 0px, 0px)*/
+}
+/*.c-menu a span.subsection-name:hover {
+    -moz-transform: rotate(15deg);  *//*Для Firefox*//*
+    -ms-transform: rotate(15deg);  *//*Для IE*//*
+    -webkit-transform: rotate(15deg);  *//*Для Safari, Chrome, iOS*//*
+    -o-transform: rotate(15deg);  *//*Для Opera*//*
+    transform: rotate(15deg) !important;matrix3d(1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 10, 0, 1)
+}*/
+.c-menu .section-name:hover,
+.c-menu .subsection-name:hover {
+    color: #666;
+}
+/* transform: matrix3d(1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 10, 0, 1)*/
+
+.c-menu .section .category{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    clear: left;
+    color: #93b1c6;
+    text-transform: lowercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.c-menu .subsectionList {
+
+}
+.c-menu .subsectionList .subsection{
+    min-height: 35px;
+    margin-top: 10px;
+    font-weight: 500;
+    clear: left;
+}
+
+.c-menu .subsectionList .categoriesList {
+    margin-left: 20px;
+    /*border-left: solid 1px black;*/
+}
+
+.c-menu .subsectionList .category{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    clear: left;
+    color: #93b1c6;
+    text-transform: lowercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}

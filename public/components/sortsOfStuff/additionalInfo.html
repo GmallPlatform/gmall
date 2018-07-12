@@ -1,0 +1,68 @@
+<div class="add-info">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" >таблица дополнительных параметров</h3>
+        <a class="cancel" type="button" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="row" ng-repeat="item in $ctrl.items">
+            <a ng-click="$ctrl.item=item">
+                <span ng-bind="item.name"></span>
+            </a>
+            <a ng-click="$ctrl.deleteTable(item)">
+                <span >delete</span>
+            </a>
+        </div>
+        <div class="table-box">
+            <table >
+                <caption>
+                    <div class="form-group label-floating col-lg-12">
+                        <label class="control-label">наименование таблицы</label>
+                        <input class="form-control" ng-model="$ctrl.item.name"/>
+                    </div>
+                </caption>
+                <!--<thead>
+                <th colspan="2">
+
+
+                </th>
+                </thead>-->
+                <thead>
+                <th></th>
+                <th ng-repeat="tag in $ctrl.filter.tags"><span ng-bind="tag.name"></span></th>
+                <th></th>
+                </thead>
+                <tr ng-repeat="row in $ctrl.item.headerTable[$ctrl.lang] track by $index">
+                    <td>
+                        <input class="form-control parameter" placeholder="параметр" ng-model="$ctrl.item.headerTable[$ctrl.lang][$index]"/>
+                    </td>
+                    <td ng-repeat="tag in $ctrl.filter.tags track by $index">
+                        <input class="form-control text-center"ng-model="$ctrl.item.table[tag._id][$ctrl.lang][$parent.$index]">
+                        <!--<span class="help-block link-success">значение</span>-->
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <a class="link-success add-goods"  ng-if="$index==$ctrl.item.headerTable[$ctrl.lang].length-1" ng-click="$ctrl.addRow()" title="добавить строку">
+                                <i class="material-icons link-success">add_box</i>
+                            </a>
+                            <a class="add-goods" ng-click="$ctrl.deleteRow($index)" ng-if="$index!=$ctrl.item.headerTable[$ctrl.lang].length-1">
+                                <i class="material-icons link-warning">delete</i>
+                            </a>
+
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-raised btn-block" ng-click="$ctrl.saveTable()">
+                <span>сохранить</span>
+            </button>
+        </div>
+        <!--<a class="btn btn-success pull-right" type="button" ng-click="$ctrl.saveTable()">Сохранить</a>-->
+        <div class="clearfix"></div>
+    </div>
+    <!--<div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</button>
+    </div>-->
+</div>

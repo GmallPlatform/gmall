@@ -1,0 +1,199 @@
+<style>
+    .store-list-catalog {
+        margin-top: 80px;
+    }
+    .store-list-catalog .form-check-input {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+    }
+    .store-list-catalog .form-check-inline {
+        margin-right: 20px;
+    }
+    .action-btn {
+        background-color: #eee;
+        border-top: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        height: 50px;
+        margin-left: -20px;
+        margin-right:-20px;
+        cursor: pointer;
+        padding-top: 10px;
+    }
+    .store-list-catalog .cart-detail {
+        padding-bottom: 0;
+    }
+    .store-list-catalog .cancel-stat {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: url(../../img/icon/clear.png);
+        background-size: 15px;
+        z-index: 1000;
+        margin-left: 10px;
+    }
+    .store-list-catalog h4{
+        border-bottom: 1px dotted #ccc;
+    }
+    .store-list-catalog h4 span{
+        color: #72ad66;
+    }
+    .step {
+        min-height: 100px;
+    }
+    /*.action-btn:hover {
+        background-color: #e9e9e9;
+    }*/
+</style>
+<div  class="store-list-catalog">
+    <div class="store-list-container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat="item in $ctrl.items|filter:{actived:true}" ng-init="exist=false;existD=false">
+            <div class="cart-detail">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                    <div class="form-group label-floating ">
+                        <label for="name" class="control-label">название каталога</label>
+                        <input type="text" id="name" class="form-control"
+                               ng-model="item.name"
+                               disabled/>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                        <div class="form-group label-floating ">
+                            <label for="link" class="control-label">ссылка на каталог</label>
+                            <p id="link" ng-bind="item.link"></p>
+                        </div>
+
+                        <div class="form-group label-static">
+                            <label for="file{{item.url}}" class="control-label">файл каталога</label>
+                            <input file-read-src="item.fileSrc" my-file="item.file" type="file" name="file{{item.url}}" id="file{{item.url}}"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="step">
+                        <h4><span>ШАГ 1</span> - выбрать метод синхронизации каталога</h4>
+                        <div class="togglebutton text-center">
+                            <label for="service">
+                                <span ng-class="{'active':!item.service}">автоматическая</span>
+                                <input type="checkbox"
+                                       id="service"
+                                       ng-model="item.service"
+                                       ng-change="saveField(item,'service')">
+                                <span ng-class="{'active':item.service}">в ручном режиме</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span>ШАГ 2</span> - установить периодичность синхронизации каталога</h4>
+                        <ui-select ng-model="item.unitOfMeasure"
+                                   ng-change="saveField(item,'unitOfMeasure')"
+                                   on-select="onSelected($item)"
+                                   append-to-body="true"
+                                   search-enabled="false">
+                            <ui-select-match allow-clear="true" placeholder="один раз в сутки">
+                                <span ng-bind="$select.selected"></span>
+                            </ui-select-match>
+                            <ui-select-null-choice>один раз в сутки</ui-select-null-choice>
+                            <ui-select-choices repeat="opt in unitOfMeasure">
+                                <span ng-bind="opt"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="step">
+                        <h4><span>ШАГ 3</span> - привязать к внутреннему каталогу</h4>
+                        <div class="form-group">
+                            <a ng-click="$ctrl.setGroup(item)">установить раздел</a>
+                            <span ng-bind="item.group.name"></span>
+                            <span ng-click="$ctrl.clearField(item,'group')"class="cancel-stat" title="удалить привязку к разделу"></span><br>
+                            <small>если раздел не установлен,для загрузки каталога будет использован первый по списку</small>
+                        </div>
+
+                        <div class="form-group">
+                            <a ng-click="$ctrl.setBrand(item)">установить бренд</a>
+                            <span ng-bind="item.brand.name">
+
+                            </span><span ng-click="$ctrl.clearField(item,'brand')"class="cancel-stat" title="удалить привязку к бренду"></span><br>
+                            <small>все товары будут связаны с выбранным брендом</small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="step">
+                        <h4><span>ШАГ 4</span> - установить параметры синхронизации каталога</h4>
+                        <p>при загрузке каталога обновлять для существующих товаров/услуг</p>
+                        <div ng-init="item.price=true;item.qty=true">
+                            <div class="checkbox">
+                                <label class="form-check-inline">
+                                    <input class="form-check-input"
+                                           type="checkbox" ng-model="item.price">
+                                    <span>цена</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-inline">
+                                    <input class="form-check-input"
+                                           type="checkbox" ng-model="item.qty">
+                                    <span>количество (наличие)</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-inline">
+                                    <input class="form-check-input"
+                                           type="checkbox" ng-model="item.name">
+                                    <span>наименование</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-inline">
+                                    <input class="form-check-input"
+                                           type="checkbox" ng-model="item.artikul">
+                                    <span>артикул</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-inline">
+                                    <input class="form-check-input"
+                                           type="checkbox" ng-model="item.desc">
+                                    <span>описание</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-inline">
+                                    <input class="form-check-input"
+                                           type="checkbox" ng-model="item.tags">
+                                    <span>характеристики</span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div ng-if="$ctrl.item.state.value">
+                    <span>состояние </span><span ng-bind="$ctrl.item.state.value"></span>
+                </div>
+                <div class="action-btn text-center">
+                    <a class="link-success" ng-click="$ctrl.downloadCatalog(item)">проверить и загрузить</a>
+                </div>
+
+                <div class="form-group text-center">
+                    <a class="link-warning" ng-click="$ctrl.viewLogFile()">посмотреть после загрузки LOG FILE</a>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="clearfix"></div>
+<div ui-view></div>
+
+

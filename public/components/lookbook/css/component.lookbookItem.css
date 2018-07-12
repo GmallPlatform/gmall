@@ -1,0 +1,79 @@
+.tab-nav-stuff .date {
+    margin-top: 0;
+}
+.lookbook-item .content-tab-nav .checkbox,
+.lookbook-item .content-tab-nav .data-picker,
+.lookbook-item .content-tab-nav .btn-success {
+    margin-bottom: 0;
+}
+
+.lookbook-item .content-tab-box {
+    margin-top: 130px;
+    margin-bottom: 40px;
+}
+/*.lookbook-item  .name-page{
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.lookbook-item .gallery-item {
+    position: relative;
+
+}
+.lookbook-item .gallery-item p,
+.lookbook-item .gallery-item h4{
+    color: #666;
+}*/
+.lookbook-item .gallery-photo .edit {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.lookbook-item .gallery-photo .delete {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+/*.news-item .add-goods {
+    color: #ff7148;
+    cursor: pointer;
+}
+.news-item .add-goods:hover {
+    color: #ff996b;
+    text-decoration: none;
+
+}*/
+
+
+.news-item  .form-group.label-static label.control-label,
+.news-item  .form-group.label-floating.is-focused label.control-label,
+.news-item  .form-group.label-floating:not(.is-empty) label.control-label {
+    font-size: 14px;
+    color: #9c6a8d;
+}
+.news-item .checkbox label,
+.news-item .form-group .checkbox label{
+    color: #93b1c6;
+}
+.news-item .radio input[type=radio]:checked ~ .check {
+    background-color: #93b1c6;
+}
+.news-item .form-group.is-focused label,
+.news-item .form-group.is-focused label.control-label{
+    color: #6d7f8f;
+}
+
+.news-item .checkbox input[type=checkbox]:checked + .checkbox-material .check,
+.news-item .checkbox input[type=checkbox]:checked + .checkbox-material .check:before{
+    color: #93b1c6;
+    border-color: #93b1c6;
+}
+
+.news-item .galleryTable .galleryRow .gallery-item-ul> li {
+    background-color: #e8e8e8;
+    border: 10px solid #f5f5f5;
+    color: #fff;
+    text-align: center;
+}
+

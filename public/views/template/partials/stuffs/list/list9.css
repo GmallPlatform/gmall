@@ -1,0 +1,136 @@
+/*clinic*/
+.stuff-list-wrapper table {
+    width: 100%;
+}
+.stuff-list-wrapper table td {
+    vertical-align: top;
+}
+.stuffs {
+    padding-left: 0;
+    padding-right: 0;
+}
+.stuff-box {
+    position: relative;
+}
+.stuff-box  .img-goods {
+    width: 100%;
+}
+.stuff-box .sticker {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.service-desc {
+    padding: 0 20px;
+    min-height: 200px;
+}
+.goods-desc {
+    padding: 0 20px;
+    min-height: 200px;
+}
+.goods-desc .price {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.goods-desc .sale {
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: $mainColor;
+}
+.line {
+    text-decoration: line-through;
+}
+.price-box {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.see p{
+    color: #fff;
+}
+.see:hover {
+    color: rgba(58, 35, 13, 0.52);
+}
+.icon-see-img {
+    transition: all  0.4s ease-in-out 0.1s
+}
+.stuff-box:hover .icon-see-img {
+    transform: rotate(180deg);
+}
+/*тень при наведении*/
+.box-overlay {
+    background: none repeat scroll 0 0 #000;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+div.stuff-box:hover .box-overlay{
+    opacity: 0.5;
+}
+.half-shadow img{
+    width: 50px;
+    transition: all  0.4s ease-in-out 0.1s;
+}
+.half-shadow .see {
+    opacity: 0.5;
+    z-index: 1025;
+    text-align: center;
+}
+div.stuff-box:hover .half-shadow .see {
+    opacity: 1;
+}
+div.stuff-box:hover .half-shadow .see img{
+    transform: rotate(180deg);
+}
+div.half-shadow{
+    position: absolute;
+    width: 100%;
+    z-index: 1027;
+    bottom: 30%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+}
+div.half-shadow {
+    height: 15%;
+}
+div.half-shadow-stuff {
+    height: 32%;
+}
+.half-shadow-stuff p {
+    margin-bottom: 0;
+    line-height: 22px;
+}
+div.half-shadow-stuff.mobil {
+    background-color: rgba(255, 255, 255, 0.45);
+    position: relative;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+div.title-block {
+    bottom: 15px;
+}
+div.title-block a {
+    letter-spacing: 1px;
+    color: $color;
+}
+div.title-block a:hover {
+    color: #fff;
+    text-shadow: none;
+}
+.mobile-wrapper  .box-overlay ,
+.tablet-wrapper  .box-overlay {
+    display: none;
+}
+.title-block a:hover {
+    color: $color;
+    text-shadow: 0 0 1px #000;
+    text-shadow: none;
+}

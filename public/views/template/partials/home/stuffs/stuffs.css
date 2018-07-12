@@ -1,0 +1,39 @@
+/*smart*/
+.home-stuffs .container {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.home-stuffs img {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.home-stuffs .btn-box {
+    margin-bottom: 30px;
+}
+.carousel-box {
+    position: relative;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.nav-left, .nav-right {
+    position: absolute;
+    z-index: 20;
+    top: 20%;
+    cursor: pointer;
+}
+.nav-left {
+    left: 5px;
+}
+.nav-right{
+     right: 5px;
+ }
+@media (max-width: 380px) {
+    .icon-prev-img,
+    .icon-next-img {
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+    }
+}

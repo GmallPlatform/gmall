@@ -1,0 +1,24 @@
+<div class="create-lookbook">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">создание обложки</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group label-floating ">
+                <label for="name" class="control-label">название</label>
+                <input type="text" id="name" class="form-control"
+                       ng-model="$ctrl.name"/>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-raised btn-block"  ng-click="$ctrl.ok()">
+            <span>создать</span>
+        </button>
+    </div>
+    <div class="clearfix"></div>
+</div>

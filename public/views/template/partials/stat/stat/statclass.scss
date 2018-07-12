@@ -1,0 +1,48 @@
+@if $className=="container" {
+  .tablet-wrapper  {
+    .container {
+      @if $width==65% {
+        width: 75%;
+      }
+      @if $width<65% {
+        width: 100%;
+      }
+      @if $width>65% {
+        width: 100%;
+      }
+    }
+
+  }
+  .mobile-wrapper {
+    .container {
+      @if $width==65% {
+        width: 80%;
+      }
+      @if $width<65% {
+        width: 100%;
+      }
+      @if $width>65% {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/*@if $className=="home-section" {
+  .tablet-wrapper {
+    .home-section {
+      width: 100%;
+      !*margin-bottom: 20px;*!
+     !* @if $padding-top{
+        padding-top: $padding-top*0.5;
+      }*!
+    }
+  }
+  .mobile-wrapper {
+    .home-section {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+  }
+}*/

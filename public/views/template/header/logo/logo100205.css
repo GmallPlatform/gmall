@@ -1,0 +1,36 @@
+/*dance zefir*/
+.logo-top img {
+    width: $width;
+    transition: all  0.4s ease-in-out 0.1s;
+}
+img.img-logoInv {
+    margin: 0 auto;
+    width: $width;
+    transition: all  1s ease-in-out 0.5s;
+    display: none;
+}
+
+.mobile-wrapper .logo-top,
+.tablet-wrapper .logo-top {
+    text-align: center;
+}
+.mobile-wrapper .logo-top img,
+.tablet-wrapper .logo-top img {
+    width: $width*0.7;
+    /*display: inline-block;*/
+    margin-top: 5px;
+}
+
+/*@media (max-width: 960px) {
+    .logo-top img {
+        width: 130px;
+        margin-top: 7px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-top img {
+        width: 120px;
+        margin-top: 10px;
+    }
+}*/

@@ -1,0 +1,132 @@
+<div ng-hide="$ctrl.$state.current.name!='frame.lookbook'" class="lookbook-list" >
+    <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <p class="no_story">
+            по вашему запросу нет записей
+        </p>
+    </div>
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff form-group text-center">
+            <a class="btn btn-fab btn-fab-mini btn-success"
+               ng-click="$ctrl.createItem()"
+               title="создать обложку для lookbook">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+        <div class="tab-nav-stuff">
+            <form ng-submit="$ctrl.searchItem(searchStr)">
+                <input type="text"  class="search-fluid"  ng-model="searchStr"/>
+                <input type="submit" class="enter" tabindex="-1" />
+            </form>
+        </div>
+        <div class="tab-nav-stuff text-center">
+            <paginator-main
+                    paginate="$ctrl.paginate"
+                    getlist="$ctrl.getList()"
+                    scroll="{{scrollId}}">
+            </paginator-main>
+        </div>
+        <!--<form ng-submit="$ctrl.searchItem(searchStr)">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-right">
+                <div class="search  form-group label-floating">
+                    <label class="control-label">поиск lookbook</label>
+                    <input type="text"  class="form-control" ng-model="searchStr"/>
+                </div>
+            </div>
+            <input type="submit" class="enter" tabindex="-1"  />
+        </form>-->
+        <div class="clearfix"></div>
+    </div>
+    <div  class="lookbook-list-box">
+        <h3 class="name-page text-center">список lookbook</h3>
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat-start="item in $ctrl.items">
+            <div class="stuff-admin"  ng-class="{'mobil':global.get('mobile').val}">
+                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="thumbnail">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <a class="btn btn-fab edit" ui-sref="frame.lookbook.item({id:item.url})">
+                                <i class="material-icons link-success">edit</i>
+                            </a>
+                            <a class="btn btn-fab delete" ng-click="$ctrl.deleteItem(item)">
+                                <i class="material-icons link-warning">delete</i>
+                            </a>
+                        </div>
+
+                        <div class="text-center col-lg-6 col-md-6 col-sm-6 col-xs-12 check-box" ng-class="{'checkbox':true}">
+                            <label>
+                                <input  type="checkbox" ng-model="item.actived"  ng-change="$ctrl.saveField(item,'actived')">
+                                <span ng-if="!item.actived">опубликовать</span>
+                                <span ng-if="item.actived">опубликовано</span>
+                            </label>
+                        </div>
+                        <img class="img-responsive" ng-src="{{item.imgs[0].img||'/img/upload/no.png'}}" />
+
+                    </div>
+                </div>-->
+                <div class="half-shadow-stuff col-lg-12 col-md-12 col-sm-12 col-xs-12 " ng-class="{'mobil':global.get('mobile')}">
+                    <div class="title-block-stuff text-center" ng-class="{'mobil':global.get('mobile')}">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class=" form-group label-floating">
+                                <label for="name1" class="control-label">название</label>
+                                <input type="text" id="name1" class="form-control name"
+                                       ng-model="item.name"
+                                       ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                                       required
+                                       lost-focus="$ctrl.saveField(item,'name')"/>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class=" col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">дата создания</label>
+                                <input date-range-picker class="form-control date-picker"
+                                       type="text" ng-model="item.date" id="{{$index}}"
+                                       options="$ctrl.datePickerOptions" ng-blur="$ctrl.saveField(item,'date',200)"/>
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+                            <div class="form-group pull-left text-center">
+                                <div class="togglebutton">
+                                    <label for="actived{{$index}}-gg">
+                                        <span ng-class="{'active':!item.actived}">не опубликовано</span>
+
+                                        <input type="checkbox"
+                                               id="actived{{$index}}-gg"
+                                               ng-model="item.actived"
+                                               ng-change="$ctrl.saveField(item,'actived')">
+                                        <span ng-class="{'active':item.actived}">опубликовано</span>
+                                        <br>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!--<div class="pull-left form-group"  ng-class="{'checkbox':true}">
+                                <label>
+                                    <input  type="checkbox" ng-model="item.actived"  ng-change="$ctrl.saveField(item,'actived')">
+                                    <span ng-if="!item.actived">опубликовать</span>
+                                    <span ng-if="item.actived">опубликовано</span>
+                                </label>
+                            </div>-->
+                            <a class="btn btn-fab btn-fab-mini  edit pull-right" ng-click="$ctrl.deleteItem(item)">
+                                <i class="material-icons link-warning">delete</i>
+                            </a>
+                            <a class="btn btn-fab btn-fab-mini edit pull-right" ui-sref="frame.lookbook.item({id:item.url})">
+                                <i class="material-icons link-success">edit</i>
+                            </a>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix" ng-if="$index%2!=0" ng-repeat-end></div>
+        <a href="#" class="back-to-top">
+            <i class="fa fa-angle-double-up fa-3x" ></i>
+        </a>
+    </div>
+</div>
+<div ui-view></div>
+
+

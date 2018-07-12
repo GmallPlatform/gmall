@@ -1,0 +1,241 @@
+
+/*cliniq*/
+.home-slides .container{
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+.home-slides h1 {
+    text-align: center;
+}
+
+@media (max-width: 380px){
+    .home-slides .home-section-header {
+        width: 250px;
+        font-size: 14px;
+        padding: 5px;
+    }
+    .home-slides .home-section-header h3 {
+        font-size: 20px;
+    }
+}
+.mobile-wrapper .home-slides .home-section-header {
+    right: 10px;
+    left: 10px;
+    width: auto;
+}
+.mobile-wrapper .home-slides .home-section-header h3 {
+    font-size: 24px;
+}
+.mobile-wrapper .home-slides .home-section-header p {
+    font-size: 18px;
+    font-weight: normal;
+}
+.home-slides .home-section  {
+    background-color: #fff;
+}
+.home-slides .home-section.full img{
+    opacity: 1;
+}
+.home-slides .home-section img{
+    opacity: 0.9;
+    width: 100%;
+    border: 5px solid #fff;
+    transition: opacity 0.5s ease-out 0s;
+}
+
+.home-slides .home-section a:hover img {
+    opacity: 1;
+
+}
+.home-slides .home-section-header {
+    background-color: rgba(255, 255, 255, 0.58);
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    padding: 15px;
+    color: #3a230d;
+    width: 350px;
+    text-align: center;
+
+}
+.home-slides .home-section-header h3 {
+    margin-left: 10px;
+    font-size: 30px;
+    color: #3a230d;
+    letter-spacing: 1px;
+    font-family: agavantgardecy;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 0;
+}
+
+
+/*ideal*/
+
+.home1-slides {
+    height: 900px;
+    position: relative;
+}
+/*.home1-slides .slider-fade .mytoggle  img {
+    min-height: 340px;
+    min-width: 610px;
+}
+@media (max-width: 1560px) {
+    .home1-slides  {
+        height: 850px;
+    }
+}
+@media (max-width: 1450px) {
+    .home1-slides  {
+        height: 700px;
+    }
+}
+@media (max-width: 1260px) {
+    .home1-slides  {
+        height: 650px;
+    }
+}
+@media (max-width: 1160px) {
+    .home1-slides  {
+        height: 600px;
+    }
+}
+@media (max-width: 1060px) {
+    .home1-slides  {
+        height: 550px;
+    }
+}
+@media (max-width: 980px) {
+    .home1-slides  {
+        height: 500px;
+    }
+}
+@media (max-width: 910px) {
+    .home1-slides  {
+        height: 460px;
+    }
+}
+@media (max-width: 830px) {
+    .home1-slides  {
+        height: 420px;
+    }
+}
+@media (max-width: 750px) {
+    .home1-slides  {
+        height: 400px;
+    }
+}
+@media (max-width: 700px) {
+    .home1-slides  {
+        height: 350px;
+    }
+}
+*/
+
+.home1-slides .navright-carousel {
+    display: table-cell;
+    height: 100%;
+    position: absolute;
+    right: 20px;
+    top: 46%;
+}
+
+.home1-slides .navright-carousel img {
+    width: 32px;
+    height: 32px;
+    z-index: 5000;
+}
+
+.home1-slides .navleft-carousel {
+    display: table-cell;
+    height: 100%;
+    position: absolute;
+    left: 20px;
+    top: 46%;
+}
+
+.home1-slides .navleft-carousel img {
+    width: 32px;
+    height: 32px;
+    z-index: 5000;
+}
+.home1-slides h1 {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 100px;
+    font-family: rosa;
+    color: #fff;
+    /*-moz-transform: rotate(-20deg);
+    -webkit-transform: rotate(-20deg);
+    -o-transform: rotate(-20deg);
+    -ms-transform: rotate(-20deg); *//**//* для IE9 *//**//*
+    transform: rotate(-20deg); *//**//* на будущее *//**/
+}
+
+
+/*fashion*/
+.home1-slides1 {
+    height: 950px;
+    position: relative;
+}
+@media (max-width: 1560px) {
+    .home1-slides1  {
+        height: 700px;
+    }
+}
+
+.home1-slides1 .navright-carousel,
+.home1-slides1 .navright-carousel img,
+.home1-slides1 .navleft-carousel,
+.home1-slides1 .navleft-carousel img
+{
+    display: none;
+}
+.home1-slides .mytoggle,
+.home1-slides1 .mytoggle{
+    -webkit-transition: all 1.5s  ease-in-out 0.5s;
+    -moz-transition: all 1.5s  ease-in-out 0.5s;
+    -ms-transition: all 1.5s  ease-in-out 0.5s;
+    -o-transition: all 1.5s  ease-in-out 0.5s;
+    transition: all  1.5s ease-in-out 0.5s;
+    position: absolute;
+    max-width: 100%;
+}
+.home1-slides1 .mytoggle.ng-enter,
+.home1-slides .mytoggle.ng-enter {
+    opacity: 0;
+}
+.home1-slides .mytoggle.ng-enter-active,
+.home1-slides1 .mytoggle.ng-enter-active {
+    opacity: 1;
+}
+.home1-slides .mytoggle.ng-leave,
+.home1-slides1 .mytoggle.ng-leave {
+    opacity: 1;
+}
+.home1-slides .mytoggle.ng-leave-active,
+.home1-slides1 .mytoggle.ng-leave-active {
+    opacity: 0;
+}
+.home1-slides .mytoggle.ng-hide-add,
+.home1-slides1 .mytoggle.ng-hide-add {
+
+    opacity: 1;
+    display: block !important;
+}
+.home1-slides .mytoggle.ng-hide-add.ng-hide-add-active,
+.home1-slides1 .mytoggle.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+.home1-slides .mytoggle.ng-hide-remove,
+.home1-slides1 .mytoggle.ng-hide-remove {
+    opacity: 0;
+    display: block !important;
+}
+.home1-slides .mytoggle.ng-hide-remove.ng-hide-remove-active,
+.home1-slides1 .mytoggle.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}

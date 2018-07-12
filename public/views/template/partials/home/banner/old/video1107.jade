@@ -1,0 +1,21 @@
+if(i && i==1)
+    - var id='arrowDownDiv'
+    arrow-down
+//- var id=(i && i==1)?'arrow-down':'';
+div(id=id,ng-class="::{'home-video':!homeCtrl.template.video.class,'home-video1':homeCtrl.template.video.class==1, 'home-video2':homeCtrl.template.video.class==2, 'home-video3':homeCtrl.template.video.class==3, 'home-video4':homeCtrl.template.video.class==4, 'home-video5':homeCtrl.template.video.class==5,}",ng-if="homeCtrl.data.videoSrc",class="half-section-video",back-stretch="{{homeCtrl.data.videoSrc}}")
+    div(class="text-center")
+        div(class="video-box")
+            video(poster="{{homeCtrl.data.videoCover}}", loop,autoplay,style="width: 100%",audio-mute="{{homeCtrl.data.video.audio}}")
+                source(ng-src="{{homeCtrl.data.videoSrc | trustUrl}}",type="video/webm")
+        div(class="video-content text-center", ng-if="homeCtrl.data.video.button")
+            h1(class="video-header")
+                span(ng-bind="homeCtrl.data.video.desc")
+            span(ng-switch="homeCtrl.data.video.link")
+                span(ng-switch-when="subscription")
+                    a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-video",ng-click="global.get('functions').val.witget('subscription')",ng-bind="homeCtrl.data.video.text")
+                span(ng-switch-when="call")
+                    a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-video",ng-click="global.get('functions').val.witget('call')",ng-bind="homeCtrl.data.video.text")
+                span(ng-switch-when="dateTime")
+                    a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-video",ng-click="global.get('functions').val.witget('dateTime')",ng-bind="homeCtrl.data.video.text")
+                span(ng-switch-default="")
+                    a(set-animate,data-animation="animated8",data-animation-delay="02",class="btn btn-project btn-video",href="{{homeCtrl.data.video.link}}",ng-bind="homeCtrl.data.video.text")

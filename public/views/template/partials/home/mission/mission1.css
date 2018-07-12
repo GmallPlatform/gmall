@@ -1,0 +1,30 @@
+/*ideal*/
+  .home-mission  .mission {
+    padding:  70px;
+}
+  .home-mission  .mission p {
+    font-size: 18px;
+}
+  .home-mission .mission h1{
+    font-family: ahellya;
+    font-size: 46px;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+.mobile-wrapper   .home-mission  .background-logo  {
+        height: auto;
+    }
+.mobile-wrapper   .home-mission  .background-logo  .btn {
+        font-size: 16px;
+    }
+.mobile-wrapper    .home-mission .mission {
+        padding: 20px;
+        font-size: 30px;
+    }
+.mobile-wrapper   .home-mission .mission p {
+        font-size: 16px;
+    }
+
+
+

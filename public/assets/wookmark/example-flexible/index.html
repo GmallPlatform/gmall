@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Wookmark Flexible Example</title>
+  <meta name="description" content="Creating a flexible grid with the Wookmark plug-in.">
+  <meta name="author" content="Christoph Ono, Sebastian Helzle">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="../bower_components/normalize.css/normalize.css">
+
+  <!-- Global CSS for the page and tiles -->
+  <link rel="stylesheet" href="../css/main.css">
+
+  <!-- Specific CSS for the example -->
+  <style>
+    /**
+     * Grid items
+     */
+    .tiles-wrap li {
+      -moz-box-sizing: border-box;
+           box-sizing: border-box;
+    }
+
+    .tiles-wrap li img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div>
+    <header>
+      <h1>Wookmark Flexible Example</h1>
+      <p>
+        Flexible: columns resize to fill the container without exceeding a maximum width.
+        Currently you cannot use this mode with CSS position transitions.
+      </p>
+      <br>
+      <p><a href="../index.html">Back to overview</a></p>
+    </header>
+
+    <div role="main">
+      <ul id="container" class="tiles-wrap">
+        <!-- These are our grid blocks -->
+        <li><img src="../sample-images/image_1.jpg"><p>1</p></li>
+        <li><img src="../sample-images/image_2.jpg"><p>2</p></li>
+        <li><img src="../sample-images/image_3.jpg"><p>3</p></li>
+        <li><img src="../sample-images/image_4.jpg"><p>4</p></li>
+        <li><img src="../sample-images/image_5.jpg"><p>5</p></li>
+        <li><img src="../sample-images/image_6.jpg"><p>6</p></li>
+        <li><img src="../sample-images/image_7.jpg"><p>7</p></li>
+        <li><img src="../sample-images/image_8.jpg"><p>8</p></li>
+        <li><img src="../sample-images/image_9.jpg"><p>9</p></li>
+        <li><img src="../sample-images/image_10.jpg"><p>10</p></li>
+        <li><img src="../sample-images/image_1.jpg"><p>11</p></li>
+        <li><img src="../sample-images/image_2.jpg"><p>12</p></li>
+        <li><img src="../sample-images/image_3.jpg"><p>13</p></li>
+        <li><img src="../sample-images/image_4.jpg"><p>14</p></li>
+        <li><img src="../sample-images/image_5.jpg"><p>15</p></li>
+        <li><img src="../sample-images/image_6.jpg"><p>16</p></li>
+        <li><img src="../sample-images/image_7.jpg"><p>17</p></li>
+        <li><img src="../sample-images/image_8.jpg"><p>18</p></li>
+        <li><img src="../sample-images/image_9.jpg"><p>19</p></li>
+        <li><img src="../sample-images/image_10.jpg"><p>20</p></li>
+        <li><img src="../sample-images/image_1.jpg"><p>21</p></li>
+        <li><img src="../sample-images/image_2.jpg"><p>22</p></li>
+        <li><img src="../sample-images/image_3.jpg"><p>23</p></li>
+        <li><img src="../sample-images/image_4.jpg"><p>24</p></li>
+        <li><img src="../sample-images/image_5.jpg"><p>25</p></li>
+        <li><img src="../sample-images/image_6.jpg"><p>26</p></li>
+        <li><img src="../sample-images/image_7.jpg"><p>27</p></li>
+        <li><img src="../sample-images/image_8.jpg"><p>28</p></li>
+        <li><img src="../sample-images/image_9.jpg"><p>29</p></li>
+        <li><img src="../sample-images/image_10.jpg"><p>30</p></li>
+        <!-- End of grid blocks -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- Include the imagesLoaded plug-in -->
+  <script src="../bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
+
+  <!-- Include the plug-in -->
+  <script src="../wookmark.js"></script>
+
+  <!-- Once the page is loaded, initalize the plug-in. -->
+  <script type="text/javascript">
+    (function() {
+      function getWindowWidth() {
+        return Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+      }
+
+      // Instantiate wookmark after all images have been loaded
+      var wookmark;
+      imagesLoaded('#container', function() {
+        wookmark = new Wookmark('#container', {
+          itemWidth: 300, // Optional min width of a grid item
+          outerOffset: 20, // Optional the distance from grid to parent
+          flexibleWidth: function () {
+            // Return a maximum width depending on the viewport
+            return getWindowWidth() < 1024 ? '100%' : '50%';
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="goods-record",style="position: relative")
+            a
+                img(src="views/template/img/assets/call.jpg")
+            div(class="goods-record-desc text-center",set-animate=dj[key].animate,data-animation=dj[key].animate)
+                h3(class="goods-record-name")
+                    span бесплатная консультация
+                    br
+                    span по телефону
+                a(class="btn btn-project", ng-click="$ctrl.global.get('functions').val.witget('call')")
+                        | записаться

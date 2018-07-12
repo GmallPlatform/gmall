@@ -1,0 +1,31 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="slide-zoom col-lg-12 col-md-12 col-sm-12 col-xs-12",set-animate=dj[key].animate,data-animation=dj[key].animate,data-animation-repeat=dj[key].animateRepeat)
+            if(dj[key].name)
+                h3(set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].name
+            if(dj[key].arrowDownDiv)
+                arrow-down
+            div(id=dj[key].id,home-page-stuff-owl="owlslider"+dj[key]._id,zoom-img='true',data-items='2')
+                div(class="nav-left")
+                    i(class="icon-prev-img")
+                div(class="owl-carousel owl-theme",id="owlslider" +dj[key]._id)
+                    if(dj[key].imgs && dj[key].imgs.length)
+                        - for (var i = 0; i < dj[key].imgs.length; i++)
+                            if(dj[key].imgs[i].actived)
+                                div()
+                                    a()
+                                        span(class="zoom-plus")
+                                            span(class="icon-zoom-img")
+                                            span(class="icon-zoom-inverse")
+                                        img(class="img-responsive",src=photoHost + '/' + dj[key].imgs[i].img,alt=dj[key].imgs[i].alt)
+                                        div(class="half-shadow")
+                                            div(class="title-block")
+                                                h1=dj[key].imgs[i].name
+                                                p=dj[key].imgs[i].desc
+                div(class="clearfix")
+                div(class="nav-right")
+                    i(class="icon-next-img")
+            if(dj[key].desc)
+                div(class="desc-slider")
+                    | !{dj[key].desc}
+        div(class="clearfix")

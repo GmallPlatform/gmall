@@ -1,0 +1,45 @@
+<nav id="c-menu--push-left" class="c-menu c-menu--push-left">
+    <div ng-repeat="section in sections" class="section" ng-if="section.child || section.categories.length">
+        <a ui-sref="frame.stuffs({groupUrl:section.url,categoryUrl:'category'})">
+            <span class="section-name" ng-bind="section.name"></span>
+        </a>
+        <!--<a ng-click="section.open=true"><span ng-if="!section.open"class="pull-right">+</span></a>
+        <a ng-click="section.open=false"><span ng-if="section.open"class="pull-right">-</span></a>-->
+        <div class="sectionChilds"> <!--uib-collapse="section.open"-->
+            <div ng-if="section.child.length" class="subsectionList">
+                <div class="subsection" ng-repeat="subSection in section.child" ng-if="subSection.categories.length">
+                    <a ui-sref="frame.stuffs({groupUrl:subSection.url,categoryUrl:'category'})">
+                        <span class="subsection-name" ng-bind="subSection.name"></span>
+                    </a>
+                    <div class="categoriesList">
+                        <div class="category" ng-repeat="category in subSection.categories">
+                            <a ui-sref="frame.stuffs({groupUrl:subSection.url,categoryUrl:category.url,queryTag:null,searchStr:null,brand:null,brandTag:null,filters:null})">
+                                <span ng-bind="category.name"></span>
+                            </a>
+                        </div>
+                        <div class="category">
+                            <!--<a ui-sref="frame.stuffs({groupUrl:section.url,parentGroup:subSection.url,categoryUrl:'category',categoryList:'allCategories',queryTag:null,searchStr:null,brand:null,brandTag:null})">
+                                <span>Все категории</span>
+                            </a>-->
+                            <a ui-sref="frame.stuffs({groupUrl:subSection.url,categoryUrl:'category',queryTag:null,searchStr:null,brand:null,brandTag:null,filters:null})">
+                                <span>Все категории</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="categoriesList">
+                <div class="category" ng-repeat="category in section.categories">
+                    <a ui-sref="frame.stuffs({groupUrl:section.url,categoryUrl:category.url,queryTag:null,searchStr:null,brand:null,brandTag:null,filters:null})">
+                        <span ng-bind="category.name"></span>
+                    </a>
+                </div>
+                <div class="category">
+                    <a ui-sref="frame.stuffs({groupUrl:section.url,categoryUrl:'category',queryTag:null,searchStr:null,brand:null,brandTag:null,filters:null})">
+                        <span>Все категории</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

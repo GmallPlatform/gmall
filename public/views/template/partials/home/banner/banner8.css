@@ -1,0 +1,29 @@
+/*mission-clinic, smak, balance*/
+/*.home-banner {
+    position: relative;
+    overflow: hidden;
+    min-height: $height;
+}*/
+/*img {
+    width: 100%;
+}
+.tablet-wrapper img,
+.mobile-wrapper img {
+    object-fit: cover;
+    @if $height {
+        height: $height*1.2;
+    }
+}
+.mobile-wrapper .banner-content {
+    padding-top:0;
+    font-size: 14px;
+    padding: 0 10px;
+    top:0;
+    overflow: hidden;
+}
+.mobile-wrapper .home-banner {
+    @if $height {
+        height: $height*1.2;
+    }
+}*/
+

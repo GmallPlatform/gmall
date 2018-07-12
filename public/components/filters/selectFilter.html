@@ -1,0 +1,43 @@
+<div class="tag-to-model">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выберите группу признаков</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div>
+            <ul>
+                <li ng-repeat="filter in $ctrl.filters" style="margin-bottom: 20px">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  form-group  tag-box">
+                            <form>
+                                <div ng-click="$ctrl.ok(filter)">
+                                    <span  ng-bind="filter.name" ></span>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  form-group  tag-box">
+                            <form>
+                                <div ng-click="$ctrl.ok(null)">
+                                    <span  ng-bind="$ctrl.lang.cancelAll" ></span>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--<div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</button>
+    </div>-->
+</div>
+
+
+
+

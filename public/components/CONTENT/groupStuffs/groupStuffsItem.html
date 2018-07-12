@@ -1,0 +1,118 @@
+<style>
+    .group-stuffs-item {
+        margin-top: 120px;
+    }
+
+</style>
+<div class="">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.groupStuffs">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 group-stuffs-item">
+        <h3 class="text-center name-page">
+            редактирование данных для группы товаров
+            <span>{{$ctrl.item.name}}</span>
+        </h3>
+        <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="cart-detail sticker text-center">
+                <h4 class=" name-box">фото группы</h4>
+                <load-image
+                        upload-url="/api/collections/Photo/fileUpload?collectionName=GroupStuffs"
+                        item-id="{{$ctrl.item._id}}"
+                        item-resourse="$ctrl.Items"
+                        file-src="$ctrl.item.img"
+                        name-img="img">
+                </load-image>
+            </div>
+        </div>
+        <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="cart-detail">
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group label-floating ">
+                        <label for="name" class="control-label">наименование группы</label>
+                        <input type="text" id="name" class="form-control name"
+                               ng-model="$ctrl.item.name" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               ng-change="$ctrl.saveField('name')"/>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="togglebutton form-group">
+                        <label for="brand{{$ctrl.item._id}}">
+                            <span ng-class="{'active':!$ctrl.item.actived}">не активная</span>
+                            <input type="checkbox"
+                                   id="brand{{$ctrl.item._id}}"
+                                   ng-model="$ctrl.item.actived"
+                                   ng-change="$ctrl.saveField('actived')">
+                            <span ng-class="{'active':$ctrl.item.actived}">активная</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <h4 class="text-center name-box">описание</h4>
+                <div class="form-group editor">
+                    <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                         ng-change="$ctrl.saveField('desc',200)"
+                         ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                         ng-model="$ctrl.item.desc"
+                         ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                         ta-html-editor-class="border-around">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <h4 class="text-center name-box">категория</h4>
+                <p ng-show="$ctrl.item.category">
+                    <a>
+                        <span ng-bind="$ctrl.item.category.name" ng-click="$ctrl.changeCategory()"></span>
+                    </a>
+                    <span ng-click="$ctrl.deleteCategory()"><i class="material-icons link-warning" style="font-size: 15px">clear</i></span>
+                </p>
+                <p ng-hide="$ctrl.item.category">
+                    <a>
+                        <span class="link-success" ng-click="$ctrl.changeCategory()">связать с категорией</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="galleryWrapper">
+            <div class="galleryTable">
+                <div class="galleryRow">
+                    <ul class="gallery-item-ul">
+                        <li  class="gallery-item">
+                            <span class="helper"></span>
+                            <a class="btn btn-fab add-goods" ng-click="$ctrl.addItemInBlock()" >
+                                <i class="material-icons link-success md-36">add</i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--dnd-dragend="$ctrl.movedItem($ctrl.item,item)"   dnd-dragend="$ctrl.movedItem(item)"-->
+                    <ul dnd-list="$ctrl.item.stuffs"
+                        dnd-horizontal-list="true" class="gallery-item-ul">
+                        <li ng-repeat="item in $ctrl.item.stuffs" class="gallery-item"
+                            dnd-draggable="item"
+                            dnd-effect-allowed="move"
+                            dnd-dragend="$ctrl.movedItem(item)"
+                            dnd-moved="$ctrl.item.stuffs.splice($index,1)">
+                            <span class="helper"></span>
+                            <img  ng-src="{{item.img|| 'img/upload/no.png'}}">
+                            <a class="btn  btn-fab delete" ng-click="$ctrl.deleteItemFromBlock($index)">
+                                <i class="material-icons link-danger">delete</i>
+                            </a>
+                            <p><a ng-click="$ctrl.changeItem($index)">{{item.name}}</a></p>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>
+

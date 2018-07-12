@@ -1,0 +1,41 @@
+<div class="select-modal">
+    <div class="modal-header-project modal-header">
+        <h3 class="modal-title text-center">
+            <span class="name-modal">{{$ctrl.global.get('langForm').val.changeEmail}}</span>
+            <a class="cancel" ng-click="$ctrl.cancel()">
+                <span class="icon-cancel-img"></span>
+            </a>
+        </h3>
+    </div>
+    <div class="ship-box ">
+        <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok()">
+            <div class="modal-body">
+                <div class="form-group">
+                    <input  ng-class="{'has-error': formProfile.email.$invalid}"
+                            name="email"
+                            type="email"
+                            class="form-control"
+                            required
+                            ng-model="$ctrl.email"
+                            ng-change="$ctrl.checkEmail($ctrl.email,formProfile.email.$valid)"
+                            ng-model-options="{'updateOn':'default blur','debounce':{'default':600,'blur':0}}"
+                            simple-focus-element=""
+                            placeholder="{{$ctrl.global.get('langForm').val.enterEmail}}"/>
+
+                </div>
+                <div class="help-block text-danger"  ng-show="formProfile.email.$invalid" ng-messages="formProfile.email.$error">
+                    <span ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</span>
+                    <span ng-message="email">{{$ctrl.global.get('langError').val.formatnot}}</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button ng-disabled="$ctrl.blockButton" class="btn btn-project" type="submit">
+                        {{$ctrl.global.get('langForm').val.changeEmail}}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

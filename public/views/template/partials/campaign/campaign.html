@@ -1,0 +1,22 @@
+<section class="half-section main" ng-hide="$state.includes('campaign.detail')">
+        <div class="col-lg-12 campaign" ng-repeat="item in campaignCtrl.items"id="{{::item.url}}">
+            <a  ui-sref="campaign.detail({url:item.url})">
+                <img class="img-responsive" ng-src="{{item.img}}">
+                <div class="title-block text-center" >
+                    <h3 class="text-center"  ng-bind="item.name"></h3>
+                    <p ng-bind="item.desc.clearTag(100)"></p>
+                </div>
+                <div class="timer">
+                    <img class="img-responsive" src="views/tatiana/img/bg/2.png">
+                </div>
+            </a>
+        </div>
+        <a  ng-show="campaignCtrl.paginate.totalItems>campaignCtrl.itemsInList" class=" text-center col-lg-12 mb-40" ng-click="campaignCtrl.moreItems()">
+            <span>показать еще</span>
+        </a>
+    </div>
+</section>
+<div ui-view></div>
+
+
+

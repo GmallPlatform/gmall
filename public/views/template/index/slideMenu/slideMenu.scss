@@ -1,0 +1,66 @@
+/*menu*/
+#slideMenu.ng-pageslide {
+    background-color: $background-color;
+    z-index: 2000 !important;
+    /*border-left: 1px solid $color;
+    border-right: 1px solid $color;*/
+    box-shadow: inset 0 0 1px $color;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+}
+.ng-pageslide-wrapper{
+    overflow-y: scroll !important;
+    height: 100%;
+}
+.ng-pageslide::-webkit-scrollbar{
+    width:0;
+}
+.ng-pageslide{
+    -ms-overflow-style:none;
+}
+.ng-pageslide{
+    overflow:-moz-scrollbars-none;
+}
+/*
+body.ng-pageslide-body-open::before {
+    content: '.';
+    display: block;
+    position: fixed;
+    top: 0;
+    background-color: $background-color;
+    background-color: #999999;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1055;
+    opacity: 0.9;
+    transition: opacity 1s;
+    height: 100%;
+}
+
+body.ng-pageslide-body-closed::before {
+    transition: opacity 1s;
+    opacity: 0;
+    content: '.';
+    display: block;
+    position: fixed;
+    top: 0;
+    background-color: $background-color;
+    background-color: #999999;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1055;
+    pointer-events: none;
+    height: 100%;
+}
+*/
+
+.ng-pageslide .icon-cancelmenu-img{
+    transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+.ng-pageslide .icon-cancelmenu-img:hover {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}

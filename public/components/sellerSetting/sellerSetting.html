@@ -1,0 +1,198 @@
+<div class="panel panel-default">
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Общая информация</legend>
+
+            <div class="form-group col-lg-4">
+                <label for="name" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">наименование</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" >
+                    <input type="text" placeholder="название" id="name" class="form-control mb"
+                           ng-model="$ctrl.item.name"
+                           ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                           lost-focus="$ctrl.saveField('name')"
+                           required
+                           focus-element="$ctrl.item"/>
+                </div>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="email" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">email владельца</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="название" id="email" class="form-control mb"
+                           ng-model="$ctrl.item.user.email" disabled/>
+                </div>
+            </div>
+            <div class="form-group col-lg-2">
+                <label  class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">тип</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <span ng-if="$ctrl.item.main">основной</span>
+                    <span ng-if="!$ctrl.item.main">обычный</span>
+                </div>
+            </div>
+            <div class="form-group col-lg-2">
+                <label for="name" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">розничная наценка</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="в %" id="name" class="form-control mb"
+                           ng-model="$ctrl.item.retail" lost-focus="$ctrl.saveField('retail')"/>
+                </div>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="name" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">финальная распродажа скидка</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="в %" id="name" class="form-control mb"
+                           ng-model="$ctrl.item.sale" lost-focus="$ctrl.saveField('sale')"/>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Владелец</legend>
+            <div class="form-group">
+                <label for="admin" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">добавить</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <choice-user on-selected="listEditCtrl.seller.setUser(user)"></choice-user>
+                </div>
+
+            </div>
+
+        </fieldset>
+    </div>
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Администраторы</legend>
+            <div class="form-group">
+                <label for="admin" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">добавить</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <choice-user on-selected="listEditCtrl.seller.addAdmin(user)"></choice-user>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <ul>
+                    <li ng-repeat="admin in $ctrl.item.admins">
+                        <a ng-click="$ctrl.item.admins.splice($index,1)">login-{{admin.name}}| фио-{{admin.profile.fio}}| {{admin.email}}</a>
+                    </li>
+                </ul>
+            </div>
+
+        </fieldset>
+    </div>
+
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Основные данные</legend>
+            <div  class="form-group col-lg-4">
+                <label for="salemail" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">адрес для уведомлений о заказах</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="salemail" id="salemail" class="form-control mb" ng-model="$ctrl.item.salemail"/>
+                </div>
+            </div>
+            <div  class="form-group col-lg-4">
+                <label for=quantity class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">опт с колличества</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="количество" id="quantity" class="form-control mb" ng-model="$ctrl.item.opt.quantity"/>
+                </div>
+            </div>
+            <div  class="form-group col-lg-4">
+                <label for="sum" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">опт с суммы</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="opt sum" id="sum" class="form-control mb" ng-model="$ctrl.item.opt.sum"/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div  class="form-group col-lg-4">
+                <label for="payInfo" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">данные для оплаты</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <textarea rows="4" placeholder="payInfo" id="payInfo" class="form-control mb" ng-model="$ctrl.item.payInfo"></textarea>
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Данные для настройки сервиса отправки рассылок</legend>
+
+            <p><i>здесь кратка инфа и ссылка на сайт</i></p>
+            <div  class="form-group col-lg-4">
+                <label for="user" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">user</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="имя домена из mailgun" id="user" class="form-control mb" ng-model="$ctrl.item.mailgun.user"/>
+                </div>
+            </div>
+            <div  class="form-group col-lg-4">
+                <label for="pass" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">password</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="пароль из mailgun" id="pass" class="form-control mb" ng-model="$ctrl.item.mailgun.pass"/>
+                </div>
+            </div>
+            <div  class="form-group col-lg-4">
+                <label for="user" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">api_key</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <input type="text" placeholder="api_key из mailgun" id="api_key" class="form-control mb" ng-model="$ctrl.item.mailgun.api_key"/>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Каскадные скидки</legend>
+            <div class="form-group">
+                <a class="btn btn-default" ng-click="listEditCtrl.seller.addCascade()" ng-disabled="$ctrl.item.cascade.length>4">
+                    <span>добавить</span>
+                </a>
+                <ul>
+                    <li ng-repeat-start="cascade in $ctrl.item.cascade">
+                        от <input min="1" max="100"type="number" style="max-width: 70px" ng-model="cascade[0]"> шт скидка <input min="1" max="99"style="max-width: 70px" type="number" ng-model="cascade[1]">%
+                        <a  class="btn btn-default btn-xs" ng-click="$ctrl.item.cascade.splice($index,1)">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </a>
+
+                    </li>
+                    <div ng-repeat-end class=" clearfix"></div>
+                </ul>
+            </div>
+        </fieldset>
+
+    </div>
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Бдоки в ордере</legend>
+            <div class="form-group clearfix"  ng-repeat="(key,block) in $ctrl.item.orderBlocks">
+                <h4 ng-switch="key">
+                    <span ng-switch-when="pay">блок оплат</span>
+                    <span ng-switch-when="rulePay">блок управления ценой</span>
+                    <span ng-switch-when="ship">блок доставки</span>
+                </h4>
+                <label  class="col-lg-1 col-md-1 col-sm-1 col-xs-1 control-label">видимость</label>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <input type="checkbox" placeholder="показывать"  class="form-control mb" ng-model="block.visible"/>
+                </div>
+                <label  class="col-lg-1 col-md-1 col-sm-1 col-xs-1 control-label">порядковый номер</label>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <input type="number" min="1" max="5" placeholder="порядковый номер"  class="form-control mb" ng-model="block.ordinal"/>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<style>
+    fieldset.scheduler-border {
+        border: 1px groove #ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow:  0px 0px 0px 0px #000;
+        box-shadow:  0px 0px 0px 0px #000;
+    }
+
+    legend.scheduler-border {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width:auto;
+        padding:0 10px;
+        border-bottom:none;
+    }
+</style>

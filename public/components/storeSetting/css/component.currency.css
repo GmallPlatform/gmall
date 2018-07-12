@@ -1,0 +1,36 @@
+.currency {
+    font-size: 16px;
+    margin-top: 80px;
+}
+
+.table.table-currency>tbody>tr>td,
+.table.table-currency>tbody>tr>th,
+.table.table-currency>tfoot>tr>td,
+.table.table-currency>tfoot>tr>th,
+.table.table-currency>thead>tr>td,
+.table.table-currency>thead>tr>th {
+    vertical-align: middle;
+    padding: 10px 30px;
+}
+@media (max-width: 380px) {
+    .table.table-currency>tbody>tr>td,
+    .table.table-currency>tbody>tr>th,
+    .table.table-currency>tfoot>tr>td,
+    .table.table-currency>tfoot>tr>th,
+    .table.table-currency>thead>tr>td,
+    .table.table-currency>thead>tr>th {
+        padding: 10px;
+    }
+    .table.table-currency>tbody>tr>th,
+    .table.table-currency>tfoot>tr>th,
+    .table.table-currency>thead>tr>th {
+        font-size: 14px;
+    }
+}
+.table-currency {
+    font-size: 20px
+}
+
+.currency input {
+    width: 100%;
+}

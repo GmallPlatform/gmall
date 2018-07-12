@@ -1,0 +1,30 @@
+/*???*/
+.logo-top img {
+    width: $width;
+    transition: all  1s ease-in-out 0.5s;
+}
+.center-menu .logo-top {
+    position: relative;
+    display: inline-block;
+    right: 50%;
+    z-index: 1000000;
+}
+.center-menu .logo-top img {
+    display: inline-block;
+}
+@media (max-width: 380px) {
+    .logo-top img {
+        width: 200px;
+        margin-top: 10px;
+    }
+}
+.mobile-wrapper .logo-top,
+.tablet-wrapper .logo-top {
+    text-align: center;
+}
+.mobile-wrapper .logo-top img,
+.tablet-wrapper .logo-top img {
+    width: $width*0.7;
+    /*display: inline-block;*/
+    margin-top: 5px;
+}

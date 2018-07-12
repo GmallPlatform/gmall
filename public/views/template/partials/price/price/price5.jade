@@ -1,0 +1,87 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="stuff-list-wrapper",id="items-list-wrapper")
+            div(class="container")
+                h1=dj[key].listName
+                each section in dj[key].sections
+                    each child,$index in section.child
+                        div(class="col-lg-6 col-md-6 col-sm-12 col-xs-12 table-box")
+                            h2=child.name
+                            each category in child.categories
+                                if(category.stuffs && category.stuffs.length && !category.notActive)
+                                    a(class="details",ng-click=category.var+"=!"+category.var)
+                                        span(ng-show=category.var)
+                                            span(class="pull-left")=category.name
+                                            span(class="pull-right icon-delete-img")
+                                            div(class="clearfix")
+                                        span(ng-show="!"+category.var)
+                                            span(class="pull-left")=category.name
+                                            span(class="pull-right icon-plus-img")
+                                            div(class="clearfix")
+                                    div(class="table",uib-collapse="!" + category.var)
+                                            each item in category.stuffs
+                                                if(item.sortsOfStuff && item.sortsOfStuff.differentPrice)
+                                                    each sort,tag in item.stock
+                                                        div(class=item.class)
+                                                            div(class="table-row")
+                                                                div(class="name col-lg-6 col-md-6 col-sm-6 col-xs-12")
+                                                                    p
+                                                                        a(href=item.link)
+                                                                            span=item.name
+                                                                            if(dj[key].filterTags[tag])
+                                                                                span &nbsp
+                                                                                span=dj[key].filterTags[tag]
+
+                                                                div(class="duration col-lg-3 col-md-3 col-sm-3 col-xs-6")
+                                                                    span=item.timePart * 15
+                                                                    span &nbsp;
+                                                                    span=lang.minute
+
+
+                                                                div(class="cost col-lg-3 col-md-3 col-sm-3 col-xs-6")
+                                                                    if(sort.price)
+                                                                        span=lang.from
+                                                                        span &nbsp;
+                                                                        if(sort.price.toFixed)
+                                                                            span=sort.price.toFixed(dj[key].formatPrice)
+                                                                        else
+                                                                            span=Number(sort.price).toFixed(dj[key].formatPrice)
+                                                                        span &nbsp;
+                                                                        span=dj[key].currency
+                                                                    else
+                                                                        span=lang.individually
+                                                                div(class="clearfix")
+                                                else
+                                                    div(class=item.class)
+                                                        div(class="table-row")
+                                                            div(class="name col-lg-6 col-md-6 col-sm-6 col-xs-12")
+                                                                p
+                                                                    a(href=item.link)
+                                                                        span=item.name
+
+                                                            div(class="duration col-lg-3 col-md-3 col-sm-3 col-xs-6")
+                                                                span=item.timePart * 15
+                                                                span &nbsp;
+                                                                span=lang.minute
+
+
+                                                            div(class="cost col-lg-3 col-md-3 col-sm-3 col-xs-6")
+                                                                if(item.price)
+                                                                    span=lang.from
+                                                                    span &nbsp;
+                                                                    if(item.price)
+                                                                        span=Number(item.price).toFixed(dj[key].formatPrice)
+                                                                    else
+                                                                        span='0.00'
+                                                                    span &nbsp;
+                                                                    span=dj[key].currency
+                                                                else
+                                                                    span=lang.individually
+                                                            div(class="clearfix")
+
+                        if($index%2)
+                            .clearfix
+                if(titles.desc)
+        div(class="seo-desc col-lg-12 col-md-12 col-sm-12 col-xs-12 ")
+            |!{titles.desc}
+div(class="clearfix")

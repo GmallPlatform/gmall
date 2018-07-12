@@ -1,0 +1,29 @@
+.icon-envelope-img {
+    height: 26px;
+    width:26px;
+    background-size: 26px;
+}
+
+.subscription-form input.form-control {
+    height: 40px;
+    background-color: transparent;
+    cursor: pointer;
+    border-bottom: 1px solid $color;
+}
+
+
+.input-group-addon {
+    background-color: transparent;
+    border-radius: 0;
+    border-right: 1px solid #fff;
+    height: 50px;
+}
+input[type="text"]::-webkit-input-placeholder,
+input[type="text"]::-moz-placeholder,
+input[type="text"]:-ms-input-placeholder,
+input[type="text"]:-moz-placeholder {
+    color: $color ;
+}
+input[disabled]::-webkit-input-placeholder {
+    color: $color ;
+}

@@ -1,0 +1,46 @@
+/*underline RightLeftRight 5px*/
+.animated22 {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+}
+.animated122:before {
+  display: block;
+  position: absolute;
+  content: "";
+  height: 5px;
+  width: 0;
+  @if $mainColor {
+    background-color: $mainColor;
+  }
+  @else {
+    background-color: #000;
+  }
+  transition: width .5s ease-in-out, left .5s ease-in-out;
+  right: 0;
+  bottom: 0px;
+}
+
+.animated22:after{
+  display: block;
+  position: absolute;
+  content: "";
+  height: 5px;
+  width: 0;
+  @if $mainColor {
+    background-color: $mainColor;
+  }
+  @else {
+    background-color: #000;
+  }
+  transition: width .5s ease-in-out;
+  right: 0;
+  bottom: 0;
+}
+.animated22:hover::before{
+  width: 100%;
+  right: 0;
+}
+.animated22:hover::after{
+  width: 100%;
+}

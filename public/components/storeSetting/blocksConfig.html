@@ -1,0 +1,158 @@
+<div class="static-pages">
+    <div>
+        <div class="col-lg-12  col-md-12 col-sm-12  col-xs-12">
+            <div class="cart-detail">
+                <div class="col-lg-2  col-md-2 col-sm-2  col-xs-2">
+                    <ui-select ng-model="$ctrl.newItem.page" search-enabled="false" skip-focusser="true"
+                               ng-change="$ctrl.changePage()">
+                        <ui-select-match placeholder="Выберите страницу">
+                            <span ng-bind="$select.selected"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="page in $ctrl.pages">
+                            <span ng-bind="page"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-2  col-xs-2">
+                    <ui-select ng-model="$ctrl.newItem.block" search-enabled="false" skip-focusser="true">
+                        <ui-select-match placeholder="Выберите блок">
+                            <span ng-bind="$select.selected.name"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="page.type as page in $ctrl.blocksList">
+                            <span ng-bind="page.name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-1  col-md-1 col-sm-1  col-xs-1">
+                    <ui-select ng-model="$ctrl.newItem.templ" search-enabled="false" skip-focusser="true">
+                        <ui-select-match placeholder="Выберите шаблон">
+                            <span ng-bind="$select.selected"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="o in [0,1,2,3,4,5,6,7,8,9,10,11,112,13,14,15]">
+                            <span ng-bind="o"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-1  col-md-1 col-sm-1  col-xs-1">
+                    <ui-select ng-model="$ctrl.newItem.style" search-enabled="false" skip-focusser="true">
+                        <ui-select-match placeholder="Выберите стиль">
+                            <span ng-bind="$select.selected"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="o in [0,1,2,3,4,5,6,7,8,9,10,11,112,13,14,15]">
+                            <span ng-bind="o"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-2  col-xs-2">
+                    <div class="form-group label-floating">
+                        <label class="control-label">название шаблона</label>
+                        <input class="form-control" ng-model="$ctrl.newItem.name">
+                    </div>
+                </div>
+                <div class="col-lg-3  col-md-3 col-sm-3  col-xs-3">
+                    <div class="form-group">
+                        <label for="exampleTextarea" class="bmd-label-floating">описание</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="$ctrl.newItem.desc"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-1  col-md-1 col-sm-1  col-xs-1">
+                    <a ng-click="$ctrl.createItem()">создать</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-12  col-md-12 col-sm-12  col-xs-12">
+            <div class="row">
+                <div class="col-lg-2  col-md-2 col-sm-2  col-xs-2">
+                    <ui-select ng-model="$ctrl.page" search-enabled="false" skip-focusser="true"
+                               ng-change="$ctrl.changeSelectPage()">
+                        <ui-select-match placeholder="Выберите страницу" allow-clear="true">
+                            <span ng-bind="$select.selected"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="page in $ctrl.pages">
+                            <span ng-bind="page"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-2  col-xs-2">
+                    <ui-select ng-model="$ctrl.block" search-enabled="false" skip-focusser="true"
+                               ng-change="$ctrl.selectItems()">
+                        <ui-select-match placeholder="Выберите блок" allow-clear="true">
+                            <span ng-bind="$select.selected.name"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="page.type as page in $ctrl.blocksListForSelect">
+                            <span ng-bind="page.name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <ul class="gallery-item-ul">
+                <li ng-repeat="item in $ctrl.items" class="gallery-item">
+                    <div class="cart-detail">
+                        <div class="col-lg-2  col-md-2 col-sm-2  col-xs-2">
+                            <span ng-bind="item.page"></span>
+                        </div>
+                        <div class="col-lg-2  col-md-2 col-sm-2  col-xs-2">
+                            <span ng-bind="$ctrl.getBlockName(item)"></span>
+                        </div>
+                        <div class="col-lg-1  col-md-1 col-sm-1  col-xs-1">
+                            <ui-select ng-model="item.templ" search-enabled="false" skip-focusser="true"
+                                       ng-change="$ctrl.saveField(item,'templ')">
+                                <ui-select-match placeholder="Выберите шаблон">
+                                    <span ng-bind="$select.selected"></span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="o in [0,1,2,3,4,5,6,7,8,9,10,11,112,13,14,15]">
+                                    <span ng-bind="o"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-lg-1  col-md-1 col-sm-1  col-xs-1">
+                            <ui-select ng-model="item.style" search-enabled="false" skip-focusser="true"
+                                       ng-change="$ctrl.saveField(item,'style')">
+                                <ui-select-match placeholder="Выберите стиль">
+                                    <span ng-bind="$select.selected"></span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="o in [0,1,2,3,4,5,6,7,8,9,10,11,112,13,14,15]">
+                                    <span ng-bind="o"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-lg-2  col-md-2 col-sm-2  col-xs-2">
+                            <div class="form-group label-floating">
+                                <label class="control-label">название шаблона</label>
+                                <input class="form-control" ng-model="item.name"
+                                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveField(item,'name')">
+                            </div>
+                        </div>
+                        <div class="col-lg-3  col-md-3 col-sm-3  col-xs-3">
+                            <div class="form-group">
+                                <label for="exampleTextarea" class="bmd-label-floating">описание</label>
+                                <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="item.desc"
+                                          ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                          ng-change="$ctrl.saveField(item,'desc')"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1  col-md-1 col-sm-1  col-xs-1">
+                            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setBlockStyle(item)">
+                                <i class="material-icons link-success md-42"  title="настроить стили меню">opacity</i>
+                            </a>
+                            <a class="pull-right btn  btn-fab btn-fab-mini edit" ng-click="$ctrl.getStyleForItem(item)">
+                                <i class="material-icons link-success">edit</i>
+                            </a>
+                            <a class="pull-right  btn  btn-fab btn-fab-mini delete" ng-click="$ctrl.deleteItem(item)">
+                                <i class="material-icons link-danger">delete</i>
+                            </a>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

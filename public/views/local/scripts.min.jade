@@ -1,0 +1,29 @@
+- var socketHref=socketHost+'/socket.io/socket.io.js'
+script(type='text/javascript').
+  var storeHost = !{JSON.stringify( storeHost )};
+  var socketHost = !{JSON.stringify( socketHost )};
+  var notificationHost = !{JSON.stringify( notificationHost )};
+  var userHost = !{JSON.stringify( userHost )};
+  var stuffHost = !{JSON.stringify( stuffHost )};
+  var orderHost = !{JSON.stringify( orderHost )};
+  var photoHost = !{JSON.stringify( photoHost )};
+  var globalStoreId = !{JSON.stringify( store._id )};
+  var globalCrawler =!{JSON.stringify(globalCrawler)};
+  var facebookAppID =!{JSON.stringify((store.fb&& store.fb.id)?store.fb.id:null)};
+  var googleAppID =!{JSON.stringify((store.gl&& store.gl.id)?store.gl.id:null)};
+  var vkAppID =!{JSON.stringify((store.vk&& store.vk.id)?store.vk.id:null)};
+
+
+if(!crawler)
+  script(src=socketHref)
+  script(src='all_scripts.min.js')
+  script(type="text/javascript",src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCzzOEL5DctMotIDgUTCGJsu7YM1rEY0gA&libraries=places")
+
+if(!crawler && store.subDomain=='gmall')
+  script(src='components/cloneStore/scripts/cloneStore.component.js')
+  script(src="components/storeSetting/scripts/store-seller.service.js")
+
+
+
+
+

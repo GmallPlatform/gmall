@@ -1,0 +1,27 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(id=id,class="home-brands")
+            div(class="container")
+                if(dj[key].name)
+                    h3(class="text-center")=dj[key].name
+                - var className  ="col-lg-6 col-md-6 col-sm-6 col-xs-12 home-section text-center"
+                if(dj[key].brands.length == 1)
+                    - className="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-section text-center"
+                else if(dj[key].brands.length == 3 || dj[key].brands.length == 6)
+                    - className='col-lg-4 col-md-4 col-sm-4 col-xs-12 home-section text-center'
+                else if(dj[key].brands.length == 4 || dj[key].brands.length == 8)
+                    - className='col-lg-3 col-md-6 col-sm-6 col-xs-12 home-section text-center'
+                each b in dj[key].brands
+                    - var link=(sections)?"/"+sections[0].url+'/category?brand='+b.url:b.link
+                    div(class=className,set-animate=dj[key].animate&&!mobile,data-animation=dj[key].animate)
+                        a(href=link)
+                            img(class="img-responsive",src=photoHost + '/' + b.img,alt=b.alt)
+                            div(class="box-overlay")
+                            div(class="half-shadow")
+                                div(class="title-block")
+                                    if(b.name)
+                                        h1=b.name
+                                    //if(b.desc)
+                                        | !{b.desc}
+                                    span(class="btn btn-project")  выбрать
+                div(class="clearfix")

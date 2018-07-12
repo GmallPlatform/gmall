@@ -1,0 +1,92 @@
+<section style="display: block;">
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <div  class="row">
+        <table class="col-lg-12 mycart mb-40">
+            <tr class="cart-caption" style="color:  #e73948">
+                <td ng-if1="dateEnd">
+                    {{item.dateEnd}}&nbsp
+                    <timer countdown="dateEnd" language='ru' max-time-unit="'day'" interval="1000">
+                        <h2> {{days}} день{{dayS}},
+                            {{hhours}} час, {{mminutes}} минута, {{sseconds}} секунда.</h2>
+                    </timer>
+
+                </td>
+            </tr>
+        </table>
+        <h3  class="text-center" style="padding-top: 50px; padding-bottom: 50px; background-color: #e73948;
+                color: #fff; font-size: 40px; font-weight: bold;" id="stuffs">
+            Акционные товары!!
+        </h3>
+
+        <stuff-list-tatiana></stuff-list-tatiana>
+
+        <p class="clause">
+                        <span class="clause_icon" >
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                        </span>
+                        <span>
+                           Обратите внимание, что все акции и специальные предложения действуют при оптовом заказе.<strong></strong>
+                        </span>
+        </p>
+        <p class="clause">
+                        <span class="clause_icon" >
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                        </span>
+                        <span>
+                            Внимательно прочитайте условия действия акции.
+                            Для применения акционной цены на указанные акционные товары необходимо выполнить условия применения акционной кампании.<strong></strong>
+                        </span>
+        </p>
+        <p class="clause">
+                        <span class="clause_icon" >
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                        </span>
+                        <span>
+                            Если акция предполагает, как условие применения специальной цены на акционные модели, покупку одной или нескольких моделей из каталога, то ознакомьтесь с полным перечнем этих товаров,
+                            перейдя по указанной в акционной кампании ссылке.<strong></strong>
+                        </span>
+        </p>
+
+        <p class="clause">
+                        <span class="clause_icon" >
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                        </span>
+                        <span>
+                            Выберите необходимое количество позиций из указанного списка и поместите их в корзину.<strong></strong>
+                        </span>
+        </p>
+        <p class="clause">
+                        <span class="clause_icon" >
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                        </span>
+                        <span>
+                            Теперь можно выбрать акционный товар. После добавления его в корзину, акционная цена будет применена к нему автоматически.<strong></strong>
+                        </span>
+        </p>
+        <p class="clause">
+                        <span class="clause_icon" >
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                        </span>
+                        <span>
+                            Если добавить в корзину еще один акционный товар, то цена всех акционных товаров изменится на оптовую и появится предупреждение о том,
+                            что в корзине недостаточно товаров, необходимых для применения специальной цены.В данном случае нужно увеличить количество товаров,
+                            покупка которых является условием применения акции либо уменьшить количество акционных товаров.<strong></strong>
+                        </span>
+        </p>
+        <p class="clause">
+                        <span class="clause_icon" >
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                        </span>
+                        <span>
+                            Если в корзине находится акционная модель, но не выбраны в достаточном количестве модели из списка товаров,
+                            приобретение которых является
+                            обязательным условием применения акционной цены, в корзине будет присутствовать уведомление об этом.
+                            Добавьте необходимое количество моделей из указанного списка и цена на акционный товар автоматически изменится на специальную.<strong></strong>
+                        </span>
+        </p>
+    </div>
+</section>

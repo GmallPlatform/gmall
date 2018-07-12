@@ -1,0 +1,140 @@
+<div class="style-block">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="togglebutton">
+            <label for="block5{{$index}}">
+                <span ng-class="{'active':!block.is}">не опубликован</span>
+                <input type="checkbox"
+                       id="block5{{$index}}"
+                       ng-model="block.is"
+                       ng-change="$ctrl.saveField('blocks.'+block.i+'.is',block.is)">
+                <span ng-class="{'active':block.is}">опубликован</span>
+            </label>
+        </div>
+        <p class="text-center text-small" style="margin-bottom: 0">индекс</p>
+        <ui-select ng-model="block.index" skip-focusser="true" search-enabled="false"
+                   ng-change="$ctrl.saveField('blocks.'+block.i+'.index',block.index)">
+            <ui-select-match placeholder="индекс">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+        </ui-select>
+        <p class="text-center text-small" style="margin-bottom: 0">изменить тип блока</p>
+        <ui-select ng-model="block.type" skip-focusser="true" search-enabled="false" ng-change="$ctrl.saveField('blocks.'+block.i+'.type',block.type)">
+            <ui-select-match placeholder="изменить тип блока">{{$select.selected.value}}</ui-select-match>
+            <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocks">{{ opt.value }}</ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <div class="togglebutton">
+            <label for="block52{{$index}}">
+                <span ng-class="{'active':!block.use}">стили стандарт</span>
+                <input type="checkbox"
+                       id="block52{{$index}}"
+                       ng-model="block.use"
+                       ng-change="$ctrl.saveField('blocks.'+block.i+'.use',block.use)">
+                <span ng-class="{'active':block.use}">стили блока</span>
+            </label>
+        </div>
+        <p class="text-center text-small" style="margin-bottom: 0">шаблон</p>
+        <ui-select ng-model="block.templ" append-to-body="true" skip-focusser="true" search-enabled="false"
+                   ng-change="$ctrl.saveField('blocks.'+block.i+'.templ',block.templ)">
+            <ui-select-match placeholder="номер шаблона">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]">{{ opt }}</ui-select-choices>
+        </ui-select>
+        <p class="text-center text-small" style="margin-bottom: 0">стиль</p>
+        <ui-select ng-model="block.style" append-to-body="true" skip-focusser="true" search-enabled="false"
+                   ng-change="$ctrl.saveField('blocks.'+block.i+'.style',block.style)">
+            <ui-select-match placeholder="номер стиля">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]">{{ opt }}</ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="togglebutton">
+            <label for="block67{{$index}}">
+                <span ng-class="{'active':!block.animateRepeat}">не повторять анимацию</span>
+                <input type="checkbox"
+                       id="block67{{$index}}"
+                       ng-model="block.animateRepeat"
+                       ng-change="$ctrl.saveField('blocks.'+block.i+'.animateRepeat',block.animateRepeat)">
+                <span ng-class="{'active':block.animateRepeat}">повторять анимацию</span>
+            </label>
+        </div>
+        <p class="text-center text-small" style="margin-bottom: 0">анимация</p>
+        <ui-select ng-model="block.animate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                   ng-change="$ctrl.saveField('blocks.'+block.i+'.animate',block.animate)">
+            <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+        </ui-select>
+        <p class="text-center text-small" style="margin-bottom: 0">задержка анимации</p>
+        <ui-select ng-model="block.animateDelay" append-to-body="true" skip-focusser="true" search-enabled="false"
+                   ng-change="$ctrl.saveField('blocks.'+block.i+'.animateDelay',block.animateDelay)">
+            <ui-select-match placeholder="секунд" allow-clear="true">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="opt in [1,2,3,4,5,6,7]">{{ opt}}</ui-select-choices>
+        </ui-select>
+        <div class="form-group label-floating" ng-show="block.type=='slider'">
+            <label class="control-label">скорость смены слайдов</label>
+            <input class="form-control" ng-model="block.duration"
+                   ng-model-options="{'updateOn': 'default blur',
+                           'debounce': {'default': 700,'blur': 0}}"
+                   ng-change="$ctrl.saveField('blocks.'+block.i+'.duration',block.duration)">
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="togglebutton text-center">
+            <label for="block433f{{$index}}">
+                <span ng-class="{'active':!block.template}">обычный</span>
+                <input type="checkbox"
+                       id="block433f{{$index}}"
+                       ng-model="block.template"
+                       ng-change="$ctrl.saveField('blocks.'+block.i+'.template',block.template)">
+                <span ng-class="{'active':block.template}">шаблон</span>
+            </label>
+        </div>
+        <div class="form-group label-floating" ng-show="block.template">
+            <label class="control-label">название шаблона</label>
+            <input class="form-control" ng-model="block.nameTemplate"
+                   ng-model-options="{'updateOn': 'default blur',
+                            'debounce': {'default': 700,'blur': 0}}"
+                   ng-change="$ctrl.saveField('blocks.'+block.i+'.nameTemplate',block.nameTemplate)">
+        </div>
+        <p class="text-center text-small">фото для списка</p>
+        <div class="togglebutton">
+            <label for="useImg{{$index}}">
+                <span ng-class="{'active':!block.useImg}">не использовать</span>
+                <input type="checkbox"
+                       id="useImg{{$index}}"
+                       ng-model="block.useImg"
+                       ng-change="$ctrl.saveField('blocks.'+block.i+'.useImg',block.useImg)">
+                <span ng-class="{'active':block.useImg}">использовать</span>
+            </label>
+        </div>
+        <p class="text-center text-small">описание для списка</p>
+        <div class="togglebutton">
+            <label for="useDesc{{$index}}">
+                <span ng-class="{'active':!block.useDesc}">не использовать</span>
+                <input type="checkbox"
+                       id="useDesc{{$index}}"
+                       ng-model="block.useDesc"
+                       ng-change="$ctrl.saveField('blocks.'+block.i+'.useDesc',block.useDesc)">
+                <span ng-class="{'active':block.useDesc}">использовать</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setStyles(block,$index)" title="установить стили">
+            <i class="material-icons link-success md-42" title="установить стили">opacity</i>
+        </a>
+        <br>
+        <br>
+        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.getBlockConfig(block)">
+            <i class="material-icons link-success md-42" title="загрузить шаблон">system_update_alt</i>
+        </a>
+        <br>
+        <br>
+        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.deleteBlock(block,$index)" title="удалить блок">
+            <i class="material-icons link-warning md-42">delete</i>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+

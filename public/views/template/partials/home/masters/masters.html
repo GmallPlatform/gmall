@@ -1,0 +1,17 @@
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6" ng-repeat="item in $ctrl.global.get('masters').val">
+    <a ui-sref="master.item({id:item.url})">
+        <div class="img-master">
+            <div class="box-overlay"></div>
+            <div class="half-shadow">
+                <div class="see">
+                    <img src="../../../../img/logo/logosmart.png">
+                </div>
+            </div>
+            <img class="img-responsive img-stat" ng-src="{{item.img}}" set-animate data-animation="animated8">
+        </div>
+        <p class="col-lg-12 text-center" ng-bind-html="item.name|unsafe"></p>
+        <p class="col-lg-12 text-center" ng-bind-html="item.position|unsafe"></p>
+
+    </a>
+</div>
+<div class="clearfix"></div>

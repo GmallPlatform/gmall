@@ -1,0 +1,49 @@
+.news-stuff {
+    padding-bottom: 40px;
+}
+.news-stuff  .nav-box-stuff {
+    position: fixed;
+    background-color: #eee;
+    top: 60px;
+    z-index: 1000;
+    width: 100%;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 4px;
+}
+.news-stuff .nav-box-stuff .tab-nav-stuff {
+    margin-top: 20px;
+}
+.news-stuff .tab-nav-stuff a {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+.news-stuff .cart-detail {
+    padding: 10px 10px 0 10px ;
+}
+/*.news-stuff .content-tab-nav-stuff {
+    width: 100%;
+}
+.news-stuff  .add-goods {
+    font-size: 20px;
+}
+.news-stuff  .add-goods i {
+    font-size: 36px;
+}*/
+.news-stuff .news-stuff-container {
+    margin-top: 160px;
+}
+/*.news-stuff .stuff-admin {
+    min-height: 250px;
+}*/
+.news-stuff .news-stuff-container iframe {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #93b1c6;
+    border-color: #93b1c6;
+}

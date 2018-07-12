@@ -1,0 +1,119 @@
+/*cliniq*/
+
+.img-bag {
+    position: relative;
+}
+/*.img-bag:hover {
+    opacity: 0.8;
+}*/
+.img-bag.nav-group a{
+    display: inline-block;
+    padding: 15px;
+}
+.img-bag .cart-img {
+    width: 32px;
+    height: 32px;
+
+}
+.img-bag span {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.img-bag .inCart{
+    position:absolute;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    top: 0px;
+    left: 38px;
+    /*color: #3ab8b2;*/
+    padding-top: 2px;
+    padding-left: 2px;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    -o-transition: all  ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+.img-bag .newInCart {
+    position: absolute;
+    /*color: #3ab8b2;*/
+    font-size:30px ;
+    width: 60px;
+    height: 60px;
+    padding-top: 5px;
+    top: -10px;
+    left: 26px;
+    padding-left: 2px;
+    border-radius: 30px;
+    opacity: 1;
+    -webkit-transition: all ease-in-out 0.3s;
+    -moz-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    -o-transition: all  ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+    z-index: 1300;
+}
+
+.text-bag a{
+    color:#3a230d;
+    opacity: 1;
+    padding: 20px 20px 20px 0;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.text-bag a:hover {
+    opacity: 0.8;
+}
+
+.mobile-wrapper .nav-group.img-bag a{
+    padding: 10px;
+}
+
+
+
+.menu-static-left .img-bag{
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+.menu-static-left .img-bag a{
+    color: #3a230d;
+}
+
+.preview-cart{
+    position: relative;
+}
+.preview-cart .cartItems {
+    position: absolute;
+    top:0
+}
+.preview-cart{
+    position: relative;
+}
+.preview-cart .cartItems {
+    position: absolute;
+    top:50px;
+    left: -300px;
+    background-color: #ffffff;
+    opacity: 1;
+    border: #000000 1px solid;
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 100001;
+}
+.added-cart {
+    position: fixed;
+    top:0px;
+    right: 0px;
+    background-color: #ffffff;
+    opacity: 1;
+    border: #000000 1px solid;
+    mix-height: 100px;
+    width: 350px;
+    z-index: 100012;
+}

@@ -1,0 +1,68 @@
+<style>
+    .pac-container {
+        z-index: 100000;
+    }
+</style>
+<div class="ship">
+    <div class="modal-title text-center">
+        <h2>{{$ctrl.global.get('langForm').val.contactdetails}}</h2>
+        <a class="cancel icon-cancel-img"  ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="ship-box col-sm-12 col-lg-12 col-md-12 col-xs-12">
+        <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok(formProfile)" novalidate>
+            <div class="form-group" ng-class="{'has-error': formProfile.email.$invalid && formProfile.email.$dirty}">
+                <input  name="email" type="email" class="form-control" required
+                        ng-model="$ctrl.user.email" ng-disabled="$ctrl.user._id"
+                        placeholder="email" ng-model-options="{'updateOn':'default blur','debounce':{'default':600,'blur':0}}"/>
+                <span class="help-block text-danger" ng-if="formProfile.email.$dirty" ng-messages="formProfile.email.$error">
+                    <span ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</span>
+                    <span ng-message="pattern">{{$ctrl.global.get('langError').val.formatnot}}</span>
+                </span>
+            </div>
+            <div class="form-group">
+                <input ng-class="{'has-error': formProfile.fio.$invalid}"
+                       name="fio" type="text"
+                       class="form-control mb-10 cart"
+                       ng-minlength="3"
+                       ng-maxlength="50"
+                       required
+                       ng-model="$ctrl.user.profile.fio"
+                       placeholder="{{$ctrl.global.get('langForm').val.fullname}}"
+                       ng-model-options="{'updateOn':'default blur','debounce':{'default':600,'blur':0}}"/>
+                <span class="help-block"  ng-show="formProfile.fio.$error.required">{{$ctrl.global.get('langError').val.entername}}</span>
+                <span class="help-block"  ng-show="formProfile.fio.$error.minlength">{{$ctrl.global.get('langError').val.nameshort}}</span>
+                <span class="help-block"  ng-show="formProfile.fio.$error.maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+            </div>
+            <div class="form-group">
+                <div enter-phone-numder="$ctrl.user.profile.phone"></div>
+            </div>
+            <div ng-if="!$ctrl.service"class="form-group" ng-class="{'has-error': formProfile.cityId.$invalid && formProfile.cityId.$dirty}">
+                <input name="cityId" required data-ng-model="$ctrl.user.profile.cityId" type="hidden">
+                <input type="text"   class="form-control mb-10 cart" ng-model-options="{'updateOn':'default blur','debounce':{'default':600,'blur':0}}"
+                       ng-autocomplete-city  user="$ctrl.user"/>
+                <div class="help-block "   ng-show="formProfile.cityId.$error.required">
+                    {{$ctrl.global.get('langError').val.selectcity}}
+                </div>
+            </div>
+
+            <!--<div ng-if="!$ctrl.service"class="form-group">
+                <input  ng-maxlength="100"
+                        name="transporter"
+                        type="text" class="form-control mb-10 cart"  ng-model="$ctrl.user.profile.transporter"
+                        placeholder="транспортная компания(перевозчик) и ее отделение"/>
+
+                <div class="help-block text-danger" ng-if="formProfile.transporter.$dirty" ng-messages="formProfile.transporter.$error && formProfile.transporter.$dirty">
+                    <div ng-message="maxlength">не более 100-ти символов</div>
+                </div>
+            </div>-->
+            <textarea class="form-control mb-10 cart" rows="6" placeholder="{{$ctrl.global.get('langForm').val.commentsorder}}" data-ng-model="$ctrl.user.comment"></textarea>
+            <div class="clearfix"></div>
+            <div ng-switch on="$ctrl.service">
+                <div class="text-center">
+                    <button class="btn btn-block btn-project" type="submit">{{$ctrl.global.get('langForm').val.toorder}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,94 @@
+<div  class="store-list">
+    <p>1</p>
+    <p>2</p>
+
+    <div class="store-list-container">
+        <div class="stuff-admin col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat="item in $ctrl.items|filter:{actived:true}" ng-init="exist=false;existD=false">
+            <div class="cart-detail">
+                <div class="row">
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <div class="form-group label-floating ">
+                                <label for="name" class="control-label">название каталога</label>
+                                <input type="text" id="name" class="form-control"
+                                       ng-model="item.name"
+                                       disabled/>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group label-floating ">
+                                <label for="link" class="control-label">ссылка на каталог</label>
+                                <p ng-bind="item.link"></p>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group label-floating ">
+                                <label for="file{{item.url}}" class="control-label">файл каталога</label>
+                                <input file-read-src="item.fileSrc" my-file="item.file" type="file" name="file{{item.url}}" id="file{{item.url}}"
+                                       class="form-control"/>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <div class="form-group">
+                                <small>если раздел не установлен, будет использован первый раздел для загрузки каталога</small><br>
+                                <label class="control-label" ng-click="$ctrl.setGroup(item)">установить раздел</label>
+                                <p ng-bind="item.group"></p>
+                            </div>
+                            <div class="form-group">
+                                <small>все товары будет связаны с выбранным брендом</small><br>
+                                <label class="control-label" ng-click="$ctrl.setBrand(item)">установить бренд</label>
+                                <p ng-bind="item.brand"></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 text-right">
+                            <div class="form-group">
+                                <a class="btn" ng-click="$ctrl.downloadCatalog(item)">загрузить</a>
+                            </div>
+                            <div class="form-group">
+                                <a class="btn" ng-click="$ctrl.viewLogFile()">log file</a>
+                            </div>
+                        </div>
+
+                </div>
+                <div class="row">
+                    <h3>обновлять для существующих товаров или услуг</h3>
+                    <div ng-init="item.price=true;item.qty=true">
+                        <label class="form-check-inline">
+                            <input  class="form-check-input" ng-model="item.price" type="checkbox"/>
+                            <span>цена</span>
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" ng-model="item.qty" type="checkbox"/>
+                            <span>количество(наличие)</span>
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" ng-model="item.name" type="checkbox"/>
+                            <span>наименование</span>
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" ng-model="item.artikul" type="checkbox"/>
+                            <span>артикул</span>
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" ng-model="item.desc" type="checkbox"/>
+                            <span>описание</span>
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" ng-model="item.tags" type="checkbox"/>
+                            <span>характеристики</span>
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div ui-view></div>
+
+

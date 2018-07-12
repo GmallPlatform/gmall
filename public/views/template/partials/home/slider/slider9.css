@@ -1,0 +1,68 @@
+/*smak*/
+/*.home-slides .container{
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}*/
+.home-slides {
+  /*background-color: $background-color;*/
+  padding: 5px 10px;
+}
+.page-slides img{
+  width: 100%;
+  display: inline-block;
+  margin: 0 auto;
+}
+.mytoggle-page {
+  width: 100%;
+}
+.home-section {
+  padding-right: 0;
+  padding-left: 0;
+}
+.home-slides  .home-section img{
+  width: 100%;
+  transition: opacity 0.5s ease-out 0s;
+  border: 10px solid #fff;
+}
+
+.home-slides .home-section-header {
+  background-color: rgba(255, 255, 255, 0.58);
+  position: absolute;
+  bottom: 20px;
+  right: 5px;
+  /*padding: 15px;*/
+  color:$color;
+  width: 80%;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+}
+.tablet-wrapper  .home-slides .home-section-header {
+  width: 250px;
+  font-size: 14px;
+  /*padding: 5px;*/
+
+}
+.mobile-wrapper  .home-slides .home-section-header {
+  width: 150px;
+  font-size: 14px;
+  /*padding: 5px;*/
+
+}
+.mobile-wrapper   .home-slides .home-section-header h3 {
+  font-size: 20px;
+}
+
+.mobile-wrapper   .home-slides .home-section-header {
+  right: 0;
+  left: 0;
+  /*top: 10px;*/
+  width: auto;
+}
+.mobile-wrapper   .home-slides .home-section-header h3 {
+  font-size: 24px;
+}
+.mobile-wrapper   .home-slides .home-section-header p {
+  font-size: 18px;
+  font-weight: normal;
+}

@@ -1,0 +1,40 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="home-news")
+            div(class="container")
+                if(dj[key].name)
+                    h3(class="text-center")=dj[key].name
+                - var className  ="col-lg-6 col-md-6 col-sm-12 col-xs-12 home-section home-news-content text-center"
+                if(dj[key].news.length == 1)
+                    - className="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-section home-news-content text-center"
+                else if(dj[key].news.length == 3)
+                    - className='col-lg-4 col-md-4 col-sm-12 col-xs-12 home-section home-news-content text-center'
+                each newsOne in dj[key].news
+                    div(class=className)
+                        div(class=" news-home-img",set-animate=dj[key].animate&&!mobile,data-animation=dj[key].animate)
+                            - var datalink="/news/"+newsOne.url
+                            if(newsOne.img)
+                                a(href=datalink)
+                                    img(class="img-responsive" src=photoHost+'/'+newsOne.img,alt=newsOne.alt)
+                            if(newsOne.imgs && newsOne.imgs[0])
+                                .page-slides
+                                    div(gmall-slider-page=newsOne.url)
+                                        div(class="substrate")
+                                            img(class="img-responsive",src=photoHost + '/' + newsOne.imgs[0].img,alt=newsOne.imgs[0].alt)
+                                        - for (var i = 0; i < newsOne.imgs.length; ++i)
+                                            div(id=dj[key].wrapclass + 'page' + i,class="mytoggle-page")
+                                                a(href=datalink)
+                                                    img(class="img-responsive",src=photoHost + '/' + newsOne.imgs[i].img,alt=newsOne.imgs[i].alt)
+                            if(newsOne.video && !newsOne.img)
+                                div
+                                    | !{newsOne.video}
+                        div(class="news-home-desk",set-animate=dj[key].animate&&!mobile,data-animation=dj[key].animate)
+                            div(class="news-desc")
+                                a(href=datalink)
+                                        h1=newsOne.name
+                                        - var desc=(newsOne.desc)?newsOne.desc.clearTag().substring(0,250):'';
+                                        p
+                                            | !{desc}
+                                        span(class="more")=lang['readMore']
+
+                div(class="clearfix")

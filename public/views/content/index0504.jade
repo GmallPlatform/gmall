@@ -1,0 +1,334 @@
+extends layout
+
+block content
+  //div(id='dimScreenFull',ng-hide="global.get('user').val")
+  div(id='dimScreen',content-loaded)
+    img(src='views/clinic/img/spinner.gif')
+  div(id="o-wrapper" class="o-wrapper",ng-cloak,ng-init="displaySlideMenu=true;setInitData(#{JSON.stringify(store)},#{JSON.stringify(mobile)})")
+    toaster-container
+    div(class="navbar navbar-fixed-top" id='topMenu')
+        div(class="pull-left left-menu")
+          ul
+            li
+              a(ui-sref="frame",title="весь контент")
+                span
+                  i(class="material-icons") homes
+            li
+              a(ng-click="slideMenu=true",title="открыть каталог")
+                span
+                  i(class="material-icons") menu
+            li
+              a(ui-sref="frame.help",title="помощь")
+                span
+                  i(class="material-icons") info_outline
+              a( ng-if="helper.intro",ng-click="getIntro()",title="помощь")
+                span
+                  i(class="material-icons") info_outline
+        div( class="seller pull-left", ng-if="!global.get.mobile")
+          a(ng-click="logout()")
+            span(ng-if="global.get('seller').val")
+                span(ng-bind="global.get('user').val.name" )
+          span(class="location") управление контентом
+        div(class="dropdown pull-right right-menu navbar-menu")
+          a(class='dropdown-toggle',data-target="#",data-toggle="dropdown")
+            i(class="material-icons menu-icon") apps
+          ul(class="dropdown-menu")
+            li
+              a(ng-click="changeLocation('/setting')")
+                i(class="material-icons link-warning") settings_applications
+                | настройки магазина
+            li
+              a(ng-click="changeLocation('/manage')")
+                i(class="material-icons link-warning") shopping_basket
+                | управление  заказами
+            li
+              a(ng-click="changeLocation('/promo')")
+                i(class="material-icons link-warning") dashboard
+                | управление промо
+            li
+              a(ng-click="changeLocation('/seo')")
+                i(class="material-icons link-warning") trending_up
+                | управление SEO
+            li
+              a(href='/home',target="blank")
+                i(class="material-icons link-warning") airplay
+                | перейти на сайт
+        div(class="pull-right right-menu")
+          a
+            span(class="for-saving save",ng-class="{'saving':global.get('saving').val}")
+              | сохранено
+          a(class="btn btn-fab btn-fab-mini btn-lang",ng-repeat="lang in global.get('store').val.langArr",ng-click="changeLang(lang)")
+            span(ng-class="{'active':lang==global.get('store').val.lang}",ng-bind="lang")
+
+
+
+        //a(ui-sref="frame",class="navbar-brand")
+          i(class="material-icons") homes
+      //div(ng-if="$state.current.name=='frame.stuffs'",menu-sections)
+
+
+    div(class="admin-menu",pageslide,ps-open="slideMenu",ps-side='left',ps-speed="0.3",ps-size='400px',click-outside="global.get('functions').val.closeMenu()",id='slideMenu')
+      div(class="vertical-menu")
+        a(ng-click="slideMenu=false",class="button cancel")
+          //img(class="close",src="views/template/img/icon/clear.png")
+        div(class="menu-section-vertical")
+          slide-menu(display-slide-menu="slideMenu")
+          //h1 sdfsdfs
+          //h2 sdfsdfsdf
+          //h3 sdfsdfsdf
+    div()
+      //div(style="position:absolute;top:0,left:0;width:300px;height:100%")
+        h3 dd
+      div(ui-view)
+  //div(id="c-mask",class="c-mask")
+  - var favicon = photoHost+"/"+store.favicon
+  script.
+    (function () {
+      var link = document.createElement( 'link' );
+      link.type = 'image/x-icon';
+      link.rel = 'shortcut icon';
+      link.href = "#{favicon}";
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }());
+  script(type='text/javascript').
+    var storeHost = !{JSON.stringify(storeHost)};
+    var socketHost = !{JSON.stringify( socketHost )};
+    var notificationHost = !{JSON.stringify( notificationHost )};
+    var userHost = !{JSON.stringify( userHost )};
+    var stuffHost = !{JSON.stringify( stuffHost )};
+    var photoHost = !{JSON.stringify( photoHost )};
+    var photoUpload= !{JSON.stringify( photoUpload )};
+    var globalStoreId = !{JSON.stringify( store._id )}
+  //script(type="text/javascript",src="http://maps.googleapis.com/maps/api/js?libraries=places")
+  script(type="text/javascript",src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfZvDhAVRsFcRRofNR0onn3RvvZTqa2e8&libraries=places")
+  script(src='scripts/myPrototype.js')
+  script(src='scripts/angular-node.js')
+  script(src='scripts/globalVariable.js')
+
+  script(src="bower_components/jquery/dist/jquery.js")
+
+  // Twitter Bootstrap
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+
+  //material Design for Bootstrap
+  script(src="bower_components/arrive/src/arrive.js")
+  script(src="bower_components/bootstrap-material-design/dist/js/material.js")
+  script(src="bower_components/bootstrap-material-design/dist/js/ripples.js")
+
+  // Dropdown.js
+  script(src="assets/jquery.dropdown.js")
+  script(src="assets/jquery.nicescroll/jquery.nicescroll.js")
+
+
+
+  //script(src="bower_components/select2/select2.js")
+
+  script(src='bower_components/angular/angular.js')
+  script(src='bower_components/angular-hint/dist/hint.js')
+  script(src='bower_components/angular-animate/angular-animate.js')
+
+  script(src='bower_components/angular-socket-io/socket.js')
+
+  script(src="bower_components/angular-ui-bootstrap/ui-bootstrap-tpls-0.14.3.min.js")
+
+  script(src='bower_components/angular-route/angular-route.js')
+  script(src='bower_components/angular-ui-router/release/angular-ui-router.js')
+  script(src='bower_components/angular-resource/angular-resource.js')
+  script(src='bower_components/angular-cookies/angular-cookies.js')
+  script(src='bower_components/angular-touch/angular-touch.js')
+  //script(src="bower_components/ng-tasty/ng-tasty-tpls.min.js")
+
+  script(src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js")
+
+
+  script(src="bower_components/AngularJS-Toaster/toaster.min.js")
+  script(src="bower_components/intro.js/minified/intro.min.js")
+  script(src="bower_components/angular-intro.js/src/angular-intro.js")
+
+  // circular menu
+  script(src="bower_components/angular-circular-navigation/angular-circular-navigation.js")
+
+  //textAngular
+  script(src='/bower_components/textAngular/dist/textAngular-rangy.min.js')
+  script(src='/bower_components/textAngular/dist/textAngular-sanitize.min.js')
+  script(src='/bower_components/textAngular/dist/textAngular.min.js')
+
+  //script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js")
+  //pageslide
+  script(src="assets/ng-pageslide-master/dist/angular-pageslide-directive.js")
+  script(src="bower_components/angular-click-outside/clickoutside.directive.js")
+
+
+  // дата пикер
+  script(src="bower_components/moment/min/moment-with-locales.min.js")
+  script(src="bower_components/bootstrap-daterangepicker/daterangepicker.js")
+  script(src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js")
+  //script(src="bower_components/bootstrap-material-datepicker/js/bootstrap-material-datepicker.js")
+
+  script(src='assets/ui-select-master/dist/select.js')
+  script(src='scripts/angular-drag-and-drop-lists.js')
+
+
+  script(src="bower_components/angularjs-slider/dist/rzslider.min.js")
+
+
+  script(src='modules/content/js/app.js')
+  script(src='modules/content/js/controllers.js')
+  script(src='modules/content/js/services.js')
+  script(src='modules/content/js/directives.js')
+  script(src='modules/content/js/filters.js')
+
+
+
+  // auth
+  script(src="bower_components/satellizer/satellizer.js")
+  script(src='bower_components/angular-messages/angular-messages.js')
+  script(src="components/sign-login/scripts/sign-login.component.js")
+  script(src='components/directives/check-password-match.directive.js')
+
+
+  script(src='scripts/service.global.js')
+  script(src='scripts/service.helper.js')
+
+  // slidemenu
+  script(src='components/slideMenu/scripts/directive.slideMenu.js')
+
+  // sections
+  script(src='components/sections/scripts/directive.sections.js')
+  script(src='components/sections/scripts/service.sections.js')
+  script(src='components/sections/scripts/category.service.js')
+
+  // modal select category
+  script(src='components/selectCategoryModal/scripts/controller.selectCategoryModal.js')
+  script(src='components/selectCategoryModal/scripts/service.selectCategoryModal.js')
+
+  // filters
+  script(src='components/filters/scripts/directive.filters.js')
+  script(src='components/filters/scripts/service.filters.js')
+  script(src='components/filters/scripts/filterTags.service.js')
+
+  //growlNotificationh
+  script(src='components/growlNotification/scripts/directive.growlNotification.js')
+  // backtotop
+  script(src='components/backToTop/scripts/directive.back-to-top.js')
+
+  // file upload
+  script(src='components/loadImage/scripts/directive.loadImage.js')
+  script(src='components/loadImage/scripts/service.fileUpload.js')
+
+  //menu
+  script(src='components/menu/scripts/directive.menu.js')
+
+  //stuffs
+  script(src='components/stuff/scripts/directive.filterForStuffs.js')
+  script(src='components/stuff/scripts/directive.stuffsAdminListWithPaginate.js')
+  script(src='components/stuff/scripts/directive.stuffEdit.js')
+
+  // directives
+  script(src='components/directives/directive.lost-focus.js')
+  script(src='components/directives/directive.focus-element.js')
+  script(src='components/checklistmodel/scripts/directive.checklist.js')
+  script(src='components/bindModelToCategory/scripts/directive.bindModelToCategory.js')
+  script(src='components/directives/directive.select-drop-down.js')
+  script(src='components/directives/mongoose-error.component.js')
+  script(src='components/directives/ng-autocomplite-city.directive.js')
+
+
+
+  // orders
+  script(src='components/order/scripts/service.order.js')
+  script(src='components/order/scripts/order.service.js')
+  script(src='components/order/scripts/cart-in-order.service.js')
+  //cart
+  script(src='components/cart/scripts/cart.component.js')
+  // brands
+  script(src='components/brand/scripts/service.brands.js')
+  script(src='components/brand/scripts/directive.brands.js')
+
+  script(src='scripts/service.brandcollections.js')
+  script(src='scripts/service.anchorSmoothScroll.js')
+
+  script(src='components/stuff/scripts/controller.stuff.js')
+  //script(src='components/stuff/scripts/service.stuff.js')
+  script(src='components/stuff/scripts/stuff.service.js')
+  script(src='components/stuff/scripts/stuff-list.component.js')
+
+
+  //script(src='scripts/directive.paginatorMain.js')
+
+  //user
+  script(src='components/choiceUser/directive.js')
+  script(src='components/user/scripts/service.user.js')
+
+
+  //paps
+  script(src='components/paps/scripts/paps.service.js')
+  script(src='components/paps/scripts/pap.component.js')
+  script(src='components/paps/scripts/paps.component.js')
+  //info
+  script(src='components/info/scripts/info.service.js')
+  script(src='components/info/scripts/info-list.component.js')
+  script(src='components/info/scripts/info-item.component.js')
+  //services
+  script(src="components/storeSetting/scripts/store-seller.service.js")
+  script(src="components/services/factory.exeption.js")
+  script(src="components/services/confirm.factory.js")
+  //script(src="components/services/create-content.service.js")
+  script(src="scripts/service.email.js")
+  script(src='components/services/service.print.js')
+  script(src="components/services/interceptor.factory.js")
+
+  // components
+  script(src="components/notification/scripts/service.notification.js")
+  script(src="components/createStuff/scripts/component.createStuff.js")
+  script(src="components/sortsOfStuff/scripts/component.sortsOfStuff.js")
+  script(src="components/categoriesForList/scripts/component.categoriesForList.js")
+  script(src="components/paginator/scripts/component.paginator.js")
+  script(src="components/filterStuffsList/scripts/component.filterStuffsList.js")
+  script(src="components/editModel/scripts/edit-model.component.js")
+  script(src="components/services/seo-content.service.js")
+
+  script(src="components/additionalInfo/scripts/component.additionalInfo.js")
+  script(src="components/staticPage/scripts/component.staticPage.js")
+  script(src="components/staticPage/scripts/staticPages.component.js")
+  script(src="components/staticPage/scripts/staticPage.service.js")
+  script(src="components/CONTENT/additional/scripts/component.additional.js")
+  script(src="components/CONTENT/additional/scripts/additionals.component.js")
+  script(src="components/CONTENT/additional/scripts/additional.service.js")
+
+  script(src="components/homePage/scripts/component.homePage.js")
+  script(src="components/selectStuffModal/scripts/component.selectStuffModal.js")
+  script(src="components/createLink/scripts/create-link.component.js")
+
+  //news
+  script(src="components/news/scripts/component.newsList.js")
+  script(src="components/news/scripts/component.newsItem.js")
+  script(src="components/news/scripts/service.news.js")
+  //lookbook
+  script(src="components/lookbook/scripts/component.lookbookList.js")
+  script(src="components/lookbook/scripts/component.lookbookItem.js")
+  script(src="components/lookbook/scripts/lookbook.service.js")
+
+
+  //master
+  script(src='components/CONTENT/master/scripts/master.service.js')
+  script(src='components/CONTENT/master/scripts/master-list.component.js')
+  script(src='components/CONTENT/master/scripts/master-item.component.js')
+
+  script(src="components/PROMO/coupon/scripts/coupon.service.js")
+
+  script(src="components/PROMO/campaign/scripts/campaign.service.js")
+  //script(src="components/googleMap/scripts/component.googleMap.js")
+  script(src="components/storeSetting/scripts/setStyles.component.js")
+
+
+  script(src='components/blocks/scripts/blocks.components.js')
+  script(src='components/help/scripts/help.component.js')
+  script(src='components/externalCatalog/externalCatalog.component.js')
+
+
+
+
+
+
+

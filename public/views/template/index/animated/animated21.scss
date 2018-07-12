@@ -1,0 +1,47 @@
+/*line-through LeftRightLeft*/
+.animated21 {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+}
+.animated21:before {
+  display: block;
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 0;
+  @if $mainColor {
+    background-color: $mainColor;
+  }
+  @else {
+    background-color: #000;
+  }
+
+  transition: width .5s ease-in-out, left .5s ease-in-out;
+  left: 0;
+  bottom: 9px;
+}
+
+.animated21:after{
+  display: block;
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 0;
+  @if $mainColor {
+    background-color: $mainColor;
+  }
+  @else {
+    background-color: #000;
+  }
+  transition: width .5s ease-in-out;
+  left: 0;
+  bottom: 9px;
+}
+.animated21:hover::before{
+  width: 100%;
+  left: 0;
+}
+.animated21:hover::after{
+  right: 0;
+}

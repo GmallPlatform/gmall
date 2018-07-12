@@ -1,0 +1,79 @@
+.witget-list {
+    padding-bottom: 40px;
+}
+.witget-list  .stuff-admin {
+    margin-top:150px
+}
+.checkbox+.checkbox, .radio+.radio {
+    margin-top: 10px;
+}
+.witget-list .nav-box-stuff {
+    position: fixed;
+    background-color: #fff;
+    top: 0px;
+    z-index: 100;
+    width: 100%;
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 4px;
+    padding-top: 60px;
+
+}
+.witget-list .tab-nav-stuff{
+    margin-top: 15px;
+    float: left;
+
+}
+.btn:not(.btn-raised).btn-success.btn-fab-mini {
+    color: #fff;
+}
+.witget-list .tab-nav-stuff a {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+.witget-list .add-goods {
+    font-size: 20px;
+}
+.witget-list .add-goods i {
+    font-size: 36px;
+}
+
+.witget-list .nav-box-stuff input.form-control {
+    margin-bottom: 0;
+    padding-top: 0;
+}
+.witget-list .cart-detail .block-edit {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #b2b2b2;
+    background-color: #fff;
+}
+.witget-list .active {
+    color: #ff7148;
+}
+.witget-list .thumbnail {
+    min-height: 400px;
+}
+.witget-list  .ta-scroll-window > .ta-bind {
+    min-height: 200px;
+}
+.witget-list .thumbnail img {
+    display: inline-block;
+}
+
+.witget-list  .btn-default-focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,99 @@
+/*zefir*/
+
+.filters-of-stuff span{
+    vertical-align: middle;
+}
+.panel-heading {
+    padding: 10px;
+}
+.filter-box {
+    font-size: 14px;
+}
+.filter-box .checkbox .checkbox-material .check {
+    margin-right: 3px;
+}
+.filter-box .brand-name {
+    font-size: 16px;
+}
+
+.filter-box .collection-name {
+    display: inline-block;
+    vertical-align: middle;
+}
+.filter-box .tag {
+    margin-top: 0;
+}
+.filter-box .tag,
+.filter-box .tag-row {
+    margin-bottom: 5px;
+}
+.filter-box .tag .checkbox{
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.filter-box .tag-box .panel-heading {
+    background-color: #f5f5f5;
+    border-radius: 0;
+    padding: 20px 10px 20px 15px;
+    border: 1px solid #eee;
+}
+.filter-box .brand-box .panel-heading{
+    background-color: #f5f5f5;
+    border-radius: 0;
+    padding: 20px 10px 20px 15px;
+    border: 1px solid #eee;
+}
+.filter-box .panel-collapse {
+    border: 1px solid #eee;
+}
+.filter-box  .panel-group .panel + .panel {
+    margin-top: 0;
+}
+.filter-box a {
+    color: #333333;
+}
+.filter-box .panel-title a{
+    display: block;
+    width: 100%;
+}
+.filter-box .checkbox input[type=checkbox],
+.filter-box .checkbox-inline input[type=checkbox],
+.filter-box .radio input[type=radio],
+.filter-box .radio-inline input[type=radio] {
+    width: 20px;
+    height: 20px;
+    margin-left: -25px;
+}
+.filter-box .brand-name {
+    display: inline-block;
+    padding-top: 5px;
+}
+.filter-box .checkbox label,
+.filter-box .checkbox-inline label {
+    padding-left: 30px;
+}
+.filter-box .up-down{
+    display: inline-block;
+    padding-top: 3px;
+}
+.filter-box .icon-up-img,
+.filter-box .icon-down-img {
+    width: 18px;
+    height: 18px;
+    background-size: 18px;
+    transition: 0.4s ease-in-out 0.1s;
+    margin-right: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tablet-wrapper .filter-box .tag-box .panel-heading {
+    padding: 20px 10px;
+}
+.tablet-wrapper .block-left {
+    width: 90%;
+}
+.tablet-wrapper .block-right {
+    width: 10%;
+}

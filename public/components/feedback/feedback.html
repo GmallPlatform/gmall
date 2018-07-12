@@ -1,0 +1,72 @@
+<style>
+    .help-block {
+        height: 13px;
+        display: block;
+    }
+    .form-box {
+        margin-bottom: 30px;
+        height: 165px;
+    }
+</style>
+<div class="chat-content">
+    <div class="chat-body">
+        <form id="ajax-contacts" name="feedbackBack" ng-submit="feedbackCtrl.sendMessage(feedbackBack)"  novalidate>
+            <fieldset>
+                <div class="form-box">
+                    <div class="form-group name-input">
+                        <input ng-class="{'has-error':feedbackBack.name.$invalid && feedbackBack.name.$dirty }"
+                               class="form-control"
+                               name="name" type="text"
+                               ng-model="mainFrameCtrl.feedback.name"
+                               placeholder="{{$ctrl.global.get('lang').val.name}}"
+                               ng-maxlength="30"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+                    </div>
+                    <span class="help-block" ng-show="feedbackBack.name.$dirty && feedbackBack.name.$invalid" ng-messages="feedbackBack.name.$error">
+                    <!--<pre>{{feedbackBack.name|json}}</pre>-->
+                    <span ng-message="maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+                </span>
+                    <div class="form-group email-input">
+                        <input ng-class="{'has-error':feedbackBack.email.$invalid && feedbackBack.email.$dirty }"
+                               class="form-control"
+                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               name="email"
+                               type="email"
+                               ng-model="mainFrameCtrl.feedback.email"
+                               placeholder="e-mail"
+                               required>
+                    </div>
+                    <span class="help-block" ng-show="feedbackBack.email.$dirty && feedbackBack.email.$invalid" ng-messages="feedbackBack.email.$error">
+                        <span ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</span>
+                        <span ng-message="email">{{$ctrl.global.get('langError').val.formatnot}}</span>
+                    </span>
+
+                    <div class="form-group message-input">
+                    <textarea  ng-class="{'has-error':feedbackBack.message.$invalid && feedbackBack.message.$dirty }"
+                               class="form-control" ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                               name="message"
+                               rows="3" cols="25"
+                               id="messageMsg"
+                               ng-model="feedbackCtrl.message"
+                               placeholder="{{$ctrl.global.get('langForm').val.message}}"
+                               ng-minlength="10"
+                               ng-maxlength="1000"></textarea>
+
+                    </div>
+                    <span class="help-block" ng-show="feedbackBack.message.$dirty && feedbackBack.message.$invalid" ng-messages="feedbackBack.message.$error">
+                        <span ng-message="minlength">{{$ctrl.global.get('langError').val.errorMessage}}</span>
+                        <span ng-message="maxlength">{{$ctrl.global.get('langError').val.nomore1000}}</span>
+                    </span>
+                </div>
+
+                <!--<pre>{{feedbackBack|json}}</pre>-->
+                <div class="form-group">
+                    <button ng-disabled="feedbackCtrl.blockButton || feedbackBack.$invalid"
+                           class="btn btn-lg btn-project btn-block" name="submit" type="submit">
+                        {{$ctrl.global.get('langForm').val.sendamessage}}
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

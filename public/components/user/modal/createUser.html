@@ -1,0 +1,67 @@
+<div class="select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">данные пользователя</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="ship-box">
+        <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok(formProfile)" novalidate>
+            <div class="modal-body">
+                <div class="form-group" ng-class="{'has-error': formProfile.email.$invalid}">
+                    <input  name="email" type="email" class="form-control"
+                            required
+                            ng-model="$ctrl.user.email"
+                            placeholder="email"/>
+                    <div class="help-block text-danger"  ng-messages="formProfile.email.$error">
+                        <div ng-message="required">введите e-mail</div>
+                        <div ng-message="email">неправильный формат e-mail</div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': formProfile.fio.$invalid}">
+                    <input  name="fio" type="text" class="form-control mb-10 cart"
+                            ng-minlength="3"
+                            ng-maxlength="70"
+                            ng-model="$ctrl.user.profile.fio"
+                            placeholder="ФИО"/><!--pattern="[A-Za-zА-Яа-я0-9.\s-]{3,100}"-->
+
+                    <div class="help-block text-danger" ng-if="formProfile.fio.$dirty" ng-messages="formProfile.fio.$error">
+                        <!--<div ng-message="pattern">Ваш ФИО не в формате.</div>-->
+                        <div ng-message="minlength">не менее 3-ти символов{{$ctrl.global.get('langError').val.nameshort}}</div>
+                        <div ng-message="maxlength">не более 70-ти символов{{$ctrl.global.get('langError').val.namelong}}</div>
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="showPhone" type="checkbox"/>
+                            добавить телефон
+                        </label>
+                    </div>
+                </div>-->
+                <div  class="form-group" ng-class="{ 'has-success': formProfile.phone.$valid,'has-error': formProfile.phone.$invalid}">
+                    <div enter-phone-numder="$ctrl.user.profile.phone"></div>
+                    <!--<input   type="text" class="form-control mb-10 cart"
+                             pattern="[0-9.\s-+()]{7,20}"
+                             name="phone"
+
+                             ng-minlength="7"
+                             ng-maxlength="20"
+                             ng-model="$ctrl.user.profile.phone"
+                             placeholder="Телефон"/>
+
+                    <div class="help-block text-danger" ng-if="formProfile.phone.$dirty" ng-messages="formProfile.phone.$error">
+                        &lt;!&ndash;<div ng-message="required">Необходимо указать телефон.</div>&ndash;&gt;
+                        <div ng-message="pattern">Ваш номер не в формате(только цифры и -+).</div>
+                        <div ng-message="minlength">не менее 7-ти символов.</div>
+                        <div ng-message="maxlength">не более 20-ти символов.</div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-disabled="$ctrl.blockButton" class="btn btn-block btn-raised" type="submit">создать профиль</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="clearfix"></div>
+   
+</div>

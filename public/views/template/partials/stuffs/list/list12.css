@@ -1,0 +1,14 @@
+/*yana*/
+.stuff-box  .img-goods {
+    width:50%;
+    border: none;
+    float: left;
+}
+.img-goods-left,
+.img-goods-right {
+    width: 25%;
+    float: left;
+}
+.container-desc {
+    margin: 0 auto;
+}

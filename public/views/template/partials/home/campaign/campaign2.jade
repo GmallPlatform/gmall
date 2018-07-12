@@ -1,0 +1,17 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="home-campaign col-lg-12 col-md-12 col-sm-12 col-xs-12")
+            div(class="container")
+                h3=dj[key].name
+                if(dj[key].campaign[0].img)
+                    a(href="/campaign/"+dj[key].campaign[0].url)
+                        img(class="img-responsive img-scale",src=photoHost + '/' + dj[key].campaign[0].img,scale-img,alt=dj[key].campaign[0].alt)
+                //h1=dj[key].campaign[0].name
+                //p=dj[key].campaign[0].desc
+                div(class="time-container")
+                    h4(ng-bind="$ctrl.global.get('lang').val.andAction")
+                    expiration-date(date=dj[key].campaign[0].dateEnd)
+        div(class="clearfix")
+    
+
+

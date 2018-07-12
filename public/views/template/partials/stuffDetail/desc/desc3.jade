@@ -1,0 +1,22 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div
+            uib-tabset(active="activeJustified",justified="true")
+                uib-tab(index="0",heading="{{$ctrl.global.get('lang').val.desc}}")
+                    div(itemprop="description", class="description desc-one")
+                        | !{item.desc}
+                uib-tab(index="1",heading="{{$ctrl.global.get('lang').val.delivery_pay}}")
+                    div(itemprop="description", class="description desc-two")
+                        | !{item.desc1}
+
+
+            div(ng-if="!$ctrl.item.service")
+                a(class="all-goods",ui-sref="stuffs({'groupUrl':$ctrl.item.groupUrl,'categoryUrl':$ctrl.item.categoryUrl,brand:$ctrl.item.brandUrl,brandTag:null,queryTag:null,serachStr:null})")
+                    span(ng-bind="$ctrl.global.get('lang').val.all")
+                    | &nbsp;
+                    span(ng-bind="$ctrl.item.categoryName")
+                    | &nbsp;
+                    span(ng-bind="$ctrl.item.brandName")
+            if(item.single)
+                hr
+            div(class="clearfix")

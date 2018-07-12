@@ -1,0 +1,86 @@
+/*lastudio ideal autofan*/
+.stuff-box {
+    position: relative
+}
+.img-goods {
+    width: 100%;
+}
+.box-overlay {
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-image: none;
+    background-position: 0 0;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-out 0s;
+    width: 100%;
+    z-index: 1020;
+}
+.stuff-box:hover .box-overlay{
+    opacity: 0.6;
+}
+.stuff-box:hover .half-shadow {
+    display: block;
+    z-index: 1025;
+}
+/*.price-block a {
+    cursor: default;
+}
+.price-block a:hover {
+    color: $color
+}*/
+/*
+.sort-box {
+    text-align: center;
+}
+.sort {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+*/
+
+/*.icon-see-img {
+    transition: all  0.4s ease-in-out 0.1s
+}*/
+/*.stuff-box:hover .see {
+    opacity: 1;
+}
+.stuff-box:hover .icon-see-img {
+    transform: rotate(180deg);
+}*/
+/*.ui-select-bootstrap .ui-select-choices-row>a,
+.ui-select-bootstrap .ui-select-choices-row.active>a {
+    padding: 6px;
+}*/
+
+
+/*.btn-project.btn-noborder .icon{
+    border: 1px solid $mainColor;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    transition: all  0.4s ease-in-out 0.1s;
+    background-color: #ffffff;
+}
+.btn-project.btn-noborder:hover .icon{
+    transform: rotate(90deg)
+}*/
+/*.btn-project.btn-noborder span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.5em;
+}
+.mobile-wrapper .form-group {
+    margin-top: 0;
+    margin-bottom: 0;
+}*/
+/*@media (max-width: 1200px){
+    .stuff-box .half-shadow,
+    .stuff-box .title-block{
+        display: block;
+        text-shadow: 0 0 2px #000;
+    }
+}*/

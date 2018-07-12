@@ -1,0 +1,256 @@
+<!--<style>
+    .mb20{
+        margin-bottom: 20px;
+    }
+    .mt20{
+        margin-top: 20px;
+    }
+</style>-->
+<style>
+    .date-time h3,
+    .date-time h4,
+    .date-time p,
+    .date-time span{
+        color: #454545;
+    }
+    .date-time h3{
+        margin-bottom: 40px;
+    }
+    .date-time .select-block {
+        margin-bottom: 20px;
+    }
+    /*.modal-body {
+        -webkit-transition: all 0.2s ease-out 1s;
+        -moz-transition: all 0.2s ease-out 1s;
+        -o-transition: all 0.2s ease-out 1s;
+        transition: all 0.2s ease-out 1s;
+    }*/
+    .date-time .panel-body {
+        background-color: #fff !important;
+    }
+    .date-time a {
+        color: #999;
+    }
+    .date-time a:hover {
+        color: #333;
+    }
+    /*.date-time .panel-body a {
+        color: #999;
+    }
+
+    .date-time .panel-body a:hover {
+        color: #3ab8b2;
+    }*/
+    .date-time .service-name {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    .date-time  .img-master {
+        border-radius: 100%;
+
+    }
+    .date-time .name-master {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .date-time .desc-master {
+        padding-top: 10px;
+        border-top: 1px solid #ccc;
+    }
+    .moment-picker .moment-picker-container {
+        top: 200%;
+    }
+</style>
+<div class="panel-dialog date-time">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">
+            запись на время
+        </h3>
+
+        <div class="cart-detail">
+            <div class="select-block">
+                <h4 ng-click="$ctrl.selectStuff()">
+                    <span>услуга</span>
+                    <span ng-show1="$ctrl.stuff" class="pull-right">
+                        <a>
+                           выбрать
+                        </a>
+                    </span>
+                </h4>
+                <p ng-show="$ctrl.selectedStuff">
+
+                    <span  ng-bind="$ctrl.selectedStuff.name"></span><span> </span>
+                    <span  ng-if="$ctrl.selectedStuff.sort"
+                           ng-bind="$ctrl.selectedStuff.stock[$ctrl.selectedStuff.sort].name"></span>
+
+                    <span class="pull-right">
+                        <a ng-click="$ctrl.clearStuff()">x</a>
+                    </span>
+                </p>
+            </div>
+            <hr>
+            <div class="select-block" ng-if="$ctrl.masters && $ctrl.masters.length">
+                <h4 ng-click="$ctrl.selectMaster()">
+                    <span>мастер</span>
+                    <span ng-show1="$ctrl.stuff" class="pull-right">
+                        <a>
+                           выбрать
+                        </a>
+                    </span>
+                </h4>
+                <p ng-show="$ctrl.selectedMaster">
+                    <span  ng-bind="$ctrl.selectedMaster.name"></span>
+                    <span class="pull-right">
+                        <a ng-click="$ctrl.clearMaster()">x</a>
+                    </span>
+                </p>
+            </div>
+            <hr>
+            <div  class="select-block">
+                <div moment-picker="$ctrl.selectedTime"
+                     locale="ru"
+                     format="LLLL"
+                     min-date="$ctrl.today"
+                     max-date="$ctrl.dateEnd"
+                     min-view="month">
+                    <h4>дата и время</h4>
+
+                </div>
+                <p ng-show="$ctrl.selectedTime">
+                    <span  ng-bind="$ctrl.selectedTime"></span>
+                    <span class="pull-right">
+                        <a ng-click="$ctrl.selectedTime=null">x</a>
+                    </span>
+                </p>
+            </div>
+            <hr>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-body">
+        <div ng-if="$ctrl.selectingStuff">
+            <uib-accordion close-others="true">
+                <uib-accordion-group ng-repeat="c in $ctrl.items" ng-if="$ctrl.stuffsOfMaster(c.stuffs)">
+                    <uib-accordion-heading>
+                        <span ng-bind="c.name"></span>
+                    </uib-accordion-heading>
+                    <p class="service-name" ng-repeat="stuff in c.stuffs| filter:$ctrl.filterFn">
+                        <ui-select
+                                ng-init="stuff.stock[stuff.sort].name=$ctrl.getTagName(stuff.sort)"
+                                ng-model="stuff.sort"
+                                ng-change="stuff.changeSortOfStuff()"
+                                on-select="stuff.onSelected()"
+                                search-enabled="false">
+                            <ui-select-match><!-- placeholder="{{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}"-->
+                                <!-- <span ng-bind="getTagName($select.selected.tag)"></span>-->
+                                {{$ctrl.getTagName($select.selected.tag)}}
+                            </ui-select-match>
+                            <ui-select-choices ui-disable-choice="!sort.value.quantity"
+                                               repeat="sort.tag as (tag,sort) in stuff.stock|filter:stuff.filterSorts">
+                                <span>{{sort.value.name=$ctrl.getTagName(sort.tag)}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+
+
+                        <a ng-click="$ctrl.addStuff(stuff)">
+                            <span ng-bind="stuff.name"></span>
+                            <span>
+                                от <span ng-bind="(stuff.price*$ctrl.global.get('rate').val).toFixed(2)"></span>
+                                <span ng-bind="$ctrl.global.get('currency').val"></span>
+                            </span>
+                        </a>
+                    </p>
+                </uib-accordion-group>
+            </uib-accordion>
+            <!--<ul>
+               <li ng-repeat="c in $ctrl.items">
+                   <h3>
+                       <span ng-bind="c.name"></span>
+                   </h3>
+                   <ul>
+                       <li ng-repeat="stuff in c.stuffs">
+                           <a ng-click="$ctrl.addStuff(stuff)">
+                               <span ng-bind="stuff.name">
+                               </span>
+                           </a>
+                       </li>
+                   </ul>
+               </li>
+            </ul>-->
+        </div>
+        <div ng-if="$ctrl.selectingMaster">
+            <div class="cart-detail" style="cursor: pointer" ng-repeat="m in $ctrl.masters|filter:$ctrl.filterMaster">
+                <div>
+                    <a ng-click="$ctrl.addMaster(m)">
+                        <div class="col-lg-4">
+                            <img class="img-responsive img-master" ng-src="{{m.img}}">
+                        </div>
+                        <div class="col-lg-8">
+                            <h3 class="name-master" ng-bind="m.name"></h3>
+                            <p ng-bind="m.position"></p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-12">
+                    <p>
+                        <a ng-if="m.desc"
+                           ng-click="m.showReview=false;m.showDetail=!m.showDetail">
+                            <small>подробнее</small>
+                        </a>
+                        <a ng-if1="m.reviews.length"
+                           ng-click="m.showDetail=false;m.showReview=!m.showReview"
+                           class="pull-right">
+                            <small>отзывы</small>
+                        </a>
+                    </p>
+                </div>
+                <div class="col-lg-12 desc-master" ng-if="m.showDetail">
+                    <p ng-bind-html="m.desc|unsafe">
+                    </p>
+                </div>
+                <div class="col-lg-12 desc-master" ng-if="m.showReview">
+                    <div ng-repeat="item in m.reviews">
+                        <p>
+                            <span ng-bind="item.name"></span>
+                            <span class="pull-right" ng-bind="$ctrl.moment(item.date).format('LL')"></span>
+                        <p ng-bind="item.desc"></p>
+                        </p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="clearfix"></div>-->
+
+    <div class="col-lg-12">
+
+        <button type="button" class="btn  bnt-block btn-project" style="width:100%"
+            ng-disabled="!$ctrl.selectedTime || !$ctrl.selectedStuff"
+        ng-click="$ctrl.orderService()">
+            оформить визит
+        </button>
+        <div class="col-lg-12">
+            <div ng-bind-html="::$ctrl.global.get('store').val.footer.text|unsafe">
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<!--<div moment-picker="$ctrl.orderDate"
+     locale="ru"
+     format="LLLL"
+     min-view="month">
+    {{$ctrl.orderDate || 'выбери дату и время'}}
+</div>
+<div class="row">
+    <a class="btn btn-fab" ng-click="$ctrl.addStuff()" >
+        <i class="material-icons link-success md-36">add</i>
+    </a>
+</div>-->
+
+
+

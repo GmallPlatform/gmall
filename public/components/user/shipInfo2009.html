@@ -1,0 +1,113 @@
+<!--http://stackoverflow.com/questions/27005608/angularjs-ui-bootstrap-modal-with-google-places-->
+<style>
+    .pac-container {
+        z-index: 100000;
+    }
+    @media (max-width: 380px){
+        .modalProject .modal-content .cart-inner{
+            padding: 0;
+        }
+    }
+</style>
+<h3 class="modal-title text-center">{{$ctrl.global.get('langForm').val.shipInfo}}</h3>
+<div class="my-switch-container  mb-40" >
+    <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 cart-inner">
+        <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok(formProfile)" novalidate>
+            <div class="form-group " ng-class="{'has-error': formProfile.email.$invalid}">
+                <input  name="email" type="email" class="form-control mb-10 cart" required
+                        ng-model="$ctrl.user.val.email" ng-disabled="$ctrl.user.val._id"
+                        placeholder="e-mail" ng-model-options="{'updateOn':'default blur','debounce':{'default':1000,'blur':0}}"/>
+            </div>
+            <span class="help-block" ng-if="formProfile.email.$dirty" ng-messages="formProfile.email.$error">
+                <span ng-message="required">{{$ctrl.global.get('langError').val.enteremail}}</span>
+                <span ng-message="pattern">{{$ctrl.global.get('langError').val.formatnot}}</span>
+            </span>
+            <div class="form-group " ng-class="{'has-error': formProfile.fio.$invalid}">
+                <input  name="fio" type="text" class="form-control mb-10 cart"
+                        ng-minlength="3"
+                        ng-maxlength="70"
+                        required ng-model-options="{'updateOn':'default blur','debounce':{'default':1000,'blur':0}}"
+                        ng-model="$ctrl.user.val.profile.fio"
+                        placeholder="{{$ctrl.global.get('langForm').val.fullname}}"/><!--pattern="[A-Za-zА-Яа-я0-9ЁёЇїІіЄє'\s-]{3,100}"-->
+            </div>
+
+            <span class="help-block"  ng-show="formProfile.fio.$error.required">{{$ctrl.global.get('langError').val.entername}}</span>
+            <span class="help-block"  ng-show="formProfile.fio.$error.minlength">{{$ctrl.global.get('langError').val.nameshort}}</span>
+            <span class="help-block"  ng-show="formProfile.fio.$error.maxlength">{{$ctrl.global.get('langError').val.namelong}}</span>
+            <!--<span class="help-block"  ng-show="formProfile.fio.$error.pattern">{{$ctrl.global.get('langError').val.formatnotFio}}</span>-->
+
+            <div class="form-group " ng-class="{'has-error': formProfile.phoneForm.$invalid}">
+                <div enter-phone-numder="$ctrl.user.val.profile.phone"></div>
+
+            </div>
+            <span class="help-block"  ng-show="formProfile.phoneForm.$dirty && $ctrl.phoneExist">
+                {{$ctrl.global.get('langError').val.dublePhone}}
+            </span>
+            <!--<div class="control-group">
+                <input type="text" class="form-control mb-10 cart"
+                       pattern="[0-9-]{0,10}"
+                       placeholder="Индекс"
+                       name="zip"
+                       ng-model="$ctrl.user.val.profile.zip"/>
+                <span class="help-block"  ng-show="formProfile.zip.$error.pattern">
+                                        неверный формат
+                                    </span>
+            </div>-->
+            <div class="form-group"ng-class="{'has-error': formProfile.cityId.$invalid}">
+                <input name="cityId" required data-ng-model="$ctrl.user.val.profile.cityId" type="hidden"
+                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}">
+                <input type="text"   class="form-control mb-10 cart"
+                       name="city"
+                       required
+                       ng-autocomplete-city  user="$ctrl.user.val"
+                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"/>
+
+            </div>
+            <span class="help-block" ng-show="formProfile.cityId.$invalid" ng-messages="formProfile.cityId.$error">
+                <span ng-message=required>
+                    {{$ctrl.global.get('langError').val.selectcity}}
+                </span>
+            </span>
+            <!--<div class="control-group">
+                <input  ng-maxlength="100"
+                        name="address"
+                        type="text" class="form-control mb-10 cart" pattern="[0-9A-Za-zА-Яа-я.,/\s-]{0,100}" ng-model="$ctrl.user.val.profile.address" placeholder="Улица дом кв"/>
+                <span class="help-block"  ng-show="formProfile.address.$error.maxlength">
+                                        не более 100-ти символов
+                                    </span>
+            </div>-->
+            <div class="form-group" ng-class="{'has-error': formProfile.transporter.$invalid}">
+                <input  ng-maxlength="100" ng-model-options="{'updateOn':'default blur','debounce':{'default':500,'blur':0}}"  name="transporter"
+                        type="text" class="form-control mb-10 cart"  ng-model="$ctrl.user.val.profile.transporter" placeholder="{{$ctrl.global.get('langForm').val.carrier}}"/>
+
+            </div>
+            <div class="help-block text-danger" ng-messages="formProfile.transporter.$error">
+                <div ng-message="maxlength">{{$ctrl.global.get('langError').val.nomore100}}</div>
+            </div>
+            <!--<div class="control-group">
+                <input  ng-maxlength="40"
+                        name="transporterOffice"
+                        type="text" class="form-control mb-10 cart" pattern="[0-9A-Za-zА-Яа-я.,/\s-]{0,100}" ng-model="$ctrl.user.val.profile.transporterOffice" placeholder="отделение транспортной компании"/>
+                <span class="help-block"  ng-show="formProfile.transporterOffice.$error.maxlength">
+                                        не более 40-ка символов
+                                    </span>
+            </div>-->
+            <div class="form-group" ng-class="{'has-error': formProfile.comment.$invalid}">
+                <textarea ng-maxlength="1000"
+                          name="comment"
+                          ng-model-options="{'updateOn':'default blur','debounce':{'default':500,'blur':0}}"
+                          class="form-control mb-10 cart" rows="6" placeholder="{{$ctrl.global.get('langForm').val.commentsorder}}"
+                          data-ng-model="$ctrl.order.comment"></textarea>
+            </div>
+
+            <div class="help-block text-danger"  ng-messages="formProfile.comment.$error">
+                <div ng-message="maxlength">{{$ctrl.global.get('langError').val.nomore1000}}</div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="text-center">
+                <button class="btn btn-project" type="submit">{{$ctrl.global.get('langForm').val.toorder}}</button>
+            </div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>

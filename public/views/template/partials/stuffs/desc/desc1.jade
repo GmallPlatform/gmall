@@ -1,0 +1,15 @@
+div(class=dj[key].wrapclass,class="col-lg-12 col-md-12 col-sm-12 col-xs-12")
+    div(class=mobileWrapper)
+        img(class="img-responsive",ng-src="{{$ctrl.global.get('category').val.banner}}")
+        div(class="blur")
+            img(class="img-responsive",ng-src="{{$ctrl.global.get('category').val.banner}}")
+        div(class="page-desc-box")
+            div(class="container")
+                div(class="desc-box")
+                    h1(class="page-name",ng-bind="$ctrl.global.get('category').val.name")
+                    p(class="desription-page", ng-if="$ctrl.global.get('category').val.desc", ng-bind-html="$ctrl.global.get('category').val.desc|unsafe")
+
+
+
+
+

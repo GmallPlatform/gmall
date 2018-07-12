@@ -1,0 +1,27 @@
+if(position=='center')
+    - var c = 'nav-group info dropdown'
+else
+    - var c = 'nav-group info dropdown pull-'+position
+
+if((positionMenu=='top' ||positionMenu=='bottom') && position=='center')
+    - var c = 'nav-group info dropdown'
+else if((positionMenu=='top' ||positionMenu=='bottom') && position!='center')
+    - var c = 'nav-group info dropdown pull-'+position
+else
+    - var c = 'nav-group info dropdown'
+if(cache_key=='menu2M')
+    ul(class="info")
+        each page,index in stats
+            li
+                - var hr = "/staticPage/"+page.url
+                a(href=hr)
+                    =page.name
+else
+    div(class=c)
+        ul(class="info-page")
+            each page,index in stats
+                li
+                    - var hr = "/staticPage/"+page.url
+                    a(href=hr)
+                        =page.name
+

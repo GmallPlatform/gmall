@@ -1,0 +1,15 @@
+div(class=wrapclass)
+  div(class=mobileWrapper)
+    section
+      - var c='navbar navbar-'+fixed+'-'+position+" menu1-top-bottom";
+      - var fon=(background)?background:''
+      nav(class=c,set-fon-after-start-scroll=fon,slide-menu-after-scroll="menu1",menu-bottom=position,id='menu1-section')
+        div(ng-class="{'navbar-toggle-slide-mini':$state.current.name!='home'}",class="navbar-toggle-slide text-center")
+          div(class="text-center center-menu")
+            | !{menu.center}
+          div(class="right-nav-menu  pull-left")
+            | !{menu.left}
+          div(class="right-nav-menu  pull-right")
+            | !{menu.right}
+
+          div(class="clearfix")

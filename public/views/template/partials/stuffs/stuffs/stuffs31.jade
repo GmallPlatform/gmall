@@ -1,0 +1,25 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="stuff-list-wrapper",id="items-list-wrapper")
+            div(class="col-md-12")
+                div(id='td-list-1',class="col-md-4 td-list")
+                    div(class="td-wrapper")
+                        each item in dj[key].itemsArr3[0]
+                            div(class="td-inner")
+                                div
+                div(id='td-list-2',class="col-md-4 td-list")
+                    div(class="td-wrapper")
+                        each item in dj[key].itemsArr3[1]
+                            div(class="td-inner")
+                                div
+                div(id='td-list-3',class="col-md-4 td-list")
+                    div(class="td-wrapper")
+                        each item in dj[key].itemsArr3[2]
+                            div(class="td-inner",id='')
+                                div
+        div(class="clearfix")
+        div(id="paginateData"+dj[key].page,data-total=dj[key].total,data-qty=dj[key].qty,data-page=dj[key].page,data-last-item-id=dj[key].lastItemId)
+if(titles.desc)
+    div(class="seo-desc col-lg-12 col-md-12 col-sm-12 col-xs-12 ")
+        |!{titles.desc}
+div(class="clearfix")

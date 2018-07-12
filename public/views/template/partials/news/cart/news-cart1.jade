@@ -1,0 +1,17 @@
+div(class="thumbnail")
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 news-stuff-img")
+        a(ui-sref="news.item({id:item.url})")
+            img(ng-if="::item.img",class="img-responsive" ng-src="{{item.img||'/img/upload/no.png'}}")
+            div(ng-if="::!item.img",ng-bind-html="item.video|unsafe")
+
+    div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12 news-stuff-desk")
+        a(ui-sref="news.item({id:item.url})")
+            div(class="form-group")
+                h2(ng-bind="item.name")
+                p(ng-bind="item.desc.clearTag()|cut:true:200:'...'")
+
+            div(class="social-hub-stuff col-lg-8 news-stuff-date")
+                social-hub
+            h4(class="pull-right col-lg-4 news-stuff-date",ng-bind="$ctrl.moment(item.date).format('LL')")
+            div(class="clearfix")
+    div(class="clearfix")

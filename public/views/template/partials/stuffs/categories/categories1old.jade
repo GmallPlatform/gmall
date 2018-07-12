@@ -1,0 +1,17 @@
+div(class=wrapclass)
+    div(class=mobileWrapper)
+        div(class="categories-for-list" )
+            div(class="" ng-if="$ctrl.parentSection.categories.length")
+                div(class="categories-stuff col-lg-2 col-md-2 col-sm-3 col-xs-6")
+                    a(ng-click="$ctrl.changeCategory('category')", ng-class="{'active':$ctrl.category=='category'}")
+                        span(class="icon-btn")
+                        span(class="text-center")  все категории
+                div(class="categories-stuff  col-lg-2 col-md-2 col-sm-3 col-xs-6", ng-repeat="item in $ctrl.parentSection.categories")
+                    a(ng-click="$ctrl.changeCategory(item.url)", ng-class="{'active':$ctrl.category==item.url}")
+                        span(class="icon-btn")
+                        span(class="text-center", ng-bind="item.name")
+                div(class="clearfix")
+
+            div(class="col-lg-12 col-xs-12")
+                p(class="desription-page", ng-if="$ctrl.categoryData.desc", ng-bind-html="$ctrl.categoryData.desc|unsafe")
+                p(class="desription-page", ng-if="$ctrl.brandData.desc",  ng-bind-html="$ctrl.brandData.desc|unsafe")

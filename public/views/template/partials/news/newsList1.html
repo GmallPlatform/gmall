@@ -1,0 +1,169 @@
+<div ui-view></div>
+<div ng-hide1="$ctrl.$state.current.name!='news'"  class="news-stuff">
+    <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <p class="no_story">
+            по вашему запросу нет записей
+        </p>
+    </div>
+    <div class="clearfix"></div>
+    <div class="nav-box-stuff">
+        <div class="content-tab-nav-stuff">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 text-center">
+                <paginator-main
+                        paginate="$ctrl.paginate"
+                        getlist="$ctrl.getList()"
+                        scroll="{{scrollId}}">
+                </paginator-main>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
+                <form ng-submit="$ctrl.searchNews(searchStr)">
+                    <div class="search  form-group label-floating">
+                        <!--<label class="control-label">поиск новости</label>-->
+                        <input type="text" placeholder="поиск новости" class="form-control" ng-model="searchStr"/>
+                    </div>
+                    <input type="submit" class="enter" tabindex="-1"  />
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="news-stuff-container" ng-switch="$ctrl.data.rows">
+        <div ng-switch-when="1">
+            <div class="stuff-admin clearfix"
+                 ng-repeat="item in $ctrl.items"
+                 news-cart1>
+            </div>
+        </div>
+        <div ng-switch-when="2">
+            <table>
+                <tr>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr2[0]"
+                                 news-cart1>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr2[1]"
+                                 news-cart1>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div ng-switch-when="4">
+            <table>
+                <tr>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr3[0]"
+                                 news-cart1>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr3[1]"
+                                 news-cart1>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr3[2]"
+                                 news-cart1>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+       <!-- <div ng-switch-when="4">
+            <table>
+                <tr>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner  stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr4[0]"
+                                 news-cart1>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner  stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr4[1]"
+                                 news-cart1>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner  stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr4[2]"
+                                 news-cart1>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner  stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr4[3]"
+                                 news-cart1>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+        </div>-->
+        <div ng-switch-default>
+            <table>
+                <tr>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr2[0]"
+                                 news-cart1>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr2[1]"
+                                 news-cart1>
+                            </div>
+                        </div>
+
+                    </td>
+                    <!--<td>
+                        <div class="td-wrapper">
+                            <div class="clearfix td-inner stuff-admin"
+                                 ng-repeat="item in $ctrl.itemsArr3[2]"
+                                 news-cart1>
+                            </div>
+                        </div>
+                    </td>-->
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

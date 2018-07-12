@@ -1,0 +1,74 @@
+<!--<pre>{{$ctrl.$state.current|json}}</pre>-->
+<div ng-hide="$ctrl.$state.current.name!='frame.homePage'">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 block-tab">
+        <div class="row">
+            <div class="btn-group btn-group-justified btn-group-raised" style="height: 60px">
+                <a class="btn" ng-class="{'active':$ctrl.activeSide=='header'}"ng-click="$ctrl.activeSide='top'">
+                    <span class="link-success">верхний блок</span>
+                </a>
+                <a class="btn" ng-class="{'active':$ctrl.activeSide=='left'}"ng-click="$ctrl.activeSide='left'">
+                    <span class="link-success">левый блок</span>
+                </a>
+                <a class="btn" ng-class="{'active':$ctrl.activeSide=='right'}"ng-click="$ctrl.activeSide='right'">
+                    <span class="link-success">правый блок</span></a>
+               <!-- <a class="btn" ng-class="{'active':$ctrl.activeSide=='info'}"ng-click="$ctrl.activeSide='info'">
+                    <span class="link-success">структура</span>
+                </a>
+                <a class="btn" ng-class="{'active':$ctrl.activeSide=='setting'}"ng-click="$ctrl.activeSide='setting'">
+                    <span class="link-success">настройки</span>
+                </a>-->
+            </div>
+        </div>
+    </div>
+
+    <div class="home-page" ng-if="$ctrl.item">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pages-header">
+            <div class="row">
+                <div class="cart-detail">
+                    <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <pre>{{$ctrl.ddddd}}</pre>
+                        <ui-select ng-model="$ctrl.ddddd" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.anyFoo()">
+                            <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6]">{{ opt }}</ui-select-choices>
+                        </ui-select>
+                    </div>-->
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <ui-select ng-model="$ctrl.blockForAdd" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.addBlock($ctrl.blockForAdd)">
+                            <ui-select-match placeholder="добавить блок в список">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="opt.key as (key, opt) in $ctrl.listOfBlocks">{{ opt.value }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12"></div>
+                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.uploadHP()" title="выгрузить шаблон" style="margin-bottom: 0; margin-top: 0">
+                            <i class="material-icons link-success md-42">unarchive</i>
+                        </a>
+
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-right">
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadHP()" title="загрузить шаблон" style="margin-bottom: 0; margin-top: 0">
+                            <i class="material-icons link-primary md-42">archive</i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <blocks-edit
+                         active-side="$ctrl.activeSide"
+                         item="$ctrl.item"
+                         type="HomePage"
+                         refresh-blocks="$ctrl.refreshBlocks()"
+            >
+            </blocks-edit>
+        </div>
+    </div>
+</div>
+
+<div ui-view="">
+
+</div>

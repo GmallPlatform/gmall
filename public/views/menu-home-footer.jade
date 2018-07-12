@@ -1,0 +1,11 @@
+#menu1
+#menu2
+div(margin-main-content,style=mainContentDivStyle)
+  div(id="mainContentDiv")
+    div(id="tempContent")
+    div(ui-view="")
+    div(ng-cloak=ngCloakHomePage,ng-show="$state.current.name=='home'||(($state.current.name=='stuffs'||$state.current.name=='stuffs.stuff')&& global.get('store').val.hpWithList)")
+      div(id="homePageHtml",class="home-page-html")
+div(class="clearfix")
+#footer
+#slideMenu

@@ -1,0 +1,273 @@
+<div class="edit-booking select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">редактирование записи {{$ctrl.dateEntry}}</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <h4><strong>мастер</strong></h4>
+                <h4>{{$ctrl.master.name}}</h4>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <h4><strong>услугa</strong></h4>
+                <h4 ng-bind="$ctrl.entry.service.name"></h4>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <h4>данные сохраняются автоматически</h4>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 timing-box">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-5">
+                    <div class="form-group">
+                        <h4><strong>время</strong></h4>
+                        <h4>{{$ctrl.hour}} час  {{$ctrl.minutes}} &nbsp;<span ng-bind="$ctrl.global.get('lang').val.minute"></span></h4>
+                    </div>
+                    <div class="form-group  timing">
+                        <h4 class="link-success"><strong>изменить время</strong></h4>
+                        <ui-select  search-enabled="false" ng-model="$ctrl.startPart" skip-focusser="true" append-to-body ng-change="$ctrl.changeStartPart()">
+                            <ui-select-match>{{$select.selected.time}}</ui-select-match>
+                            <ui-select-choices repeat="opt.part as opt in $ctrl.timeParts|filter:$ctrl.changeTimeFilter">{{opt.time}}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-5">
+                    <div class="form-group">
+                        <h4><strong>длительность</strong></h4>
+                        <h4><span ng-bind="$ctrl.entry.qty*15"></span>&nbsp;<span ng-bind="$ctrl.global.get('lang').val.minute"></span></h4>
+                    </div>
+
+                    <div class="form-group timing">
+                        <h4 class="link-success"><strong>изменить длительность</strong></h4>
+                        <ui-select  search-enabled="false" ng-model="$ctrl.qty" skip-focusser="true" append-to-body ng-change="$ctrl.changeDuration()">
+                            <ui-select-match>{{$select.selected.time}}</ui-select-match>
+                            <ui-select-choices repeat="opt.part as opt in $ctrl.timeDurationdArr">{{opt.time}}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+                <h4><strong>оплата услуги</strong></h4>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                    <label>сумма</label>
+                    <input class="form-control" ng-model="$ctrl.entry.paySum"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
+                           ng-change="$ctrl.saveField('paySum')" >
+
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-4">
+                    <h4 ng-bind="$ctrl.entry.currency" style="padding-top: 30px"></h4>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <div class="togglebutton">
+                        <label for="remind33">
+                            <span ng-class="{'active':!$ctrl.entry.status}">не оплачен</span>
+                            <input type="checkbox"
+                                   ng-true-value=1 ng-false-value=0
+                                   id="remind33"
+                                   ng-model="$ctrl.entry.status"
+                                   ng-change="$ctrl.saveField('status')">
+                            <span ng-class="{'active':$ctrl.entry.status}">оплачен</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label>
+                        комментарии
+                    </label>
+                    <textarea class="form-control" ng-model="$ctrl.entry.comment"
+                              ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
+                              ng-change="$ctrl.saveField('comment')"></textarea>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4 class="text-center"><strong>напоминание о записи</strong></h4>
+                <div class="reminder">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 xol-xs-12">
+                        <!--<div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="$ctrl.entry.remind" ng-change="$ctrl.saveField('remind')">
+                                <span class="rem">
+                                    {{$ctrl.global.get('langForm').val.reminder}}
+                                </span>
+                            </label>
+                        </div>-->
+                        <div class="togglebutton">
+                            <label for="remind">
+                                <span ng-class="{'active':!$ctrl.entry.remind}">без напоминания</span>
+                                <input type="checkbox"
+                                       id="remind"
+                                       ng-model="$ctrl.entry.remind"
+                                       ng-change="$ctrl.saveField('remind')">
+                                <span ng-class="{'active':$ctrl.entry.remind}">{{$ctrl.global.get('langForm').val.reminder}}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 xol-xs-12 timing">
+                        <ui-select  search-enabled="false" ng-model="$ctrl.entry.timeRemind" skip-focusser="true" append-to-body ng-change="$ctrl.saveField('timeRemind')">
+                            <ui-select-match placeholder="{{$ctrl.global.get('langForm').val.timeReminder}}">{{$select.selected.time}}</ui-select-match>
+                            <ui-select-choices repeat="opt.part as opt in $ctrl.timeRemindArr">{{opt.time}}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                    <h4><strong>клиент</strong></h4>
+                    <h4>
+                        <p ng-bind="$ctrl.entry.user.name"></p>
+                        <p><span>+ </span><span ng-bind="$ctrl.entry.user.phone"></span></p>
+                        <p ng-bind="$ctrl.entry.user.email"></p>
+                    </h4>
+
+                    <a  ng-click="$ctrl.editingUser=true" class="link-success">
+                        <h4><strong>изменение данных клиента</strong></h4>
+                    </a>
+                    <form name="form" ng-submit="$ctrl.updateUser()" uib-collapse="!$ctrl.editingUser">
+                        <fieldset class="well the-fieldset">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">введите имя</label>
+                                    <input class="form-control" type="text"
+                                           ng-model="$ctrl.user.name"
+                                           ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
+                                           ng-minlength="3"
+                                           ng-maxlength="50"
+                                           name="name"
+                                           required/>
+                                </div>
+                                <div class="help-block" ng-messages="form.name.$error" role="alert">
+                                    <div ng-message="required">необходимо ввести имя</div>
+                                    <div ng-message="minlength">не менее 3 символов</div>
+                                    <div ng-message="maxlength">не более 25</div>
+                                </div>
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">введите email</label>
+                                    <input class="form-control" type="email"
+                                           ng-model="$ctrl.user.email"
+                                           ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
+                                           name="email"/>
+                                </div>
+
+                                <label class="control-label">введите телефон</label>
+                                <div class="row">
+                                    <ui-select class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group" ng-model="$ctrl.phoneCode" skip-focusser="true" >
+                                        <ui-select-match>{{$select.selected.code}}</ui-select-match>
+                                        <ui-select-choices repeat="opt.code as opt in $ctrl.phoneCodes">{{opt.code}}({{opt.country}})</ui-select-choices>
+                                    </ui-select>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text"
+                                               class="form-control"
+                                               ng-model="$ctrl.user.phone"
+                                               ui-mask="(999) 999-9999"
+                                               ui-mask-placeholder
+                                               ui-mask-placeholder-char="_"
+                                               name="phone"
+                                               required/>
+                                        <div class="help-block" ng-messages="form.phone.$error" style="color:maroon" role="alert">
+                                            <div ng-message="required || mask">Необходимо ввести телефон в указанном формате</div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <h4>измененный данные сохраняются только при нажатии на кнопку сохранения в данном окне</h4>
+                            </div>
+
+                            <div class="pull-right">
+                                <button class="btn btn-fab btn-fab-mini" ng-disabled="!form.$valid" type="submit" title="закрыть окно">
+                                    <i class="material-icons link-success md-36 ">save</i>
+                                </button>
+                            </div>
+                            <div class="pull-left">
+                                <a class="btn btn-fab btn-fab-mini" ng-disabled="!form.$valid" type="submit" title="закрыть окно" ng-click="$ctrl.editingUser=false">
+                                    <i class="material-icons link-warning md-36 ">clear</i>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+
+
+                        </fieldset>
+                    </form>
+
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                    <h4><strong>подтверждение записи</strong></h4>
+                    <div ng-show="$ctrl.global.get('store').val.submitDateTime">
+                        <h3 class="pull-left">
+                                <span ng-show="$ctrl.entry.confirm">
+                                    запись согласована - <span ng-bind="$ctrl.moment($ctrl.entry.confirm).format('LLL')"></span>
+                                </span>
+                            <span ng-show="!$ctrl.entry.confirm">
+                                    запись не согласована
+                                </span>
+                        </h3>
+                        <a class="btn btn-fab btn-fab-mini pull-left" title="отправить уведомление о согласовании записи" ng-click="$ctrl.recordAgreed()">
+                            <i class="material-icons link-success md-36 ">notifications_active</i>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <hr>
+                    <h4><strong>подтверждение сеанса</strong></h4>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="$ctrl.entry.used" ng-change="$ctrl.saveField('used')"> клиент пришел
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="action">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-2">
+                    <a class="btn  btn-fab btn-fab-mini pull-left" title="удалить запись" ng-click="$ctrl.delete()">
+                        <i class="material-icons link-warning md-36 ">delete</i>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8 text-center" style="padding-left: 0; padding-right: 0">
+                    <a class="btn btn-lg" title="перенести запись на другой день" ng-click="$ctrl.moveEntry()">
+                        <span class="link-success" ng-show="!$ctrl.entry.move">пренести запись</span>
+                        <span class="link-warning" ng-show="$ctrl.entry.move">отменить перенос</span>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-2">
+                    <a class="btn  btn-fab btn-fab-mini pull-right" title="сохранить запись" ng-click="$ctrl.ok()">
+                        <i class="material-icons link-warning md-36 ">clear</i>
+                    </a>
+                </div>
+
+
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+
+    <div class="clearfix"></div>
+
+</div>

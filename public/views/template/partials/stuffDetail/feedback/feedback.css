@@ -1,0 +1,6 @@
+.feedback-form input.form-control {
+    height: 40px;
+}
+.feedback-form input {
+    cursor: pointer;
+}

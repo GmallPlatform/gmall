@@ -1,0 +1,42 @@
+<div class="new-booking select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">
+            <span>пренос расписания</span>
+        </h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h4>неделя с какой переносить</h4>
+            <ui-select ng-model="$ctrl.weekFrom" skip-focusser="true">
+                <ui-select-match>{{$select.selected.date}}</ui-select-match>
+                <ui-select-choices repeat="opt in $ctrl.weeksFrom">{{opt.date}}</ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h4>неделя на какую переносить</h4>
+            <ui-select ng-model="$ctrl.weekTo" skip-focusser="true">
+                <ui-select-match>{{$select.selected.date}}</ui-select-match>
+                <ui-select-choices repeat="opt in $ctrl.weeksTo">{{opt.date}}</ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="clearfix"></div>
+        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 transfer" ng-show="$ctrl.entriesToMove && $ctrl.entriesToMove.length">
+            <ui-select ng-model="$ctrl.entryToMove" skip-focusser="true"
+                       ng-change="$ctrl.moveEtry()">
+                <ui-select-match placeholder="выбрать запись из сохраненных для переноса">{{$selected}} {{$item}}</ui-select-match>
+                <ui-select-choices repeat="opt in $ctrl.entriesToMove">{{opt.name}}</ui-select-choices>
+            </ui-select>
+        </div>-->
+    </div>
+
+
+    <div class="clearfix"></div>
+
+    <div class="modal-footer col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <button class="btn btn-raised btn-block" ng-click="$ctrl.ok()" style="width: 100%" ng-disabled="$ctrl.disabled">
+            пренести
+        </button>
+    </div>
+    <div class="clearfix"></div>
+</div>

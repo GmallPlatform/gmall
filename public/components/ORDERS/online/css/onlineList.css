@@ -1,0 +1,186 @@
+.online-list {
+    margin-top: 80px;
+}
+.entry {
+    height: 50px;
+}
+.timepartDisabled {
+    background-color: rgba(209, 241, 255, 0.65);
+    border-bottom:1px solid #d6d6d6;
+    height: 50px;
+    cursor: no-drop;
+}
+
+.timing .ui-select-match-text,
+.timing .ui-select-placeholder {
+    margin-right: 25px;
+}
+.online-list  .name-page{
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #767c89;
+}
+.online-list .online-box {
+    overflow-x: auto;
+}
+.online-list .online-table {
+    display: table;
+}
+.online-list .online-table-header {
+    display: table-row;
+    border-top: 1px solid #d6d6d6;
+    background-color: #e7e7e7;
+
+}
+.online-table {
+    border-left: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d6d6d6;
+}
+.fix-to-top {
+    background-color: #e2e2e2;
+    z-index: 1000;
+}
+.online-list .master {
+   /* border-left:1px solid #d6d6d6;*/
+    border-right:1px solid #d6d6d6;
+    height: 100px;
+}
+
+.online-list .time {
+    /*border-left:1px solid #d6d6d6;*/
+    border-right:1px solid #d6d6d6;
+    height: 100px;
+}
+
+.online-list .servise-add  .ui-select-match .btn-default .text-muted,
+.online-list .servise-add  .ui-select-match .btn-default.ui-select-toggle{
+    color: #72ad66;
+}
+.online-list .time-entry {
+    height:50px;
+    padding-right: 0;
+    padding-left: 0;
+}
+.online-list  .time-entry-box {
+    height:50px;
+    border-top: 1px solid #d6d6d6;
+    border-right: 1px solid #d6d6d6;
+    cursor: default;
+}
+.online-list .master-box {
+    width: 15%;
+    min-width:250px;
+    float: left;
+    margin-bottom: 20px;
+}
+.online-list .master-name {
+    min-width: 350px;
+    max-width: 350px;
+    display: table-cell;
+    height:100px;
+    font-weight: 400;
+    background-color: #e2e2e2;
+    opacity: 1;
+}
+.online-list .servise-entry {
+    min-width: 350px;
+    max-width: 350px;
+    display: table-cell;
+    cursor: pointer;
+}
+.online-list .servise-box {
+    height:50px;
+    width:100%;
+    overflow: visible;
+    font-size: 13px;
+    border-right: 1px solid #d6d6d6;
+}
+.online-list .servise-entry-box {
+    padding-left: 0;
+    padding-right: 0;
+}
+.online-list .phone {
+    font-size: 14px;
+    font-weight: 600;
+}
+.online-list .busyEntry{
+    background-color: rgb(203, 255, 192);
+    border-top: 1px solid transparent;
+
+}
+
+.online-list .disabled {
+    background-color: rgba(197, 236, 255, 0.49);
+}
+
+.online-list .reservation{
+    background-color: rgb(255, 214, 219);
+    border-top: none;
+}
+
+.online-list .tempEntry {
+    background-color: rgb(118, 177, 226);
+
+}
+.online-list .borderTop{
+    border-top:  1px solid #d6d6d6;
+}
+.well {
+    padding: 0;
+    background-color: transparent;
+}
+.date-picker-new table {
+    border: 1px solid transparent;
+}
+.date-picker-new .dropdown-menu {
+    padding: 10px;
+}
+.date-picker-new .btn.btn-sm {
+    border: 1px solid transparent;
+    margin: 1px 1px;
+    padding: 8px 20px;
+    font-size: 16px;
+}
+.date-picker-new .btn.btn-sm:hover {
+    border: 1px solid #72ad66;
+    background-color: transparent;
+}
+.date-picker-new .btn-info.active {
+    background-color: transparent;
+    border: 1px solid #72ad66;
+}
+.date-picker-new  .text-info {
+    color: #72ad66;
+}
+.date-picker-new .btn .text-muted {
+    font-size: 12px;
+    color: #999;
+}
+.date-picker-new  .btn:not(.btn-raised).btn-danger {
+    color: #ff7148;
+}
+.new-booking .transfer .btn .text-muted,
+.new-booking .btn:not(.btn-raised) {
+    color: #72ad66;
+}
+.input-group-btn .btn.btn-fab,
+.input-group-btn  .btn.btn-fab-mini {
+    border-radius: 5px;
+}
+.online-list .box-day {
+   /*margin-bottom: 10px;*/
+    text-align: center;
+}
+.online-list .time-entry-box {
+    text-align: center;
+}
+.online-list .week {
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+.online-list .online-table-day {
+    padding-left: 0;
+    padding-right: 0;
+}

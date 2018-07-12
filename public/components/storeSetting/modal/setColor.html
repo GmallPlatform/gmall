@@ -1,0 +1,77 @@
+<style>
+    .app-modal-window .modal-dialog {
+        width: 90%;
+    }
+    hr {
+        border-top-color:#ff7148
+    }
+    .name-class .form-group{
+        margin-top: 0;
+    }
+    .change-style .input-group .form-group {
+        margin-top: 0;
+    }
+    .change-style .help-text {
+        font-size: 14px;
+    }
+</style>
+<div class="change-style select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">установка CSS переменных для блока</h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <form ng-submit="$ctrl.done()">
+        <div class="modal-body">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4 class="element-block link-warning">block</h4>
+                <set-styles item="$ctrl.block.blockStyle" font-faces="$ctrl.fontFaces"></set-styles>
+
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <ui-select ng-model="$ctrl.element" skip-focusser="true" search-enabled="false"
+                           ng-change="$ctrl.addNewElement()" style="margin-top: 20px">
+                    <ui-select-match placeholder="выбрать элемент">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="opt in $ctrl.listElements|filter:$ctrl.filterListElements">{{ opt }}</ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 name-class">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="наименование класса" ng-model="$ctrl.selector" style="height: 60px">
+                    <span class="input-group-addon" style="padding: 0">
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.addSelector()" style="margin: 0">
+                            <i class="material-icons link-success">add</i>
+                        </a>
+                    </span>
+                </div>
+                <p class="help-text">
+                    для указания .class.class запись class__class<br>
+                    для указания class:hover запись class&hover<br>
+                    для указания element:hover запись &elevent&hover
+                </p>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="(element,item) in $ctrl.block.elements">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4 class="element-block link-warning" ng-bind="element"></h4>
+                    <set-styles item="item" save-field="main.elements.{{element}}" font-faces="$ctrl.fontFaces"
+                                delete-function="$ctrl.deleteElement(element)"
+                                element="{{element}}"
+                                action="delete">
+                    </set-styles>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="modal-footer col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <button class="btn btn-block btn-raised" type="submit">
+                сохранить
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+    <div class="clearfix"></div>
+</div>

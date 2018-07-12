@@ -1,0 +1,117 @@
+<style>
+    hr {
+        border-top: 1px solid #ff7148;
+    }
+</style>
+<div class="lang-item" ng-show="$ctrl.item">
+    <div class="nav-box">
+        <div class="tab-nav text-center">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.lang">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+        <div class="tab-nav">
+            <form ng-submit="$ctrl.addNewTag($ctrl.newTag)">
+                <div style="float: left">
+                    <input class="form-control" placeholder="введите название тега"
+                           ng-model="$ctrl.newTag"
+                           pattern="^[a-zA-Z][a-zA-Z0-9-].{1,20}" required>
+                </div>
+                <div style="float: left;">
+                    <button style="margin-top: 0" class="btn btn-fab btn-fab-mini btn-success"
+                       type="submit"
+                       title="создать новый тег">
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+
+                <!--<div class="text-center" style="float: left">
+                    <h3 class="name-page ">редактирование языковой карты</h3>
+                </div>-->
+                <!--<button type="submit" class="add-goods link-success" ng-click="$ctrl.createTag">
+                    <span class="link-success">создать новый тег</span>
+                    <i class="material-icons link-success">add_box</i>
+                </button>-->
+            </form>
+
+        </div>
+        <div class="tab-nav">
+            <a ng-click="$ctrl.googleTranslate()">
+                автоперевод
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="info-page col-lg-12">
+        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pages-header">
+            <h3 class="text-center name-page">редактирование языковой карты</h3>
+        </div>-->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="cart-detail">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="form-group label-floating">
+                        <!--<label class="control-label">название</label>-->
+                        <input class="form-control name" ng-model="$ctrl.item.name" ng-blur="$ctrl.saveField('name',$ctrl.item.name,true)" disabled>
+                    </div>
+
+                </div>
+               <!-- <a class="link-success new-info" ng-if="$ctrl.item.blocks.length<40" ng-click="$ctrl.saveEmbeddedField({name:'новый подраздел'},'name')">создать новый подраздел</a>-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <input class="form-control" placeholder="тега для поиска"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 300,'blur': 0}}"
+                               ng-model="$ctrl.searchStrTag" >
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-repeat2="l in $ctrl.langs">
+                        <h3>ru</h3>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                       <!-- <h3>{{$ctrl.currentLang}}</h3>-->
+                        <ui-select ng-model="$ctrl.currentLang" skip-focusser="true" search-enabled="false">
+                            <ui-select-match placeholder="добавить блок в список">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="item in $ctrl.langsArr">{{ item }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <h3>desc</h3>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        удалить
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="(tag,item) in $ctrl.searchStrFilter($ctrl.item.tags,$ctrl.searchStrTag)">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <h3>{{tag}}</h3>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-repeat2="l in $ctrl.langs">
+                        <input class="form-control"ng-model="item['ru']"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 300,'blur': 0}}"
+                               ng-change="$ctrl.saveField(tag+'.ru',item['ru'])">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-repeat2="l in $ctrl.langs">
+                        <input class="form-control"ng-model="item[$ctrl.currentLang]"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 300,'blur': 0}}"
+                               ng-change="$ctrl.saveField(tag+'.'+$ctrl.currentLang,item[$ctrl.currentLang])">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <input class="form-control"ng-model="item.desc"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 300,'blur': 0}}"
+                               ng-change="$ctrl.saveField(tag+'.desc',item.desc)">
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.deleteTag(tag)">
+                            <i class="link-warning material-icons">delete</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

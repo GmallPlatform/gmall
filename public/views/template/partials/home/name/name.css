@@ -1,0 +1,19 @@
+/*all*/
+@media (max-width: 1450px) {
+    .container {
+        width: 100%;
+    }
+}
+/*
+.mobile-wrapper .container {
+    width: 100%;
+}
+.tablet-wrapper h1 {
+    margin-top: 80px;
+}
+.mobile-wrapper h1 {
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}*/

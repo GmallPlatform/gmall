@@ -1,0 +1,37 @@
+<div class="master-item">
+    <div class="nav-box-stuff">
+        <div class="tab-nav-stuff text-center action">
+            <a class="btn btn-fab btn-fab-mini"  ui-sref="frame.translate">
+                <i class="material-icons link-warning">reply</i>
+            </a>
+        </div>
+
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="text-center tab-nav-stuff">
+        <paginator-main
+                paginate="$ctrl.paginate"
+                getlist="$ctrl.getList()"
+                scroll="{{scrollId}}">
+        </paginator-main>
+    </div>
+
+    <div ng-if="$ctrl.items.length">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <blocks-transtale
+                    items="$ctrl.items"
+                    save-foo="$ctrl.saveField(field,value,model,_id)"
+            >
+            </blocks-transtale>
+        </div>
+    </div>
+    <div class="panel content-box" ng-show="$ctrl.items && !$ctrl.items.length">
+        <div class="panel-body col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <span class="plot" >
+                список пуст
+            </span>
+        </div>
+    </div>
+</div>

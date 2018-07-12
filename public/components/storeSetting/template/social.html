@@ -1,0 +1,338 @@
+<div class="template-list" >
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <h3 class="text-center name-page">страницы в социальных сетях</h3>
+        <div class="cart-detail">
+            <p>для перехода с сайта на страницы ваших соцсетей поставьте соответствующие метки и вставьте адрес страниц</p>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sn.fb.is" type="checkbox" ng-change="$ctrl.saveFieldStore('sn')"id="fb"/>
+                        fb
+                    </label>
+                </div>
+                <div class="form-group label-floating"  ng-if="$ctrl.store.sn.fb.is">
+                    <label for="fb1" class="control-label">ссылка</label>
+                    <input ng-model="$ctrl.store.sn.fb.link" lost-focus="$ctrl.saveFieldStore('sn')"id="fb1" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sn.inst.is" type="checkbox" id="inst" ng-change="$ctrl.saveFieldStore('sn')"/>
+                        instagram
+                    </label>
+                </div>
+                <div class="form-group label-floating"   ng-if="$ctrl.store.sn.inst.is">
+                    <label for="inst1" class="control-label">ссылка</label>
+                    <input ng-model="$ctrl.store.sn.inst.link" lost-focus="$ctrl.saveFieldStore('sn')"id="inst1"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sn.tw.is" type="checkbox" id="tw" ng-change="$ctrl.saveFieldStore('sn')"/>
+                        tw
+                    </label>
+                </div>
+                <div class="form-group label-floating"   ng-if="$ctrl.store.sn.tw.is">
+                    <label for="tw1" class="control-label">ссылка</label>
+                    <input ng-model="$ctrl.store.sn.tw.link" lost-focus="$ctrl.saveFieldStore('sn')"id="tw1"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sn.gl.is" type="checkbox" id="gl" ng-change="$ctrl.saveFieldStore('sn')"/>
+                        gl+
+                    </label>
+                </div>
+                <div class="form-group label-floating"   ng-if="$ctrl.store.sn.gl.is">
+                    <label for="gl1" class="control-label">ссылка</label>
+                    <input ng-model="$ctrl.store.sn.gl.link" lost-focus="$ctrl.saveFieldStore('sn')"id="gl1"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sn.yt.is" type="checkbox" id="yt" ng-change="$ctrl.saveFieldStore('sn')"/>
+                        youtube
+                    </label>
+                </div>
+                <div class="form-group label-floating"   ng-if="$ctrl.store.sn.yt.is">
+                    <label for="yt1" class="control-label">ссылка</label>
+                    <input ng-model="$ctrl.store.sn.yt.link" lost-focus="$ctrl.saveFieldStore('sn')"id="yt1"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sn.pin.is" type="checkbox" id="pin" ng-change="$ctrl.saveFieldStore('sn')"/>
+                        pinterest
+                    </label>
+                </div>
+                <div class="form-group label-floating"   ng-if="$ctrl.store.sn.pin.is">
+                    <label for="pin1" class="control-label">ссылка</label>
+                    <input ng-model="$ctrl.store.sn.pin.link" lost-focus="$ctrl.saveFieldStore('sn')"id="pin1"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sn.ok.is" type="checkbox" id="ok" ng-change="$ctrl.saveFieldStore('sn')"/>
+                        ok
+                    </label>
+                </div>
+                <div class="form-group label-floating"   ng-if="$ctrl.store.sn.ok.is">
+                    <label for="ok1" class="control-label">ссылка</label>
+                    <input ng-model="$ctrl.store.sn.ok.link" lost-focus="$ctrl.saveFieldStore('sn')"id="ok1"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sn.vk.is" type="checkbox" id="vk" ng-change="$ctrl.saveFieldStore('sn')"/>
+                        vk
+                    </label>
+                </div>
+                <div class="form-group label-floating"   ng-if="$ctrl.store.sn.vk.is">
+                    <label for="vk1" class="control-label">ссылка</label>
+                    <input ng-model="$ctrl.store.sn.vk.link" lost-focus="$ctrl.saveFieldStore('sn')"id="vk1" class="form-control"/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <h3 class="text-center name-page">настройка кнопок расшаривания</h3>
+        <div class="cart-detail">
+            <p>для использования ссылок расшаривания в  соцсетях поставьте соответствующие метки и выберите форму представления ссылки </p>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sh.fb.is" type="checkbox" ng-change="$ctrl.saveFieldStore('sh')"/>
+                        fb
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.fb.type" type="radio" name="fbshare" value=0 checked="" ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.fb.type" type="radio" name="fbshare" value=1 ng-change="$ctrl.saveFieldStore('sh')">
+                            название
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.fb.type" type="radio" name="fbshare" value=2 ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка и название
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sh.inst.is" type="checkbox" ng-change="$ctrl.saveFieldStore('sh')"/>
+                        instagram
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.inst.type" type="radio" name="instshare" value=0 checked="" ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.inst.type" type="radio" name="instshare" value=1 ng-change="$ctrl.saveFieldStore('sh')">
+                            название
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.inst.type" type="radio" name="instshare" value=2 ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка и название
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sh.tw.is" type="checkbox"  ng-change="$ctrl.saveFieldStore('sh')"/>
+                        tw
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.tw.type" type="radio" name="twshare" value=0 checked="" ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.tw.type" type="radio" name="twshare" value=1 ng-change="$ctrl.saveFieldStore('sh')">
+                            название
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.tw.type" type="radio" name="twshare" value=2 ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка и название
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sh.gl.is" type="checkbox"  ng-change="$ctrl.saveFieldStore('sh')"/>
+                        gl+
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.gl.type" type="radio" name="glshare" value=0 checked="" ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.gl.type" type="radio" name="glshare" value=1 ng-change="$ctrl.saveFieldStore('sh')">
+                            название
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.gl.type" type="radio" name="glshare" value=2 ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка и название
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sh.yt.is" type="checkbox"  ng-change="$ctrl.saveFieldStore('sh')"/>
+                        youtube
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.yt.type" type="radio" name="ytshare" value=0 checked="" ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.yt.type" type="radio" name="ytshare" value=1 ng-change="$ctrl.saveFieldStore('sh')">
+                            название
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.yt.type" type="radio" name="glshare" value=2 ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка и название
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sh.pin.is" type="checkbox"  ng-change="$ctrl.saveFieldStore('sh')"/>
+                        pinterest
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.pin.type" type="radio" name="pinshare" value=0 checked="" ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.pin.type" type="radio" name="pinshare" value=1 ng-change="$ctrl.saveFieldStore('sh')">
+                            название
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.pin.type" type="radio" name="pinshare" value=2 ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка и название
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sh.ok.is" type="checkbox"  ng-change="$ctrl.saveFieldStore('sh')"/>
+                        ok
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.ok.type" type="radio" name="okshare" value=0 checked="" ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.ok.type" type="radio" name="okshare" value=1 ng-change="$ctrl.saveFieldStore('sh')">
+                            название
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.ok.type" type="radio" name="okshare" value=2 ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка и название
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="$ctrl.store.sh.vk.is" type="checkbox" ng-change="$ctrl.saveFieldStore('sh')"/>
+                        vk
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.vk.type" type="radio" name="vkshare" value=0 checked="" ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.vk.type" type="radio" name="vkshare" value=1 ng-change="$ctrl.saveFieldStore('sh')">
+                            название
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input ng-model="$ctrl.store.sh.vk.type" type="radio" name="vkshare" value=2 ng-change="$ctrl.saveFieldStore('sh')">
+                            иконка и название
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

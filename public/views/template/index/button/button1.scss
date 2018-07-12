@@ -1,0 +1,161 @@
+/*classic*/
+.btn {
+  transition: all .3s ease-out;
+}
+.btn,
+.btn:active,
+.btn:focus,
+.btn-lg,
+.btn-md,
+.btn-sm,
+.btn-xs{
+  letter-spacing: $letter-spacing;
+  border-radius: 0;
+  outline: none;
+  margin-bottom: 20px;
+}
+.btn:hover,
+.btn:active,
+.btn:focus {
+  box-shadow: none;
+  outline: none;
+}
+.btn-project {
+  min-width: $width;
+  height: $height;
+  padding-left: $padding-left;
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+  padding-right: $padding-right;
+  background-color: $addColor1;
+  border: $border-width solid $addColor2;
+  border-radius: 0;
+  font-size: $font-size;
+  color: $addColor2;
+  font-weight: $font-weight;
+  font-family: $font-family;
+  text-transform:$text-transform
+
+}
+.btn-project:hover,
+.btn-project:focus,
+.btn-project:active{
+  background-color: $addColor1;
+  font-size: $font-size;
+  color: $addColor2;
+  border: $border-width  solid $addColor1;
+}
+.btn-project:active:hover,
+.btn-project.active:hover,
+.open > .dropdown-toggle.btn-project:hover,
+.btn-project:active:focus,
+.btn-project.active:focus,
+.open > .dropdown-toggle.btn-project:focus,
+.btn-project:active.focus,
+.btn-project.active.focus{
+  background-color:  $addColor1;
+  color: $addColor2;
+  border: $border-width  solid $addColor1;
+  opacity: 0.8;
+}
+.btn-project.btn-border {
+  background-color: transparent;
+  border: $border-width  solid $addColor4;
+  color: $addColor4;
+}
+.btn-project.btn-border:hover,
+.btn-project.btn-border:focus {
+  background-color: $addColor3;
+  border: $border-width  solid $addColor4;
+  color: $addColor4;
+}
+.btn[disabled],
+.open > .dropdown-toggle.btn-project.focus.btn.disabled,
+.btn[disabled]:hover,
+fieldset[disabled] .btn:hover.btn.disabled,
+fieldset[disabled] .btn {
+  cursor: not-allowed;
+  background-color:  $addColor1;
+  color: $addColor2;
+  border: $border-width  solid $addColor1;
+  opacity: 0.8;
+}
+.btn.disabled:hover,
+.btn[disabled]:hover,
+fieldset[disabled] .btn:hover {
+  cursor: not-allowed;
+}
+
+
+
+.btn-project-inv {
+  min-width: $width;
+  padding-left: $padding-left;
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+  padding-right: $padding-right;
+  background-color: $addColor2;
+  border: $border-width  solid $addColor1;
+  font-size: $font-size;
+  color: $addColor1;
+  font-weight: $font-weight;
+}
+.btn-project-inv:hover,
+.btn-project-inv:focus,
+.btn-project-inv:active{
+  background-color: $addColor1;
+  font-size: $font-size;
+  color: $addColor2;
+  border: $border-width  solid $addColor2;
+}
+.btn-project-inv:active:hover,
+.btn-project-inv.active:hover,
+.open > .dropdown-toggle.btn-project-inv:hover,
+.btn-project-inv:active:focus,
+.btn-project-inv.active:focus,
+.open > .dropdown-toggle.btn-project-inv:focus,
+.btn-project-inv:active.focus,
+.btn-project-inv.active.focus,
+.open > .dropdown-toggle.btn-project-inv.focus{
+  background-color:  $addColor1;
+  color: $addColor2;
+  border: $border-width  solid $addColor2;
+}
+
+.btn-project .icon-btn,
+.btn-project-inv .icon-btn{
+  display: inline-block;
+  width:30px;
+  height:30px;
+  background-size: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.btn-project  .btn-val,
+.btn-project-inv  .btn-val {
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-project.btn-noborder {
+  background-color: transparent;
+  border: none;
+  color: $addColor4;
+}
+.btn-project.btn-noborder:active,
+.btn-project.btn-noborder:focus{
+  border: none;
+}
+.btn-project.btn-noborder:hover {
+  color: $addColor4;
+  opacity: 0.8;
+}
+/*.mobile-wrapper .btn-project */
+.tablet-wrapper .btn-project{
+  @if $width{
+    min-width: $width*0.8;
+  }
+  @if font-size{
+    font-size: $font-size*0.8;
+  }
+  letter-spacing: 0;
+}

@@ -1,0 +1,30 @@
+<div class="select-filter-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" ng-bind="filter.name"></h3>
+        <a class="cancel" type="button" ng-click="cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="allTags" ng-change="changeAllTags(allTags)"><span>все</span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group label-floating filter-off">
+            <input placeholder="быстрая фильтрация"
+                   type="text" class="form-control"
+                   ng-model="filterTagsStr">
+        </div>
+        <div class="form-group" ng-repeat="tag in filter.tags|filter:filterTagsStr">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="tag.set">{{tag.name}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <!--<div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="cancel()">Закрыть</button>-->
+        <!--<button class="btn btn-warning" type="button" ng-click="cancel()">Отмена</button>-->
+</div>

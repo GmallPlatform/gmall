@@ -1,0 +1,241 @@
+/*base 444*/
+
+
+.navbar {
+    /*background-color: transparent;*/
+    border-left: none;
+    border-right: none;
+    /*background-color: #fff;*/
+    margin-bottom: 0;
+    border-radius: 0;
+    color: #333;
+}
+.navbar-fixed-top {
+    border-bottom: 1px solid #a8a8a8;
+}
+.menuColor,
+.navbar-fixed-top:hover {
+    /*background-color: #fff;*/
+    /*border-bottom: 1px solid #ccc;*/
+    /*box-shadow: 0 0 6px #ccc;*/
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transition: all ease-in-out 0.5s;
+    -o-transition: all  ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+}
+.navbar-toggle {
+    display: block;
+    width: 60px;
+    height: 60px;
+    z-index: 2000;
+}
+.navbar-toggle .icon-bar {
+    background-color: #582c15;
+    background-color: #333;
+    height: 3px;
+    width: 100%;
+    opacity: 1;
+}
+.navbar-toggle:hover .icon-bar {
+    background-color: #333;
+    opacity: 0.8;
+}
+.nav-group  {
+    float: left;
+    height: 100%;
+    padding: 10px 20px;
+}
+.nav-group{
+    font-size: 20px;
+    border: none;
+    color: #fff;
+    /*padding: 25px 40px 25px 20px;*/
+}
+.right-nav-menu .nav-group{
+    font-size: 20px;
+    border: none;
+    color: #333;
+    /*padding: 25px 10px;*/
+}
+.right-nav-menu .nav-group a{
+    padding: 25px 10px;
+}
+.center-menu {
+    height: 1px;
+    position: absolute;
+    left: 50%;
+    margin: auto;
+
+}
+.navbar-toggle-slide {
+    padding: 0px 20px;
+    background-color: transparent;
+}
+.right-nav-menu a {
+    color:#333;
+    opacity: 1;
+}
+.right-nav-menu a:hover {
+    opacity: 0.8;
+}
+
+/*hover-menu*/
+.container.container-menu {
+    width: 100%;
+}
+.catalogDropDownMenu,
+.catalogDropDownMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.catalogDropDownMenu ul {
+    float: left;
+
+}
+.section-in-section {
+    float: left;
+}
+.catalogDropDownMenu .mainli{
+    position: relative;
+}
+.catalogDropDownMenu a {
+    padding: 5px 20px;
+    display: block;
+    text-decoration: none;
+}
+.catalogDropDownMenu a.section-name {
+    padding: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+/* Level 1 Drop Down */
+.catalogDropDownMenu .mainli {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: -4px; /* solve the 4 pixels spacing between list-items */
+}
+.catalogDropDownMenu > li:first-child {
+    /*margin-left: 0;*/
+}
+
+/* Level 2 */
+.catalogDropDownMenu .innerDiv {
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: none;
+    position: absolute;
+    top: 78px;
+    /*top: 100%;*/
+    left: 0;
+    width: auto;
+    z-index: 1350; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
+    border-top: 1px solid #ccc;
+}
+/*.myMenu .catalogDropDownMenu .innerDiv {
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}*/
+.category-name{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+}
+.section-in-section {
+    border-left: 1px solid #ccc;
+}
+.mobile-wrapper .myMenuV .catalog-menu {
+    padding-left: 0;
+}
+.mobile-wrapper .myMenuV .catalog-menu ul{
+    padding-left: 20px;
+}
+.mobile-wrapper .myMenuV .catalog-menu li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+.mobile-wrapper .vertical-menu a {
+    color: #333;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.mobile-wrapper .dropdown-menu {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    padding-left: 20px;
+}
+.myMenu .catalogDropDownMenu a.section-name {
+    padding: 25px 10px;
+    text-transform: lowercase;
+    font-size: 20px;
+}
+.myMenu .catalogDropDownMenu a.section-name:hover {
+    opacity: 0.8;
+}
+.myMenu .catalogDropDownMenu li {
+    float: left;
+}
+.myMenu .catalogDropDownMenu .innerDiv {
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+.myMenuV li.page-stat a,
+.menu-section-vertical  .page-stat a {
+    padding: 5px;
+}
+.menu2-paddig{
+    margin-top: 80px;
+}
+
+.mobile-wrapper .navbar-toggle-slide {
+    padding: 0 10px;
+}
+
+
+
+
+
+.menu-static-left {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: table-cell;
+    height: 100%;
+    padding: 40px;
+
+}
+.menu-static-right {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: table-cell;
+    height: 100%;
+    vertical-align: text-top;
+    padding: 40px;
+}
+.menu-static-right .page-stat{
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+.menu-static-right .page-stat a{
+    color: #333;
+}
+.menu-static-left a:hover,
+.menu-static-right a:hover {
+    color: rgba(58, 35, 13, 0.60);
+}
+.menu-static-left .nav-group,
+.menu-static-right .nav-group {
+    height: auto;
+}

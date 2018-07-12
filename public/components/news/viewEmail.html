@@ -1,0 +1,87 @@
+<style>
+    input[type="text"]::-webkit-input-placeholder {
+        color: #333;
+        font-weight: bold;
+    }
+</style>
+<div class="col-lg-12 col-md-12" style="padding: 30px 60px">
+    <h4 style="font-weight: bold">выбор списка пользователей для рассылки новости</h4>
+    <div class="togglebutton form-group">
+        <label for="except">
+            <span ng-class="{'active':!$ctrl.except}">выбрать группу для рассылки</span>
+            <input type="checkbox"
+                   id="except"
+                   ng-model="$ctrl.except">
+            <span ng-class="{'active':$ctrl.except}">исключить группу из общего списка</span>
+        </label>
+    </div>
+    <ui-select
+            ng-if="$ctrl.subscibtionList"
+            multiple ng-model="$ctrl.lists"
+            search-enabled="false"
+            skip-focusser="false"
+            style="width: 400px; margin-bottom: 20px;">
+        <ui-select-match allow-clear="true"
+                         placeholder="общий">
+            {{$item.value}}
+        </ui-select-match>
+        <!--<ui-select-null-choice>No person</ui-select-null-choice>-->
+        <ui-select-choices repeat="person.key as (key, person) in $ctrl.subscibtionList.list">
+            {{person.value}}
+        </ui-select-choices>
+    </ui-select>
+    <hr>
+    <h3 style="font-weight: bold; text-align: center;padding: 20px">предпросмотр рассылки</h3>
+</div>
+
+<div>
+    <div ng-bind-html="$ctrl.content|unsafe"></div>
+</div>
+<div style="padding: 30px;width: 100%">
+    <!--<h3 style="float: left;width: 90%;">предпросмотр рассылки</h3>
+    <a style="width: 10%; float: right; text-align: right" ng-click="$ctrl.cancel()" >
+        <img src="../../img/icon/clear.png" style="width: 20px">
+    </a>
+    <div style="clear: both"></div>
+
+    <div >
+        <div style="text-align: center; width: 100%;">
+            <img class="img-responsive logo" src="../../views/clinic/img/logo/1.png" style="width: 70px;display: inline-block;">
+        </div>
+        <div>&lt;!&ndash; class="col-lg-12 news-head text-center"&ndash;&gt;
+            <h2 ng-bind="$ctrl.item.name" style="font-weight: 500; letter-spacing: 2px; text-transform: uppercase; text-align: center"></h2>
+        </div>
+        <div ng-if="$ctrl.item.img.length">&lt;!&ndash; class="col-lg-12"&ndash;&gt;
+            <a href="" style="cursor: pointer;">
+                <img ng-src="{{$ctrl.item.img}}" style="width: 100%;margin-bottom: 20px;">&lt;!&ndash; class="img-responsive news-banner"&ndash;&gt;
+            </a>
+
+        </div>
+
+        <div style="clear: both;">&lt;!&ndash; class="col-lg-12"&ndash;&gt;
+            <p ng-bind-html="$ctrl.item.desc" style="text-align: justify"></p>
+        </div>
+        <div ng-repeat="image in $ctrl.item.imgs" style="width: 20%; margin: 20px; float: left">&lt;!&ndash; class="col-lg-3 news-photo-box"&ndash;&gt;
+            <a class="">
+                <img class="img-responsive" ng-src="{{image.img}}">
+            </a>
+        </div>
+
+        <div>
+            <p ng-bind-html="$ctrl.item.desc1" style="text-align: justify"></p>
+        </div>
+        <div ng-repeat="stuff in $ctrl.item.stuffs"  style="width: 28%; margin: 20px; float: left; text-align: center">&lt;!&ndash; class="col-lg-4 news-good-box text-center"&ndash;&gt;
+            <a href="" class="">
+                <img class="img-responsive"  ng-src="{{stuff.gallery[0].thumb|| 'img/upload/no.png'}}">
+                <span>наименование модели</span>
+            </a>
+        </div>
+
+    </div>-->
+
+    <button class="btn btn-project" style="width:100%; background-color:  rgba(155, 155, 155, 0.36); border: 2px solid #646464; font-size: 20px; font-weight: bold; color: #646464; margin-bottom: 20px;" type="button" ng-click="$ctrl.ok()">отправить</button><!--class="btn btn-success btn-block btn-raised btn-lg"-->
+        <!--<button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</button>-->
+
+    <div class="clearfix"></div>
+
+</div>

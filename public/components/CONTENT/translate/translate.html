@@ -1,0 +1,332 @@
+<style>
+    .content.translate .content-box {
+        min-height: 60px;
+    }
+    .translate h3 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 0;
+
+    }
+    .heading {
+        background-color: #93b1c6;
+        color: #ffffff;
+        padding: 15px 10px;
+        min-height: 60px;
+    }
+</style>
+<div class="content translate" ng-if="$state.current.name=='frame.translate'">
+    <div class="">
+        <a  ui-sref="frame.translate.hp" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">aspect_ratio</i>
+                        </span>
+                        главная страница</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов главной страницы
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.catalog" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">business</i>
+                        </span>
+                        каталог</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов каталога
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.store" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">menu</i>
+                        </span>
+                        меню футер служебные тексты</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов из меню футера а также текстов писем и служебных сообщений
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <ad  class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">work</i>
+                        </span>
+                        страницы услуг, товаров</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" ng-show="sectopnsForMenu.length">
+
+                    <span ng-repeat="sec in sectopnsForMenu">
+                        <a ui-sref="frame.translate.stuffs({section:sec.url})">
+                            <span ng-bind="sec.name"></span><span>| </span>
+                        </a>
+                    </span>
+                    <!--<span class="plot" >
+                        превод текстов страницы услуг, товаров и всего того, что привязано к представлению через каталог
+                    </span>-->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </ad>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.brand" class="content-box-link" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">art_track</i>
+                        </span>
+                        брендов</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+
+                    <span class="plot" >
+                        превод названий и описаний брендов
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <ad  class="content-box-link" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">art_track</i>
+                        </span>
+                        коллекций</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+
+                    <span class="plot" >
+                        превод названий и описаний коллекций брендов
+                    </span>
+                    <span ng-repeat="brand in brandsForMenu">
+                        <a ui-sref="frame.translate.brandTags({filter:brand._id})">
+                            <span ng-bind="brand.name"></span><span>| </span>
+                        </a>
+                    </span>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </ad>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.filters" class="content-box-link" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">filter_list</i>
+                        </span>
+                        характеристик</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+
+                    <span class="plot" >
+                        превод названий и описаний характеристик
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <ad  class="content-box-link" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">filter_list</i>
+                        </span>
+                        признаков</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+
+                    <span class="plot" >
+                        превод названий и описаний признаков характеристики
+                    </span>
+                    <span ng-repeat="filter in filtersForMenu">
+                        <a ui-sref="frame.translate.filterTags({filter:filter._id})">
+                            <span ng-bind="filter.name"></span><span>| </span>
+                        </a>
+                    </span>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </ad>
+    </div>
+
+    <div class="">
+        <a  ui-sref="frame.translate.stats({type:'Info'})" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">info</i>
+                        </span>
+                        информационно-справочный раздел</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов из информационно-справочного раздела(глоссарий)
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="">
+        <a  ui-sref="frame.translate.stats({type:'Stat'})" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">account_balance</i>
+                        </span>
+                       статические страницы</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов статических страницы
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.stats({type:'Master'})" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">account_circle</i>
+                        </span>
+                        страницы сотрудников</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов  страниц сотрудников
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.stats({type:'News'})" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">fiber_new</i>
+                        </span>
+                        страницы новостей</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов  страниц новостей
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.stats({type:'Workplace'})" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">android</i>
+                        </span>
+                        страницы рабочих мест</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов  страниц работчих мест
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.stats({type:'Lookbook'})" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">photo_library</i>
+                        </span>
+                        страницы lookbook</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов  страниц lookbook
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.translate.stats({type:'Additional'})" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">list</i>
+                        </span>
+                        страницы дополнительного списка</h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot" >
+                        превод текстов  страниц дополнительного списка
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+<div ui-view></div>

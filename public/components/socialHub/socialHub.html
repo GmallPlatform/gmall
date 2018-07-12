@@ -1,0 +1,47 @@
+<div class="social-block" ng-if="$ctrl.shareItem">
+    <ul class="list-social" ng-social-buttons
+        data-url="$ctrl.shareItem.url"
+        data-title="$ctrl.shareItem.title"
+        data-description="$ctrl.shareItem.description"
+        data-image="$ctrl.shareItem.image"
+        showcounts="false">
+        <li class="share">{{$ctrl.global.get('lang').val.share}}</li>
+        <li ng-if="$ctrl.global.get('store').val.sh.fb.is" class="ng-social-facebook social-icon">
+            <i ng-if="!$ctrl.global.get('store').val.sh.fb.type ||$ctrl.global.get('store').val.sh.fb.type==2 ||$ctrl.global.get('store').val.sh.fb.type==0" class="sn-icon icon-fb-img"></i>
+            <span ng-if="$ctrl.global.get('store').val.sh.fb.type==1 || $ctrl.global.get('store').val.sh.fb.type==2">Facebook</span>
+        </li>
+        <li ng-if="$ctrl.global.get('store').val.sh.gl.is" class="ng-google-plus social-icon">
+            <i ng-if="!$ctrl.global.get('store').val.sh.gl.type ||$ctrl.global.get('store').val.sh.gl.type==2 ||$ctrl.global.get('store').val.sh.gl.type==0" class="sn-icon icon-google-img"></i>
+            <span ng-if="$ctrl.global.get('store').val.sh.gl.type==1 || $ctrl.global.get('store').val.sh.gl.type==2">Google+</span>
+        </li>
+        <li ng-if="$ctrl.global.get('store').val.sh.tw.is" class="ng-social-twitter social-icon">
+            <i ng-if="!$ctrl.global.get('store').val.sh.tw.type ||$ctrl.global.get('store').val.sh.tw.type==2 ||$ctrl.global.get('store').val.sh.tw.type==0" class="sn-icon icon-tw-img"></i>
+            <span ng-if="$ctrl.global.get('store').val.sh.tw.type==1 || $ctrl.global.get('store').val.sh.tw.type==2">Twitter</span>
+        </li>
+        <li ng-if="$ctrl.global.get('store').val.sh.vk.is" class="ng-social-vk social-icon">
+            <i ng-if="!$ctrl.global.get('store').val.sh.vk.type ||$ctrl.global.get('store').val.sh.vk.type==2 ||$ctrl.global.get('store').val.sh.vk.type==0" class="sn-icon icon-vk-img"></i>
+            <span ng-if="$ctrl.global.get('store').val.sh.vk.type==1 || $ctrl.global.get('store').val.sh.vk.type==2">V kontante</span>
+        </li>
+        <li ng-if="$ctrl.global.get('store').val.sh.pin.is" class="ng-social-pinterest social-icon">
+            <i ng-if="!$ctrl.global.get('store').val.sh.pin.type ||$ctrl.global.get('store').val.sh.pin.type==2 ||$ctrl.global.get('store').val.sh.pin.type==0" class="sn-icon icon-pin-img"></i>
+            <span ng-if="$ctrl.global.get('store').val.sh.pin.type==1 || $ctrl.global.get('store').val.sh.pin.type==2">Pinterest</span>
+        </li>
+        <li ng-if="$ctrl.global.get('store').val.sh.ok.is" class="ng-social-odnoklassniki social-icon">
+            <i ng-if="!$ctrl.global.get('store').val.sh.ok.type ||$ctrl.global.get('store').val.sh.ok.type==2||$ctrl.global.get('store').val.sh.ok.type==0" class="sn-icon icon-ok-img"></i>
+            <span ng-if="$ctrl.global.get('store').val.sh.ok.type==1 || $ctrl.global.get('store').val.sh.ok.type==2">Odnoklassniki</span>
+        </li>
+        <!--<li ng-if="$ctrl.global.get('store').val.sh.inst.is" class="ng-social-instagram social-icon">
+            <i ng-if="!$ctrl.global.get('store').val.sh.inst.type ||$ctrl.global.get('store').val.sh.inst.type==2 ||$ctrl.global.get('store').val.sh.inst.type==0" class="sn-icon icon-inst-img"></i>
+            <span ng-if="$ctrl.global.get('store').val.sh.inst.type==1 || $ctrl.global.get('store').val.sh.inst.type==2">Instagram</span>
+        </li>-->
+        <!--<li class="ng-social-mailru">Мой мир</li>-->
+
+        <!-- <li class="ng-social-github" user="esvit" repository="ng-table">GitHub</li>
+        <li class="ng-social-github-forks" user="esvit" repository="ng-table">Forks</li> -->
+        <div class="clearfix"></div>
+    </ul>
+
+
+
+
+</div>

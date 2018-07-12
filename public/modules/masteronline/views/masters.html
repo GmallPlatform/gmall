@@ -1,0 +1,16 @@
+<div class="content" ng-show="$state.current.name=='frame'">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 ng-repeat="master in masters">
+            <a ui-sref="frame.master({id:master._id})" >
+                <span ng-bind="master.name"></span>
+            </a>
+        </h3>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div ui-view></div>
+
+
+
+
+

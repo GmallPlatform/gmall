@@ -1,0 +1,20 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        //h3
+            | !{lang.catalog}
+        if(dj[key].groups)
+            ul(class="footer-catalog")
+                each section in dj[key].groups
+                    li
+                        - var href='/'+section.url+'/category'
+                        a(class="section-name",href=href)
+                            =section.name
+        if(dj[key].categories)
+            ul(class="footer-catalog")
+                each c in dj[key].categories
+                    li
+                        - var href='/'+c.groupUrl+'/'+c.url
+                        a(class="categories-name",href=href)
+                            =c.name
+
+

@@ -1,0 +1,136 @@
+<div class="template-list" >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="cart-detail">
+            <h3 class="text-center name-page">настройка страницы новости</h3>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center name-page">
+                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.loadPhoto($ctrl.item.news,'news','img')">
+                    <i class="material-icons link-success md-42" title="загрузить фон для страницы">photo</i>
+                </a>
+                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.showPhoto($ctrl.item.news,'img')" >
+                    <i class="material-icons link-pink md-42" title="показать фон для страницы">remove_red_eye</i>
+                </a>
+                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.news,'news')">
+                    <i class="material-icons link-info md-42" title="установить стиль">opacity</i>
+                </a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+                <label class="control-label">фото как фон</label>
+                <div class="togglebutton">
+                    <label for="news111">
+                        <span ng-class="{'active':!$ctrl.item.news.setImgAsBackground}">не использовать</span>
+                        <input type="checkbox"
+                               id="news111"
+                               ng-model="$ctrl.item.news.setImgAsBackground"
+                               ng-change="$ctrl.saveFieldTemplate('news',$ctrl.item.news)">
+                        <span ng-class="{'active':$ctrl.item.news.setImgAsBackground}">использовать</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+                <label class="control-label">удалить фон</label>
+                <a ng-click="$ctrl.deleteFon($ctrl.item.news,'news','img')">delete fon</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="cart-detail">
+            <h3 class="name-page">настройка страницы мастера
+            <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.master,'master')">
+                <i class="material-icons link-info md-42" title="установить стиль">opacity</i>
+            </a>
+            </h3>
+        </div>
+        <div class="cart-detail">
+            <h3 class="name-page">настройка страницы рабочего места
+                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.workplace,'workplace')">
+                    <i class="material-icons link-info md-42" title="установить стиль">opacity</i>
+                </a>
+            </h3>
+        </div>
+        <div class="cart-detail">
+            <h3 class="name-page">настройка страницы статической страницы
+                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.stat,'stat')">
+                    <i class="material-icons link-info md-42" title="установить стиль">opacity</i>
+                </a>
+            </h3>
+        </div>
+        <div class="cart-detail">
+            <h3 class=" name-page">настройка страницы дополнительного списка
+                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.additional,'additional')">
+                    <i class="material-icons link-info md-42" title="установить стиль">opacity</i>
+                </a>
+            </h3>
+        </div>
+
+            <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right style-box">
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            setImgAsBackground
+                            <input ng-change="$ctrl.saveFieldTemplate('news',$ctrl.item.news)" ng-model="$ctrl.item.news.setImgAsBackground" type="checkbox"/>
+                        </label>
+                    </div>
+                </div>
+
+            </div>-->
+
+            <!--<div class="menu-box">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8 head-box">название</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 head-box text-center">наличие</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 head-box text-center">номер шаблона</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 head-box text-center">номер стиля</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 head-box text-center">стили блока</div>
+                <div class="clearfix"></div>
+
+                <div class="part-box">
+                    <div class="news-detail">
+                        <ul>
+                            <li ng-repeat="component in $ctrl.item.news.parts"
+                                ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8 form-group">
+                                    <i class="material-icons link-success">swap_vert</i>
+
+                                    <span ng-repeat="(key,part) in $ctrl.listOfBlocksForNewsDetailPage" ng-if="component.name==key">
+                                        <span>
+                                            {{part}}
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 text-center">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input ng-change="$ctrl.saveFieldTemplate('news',$ctrl.item.news)" ng-model="component.is" type="checkbox"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 text-center">
+                                    <ui-select ng-model="component.templ" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveFieldTemplate('news',$ctrl.item.news)">
+                                        <ui-select-match placeholder="шаблон">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 text-center">
+                                    <ui-select ng-model="component.style" skip-focusser="true" search-enabled="false"
+                                               ng-change="$ctrl.saveFieldTemplate('news',$ctrl.item.news)">
+                                        <ui-select-match placeholder="стиль">{{$select.selected}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                    <div class="form-group">
+                                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor(component,'news')">
+                                            <i class="material-icons link-info md-42" title="установить стиль блока">opacity</i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>

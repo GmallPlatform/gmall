@@ -1,0 +1,68 @@
+<div class="clone-stuff-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" ng-if="$ctrl.clone">клонирование товара</h3>
+        <h3 class="modal-title text-center" ng-if="!$ctrl.clone">создание товара</h3>
+        <a  class="cancel" ng-click="$ctrl.cancel()" ></a>
+    </div>
+    <div class="modal-body">
+        <form ng-submit="$ctrl.createNewStuff()">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-8  col-md-8 col-sm-8 col-xs-6">
+                    <div class=" form-group  label-floating">
+                        <label class="control-label">наименование товара или услуги</label>
+                        <input type="text" id="name" class="form-control"
+                               simple-focus-element=""
+                               ng-model="$ctrl.stuff.name" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-4 col-sm-4 col-xs-6">
+                    <div class="form-group label-floating">
+                        <label  for="articulnew" class="control-label">артикул(SKU)</label>
+                        <input name="articulnew" type="text" class="form-control"
+                               id="articulnew"  ng-model="$ctrl.stuff.artikul"
+                               autocomplete="off"/>
+                    </div>
+                </div>
+                <div class=" col-lg-4  col-md-4 col-sm-12 col-xs-12">
+                    <div class="form-group label-floating">
+                        <label  for="price" class="control-label">цена</label>
+                        <input name="price" type="text" class="form-control"
+                               id="price" ng-model="$ctrl.stuff.price" autocomplete="off" pattern="[0-9-\.]{1,7}">
+                    </div>
+                </div>
+                <div ng-hide="$ctrl.clone">
+                    <div class="col-lg-4  col-md-4 col-sm-12 col-xs-12 text-right">
+                        <a class="link-success text-center" ng-click="$ctrl.selectCategory()">
+                            <h3 ng-if="!$ctrl.stuff.category">связать с категорией</h3>
+                            <h3 ng-if="$ctrl.stuff.category">сменить категорию</h3>
+                        </a>
+                    </div>
+                    <div class=" col-lg-4  col-md-4 col-sm-12 col-xs-12 form-group text-left">
+                        <label>категория </label>&nbsp; &nbsp;<span class="create-stuff-category"  ng-bind="$ctrl.stuff.category.name"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer">
+                <div  ng-show="$ctrl.alertMessage2" class="link-warning text-center">
+                    <strong>необходимо ввести наименование и выбрать категорию</strong>
+                </div>
+                <button type="submit" class="btn btn-raised btn-block">
+                    <span>создать</span>
+                </button>
+
+            </div>
+
+        </form>
+
+
+
+    </div>
+</div>
+
+<!--
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button"
+            ng-click="$ctrl.cancel()">Отменить</button>
+</div>-->

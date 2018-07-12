@@ -1,0 +1,31 @@
+/*dtn*/
+
+
+/*cliniq */
+/*.page-slides img{
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+
+}
+.mytoggle-page {
+    width: 100%;
+}
+.home-slides  .home-section img{
+    !*opacity: 0.8;*!
+    transition: opacity 0.5s ease-out 0s;
+}
+.home-slides .home-section a:hover img {
+    opacity: 1;
+}
+
+.home-slides .home-section-header {
+    color:$color;
+}
+.mobile-wrapper   .home-slides .home-section-header {
+    right: 0;
+    left: 0;
+    top: 10px;
+    width: auto;
+}*/
+

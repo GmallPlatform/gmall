@@ -1,0 +1,52 @@
+<!--
+<div  ng-class="{'container-desc-goods':!$ctrl.item.service,'container-desc-service':$ctrl.item.service}">
+    <h3 itemprop="name">
+        <span  class="goods-name" ng-bind="$ctrl.item.name"></span><br>
+        <span ng-bind="$ctrl.item.artikul"></span>
+        <p ng-if="$ctrl.item.brand">
+            <a ui-sref="stuffs({'groupUrl':'group','categoryUrl':'category','brand':$ctrl.item.brandUrl})">
+                <span ng-bind="$ctrl.item.brandName"></span>
+            </a>
+        </p>
+        <hr>
+    </h3>
+
+    <p itemprop="description" class="description" ng-bind-html="$ctrl.item.desc|unsafe"></p>
+    <div  ng-if="!$ctrl.item.service">
+        <a  ui-sref="stuffs({'groupUrl':$ctrl.item.groupUrl,'categoryUrl':$ctrl.item.categoryUrl,parentGroup:$ctrl.item.parentGroup})">
+            все
+            <span ng-bind="$ctrl.item.categoryName"></span>
+            <span ng-bind="$ctrl.item.brandName"></span>
+        </a>
+    </div>
+    <hr>
+
+    <div class="clearfix"></div>
+
+    <div class="quantity"  ng-if="!$ctrl.item.single">
+        <ui-select ng-model="$ctrl.item.quantity"
+                   theme="bootstrap"
+                   on-select="$ctrl.item.onSelected()"
+                   append-to-body="true"
+                   search-enabled="false">
+            <ui-select-match placeholder="выберите количество">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="qty in [1,2,3,4,5,6,7,8,9,10] track by $index">
+                <span ng-bind="qty | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <span   ng-bind="$ctrl.item.unitOfMeasure"></span>
+</div>-->
+
+<div>
+    <p itemprop="description" class="description" ng-bind-html="$ctrl.item.desc|unsafe"></p>
+    <div  ng-if="!$ctrl.item.service">
+        <a  ui-sref="stuffs({'groupUrl':$ctrl.item.groupUrl,'categoryUrl':$ctrl.item.categoryUrl,parentGroup:$ctrl.item.parentGroup})">
+            все
+            <span ng-bind="$ctrl.item.categoryName"></span>
+            <span ng-bind="$ctrl.item.brandName"></span>
+        </a>
+    </div>
+    <hr ng-if="!$ctrl.item.single">
+    <div class="clearfix"></div>
+</div>

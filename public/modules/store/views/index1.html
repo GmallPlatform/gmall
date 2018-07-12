@@ -1,0 +1,18 @@
+<div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/"><i class="ion-ios7-pulse-strong"></i> Satellizer</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="/#/">Home</a></li>
+        <li ng-if="isAuthenticated()"><a href="login/profile">Profile</a></li>
+    </ul>
+    <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
+        <li><a href="login/login">Login</a></li>
+        <li><a href="login/signup">Sign up</a></li>
+    </ul>
+    <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
+        <li><a href="login/logout">Logout</a></li>
+    </ul>
+</div>
+
+<div ui-view></div>

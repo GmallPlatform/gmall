@@ -1,0 +1,31 @@
+<div class="static-select-item">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выберите страницу</h3>
+        <a class="cancel"  ng-click="$ctrl.cancel()" > </a>
+    </div>
+    <div class="modal-body">
+        <script type="text/ng-template" id="stat.html">
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  form-group  tag-box">
+                <form>
+                    <div ng-click="$ctrl.ok(stat)">
+                        <span  ng-bind="stat.name" ></span>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </script>
+
+        <div>
+            <ul class="itemlist">
+                <li  ng-repeat="stat in $ctrl.stats track by $index"
+                     class="tree-node-category"
+                     ng-include="'stat.html'">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+

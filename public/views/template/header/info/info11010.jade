@@ -1,0 +1,23 @@
+div(class=wrapclass+pullClass)
+    div(class=mobileWrapper)
+        - var c = 'nav-group info dropdown'
+        if((dj[key].positionMenu == 'top' || dj[key].positionMenu == 'bottom') && dj[key].position != 'center')
+            - c += ' pull-'+dj[key].position
+        if(dj[key].cache_key=='menu2M')
+            ul(class="info")
+                each page,index in stats
+                    li
+                        - var hr = "/stat/"+page.url
+                        a(href=hr)
+                            =page.name
+        else
+            div(class=c,uib-dropdown,is-open="status.isopen2")
+                a(href="",class="dropdown-toggle",data-toggle="dropdown2",ng-click="goToInfo()",uib-dropdown-toggle)
+                    span=lang['info']
+                    span(class="caret")
+                ul(class="dropdown-menu",role="menu",uib-dropdown-menu)
+                    each page,index in stats
+                        li
+                            - var hr = "/stat/"+page.url
+                            a(href=hr)
+                                =page.name

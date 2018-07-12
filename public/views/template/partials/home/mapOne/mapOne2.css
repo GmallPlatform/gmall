@@ -1,0 +1,27 @@
+.block-map iframe {
+    width: 100%;
+}
+.block-map {
+    @if $height {
+        min-height: $height;
+    }
+}
+.mobile-wrapper iframe {
+    width: 100%;
+    margin: 0 auto;
+    height: 70vh;
+}
+.mobile-wrapper .desc-box {
+    position: relative;
+    top: auto;
+    right: auto;
+}
+.mobile-wrapper .desc {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    height: auto;
+}

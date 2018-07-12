@@ -1,0 +1,97 @@
+/*rk*/
+
+
+
+/*webdeal*/
+/*.tablet-wrapper .img-one {
+    height: 100vh;
+    -o-fit-object: cover;
+    object-fit: cover;
+    z-index: -1;
+}
+.tablet-wrapper img {
+    min-height: 50vh;
+    -o-fit-object: cover;
+    object-fit: cover;
+    object-position: 100% 0%;
+    -o-object-position: 100% 0%;
+}
+.mobile-wrapper img {
+    height: 100vh;
+    -o-fit-object: cover;
+    object-fit: cover;
+    object-position: 100% 0%;
+    -o-object-position: 100% 0%;
+}*/
+
+
+
+
+/*chudo*/
+
+/*.home-banner {
+    position: relative;
+}
+.home-banner .container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+.home-banner .banner-content {
+    position: absolute;
+    bottom: 20%;
+    text-align: center;
+    width: 100%;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+.home-banner .banner-content a,
+.home-banner .banner-content a:hover {
+    color: $color;
+}
+.home-banner .banner-content .banner-header p {
+    font-size: 24px;
+}
+@media (max-width: 1024px) {
+    .home-banner .banner-content {
+        position: absolute;
+        bottom: 30px;
+        text-align: center;
+        width: 100%;
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .home-banner .banner-content h1.banner-header  {
+        font-size: 36px;
+        line-height: 40px;
+    }
+    !*.home-banner .banner-content .banner-header p {
+        font-size: 36px;
+        line-height: 40px;
+    }*!
+}
+@media (max-width: 768px) {
+    .home-banner .banner-content {
+        bottom: 10px;
+    }
+}
+
+.mobile-wrapper   .home-banner .btn-project.btn-banner{
+    padding: 7px;
+    height: 35px;
+    min-width: 200px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.mobile-wrapper   {
+    overflow: hidden;
+}
+.mobile-wrapper   .home-banner {
+    margin-left: -100px;
+    margin-right: -100px;
+}
+.mobile-wrapper  .home-banner .banner-content h1.banner-header  {
+    font-size: 24px;
+    line-height: 26px;
+}*/
+

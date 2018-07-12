@@ -1,0 +1,135 @@
+/*all*/
+.goods-record {
+    overflow: hidden;
+}
+.goods-record img{
+    width: 100%;
+    margin-bottom: 40px;
+    min-width: 600px;
+}
+.goods-record-name {
+    font-size: 60px;
+    color: #333;
+
+}
+.goods-record-desc {
+    position: absolute;
+    width: 100%;
+    top: 150px;
+}
+.goods-record-desc .btn {
+    width: 300px;
+}
+@media (max-width: 1670px) {
+    .goods-record-desc {
+        top: 120px;
+    }
+}
+@media (max-width: 1560px){
+    .goods-record-desc {
+        top: 100px;
+    }
+}
+@media (max-width: 1400px){
+    .goods-record-desc {
+        top: 80px;
+    }
+    .goods-record-name {
+        font-size: 50px;
+    }
+}
+@media (max-width: 1350px){
+        .goods-record-desc {
+        top: 60px;
+    }
+}
+@media (max-width: 1270px){
+    .goods-record-desc {
+        top: 50px;
+    }
+    .goods-record-name {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 1150px) {
+    .goods-record-name {
+        font-size: 46px;
+    }
+    .goods-desc .stuff-name {
+        font-size: 20px;
+    }
+    .goods-record-desc {
+        top: 45px;
+    }
+    .goods-record-name {
+        font-size: 40px;
+    }
+}
+@media (max-width: 980px){
+    .goods-record-desc {
+        top: 35px;
+    }
+    .goods-record-name {
+        font-size: 35px;
+    }
+
+}
+@media (max-width: 840px){
+    .goods-record-desc {
+        top: 30px;
+    }
+    .goods-record-name {
+        font-size: 30px;
+    }
+}
+@media (max-width: 770px){
+    .goods-record-desc {
+        top: 30px;
+    }
+    .goods-record-name {
+        font-size: 26px;
+    }
+    .goods-record-desc .btn-project{
+        width: 250px;
+        font-size: 16px;
+    }
+}
+@media (max-width: 680px){
+
+    .goods-record-desc {
+        top: 25px;
+    }
+    .goods-record-name {
+        font-size: 24px;
+    }
+    .goods-record-desc .btn-project{
+        font-size: 16px;
+    }
+}
+@media (max-width: 590px){
+    .goods-record-desc {
+        top: 10px;
+    }
+    .goods-record-name {
+        font-size: 20px;
+    }
+    .goods-record-desc .btn-project{
+        font-size: 16px;
+    }
+}
+@media (max-width: 380px) {
+    .goods-record-name {
+        text-shadow: 1px 0px 10px #fff;
+    }
+    .goods-record-desc .btn {
+        padding: 5px;
+        font-size: 14px;
+    }
+    /*.goods-record img {
+        height: 100px;
+    }*/
+}
+.tablet-wrapper {
+
+}

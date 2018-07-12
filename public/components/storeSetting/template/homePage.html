@@ -1,0 +1,391 @@
+<style>
+
+    hr {
+        border-top-color:#ff7148
+    }
+
+</style>
+<div class="template-list base-setting" ng-if="$ctrl.item.index">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div>
+            <div class="cart-detail">
+                <!--<h3 class="text-center name-page">после внесения изменений нужно обязательно <a class="link-warning" ng-click="$ctrl.makeMainCSS()">создать файл стилей</a></h3>-->
+                <h4 class="text-center name-page">базовые элементы</h4>
+                <p class="text-center box-style" >
+                    <span style="display: inline-block"><small>body</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini"  ng-click="$ctrl.downloadPartOfTemplate('index.body')">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.setColor($ctrl.item.index.body,'index.body',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+                    <!--<span class="clearfix"></span>-->
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>экран<br> загрузки</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.dimScreen')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="$ctrl.setColor($ctrl.item.index.dimScreen,'index.dimScreen',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>кнопка<br> вниз</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.arrowDown')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="$ctrl.setColor($ctrl.item.index.arrowDown,'index.arrowDown',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>кнопка<br> вверх</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.arrowUp')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="$ctrl.setColor($ctrl.item.index.arrowUp,'index.arrowUp',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>панель<br> МЕНЮ</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.slideMenu')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="$ctrl.setColor($ctrl.item.index.slideMenu,'index.slideMenu',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>панель<br> ЧАТ</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.slideChat')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="$ctrl.setColor($ctrl.item.index.slideChat,'index.slideChat',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>панель<br> КОРЗИНА</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.slideCart')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="$ctrl.setColor($ctrl.item.index.slideCart,'index.slideCart',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>панель<br> ОН-ЛАЙН</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.slideEntry')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="$ctrl.setColor($ctrl.item.index.slideEntry,'index.slideEntry',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>модальные<br> окна</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.modalProject.styles')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.setColor($ctrl.item.index.modalProject.styles,'index.modalProject.styles',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <p class="text-center box-style">
+                    <span style="display: inline-block"><small>заливка<br> экрана</small></span><br>
+                    <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.downloadPartOfTemplate('index.modalBackdropClass')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="$ctrl.setColor($ctrl.item.index.modalBackdropClass,'index.modalBackdropClass',true)">
+                        <i class="material-icons link-info md-42">opacity</i>
+                    </a>
+
+                    <span class="clearfix"></span>
+                </p>
+                <div class="clearfix"></div>
+                <p class="text-center">
+                    <span style="display: inline-block">шрифты</span><br>
+
+                    <ui-select multiple ng-model="$ctrl.item.index.fontFaces" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.saveFieldTemplate('index.fontFaces',$ctrl.item.index.fontFaces)">
+                        <ui-select-match  allow-clear="true"placeholder="font family">{{$item}}</ui-select-match>
+                        <ui-select-choices repeat="opt in $ctrl.fontFaces">{{ opt }}</ui-select-choices>
+                    </ui-select>
+                </p>
+            </div>
+            <div class="cart-detail">
+                <h4 class="text-center name-page">цвета, кнопки, ссылки, формы</h4>
+                <div class="font-box col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                    <p class="text-center box-style">
+                        <span style="display: inline-block">ссылки</span><br>
+                        <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.setColor($ctrl.item.index.link,'index.link',true)">
+                            <i class="material-icons link-info md-42">opacity</i>
+                        </a><br>
+                        <span class="text-center text-small"> шаблон</span>
+                        <ui-select ng-model="$ctrl.item.index.linkFile" append-to-body="true" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.saveFieldTemplate('index.linkFile',$ctrl.item.index.linkFile)">
+                            <ui-select-match placeholder="номер шаблона">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="opt in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{ opt }}</ui-select-choices>
+                        </ui-select>
+                    </p>
+                    <p class="text-center box-style">
+                        <span style="display: inline-block">кнопки</span><br>
+                        <a class="btn btn-fab btn-fab-mini"  ng-click="$ctrl.setColor($ctrl.item.index.button,'index.button',true)">
+                            <i class="material-icons link-info md-42">opacity</i>
+                        </a>
+                        <ui-select ng-model="$ctrl.item.index.buttonColorFile" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.saveFieldTemplate('index.buttonColorFile',$ctrl.item.index.buttonColorFile)">
+                            <ui-select-match placeholder="choice file of color">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.key as (key, item) in $ctrl.tableOfColorsForButton">{{ item.value }}</ui-select-choices>
+                        </ui-select>
+                        <ui-select ng-model="$ctrl.item.index.buttonFile" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.saveFieldTemplate('index.buttonFile',$ctrl.item.index.buttonFile)">
+                            <ui-select-match placeholder="choice file of button">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.key as (key, item) in $ctrl.tableOfButtonsFile">{{ item.value }}</ui-select-choices>
+                        </ui-select>
+
+                    </p>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                    <span style="display: inline-block">цвета проекта</span><br>
+                    <div class="text-center box-color">
+                        <span><small>основной цвет проекта</small></span>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.mainColor">
+                                    <i class="material-icons md-42 link-pink">color_lens</i>
+                                </a>
+                            </span>
+                            <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.mainColor"
+                                   ng-change="$ctrl.saveFieldTemplate('index.mainColor',$ctrl.item.index.mainColor)">
+                            <span class="input-group-addon" >
+                                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveFieldTemplate('index.mainColor',$ctrl.item.index.mainColor)">
+                                    <i class="material-icons md-42 link-success">save</i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-center box-color">
+                        <span><small>первый дополнительный цвет проекта</small></span>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.addColor1">
+                                     <i class="material-icons md-42 link-pink">color_lens</i>
+                                </a>
+                            </span>
+                            <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.addColor1"
+                                   ng-change="$ctrl.saveFieldTemplate('index.addColor1',$ctrl.item.index.addColor1)">
+                            <span class="input-group-addon" >
+                                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveFieldTemplate('index.addColor1',$ctrl.item.index.addColor1)">
+                                    <i class="material-icons md-42 link-success">save</i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span><small>второй дополнительный цвет проекта</small></span>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.addColor2">
+                                     <i class="material-icons md-42 link-pink">color_lens</i>
+                                </a>
+                            </span>
+                            <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.addColor2"
+                                   ng-change="$ctrl.saveFieldTemplate('index.addColor2',$ctrl.item.index.addColor2)">
+                            <span class="input-group-addon" >
+                                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveFieldTemplate('index.addColor2',$ctrl.item.index.addColor2)">
+                                    <i class="material-icons md-42 link-success">save</i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span><small>третий дополнительный цвет проекта</small></span>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.addColor3">
+                                     <i class="material-icons md-42 link-pink">color_lens</i>
+                                </a>
+                            </span>
+                            <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.addColor3"
+
+                                   ng-change="$ctrl.saveFieldTemplate('index.addColor3',$ctrl.item.index.addColor3)">
+                            <span class="input-group-addon" >
+                                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveFieldTemplate('index.addColor3',$ctrl.item.index.addColor3)">
+                                    <i class="material-icons md-42 link-success">save</i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span><small>четвертый дополнительный цвет проекта</small></span>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item.index.addColor4">
+                                     <i class="material-icons md-42 link-pink">color_lens</i>
+                                </a>
+                            </span>
+                            <input type="text" class="form-control" placeholder="color"ng-model="$ctrl.item.index.addColor4"
+                                   ng-change="$ctrl.saveFieldTemplate('index.addColor4',$ctrl.item.index.addColor4)">
+                            <span class="input-group-addon" >
+                                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.saveFieldTemplate('index.addColor4',$ctrl.item.index.addColor4)">
+                                    <i class="material-icons md-42 link-success">save</i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="font-box col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                    <span style="display: inline-block">инпуты, техтареа...</span><br>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="cart-detail">
+                    <h4 class="text-center name-page">элементы body</h4>
+                    <hr>
+                    <div class="">
+                        <ui-select ng-model="$ctrl.element" skip-focusser="true" search-enabled="false"
+                                   ng-change="$ctrl.addElementInMain()">
+                            <ui-select-match placeholder="choice element">{{$item}}</ui-select-match>
+                            <ui-select-choices repeat="opt in $ctrl.listElements|filter:$ctrl.filterMainElements">{{ opt }}</ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <!--<div class="name-class">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="наименование класса" ng-model="$ctrl.selectors['index']">
+                            <span class="input-group-addon">
+                                <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.indexAddSelector('index',$ctrl.item.index)">
+                                    <i class="material-icons link-success md-42">add</i>
+                                </a>
+                            </span>
+
+                        </div>
+
+                    </div>-->
+
+                    <div class="name-class">
+                        <div class="input-group">
+                            <input type="text" class="form-control1" placeholder="наименование класса" ng-model="$ctrl.selectors.index">
+                            <span class="input-group-addon">
+                                 <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.indexAddSelector('index',$ctrl.item.index)">
+                                    <i class="material-icons link-success md-42">add</i>
+                                 </a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <p class="help-text">
+                        для указания .class.class запись class__class<br>
+                        для указания class:hover запись class&hover<br>
+                        для указания element:hover запись &elevent&hover
+                    </p>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="(element,item) in $ctrl.item.index.elements">
+                        <h4 class="name-page" ng-bind="element"></h4>
+
+                        <a class="btn btn-fab btn-fab-mini"  ng-click="$ctrl.setColor(item,'index.elements.'+element,true)">
+                            <i class="material-icons link-info md-42">opacity</i>
+                        </a>
+                        <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.deleteElementInMain(element)">
+                            <i class="material-icons link-warning md-42">delete</i>
+                        </a>
+
+                        <!--<set-styles item="item" save-field="index.elements.{{element}}" font-faces="$ctrl.item.index.fontFaces"
+                                    save-function="$ctrl.saveFieldTemplate(field,value)"
+                                    delete-function="$ctrl.deleteElementInMain(element)"
+                                    element="{{element}}"
+                                    action="save delete"></set-styles>-->
+                        <hr>
+                    </div>
+                    <div class="clearfix"></div>
+                    <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.saveFieldTemplate('index.elements',$ctrl.item.index.elements)">
+                        <i class="material-icons link-success md-42">save</i>
+                    </a>
+                    <a class="btn btn-fab btn-fab-mini pull-left"  ng-click="$ctrl.downloadPartOfTemplate('index.elements')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <span class="clearfix"></span>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="cart-detail">
+                    <h4 class="text-center name-page">элементы модальных окон</h4>
+                    <hr>
+                    <ui-select ng-model="$ctrl.element" skip-focusser="true" search-enabled="false"
+                               ng-change="$ctrl.indexAddElement($ctrl.item.index.modalProject)">
+                        <ui-select-match placeholder="выбрать элемент">{{$item}}</ui-select-match>
+                        <ui-select-choices repeat="opt in $ctrl.listElements|filter:$ctrl.filterListElements">{{ opt }}</ui-select-choices>
+                    </ui-select>
+
+                    <div class="name-class">
+                        <div class="input-group">
+                            <input type="text" class="form-control1" placeholder="наименование класса" ng-model="$ctrl.selectors.modalwindow">
+                            <span class="input-group-addon">
+                                 <a class="btn btn-fab btn-fab-mini" ng-click="$ctrl.indexAddSelector('modalwindow',$ctrl.item.index.modalProject)">
+                                    <i class="material-icons link-success md-42">add</i>
+                                 </a>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="help-text">
+                        для указания .class.class запись class__class<br>
+                        для указания class:hover запись class&hover<br>
+                        для указания element:hover запись &elevent&hover
+                    </p>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="(element,item) in $ctrl.item.index.modalProject.elements">
+
+                        <h4 class="element-block name-page" ng-bind="element"></h4>
+
+                        <a class="btn btn-fab btn-fab-mini"  ng-click="$ctrl.setColor(item,'index.modalProject.elements.'+element,true)">
+                            <i class="material-icons link-info md-42">opacity</i>
+                        </a>
+                        <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.indexDeleteElement($ctrl.item.index.modalProject.elements,element)">
+                            <i class="material-icons link-warning md-42">delete</i>
+                        </a>
+                        <!--<set-styles item="item" save-field="main.elements.{{element}}" font-faces="$ctrl.item.index.fontFaces"
+                                    delete-function="$ctrl.indexDeleteElement($ctrl.item.index.modalProject.elements,element)"
+                                    element="{{element}}"
+                                    action="delete">
+
+                        </set-styles>-->
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.saveFieldTemplate('index.modalProject.elements',$ctrl.item.index.modalProject.elements)">
+                        <i class="material-icons link-success md-42">save</i>
+                    </a>
+
+                    <a class="btn btn-fab btn-fab-mini pull-left" ng-click="$ctrl.downloadPartOfTemplate('index.modalProject.elements')" title="загрузить из шаблона">
+                        <i class="material-icons link-primary md-42" title="загрузить шаблон">archive</i>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

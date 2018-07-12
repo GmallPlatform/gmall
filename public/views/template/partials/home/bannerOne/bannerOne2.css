@@ -1,0 +1,12 @@
+/*clinic*/
+.img-box {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.mobile-wrapper .container {
+    width: 100%;
+}
+.mobile-wrapper .desc-box,
+.mobile-wrapper .img-box {
+     padding: 0;
+ }

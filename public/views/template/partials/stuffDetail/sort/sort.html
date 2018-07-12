@@ -1,0 +1,31 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sort-stuff" ng-if="$ctrl.item.sortsOfStuff.filter">
+    <!--<p class="sort-type" ng-if="::$ctrl.item.sort">
+            выберите {{$ctrl.getFilterName($ctrl.item.sortsOfStuff.filter)}}
+        </p>-->
+    <div class="sort-box pull-left">
+        <span ng-init="$ctrl.item.stock[$ctrl.item.sort].name=$ctrl.getTagName($ctrl.item.sort)"
+              class="sort"
+              ng-repeat="(tag,sort) in $ctrl.item.stock|filterSorts"
+              ng-class="{'sort-active':$ctrl.item.sort==tag}">
+              <span
+                      ng-click="$ctrl.item.sort=tag;$ctrl.item.changeSortOfStuff()">{{sort.value.name=$ctrl.getTagName(tag)}}
+              </span>
+        </span>
+    </div>
+
+
+    <div class="clearfix"></div>
+    <div ng-if="$ctrl.item.sortsOfStuff && $ctrl.item.sortsOfStuff.stuffs.length>1">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" ng-repeat="item in $ctrl.item.sortsOfStuff.stuffs">
+            <div class="row">
+                <div class="group-goods">
+                    <a ng-class="{'active':item._id==$ctrl.item._id}"
+                       ui-sref="stuffs.stuff({groupUrl:'group',categoryUrl:'category',stuffUrl:item.url})">
+                        <img class="img-responsive" ng-src="{{item.gallery[0].thumbSmall}}">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

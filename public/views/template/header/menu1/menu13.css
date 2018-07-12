@@ -1,0 +1,201 @@
+/*fashion*/
+.navbar.menu1-top-bottom {
+    border-left: none;
+    border-right: none;
+   /* background-color: $background-color;*/
+    margin-bottom: 0;
+    border-radius: 0;
+    color: $color;
+}
+.navbar-fixed-top.menu1-top-bottom {
+    border-bottom: 1px solid $color;
+}
+.menuColor.menu1-top-bottom,
+.navbar-fixed-top.menu1-top-bottom:hover {
+    background-color: $background-color;
+    -webkit-transition: all ease-in-out 0.5s;
+    -moz-transition: all ease-in-out 0.5s;
+    -ms-transition: all ease-in-out 0.5s;
+    -o-transition: all  ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+}
+
+.menu1-top-bottom .right-nav-menu {
+    z-index: 1050;
+}
+.menu1-top-bottom .right-nav-menu .nav-group,
+.menu1-top-bottom .right-nav-menu .page-stat.nav-group  {
+    float: left;
+    height: 100%;
+    font-size: 20px;
+    border: none;
+    color: $color;
+}
+.menu1-top-bottom .right-nav-menu .dropdown.nav-group a,
+.menu1-top-bottom  .right-nav-menu .page-stat.nav-group a {
+    display: inline-block;
+    color:$color;
+    opacity: 1;
+    padding: 25px 10px;
+}
+.menu1-top-bottom .right-nav-menu .dropdown.nav-group a:hover,
+.menu1-top-bottom  .right-nav-menu .page-stat.nav-group a:hover {
+    opacity: 0.8;
+}
+.menu1-top-bottom .right-nav-menu .dropdown.nav-group .dropdown-menu li,
+.menu1-top-bottom  .right-nav-menu .page-stat.nav-group .dropdown-menu  li {
+    display: inline-block;
+    width: 100%;
+}
+.menu1-top-bottom .right-nav-menu .dropdown.nav-group .dropdown-menu a,
+.menu1-top-bottom  .right-nav-menu .page-stat.nav-group .dropdown-menu  a {
+    width: 100%;
+    color:$color;
+    padding: 5px 10px;
+}
+.menu1-top-bottom  .center-menu {
+    left: 50%;
+    margin: auto;
+}
+/*.menu1-top-bottom  .center-menu .logo-top{
+    right: 50%;
+}*/
+@media (max-width: 1200px) {
+    .menu1-top-bottom .right-nav-menu .dropdown.nav-group a,
+    .menu1-top-bottom  .right-nav-menu .page-stat.nav-group a {
+        font-size: 16px;
+    }
+}
+
+.navbar-toggle {
+    display: block;
+    width: 60px;
+    height: 60px;
+    z-index: 2000;
+}
+.navbar-toggle .icon-bar {
+    background-color: $color;
+    height: 3px;
+    width: 100%;
+    opacity: 1;
+}
+.navbar-toggle:hover .icon-bar {
+    background-color: $color;
+    opacity: 0.8;
+}
+/*.navbar-toggle-slide {
+    padding: 0px 20px;
+    background-color: transparent;
+}*/
+
+
+/*hover-menu, click-menu*/
+.container.container-menu {
+    width: 70%;
+}
+/*navbar-hover*/
+.hover-top-menu {
+    float: left;
+}
+.nav-center {
+    font-size: 14px;
+    padding-left: 0;
+}
+.nav-center li {
+    list-style: none;
+}
+
+.myMenuV li.page-stat a,
+.menu-section-vertical  .page-stat a {
+    padding: 5px;
+}
+.menu2-paddig{
+    margin-top: 80px;
+}
+
+.mobile-wrapper .navbar-toggle-slide {
+    padding: 0 10px;
+}
+@media (max-width: 1024px) {
+    .page-stat  a {
+        color: #333;
+    }
+}
+@media (max-width: 960px) {
+    .navbar-toggle-slide {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .right-nav-menu .nav-group {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .innerDiv .container{
+        width: 100%;
+    }
+    .innerDiv .container span{
+        font-size: 14px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    /*.catalogDropDownMenu a {
+        padding-left: 5px;
+        padding-right: 5px;
+    }*/
+}
+
+/*.mobile-wrapper .myMenuV .catalog-menu {
+    padding-left: 0;
+}
+.mobile-wrapper .myMenuV .catalog-menu li {
+    list-style: none;
+}*/
+
+
+
+
+
+.mobile-wrapper .vertical-menu a {
+    color: #333;
+    padding: 5px;
+}
+
+.menu-static-left {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: table-cell;
+    height: 100%;
+    padding: 40px;
+
+}
+.menu-static-right {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: table-cell;
+    height: 100%;
+    vertical-align: text-top;
+    padding: 40px;
+}
+.menu-static-right .page-stat{
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+.menu-static-right .page-stat a{
+    color: #333;
+}
+.menu-static-left a:hover,
+.menu-static-right a:hover {
+    color: rgba(58, 35, 13, 0.60);
+}
+.menu-static-left .nav-group,
+.menu-static-right .nav-group {
+    height: auto;
+}

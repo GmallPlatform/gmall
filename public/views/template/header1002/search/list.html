@@ -1,0 +1,38 @@
+<div class="searchResaltsInner">
+    <div class="name-block-resalt" ng-show="searchStuffList.length && searchStuffList[0]._id">
+        <h4 class="text-center" ng-bind="$ctrl.global.get('lang').val.goodsandservise"></h4>
+        <hr>
+    </div>
+    <div class="search-window" ng-repeat="item in searchStuffList">
+        <div class="row" ng-show="::item._id">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="row">
+                    <a ng-if="::item.img" href="{{item.link}}">
+                        <img class="img-responsive" ng-src="{{item.img}}">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <a class="name-resalt" href="{{item.link}}">
+                    <p class="name-good" ng-bind="::item.name"></p>
+                    <p class="artikul-good" ng-bind="::item.artikul"></p>
+                </a>
+            </div>
+        </div>
+        <div class="row" ng-show="::!item._id">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a class="name-resalt" href="{{item.link}}">
+                    <p class="name-good" ng-bind="::item.name"></p>
+                    <p class="artikul-good" ng-bind="::item.artikul"></p>
+                </a>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center  all-results-box" ng-show="searchStuffList.length && searchStuffList[0]._id">
+        <a class="all-results" ng-click="$ctrl.allResults()">{{$ctrl.global.get('lang').val.allresults}}</a>
+    </div>
+    <div class="clearfix"></div>
+</div>

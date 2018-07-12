@@ -1,0 +1,29 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        - var poster =(dj[key].videoCover)?photoHost+'/'+dj[key].videoCover:null
+        if(dj[key].arrowDownDiv)
+            arrow-down
+        #{dj[key].element}(ng-click=dj[key].ngClick,href=dj[key].href)
+            div(id=dj[key].id,class="half-section-video")
+                div(class="container text-center",style="display: block!important")
+                    div(class="video-box")
+                        if(dj[key].name)
+                            h1(class="video-header",set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate,data-animation-delay=dj[key].nameAnimateDelay)
+                                span=dj[key].name
+                        //if(mobile)
+                            img(class="img-responsive",src=poster)
+                        if(true)
+                            video(preload="true",loop,autoplay,style="width: 100%",muted=!dj[key].audio,controls=dj[key].videoControl,webkit-playsinline)
+                                if(dj[key].videoOgg)
+                                    source(src=photoHost + '/' + dj[key].videoOgg,type="video/ogg")
+                                if(dj[key].video)
+                                    source(src=photoHost+'/'+dj[key].video,type="video/mp4")
+
+                    div(class="video-content text-center")
+
+                        if(dj[key].desc)
+                            div(class="banner-desc")
+                                | !{dj[key].desc}
+                        if(dj[key].button && dj[key].button.is)
+                            a(set-animate=dj[key].button.animate && !mobile,data-animation=dj[key].button.animate,class="btn btn-project btn-banner",ng-click=dj[key].button.ngClick,href=dj[key].button.href)=dj[key].button.text
+

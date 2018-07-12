@@ -1,0 +1,72 @@
+<style>
+    .select-stuff .goods-box {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid transparent;
+        min-height: 420px;
+    }
+    .select-stuff .goods-box:hover {
+        border: 1px solid #ccc;
+    }
+    .available{
+        color:green;
+    }
+</style>
+<div class="select-stuff select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">выбор товара</h3>
+        <a class="cancel"  ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group" ng-init="focus=true">
+            <label>введите наименование товара</label>
+            <input class="form-control" type="text"
+                   ng-model="$ctrl.name"
+                   ng-model-options="{ debounce: 300 }"
+                   ng-change="$ctrl.search($ctrl.name)"
+                   simple-focus-element=""
+            />
+        </div>
+        <div ng-repeat="stuff in $ctrl.stuffs" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 goods-box text-center">
+            <a  ng-click="$ctrl.selectStuff(stuff)">
+                <img class="img-responsive" ng-src="{{stuff.img||'img/upload/no.png'}}">
+            </a>
+            <p class="good-name" style="margin-bottom: 0">
+                <span ng-bind="stuff.name"></span>
+                <span ng-if="stuff.artikul" ng-bind="stuff.artikul"></span>
+            </p>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="stuff.sortsOfStuff.filter">
+                <div style="margin-bottom: 10px">
+                    <!--<label class="col-lg-12">
+                        выберите разновидность
+                    </label>-->
+                    <ui-select ng-model="stuff.sort" ng-change="stuff.changeSortOfStuff()"
+                                search-enabled="false">
+                        <ui-select-match placeholder="{{$ctrl.getFilterName(stuff.sortsOfStuff.filter)}}">
+                            {{$select.selected.name}}
+                        </ui-select-match>
+                        <!--<ui-select-choices repeat="sort.tag as (tag,sort) in stuff.stock">&lt;!&ndash;|filter:stuff.filterSorts&ndash;&gt;
+                            <span>
+                                {{$ctrl.getTagName(sort.tag)}}
+                            </span>
+                        </ui-select-choices>-->
+                        <ui-select-choices repeat="sort._id as sort in stuff.stockKeysArray"><!--|filter:stuff.filterSorts-->
+                            <span ng-class="{'available':sort.quantity}">
+                                {{sort.name}}
+                            </span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+    <!--<div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</button>
+    </div>-->
+</div>
+

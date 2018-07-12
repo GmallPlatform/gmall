@@ -1,0 +1,6 @@
+<h3>Разделы</h3>
+<div class="btn-group btn-group-justified btn-group-raised">
+    <a  ng-class="{'active':section._id==sec._id}" ng-repeat='sec in sections' class="btn "
+        ng-bind="sec.name"
+    ng-click="setSection(sec)"></a>
+</div>

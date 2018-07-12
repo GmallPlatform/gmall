@@ -1,0 +1,163 @@
+extends layout
+
+block content
+  div( ng-cloak,ng-init="setInitData(#{JSON.stringify(store)},#{JSON.stringify(user)},#{JSON.stringify(admin)},#{JSON.stringify(mobile)},#{JSON.stringify(seller)})")
+    toaster-container
+    div(class="navbar navbar-default navbar-fixed-top")
+      .container-fluid
+        button(type="button",class="navbar-toggle",data-toggle="collapse",data-target=".navbar-responsive-collapse")
+          span(class="icon-bar")
+          span(class="icon-bar")
+          span(class="icon-bar")
+        a(ui-sref="frame.orders({order:null})",ui-sref-opts="{reload: true}",class="navbar-brand") Заказы
+        //a(ng-show="$state.current.name=='frame.orders' && !$stateParams.order" ng-click="ordersCtrl.reloadOrders()",class="navbar-brand")
+          i(class="material-icons") cached
+        a(ng-show="$state.current.name=='frame.orders' && $stateParams.order" ng-click="orderEditCtrl.updateOrder()",class="navbar-brand")
+          i(class="material-icons") save
+        a(ng-click="changeLocation('/home')",class="navbar-brand")
+          i(class="material-icons") homes
+        a(ui-sref="frame.users({user:null})",class="navbar-brand")
+          span(ng-if="global.get('seller').val") продавец&nbsp
+          span(ng-bind="global.get('user').val.name")
+        div(class="navbar-collapse collapse navbar-responsive-collapse")
+          ul(class="nav navbar-nav navbar-right")
+            li(class="dropdown" )
+              a(data-target="#",class="dropdown-toggle",data-toggle="dropdown") Диалоги
+                span(ng-if='dialogsCount',class="badge",ng-bind="dialogsCount")
+                b(class="caret")
+              ul(class="dropdown-menu")
+                li
+                  a(ui-sref="frame.dialogs") Все
+                li(ng-repeat="(key,value) in global.get('dialogs').val")
+                  //a(ng-click="$state.go('frame.dialogs',{dialog:value.dialog}, {destination: 'new-state'});")
+                  a(ui-sref="frame.dialogs({dialog:value.dialog})",ui-sref-opts="{reload: true, notify: true}")
+                    span(ng-bind="key")
+                    span(class="badge pull-right",ng-bind="value.count")
+            li(class="dropdown" ng-if='notificationsCount')
+              a(data-target="#",class="dropdown-toggle",data-toggle="dropdown") Уведомление
+                span(class="badge",ng-bind="notificationsCount")
+                b(class="caret")
+              ul(class="dropdown-menu")
+               li(ng-repeat="(key,notification) in global.get('notifications').val" ng-if="notification")
+                  a(ui-sref="frame.notification({type:key})")
+                    span(ng-bind="key")
+                    span(class="badge pull-right",ng-bind="notification")
+            li(class="dropdown" ng-if="chatMessagesCount")
+              a(data-target="#",class="dropdown-toggle",data-toggle="dropdown") Сообщения
+                span(class="badge",ng-bind="chatMessagesCount")
+                b(class="caret")
+              ul(class="dropdown-menu")
+                li(ng-repeat="(key,mes) in global.get('chatMessages').val")
+                  a(ng-if='mes.type=="order"',ui-sref="frame.orders({order:mes.order})",ui-sref-opts="{reload: true, notify: true}")
+                    span(ng-bind="key")
+                    span(class="badge pull-right",ng-bind="mes.count")
+                  //a(ng-if='mes.type=="user"',ui-sref="frame.users({user:mes.user})")
+                    span(ng-bind="key")
+                    span(class="badge pull-right",ng-bind="mes.count")
+
+
+
+
+    div( ui-view,style="margin-top:70px")
+    audio(id="soundChat",style='display:none;',controls='controls')
+      source(src='sounds/chat.mp3')
+      //source(src='"+arguments[0]+".ogg')
+  script(src='scripts/myPrototype.js')
+  script(src='scripts/angular-node.js')
+
+  script(src="bower_components/jquery/dist/jquery.js")
+
+  // Twitter Bootstrap
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+  //script(src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js")
+
+
+  //script(src="bower_components/select2/select2.js")
+
+  script(src='bower_components/angular/angular.js')
+  script(src='bower_components/angular-animate/angular-animate.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='bower_components/angular-socket-io/socket.js')
+
+  script(src="bower_components/angular-ui-bootstrap/ui-bootstrap-tpls-0.14.3.min.js")
+
+  script(src='bower_components/angular-route/angular-route.js')
+  script(src='bower_components/angular-ui-router/release/angular-ui-router.js')
+  script(src='bower_components/angular-resource/angular-resource.js')
+  script(src='bower_components/angular-cookies/angular-cookies.js')
+  script(src='bower_components/angular-touch/angular-touch.js')
+  //script(src="bower_components/ng-tasty/ng-tasty-tpls.min.js")
+  script(src='assets/ui-select-master/dist/select.js')
+
+  script(src="bower_components/AngularJS-Toaster/toaster.min.js")
+
+  script(src="bower_components/bootstrap-material-design/dist/js/material.js")
+  script(src="bower_components/bootstrap-material-design/dist/js/ripples.min.js")
+
+  // Dropdown.js
+  script(src="assets//jquery.dropdown.js")
+
+  // дата пикер
+  script(src="bower_components/moment/min/moment-with-locales.min.js")
+  script(src="bower_components/bootstrap-daterangepicker/daterangepicker.js")
+  script(src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js")
+  //script(src="bower_components/bootstrap-material-datepicker/js/bootstrap-material-datepicker.js")
+
+  script(src='scripts/angular-drag-and-drop-lists.js')
+
+  script(src='modules/order/js/app.js')
+  script(src='modules/order/js/controllers.js')
+  script(src='modules/order/js/services.js')
+  script(src='modules/order/js/directives.js')
+
+
+
+
+
+
+  script(src='scripts/service.global.js')
+  script(src='scripts/service.helper.js')
+  script(src='scripts/service.email.js')
+
+  // order
+  script(src='components/order/scripts/service.order.js')
+  script(src='components/order/scripts/controller.order.js')
+  script(src='components/order/scripts/directive.order.js')
+  script(src='components/order/scripts/service.print.js')
+
+  // notification
+  script(src='components/notification/scripts/service.notification.js')
+  script(src='components/notification/scripts/controller.notification.js')
+
+  // chat
+  script(src='components/chat/scripts/service.chat.js')
+  script(src='components/chat/scripts/controller.chat.js')
+  script(src='components/chat/scripts/directive.chat.js')
+
+  // dialogs
+  script(src='components/dialogs/scripts/service.dialog.js')
+  script(src='components/dialogs/scripts/controller.dialog.js')
+  script(src='components/dialogs/scripts/directive.dialog.js')
+
+  // user
+  script(src='components/user/scripts/service.user.js')
+  script(src='components/user/scripts/controller.user.js')
+  script(src='components/user/scripts/directive.user.js')
+
+
+
+  script(src='scripts/service.brandcollections.js')
+  script(src='scripts/service.anchorSmoothScroll.js')
+
+  script(src='components/stuff/scripts/controller.stuff.js')
+  script(src='components/stuff/scripts/service.stuff.js')
+
+
+  script(src='scripts/directive.paginatorMain.js')
+  script(src='scripts/directive.datePicker.js')
+  script(src='scripts/directive.editNote.js')
+
+  script(src='components/choiceUser/directive.js')
+
+
+

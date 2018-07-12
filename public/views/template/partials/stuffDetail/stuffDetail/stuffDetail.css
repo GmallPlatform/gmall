@@ -1,0 +1,25 @@
+@media (max-width: 1200px) {
+    .stuff-detail .container {
+        width: 100%;
+    }
+}
+/*@media (max-width: 985px) {
+    .stuff-detail .container {
+        width: 80%;
+    }
+}*/
+@media (max-width: 768px) {
+    .stuff-detail .container {
+        width: 100%;
+    }
+}
+/*style test*/
+/*
+.mobile-wrapper .stuff-block-name .container,
+.mobile-wrapper .stuff-block-texttwo .container{
+    width: 100% !important;
+}
+.mobile-wrapper .container.inner-box {
+    padding-left: 0;
+    padding-right: 0;
+}*/

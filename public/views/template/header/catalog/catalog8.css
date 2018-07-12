@@ -1,0 +1,102 @@
+/*lastudio*/
+.catalogDropDownMenu,
+.catalogDropDownMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.catalogDropDownMenu ul {
+    float: left;
+}
+.section-in-section {
+    float: left;
+}
+.catalogDropDownMenu .mainli{
+    position: relative;
+}
+.catalogDropDownMenu a {
+    display: block;
+    text-decoration: none;
+    color: $color;
+}
+.catalogDropDownMenu a.section-name {
+    color: $color;
+}
+a.all {
+    display: none
+}
+/* Level 1 Drop Down */
+.catalogDropDownMenu .mainli {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: -4px; /* solve the 4 pixels spacing between list-items */
+}
+
+/* Level 2 */
+.catalogDropDownMenu .innerDiv {
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    display: none;
+    position: absolute;
+    top: 77px;
+    left: 0;
+    width: auto;
+    z-index: 1029; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
+    border-top: 1px solid #ccc;
+}
+.section-in-section {
+    border-left: 1px solid #ccc;
+}
+.myMenu .catalogDropDownMenu a.section-name {
+    color: $color;
+}
+@media (max-width: 1200px) {
+    .myMenu .innerDiv .category-in-section a{
+        font-size: 16px
+    }
+}
+.myMenu .catalogDropDownMenu a.section-name:hover {
+    opacity: 0.8;
+}
+.myMenu .catalogDropDownMenu li {
+    float: left;
+}
+@media (max-width: 1024px) {
+    .innerDiv .container{
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .catalogDropDownMenu a {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+.mobile-wrapper .myMenuV .catalog-menu {
+    padding-left: 0;
+}
+.tablet-wrapper .myMenuV .catalog-menu li,
+.mobile-wrapper .myMenuV .catalog-menu li {
+    list-style: none;
+    float: none;
+}
+
+.mobile-wrapper .myMenuV ul.catalog-menu li{
+    list-style: none;
+    text-transform: uppercase;
+}
+/*.mobile-wrapper .myMenuV ul.catalog-menu li a{
+    display: inline-block;
+    !*padding: 10px 10px 10px 20px;*!
+    font-size: 16px;
+}*/
+.tablet-wrapper  .myMenuV  ul.catalog-menu {
+    padding-left: 0;
+}
+.tablet-wrapper  .myMenuV  ul.catalog-menu li{
+    list-style: none;
+}
+.tablet-wrapper  .myMenuV  ul.catalog-menu li a{
+    font-size: 18px;
+    color: $color;
+}

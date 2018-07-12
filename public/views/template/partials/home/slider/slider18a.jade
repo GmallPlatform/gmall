@@ -1,0 +1,34 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        if(dj[key].i && dj[key].i == 1)
+            - var id='arrowDownDiv'
+            arrow-down
+        div(id=id,class="home-slides col-lg-6 col-md-6 col-sm-6 col-xs-12")
+            div(class="container")
+                if(dj[key].name)
+                    h3=dj[key].name
+                div(owl-carousel-with-attr,duration=dj[key].duration,items=1,loop='true',class="owl-carousel owl-theme")
+                    if(dj[key].imgs && dj[key].imgs.length)
+                        - for (var i = 0; i < dj[key].imgs.length; i++)
+                            if(dj[key].imgs[i].actived)
+                                div(id=dj[key].wrapclass+i,class="")
+                                    a(href=dj[key].imgs[i].link)
+                                        div(class="img-box2")
+                                            //div(class="box-overlay")
+                                            img(class="img-responsive",src=photoHost + '/' + dj[key].imgs[i].img,alt=dj[key].imgs[i].alt)
+                                        //div(class="half-shadow")
+                                            div(class="title-block")
+                                                h1=dj[key].imgs[i].name
+                                                p=dj[key].imgs[i].desc
+                                    //if(dj[key].imgs[i].button && dj[key].imgs[i].button.is)
+                                        div(class="button-box")
+                                            a(set-animate=dj[key].imgs[i].button.animate,data-animation=dj[key].imgs[i].button.animate,class="btn btn-project btn-banner",ng-click=dj[key].imgs[i].button.ngClick,href=dj[key].imgs[i].button.link)=dj[key].imgs[i].button.text
+                            //div(class="nav-box")
+                            //a(class="prev navleft-carousel",id="owl-carousel-next")
+                                span(class="icon-prev-img")
+                            //a(class="next navright-carousel",id="owl-carousel-prev")
+                                span(class="icon-next-img")
+                        //ol(class="carousel-indicators")
+                            div(class="carousel-box")
+                                - for (var i = 0; i < dj[key].imgs.filter(function(i){return i.actived}).length; i++)
+                                    li(id="set-slide"+i+dj[key].wrapclass,class="set-slide")

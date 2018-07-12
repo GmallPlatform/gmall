@@ -1,0 +1,40 @@
+<div class="edit-model">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">редактирование данных</h3>
+        <a class="cancel"  ng-click="$ctrl.cancel()" > </a>
+    </div>
+    <div class="modal-body">
+        <div class="model-img">
+            <div class="form-group" ng-if="$ctrl.item">
+                <load-image
+                        no-load="noLoad"
+                        no-change="noChange"
+                        upload-url="{{$ctrl.urlFile}}"
+                        item-id="{{$ctrl.item._id}}"
+                        item-resourse="$ctrl.Items"
+                        file-src="$ctrl.item.img">
+                </load-image>
+            </div>
+        </div>
+        <div class="editor form-group">
+            <h4 class="text-center name-box">описание</h4>
+            <div class="form-group editor">
+                <div text-angular ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                     ng-change="$ctrl.saveField('desc',200)"
+                     ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage','html']]"
+                     ng-model="$ctrl.item.desc"
+                     ta-text-editor-class="border-around"
+                     ta-html-editor-class="border-around">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-block btn-raised" type="button" ng-click="$ctrl.ok()">готово</a>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+
+

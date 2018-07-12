@@ -1,0 +1,108 @@
+<div class="slider-block">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group label-floating">
+            <label class="control-label">заголовок  блока</label>
+            <input class="form-control" ng-model="block.name"
+                   ng-model-options="{'updateOn': 'default blur',
+                'debounce': {'default': 700,'blur': 0}}"
+                   ng-change="block.nameL[$ctrl.global.get('store').val.lang]=block.name;$ctrl.saveField('blocks.'+block.i+'.name',block.name)">
+        </div>
+        <div class="form-group ">
+            <label class="control-label" style="margin-top: 0">анимация заголовка</label>
+            <ui-select ng-model="block.nameAnimate" append-to-body="true" skip-focusser="true" search-enabled="false"
+                       ng-change="$ctrl.saveField(block,$index,'nameAnimate')">
+                <ui-select-match placeholder="анимация">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="opt.type as opt in $ctrl.animationTypes">{{ opt.name }}</ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="editor form-group">
+            <h3 class="text-center name-action" ng-click="isCollapsed[$index] = !isCollapsed[$index]">добавить/изменить текст</h3>
+            <div uib-collapse="!isCollapsed[$index]" text-angular
+                 ng-model-options="{'updateOn': 'default blur',
+                    'debounce': {'default': 700,'blur': 0}}"
+                 ng-change="block.descL[$ctrl.global.get('store').val.lang]=block.desc;$ctrl.saveField('blocks.'+block.i+'.desc',block.desc)"
+                 ta-toolbar="[['h1','h2','h3','h4','h5','h6','p','underline','italics','bold','ul','ol','outdent','indent','justifyLeft','justifyCenter','justifyRight','justifyFull','insertLink','insertImage']]"
+                 ng-model="block.desc"
+                 ta-paste="$ctrl.global.get('functions').val.taPaste($html)"
+                 ta-html-editor-class="border-around">
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <h3 ng-click="$ctrl.loadPhoto(block,'imgs',$index)" class="text-center name-action">добавить/изменить фото</h3>
+    <div class="galleryWrapper">
+        <div class="galleryTable">
+            <div class="galleryRow">
+                <!--<ul class="gallery-item-ul">
+                    <li  class="gallery-item">
+                        <span class="helper"></span>
+                        <load-image
+                                upload-url="/api/collections/{{$ctrl.type}}/fileUpload"
+                                item-id="{{$ctrl.item._id}}"
+                                item-resourse="$ctrl.Items"
+                                file-src="fileSrc"
+                                name-img="imgs"
+                                name-img-for-save="blocks.{{block.i}}.imgs"
+                                gallery="block.imgs">
+                        </load-image>
+                    </li>
+                </ul>-->
+                <ul dnd-list="block.imgs"
+                    dnd-horizontal-list="true" class="gallery-item-ul">
+                    <li ng-repeat="image in block.imgs" class="gallery-item"
+                        dnd-draggable="image"
+                        dnd-effect-allowed="move"
+                        dnd-dragend="$ctrl.movedItemInSlider(block)"
+                        dnd-moved="block.imgs.splice($index, 1)">
+                        <span class="helper" ></span>
+                        <!--<load-image
+                                no-load="image.noLoad"
+                                no-change="image.noChange"
+                                upload-url="/api/collections/{{$ctrl.type}}/fileUploadFullImg"
+                                item-id="{{$ctrl.item._id}}"
+                                item-url="{{$ctrl.item.url}}"
+                                item-resourse="$ctrl.Items"
+                                file-src="image.img"
+                                name-img="imgs"
+                                replace-index="{{$index}}"
+                                name-img-for-save="blocks.{{block.i}}.imgs"
+                                gallery="block.imgs">
+
+                        </load-image>-->
+                        <div>
+                            <img class="img-responsive" ng-src="{{image.img}}">
+                        </div>
+
+                        <a class="btn  btn-fab delete" title="удалить фото" ng-click="$ctrl.deleteSlide(block,$index)">
+                            <i class="material-icons link-danger md-36">delete</i>
+                        </a>
+                        <a class="btn  btn-fab edit" title="редактировать фото" ng-click="$ctrl.editSlide(block,$index)">
+                            <i class="material-icons link-success md-36">edit</i>
+                        </a>
+                        <a type="button" class="btn btn-fab" title="изменить фото"  ng-click="$ctrl.changeSlidePhoto(block,$index)">
+                            <i class="material-icons md-36 link-success">add_a_photo</i>
+                        </a>
+                        <div class="form-group public col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="togglebutton text-center">
+                                <label for="block1a{{$parent.$index}}{{$index}}">
+                                    <span ng-class="{'active':!image.actived}">не опубликован</span>
+                                    <input type="checkbox"
+                                           id="block1a{{$parent.$index}}{{$index}}"
+                                           ng-model="image.actived"
+                                           ng-change="$ctrl.saveField('blocks.'+block.i+'.imgs',block.imgs)">
+                                    <span ng-class="{'active':image.actived}">опубликован</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

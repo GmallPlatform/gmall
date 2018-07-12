@@ -1,0 +1,15 @@
+<ul ng-if=" section.showList"
+    dnd-list="section.categories"
+    dnd-allowed-types="['category']"
+    dnd-drop="$ctrl.dropCategoryCallback(item,section)">
+    <li ng-repeat="category in section.categories track by $index"
+        dnd-draggable="category"
+        dnd-type="'category'"
+        dnd-effect-allowed="move"
+        dnd-moved="$ctrl.movedCategory(section,$index)"
+        dnd-selected="models.selected = item"
+        ng-class="{selected: models.selected === item}"
+        class="tree-node-category">
+        <category-html></category-html>
+    </li>
+</ul>

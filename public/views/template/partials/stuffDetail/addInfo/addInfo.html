@@ -1,0 +1,20 @@
+<div class="row" ng-if="$ctrl.item.addInfo">
+    <h4>
+        ТАБЛИЦА РАЗМЕРОВ
+    </h4>
+    <table class="table table-bordered">
+        <tr>
+            <th class="col-lg-2">
+                #
+            </th>
+            <th class="col-lg-2" ng-repeat="head in $ctrl.item.addInfo.header">
+                {{head}}
+            </th>
+
+        </tr>
+        <tr ng-repeat="(key,tr) in $ctrl.item.addInfo.table">
+            <td>{{$ctrl.getTagName(key)}}</td>
+            <td ng-repeat="td in tr track by $index">{{td}}</td>
+        </tr>
+    </table>
+</div>

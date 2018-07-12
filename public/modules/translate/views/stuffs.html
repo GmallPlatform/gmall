@@ -1,0 +1,13 @@
+<div id='mainContent2' class="clearfix">
+    <div class="stuffs-admin" ng-init="padding=null" ng-class="{'padding-top-160':padding}">
+        <categories11-for-list padding="padding" ng-hide="$state.current.name!='frame.stuffs'"></categories11-for-list>
+        <div class="clearfix"></div>
+        <div ng-hide="$state.current.name!='frame.stuffs'">
+            <stuff-list filters-block="filtersBlock"></stuff-list>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <div ui-view></div>
+</div>
+

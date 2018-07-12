@@ -1,0 +1,281 @@
+<section class="main stuff-detail">
+    <div class="container-main">
+        <div class="row" itemscope itemtype="http://schema.org/Product">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 thumbnail" ng-repeat="photo in stuff.gallery" ng-class="{'mobil':mobile}">
+                        <div class="zoom-images">
+                          <a full-img="$index" gallery="stuff.gallery">
+                          <img itemprop="image" class="img-responsive img-center visible"
+                                ng-src="{{::photo.thumb}}"
+                                alt="{{::stuff.getCategoryName()}} {{::stuff.name}} от {{::stuff.getBrandName()}} от производителя"
+                                id="mainImage{{::$index}}" />
+                          </a>
+                          <img ng-if="stuff.sticker && $index===0" class="sticker" ng-src="{{::stuff.sticker}}">
+                          <div class="social-hub" ng-if="$index===0 && objShare">
+                             <social-hub data-obj-Share="objShare" text-center="true"></social-hub>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 detail" >
+                <h3 class="text-left col-lg-12 stuff-name" itemprop="name">
+                    <span ng-bind="::stuff.name"></span>&nbsp
+                    <span ng-bind="::stuff.artikul"></span>
+                </h3>
+                <div  class="col-lg-12" >
+                    <div class="color-container-detail" ng-repeat="groupStuff in colorGroup.stuffs">
+                        <!--<a class="color" ui-sref="stuffs.stuff(getUrlParams(groupStuff))"
+                           ng-class="{'color-active':(groupItem._id==stuff._id)}">-->
+                        <a class="color" ui-sref="stuffs.stuff(getUrlParams(groupStuff))">
+                            <img  ng-src="{{groupStuff.gallery[0].thumbSmall}}" ng-class="{'color-active':(groupStuff._id==stuff._id)}"><!--todo color-active не присваивается-->
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </div>
+
+                <h3 class="text-left col-lg-12 price">
+                    <span ng-if="stuff.retail" ng-bind="(rate.val*stuff.retail).toFixed(2)"></span>&nbsp
+                    <span ng-if="stuff.retail"  ng-bind="currency.val"></span>
+                    <span ng-if="stuff.retail"> - розница</span>
+                </h3>
+                <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                   <h3 itemprop="price" class="text-left col-lg-12 price" ng-class="{'cross':stuff.priceSale}">
+                       <span ng-bind="(rate.val*stuff.price).toFixed(2)"></span>&nbsp
+                       <span ng-bind="currency.val"></span>
+                       <span> - опт</span>
+                   </h3>
+                </span>
+                <h3 class="text-left col-lg-12 price" ng-if="inCart.coupon">
+                    <span ng-bind="(rate.val*getPriceCoupon(stuff.price,true)).toFixed(2)"></span>&nbsp
+                    <span ng-bind="currency.val"></span>
+                    <span> - опт по купону</span>
+                </h3>
+                <h3 class="text-left col-lg-12 price" ng-if="stuff.priceCampaign">
+                   <span  class="campaign"
+                         ng-bind="(rate.val*stuff.priceCampaign).toFixed(2)"></span>&nbsp
+                    <span  class="campaign" ng-bind="currency.val"></span>
+                    <span class="campaign"> - акция</span><br>
+                    <span><a class="campaign-detail" ui-sref="campaign.detail({url:stuff.campaignUrl})"> посмотреть условия акции</a></span>
+                </h3>
+                <h3 class="text-left col-lg-12 price" ng-if="stuff.priceSale">
+                   <span class="price-sale"
+                         ng-bind="(rate.val*stuff.priceSale).toFixed(2)"></span>&nbsp
+                    <span class="price-sale" ng-bind="currency.val"></span>
+                    <span class="price-sale"> - sale</span>
+                </h3>
+                <div class="clearfix"></div>
+
+                <hr>
+
+                <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-repeat="ac in stuff.addCriterion">
+                    <!--<strong ng-bind="ac.filterName"></strong>-->
+                   <span class="params-name">выберите <span ng-bind="ac.filterName"></span></span>
+                    <select class="col-lg-5 col-md-5 col-sm-5 col-xs-5 params"
+                            ng-model="stuff.addCriterionToCart[$index]"
+                            ng-options="o._id as o.name for o in ac.tags">
+                    </select>
+                </div>
+                <!--<div class="clearfix"></div>-->
+                <!--<select class="col-lg-5 col-md-5 col-sm-5 col-xs-5 number"ng-model="inCart.size" ng-show="stuff.sizeTable">
+                   
+                    <option value="{{o._id}}" ng-repeat="o in sizeArray">{{o.name}}{{stuffDetailCtrl.isSize(o._id)}}</option>
+                </select>-->
+                <!--<label  class="col-lg-6">
+                    выберите количество
+                </label>-->
+
+                <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-20">
+                    <span class="params-name">выберите количество</span>
+                    <input class="form-control" type="number" min="1" max="20" ng-hide="stuff.single" ng-model="stuff.quantity">
+                </div>
+                <!--<select class="col-lg-5  col-md-5  col-sm-5  col-xs-5  number" ng-class="{'col-xs-offset-2':stuff.sizeTable}" ng-hide="stuff.single"
+                        ng-model="stuff.quantity"
+                        ng-options="n for n in quant">
+                </select>-->
+                <div class="clearfix"></div>
+
+
+                <p ng-if="stuff.unableCart()">
+                    <a class="btn btn-warning btn-block btn-lg mb-20"
+                       type="button"
+                       ng-click="stuff.addInCart()"
+                       title="купить оптом {{::getCategoryName(stuff.category)}} {{::stuff.name}} от {{::getBrandName(stuff.brand)}} от производителя">
+                        ДОБАВИТЬ В КОРЗИНУ
+                    </a>
+                </p>
+                <p class="margin-top-20" ng-if="!stuff.unableCart()">
+                    <a class=" btn btn-warning btn-block btn-lg mb-20" ng-disabled="!unableCart()"
+                       type="button">
+                        НЕТ В НАЛИЧИИ
+                    </a>
+                </p>
+                <a class="col-lg-5 col-md-5 col-sm-6 col-xs-4 btn btn-success btn-border btn-lg mb-20 go"
+                   ui-sref="stuffs(stuff.getUrlParams())"
+                   type="button"
+                   title="каталог товаров  {{::stuff.getCategoryName()}}">
+                    <span class="common">ПЕРЕЙТИ</span> В КАТАЛОГ
+                </a>
+                <a class="col-lg-5 col-md-5 col-sm-6 col-xs-4 btn btn-success btn-border btn-lg mb-20 go pull-right"
+                   ui-sref="cart"
+                   type="button">
+                    <span class="common">ПЕРЕЙТИ</span> В КОРЗИНУ
+                </a>
+                <div class="clearfix"></div>
+                <hr>
+                <div>
+                    <h4 class="col-lg-12"  ng-if="stuffDetailCtrl.coupons"> Доступные для использования купоны: </h4>
+                    <a class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn btn-default  btn-lg mb-20"
+                            ng-repeat="coupon in coupons|filter:filterCoupon"
+                            ng-click="couponServ.getCoupon(coupon)">
+                        <span class="common">получить купон</span></br>
+                        <span class="common">{{coupon.name}}</span>
+                    </a>
+                    <p>Любой из полученных купонов Вы сможете использовать в корзине при оформлении заказа. Сумма заказа будет посчитана с учетом выбранной Вами скидки.</p>
+                    <div class="clearfix"></div>
+                </div>
+                <!--<hr>-->
+                <uib-accordion close-others="false" id="firstAccordion">
+                    <uib-accordion-group ng-init='open=true' is-open="open">
+                        <uib-accordion-heading>
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class="pull-left" >ДЕТАЛИ</span>
+                                    <span ng-show="!open" class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                                    <span ng-show="open" class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+                        </uib-accordion-heading>
+                            <p  itemprop="description" ng-bind-html="::trustHtml(stuff.desc)">
+                            </p>
+                    </uib-accordion-group>
+                </uib-accordion>
+                <uib-accordion close-others="false" id="secondAccordion" ng-repeat="ac in stuff.addCriterion" ng-if="ac.table">
+                    <uib-accordion-group ng-init='open=false'>
+                        <uib-accordion-heading>
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class="pull-left" ng-bind="ac.name"></span>
+                                    <span  ng-show="!open" class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                                    <span  ng-show="open" class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+                        </uib-accordion-heading>
+                        <!--<pre>{{ac.name}}</pre>-->
+                        <div class="size-table">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th class="col-lg-2">
+                                    #
+                                </th>
+                                <th class="col-lg-2" ng-repeat="head in ac.head track by $index">
+                                    {{head}}
+                                </th>
+
+                            </tr>
+                            <tr ng-repeat="(key,tr) in ac.table">
+                                <td>{{key}}</td>
+                                <td ng-repeat="td in tr track by $index">{{td}}</td>
+                            </tr>
+                        </table></div>
+                    </uib-accordion-group>
+                </uib-accordion>
+
+            <!--<div class="size-table" ng-repeat="ac in stuff.addCriterion" ng-if="ac.table">
+                <h4 ng-bind="ac.name"></h4>
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="col-lg-2">
+                            #
+                        </th>
+                        <th class="col-lg-2" ng-repeat="head in ac.head track by $index">
+                            {{head}}
+                        </th>
+
+                    </tr>
+                    <tr ng-repeat="(key,tr) in ac.table">
+                        <td>{{key}}</td>
+                        <td ng-repeat="td in tr track by $index">{{td}}</td>
+                    </tr>
+                </table>
+            </div>-->
+            <!--<div class=" mb-20" ng-show="$scope.sizeTable">
+                <a class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn btn-1 btn-success btn-lg mb-20 go"
+                   ui-sref="stuff(mainFrameCtrl.getUrlParams(stuff))"
+                       type="button"
+                       title="каталог товаров {{::mainFrameCtrl.getBrandName(stuff.brand)}} {{::mainFrameCtrl.getCategoryName(stuff.category)}}">
+                    ПЕРЕЙТИ В КАТАЛОГ
+                </a>
+                <a class="col-lg-6 col-md-6 col-sm-6 col-xs-6 btn btn-1 btn-success btn-lg mb-20 go pull-right"
+                   ui-sref="cart"
+                   type="button"
+                   >
+                    ПЕРЕЙТИ В КОРЗИНУ
+                </a>
+                <div class="clearfix"></div>
+            </div>-->
+                <div class=" mb-20">
+                    <uib-accordion close-others="false" id="thirdAccordion">
+                       <uib-accordion-group ng-init='open=false' is-open="open">
+                           <uib-accordion-heading>
+                               <div class="panel-heading">
+                                   <h4 class="panel-title">
+                                        <span class="pull-left" >ЗАКАЗ, ДОСТАВКА И ОПЛАТА</span>
+                                        <span  ng-show="!open" class="icon-plus pull-right glyphicon glyphicon-plus"></span>
+                                        <span  ng-show="open" class="icon-plus pull-right glyphicon glyphicon-minus"></span>
+                                   </h4>
+                                   <div class="clearfix"></div>
+                               </div>
+                           </uib-accordion-heading>
+                               <p>
+                                   Заказ на сайте можно сделать как в розницу, так и оптом. Оптовые цены действуют при заказе от 3 единиц. Цены в корзине автоматически изменяются
+                                   на оптовые, если в кнее помещено 3 единицы. При покупке 10-ти единиц больших размеров автоматически действует скидка 5%. При зпокупке стандартных размеров действует каскадная
+                                   система скидок - 5% при заказе 5-ти единиц, 10% при заказе 10-ти единиц. Цены SALE действительны только на оптовый заказ. Скидки на цены SALE не распространяются.
+                               </p>
+                               <p>
+                                   <strong>Доставка товара от tatiana-lux.com</strong> осуществляется в следующие страны:<br>
+                                   1) Украина – транспортными и почтовыми компаниями «Автолюкс», «Нова пошта», Укрпошта, курьерская доставка и другими удобными для Вас способами.<br>
+                                   2)	 Россия – транспортными компаниями ПЭК, «Желдорэкспедиция", Байкал-сервис", "Деловые линии", Почта России, курьерская доставка и другими удобными для Вас способами.<br>
+                                   3)	 Беларусь, Молдова  и другие страны – указанными Вами компаниями или Укрпоштой.<br>
+                                   <strong>Стоимость доставки от tatiana-lux.com</strong> указывается в письме, поступающем на Ваш электронный адрес  с заказом и данными по доставке после оформления и уточнения заказа.
+                                   Особые условия доставки и Ваши пожелания укажите, пожалуйста, в комментариях к заказу или воспользуйтесь формой обратной связи на сайте.<br>
+                                   <strong>Отправка заказа</strong> осуществляется в течение 1 дня с момента поступления оплаты.<br><br>
+                                   <strong>Доставка заказа</strong>  осуществляется по данным, указанным покупателем при оформлении заказа, поэтому при заполнении адреса и дополнительных условий доставки будьте особо внимательны. <br>
+                                   Порядок подачи претензии, обмена и возврата товара описан на странице <a class="basic" href="http://tatiana-lux.com/page/Stat/%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0/5445478c5d753c865640b934">ДОСТАВКА</a> .
+                               </p>
+                               <p>
+                                   После оформления и уточнения заказа на tatiana-lux <strong>оплата производится</strong>
+                                   по согласованию с покупателем следующими способами:<br>
+                                   1)	Перевод на карточку продавца.<br>
+                                   2)	Почтовым международным переводом.<br>
+                                   3)	Банковским переводом.<br>
+                                   Все данные для оплаты поступают покупателю на почту в письме с  полным содержанием и описанием заказа.<br>
+                                   В случае если у Вас есть <strong>дополнительные условия по оплате</strong>, воспользуйтесь, пожалуйста, формой обратной связи на сайте или напишите свои пожелания в комментариях при оформлении заказа.<br>
+                                   <strong>Срок оплаты </strong>– 7 дней с момента выставления счета продавцом. По истечении указанного срока заказ аннулируется.
+                               </p>
+
+
+                       </uib-accordion-group>
+                    </uib-accordion>
+                    <div class="clearfix"></div>
+                   <!-- <uib-accordion  id="fourthAccordion">
+                        <uib-accordion-group ng-init="open=false" is-open="open">
+                            <uib-accordion-heading>
+                                 <comments1-wrap parent="stuff._id" what="parentStuff"></comments1-wrap>
+                            </uib-accordion-heading>
+                        </uib-accordion-group>
+                    </uib-accordion>-->
+                    <comments-wrap parent="stuff._id" what="parentStuff"></comments-wrap>
+                    <div  last-viewed='viewed'  current="stuff"go-id="11v" header="Последние просмотренные модели"></div>
+                </div>
+
+           </div>
+        </div>
+    </div>
+</section>
+
+

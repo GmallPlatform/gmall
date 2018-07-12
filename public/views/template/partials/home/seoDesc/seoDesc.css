@@ -1,0 +1,16 @@
+.seo-block {
+    padding: 20px;
+}
+.seo-desc {
+    padding-right: 20px;
+    text-align: justify;
+    font-size: 14px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    opacity: 0.8;
+
+}
+.mobile-wrapper .seo-desc {
+    font-size: 14px;
+}

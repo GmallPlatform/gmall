@@ -1,0 +1,73 @@
+<!--http://stackoverflow.com/questions/27005608/angularjs-ui-bootstrap-modal-with-google-places-->
+<style>
+    .pac-container {
+        z-index: 100000;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="modal-title pull-left">Контактная информация</h3>
+</div>
+<div class="modal-body">
+    <div class="my-switch-container  mb-40" >
+        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 cart-inner">
+            <form class="form" name="formProfile" id="formProfile" ng-submit="$ctrl.ok()">
+                <div class="control-group" ng-class="{ 'has-success': formProfile.email.$valid,'has-error': formProfile.email.$invalid}">
+                    <input  name="email" type="email" class="form-control mb-10 cart" required
+                            ng-model="$ctrl.user.email" ng-disabled="$ctrl.user._id"
+                            placeholder="email"/>
+                    <div class="help-block text-danger" ng-if="formProfile.email.$dirty" ng-messages="formProfile.email.$error">
+                        <div ng-message="required">Требуется email.</div>
+                        <div ng-message="pattern">Ваш email не в формате.</div>
+                    </div>
+                </div>
+
+                <div class="control-group" ng-class="{ 'has-success': formProfile.fio.$valid,'has-error': formProfile.fio.$invalid}">
+                    <input  name="fio" type="text" class="form-control mb-10 cart"
+                            pattern="[A-Za-zА-Яа-я0-9.\s-]{3,100}"
+                            ng-minlength="3"
+                            ng-maxlength="70"
+                            required
+                            ng-model="$ctrl.user.profile.fio"
+                            placeholder="ФИО"/>
+
+                    <div class="help-block text-danger" ng-if="formProfile.fio.$dirty" ng-messages="formProfile.fio.$error">
+                        <div ng-message="required">Необходимо указать ФИО.</div>
+                        <div ng-message="pattern">Ваш ФИО не в формате.</div>
+                        <div ng-message="minlength">не менее 3-ти символов.</div>
+                        <div ng-message="maxlength">не более 70-ти символов.</div>
+                    </div>
+
+                </div>
+
+                <div class="control-group" ng-class="{ 'has-success': formProfile.phone.$valid,'has-error': formProfile.phone.$invalid}">
+                    <input   type="text" class="form-control mb-10 cart"
+                             pattern="[0-9.\s-+()]{7,20}"
+                             name="phone"
+                             ng-minlength="7"
+                             ng-maxlength="20"
+                             ng-model="$ctrl.user.profile.phone"
+                             placeholder="Телефон"/>
+
+                    <div class="help-block text-danger" ng-if="formProfile.phone.$dirty" ng-messages="formProfile.phone.$error">
+                        <div ng-message="required">Необходимо указать телефон.</div>
+                        <div ng-message="pattern">Ваш номер не в формате(только цифры и -+).</div>
+                        <div ng-message="minlength">не менее 7-ти символов.</div>
+                        <div ng-message="maxlength">не более 20-ти символов.</div>
+                    </div>
+                </div>
+
+                <textarea class="form-control mb-10 cart" rows="4" placeholder="комментарии к заказу" data-ng-model="$ctrl.user.comment"></textarea>
+                <div class="clearfix"></div>
+                <div class="text-center">
+                    <button class="btn btn-block btn-success btn-lg mb-20" type="submit">ЗАКАЗАТЬ</button>
+                </div>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Отмена</button>
+</div>
+

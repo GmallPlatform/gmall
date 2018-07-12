@@ -1,0 +1,27 @@
+div(class=dj[key].wrapclass+pullClass,set-animate=dj[key].blockAnimate,data-animation=dj[key].blockAnimate,data-animation-delay=dj[key].animationDelay)
+    div(class=mobileWrapper)
+        - var c = 'nav-group info'
+        if(dj[key].cache_key == 'menu2M')
+            ul(class="info")
+                each page,index in stats
+                    li
+                        - var hr = "/stat/"+page.url
+                        a(href=hr,set-animate=dj[key].animate,data-animation=dj[key].animate)
+                            span(class="part")
+                                =page.name
+        else
+            div(class=c,style='float:left')
+                a(href="/stat/" + stats[0].url)
+                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)=stats[0].name
+            div(class=c,style='float:left')
+                a(href="",ng-click="goToInfo()")
+                    span(class="part",set-animate=dj[key].animate,data-animation=dj[key].animate)
+                        span=lang.info
+                        span(class="caret")
+                ul(class="menu-hover")
+                    each page,index in stats
+                        if(index)
+                            li
+                                a(class="page-name",href="/stat/"+page.url)
+                                    span(set-animate=dj[key].animate,data-animation=dj[key].animate)=page.name
+

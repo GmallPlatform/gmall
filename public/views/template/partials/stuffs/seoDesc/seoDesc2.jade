@@ -1,0 +1,21 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        if(titles.desc)
+            div(class="container")
+                div(class="seo-desc")
+                    div(class="textInBlock",ng-class="{'collapsedText':!collapsedText}")
+                        div(class="desc")
+                            | !{titles.desc}
+                    p(class="read")
+                        a(ng-class="{'hideLink':!collapsedText}",ng-click="collapsedText=false")
+                            span(class="pull-right icon-delete-img")
+                            span(class="pull-right")=lang['rollUp']
+                            div(class="clearfix")
+                        a(ng-class="{'hideLink':collapsedText}",ng-click="collapsedText=true")
+                            span(class="pull-right icon-plus-img")
+                            span(class="pull-right")=lang['readMore']
+                            div(class="clearfix")
+
+        div( class="clearfix")
+
+    

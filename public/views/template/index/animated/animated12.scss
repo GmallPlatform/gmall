@@ -1,0 +1,40 @@
+/*при наведении контур 2*/
+.animated12 {
+  &:hover {
+    @if $addColor2 {color: $addColor2;}
+
+  }
+
+  // Set up base styles, we're going to scale instead of animating width/height
+  &::before,
+  &::after {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform-origin: center; // Ensure scaling is done from the center (expands outwards)
+  }
+
+  // scale3d(<scale-horizontal>, <scale-vertical>, <scale-depth>);
+  &::before {
+    @if $addColor2 {border-top: 2px solid $addColor2;}
+
+    @if $addColor2 {border-bottom: 2px solid $addColor2;}
+
+    transform: scale3d(0,1,1); // Shrink only width
+  }
+
+  &::after {
+    @if $addColor2 {border-left: 2px solid $addColor2;}
+
+    @if $addColor2 {border-right: 2px solid $addColor2;}
+
+    transform: scale3d(1,0,1); // Shrink only height
+  }
+
+  &:hover::before,
+  &:hover::after {
+    transform: scale3d(1,1,1); // Show full-size
+    transition: transform 0.5s;
+  }
+}

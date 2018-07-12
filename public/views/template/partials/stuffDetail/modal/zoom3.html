@@ -1,0 +1,117 @@
+<style>
+    .zoom-modal-horizontal .modal-dialog{
+        width:95%;
+        height: 100vh;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .zoom-modal-horizontal img {
+        max-width: 70%
+    }
+    .zoom-modal-horizontal .modal-content{
+        border-radius: 0;
+    }
+    .zoom-modal-vertical .modal-content{
+        height:100vh;
+        border-radius: 0;
+    }
+    .zoom-modal-vertical .modal-dialog{
+        margin-top: 0;
+        margin-bottom: 0;
+        width: 95%
+    }
+    .zoom-modal-vertical .slide-img {
+        height: 99vh !important;
+    }
+
+    @media (max-width: 700px){
+        .zoom-modal-horizontal .modal-content,
+        .zoom-modal-horizontal .modal-dialog{
+            margin: 15px auto;
+        }
+    }
+    @media (max-width: 400px){
+        .zoom-modal-horizontal .modal-content,
+        .zoom-modal-horizontal .modal-dialog {
+            width: 90vw;
+            margin: 30% auto;
+        }
+        .zoom-slide .slide-img {
+            height: auto !important;
+            width: auto !important;
+        }
+        .icon-cancelzoom-img {
+            z-index: 10000
+        }
+    }
+    .gallery-wrap {
+        min-height:100px;
+    }
+    .gallery-small{
+       overflow: auto;
+        position: absolute;
+        left: 30px;
+        top: 20px;
+    }
+    @media (max-width: 400px) {
+        .zoom-slide .gallery-wrap {
+            min-height: 120px;
+        }
+        .zoom-slide  .gallery-small {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            left: 0;
+
+        }
+        .zoom-slide .gallery-small img {
+            width: 70px;
+            display: inline-block;
+            float: left;
+        }
+        .zoom-slide .icon-downslide-img,
+        .zoom-slide .icon-up-img {
+            display: none;
+        }
+
+    }
+
+</style>
+
+<div class="gallery zoom-slide">
+    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+        <div class="gallery-small">
+            <div class="gallery-wrap">
+                <div id="gallery-small-container">
+                    <div class="gallery-small-box" ng-repeat="slide in $ctrl.gallery track by $index" ng-class="{'active':$ctrl.idx==$index}">
+                        <a ng-click="$ctrl.chancheActiveSlide($index)">
+                        <img ng-src="{{slide.img}}" class="img-responsive gallery-small-imgs">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a class="arrow-up-gallery-small" ng-click="smallGalleryF.move_up()">
+                <span class="icon-upslide-img">
+
+                </span>
+            </a>
+            <a class="arrow-down-gallery-small" ng-click="smallGalleryF.move_down()">
+                <span class="icon-downslide-img">
+
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-11  col-md-11 col-sm-10 col-xs-12">
+        <div uib-carousel active="$ctrl.idx" class="zoom-big-slide">
+            <div uib-slide ng-repeat="slide in $ctrl.gallery track by $index" index="$index"  ng-swipe-left="$ctrl.next($index)" ng-swipe-right="$ctrl.prev($index)">
+                <a ng-click="$ctrl.next($index)">
+                    <img class="slide-img img-responsive" ng-src="{{slide.img}}" style="{{$ctrl.style}}">
+                </a>
+            </div>
+        </div>
+    </div>
+    <a class="zoom-cancel" ng-click="$ctrl.cancel()">
+        <span class="icon-cancelzoom-img"></span>
+    </a>
+</div>

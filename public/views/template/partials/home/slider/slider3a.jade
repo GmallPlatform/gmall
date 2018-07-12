@@ -1,0 +1,25 @@
+
+//if(imgs && imgs.length)
+    div(class=wrapclass)
+        div(class=mobileWrapper)
+            if(i && i==1)
+                - var id='arrowDownDiv'
+                arrow-down
+            //- var id=(i && i==1)?'arrow-down':'';
+            div(id=id,class="home-slides")
+                div(class="container")
+                    if(name)
+                        h1(class="text-center")=name
+                    each im in imgs
+                        div(class=className,set-animate=animate&&!mobile,data-animation=animate)
+                            div(class="slide-box")
+                                div(class="img-wrap col-lg-3 col-md-3 col-sm-4 col-xs-12")
+                                    img(class=" img-responsive", src=photoHost+'/'+im.img)
+                                div(class="desc-wrap col-lg-9 col-md-9 col-sm-8 col-xs-12")
+                                    div(class="home-section-header")
+                                        if(im.name)
+                                            h3=im.name
+                                        if(im.desc)
+                                            | !{im.desc}
+                                div(class="clearfix")
+                                    //a(href=im.link)

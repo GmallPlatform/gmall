@@ -1,0 +1,16 @@
+li(class="nav-item")
+    - var pullClass=''
+    if(position!='center' && (positionMenu=='top' ||positionMenu=='bottom'))
+        - pullClass=' pull-'+position
+    div(class=wrapclass+pullClass)
+        div(class=mobileWrapper)
+            if(positionMenu=='top' ||positionMenu=='bottom')
+                - var c = 'nav-group img-bag'
+            else
+                - var c = 'img-bag'
+            div(class=c)
+                a(class="text-center",ui-sref="cart")
+                    span(class="icon-cart-img")
+                    span(ng-class="{'newInCart':cart.changeCartItems,'inCart':!cart.changeCartItems}")
+                        b(ng-bind="cart.inCart")
+

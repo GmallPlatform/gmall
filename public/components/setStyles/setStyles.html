@@ -1,0 +1,513 @@
+<style>
+    .mp a{
+        font-weight: 300;
+        font-size: 14px;
+    }
+    .ff a{
+        font-weight: 300;
+        font-size: 14px;
+    }
+    .ff .dropdown-menu,
+    .mp .dropdown-menu {
+        padding: 10px;
+    }
+    .ff .dropdown-menu li,
+    .mp .dropdown-menu li input{
+        width: 100%;
+    }
+    .btn-fab.btn-fab-mini {
+        margin: 10px;
+    }
+    .set-styles .form-group{
+        margin-top: 0;
+    }
+    .style-type {
+        color: #72ad66;
+    }
+    .mp .dropdown-toggle,
+    .ff .dropdown-toggle {
+        text-transform: lowercase;
+    }
+   .style-value {
+
+       color: #666;
+   }
+    /*.colorpicker.dropdown.alpha,
+    .colorpicker.dropdown.alpha .dropdown-menu{
+        width: 200px !important;
+        height: 200px;
+    }*/
+</style>
+<div class="set-styles" ng-if="$ctrl.item && $ctrl.item.length">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12  text-center">
+        <span class="style-type">color</span>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item[0]">
+                    <i class="material-icons md-42 link-pink">color_lens</i>
+                </a>
+            </span>
+            <input type="text" class="form-control" placeholder="color" ng-model="$ctrl.item[0]">
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center">
+        <span class="style-type">background-color</span>
+        <div class="input-group">
+            <span class="input-group-addon"><a colorpicker="rgba" colorpicker-position="bottom" ng-model="$ctrl.item[1]">
+                 <i class="material-icons md-42 link-pink">color_lens</i>
+            </a></span>
+            <input type="text" class="form-control" placeholder="bacground-color"ng-model="$ctrl.item[1]">
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center">
+        <span class="style-type">display</span>
+        <ui-select ng-model="$ctrl.item[10]" skip-focusser="true" search-enabled="false">
+            <ui-select-match  allow-clear="true"placeholder="display">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="opt in $ctrl.displayList">{{ opt }}</ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center">
+        <span class="style-type">font-face</span>
+        <ui-select ng-model="$ctrl.item[11]" skip-focusser="true" search-enabled="false">
+            <ui-select-match allow-clear="true" placeholder="font family">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="opt in $ctrl.fontFaces">{{ opt }}</ui-select-choices>
+        </ui-select>
+    </div>
+
+    <div class="clearfix"></div>
+
+
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  text-left" style="margin-bottom: 20px">
+        <span class="style-type">font(text)-setting</span>
+        <div class="dropdown  ff">
+            <a class='dropdown-toggle' data-target="#" data-toggle="dropdown">
+                font-size <span class="style-value">{{$ctrl.item[12]}}</span>,
+                font-weight  <span class="style-value">{{$ctrl.item[13]}}</span>,
+                text-shadow  <span class="style-value">{{$ctrl.item[39]}}</span>,
+                letter-spacing  <span class="style-value">{{$ctrl.item[14]}}</span>,
+                text-transform  <span class="style-value">{{$ctrl.item[15]}}</span>,
+                text-decoration  <span class="style-value">{{$ctrl.item[23]}}</span>,
+                text-align  <span class="style-value">{{$ctrl.item[24]}}</span>,
+                vertical-align  <span class="style-value">{{$ctrl.item[36]}}</span>,
+                word-break  <span class="style-value">{{$ctrl.item[58]}}</span>
+                word-wrap  <span class="style-value">{{$ctrl.item[59]}}</span>
+                word-spacing  <span class="style-value">{{$ctrl.item[60]}}</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd712" class="control-label">font-size</label>
+                        <input  class="form-control" id="dd712" placeholder="font-size" ng-model="$ctrl.item[12]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd822" class="control-label">font-weight</label>
+                        <input  class="form-control" id="dd822" placeholder="font-weight" ng-model="$ctrl.item[13]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd822d" class="control-label">text-shadow</label>
+                        <input  class="form-control" id="dd822d" placeholder="text-shadow" ng-model="$ctrl.item[39]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd932" class="control-label">letter-spacing</label>
+                        <input  class="form-control" id="dd932" placeholder="letter-spacing" ng-model="$ctrl.item[14]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd1042" class="control-label">text-transform</label>
+                        <input  class="form-control"  id="dd1042" placeholder="text-transform" ng-model="$ctrl.item[15]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd1042yy" class="control-label">text-decoration</label>
+                        <input  class="form-control"  id="dd1042yy" placeholder="text-decoration" ng-model="$ctrl.item[23]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd1042yy1" class="control-label">text-align</label>
+                        <input   class="form-control" id="dd1042yy1" placeholder="text-align" ng-model="$ctrl.item[24]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd1042yy9" class="control-label">vertical-align</label>
+                        <input   class="form-control" id="dd1042yy9" placeholder="vertical-align" ng-model="$ctrl.item[36]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd10461" class="control-label">line-height</label>
+                        <input   class="form-control" id="dd10461" placeholder="line-height" ng-model="$ctrl.item[50]">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  text-left" style="margin-bottom: 20px">
+        <span class="style-type">all</span>
+        <div class="dropdown  ff">
+            <a class='dropdown-toggle' data-target="#" data-toggle="dropdown">
+                width <span class="style-value">{{$ctrl.item[16]}}</span>,
+                max-width <span class="style-value">{{$ctrl.item[46]}}</span>,
+                min-width <span class="style-value">{{$ctrl.item[47]}}</span>,
+                height <span class="style-value">{{$ctrl.item[17]}}</span>,
+                max-height <span class="style-value">{{$ctrl.item[48]}}</span>,
+                min-height <span class="style-value">{{$ctrl.item[49]}}</span>,
+                float <span class="style-value">{{$ctrl.item[18]}}</span>,
+                clear <span class="style-value">{{$ctrl.item[45]}}</span>,
+                position <span class="style-value">{{$ctrl.item[25]}}</span>,
+                top <span class="style-value">{{$ctrl.item[19]}}</span>,
+                left <span class="style-value">{{$ctrl.item[20]}}</span>,
+                right <span class="style-value">{{$ctrl.item[21]}}</span>,
+                bottom <span class="style-value">{{$ctrl.item[22]}}</span>,
+                z-index <span class="style-value">{{$ctrl.item[32]}}</span>,
+                opacity <span class="style-value">{{$ctrl.item[33]}}</span>,
+                cursor <span class="style-value">{{$ctrl.item[40]}}</span>,
+                list-style <span class="style-value">{{$ctrl.item[35]}}</span>,
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd10431" class="control-label">width(px или %)</label>
+                        <input class="form-control" id="dd10431" placeholder="width" ng-model="$ctrl.item[16]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd1043145" class="control-label">max-width</label>
+                        <input class="form-control" id="dd1043145" placeholder="max-width" ng-model="$ctrl.item[46]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd1043146" class="control-label">min-width</label>
+                        <input class="form-control" id="dd1043146" placeholder="min-width" ng-model="$ctrl.item[47]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd10431" class="control-label">height(px или %)</label>
+                        <input class="form-control" id="sdd10431" placeholder="height" ng-model="$ctrl.item[17]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd1043149" class="control-label">max-height</label>
+                        <input class="form-control" id="dd1043149" placeholder="max-height" ng-model="$ctrl.item[48]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd1043148" class="control-label">min-height</label>
+                        <input class="form-control" id="dd1043148" placeholder="min-height" ng-model="$ctrl.item[49]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312" class="control-label">float</label>
+                        <input class="form-control" id="sdd104312" placeholder="float" ng-model="$ctrl.item[18]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104" class="control-label">clear</label>
+                        <input  class="form-control" id="sdd104" placeholder="clear" ng-model="$ctrl.item[45]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dd" class="control-label">position</label>
+                        <input class="form-control" id="sdd104312dd" placeholder="position" ng-model="$ctrl.item[25]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312d" class="control-label">top</label>
+                        <input  class="form-control" id="sdd104312d" placeholder="top" ng-model="$ctrl.item[19]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleft" class="control-label">left</label>
+                        <input  class="form-control" id="sdd104312dleft" placeholder="left" ng-model="$ctrl.item[20]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dlefts" class="control-label">right</label>
+                        <input  class="form-control" id="sdd104312dlefts" placeholder="right" ng-model="$ctrl.item[21]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleftf" class="control-label">bottom</label>
+                        <input  class="form-control" id="sdd104312dleftf" placeholder="bottom" ng-model="$ctrl.item[22]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleftftt" class="control-label">z-index</label>
+                        <input  class="form-control" id="sdd104312dleftftt" placeholder="z-index" ng-model="$ctrl.item[32]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="ffsdd18912" class="control-label">opacity</label>
+                        <input class="form-control" id="ffsdd18912" placeholder="opacity" ng-model="$ctrl.item[33]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="cvb8754" class="control-label">cursor</label>
+                        <input class="form-control" id="cvb8754" placeholder="cursor" ng-model="$ctrl.item[40]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd10431233" class="control-label">list-style</label>
+                        <input  class="form-control" id="sdd10431233" placeholder="list-style" ng-model="$ctrl.item[35]">
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-left" style="margin-bottom: 20px">
+        <span class="style-type">border</span>
+        <div class="dropdown  ff">
+            <a class='dropdown-toggle' data-target="#" data-toggle="dropdown">
+                border <span class="style-value">{{$ctrl.item[26]}}</span>,
+                border-width <span class="style-value">{{$ctrl.item[34]}}</span>,
+                border-left <span class="style-value">{{$ctrl.item[27]}}</span>,
+                border-right <span class="style-value">{{$ctrl.item[28]}}</span>,
+                border-top <span class="style-value">{{$ctrl.item[29]}}</span>,
+                border-bottom <span class="style-value">{{$ctrl.item[30]}}</span>,
+                border-radius <span class="style-value">{{$ctrl.item[31]}}</span>,
+
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleftfgg" class="control-label">border</label>
+                        <input  class="form-control" id="sdd104312dleftfgg" placeholder="border" ng-model="$ctrl.item[26]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleft498" class="control-label">border-width</label>
+                        <input  class="form-control" id="sdd104312dleft498" placeholder="border-width" ng-model="$ctrl.item[34]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleftfgq" class="control-label">border-left</label>
+                        <input  class="form-control" id="sdd104312dleftfgq" placeholder="border-left" ng-model="$ctrl.item[27]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleftfgw" class="control-label">border-right</label>
+                        <input  class="form-control" id="sdd104312dleftfgw" placeholder="border-right" ng-model="$ctrl.item[28]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleftfge" class="control-label">border-top</label>
+                        <input  class="form-control" id="sdd104312dleftfge" placeholder="border-top" ng-model="$ctrl.item[29]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleftfgr" class="control-label">border-bottom</label>
+                        <input  class="form-control" id="sdd104312dleftfgr" placeholder="border-bottom" ng-model="$ctrl.item[30]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="sdd104312dleftfgt" class="control-label">border-radius</label>
+                        <input  class="form-control" id="sdd104312dleftfgt" placeholder="border-radius" ng-model="$ctrl.item[31]">
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6  text-left">
+        <span class="style-type">margin-padding</span>
+        <div class="dropdown mp">
+            <a class='dropdown-toggle ' data-target="#" data-toggle="dropdown">
+                margin <span class="style-value">{{$ctrl.item[57]}}</span>,
+                margin-top <span class="style-value">{{$ctrl.item[2]}}</span>,
+                margin-right  <span class="style-value">{{$ctrl.item[3]}}</span>,
+                margin-bottom  <span class="style-value">{{$ctrl.item[4]}}</span>,
+                margin-left  <span class="style-value">{{$ctrl.item[5]}}</span>,
+                padding <span class="style-value">{{$ctrl.item[56]}}</span>,
+                padding-top  <span class="style-value">{{$ctrl.item[6]}}</span>,
+                padding-right  <span class="style-value">{{$ctrl.item[7]}}</span>,
+                padding-bottom  <span class="style-value">{{$ctrl.item[8]}}</span>,
+                padding-left  <span class="style-value">{{$ctrl.item[9]}}</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd7" class="control-label">margin-top</label>
+                        <input  class="form-control" id="dd7" placeholder="margin-top" ng-model="$ctrl.item[2]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd8" class="control-label">margin-right</label>
+                        <input  class="form-control" id="dd8" placeholder="margin-right" ng-model="$ctrl.item[3]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd9" class="control-label">margin-bottom</label>
+                        <input  class="form-control" id="dd9" placeholder="margin-bottom" ng-model="$ctrl.item[4]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd10" class="control-label">margin-left </label>
+                        <input  class="form-control" id="dd10" placeholder="margin-left" ng-model="$ctrl.item[5]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd17" class="control-label">padding-top</label>
+                        <input class="form-control" id="dd17" placeholder="padding-top" ng-model="$ctrl.item[6]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd18" class="control-label">padding-right</label>
+                        <input class="form-control" id="dd18" placeholder="padding-right" ng-model="$ctrl.item[7]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd19" class="control-label">padding-bottom</label>
+                        <input class="form-control" id="dd19" placeholder="padding-bottom" ng-model="$ctrl.item[8]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="dd20" class="control-label">padding-left</label>
+                        <input class="form-control" id="dd20" placeholder="padding-left" ng-model="$ctrl.item[9]">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6  text-left">
+        <span class="style-type">complex</span>
+        <div class="dropdown mp">
+            <a class='dropdown-toggle' data-target="#" data-toggle="dropdown">
+                background <span class="style-value">{{$ctrl.item[44]}}</span>,
+                background-size <span class="style-value">{{$ctrl.item[37]}}</span>,
+                background-position <span class="style-value">{{$ctrl.item[38]}}</span>,
+                background-attachment <span class="style-value">{{$ctrl.item[54]}}</span>,
+                background-repeat <span class="style-value">{{$ctrl.item[55]}}</span>,
+                transition <span class="style-value">{{$ctrl.item[41]}}</span>,
+                box-shadow <span class="style-value">{{$ctrl.item[42]}}</span>,
+                transform <span class="style-value">{{$ctrl.item[43]}}</span>,
+                object-fit <span class="style-value">{{$ctrl.item[51]}}</span>,
+                object-position <span class="style-value">{{$ctrl.item[52]}}</span>,
+                overflow <span class="style-value">{{$ctrl.item[53]}}</span>,
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="form-group label-static">
+                        <label for="fdd10" class="control-label">background</label>
+                        <input class="form-control" id="fdd10" placeholder="background" ng-model="$ctrl.item[44]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="fdd10445" class="control-label">background-size</label>
+                        <input class="form-control" id="fdd10445" placeholder="background-size" ng-model="$ctrl.item[37]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="fdd10445f" class="control-label">background-position</label>
+                        <input class="form-control" id="fdd10445f" placeholder="background-position" ng-model="$ctrl.item[38]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="fdd104" class="control-label">background-attachment</label>
+                        <input class="form-control" id="fdd104" placeholder="background-attachment" ng-model="$ctrl.item[54]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="fdd104aa" class="control-label">background-repeat</label>
+                        <input class="form-control" id="fdd104aa" placeholder="background-repeat" ng-model="$ctrl.item[55]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="cvb87599" class="control-label">transition</label>
+                        <input class="form-control" id="cvb87599" placeholder="transition" ng-model="$ctrl.item[41]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="cvb87542" class="control-label">box-shadow</label>
+                        <input class="form-control" id="cvb87542" placeholder="box-shadow" ng-model="$ctrl.item[42]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="cvb8781" class="control-label">transform</label>
+                        <input class="form-control" id="cvb8781" placeholder="transform" ng-model="$ctrl.item[43]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="cvb8782" class="control-label">object-fit</label>
+                        <input class="form-control" id="cvb8782" placeholder="object-fit" ng-model="$ctrl.item[51]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="cvb8783" class="control-label">object-position</label>
+                        <input class="form-control" id="cvb8783" placeholder="object-position" ng-model="$ctrl.item[52]">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group label-static">
+                        <label for="cvb8784" class="control-label">overflow</label>
+                        <input class="form-control" id="cvb8784" placeholder="overflow" ng-model="$ctrl.item[53]">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+        <div class="btn-save text-right" ng-if="$ctrl.actions.save || $ctrl.actions.delete">
+            <a class="btn btn-fab btn-fab-mini" ng-if="$ctrl.actions.save"ng-click="$ctrl.saveData()">
+                <i class="material-icons link-success md-42">save</i>
+            </a>
+            <a class="btn btn-fab btn-fab-mini" style="margin-right: -20px" ng-if="$ctrl.actions.delete"ng-click="$ctrl.deleteData()">
+                <i class="material-icons link-warning md-42">delete</i>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+
+
+</div>

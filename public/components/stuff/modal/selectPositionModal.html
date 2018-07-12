@@ -1,0 +1,30 @@
+<div class="select-stuff  select-modal">
+    <div class="modal-header">
+        <h3 class="modal-title text-center  col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            в списке на сайте
+        </h3>
+        <a class="cancel" ng-click="$ctrl.cancel()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group" >
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="$ctrl.position" value="up">вверх списка
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="$ctrl.position" value="down">вних списка
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer col-lg-12">
+        <a class="btn btn-success btn-block" type="button"
+           ng-click="$ctrl.ok()">Применить</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+

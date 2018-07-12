@@ -1,0 +1,43 @@
+@media  (max-width: 1500px) and (min-width: 1301px)  {
+  h1 {
+    @if $top {
+      top: $top*0.9;
+    }
+    @if $font-size {
+      font-size: $font-size*0.9;
+    }
+  }
+}
+@media  (max-width: 1300px) and (min-width: 1025px) {
+  h1 {
+    @if $font-size {
+      font-size: $font-size*0.8;
+    }
+  }
+}
+
+/*.tablet-wrapper {
+  h1 {
+    @if $top {
+      top: $top*0.75;
+    }
+    @if $padding-left {
+      padding-left: $padding-left*0.5;
+    }
+    @if $padding-right {
+      padding-right: $padding-right*0.5;
+    }
+  }
+}*/
+/*
+.mobile-wrapper {
+  h1 {
+
+    @if $padding-left {
+      padding-left: $padding-left*0;
+    }
+    @if $padding-right {
+      padding-right: $padding-right*0;
+    }
+  }
+}*/

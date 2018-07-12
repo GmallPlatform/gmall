@@ -1,0 +1,47 @@
+doctype html
+html(ng-app="gmall")
+  head
+
+
+    meta(charset='utf8')
+    base(href='/')
+    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+
+    //link(href="order.min.css",rel="stylesheet")
+    if(true)
+      // Material Design fonts
+      link(href="assets/fonts.googleapis.com.css",type="text/css",rel="stylesheet")
+      link(href="assets/icon.css",rel="stylesheet")
+
+      //Bootstrap
+      link(href="bower_components/bootstrap/dist/css/bootstrap.min.css",rel="stylesheet")
+      // Dropdown.js
+      link(href="assets/jquery.dropdown.css",rel="stylesheet")
+      link(href='assets/ui-select-master/dist/select.css',rel='stylesheet')
+
+      link(rel='stylesheet', href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css")
+      link(rel='stylesheet', href="bower_components/bootstrap-material-design/dist/css/ripples.min.css")
+
+      // дата пикер
+      link(rel="stylesheet",href="bower_components/bootstrap-daterangepicker/daterangepicker.css")
+      link(rel="stylesheet",href="bower_components/AngularJS-Toaster/toaster.min.css")
+
+      link(rel='stylesheet', href='modules/order/css/order.css')
+      //стили компонентов
+      link(rel='stylesheet', href='components/paginator/css/component.paginator.css')
+      link(rel='stylesheet', href='components/user/css/component.loginModal.css')
+      link(rel='stylesheet', href='components/dialogs/css/component.dialogs.css')
+      link(rel='stylesheet', href='components/notification/css/component.notification.css')
+      link(rel='stylesheet', href='components/chat/css/component.chat.css')
+      link(rel='stylesheet', href='components/order/css/component.order.css')
+      link(rel='stylesheet', href='components/comment/comments-list.css')
+      link(rel='stylesheet', href='components/storeSetting/css/component.currency.css')
+      link(rel='stylesheet', href='components/brand/css/component.selectBrandTag.css')
+      link(rel='stylesheet', href='components/sections/css/component.sectionSelectCategoryModal.css')
+      link(rel='stylesheet', href='components/ORDERS/online/css/onlineList.css')
+      link(rel='stylesheet', href='components/ORDERS/online/css/selectServise.css')
+      link(rel='stylesheet', href='components/ORDERS/online/css/onlineListMobile.css')
+      link(rel='stylesheet', href='components/ORDERS/online/css/schedule.css')
+
+  body
+    block content

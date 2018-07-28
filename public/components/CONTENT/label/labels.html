@@ -1,0 +1,71 @@
+<div class="nav-box-stuff">
+    <div class="tab-nav-stuff">
+        <a class="btn btn-fab btn-fab-mini btn-success"
+           ng-click="$ctrl.createItem()"
+           title="создать новую метку">
+            <i class="material-icons">add</i>
+        </a>
+
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="static-pages">
+    <div >
+        <div class="col-lg-12  col-md-12 col-sm-12  col-xs-12">
+            <ul class="gallery-item-ul">
+                <li ng-repeat="item in $ctrl.items" class="gallery-item">
+                    <span class="helper"></span>
+                    <div class="cart-detail">
+                        <div class="col-lg-4  col-md-4 col-sm-6  col-xs-6">
+                            <div class="form-group">
+                                <input class="form-control" ng-model="item.name"  ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveField(item,'name')">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6  col-xs-6">
+                            <div class="form-group pull-left text-center">
+                                <div class="togglebutton">
+                                    <label for="actived{{$index}}-ds">
+                                        <span ng-class="{'active':!item.actived}">не опубликовано</span>
+                                        <input type="checkbox"
+                                               id="actived{{$index}}-ds"
+                                               ng-model="item.actived"
+                                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                               ng-change="$ctrl.saveField(item,'actived')">
+                                        <span ng-class="{'active':item.actived}">опубликовано</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 form-group">
+                            <ui-select ng-model="item.list"
+                                       ng-change="$ctrl.saveField(item,'list')"
+                                       skip-focusser="true"
+                                       search-enabled="false"
+                                       title="выберите список">
+                                <ui-select-match  placeholder="список">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="opt.type as opt in $ctrl.lists">{{ opt.name }}</ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">индекс</label>
+                                <input class="form-control" ng-model="item.index"  ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveField(item,'index')">
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6">
+                            <a class="pull-right  btn  btn-fab btn-fab-mini delete" ng-click="$ctrl.deleteItem(item,$index)">
+                                <i class="material-icons link-danger">delete</i>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div ui-view=""></div>
+</div>

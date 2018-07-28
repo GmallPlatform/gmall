@@ -1,0 +1,401 @@
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+.simpleDemo ul[dnd-list],
+.simpleDemo ul[dnd-list] > li {
+    position: relative;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.simpleDemo ul[dnd-list] {
+    min-height: 32px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.simpleDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.simpleDemo ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #E6E3EE;
+    min-height: 32px;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.simpleDemo ul[dnd-list] li {
+     background-color: #eee;;
+    /*border: 1px solid #ddd;*/
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+.simpleDemo ul[dnd-list] li:hover{
+    background-color: #e0deee;
+    text-decoration: none;
+}
+
+
+
+/* мз файла детали*/
+
+/*.tags {
+  margin-top: 10px;
+}*/
+.tags .tag {
+    border-radius: 3px;
+    background-color: #cadFEF;
+    box-shadow: 0 2px 2px #666;
+    -webkit-box-shadow: 0 2px 2px #666;
+    -moz-box-shadow: 0 2px 2px #666;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color:black;
+}
+/*
+input:focus.input-inline  {
+    box-shadow: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent;
+    border: 0px solid !important;
+    border-bottom: 1px solid #5f9aff !important;
+    outline: 0 !important;
+
+}
+input.input-inline  {
+    box-shadow: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent;
+    border: 0px solid !important;
+    outline: 0 !important;
+
+}
+textarea.textarea-inline  {
+    box-shadow: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: transparent;
+    border: 0px solid !important;
+    outline: 0 !important;
+    width:100%;
+
+}*/
+/*
+.redColor{
+    color: #ff1629;
+}
+span.inline{
+    cursor: pointer;
+
+}
+span.inline:hover{
+    color:#376fff;
+}
+span.date{
+    cursor: pointer;
+
+}
+span.date:hover{
+    color: #915dff;
+}
+
+*/
+
+
+/*
+.ship-detail {
+    background-color: #eee;
+    box-shadow: 0 3px 3px #666;
+    -webkit-box-shadow: 0 3px 3px #666;
+    -moz-box-shadow: 0 3px 3px #666;
+    margin-bottom: 10px;
+    padding: 10px 20px 10px 10px;
+}
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+}*/
+/*my style*/
+a {
+    cursor: pointer;
+}
+.order-cart,
+.user-cart{
+    background-color: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0px 8px 17px 0px;
+    border-bottom-color: rgb(51,51,51);
+    margin-bottom: 30px;
+
+}
+.order-cart {
+    padding: 20px 15px 0 15px
+}
+.user-cart {
+    padding: 20px 15px 20px 15px
+}
+.order-cart-detail {
+    box-shadow: 0px 8px 17px 0px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+fieldset.scheduler-border {
+    border: 1px groove #ddd;
+    padding: 0 1em 1em 1em;
+    margin: 0 0 1em 0;
+    /*-webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;*/
+}
+
+legend.scheduler-border {
+    font-weight: bold;
+    text-align: left ;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+.order-cart-detail legend {
+    font-size: 26px !important;
+    text-transform: lowercase;
+    font-weight: bold;
+    /*background-color: #f5f5f5;
+    margin: 0 auto;
+    width: 95%;
+    border-radius: 5px;*/
+}
+.order-date {
+    font-size: 16px;
+}
+.main {
+    font-size: 18px;
+}
+.mb-20 {
+    margin-bottom: 20px
+}
+.mb-10 {
+    margin-bottom: 10px
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.form-group {
+    margin-top: 10px;
+}
+.delete {
+    height: 48px;
+}
+hr {
+    border-top-color: #5f5f5f;
+    /*background-color: #eee;*/
+}
+/*.btn-primary.btn-block {max-width: 250px}*/
+.navbar.navbar,
+.navbar-default.navbar.navbar-main,
+.main .btn-primary:not(.btn-link):not(.btn-flat){
+    background-color: #519596;
+}
+.navbar-brand,
+.dropdown-toggle{
+    text-transform: uppercase;
+}
+.dropdown,
+.dropdown-menu{
+    font-size: 18px;
+}
+
+.badge {
+    padding: 7px 9px;
+    border-radius: 100%;
+    /*background-color: #fff;
+    color: #ca2b0d;*/
+}
+.badge-danger {
+    /*margin-left: 10px;*/
+    background-color: #e42b4d;
+    background-color: #ff8758;
+    background-color: rgb(255, 109, 90)
+}
+.link-danger {
+    /*color: #e42b4d;*/
+    color:#f44336;
+    color: rgba(244, 67, 54, 0.77);
+}
+.link-danger:hover, .link-danger:focus {
+    text-decoration: none;
+    /*color: rgba(228, 43, 77, 0.69);*/
+    color:#f44336;
+
+}
+.form-group .help-block {
+    /*height: 40px;*/
+    font-size: 14px;
+    /*margin-bottom: 10px;
+    margin-left: 15px;*//*todo - сделать все подсказки и их формат для разных устройств*/
+}
+.form-group label.control-label {
+    color: #65acad;
+}
+.dropdown span{
+    margin-right: 10px;
+}
+
+.navbar-main .ripple-wrapper {
+    min-width: 250px;
+}
+.date-picker {
+     font-size: 18px;
+ }
+.daterangepicker .ranges ul {
+   margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+.daterangepicker .ranges li {
+    color: #519596;
+    font-size: 16px;
+    width: 100%;
+}
+.daterangepicker .ranges li.active,
+.daterangepicker .ranges li:hover,
+.daterangepicker td.active,
+.daterangepicker td.active:hover{
+    background-color: #519596;
+    border-color: #519596 ;
+}
+.daterangepicker .input-mini.active {
+    border-color: #519596 ;
+}
+.group-name {
+    font-weight: bold;
+}
+.form-control:focus {
+    box-shadow: none;
+}
+.ui-select-bootstrap > .ui-select-match > .btn {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.ui-select-bootstrap > .ui-select-match > .btn:hover {
+    background-color: #efefef;
+}
+.material-icons {
+    margin-right: 10px;
+}
+.btn-default-focus {
+    box-shadow: none;
+    outline: none;
+}
+.ui-select-bootstrap > .ui-select-choices {
+    /*margin-top: -65px;*/
+}
+.link-warning {
+    color: #ff5722;
+}
+.link-info {
+    color: #03a9f4;
+}
+.link-success {
+     color: #4caf50;
+ }
+.link-primary {
+      color: #009688;
+  }
+.component .panel-default,
+.component .panel-default.panel-open {
+    box-shadow: 0px 8px 17px 0px;
+}
+.component .panel-default .panel-title {
+    font-size: 24px;
+    text-transform: lowercase;
+    font-weight: bold;
+}
+/*.component .panel-default .panel-title .material-icons {
+    font-size: 20px;
+    font-weight: normal;
+}*/
+.component .panel-default .panel-title a:hover,
+.component .panel-default .panel-title a:focus{
+    color: #666;
+    text-decoration: none;
+}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36,
+.btn.btn-fab i.material-icons.md-36,
+.input-group-btn .btn.btn-fab i.material-icons.md-36{
+    font-size: 36px;
+    transform: translate(-17px, -11px);
+}
+.material-icons.md-48 { font-size: 48px; }
+.order-control p{
+   padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+fieldset[disabled][disabled] .btn,
+fieldset[disabled][disabled] .input-group-btn .btn,
+fieldset[disabled][disabled] .btn-group,
+fieldset[disabled][disabled] .btn-group-vertical,
+.btn.disabled, .input-group-btn .btn.disabled,
+.btn-group.disabled, .btn-group-vertical.disabled,
+.btn:disabled, .input-group-btn .btn:disabled,
+.btn-group:disabled, .btn-group-vertical:disabled,
+.btn[disabled][disabled],
+.input-group-btn .btn[disabled][disabled],
+.btn-group[disabled][disabled],
+.btn-group-vertical[disabled][disabled] {
+    color: rgba(0, 0, 0, 0.45);
+}
+.btn .text-muted {
+    font-size: 16px;
+    color: #272727;
+}
+
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #519596;
+    border-color: #009688;
+}
+.pagination>li>a,
+.pagination>li>span {
+    color: #009688;
+}

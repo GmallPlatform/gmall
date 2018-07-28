@@ -1,0 +1,8 @@
+div(class=dj[key].wrapclass,class="col-lg-6 col-md-6 col-sm-4 col-xs-12")
+    div(class=mobileWrapper)
+        div(class="filters-block",ng-hide="$ctrl.$stateParams.categoryUrl=='category'&& !$ctrl.global.get('store').val.template.stuffListType[$ctrl.global.get('sectionType').val].filtersForAll")
+            div(class="form-group")
+                a(class="filters-of-stuff", ng-click="$ctrl.filterList()",title="{{$ctrl.global.get('lang').val.filters}}")
+                    span(class="icon-filters-img")
+                    span(class="filters-name",ng-bind="$ctrl.global.get('lang').val.filters")
+        div(class="clearfix")

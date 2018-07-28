@@ -1,0 +1,141 @@
+<div ng-hide="$ctrl.$state.current.name!='frame.news'"  class="nav-box-stuff">
+    <div class="tab-nav-stuff">
+        <a class="btn btn-fab btn-fab-mini btn-success"
+           ng-click="$ctrl.createNews()"
+           title="создать новость">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+    <div class="tab-nav-stuff">
+        <div class=" pull-right search">
+            <form ng-submit="$ctrl.searchItems($ctrl.searchStr)">
+                <input type="text"  class="search-fluid"
+                       ng-model-options="{'updateOn':'default blur','debounce':{'default':1000,'blur':0}}"
+                       ng-change="$ctrl.searchItems($ctrl.searchStr)"
+                       ng-model="$ctrl.searchStr"/>
+                <a ng-click="$ctrl.clearSearch()" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons link-warning" title="очистить строку поиска">clear</i>
+                </a>
+            </form>
+        </div>
+        <!--<form ng-submit="$ctrl.searchItem(searchStr)">
+            <input type="text"  class="search-fluid"  ng-model="searchStr"/>
+            <input type="submit" class="enter" tabindex="-1" />
+        </form>-->
+    </div>
+    <div class="text-center tab-nav-stuff">
+        <paginator-main
+                paginate="$ctrl.paginate"
+                getlist="$ctrl.getList()"
+                scroll="{{scrollId}}">
+        </paginator-main>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div ng-hide="$ctrl.$state.current.name!='frame.news'"  class="news-stuff">
+    <div ng-show="!$ctrl.items.length" ng-cloak class="col-xs-12 col-md-8 col-sm-8 col-lg-8 text-center">
+        <p class="no_story">
+            по вашему запросу нет записей
+        </p>
+    </div>
+    <div class="news-stuff-container">
+        <h3 class="name-page text-center">список новостей</h3>
+        <div class="stuff-admin col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat-start="item in $ctrl.items">
+            <div class="cart-detail" ng-class="{'mobil':global.get('mobile').val}">
+                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" ui-sref22="frame.news.item({id:item.url})">
+                    <div class="thumbnail">
+                        <a class="btn btn-fab edit pull-left" ui-sref="frame.news.item({id:item.url})">
+                            <i class="material-icons link-success">edit</i>
+                        </a>
+                        <a class="btn btn-fab edit pull-right" ng-click="$ctrl.deleteItem(item)">
+                            <i class="material-icons link-warning">delete</i>
+                        </a>
+                        <div class="clearfix"></div>
+                        <img ng-if="::!item.video" class="img-responsive" ng-src="{{item.img||'/img/upload/no.png'}}" />
+                        <div ng-if="::!item.img" ng-bind-html="item.video|unsafe"></div>
+                    </div>
+                </div>-->
+                <div class="" ng-class="{'mobil':global.get('mobile')}">
+                    <div class="title-block-stuff text-center" ng-class="{'mobil':global.get('mobile')}">
+                        <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label for="name1" class="control-label">название</label>
+                                <input type="text" id="name1" class="form-control name"
+                                       ng-model="item.name"
+                                       required
+                                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                       ng-change="$ctrl.saveField(item,'name')"/>
+                            </div>
+
+                        </div>
+                        <div class=" col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">дата создания</label>
+                                <input date-range-picker class=" col-lg-6 col-md-6 col-sm-6 col-xs-12 form-control date-picker"
+                                       type="text" ng-model="item.date" id="{{$index}}"
+                                       options="$ctrl.datePickerOptions" ng-blur="$ctrl.saveField(item,'date',200)"/>
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+                            <div class="form-group pull-left text-center">
+                                <div class="togglebutton">
+                                    <label for="actived{{$index}}-ds">
+                                        <span ng-class="{'active':!item.actived}">не опубликовано</span>
+                                        <input type="checkbox"
+                                               id="actived{{$index}}-ds"
+                                               ng-model="item.actived"
+                                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                               ng-change="$ctrl.saveField(item,'actived')">
+                                        <span ng-class="{'active':item.actived}">опубликовано</span>
+                                    </label>
+                                </div>
+
+                                <ui-select ng-model="item.labels" multiple
+                                           ng-change="$ctrl.saveField(item,'labels')"
+                                           skip-focusser="true"
+                                           search-enabled="false"
+                                           title="выберите метку">
+                                    <ui-select-match  placeholder="список">{{$item.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt._id as opt  in $ctrl.labels">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            <!--<div class="pull-left form-group"  ng-class="{'checkbox':true}">
+                                <label>
+                                    <input  type="checkbox" ng-model="item.actived"  ng-change="$ctrl.saveField(item,'actived')">
+                                    <span ng-if="!item.actived">опубликовать</span>
+                                    <span ng-if="item.actived">опубликовано</span>
+                                </label>
+                            </div>-->
+
+                                <p ng-if="item.send.date">
+                                    разослано
+                                    <span class="data" ng-bind="$ctrl.moment(item.send.date).format('LLL')"></span>
+                                </p>
+                            </div>
+                            <a class="btn btn-fab btn-fab-mini  edit pull-right" ng-click="$ctrl.deleteItem(item)">
+                                <i class="material-icons link-warning md-42">delete</i>
+                            </a>
+
+                            <a class="btn btn-fab btn-fab-mini edit pull-right" ui-sref="frame.news.item({id:item.url})">
+                                <i class="material-icons link-success md-42" title="редактировать новость">edit</i>
+                            </a>
+                            <a class="btn btn-fab btn-fab-mini pull-right"  ng-click="">
+                                <i class="material-icons md-42" title="клонировать новость" ng-click="$ctrl.createNews(item)">add_to_photos</i>
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+        </div>
+    </div>
+    <div class="clearfix" ng-if="$index%2!=0" ng-repeat-end></div>
+    <a href="#" class="back-to-top">
+        <i class="fa fa-angle-double-up fa-3x" ></i>
+    </a>
+    </div>
+</div>
+<div ui-view></div>
+
+

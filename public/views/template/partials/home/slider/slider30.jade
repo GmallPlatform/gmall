@@ -1,0 +1,31 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        div(class="slide-zoom home-slides col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12 col-xs-offset-0")
+            div(class="container")
+                if(dj[key].name)
+                    h3(set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].name
+                if(dj[key].arrowDownDiv)
+                    arrow-down
+                div(id=dj[key].id,home-page-stuff-owl="owlslider"+dj[key].id,zoom-img='true',items=dj[key].qwslide,autoplay=dj[key].autoPlaySlider,duration=dj[key].duration)
+                    div(class="nav-left")
+                        i(class="icon-prev-img")
+                    div(class="owl-carousel owl-theme",id="owlslider" +dj[key].id)
+                        if(dj[key].imgs && dj[key].imgs.length)
+                            - for (var i = 0; i < dj[key].imgs.length; i++)
+                                if(dj[key].imgs[i].actived)
+                                    div(class="slides-box")
+                                        a(href=dj[key].imgs[i].link)
+                                            img(class="img-responsive",src=photoHost + '/' + dj[key].imgs[i].img,alt=dj[key].imgs[i].alt,ng-swipe-left="slideswipeLeft()",ng-swipe-right="slideswipeRight()")
+                                            div(class="box-overlay")
+                                        div(class="half-shadow")
+
+                                            div(class="title-block")
+                                                    if(dj[key].imgs[i].name)
+                                                        h1(set-animate=dj[key].nameAnimate,data-animation=dj[key].nameAnimate)=dj[key].imgs[i].name
+                                                    if(dj[key].imgs[i].desc)
+                                                        div(class="desc-box")
+                                                            | !{dj[key].imgs[i].desc}
+                div(class="clearfix")
+                div(class="nav-right")
+                    i(class="icon-next-img")
+        div(class="clearfix")

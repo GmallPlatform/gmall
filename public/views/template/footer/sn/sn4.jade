@@ -1,0 +1,40 @@
+div(class=dj[key].wrapclass)
+    div(class=mobileWrapper)
+        p
+            | Мы в социальных сетях
+        ul(class="social-links list-inline")
+            if(sn.fb && sn.fb.is)
+                li
+                    a(href=sn.fb.link,target="_blank")
+                        span.icon-fb-img
+            if(sn.inst && sn.inst.is)
+                li
+                    a(href=sn.inst.link,target="_blank")
+                        span.icon-inst-img
+            if(sn.tw && sn.tw.is)
+                li
+                    a(href=sn.tw.link,target="_blank")
+                        span.icon-tw-img
+            if(sn.gl && sn.gl.is)
+                li
+                    a(href=sn.gl.link,target="_blank")
+                        span.icon-google-img
+            if(sn.yt && sn.yt.is)
+                li
+                    a(href=sn.yt.link,target="_blank")
+                        span.icon-yt-img
+            if(sn.pin && sn.pin.is)
+                li
+                    a(href=sn.pin.link,target="_blank")
+                        span.icon-pin-img
+            if(sn.vk && sn.vk.is)
+                li
+                    a(href=sn.vk.link,target="_blank")
+                        span.icon-vk-img
+            if(sn.ok && sn.ok.is)
+                li
+                    a(href=sn.ok.link,target="_blank")
+                        span.icon-ok-img
+            div(class="clearfix")
+
+

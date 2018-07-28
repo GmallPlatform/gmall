@@ -26,6 +26,7 @@
         //http://stackoverflow.com/questions/436120/javascript-accessing-private-member-variables-from-prototype-defined-functions
         function _checkInCondition(__campaign,stuff){
             var stuffBrand=(stuff.brand && stuff.brand._id)?stuff.brand._id:stuff.brand
+            var stuffCategory = (typeof stuff.category=='object' && stuff.category.length)?stuff.category[0]:stuff.category;
             if (__campaign.conditionStuffs && __campaign.conditionStuffs.length && __campaign.conditionStuffs.indexOf(stuff._id)>-1){
                 return true
             }
@@ -38,7 +39,7 @@
             if (__campaign.conditionBrands && __campaign.conditionBrands.length && __campaign.conditionBrands.indexOf(stuffBrand)>-1){
                 return true
             }
-            if (__campaign.conditionCategories && __campaign.conditionCategories.length && __campaign.conditionCategories.indexOf(stuff.category)>-1){
+            if (__campaign.conditionCategories && __campaign.conditionCategories.length && __campaign.conditionCategories.indexOf(stuffCategory)>-1){
                 return true
             }
         }
@@ -169,8 +170,10 @@
 
         this._isStuffInCampaign=function(stuff,campaign){
             //console.log(stuff)
+            var stuffCategory = (typeof stuff.category=='object' && stuff.category.length)?stuff.category[0]:stuff.category;
             var stuffBrand=(stuff.brand && stuff.brand._id)?stuff.brand._id:stuff.brand
             function check(__campaign){
+                //console.log(stuffCategory,__campaign.categories)
                 //console.log(__campaign,stuff.name)
                 if (__campaign.stuffs && __campaign.stuffs.length && __campaign.stuffs.indexOf(stuff._id)>-1){
                     return true
@@ -184,7 +187,7 @@
                 if (__campaign.brands && __campaign.brands.length && __campaign.brands.indexOf(stuffBrand)>-1){
                     return true
                 }
-                if (__campaign.categories && __campaign.categories.length && __campaign.categories.indexOf(stuff.category)>-1){
+                if (__campaign.categories && __campaign.categories.length && __campaign.categories.indexOf(stuffCategory)>-1){
                     return true
                 }
             }
@@ -214,7 +217,7 @@
             if (!campaign) {
                 for (var j=0,ll=self.campaign.length;j<ll;j++){
                     var is=check(self.campaign[j]);
-                    //console.log(is)
+                    //console.log(is,(is && !self.campaign[j].revers),(!is && self.campaign[j].revers))
                     if ((is && !self.campaign[j].revers)||(!is && self.campaign[j].revers)){
                         setCampaignPrice(self.campaign[j])
                         return self.campaign[j];
@@ -226,6 +229,7 @@
                 var __campaign=self.campaign.getObjectFromArray('_id',campaign);
                 if(__campaign){
                     var is=check(__campaign);
+
                     if ((is && !__campaign.revers)||(!is && __campaign.revers)){
                         setCampaignPrice(__campaign)
                         return __campaign;

@@ -7,6 +7,14 @@ div(class=dj[key].wrapclass,ng-hide="$ctrl.hideList&&$ctrl.$state.current.name!=
             div(class="container")
                 if(!dj[key].hideNameList)
                     h1=dj[key].listName
+                if(dj[key].labels)
+                    div(class="col-lg-12")
+                        each label in dj[key].labels
+                            div
+                                a(class=label.class,ng-click="$ctrl.setLabel('" + label.name + "')")
+                                    span()=label.name
+                                    span  |
+                    div(class="clearfix")
                 div(id='td-list-1-items')
                     div(class="td-wrapper")
                         each item,$index in dj[key].items

@@ -47,7 +47,7 @@ div(class=dj[key].wrapclass+pullClass)
                                                             a(href=category.href)
                                                                 span(set-animate=dj[key].animate,data-animation=dj[key].animate)
                                                                     !=category.name
-                                            if(brandsMenu.length)
+                                            if((section.saleLink || section.newLink)&&brandsMenu.length)
                                                 ul
                                                     each brand in brandsMenu
                                                         - var hrefB='/'+section.url+'/category?brand='+brand.url

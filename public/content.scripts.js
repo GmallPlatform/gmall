@@ -534,7 +534,7 @@ function md5www ( str ) {	// Calculate the md5 hash of a string
     //str = this.utf8_encode(str);
 
     str = unescape( encodeURIComponent( str ) );
-    console.log(str)
+    //console.log(str)
     x = ConvertToWordArray(str);
     a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
 
@@ -2219,6 +2219,10 @@ var myApp= angular.module('gmall', [
             url: "/schedule",
             template: '<schedule-list></schedule-list>',
         })
+        .state("frame.labels", {
+            url: "/labels",
+            template: '<labels></labels>',
+        })
         .state("frame.sections", {
             url: "/sections",
             template :'<sections-list></sections-list>'
@@ -2257,6 +2261,7 @@ var myApp= angular.module('gmall', [
             template:'<brand-edit></brand-edit>',
             //templateUrl: function(){ return 'modules/content/views/filters.html' },
         })
+
         .state("frame.brands.category", {
             url: "/category/:id",
             resolve: {
@@ -2398,7 +2403,7 @@ var myApp= angular.module('gmall', [
 }])
 
     .config(function ($provide) {
-        return;
+        //return;
 // given `{{x}} y {{z}}` return `['x', 'z']`
         function getExpressions (str) {
             var offset = 0,
@@ -2426,30 +2431,20 @@ var myApp= angular.module('gmall', [
                 var getters = expressions.map($parse);
 
                 return function(scope, element, attr) {
+                    //console.log(element)
                     attr.$observe('ngSrc', function(value) {
                         //console.log('photoHost',photoHost,value)
-                        //console.log(stuffHost,value)
-
                         if (getters.every(function (getter) { return getter(scope); })) {
-
-                            /*if(value && value.indexOf('images/Store/') > -1){
-                                attr.$set('src', storeHost+'/'+value);
-                            }else*/ if(value &&  value.indexOf('images/') > -1){
-                                //console.log(stuffHost+'/'+value)
-                                attr.$set('src', photoHost+'/'+value);
-                            }else {
+                            if(value && value.indexOf('images/') > -1&& value.indexOf('http') < 0){
+                                if(photoHost){attr.$set('src', photoHost+'/'+value);}else{attr.$set('src',value)}
+                            }else{
                                 attr.$set('src',value);
                             }
                         }else{
-                            if(value){
-                                /*if(value.indexOf('images/Store/') > -1){
-                                    attr.$set('src', storeHost+'/'+value);
-                                }else */if(value.indexOf('images/') > -1){
-                                    //console.log(stuffHost+'/'+value)
-                                    attr.$set('src', photoHost+'/'+value);
-                                }else{
-                                    attr.$set('src',value);
-                                }
+                            if(value && value.indexOf('images/') > -1&& value.indexOf('http') < 0){
+                                if(photoHost){attr.$set('src', photoHost+'/'+value);}else{attr.$set('src',value)}
+                            }else{
+                                attr.$set('src',value);
                             }
                         }
                     });
@@ -2463,6 +2458,9 @@ var myApp= angular.module('gmall', [
             return $delegate;
         });
     });
+
+
+//console.log('photoHost',photoHost)
 
 /*setTimeout(function(){
     var options = {
@@ -2657,6 +2655,7 @@ angular.module('gmall.filters', [] )
         .directive('subscriptionAdd',subscriptionAdd)
         .directive('userSignShort',userSignShort)
         .directive('userLogin',userLogin)
+        .directive('userLoginPhone',userLoginPhone)
         .directive('enterButton',enterButton);
 
     function userSign(){
@@ -2721,6 +2720,30 @@ angular.module('gmall.filters', [] )
             controller: loginCtrl,
             controllerAs: '$ctrl',
             templateUrl: '/components/sign-login/login.html',
+            restrict:'AE'
+        }
+    }
+    function userLoginPhone(){
+        return {
+            scope: {
+                closeModal:'&',
+                modalClose:"&",
+                toaster:'@',
+                social:'=',
+                successFoo:'&',
+
+            },
+            bindings: {
+                toaster:'<',
+                social:'=',
+                successFoo:'&',
+            },
+
+
+            bindToController: true,
+            controller: loginPhoneCtrl,
+            controllerAs: '$ctrl',
+            templateUrl: '/components/sign-login/loginPhone.html',
             restrict:'AE'
         }
     }
@@ -3081,6 +3104,124 @@ angular.module('gmall.filters', [] )
 
                 });
         }
+    };
+
+    loginPhoneCtrl.$inject=['$scope','$auth', 'toaster','$q','global','Account','exception','sendPhoneFactory','$timeout','$user'];
+    function loginPhoneCtrl($scope,$auth, toaster,$q,global,Account,exception,sendPhoneFactory,$timeout,$user){
+
+
+        var self=this;
+        self.$onInit=function () {
+            //console.log($scope.toaster,$scope.successFoo,self.toaster)
+        }
+
+        self.sendCodeToPhone=sendCodeToPhone;
+        self.verifyCode=verifyCode;
+        self.global=global;
+        self.phone=null;
+        self.name='';
+        self.codeSent;
+        self.sendCodeDisable;
+        self.sendVerifyCodeDisable;
+
+
+
+
+        function sendCodeToPhone() {
+            if(self.sendCodeDisable){return}
+            self.sendCodeDisable=true;
+            //console.log(self.phone)
+            if(!self.phone){
+                return;
+            }
+            $q.when()
+                .then(function(){
+                    return sendPhoneFactory.checkPhone(self.phone)
+                })
+                .then(function (res) {
+                    //console.log(res)
+                    if(!res || !res._id){
+                        return $user.newUserByPhone(self.name,self.phone)
+                    }
+                })
+                .then(function () {
+                    console.log('sendPhoneFactory.sendCodeToPhone(self.phone)')
+                    return sendPhoneFactory.sendCodeToPhone(self.phone)
+                })
+                .then(function () {
+                    self.codeSent=true;
+                    exception.showToaster('info','send code','success')
+                    $timeout(function () {
+                        self.sendCodeDisable=false
+                    },10000)
+                })
+                .catch(function (err) {
+                    if(err){
+                        exception.catcher('send code')(err)
+                    }
+                    $timeout(function () {
+                        self.sendCodeDisable=false
+                    },10000)
+                })
+        }
+        function verifyCode(form) {
+            if(self.sendVerifyCodeDisable){return}
+            if(form.$invalid){return}
+            /*if(!self.phone){
+             exception.catcher('verify code')('phone is empty')
+             }
+             if(!code){
+             exception.catcher('verify code')('code is empty')
+             }*/
+            if(!self.code || !self.phone){
+                return;
+            }
+            self.sendVerifyCodeDisable=true;
+            $q.when()
+                .then(function () {
+                    return sendPhoneFactory.verifyCode(self.code,self.phone)
+                })
+                .then(function (response) {
+                    //console.log(response)
+                    exception.showToaster('info','verify code','success')
+                    $timeout(function () {
+                        self.sendVerifyCodeDisable=false
+                    },5000);
+                    if(response && response.data &&  response.data.token){
+                        $auth.setToken(response);
+                        return Account.getProfile()
+                    }else{throw 'wrong response'}
+                })
+                .then(function(response){
+                    if(self.successFoo){
+                        self.successFoo();
+                    }else{
+                        $scope.$emit('closeWitget')
+                    }
+                    $scope.$emit('closeWitget')
+                    if(self.toaster){
+                        toaster.info(global.get('langNote').val.authComplite);
+                    }
+                    if(response){
+                        global.set('user',response.data);
+                        global.get('functions').val.logged();
+                        $scope.$emit('cartslide',{event:'signLogin'})
+                    }
+
+                })
+                .catch(function (err) {
+                    self.wrongCode=true;
+                    global.set('user',null);
+                    if(err){
+                        exception.catcher('verify code')(err)
+                    }
+                    $timeout(function () {
+                        self.sendVerifyCodeDisable=false
+                    },5000)
+                })
+        }
+
+
     };
 
 })()
@@ -6256,6 +6397,7 @@ angular.module('gmall.controllers')
         var Items= $resource('/api/collections/Stuff/:_id',{_id:'@_id'});
         var categoriesLink={},
             queryData={};
+        var stuffsService=[]
 
         $rootScope.$on('$stateChangeStart', function(event, to, toParams, fromState, fromParams){
             if(to.name=='stuffs'||to.name=='stuffs.stuff' || to.name=='frame.stuffs'||to.name=='frame.stuffs.stuff'){
@@ -6483,7 +6625,7 @@ angular.module('gmall.controllers')
         function zoomImgGlobal(i,images,home) {
             //console.log(images[i])
             var imgs = $("img[src$='"+images[i].img+"']"),img,horizontalOrient;
-
+            //console.log(imgs)
             if(imgs && imgs[0]){
                 img=$(imgs[0]);
                 if(img.width() && img.height() && img.width() > img.height()){
@@ -6497,8 +6639,16 @@ angular.module('gmall.controllers')
                     if(img.width() && img.height() && img.width() > img.height()){
                         horizontalOrient=true;
                     }
+                }else{
+                    if(images[i].el){
+                        if(images[i].el.width && images[i].el.height && images[i].el.width > images[i].el.height){
+                            horizontalOrient=true;
+                        }
+                        //console.log(images[i].el)
+                    }
                 }
             }
+            //console.log('horizontalOrient',horizontalOrient)
            /* console.log($(img).width())
             console.log($(img).height())*/
             //console.log(horizontalOrient)
@@ -7748,7 +7898,9 @@ angular.module('gmall.controllers')
 
         }
         function getServicesForOnlineEntry(){
-            var data ={query:{orderType:2,actived:true}};
+            //console.log('stuffsService',stuffsService)
+            if(stuffsService && stuffsService.length){return stuffsService}
+            var data ={query:{orderType:{$in:[2,7]},actived:true}};
             var filterTags=[];
             if(global.get('crawler') && global.get('crawler').val){
                 data.subDomain=global.get('store').val.subDomain;
@@ -7766,51 +7918,9 @@ angular.module('gmall.controllers')
                 })
                 .then(getListComplete)
                 .catch(getListFailed);
-            function getListCompleteOld(data) {
-                data.shift();
-                var items=[];
-                data.forEach(function(el){
-                    _setPrice(el)
-                    el.sort=null;
-                    var category=(el.category && el.category.length)?el.category[0]:el.category;
 
-                    var item= items.getOFA('_id',category);
-
-                    if(!item){
-                        var c=global.get('categories').val.getOFA('_id',category)
-                        if(!c){c={name:'Категория'}}
-                        item={_id:el.category,name:c.name,stuffs:[]};
-                        items.push(item)
-                    }
-                    //console.log(el.name,el.category,item)
-                    if(!el.timePart){el.timePart=4}
-                    if(el.sortsOfStuff && el.sortsOfStuff.differentPrice){
-                        for (var sort in el.stock){
-                            var s= {
-                                _id:el._id,
-                                name:el.name+' '+_getTagName(sort),
-                                artikul:el.artikul,
-                                price: el.stock[sort].price,
-                                timePart:el.timePart}
-                            item.stuffs.push(s)
-                        }
-                    }else{
-                        if(el.stock.notag){
-                            el.price= el.stock.notag.price;
-                        }else{
-                            try{
-                                el.price=el.stock[Object.keys(el.stock)[0]].price
-                            }catch (err){
-                                console.log(err)
-                            }
-                        }
-                        item.stuffs.push(el)
-                    }
-                })
-                return items;
-
-            }
             function getListComplete(data) {
+                //console.log(data)
                 data.shift();
                 var items=[];
                 data.forEach(function(el){
@@ -7824,38 +7934,46 @@ angular.module('gmall.controllers')
                     }else{
                         var c=global.get('categories').val.getOFA('_id',category);
                     }
-
+                    //console.log(el.name,el.category,c)
                     if(!c){c={name:'Категория'}}
                     el.category=c.name
+                    //console.log(el.category)
 
-                    //console.log(el.name,el.category,item)
                     if(!el.timePart){el.timePart=4}
-                    if(el.sortsOfStuff && el.sortsOfStuff.differentPrice){
-                        for (var sort in el.stock){
-                            var s= {
-                                _id:el._id,
-                                name:el.name+' '+_getTagName(sort),
-                                nameL:el.nameL,
-                                link:el.link,
-                                artikul:el.artikul,
-                                price: el.stock[sort].price,
-                                category:el.category,
-                                timePart:el.timePart}
-                            items.push(s)
-                        }
-                    }else{
-                        if(el.stock.notag){
-                            el.price= el.stock.notag.price;
-                        }else{
-                            try{
-                                el.price=el.stock[Object.keys(el.stock)[0]].price
-                            }catch (err){
-                                console.log(err)
+                    try{
+                        if(el.sortsOfStuff && el.sortsOfStuff.differentPrice){
+                            for (var sort in el.stock){
+                                var s= {
+                                    _id:el._id,
+                                    name:el.name+' '+_getTagName(sort),
+                                    nameL:el.nameL,
+                                    link:el.link,
+                                    artikul:el.artikul,
+                                    price: el.stock[sort].price,
+                                    category:el.category,
+                                    timePart:el.timePart
+                                }
+
+                                //console.log('s',s)
+                                items.push(s)
                             }
+                        }else{
+                            if(el.stock.notag){
+                                el.price= el.stock.notag.price;
+                            }else{
+                                try{
+                                    el.price=el.stock[Object.keys(el.stock)[0]].price
+                                }catch (err){
+                                    console.log(err)
+                                }
+                            }
+                            items.push(el)
                         }
-                        items.push(el)
-                    }
+                    }catch(err){console.log(err)}
+
+                    //console.log('done')
                 })
+                stuffsService=items;
                 return items;
 
             }
@@ -7867,6 +7985,9 @@ angular.module('gmall.controllers')
             function _getTagName(_id){
                 //console.log(_id)
                 if(!_id || !filterTags || _id=='notag')return '';
+                //console.log(_id,_filterTagsO)
+                return ((_filterTagsO[_id])?_filterTagsO[_id].name:'');
+
                 return filterTags.getOFA('_id',_id ).name||'';
             }
 
@@ -8294,7 +8415,7 @@ angular.module('gmall.controllers')
 
     homePageStuffOwlCtrl.$inject=['$scope','$timeout','$element','$compile','global']
     function homePageStuffOwlCtrl($scope,$timeout,$element,$compile,global){
-            
+            //console.log('homePageStuffOwlCtrl')
         /*if($element.context){
             if($element.context.attributes){
                 console.log($element.context.attributes)
@@ -8363,6 +8484,7 @@ angular.module('gmall.controllers')
                 imgs=[];
                 //console.log(n.length)
                 n.forEach(function (item,i) {
+                    //console.log(photoHost)
                     if(photoHost){
                         item.src=photoHost+'/' + item.img;
                     }else{
@@ -8425,6 +8547,7 @@ angular.module('gmall.controllers')
 
         var  activate = function(){
             $timeout(function(){
+                //console.log('?????')
                 var carousel_Settings={
                     loop:true,
                     margin:10,
@@ -8436,22 +8559,22 @@ angular.module('gmall.controllers')
                         0:{
                             items:items1,
                             nav:false,
-                            dots:false
+                            dots:true
                         },
                         380:{
                             items:items2,
                             nav:false,
-                            dots:false
+                            dots:true
                         },
                         1068:{
                             items:items3,
                             nav:false,
-                            dots:false
+                            dots:true
                         },
                         1400:{
                             items:items,
                             nav:false,
-                            dots:false
+                            dots:true
                         }
                     }
                 };
@@ -8461,7 +8584,7 @@ angular.module('gmall.controllers')
                 if(imgsEl && imgsEl.each){
                     imgs=[];
                     imgsEl.each(function (i,img) {
-                        imgs.push({index:i,img:img.src})
+                        imgs.push({index:i,img:img.src,el:imgsEl[i]})
                         //console.log(img.src)
                     })
                 }
@@ -8497,11 +8620,12 @@ angular.module('gmall.controllers')
         }
 
         function prev() {
-            //console.log('prev')
+            //console.log('prev',self.selectedDay)
             self.$owl.trigger('prev.owl.carousel', [self.selectedDay-3,300]);
         }
         function next() {
-            //console.log('next')
+            //console.log('next',self.selectedDay)
+
             self.$owl.trigger('next.owl.carousel', [self.selectedDay+3,300]);
         }
         function zoomSliderImg(i) {
@@ -12984,6 +13108,9 @@ angular.module('gmall.directives')
                         h2= $('#menu2-section').outerHeight();
                         //h2&&(h1+=h2)
                         if(h2){h1+=h2}
+                        if(global.get('store').val.template.menu1.hideMenuIfNotHome){
+                            h1=h2;
+                        }
                         h2=h1;
                         //console.log('h2',h1,h2)
                     })
@@ -13032,7 +13159,7 @@ angular.module('gmall.directives')
                                 //console.log('templ.margin from setFonAfterStartScroll',templ.margin)
                                 $timeout(function () {
                                     //console.log(templ.menu1)
-                                    if(templ.menu1.position!='left' && templ.menu1.position!='right' && ! templ.menu1.marginOther){
+                                    if(templ.menu1.position!='left' && templ.menu1.position!='right' && !templ.menu1.marginOther){
                                         mainContentDiv.css('margin-top',h1)
                                     }
                                 })
@@ -13193,7 +13320,8 @@ angular.module('gmall.directives')
 */
 
                                  //console.log(h,vh,delta,elH+delta)
-                                element.css('min-height',elH+delta-mt)
+                                //element.css('min-height',elH+delta-mt)
+                                element.css('min-height',elH+delta)
                             }
                         },200)
 
@@ -13478,7 +13606,6 @@ angular.module('gmall.directives')
     }
     directiveMenuV.$inject=['Sections','$state','$q','global','$rootScope','$element'];
     function directiveMenuV(Sections,$state,$q,global,$rootScope,$element){
-        //console.log('???')
         var self=this;
         self.clickMenu=global.get('store').val.template.clickMenu;
         self.global=global;
@@ -13487,7 +13614,6 @@ angular.module('gmall.directives')
         activate();
         //*********************************************************
         function activate(){
-            //console.log('qq')
             $q.when()
                 .then(function(){
                     return Sections.getSections();
@@ -13531,8 +13657,10 @@ angular.module('gmall.directives')
             if(!self.sections[ii] || !self.sections[ii].openCatalog){
                 $(innerDivs[ii]).slideToggle();
             }
+            console.log(li,ii,self.clickMenu)
             if(self.clickMenu){
                 li.click(function(e) {
+
                     for(var i=0,l=innerDivs.length;i<l;i++){
                         if(i==ii){
                             $(innerDivs[i]).stop(true, false, true).slideToggle(300);
@@ -13723,6 +13851,11 @@ angular.module('gmall.directives')
             link:function(scope,element,attrs){
                 var firstLook=true;
                 var menu=attrs['slideMenuAfterScroll'];
+
+                var menuHide=attrs['hideMenu'];
+                /*console.log(attrs)
+                console.log('menuHide',menuHide)*/
+
                 var template=global.get('store').val.template;
                 var offset = 199;
                 var done;
@@ -13740,18 +13873,28 @@ angular.module('gmall.directives')
                 }
 
                 function scrollHandlerMenu1(){
+                    if(menuHide && $rootScope.$state.current.name!='home'){
+                        return
+                    }
+
                     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
                     if (scrolled > offset && !done) {
                         done=true;
+                        $rootScope.$emit('hideMenu1AfterScroll')
                         $(element).css('top','-'+h+'px')
                     } else if (scrolled < offset && done) {
                         done=false;
+                        $rootScope.$emit('showMenu1AfterScroll')
                         $(element).css('top',0)
                     }
                 }
 
                 function scrollHandlerMenu2(){
+                    if(menuHide && $rootScope.$state.current.name!='home'){
+                        return
+                    }
                     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+
                     if (scrolled > offset && !done) {
                         done=true;
                         $(element).css('top',0)
@@ -13862,6 +14005,30 @@ angular.module('gmall.directives')
                         }
                     })
                 }
+
+
+                $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, fromState, fromParams){
+                    if(menuHide){
+                        if(to.name=='home'){
+                            $rootScope.$emit('showMenu1AfterScroll')
+                            if(menu=='menu1'){
+                                $(element).css('top',0)
+                            }else{
+                                $(element).css('top',h+'px')
+                            }
+
+                        }else{
+                            $rootScope.$emit('hideMenu1AfterScroll')
+                            if(menu=='menu1'){
+                                $(element).css('top','-'+h+'px')
+                            }else{
+                                $(element).css('top',0)
+                            }
+
+                        }
+                    }
+
+                })
             }
         }
     }
@@ -17218,8 +17385,8 @@ angular.module('gmall.services')
         .factory('sendPhoneFactory', sendPhoneFactory)
         .service('SubscibtionList', subscibtionListService)
 
-    userService.$inject=['$resource','$uibModal','$q','Session','User','global','exception','$state','$window','$rootScope','$http'];
-    function userService($resource,$uibModal,$q,Session,User,global,exception,$state,$window,$rootScope,$http){
+    userService.$inject=['$resource','$uibModal','$q','Session','User','global','exception','$state','$window','$rootScope','$http','$auth','Account'];
+    function userService($resource,$uibModal,$q,Session,User,global,exception,$state,$window,$rootScope,$http,$auth,Account){
         var Items= $resource('/api/collections/User/:_id',{_id:'@_id'});
         //console.log(userHost)
         this.query=Items.query;
@@ -17234,9 +17401,11 @@ angular.module('gmall.services')
             selectItem:selectItem,
             selectOrCreat:selectOrCreat,
             login:login,
+            loginOnlyPhone:loginOnlyPhone,
             logout:logout,
             saveProfile:saveProfile,
             newUser:newUser,
+            newUserByPhone:newUserByPhone,
             query:Items.query,
             getInfo:getInfo,
             createUser:createUser,
@@ -17245,7 +17414,7 @@ angular.module('gmall.services')
             changeEmail:changeEmail,
             changePhone:changePhone,
             checkEmailForExist:checkEmailForExist,
-            checkPhoneForExist:checkPhoneForExist
+            checkPhoneForExist:checkPhoneForExist,
         }
 
         function newUser(name,email,password){
@@ -17276,6 +17445,39 @@ angular.module('gmall.services')
                     }
                     return user;
                 })
+        }
+        function newUserByPhone(name,phone) {
+            var email= phone+'@gmall.io'
+            var user = {email:email,name:name,profile:{phone:phone,fio:name}};
+            return $auth.signup(user)
+                .then(function(response) {
+                    console.log(response)
+                    if(response && response.data &&  response.data.token){
+                        if(response.data.token=='update'){
+                            throw null;
+                        }else{
+                            //$auth.setToken(response);
+                            //return Account.getProfile()
+                        }
+                    } else{
+                        throw response;
+                    }
+
+                })
+                .then(function(response){
+                    /*console.log(response)
+                    if(response){
+                        global.set('user',response.data);
+                        global.get('functions').val.logged();
+                    }*/
+
+                })
+                .catch(function(err){
+                    if(err){
+                        exception.catcher('new client')(err)
+                    }
+                })
+
         }
         function getList(paginate,query){
             //console.log(query)
@@ -17501,6 +17703,24 @@ angular.module('gmall.services')
                     //windowTopClass:'modalTopProject',
                     backdropClass:'modalBackdropClass',
                     //openedClass:'modalOpenedClass'
+                });
+                $rootScope.$emit('modalOpened')
+                modalInstance.result.then(function(item){$rootScope.$emit('modalClosed');resolve(item)},function(){$rootScope.$emit('modalClosed');reject()});
+            })
+
+        }
+        function loginOnlyPhone(){
+            return $q(function(resolve,reject){
+                if(global.get('user') && global.get('user').val && global.get('user').val._id){
+                    return resolve()
+                }
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'components/user/modal/login-sign.onlyPhone.html',
+                    controller: loginOnlyPhoneCtrl,
+                    controllerAs:'$ctrl',
+                    windowClass:'modalProject',
+                    backdropClass:'modalBackdropClass',
                 });
                 $rootScope.$emit('modalOpened')
                 modalInstance.result.then(function(item){$rootScope.$emit('modalClosed');resolve(item)},function(){$rootScope.$emit('modalClosed');reject()});
@@ -17894,6 +18114,7 @@ angular.module('gmall.services')
                     return cb(err);
                 }).$promise;
         }
+
         loginCtrl2.$inject=['$scope','$uibModalInstance','exception','global','User','$state']
         function loginCtrl2($scope,$uibModalInstance,exception,global,User,$state){
             var self=this;
@@ -17911,6 +18132,20 @@ angular.module('gmall.services')
                 $uibModalInstance.dismiss();
             };
         }
+
+        loginOnlyPhoneCtrl.$inject=['$scope','$uibModalInstance','exception','global','User','$state']
+        function loginOnlyPhoneCtrl($scope,$uibModalInstance,exception,global,User,$state){
+            var self=this;
+            self.global=global;
+            $scope.$on('closeWitget',function () {
+                $uibModalInstance.close()
+            })
+            self.cancel = function () {
+                $uibModalInstance.dismiss();
+            };
+        }
+
+
         loginCtrl.$inject=['$uibModalInstance','exception','global','User','$state']
         function loginCtrl($uibModalInstance,exception,global,User,$state){
             var self=this;
@@ -18142,11 +18377,12 @@ angular.module('gmall.services')
 
 
 
-    sendPhoneFactory.$inject=['$http','$q']
-    function sendPhoneFactory($http,$q) {
+    sendPhoneFactory.$inject=['$http','$q','$user']
+    function sendPhoneFactory($http,$q,$user) {
         return {
             sendCodeToPhone:sendCodeToPhone,
-            verifyCode:verifyCode
+            verifyCode:verifyCode,
+            checkPhone:checkPhone,
         }
 
         function sendCodeToPhone(phone) {
@@ -18165,6 +18401,16 @@ angular.module('gmall.services')
                 })
 
 
+        }
+        function checkPhone(phone) {
+            var query = {phone:phone};
+            return $q.when()
+                .then(function () {
+                    return $user.getItem(phone,'profile.phone')
+                })
+                .then(function(res){
+                    if(res){return res}else{return null}
+                })
         }
     }
 
@@ -25062,8 +25308,8 @@ angular.module('gmall.directives')
             templateUrl: 'components/CONTENT/additional/additionals.html',
         }
     };
-    pagesCtrl.$inject=['Additional','$state','global','Confirm','exception','$q','Photo'];
-    function pagesCtrl(Items,$state,global,Confirm,exception,$q,Photo){
+    pagesCtrl.$inject=['Additional','$state','global','Confirm','exception','$q','Photo','$timeout'];
+    function pagesCtrl(Items,$state,global,Confirm,exception,$q,Photo,$timeout){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.global=global;
@@ -25279,6 +25525,200 @@ angular.module('gmall.directives')
             self.ok = function (item) {
                 $uibModalInstance.close(item);
             };
+        }
+    }
+})()
+
+'use strict';
+(function(){
+    angular.module('gmall.services')
+        .directive('labels',labelDirective);
+    function labelDirective(){
+        return {
+            scope: {},
+            restrict:"E",
+            bindToController: true,
+            controller: pagesCtrl,
+            controllerAs: '$ctrl',
+            templateUrl: 'components/CONTENT/label/labels.html',
+        }
+    };
+    pagesCtrl.$inject=['Label','$state','global','Confirm','exception','$q','$timeout'];
+    function pagesCtrl(Items,$state,global,Confirm,exception,$q,$timeout){
+        var self = this;
+        self.mobile=global.get('mobile' ).val;
+        self.global=global;
+        self.$state=$state;
+        self.Items=Items;
+        self.query={};
+        self.paginate={page:0,rows:50,totalItems:0}
+        self.newItem={name:'Новая  метка',actived:false}
+        self.lists=listOfListName.map(function (n) {
+            var o={name:n,type:n}
+            if(global.get('store').val.nameLists[n+'List']){
+                o.name=global.get('store').val.nameLists[n+'List']
+            }
+            return o;
+        });
+        self.getList=getList;
+        self.saveField = saveField;
+        self.searchItems=searchItems;
+        self.createItem=createItem;
+        self.deleteItem=deleteItem;
+
+
+        //*******************************************************
+        activate();
+
+        function activate(page) {
+            if(page || page===0){
+                self.paginate.page=0;
+            }
+            return getList().then(function() {
+                console.log('Activated  list View');
+            });
+        }
+        function getList() {
+            return self.Items.getList(self.paginate,self.query)
+                .then(function(data) {
+                    self.items = data;
+                    return self.items;
+                });
+        }
+        function searchItems(searchStr){
+            if(searchStr){
+                self.query = {name:searchStr.substring(0,10)};
+            }else{
+                self.query = {};
+            }
+            self.paginate.page=0;
+            activate();
+        }
+        function saveField(item,field,defer){
+            defer =defer||0
+            setTimeout(function(){
+                var o={_id:item._id};
+                o[field]=item[field]
+                return self.Items.save({update:field},o ).$promise.then(function(){
+                    console.log('saved')
+                    global.set('saving',true);
+                    $timeout(function(){
+                        global.set('saving',false);
+                    },1500)
+
+                },function(err){console.log(err)});
+            },defer)
+        };
+        function createItem(){
+            self.Items.create()
+                .then(function(res){
+                    self.newItem={name:'Новая  страница',actived:false}
+                    self.newItem.name=res;
+                    return self.Items.save(self.newItem).$promise
+                } )
+                .then(function(res){
+                    self.newItem._id=res.id;
+                    self.newItem.url=res.url;
+                    self.paginate.page=0;
+                    return getList(self.paginate);
+                })
+                .catch(function(err){
+                    exception.catcher('создание страницы')(err)
+                })
+        }
+        function deleteItem(item){
+            Confirm("удалить???" )
+                .then(function(){
+                    return self.Items.delete({_id:item._id} ).$promise;
+                } )
+                .then(function(){
+
+                    activate(0);
+                })
+                .catch(function(err){
+                    exception.catcher('удаление страницы')(err)
+                })
+        }
+    }
+})()
+
+'use strict';
+(function(){
+    angular.module('gmall.services')
+        .service('Label', labelsService);
+    labelsService.$inject=['$resource','$uibModal','$q'];
+    function labelsService($resource,$uibModal,$q){
+        var Items= $resource('/api/collections/Label/:_id',{_id:'@_id'});
+        return {
+            getList:getList,
+            getItem:getItem,
+            save:Items.save,
+            delete:Items.delete,
+            query:Items.query,
+            get:Items.get,
+            create:create,
+        }
+        function getList(paginate,query){
+            return Items.query({perPage:paginate.rows ,page:paginate.page,query:query} ).$promise
+                .then(getListComplete)
+                .catch(getListFailed);
+            function getListComplete(response) {
+                if(paginate.page==0){
+                    if(response && response.length){
+                        paginate.items=response.shift().index;
+                    }else{
+                        paginate.items=0;
+                    }
+                }
+                return response;
+            }
+
+            function getListFailed(error) {
+                console.log('XHR Failed for getNews.' + error);
+                return $q.reject(error);
+            }
+        }
+        function getItem(id){
+            return Items.get({_id:id} ).$promise
+                .then(getItemComplete)
+                .catch(getItemFailed);
+            function getItemComplete(response) {
+                return response;
+            }
+            function getItemFailed(error) {
+                return $q.reject(error);
+            }
+        }
+        function create(){
+            return $q(function(resolve,reject){
+                var options={
+                    animation: true,
+                    restrict:"E",
+                    templateUrl: 'components/CONTENT/label/createItem.html',
+                    controller: function($uibModalInstance){
+                        var self=this;
+                        self.name=''
+                        self.ok=function(){
+                            $uibModalInstance.close(self.name);
+                        }
+                        self.cancel = function () {
+                            $uibModalInstance.dismiss();
+                        };
+                    },
+                    controllerAs:'$ctrl',
+                }
+                $uibModal.open(options).result.then(function (name) {
+                    if(name){
+                        resolve(name.substring(0,100))
+                    }else{
+                        reject('empty')
+                    }
+
+                }, function (err) {
+                    reject(err)
+                });
+            })
+
         }
     }
 })()
@@ -27036,8 +27476,8 @@ angular.module('gmall.services')
         }
     };
     newsListTemplateDirective.$inject=['global']
-    newsListCtrl.$inject=['News','$state','global','$timeout','$anchorScroll','Photo','Confirm'];
-    function newsListCtrl(News,$state,global,$timeout,$anchorScroll,Photo,Confirm){
+    newsListCtrl.$inject=['News','$state','global','$timeout','$anchorScroll','Photo','Confirm','Label'];
+    function newsListCtrl(News,$state,global,$timeout,$anchorScroll,Photo,Confirm,Label){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.global=global;
@@ -27084,7 +27524,11 @@ angular.module('gmall.services')
 
         function activate() {
             return getList().then(function() {
+                return Label.getList({page:0,rows:100},{list:'news'})
                 //console.log('Activated news list View');
+            }).then(function (data) {
+                console.log(data)
+                self.labels=data
             });
         }
         function getList() {
@@ -28159,8 +28603,8 @@ angular.module('gmall.services')
         }
     };
 
-    lookbookListCtrl.$inject=['Lookbook','$state','global','exception','Confirm','Photo'];
-    function lookbookListCtrl(Lookbook,$state,global,exception,Confirm,Photo){
+    lookbookListCtrl.$inject=['Lookbook','$state','global','exception','Confirm','Photo','$timeout'];
+    function lookbookListCtrl(Lookbook,$state,global,exception,Confirm,Photo,$timeout){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.datePickerOptions ={
@@ -28187,7 +28631,7 @@ angular.module('gmall.services')
         self.Items=Lookbook;
         self.moment=moment;
         self.query={};
-        self.paginate={page:0,rows:5,totalItems:0}
+        self.paginate={page:0,rows:50,totalItems:0}
         self.newItem={name:'Новая иноформация',actived:false}
         self.getList=getList;
         self.saveField = saveField;
@@ -28230,7 +28674,10 @@ angular.module('gmall.services')
                 var o={_id:item._id};
                 o[field]=item[field]
                 return self.Items.save({update:field},o ).$promise.then(function(){
-                    console.log('saved')
+                    global.set('saving',true)
+                    $timeout(function () {
+                        global.set('saving',false);
+                    },1500)
                 },function(err){console.log(err)});
             },defer)
         };
@@ -28676,8 +29123,8 @@ angular.module('gmall.services')
         }
     };
     //masterListTemplateDirective.$inject=['global']
-    masterListCtrl.$inject=['Master','$state','global','Confirm','$q','exception','Photo','$timeout'];
-    function masterListCtrl(Master,$state,global,Confirm,$q,exception,Photo,$timeout){
+    masterListCtrl.$inject=['Master','$state','global','Confirm','$q','exception','Photo','$timeout','Label'];
+    function masterListCtrl(Master,$state,global,Confirm,$q,exception,Photo,$timeout,Label){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.global=global;
@@ -28685,7 +29132,8 @@ angular.module('gmall.services')
         self.$state=$state;
         self.Items=Master;
         self.query={};
-        self.paginate={page:0,rows:20,totalItems:0}
+        self.labels=[]
+        self.paginate={page:0,rows:50,totalItems:0}
         self.newItem={name:'имя мастера'}
         self.getList=getList;
         self.saveField = saveField;
@@ -28699,7 +29147,10 @@ angular.module('gmall.services')
 
         function activate() {
             return getList().then(function() {
+                return Label.getList({page:0,rows:100},{list:'master'})
                 //console.log('Activated news list View');
+            }).then(function (data) {
+                self.labels=data
             });
         }
         function getList() {
@@ -31575,16 +32026,21 @@ angular.module('gmall.services')
 
         /*models*/
         function deleteCollection(block,idx){
+            //console.log(block)
+           var type = block.type;
+            if(block.type=='scheduleplace'){
+                type='stuffs';
+            }
             Confirm('Удалить?').then(function () {
-                block[block.type].splice(idx,1);
-                var data = block[block.type].map(function (item) {
+                block[type].splice(idx,1);
+                var data = block[type].map(function (item) {
                     return item._id
                 })
-                self.saveField('blocks.'+block.i+'.'+block.type,data)
+                self.saveField('blocks.'+block.i+'.'+type,data)
             })
         }
         function setCollection(block,idx){
-            console.log(block)
+            //console.log(block)
             var field=block.type;
             if(field=='scheduleplace'){
                 field='stuffs'
@@ -31610,6 +32066,7 @@ angular.module('gmall.services')
             }else if(field=='info'){
                 Items=Info;
             }
+
             $q.when()
                 .then(function(){
                     return Items.select({actived:true})
@@ -32524,9 +32981,9 @@ var weekDays=[
     },
     ]
 /**************************/
-var reservedFirstParamsForAdmin=['manage','promo','seo','setting','content','translate','admin123']
+var reservedFirstParamsForAdmin=['manage','promo','seo','setting','content','translate','admin123','bookkeep']
 var reservedFirstParams=['manage','promo','seo','setting','content','translate',
-    'news','lookbook','stat','master','campaign','info','additional','workplace','cabinet','pricegoods','priceservices','home','search','cart','cabinet']
+    'news','lookbook','stat','master','campaign','info','additional','workplace','cabinet','pricegoods','priceservices','home','search','cart','cabinet','bookkeep']
 var languagesOfPlatform=['ru','uk','en','de','es'];
 var propertiesOfConfigData=[{'key':'unitOfMeasure','name':'единицы измерения'}];
 var phoneCodes=[{code:'+38',country:'Ukraine'},{code:'+7',country:'Russia'},
@@ -32962,7 +33419,7 @@ var listOfBlocksForStuffList={
 var tableOfColorsForButton={0:'black-white',1:'pink-white',2:'turquoise-white',3:'yellow-white',4:'bordo-white',5:'braun-white',6:'powder-white',7:'pinklight-white',8:'white-black',9:'black-white'}
 var tableOfButtonsFile={0:'standart',1:'border-radius',2:'no border',3:'inverse'}
 
-var listOfIcons=['addcart','back','cart','cartin','cartplus','cancelmenu','cancel','cancelzoom','call','caret','categories','change','dialog','down','delete','downslide','gif','envelope','envelopewhite','edit','eur','fb','fbwhite','filters','header','google','googlewhite','humbmobile','chat','inst','instwhite','left','menu','messageme','messagehe','next','nextgallery','ok','okwhite','pin','pinwhite','plus','prev','prevgallery','right','rub','search','send','setting','spinner','subscription','time','tw','twwhite','uah','up','upslide','user','userhe','userme','usd','vk','vkwhite','see','enter','zoom']
+var listOfIcons=['addcart','back','cart','cartin','cartplus','cancelmenu','cancel','cancelzoom','call','caret','categories','change','dialog','down','dot','delete','downslide','gif','envelope','envelopewhite','edit','eur','fb','fbwhite','filters','header','google','googlewhite','humbmobile','chat','inst','instwhite','left','menu','messageme','messagehe','next','nextgallery','ok','okwhite','pin','pinwhite','plus','prev','prevgallery','right','rub','search','send','setting','spinner','subscription','time','tw','twwhite','uah','up','upslide','user','userhe','userme','usd','vk','vkwhite','see','enter','zoom','yt','ytwhite']
 
 var notificationsTypeLang={
     //клиенту

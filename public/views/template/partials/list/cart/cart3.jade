@@ -19,6 +19,11 @@ div(class="",ng-hide="$ctrl.hideCart && $ctrl.$stateParams.id && $ctrl.$statePar
     div(class="master")
         a(href=item.link)
             if(item.name)
-                h2=item.name
+                h2(class="name")
+                    | !{item.name}
             if(item.position)
-                h4=item.position
+                h4(class="position")
+                    | !{item.position}
+           // if(item.desc)
+                div(class="desc")
+                    | !{item.desc}

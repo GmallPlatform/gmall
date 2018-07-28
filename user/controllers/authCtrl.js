@@ -244,7 +244,8 @@ function signupUser(req,res,next){
                 }
                 newUser = new User(req.body);
                 newUser.provider = 'local';
-                //console.log(req.body)
+                /*console.log(req.body)
+                console.log(newUser)*/
 
 
                 return new Promise(function(resolve,reject){

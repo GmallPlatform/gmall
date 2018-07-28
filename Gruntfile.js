@@ -307,6 +307,8 @@ module.exports = function(grunt) {
                     'public/components/CONTENT/additional/scripts/component.additional.js',
                     'public/components/CONTENT/additional/scripts/additionals.component.js',
                     'public/components/CONTENT/additional/scripts/additional.service.js',
+                    'public/components/CONTENT/label/scripts/label.component.js',
+                    'public/components/CONTENT/label/scripts/label.service.js',
                     'public/components/homePage/scripts/component.homePage.js',
                     'public/components/selectStuffModal/scripts/component.selectStuffModal.js',
                     'public/components/createLink/scripts/create-link.component.js',
@@ -400,6 +402,7 @@ module.exports = function(grunt) {
                     'public/assets/jquery.hammer.min.js',
                     'public/assets/google-places/google-places.js',
                     'public/assets/nivoslider/jquery.nivo.slider.js',
+                    'public/assets/bg-video/backgroundVideo.js',
                     //'public/bower_components/jszip/dist/jszip.min.js',
                 ],
                 dest: 'public/dev_scripts.js'
@@ -765,6 +768,8 @@ module.exports = function(grunt) {
                         'public/components/user/css/component.loginModal.css',
                         'public/components/info/css/info.component.css',
                         'public/views/template/partials/stuffDetail/modal/css/zoom.css',
+                        'public/components/CONTENT/label/css/label.component.css',
+
                     ]}
             },
 

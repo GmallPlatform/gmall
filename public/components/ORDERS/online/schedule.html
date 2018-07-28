@@ -46,6 +46,7 @@
                                     <div class="entry">
                                         <span ng-bind="item.usedTime"></span><br>
                                         <a><span ng-bind="item.masterName"></span></a></br>
+                                        <a ng-repeat="m in item.masters"><span ng-bind="m.name"></span></a></br>
                                         <a><span ng-bind="item.service"></span></a></br>
                                         <span class="comment" ng-bind="item.comment"></span>
                                     </div>

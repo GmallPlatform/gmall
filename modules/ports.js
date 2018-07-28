@@ -1,4 +1,5 @@
 module.exports = {
+    accountPort:'7700',
     stuffPort:'8900',
     userPort:'3001',
     notificationPort:'3000',

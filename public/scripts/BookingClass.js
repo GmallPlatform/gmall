@@ -278,6 +278,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             workplace.week[e.date].entryTimeTable[i].serviceLink = e.stuffLink;
                             workplace.week[e.date].entryTimeTable[i].masterLink = '/master/' + e.masterUrl;
                             workplace.week[e.date].entryTimeTable[i].masterName = e.masterNameL && e.masterNameL[lang] ? e.masterNameL[lang] : e.masterName;
+                            workplace.week[e.date].entryTimeTable[i].masters = e.masters ? e.masters : null;
 
                             workplace.week[e.date].entryTimeTable[i].new = true;
                             workplace.week[e.date].entryTimeTable[i].qty = e.qty;

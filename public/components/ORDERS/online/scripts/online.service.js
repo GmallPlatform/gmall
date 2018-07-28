@@ -180,7 +180,9 @@
                 return date;
             }catch(err){console.log(err);return 'error handle date'}
         }
-        function sendMessage(entry) {
+        function sendMessage(entry,user) {
+            entry=JSON.parse(JSON.stringify(entry))
+            if(user){entry.user=user;}
             var dataForSend={}
 
             var hour = Math.floor(entry.start/4)
@@ -251,7 +253,7 @@
         }
         function newBooking(master,timePart,services,date,entryDate,start){
 
-            //console.log(entryDate)
+            //console.log(services)
             return $q(function(resolve,reject){
                 var modalInstance = $uibModal.open({
                     animation: true,
@@ -261,6 +263,7 @@
                         //console.log(services)
                         var self=this;
                         self.global=global;
+                        //console.log(global.get('store').val.nameLists)
                         self.date=moment(date).format('L');
                         self.phoneCodes=(global.get('store').val.phoneCodes)?global.get('store').val.phoneCodes:[{code:'+38',country:'Украина'}];
                         self.phoneCode=(global.get('store').val.phoneCode)?global.get('store').val.phoneCode.code:'+38';
@@ -268,6 +271,8 @@
                         self.hour=parseInt(timePart/4);
                         self.minutes=((timePart-self.hour*4)*15)?(timePart-self.hour*4)*15:'00';
                         self.timeRemindArr=timeRemindArr;
+                        self.schedule=true;
+                        self.mastersInEntry=[];
                         //console.log(timePart,self.hour,self.minutes)
                         master.services.forEach(function(s){
                             s.used=false;
@@ -365,7 +370,7 @@
                             console.log('add user')
                             var user={
                                 name:self.userName,
-                                email:self.userEmail,
+                                //email:self.userEmail,
                                 profile:{
                                     phone:self.phoneCode.substring(1)+self.oldPhone.substring(0,10),
                                     fio:self.userName
@@ -497,9 +502,12 @@
                                     name:'reserved',
                                 }
                             }
+                            if(self.mastersInEntry.length){
+                                item.masters=self.mastersInEntry;
+                            }
 
 
-                            //console.log(item)
+
 
                             $uibModalInstance.close(item);
                         }
@@ -518,6 +526,11 @@
                                     })
                                 }
                             })
+                            self.masters=global.get('masters').val.filter(function (m) {
+                                return m._id!=master._id
+                            })
+
+                            //console.log(self.masters)
                         }
                     },
                     controllerAs:'$ctrl',
@@ -586,6 +599,13 @@
                         self.moveEntry=moveEntry;
                         self.timeParts=_setTimeParts()
                         self.changeTimeFilter=changeTimeFilter;
+                        self.addNewUser=addNewUser;
+                        self.refreshUsers=refreshUsers;
+                        self.deleteUser=deleteUser;
+                        self.addUser=addUser;
+
+
+
 
                         //console.log(self.timeParts)
                         self.startPart=oldEntry.start;
@@ -613,16 +633,122 @@
                                 return {part:i,time:t,busy:busy}
                             })
                         }
+                        function addNewUser(user) {
+                            if(user){
+                                self.newUser=user;
+                            }
+                            //console.log(self.newUser)
+                            if(self.entry.users && self.entry.users.length && self.entry.users.some(function (u) {
+                                   return u._id==self.newUser._id
+                                })){return}
+                            var o={_id:self.newUser._id,
+                                phone:self.newUser.phone,
+                                name:self.newUser.name,
+                                email:self.newUser.email
+                            }
+                            self.entry.users.push(o);
+                            saveField('users')
+                        }
+                        function deleteUser(i) {
+                            self.entry.users.splice(i,1);
+                            saveField('users')
+                        }
+                        function refreshUsers(phone){
+                            if (phone.length<3){return}
+                            //var newVal = phone.replace(pattern, '').substring(0,10);
+                            self.cachePhone=phone
+                            //if(self.oldPhone==phone){return}else{self.oldPhone=phone}
+                            searchUser(phone)
+                        }
+                        function searchUser(phone){
+                            var q= {$or:[{'profile.phone':phone},{name:phone},{email:phone}]}
+                            $user.getList({page:0,rows:20},q).then(function(res){
+                                self.users=res.map(function (user) {
+                                    if(user.profile && user.profile.phone && user.profile.phone[0]=="+"){
+                                        user.profile.phone=user.profile.phone.substring(1)
+                                    }
+                                    if(user.profile && user.profile.phone && user.profile.phone.length<10){
+                                        while(user.profile.phone.length<10){
+                                            user.profile.phone+='0'
+                                        }
+                                    }
+                                    if(user.profile && user.profile.phone && user.profile.phone.length==10){
+                                        user.profile.phone='38'+user.profile.phone
+                                    }
+                                    user.phone=(user.profile)?user.profile.phone:null;
+                                    return user
+                                });
+                            })
+                        }
+
+                        function addUser(){
+                            //console.log('add user')
+                            var user={
+                                name:self.userName,
+                                //email:self.userEmail,
+                                profile:{
+                                    phone:self.phoneCode.substring(1)+self.oldPhone.substring(0,10),
+                                    fio:self.userName
+                                },
+                                store:global.get('store').val._id
+                            }
+                            return $q.when()
+                                .then(function () {
+                                    return $user.checkPhoneForExist(user.profile.phone)
+                                })
+                                .then(function (res) {
+                                    if(res && res.exist){
+                                        throw 'phone exist in base'
+                                    }
+                                    if(user.email){
+                                        return $user.checkEmailForExist(user.email)
+                                    }else{
+                                        user.email=user.profile.phone+'@gmall.io'
+                                    }
+                                })
+                                .then(function (res) {
+                                    if(res && res.exist){
+                                        throw 'email exist in base'
+                                    }
+                                })
+                                .then(function(){
+                                    return $user.save(user).$promise
+                                })
+                                .then(function(res){
+                                    user._id=(res._id)?res._id:res.id;
+                                    self.user={
+                                        _id:user._id,
+                                        name: user.name,
+                                        email:user.email,
+                                        phone:user.profile.phone
+                                    }
+                                    addNewUser(self.user)
+                                    //console.log(user)
+
+                                    self.addingUser=false;
+                                    self.userName='';
+                                    self.oldPhone=''
+                                })
+                                .catch(function(err){
+                                    if(err){
+                                        exception.catcher('новый клиент')(err)
+                                    }
+                                })
+                        }
 
                         function actived(){
-                            //console.log(self.entry)
+                           // console.log(self.entry)
                             self.user=Object.assign({},entry.user);
                             if(self.user.phone){
                                 self.splitPoint = self.user.phone.length-10;
                                 self.phoneCode='+'+self.user.phone.substring(0,self.splitPoint)
                                 self.user.phone=self.user.phone.substring(self.splitPoint)
                             }
+                            self.mastersAdditional=global.get('masters').val.filter(function (m) {
+                                return m._id!=self.entry.master._id
+                            })
 
+                            //console.log(self.mastersAdditional)
                         }
                         function updateUser() {
                             self.editingUser=false;
@@ -696,7 +822,7 @@
                             update='user';
                         }
                         var delay;
-                        function recordAgreed() {
+                        function recordAgreed(user) {
                             if(delay){return}
                             delay=true;
                             $timeout(function () {
@@ -704,7 +830,7 @@
                             },2000)
                             entry.confirm=Date.now()
                             saveField('confirm')
-                            Booking.sendMessage(entry)
+                            Booking.sendMessage(entry,user)
                         }
                         function saveField(field) {
                             var o ={_id:entry._id}
@@ -1167,6 +1293,14 @@
                                 workplace.week[e.date].entryTimeTable[i].serviceLink= serviseLink;
                                 workplace.week[e.date].entryTimeTable[i].masterLink= masterLink;
                                 workplace.week[e.date].entryTimeTable[i].masterName= masterName;
+                                if(e.masters && e.masters.length){
+                                    workplace.week[e.date].entryTimeTable[i].masters=e.masters.map(function (m) {
+                                        var mm = masters.getOFA('_id',m);
+                                        return mm
+                                    })
+                                    //console.log(workplace.week[e.date].entryTimeTable[i].masters);
+
+                                }
 
                                 workplace.week[e.date].entryTimeTable[i].new=true;
                                 workplace.week[e.date].entryTimeTable[i].qty=e.qty;

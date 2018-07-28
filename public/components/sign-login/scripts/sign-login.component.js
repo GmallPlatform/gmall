@@ -489,7 +489,7 @@
                     return sendPhoneFactory.checkPhone(self.phone)
                 })
                 .then(function (res) {
-                    console.log(res)
+                    //console.log(res)
                     if(!res || !res._id){
                         return $user.newUserByPhone(self.name,self.phone)
                     }

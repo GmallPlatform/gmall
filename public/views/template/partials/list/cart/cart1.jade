@@ -18,11 +18,13 @@ div(class="thumbnail list-item",id='item-'+item._id,ng-hide="$ctrl.hideCart && $
         a(href=item.link)
             div(class="form-group")
                 if(item.name)
-                    h2=item.name
+                    h2(class="name")
+                        | !{item.name}
                 if(item.position)
-                    h4=item.position
+                    h4(class="position")
+                        | !{item.position}
                 if(item.desc)
-                    div
+                    div(class="desc")
                         | !{item.desc}
             hr
             div(class="col-lg-4 col-md-4 col-sm-5 col-xs-5 read-more")

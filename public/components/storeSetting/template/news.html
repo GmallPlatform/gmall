@@ -23,6 +23,17 @@
                             <span ng-class="{'active':$ctrl.item[listName].hideNameList}">нет</span>
                         </label>
                     </div>
+                    <label class="control-label">сортировка в списке</label>
+                    <div class="togglebutton">
+                        <label for="listlabel{{$index}}">
+                            <span ng-class="{'active':!$ctrl.item[listName].listLabel}">нет метки</span>
+                            <input type="checkbox"
+                                   id="listlabel{{$index}}"
+                                   ng-model="$ctrl.item[listName].listLabel"
+                                   ng-change="$ctrl.saveFieldTemplate(listName,$ctrl.item[listName])">
+                            <span ng-class="{'active':$ctrl.item[listName].listLabel}">есть метка</span>
+                        </label>
+                    </div>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 form-group" style="margin-top: 0">
                     <label class="control-label">кол-во колонок</label>
@@ -81,7 +92,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 form-group" style="margin-top: 0">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 form-group" style="margin-top: 0">
                     <label class="control-label">анимация</label>
                     <ui-select ng-model="$ctrl.item[listName].animate" skip-focusser="true" search-enabled="false"
                                ng-change="$ctrl.saveFieldTemplate(listName,$ctrl.item[listName])">

@@ -59,16 +59,16 @@ div(class=dj[key].wrapclass)
                                                         div(class="box-day",style=(item.zIndex)?"z-index:"+item.zIndex:'')
                                                             div(class="servise-box "+((!item.noBorder)?'borderTop':'') style=(item.backgroundcolor)?"background-color:"+item.backgroundcolor:'')
                                                                 div(class="entry")
-                                                                    span=item.usedTime
-                                                                    br
-                                                                    a(href=item.masterLink)
-                                                                        span=item.masterName
-                                                                    br
-                                                                    a(href=item.serviceLink)
-                                                                        span=item.service
-                                                                    br
-                                                                    small
-                                                                        span(style="color:grey")=item.comment
+                                                                    p=item.usedTime
+                                                                    p
+                                                                        a(class="master-name",href=item.masterLink)
+                                                                            span=item.masterName
+                                                                    p
+                                                                        a(class="service-name",href=item.serviceLink)
+                                                                            span=item.service
+                                                                    p
+                                                                        small
+                                                                            span(class="comment")=item.comment
 
 
 

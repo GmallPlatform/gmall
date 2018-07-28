@@ -267,11 +267,12 @@
         }
 
         function prev() {
-            //console.log('prev')
+            //console.log('prev',self.selectedDay)
             self.$owl.trigger('prev.owl.carousel', [self.selectedDay-3,300]);
         }
         function next() {
-            //console.log('next')
+            //console.log('next',self.selectedDay)
+
             self.$owl.trigger('next.owl.carousel', [self.selectedDay+3,300]);
         }
         function zoomSliderImg(i) {
@@ -2095,6 +2096,7 @@
                         }
                     }
                 }
+                //console.log('s','views/template/partials/stuffs/filters/filtersWrap'+s+'.html')
                 return 'views/template/partials/stuffs/filters/filtersWrap'+s+'.html'
             }
 

@@ -72,7 +72,7 @@ angular.module('gmall.directives')
         self.syncWithStore=syncWithStore;
         //self.clearCashe=clearCashe;
 
-        function clearCashe() {
+        function clearCache() {
             $q.when()
                 .then(function () {
                     return $http.get("/api/resetStoreCashe/"+global.get('store').val._id)

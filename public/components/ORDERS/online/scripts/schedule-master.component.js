@@ -1107,12 +1107,24 @@
         self.global=global;
         self.changeWeek=changeWeek;
         self.chancheActiveSlide=chancheActiveSlide;
+        self.changeService=changeService;
+
         self.week=0;
         var delay;
+        self.services=null;
+        if($attrs.services){
+            try{
+                var services = JSON.parse($attrs.services);
+                //console.log(global.get('services').val)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        if($attrs.stuff){
+            self.stuff=$attrs.stuff;
+        }
         self.$onInit=function () {
-
             //console.log($attrs)
-
             //console.log(self.stuff)
         }
         $scope.$watch(function () {
@@ -1122,13 +1134,14 @@
                 self.changeWeek(n)
             }
         })
-        function changeWeek(week) {
+        function changeWeek(week,service) {
             self.week=week
+            if(!service){service=$attrs.stuff}
             //console.log(week)
             return $q.when()
                 .then(function(){
                     var url='views/template/partials/scheduleplace/'+week
-                    return $http.get(url.trim()+'.html',{params:{stuff:$attrs.stuff,templ:$attrs.templ}})
+                    return $http.get(url.trim()+'.html',{params:{stuff:service,templ:$attrs.templ}})
                 })
                 .then(function(response){
                    // console.log(response)
@@ -1173,6 +1186,15 @@
             })
 
 
+        }
+        function changeService(s) {
+            //console.log(delay,s)
+            self.stuff=s
+            if(delay){return}
+            delay=true;
+            changeWeek(self.week,s).then(function () {
+                delay=false;
+            })
         }
     }
 })()

@@ -63,7 +63,9 @@
     "Info",
     "Keywords",
     "Lookbook",
+    "Label",
     "Master",
+
     "News",
     "Paps",
     "Seopage",
@@ -74,5 +76,10 @@
     "GroupStuffs",
     "Witget",
     "Workplace"
+  ],
+  "account":[
+    "Account",
+    "Material",
+    "Pn"
   ]
 }

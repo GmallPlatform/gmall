@@ -97,8 +97,8 @@
         }
     };
     newsListTemplateDirective.$inject=['global']
-    newsListCtrl.$inject=['News','$state','global','$timeout','$anchorScroll','Photo','Confirm'];
-    function newsListCtrl(News,$state,global,$timeout,$anchorScroll,Photo,Confirm){
+    newsListCtrl.$inject=['News','$state','global','$timeout','$anchorScroll','Photo','Confirm','Label'];
+    function newsListCtrl(News,$state,global,$timeout,$anchorScroll,Photo,Confirm,Label){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.global=global;
@@ -145,7 +145,11 @@
 
         function activate() {
             return getList().then(function() {
+                return Label.getList({page:0,rows:100},{list:'news'})
                 //console.log('Activated news list View');
+            }).then(function (data) {
+                console.log(data)
+                self.labels=data
             });
         }
         function getList() {

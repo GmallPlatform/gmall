@@ -7,9 +7,8 @@ div(class="thumbnail list-item",id='item-'+item._id,ng-hide="$ctrl.hideCart && $
                         div(class="substrate")
                             img(class="img-responsive",src=item.imgs[0].img)
                         - for (var i = 0; i < item.imgs.length; ++i)
-                            div(class="mytoggle-page")
+                            div(class="mytoggle-page",id='mytoggle-page'+item._id+i)
                                 img(class="img-responsive",src=item.imgs[i].img)
-
             if(item.img)
                 img(style="width:100%", src=item.img)
             if(item.video)
@@ -19,9 +18,11 @@ div(class="thumbnail list-item",id='item-'+item._id,ng-hide="$ctrl.hideCart && $
         a(href=item.link)
             div(class="form-group")
                 if(item.name)
-                    h2=item.name
+                    h2(class="name")
+                        | !{item.name}
                 if(item.position)
-                    h4=item.position
+                    h4(class="position")
+                        | !{item.position}
                 if(item.desc)
                     div(class="master-desc")
                         | !{item.desc}

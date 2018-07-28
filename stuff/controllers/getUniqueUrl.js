@@ -155,7 +155,7 @@ function* getUrl(Collection,store,name,collectionName){
         name+='add'
     }
 
-    var url=url_slug(name.substring(0,50))
+    var url=url_slug(name.substring(0,100))
     let query= getQuery(url,store);
 
 

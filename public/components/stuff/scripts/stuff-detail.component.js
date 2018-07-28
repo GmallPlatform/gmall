@@ -1319,6 +1319,10 @@
                 self.getFilterName=getFilterName;
 
                 self.getAveragePrice=getAveragePrice;
+                self.goToSchedule=goToSchedule;
+
+
+
                 var currency=global.get('currency').val
                 var formatAverage=global.get('store').val.currency[currency][4];
                 var del=-1;
@@ -1341,6 +1345,16 @@
                     //console.log(formatAverage,del)
                 })
                 //console.log(formatAverage,del)
+                function goToSchedule() {
+
+                    var div= $($element).find("div[schedule-place-from-server='schedule-place-from-server']")
+                    console.log(div)
+                    if(div){
+                        $([document.documentElement, document.body]).animate({
+                            scrollTop: $(div).offset().top
+                        }, 2000);
+                    }
+                }
                 function getAveragePrice(price) {
                     //console.log(price)
                     if(!price){return}

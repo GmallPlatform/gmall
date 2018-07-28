@@ -42,22 +42,9 @@
         <h3 class="name-page text-center">список новостей</h3>
         <div class="stuff-admin col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat-start="item in $ctrl.items">
             <div class="cart-detail" ng-class="{'mobil':global.get('mobile').val}">
-                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" ui-sref22="frame.news.item({id:item.url})">
-                    <div class="thumbnail">
-                        <a class="btn btn-fab edit pull-left" ui-sref="frame.news.item({id:item.url})">
-                            <i class="material-icons link-success">edit</i>
-                        </a>
-                        <a class="btn btn-fab edit pull-right" ng-click="$ctrl.deleteItem(item)">
-                            <i class="material-icons link-warning">delete</i>
-                        </a>
-                        <div class="clearfix"></div>
-                        <img ng-if="::!item.video" class="img-responsive" ng-src="{{item.img||'/img/upload/no.png'}}" />
-                        <div ng-if="::!item.img" ng-bind-html="item.video|unsafe"></div>
-                    </div>
-                </div>-->
                 <div class="" ng-class="{'mobil':global.get('mobile')}">
                     <div class="title-block-stuff text-center" ng-class="{'mobil':global.get('mobile')}">
-                        <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group label-floating">
                                 <label for="name1" class="control-label">название</label>
                                 <input type="text" id="name1" class="form-control name"
@@ -66,9 +53,8 @@
                                        ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
                                        ng-change="$ctrl.saveField(item,'name')"/>
                             </div>
-
                         </div>
-                        <div class=" col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group label-floating">
                                 <label class="control-label">дата создания</label>
                                 <input date-range-picker class=" col-lg-6 col-md-6 col-sm-6 col-xs-12 form-control date-picker"
@@ -76,7 +62,7 @@
                                        options="$ctrl.datePickerOptions" ng-blur="$ctrl.saveField(item,'date',200)"/>
                             </div>
                         </div>
-                        <div class=" col-lg-6 col-md-5 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group pull-left text-center">
                                 <div class="togglebutton">
                                     <label for="actived{{$index}}-ds">
@@ -89,19 +75,25 @@
                                         <span ng-class="{'active':item.actived}">опубликовано</span>
                                     </label>
                                 </div>
-                            <!--<div class="pull-left form-group"  ng-class="{'checkbox':true}">
-                                <label>
-                                    <input  type="checkbox" ng-model="item.actived"  ng-change="$ctrl.saveField(item,'actived')">
-                                    <span ng-if="!item.actived">опубликовать</span>
-                                    <span ng-if="item.actived">опубликовано</span>
-                                </label>
-                            </div>-->
-
                                 <p ng-if="item.send.date">
                                     разослано
                                     <span class="data" ng-bind="$ctrl.moment(item.send.date).format('LLL')"></span>
                                 </p>
                             </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group pull-left" style="width: 100%">
+                                <ui-select ng-model="item.labels" multiple
+                                           ng-change="$ctrl.saveField(item,'labels')"
+                                           skip-focusser="true"
+                                           search-enabled="false"
+                                           title="выберите метку">
+                                    <ui-select-match  placeholder="метка для списка">{{$item.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt._id as opt  in $ctrl.labels">{{ opt.name }}</ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                             <a class="btn btn-fab btn-fab-mini  edit pull-right" ng-click="$ctrl.deleteItem(item)">
                                 <i class="material-icons link-warning md-42">delete</i>
                             </a>
@@ -118,7 +110,6 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-
         </div>
     </div>
     <div class="clearfix" ng-if="$index%2!=0" ng-repeat-end></div>

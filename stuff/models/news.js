@@ -76,6 +76,7 @@ var blockSchema = new Schema({
     useDesc:Boolean,
     videoControl:Boolean,
 
+
 })
 var NewsSchema = new Schema({
     store:String,//[{type : Schema.ObjectId, ref : 'Store'}],
@@ -96,7 +97,7 @@ var NewsSchema = new Schema({
     desc:String,
     descL : {},
     translated:{},// булевые значения для языков. закончен перевод данного объекта на язык или нет
-
+    labels:[{type : Schema.ObjectId, ref : 'FilterTags'}]
     /*desc1:String,
     desc2:String,
     stuffs:[{type : Schema.ObjectId, ref : 'Stuff'}],*/

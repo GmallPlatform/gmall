@@ -232,7 +232,7 @@ AdditionalSchema.statics = {
         var criteria = options.criteria || {}
         this.find(criteria)
             .select('name date gallery url index actived  blocks img imgs video name nameL img_tr desc descL translated')
-            .sort({'date': -1}) // sort by date
+            .sort({'index': -1}) // sort by date
             .limit(options.perPage)
             .skip(options.perPage * options.page)
             //.lean()

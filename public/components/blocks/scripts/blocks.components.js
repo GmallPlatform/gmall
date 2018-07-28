@@ -829,16 +829,21 @@
 
         /*models*/
         function deleteCollection(block,idx){
+            //console.log(block)
+           var type = block.type;
+            if(block.type=='scheduleplace'){
+                type='stuffs';
+            }
             Confirm('Удалить?').then(function () {
-                block[block.type].splice(idx,1);
-                var data = block[block.type].map(function (item) {
+                block[type].splice(idx,1);
+                var data = block[type].map(function (item) {
                     return item._id
                 })
-                self.saveField('blocks.'+block.i+'.'+block.type,data)
+                self.saveField('blocks.'+block.i+'.'+type,data)
             })
         }
         function setCollection(block,idx){
-            console.log(block)
+            //console.log(block)
             var field=block.type;
             if(field=='scheduleplace'){
                 field='stuffs'
@@ -864,6 +869,7 @@
             }else if(field=='info'){
                 Items=Info;
             }
+
             $q.when()
                 .then(function(){
                     return Items.select({actived:true})

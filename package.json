@@ -18,6 +18,7 @@
     "archiver": "^2.0.0",
     "async": "^2.5.0",
     "babel": "^6.23.0",
+    "background-video": "^2.0.1",
     "bcrypt-nodejs": "*",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",

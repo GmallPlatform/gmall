@@ -12,7 +12,7 @@ div(class=dj[key].wrapclass)
                     each i in [0,1,2,3,4,5,6]
                         div(uib-slide,index=i,style="min-height: 75px",ng-swipe-left="$ctrl.chancheActiveSlide('left')",ng-swipe-right="$ctrl.chancheActiveSlide('right')")
                             h3(class="weeks")
-                                a(ng-click="$ctrl.changeWeek("+i+")")
+                                a(class="week-number",ng-click="$ctrl.changeWeek("+i+")")
                                     span=dj[key].weeksRange[i].startDateString
                                     span=' - '
                                     span=dj[key].weeksRange[i].endDateString
@@ -59,20 +59,22 @@ div(class=dj[key].wrapclass)
                                                         div(class="box-day",style=(item.zIndex)?"z-index:"+item.zIndex:'')
                                                             div(class="servise-box "+((!item.noBorder)?'borderTop':'') style=(item.backgroundcolor)?"background-color:"+item.backgroundcolor:'')
                                                                 div(class="entry")
-                                                                    span=item.usedTime
-                                                                    br
-                                                                    a(href=item.masterLink)
-                                                                        span=item.masterName
-                                                                    br
-                                                                    a(href=item.serviceLink)
+                                                                    p=item.usedTime
+                                                                    div(class="master-box")
+                                                                        p
+                                                                            a(class="master-name",href=item.masterLink)
+                                                                                span=item.masterName
+                                                                        if(item.masters)
+                                                                            each master in item.masters
+                                                                                p
+                                                                                    a(class="master-name",href='/master/'+master.url)
+                                                                                        span=master.name
+                                                                    p(class="service-name",href=item.serviceLink)
                                                                         span=item.service
-                                                                    br
-                                                                    small
-                                                                        span(style="color:grey")=item.comment
+                                                                    p(class="comment")=item.comment
                                                                     if(item.stringify)
-                                                                        br
-                                                                        a(ng-click="$ctrl.global.get('functions').val.bookingFromSchedule("+item.stringify+")")
-                                                                            span="записаться"
+                                                                        a(class="action",ng-click="$ctrl.global.get('functions').val.bookingFromSchedule("+item.stringify+")")
+                                                                            p=lang['enroll']
 
 
 

@@ -28,8 +28,8 @@
         }
     };
 
-    lookbookListCtrl.$inject=['Lookbook','$state','global','exception','Confirm','Photo'];
-    function lookbookListCtrl(Lookbook,$state,global,exception,Confirm,Photo){
+    lookbookListCtrl.$inject=['Lookbook','$state','global','exception','Confirm','Photo','$timeout'];
+    function lookbookListCtrl(Lookbook,$state,global,exception,Confirm,Photo,$timeout){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.datePickerOptions ={
@@ -56,7 +56,7 @@
         self.Items=Lookbook;
         self.moment=moment;
         self.query={};
-        self.paginate={page:0,rows:5,totalItems:0}
+        self.paginate={page:0,rows:50,totalItems:0}
         self.newItem={name:'Новая иноформация',actived:false}
         self.getList=getList;
         self.saveField = saveField;
@@ -99,7 +99,10 @@
                 var o={_id:item._id};
                 o[field]=item[field]
                 return self.Items.save({update:field},o ).$promise.then(function(){
-                    console.log('saved')
+                    global.set('saving',true)
+                    $timeout(function () {
+                        global.set('saving',false);
+                    },1500)
                 },function(err){console.log(err)});
             },defer)
         };

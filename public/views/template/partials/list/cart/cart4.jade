@@ -4,7 +4,8 @@ div(class="thumbnail stuff-list",id='item-'+item._id,ng-hide="$ctrl.hideCart && 
             if(item.img)
                 img(style="width:100%", src=item.img)
             if(item.name)
-                h3=item.name
+                h3
+                    | !{item.name}
             if(item.desc)
                 div
                     | !{item.desc}

@@ -41,8 +41,8 @@
         }
     };
     //masterListTemplateDirective.$inject=['global']
-    masterListCtrl.$inject=['Master','$state','global','Confirm','$q','exception','Photo','$timeout'];
-    function masterListCtrl(Master,$state,global,Confirm,$q,exception,Photo,$timeout){
+    masterListCtrl.$inject=['Master','$state','global','Confirm','$q','exception','Photo','$timeout','Label'];
+    function masterListCtrl(Master,$state,global,Confirm,$q,exception,Photo,$timeout,Label){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.global=global;
@@ -50,7 +50,8 @@
         self.$state=$state;
         self.Items=Master;
         self.query={};
-        self.paginate={page:0,rows:20,totalItems:0}
+        self.labels=[]
+        self.paginate={page:0,rows:50,totalItems:0}
         self.newItem={name:'имя мастера'}
         self.getList=getList;
         self.saveField = saveField;
@@ -64,7 +65,10 @@
 
         function activate() {
             return getList().then(function() {
+                return Label.getList({page:0,rows:100},{list:'master'})
                 //console.log('Activated news list View');
+            }).then(function (data) {
+                self.labels=data
             });
         }
         function getList() {

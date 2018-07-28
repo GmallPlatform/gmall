@@ -189,8 +189,11 @@ module.exports = {
     },
     checkPermissionMaster: checkPermissionMaster,
     checkPermissionTranslator: checkPermissionTranslator,
+    checkPermissionForAccount,checkPermissionForAccount,
 }
-
+function checkPermissionForAccount(req, res, next) {
+    next()
+}
 function checkPermissionMaster(req, res, next){
     return Promise.resolve(req.user)
         .then(function(user){

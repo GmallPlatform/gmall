@@ -10,12 +10,12 @@
             <h4 ng-bind="$ctrl.entry.service.name"></h4>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <h4><strong>специалист </strong><span>{{$ctrl.master.name}}</span></h4>
+            <h4><strong>специалист </strong><span>{{$ctrl.entry.masterName}}</span></h4>
 
             <h4><strong>другие специалисты</strong></h4>
-            <ui-select  search-enabled="false" ng-model="$ctrl.startPart" skip-focusser="true" append-to-body ng-change="$ctrl.changeStartPart()">
-                <ui-select-match>{{$select.selected.time}}</ui-select-match>
-                <ui-select-choices repeat="opt.part as opt in $ctrl.timeParts|filter:$ctrl.changeTimeFilter">{{opt.time}}</ui-select-choices>
+            <ui-select  multiple search-enabled="false" ng-model="$ctrl.entry.masters" skip-focusser="true" append-to-body ng-change="$ctrl.saveField('masters')">
+                <ui-select-match>{{$item.name}}</ui-select-match>
+                <ui-select-choices repeat="opt._id as opt in $ctrl.masters">{{opt.name}}</ui-select-choices>
             </ui-select>
         </div>
 
@@ -108,164 +108,165 @@
 
         <hr>
         <h4 class="text-center"><strong>список клиентов</strong></h4>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <h4>
-                <p ng-bind="$ctrl.entry.user.name"></p>
-                <p><span>+ </span><span ng-bind="$ctrl.entry.user.phone"></span></p>
-                <p ng-bind="$ctrl.entry.user.email"></p>
-                <a  ng-click="$ctrl.editingUser=true" class="link-success">
-                    <p><strong>изменение данных клиента</strong></p>
-                </a>
-            </h4>
+        <div ng-repeat="user in $ctrl.entry.users">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <h4>
+                    <p ng-bind="user.name"></p>
+                    <p><span>+ </span><span ng-bind="user.phone"></span></p>
+                    <p ng-bind="user.email"></p>
+                    <a  ng-click="$ctrl.editingUser=true" class="link-success">
+                        <p><strong>изменение данных клиента</strong></p>
+                    </a>
+                </h4>
 
-            <form name="form" ng-submit="$ctrl.updateUser()" uib-collapse="!$ctrl.editingUser">
-                <fieldset class="well the-fieldset">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="form-group label-floating">
-                            <label class="control-label">введите имя</label>
-                            <input class="form-control" type="text"
-                                   ng-model="$ctrl.user.name"
-                                   ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
-                                   ng-minlength="3"
-                                   ng-maxlength="50"
-                                   name="name"
-                                   required/>
-                        </div>
-                        <div class="help-block" ng-messages="form.name.$error" role="alert">
-                            <div ng-message="required">необходимо ввести имя</div>
-                            <div ng-message="minlength">не менее 3 символов</div>
-                            <div ng-message="maxlength">не более 25</div>
-                        </div>
-
-                        <div class="form-group label-floating">
-                            <label class="control-label">введите email</label>
-                            <input class="form-control" type="email"
-                                   ng-model="$ctrl.user.email"
-                                   ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
-                                   name="email"/>
-                        </div>
-
-                        <label class="control-label">введите телефон</label>
-                        <div class="row">
-                            <ui-select class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group" ng-model="$ctrl.phoneCode" skip-focusser="true" >
-                                <ui-select-match>{{$select.selected.code}}</ui-select-match>
-                                <ui-select-choices repeat="opt.code as opt in $ctrl.phoneCodes">{{opt.code}}({{opt.country}})</ui-select-choices>
-                            </ui-select>
-                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                <input type="text"
-                                       class="form-control"
-                                       ng-model="$ctrl.user.phone"
-                                       ui-mask="(999) 999-9999"
-                                       ui-mask-placeholder
-                                       ui-mask-placeholder-char="_"
-                                       name="phone"
+                <form name="form" ng-submit="$ctrl.updateUser()" uib-collapse="!$ctrl.editingUser">
+                    <fieldset class="well the-fieldset">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">введите имя</label>
+                                <input class="form-control" type="text"
+                                       ng-model="$ctrl.user.name"
+                                       ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
+                                       ng-minlength="3"
+                                       ng-maxlength="50"
+                                       name="name"
                                        required/>
-                                <div class="help-block" ng-messages="form.phone.$error" style="color:maroon" role="alert">
-                                    <div ng-message="required || mask">Необходимо ввести телефон в указанном формате</div>
-                                </div>
                             </div>
-                            <div class="clearfix"></div>
+                            <div class="help-block" ng-messages="form.name.$error" role="alert">
+                                <div ng-message="required">необходимо ввести имя</div>
+                                <div ng-message="minlength">не менее 3 символов</div>
+                                <div ng-message="maxlength">не более 25</div>
+                            </div>
+
+                            <div class="form-group label-floating">
+                                <label class="control-label">введите email</label>
+                                <input class="form-control" type="email"
+                                       ng-model="$ctrl.user.email"
+                                       ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
+                                       name="email"/>
+                            </div>
+
+                            <label class="control-label">введите телефон</label>
+                            <div class="row">
+                                <ui-select class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-group" ng-model="$ctrl.phoneCode" skip-focusser="true" >
+                                    <ui-select-match>{{$select.selected.code}}</ui-select-match>
+                                    <ui-select-choices repeat="opt.code as opt in $ctrl.phoneCodes">{{opt.code}}({{opt.country}})</ui-select-choices>
+                                </ui-select>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-model="$ctrl.user.phone"
+                                           ui-mask="(999) 999-9999"
+                                           ui-mask-placeholder
+                                           ui-mask-placeholder-char="_"
+                                           name="phone"
+                                           required/>
+                                    <div class="help-block" ng-messages="form.phone.$error" style="color:maroon" role="alert">
+                                        <div ng-message="required || mask">Необходимо ввести телефон в указанном формате</div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <span class="link-warning">измененный данные сохраняются только при нажатии на кнопку сохранения в данном окне</span>
-                    </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <span class="link-warning">измененный данные сохраняются только при нажатии на кнопку сохранения в данном окне</span>
+                        </div>
 
-                    <div class="pull-right">
-                        <button class="btn btn-fab btn-fab-mini" ng-disabled="!form.$valid" type="submit" title="закрыть окно">
-                            <i class="material-icons link-success md-42 ">save</i>
-                        </button>
-                    </div>
-                    <div class="pull-left">
-                        <a class="btn btn-fab btn-fab-mini" ng-disabled="!form.$valid" type="submit" title="закрыть окно" ng-click="$ctrl.editingUser=false">
-                            <i class="material-icons link-warning md-42 ">clear</i>
-                        </a>
-                    </div>
-                    <div class="clearfix"></div>
-                </fieldset>
-            </form>
+                        <div class="pull-right">
+                            <button class="btn btn-fab btn-fab-mini" ng-disabled="!form.$valid" type="submit" title="закрыть окно">
+                                <i class="material-icons link-success md-42 ">save</i>
+                            </button>
+                        </div>
+                        <div class="pull-left">
+                            <a class="btn btn-fab btn-fab-mini" ng-disabled="!form.$valid" type="submit" title="закрыть окно" ng-click="$ctrl.editingUser=false">
+                                <i class="material-icons link-warning md-42 ">clear</i>
+                            </a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </fieldset>
+                </form>
 
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <div ng-show="$ctrl.global.get('store').val.submitDateTime">
-                <div>
-                    <h4>
-                        <p>
-                            <span ng-show="$ctrl.entry.confirm">
-                                запись согласована - <span ng-bind="$ctrl.moment($ctrl.entry.confirm).format('LLL')"></span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div ng-show="$ctrl.global.get('store').val.submitDateTime">
+                    <div>
+                        <h4>
+                            <p>
+                            <span ng-show="user.confirm">
+                                запись согласована - <span ng-bind="$ctrl.moment(user.confirm).format('LLL')"></span>
                             </span>
-                            <span ng-show="!$ctrl.entry.confirm">
+                                <span ng-show="!user.confirm">
                                 запись не согласована
                             </span>
-                        </p>
-                        <p>
-                            <a class="link-success"  ng-click="$ctrl.recordAgreed()">
-                                <strong>отправить уведомление о согласовании записи</strong>
-                                <!--<i class="material-icons link-success md-42 ">notifications_active</i>-->
-                            </a>
-                        </p>
+                            </p>
+                            <p>
+                                <a class="link-success"  ng-click="$ctrl.recordAgreed(user)">
+                                    <strong>отправить уведомление о согласовании записи</strong>
+                                    <!--<i class="material-icons link-success md-42 ">notifications_active</i>-->
+                                </a>
+                            </p>
 
 
 
-                        <div class="clearfix"></div>
-                    </h4>
+                            <div class="clearfix"></div>
+                        </h4>
+                    </div>
                 </div>
+
+
+
             </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="form-group" style="margin-top: 0;">
+                    <div class="togglebutton">
+                        <label for="remind33{{$index}}">
+                            <span ng-class="{'active':!user.pay.status}">не оплачен</span>
+                            <input type="checkbox"
+                                   ng-true-value=1 ng-false-value=0
+                                   id="remind33{{$index}}"
+                                   ng-model="user.pay.status"
+                                   ng-change="$ctrl.saveField('users')">
+                            <span ng-class="{'active':user.pay.status}">оплачен</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-8" style="margin-top: 0; padding-left: 0">
+                    <!--<label>сумма</label>-->
+                    <input class="form-control" ng-model="user.pay.paySum"
+                           ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
+                           ng-change="$ctrl.saveField('users')" >
 
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-4">
+                    <h4 ng-bind="$ctrl.entry.currency" style="margin-top: 0"></h4>
+                </div>
+                <div class="clearfix"></div>
 
-
-        </div>
-
-
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <div class="form-group" style="margin-top: 0;">
-                <div class="togglebutton">
-                    <label for="remind33">
-                        <span ng-class="{'active':!$ctrl.entry.status}">не оплачен</span>
-                        <input type="checkbox"
-                               ng-true-value=1 ng-false-value=0
-                               id="remind33"
-                               ng-model="$ctrl.entry.status"
-                               ng-change="$ctrl.saveField('status')">
-                        <span ng-class="{'active':$ctrl.entry.status}">оплачен</span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="form-group" style="margin-top: 0;">
+                    <div class="togglebutton">
+                        <label for="remind45{{$index}}">
+                            <span ng-class="{'active':!user.used}">не пришел</span>
+                            <input type="checkbox"
+                                   ng-true-value=1 ng-false-value=0
+                                   id="remind45{{$index}}"
+                                   ng-model="user.used"
+                                   ng-change="$ctrl.saveField('users')">
+                            <span ng-class="{'active':user.used}">пришел</span>
+                        </label>
+                    </div>
+                </div>
+                <!--<div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="$ctrl.entry.used" ng-change="$ctrl.saveField('used')"> клиент пришел
                     </label>
-                </div>
-            </div>
-            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-8" style="margin-top: 0; padding-left: 0">
-                <!--<label>сумма</label>-->
-                <input class="form-control" ng-model="$ctrl.entry.paySum"
-                       ng-model-options="{'updateOn':'default blur','debounce':{'default':400,'blur':0}}"
-                       ng-change="$ctrl.saveField('paySum')" >
-
-            </div>
-            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-4">
-                <h4 ng-bind="$ctrl.entry.currency" style="margin-top: 0"></h4>
+                </div>-->
             </div>
             <div class="clearfix"></div>
+            <hr>
+        </div>
 
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <div class="form-group" style="margin-top: 0;">
-                <div class="togglebutton">
-                    <label for="remind45">
-                        <span ng-class="{'active':!$ctrl.entry.used}">не пришел</span>
-                        <input type="checkbox"
-                               ng-true-value=1 ng-false-value=0
-                               id="remind45"
-                               ng-model="$ctrl.entry.used"
-                               ng-change="$ctrl.saveField('used')">
-                        <span ng-class="{'active':$ctrl.entry.used}">пришел</span>
-                    </label>
-                </div>
-            </div>
-            <!--<div class="checkbox">
-                <label>
-                    <input type="checkbox" ng-model="$ctrl.entry.used" ng-change="$ctrl.saveField('used')"> клиент пришел
-                </label>
-            </div>-->
-        </div>
-        <div class="clearfix"></div>
-        <hr>
 
 
 

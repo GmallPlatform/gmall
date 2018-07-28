@@ -222,9 +222,9 @@ var weekDays=[
     },
     ]
 /**************************/
-var reservedFirstParamsForAdmin=['manage','promo','seo','setting','content','translate','admin123','account']
+var reservedFirstParamsForAdmin=['manage','promo','seo','setting','content','translate','admin123','bookkeep']
 var reservedFirstParams=['manage','promo','seo','setting','content','translate',
-    'news','lookbook','stat','master','campaign','info','additional','workplace','cabinet','pricegoods','priceservices','home','search','cart','cabinet','account']
+    'news','lookbook','stat','master','campaign','info','additional','workplace','cabinet','pricegoods','priceservices','home','search','cart','cabinet','bookkeep']
 var languagesOfPlatform=['ru','uk','en','de','es'];
 var propertiesOfConfigData=[{'key':'unitOfMeasure','name':'единицы измерения'}];
 var phoneCodes=[{code:'+38',country:'Ukraine'},{code:'+7',country:'Russia'},
@@ -660,7 +660,7 @@ var listOfBlocksForStuffList={
 var tableOfColorsForButton={0:'black-white',1:'pink-white',2:'turquoise-white',3:'yellow-white',4:'bordo-white',5:'braun-white',6:'powder-white',7:'pinklight-white',8:'white-black',9:'black-white'}
 var tableOfButtonsFile={0:'standart',1:'border-radius',2:'no border',3:'inverse'}
 
-var listOfIcons=['addcart','back','cart','cartin','cartplus','cancelmenu','cancel','cancelzoom','call','caret','categories','change','dialog','down','delete','downslide','gif','envelope','envelopewhite','edit','eur','fb','fbwhite','filters','header','google','googlewhite','humbmobile','chat','inst','instwhite','left','menu','messageme','messagehe','next','nextgallery','ok','okwhite','pin','pinwhite','plus','prev','prevgallery','right','rub','search','send','setting','spinner','subscription','time','tw','twwhite','uah','up','upslide','user','userhe','userme','usd','vk','vkwhite','see','enter','zoom','yt','ytwhite']
+var listOfIcons=['addcart','back','cart','cartin','cartplus','cancelmenu','cancel','cancelzoom','call','caret','categories','change','dialog','down','dot','delete','downslide','gif','envelope','envelopewhite','edit','eur','fb','fbwhite','filters','header','google','googlewhite','humbmobile','chat','inst','instwhite','left','menu','messageme','messagehe','next','nextgallery','ok','okwhite','pin','pinwhite','plus','prev','prevgallery','right','rub','search','send','setting','spinner','subscription','time','tw','twwhite','uah','up','upslide','user','userhe','userme','usd','vk','vkwhite','see','enter','zoom','yt','ytwhite']
 
 var notificationsTypeLang={
     //клиенту

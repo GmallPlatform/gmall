@@ -4,30 +4,44 @@ div(class=dj[key].wrapclass)
             div(class="container")
                 if(dj[key].name)
                     h3(class="text-center")=dj[key].name
-                div(owl-carousel-with-attr,duration=dj[key].duration,items=dj[key].qwslide,autoplay=dj[key].autoPlaySlider,class="owl-carousel owl-theme",loop="true")
-                    - for (var i = 0; i < dj[key].news.length; i++)
-                        - var datalink="/news/"+dj[key].news[i].url
-                        a(href=datalink)
-                            div(class="img-box")
-                                div(class="box-overlay")
-                                if (dj[key].news[i].img)
-                                    img(class="img-responsive img-news",src=photoHost + '/' + dj[key].news[i].img,alt=dj[key].news[i].alt)
-                                    div(class="news-home-desk")
-                                        div(class="news-desc")
-                                            h1=dj[key].news[i].name
-                                            p
-                                                | !{dj[key].news[i].desc}
-                                else if(dj[key].news[i].imgs && dj[key].news[i].imgs.length)
-                                    img(class="img-responsive",src=photoHost + '/' + dj[key].news[i].imgs[0])
-                                    div(class="half-shadow")
-                                        div(class="title-block")
-                                            h1=dj[key].news[i].name
-                                            p
-                                                | !{dj[key].news[i].desc}
-                                else if(dj[key].news[i].video)
-                                    div
-                                        | !{dj[key].news[i].video}
-
+                div(class="nav-left")
+                    i(class="icon-prev-img")
+                div(home-page-stuff-owl="owlslider"+dj[key].id,duration=dj[key].duration,items=dj[key].qwslide,autoplay=dj[key].autoPlaySlider,loop="true")
+                    div(class="nav-left")
+                        i(class="icon-prev-img")
+                    div(class="owl-carousel owl-theme",id="owlslider" + dj[key].id)
+                        - for (var i = 0; i < dj[key].news.length; i++)
+                            - var datalink="/news/"+dj[key].news[i].url
+                            a(href=datalink)
+                                div(class="img-box")
+                                    div(class="box-overlay")
+                                    if (dj[key].news[i].img)
+                                        img(class="img-responsive img-news",src=photoHost + '/' + dj[key].news[i].img,alt=dj[key].news[i].alt)
+                                        div(class="news-home-desk")
+                                            div(class="news-desc")
+                                                h1=dj[key].news[i].name
+                                                p(class="desc-box")
+                                                    | !{dj[key].news[i].desc}
+                                                span(class="more-box")
+                                                    span(class="icon-dot-img")
+                                                    span(class="more")=lang['readMore']
+                                                    span(class="read")=lang['learnMore']
+                                    else if(dj[key].news[i].imgs && dj[key].news[i].imgs.length)
+                                        img(class="img-responsive",src=photoHost + '/' + dj[key].news[i].imgs[0])
+                                        div(class="half-shadow")
+                                            div(class="title-block")
+                                                h1=dj[key].news[i].name
+                                                p(class="desc-box")
+                                                    | !{dj[key].news[i].desc}
+                                                span(class="more-box")
+                                                    span(class="icon-dot-img")
+                                                    span(class="more")=lang['readMore']
+                                                    span(class="read")=lang['learnMore']
+                                    else if(dj[key].news[i].video)
+                                        div
+                                            | !{dj[key].news[i].video}
+                    div(class="nav-right")
+                        i(class="icon-next-img")
 
 
                 //div(class="news-home-desk",set-animate=dj[key].animate && !mobile,data-animation=dj[key].animate)

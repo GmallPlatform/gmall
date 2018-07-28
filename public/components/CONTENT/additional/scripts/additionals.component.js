@@ -12,8 +12,8 @@
             templateUrl: 'components/CONTENT/additional/additionals.html',
         }
     };
-    pagesCtrl.$inject=['Additional','$state','global','Confirm','exception','$q','Photo'];
-    function pagesCtrl(Items,$state,global,Confirm,exception,$q,Photo){
+    pagesCtrl.$inject=['Additional','$state','global','Confirm','exception','$q','Photo','$timeout'];
+    function pagesCtrl(Items,$state,global,Confirm,exception,$q,Photo,$timeout){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.global=global;

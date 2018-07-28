@@ -4,6 +4,7 @@ const domainHost=require('./host/host' );
 const domainHostSplit=domainHost.domain.split('.');
 const ipHost=require('./ip/ip' );
 const ports=require('./ports' );
+//console.log(ports)
 const urlForStores = (ipHost && ipHost.local)?'http://'+ipHost.remote_ip+':'+ports.storePort:'http://'+ipHost.ip+':'+ports.storePort;
 const urlForHost = (ipHost && ipHost.local)?'http://'+ipHost.remote_ip:'http://'+ipHost.ip;
 const  photoDownloadHost= (ipHost.photo_ip)?'http://'+ipHost.photo_ip+':'+ports.photoDownloadPort:'';
@@ -45,12 +46,15 @@ function setData(store,admin){
     if(!store.formatPrice){
         store.formatPrice=0;
     }
+
     store.remote_ip = ipHost.remote_ip;
     store.stuffPort=ports.stuffPort;
+    store.accountPort=ports.accountPort;
     store.storePort=ports.storePort;
     store.userPort=ports.userPort;
     store.orderPort=ports.orderPort;
     store.storeHost = urlForHost+':'+ports.storePort;
+    store.accountHost = urlForHost+':'+ports.accountPort;
     store.orderHost = urlForHost+':'+ports.orderPort;
     store.stuffHost = urlForHost+':'+ports.stuffPort;
     store.userHost = urlForHost+':'+ports.userPort;
@@ -65,7 +69,7 @@ function setData(store,admin){
     store.addVar.$addColor3=(store.template && store.template.index && store.template.index.addColor3)?store.template.index.addColor3:null;
     store.addVar.$addColor4=(store.template && store.template.index && store.template.index.addColor4)?store.template.index.addColor4:null;
     store.addVar.$backgroundImg=(store.backgroundImg)?'"'+store.photoHost+'/'+store.backgroundImg+'"':null;
-
+    //console.log(store.accountHost)
     let item=store.template;
     if(typeof item =='object'){
         for(var k22 in item){

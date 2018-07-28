@@ -1511,8 +1511,8 @@
         }
         function getServicesForOnlineEntry(){
             //console.log('stuffsService',stuffsService)
-            if(stuffsService){return stuffsService}
-            var data ={query:{orderType:2,actived:true}};
+            if(stuffsService && stuffsService.length){return stuffsService}
+            var data ={query:{orderType:{$in:[2,7]},actived:true}};
             var filterTags=[];
             if(global.get('crawler') && global.get('crawler').val){
                 data.subDomain=global.get('store').val.subDomain;
@@ -1532,6 +1532,7 @@
                 .catch(getListFailed);
 
             function getListComplete(data) {
+                //console.log(data)
                 data.shift();
                 var items=[];
                 data.forEach(function(el){

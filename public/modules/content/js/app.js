@@ -531,6 +531,10 @@ var myApp= angular.module('gmall', [
             url: "/schedule",
             template: '<schedule-list></schedule-list>',
         })
+        .state("frame.labels", {
+            url: "/labels",
+            template: '<labels></labels>',
+        })
         .state("frame.sections", {
             url: "/sections",
             template :'<sections-list></sections-list>'
@@ -569,6 +573,7 @@ var myApp= angular.module('gmall', [
             template:'<brand-edit></brand-edit>',
             //templateUrl: function(){ return 'modules/content/views/filters.html' },
         })
+
         .state("frame.brands.category", {
             url: "/category/:id",
             resolve: {

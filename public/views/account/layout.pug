@@ -25,23 +25,17 @@ html(ng-app="gmall")
       // дата пикер
       link(rel="stylesheet",href="bower_components/bootstrap-daterangepicker/daterangepicker.css")
       link(rel="stylesheet",href="bower_components/AngularJS-Toaster/toaster.min.css")
+      link(rel='stylesheet',href='bower_components/textAngular/dist/textAngular.css')
 
-      link(rel='stylesheet', href='modules/order/css/order.css')
+      link(rel='stylesheet', href='modules/account/css/style.css')
       //стили компонентов
       link(rel='stylesheet', href='components/paginator/css/component.paginator.css')
       link(rel='stylesheet', href='components/user/css/component.loginModal.css')
-      link(rel='stylesheet', href='components/dialogs/css/component.dialogs.css')
-      link(rel='stylesheet', href='components/notification/css/component.notification.css')
-      link(rel='stylesheet', href='components/chat/css/component.chat.css')
-      link(rel='stylesheet', href='components/order/css/component.order.css')
-      link(rel='stylesheet', href='components/comment/comments-list.css')
-      link(rel='stylesheet', href='components/storeSetting/css/component.currency.css')
-      link(rel='stylesheet', href='components/brand/css/component.selectBrandTag.css')
-      link(rel='stylesheet', href='components/sections/css/component.sectionSelectCategoryModal.css')
-      link(rel='stylesheet', href='components/ORDERS/online/css/onlineList.css')
-      link(rel='stylesheet', href='components/ORDERS/online/css/selectServise.css')
-      link(rel='stylesheet', href='components/ORDERS/online/css/onlineListMobile.css')
-      link(rel='stylesheet', href='components/ORDERS/online/css/schedule.css')
+
+      //link(rel='stylesheet', href='bookkeeping/components/account/css/component.account.css')
+      //link(rel='stylesheet', href='bookkeeping/components/account/css/component.accountEdit.css')
+      link(rel='stylesheet', href='bookkeep/components/warehouse/css/warehouse.css')
+      link(rel='stylesheet', href='bookkeep/components/material/css/material.css')
 
   body
     block content

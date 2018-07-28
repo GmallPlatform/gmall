@@ -1,0 +1,55 @@
+<div style="margin-top: 100px">
+    <div class="news-stuff-container">
+        <div class="cart-detail" ng-class="{'mobil':global.get('mobile').val}">
+            <div class="stuff-admin col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div class="" ng-class="{'mobil':global.get('mobile')}">
+                    <div class="title-block-stuff text-center" ng-class="{'mobil':global.get('mobile')}">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label for="name1" class="control-label">название</label>
+                                <input type="text" id="name1" class="form-control name"
+                                       ng-model="$ctrl.item.name"
+                                       required
+                                       ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">дата создания</label>
+                                <span ng-bind="$ctrl.item.date"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group pull-left text-center">
+                                <div class="togglebutton">
+                                    <label for="actived{{$index}}-ds">
+                                        <span ng-class="{'active':!$ctrl.item.actived}">не опубликовано</span>
+                                        <input type="checkbox"
+                                               id="actived{{$index}}-ds"
+                                               ng-model="$ctrl.item.actived"
+                                               ng-model-options="{'updateOn':'default blur','debounce':{'default':700,'blur':0}}"
+                                        >
+                                        <span ng-class="{'active':$ctrl.item.actived}">опубликовано</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 text-left">
+                            <span ng-bind="$ctrl.item.supplier.name"></span>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                            <a class="btn btn-fab btn-fab-mini  edit pull-right" ng-click="$ctrl.createItem()">
+                                <i class="material-icons link-warning md-42">new</i>
+                            </a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

@@ -297,11 +297,23 @@
         function selectCategory(){
             $q.when()
                 .then(function(){
-                    return Category.select();
+                    return Category.selectWithSection();
                 })
                 .then(function(c){
+                    //console.log(c)
+                    if(!c){return}
                     if(!self.item.categories){self.item.categories=[]}
-                    self.item.categories.push(c)
+                    if(typeof c == 'object' && c.length){
+                       c.forEach(function (cat) {
+                           if(!self.item.categories.getOFA('_id',cat._id)){
+                               self.item.categories.push(cat)
+                           }
+                       })
+                    }else{
+                        if(!self.item.categories.getOFA('_id',c._id)){
+                            self.item.categories.push(c)
+                        }
+                    }
                     saveField('categories');
                 })
                 .catch(function(err){
@@ -374,11 +386,23 @@
         function selectConditionCategory(){
             $q.when()
                 .then(function(){
-                    return Category.select();
+                    return Category.selectWithSection();
                 })
                 .then(function(c){
+                    if(!c){return}
                     if(!self.item.conditionCategories){self.item.conditionCategories=[]}
-                    self.item.conditionCategories.push(c)
+
+                    if(typeof c == 'object' && c.length){
+                        c.forEach(function (cat) {
+                            if(!self.item.conditionCategories.getOFA('_id',cat._id)){
+                                self.item.conditionCategories.push(cat)
+                            }
+                        })
+                    }else{
+                        if(!self.item.conditionCategories.getOFA('_id',c._id)){
+                            self.item.conditionCategories.push(c)
+                        }
+                    }
                     saveField('conditionCategories');
                 })
                 .catch(function(err){

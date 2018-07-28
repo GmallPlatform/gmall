@@ -691,12 +691,18 @@ angular.module('gmall', ['ngRoute',
             seopages=dataFromServer[10],
             coupons=dataFromServer[11],
             witget=dataFromServer[12],
-            lang=dataFromServer[13],
-            campaign=dataFromServer[14],
-            masters=dataFromServer[15].filter(function (m) {
+            labels=dataFromServer[13],
+
+            lang=dataFromServer[14],
+            campaign=dataFromServer[15],
+            masters=dataFromServer[16].filter(function (m) {
                 return m.actived
             });
-        //console.log(store.texts)
+        //console.log(labels)
+        if(labels && labels.length){
+            global.set('labels',labels)
+        }
+
         //console.log(store.currency)
 
 
@@ -1670,6 +1676,7 @@ angular.module('gmall', ['ngRoute',
     globalProvider.set('seopages')
     globalProvider.set('currentSeopage')
     globalProvider.set('info')
+    globalProvider.set('labels')
     globalProvider.set('lang')
 
     globalProvider.set('models')
@@ -1754,12 +1761,12 @@ angular.module('gmall', ['ngRoute',
 
 
         .state("lookbook", {
-            url: "/lookbook",
+            url: "/lookbook?labels",
             template:"<items-list></items-list>"
         })
 
         .state("stat", {
-            url: "/stat",
+            url: "/stat?labels",
             template:'<items-list></items-list>'
         })
         .state("stat.item", {
@@ -1767,7 +1774,7 @@ angular.module('gmall', ['ngRoute',
             template:'<items-detail></items-detail>'
         })
         .state("additional", {
-            url: "/additional",
+            url: "/additional?labels",
             template:'<items-list></items-list>'
         })
         .state("additional.item", {
@@ -1775,7 +1782,7 @@ angular.module('gmall', ['ngRoute',
             template:'<items-detail></items-detail>'
         })
         .state("news", {
-            url: "/news",
+            url: "/news?labels",
             template: '<items-list></items-list>',
         })
         .state("news.item", {
@@ -1783,7 +1790,7 @@ angular.module('gmall', ['ngRoute',
             template: "<items-detail></items-detail>",
         })
         .state("master", {
-            url: "/master",
+            url: "/master?labels",
             template: '<items-list></items-list>',
         })
         .state("master.item", {
@@ -1791,7 +1798,7 @@ angular.module('gmall', ['ngRoute',
             template: "<items-detail></items-detail>",
         })
         .state("workplace", {
-            url: "/workplace",
+            url: "/workplace?labels",
             template: '<items-list></items-list>',
         })
         .state("workplace.item", {
@@ -1799,7 +1806,7 @@ angular.module('gmall', ['ngRoute',
             template: "<items-detail></items-detail>",
         })
         .state("info", {
-            url: "/info",
+            url: "/info?labels",
             template: '<items-list></items-list>',
         })
         .state("info.item", {
@@ -1808,7 +1815,7 @@ angular.module('gmall', ['ngRoute',
             template: '<items-detail></items-detail>',
         })
         .state("campaign", {
-            url: "/campaign",
+            url: "/campaign?labels",
             //abstract:true,
             template:'<items-list></items-list>'
         })

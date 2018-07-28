@@ -7,7 +7,7 @@ div(class="news-box",id='item-'+item._id,ng-hide="$ctrl.hideCart && $ctrl.$state
                         div(class="substrate")
                             img(class="img-responsive",src=item.imgs[0].img)
                         - for (var i = 0; i < item.imgs.length; ++i)
-                            div(class="mytoggle-page")
+                            div(class="mytoggle-page",id='mytoggle-page'+item._id+i)
                                 img(class="img-responsive",src=item.imgs[i].img)
 
             if(item.img)
@@ -17,15 +17,14 @@ div(class="news-box",id='item-'+item._id,ng-hide="$ctrl.hideCart && $ctrl.$state
                     | !{item.video}
     div(class="right-inner col-lg-7 col-md-12 col-sm-12 col-xs-12 "+item.pullLeft)
         a(href=item.link)
-            h2
+            h2(class="name")
                 | !{item.name}
         if(item.position)
-           h3
+           h3(class="position")
                | !{item.position}
         if(item.desc)
-            div
+            div(class="desc")
                 | !{item.desc}
         a(class="read-more-list",href=item.link)
-            span(class="read-more",ng-bind="$ctrl.global.get('lang').val.readMore")
-            span(class="more",ng-bind="$ctrl.global.get('lang').val.more")
+            span(class="more")=lang.more
     div(class="clearfix")

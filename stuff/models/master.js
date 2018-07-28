@@ -102,6 +102,7 @@ var MasterSchema = new Schema({
     notification:{type:Number,default:0},
     user:String,// ref to user id who is binding as master for masteronline
     translated:{},// булевые значения для языков. закончен перевод данного объекта на язык или нет
+    labels:[{type : Schema.ObjectId, ref : 'FilterTags'}]
 });
 /*reviews:[{
     name:
@@ -175,7 +176,7 @@ MasterSchema.statics = {
 
         this.find(criteria)
             //.populate('stuffs', 'name timePart')
-            .select('name url index position reviews actived blocks nameL positionL timeTable workplace link phone notification workplaces translated')
+            .select('name url index position reviews actived blocks nameL positionL timeTable workplace link phone notification workplaces translated labels')
             .sort({'index': 1}) // sort by date
             .limit(options.perPage)
             .skip(options.perPage * options.page)

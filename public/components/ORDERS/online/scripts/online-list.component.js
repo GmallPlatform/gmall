@@ -431,7 +431,7 @@
                     return Stuff.getServicesForOnlineEntry()
                 })
                 .then(function (res) {
-                    console.log('399',res)
+                    //console.log('399',res)
                     res.forEach(function (s) {
                         s.duration=s.timePart*15
                         if(!s.currency){s.currency=global.get('store').val.mainCurrency}
@@ -439,7 +439,7 @@
                             global.get('store').val.currency[s.currency][2]:s.currency;
 
                     })
-                    console.log(self.items)
+                    //console.log(self.items)
                     return self.items=res;
                 })
                 .catch(function(err){
@@ -495,7 +495,7 @@
                 .then(function(entryLocal){
                     if(!entryLocal)return;
                     entry=entryLocal;
-                    //console.log(entry)
+
                     var timePart=entry.services.reduce(function(t,item){
                         return t+item.timePart
                     },0)
@@ -512,6 +512,7 @@
                             masterNameL:master.nameL,
                             masterName:master.name,
                             masterUrl:master.url,
+                            masters:entry.masters,
                             start:val,
                             qty:s.timePart,
                             service:{_id:s._id,name:s.name},
@@ -881,8 +882,8 @@
 
         }
     }
-    scheduleCtrl.$inject=['$scope','Booking','Master','Stuff','$rootScope','global','Confirm','$q','exception','socket','$state','Workplace'];
-    function scheduleCtrl($scope,Booking,Master,Stuff,$rootScope,global,Confirm,$q,exception,socket,$state,Workplace){
+    scheduleCtrl.$inject=['$scope','Booking','Master','Stuff','$rootScope','global','Confirm','$q','exception','socket','$state','Workplace','$timeout'];
+    function scheduleCtrl($scope,Booking,Master,Stuff,$rootScope,global,Confirm,$q,exception,socket,$state,Workplace,$timeout){
         var self = this;
 
         self.moment=moment;
@@ -1030,7 +1031,7 @@
             changeStartEndTimeParts()
             setWeekDates(0)
             self.weeksRange= Booking.getWeeksRange(self.td)
-            console.log(self.weeksRange)
+            //console.log(self.weeksRange)
 
             $q.when()
                 .then(function () {
@@ -1055,9 +1056,13 @@
                     self.query['user._id']='schedule'
                     return getBooking()
                 })
-                /*.then(function () {
-                    return getServices();
-                })*/
+                .then(function () {
+                    //console.log('?????')
+                    $timeout(function () {
+                        self.slides[3].active=true
+                    },1000)
+                    //return changeWeek(3);
+                })
                 .catch(function (err) {
                     console.log(err)
                     exception.catcher('инициализация')(err)
@@ -1094,7 +1099,7 @@
             //console.log('week',week)
             setWeekDates(week)
             self.tempEntry=null;
-            console.log(self.weeksRange)
+            //console.log(self.weeksRange)
             $q.when()
                 .then(function () {
                     return getBooking()
@@ -1131,6 +1136,7 @@
 
 
         function getBooking() {
+            //console.log(self.datesOfWeeks)
             Booking.getBookingWeekScheldule(self.query,self.selectedWorkplace,self.datesOfWeeks,self.items,self.masters,ngClickOnEntry)
                 .then(function(data) {
                     //console.log(data)
@@ -1403,8 +1409,8 @@
 
     }
 
-    scheduleEntryCtrl.$inject=['$scope','Booking','Master','Stuff','$rootScope','global','Confirm','$q','exception','socket','$state','Workplace'];
-    function scheduleEntryCtrl($scope,Booking,Master,Stuff,$rootScope,global,Confirm,$q,exception,socket,$state,Workplace){
+    scheduleEntryCtrl.$inject=['$scope','Booking','Master','Stuff','$rootScope','global','Confirm','$q','exception','socket','$state','Workplace','$timeout'];
+    function scheduleEntryCtrl($scope,Booking,Master,Stuff,$rootScope,global,Confirm,$q,exception,socket,$state,Workplace,$timeout){
         var self = this;
         self.moment=moment;
         self.mobile=global.get('mobile' ).val;
@@ -1413,15 +1419,76 @@
         self.Items=Booking;
         var entryId= $rootScope.$stateParams.id
 
+        self.recordAgreed=recordAgreed;
+        self.saveField=saveField;
+        self.deleteItem=deleteItem;
+
+
         activate(entryId)
 
 
         function activate(id) {
             self.Items.getItem(id).then(function(data){
+                if(data.user && data.user._id!='schedule'){
+                    data.user.pay=data.pay;
+                    data.user.confirm=data.confirm;
+                    data.users=[data.user];
+                }
                 console.log(data)
                 self.entry=data;
             })
+                .then(function(){
+                //return Master.getList()
+                return global.get('masters').val
+            })
+                .then(function(data){
+                    console.log(data);
+
+                    self.masters=data.filter(function (m) {
+                        return m._id!=self.entry.master
+                    })
+
+                    console.log(self.masters)
+                })
         }
+        var delay;
+        function recordAgreed(user) {
+            if(delay){return}
+            delay=true;
+            $timeout(function () {
+                delay=false
+            },2000)
+            user.confirm=Date.now()
+            saveField('users',self.entry.users)
+            Booking.sendMessage(self.entry,user)
+        }
+        function saveField(field,data) {
+            var o ={_id:self.entry._id}
+            if(data){
+                o[field]=data
+            }else{
+                o[field]=self.entry[field]
+            }
+
+            //console.log(o)
+            Booking.save({update:field},o,function(err){
+                global.set('saving',true);
+                $timeout(function(){
+                    global.set('saving',false);
+                },1500)
+            })
+        }
+        function deleteItem(item) {
+            $q.when()
+                .then(function () {
+                    return Booking.delete({_id:item._id}).$promise;
+                })
+                .then(function () {
+                    $state.go("frame.schedule")
+                })
+
+        }
+
     }
 
 })()

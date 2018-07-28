@@ -24,7 +24,7 @@
     }
 
 
-    function listCtrl($scope,$http,$element,global,$state,$q,$anchorScroll,$timeout,$window,$compile,$rootScope,seoContent,$sce){
+    function listCtrl($scope,$http,$element,global,$state,$q,$anchorScroll,$timeout,$window,$compile,$rootScope,seoContent,$sce,$location){
         //console.log(!!global.get('tempContent').val)
         //console.log('??????')
 
@@ -32,7 +32,63 @@
         self.global=global;
         self.$state=$state;
         self.$stateParams=$rootScope.$stateParams;
-        //console.log(self.$stateParams)
+        self.setLabel=setLabel;
+
+        function setLabel(label) {
+
+            //console.log(label,labelsFromQuery)
+            if(labelsFromQuery && labelsFromQuery.length){
+
+                var i = labelsFromQuery.indexOf(label)
+                labelsFromQuery=[];
+                if(i==-1){
+                    labelsFromQuery.push(label)
+                }
+                /*if(i>-1){
+                    labelsFromQuery.splice(i,1)
+                }else{
+                    labelsFromQuery.push(label)
+                }*/
+                //console.log(labelsFromQuery)
+                if(labelsFromQuery.length){
+                    var str = labelsFromQuery.reduce(function (s,el) {
+                       if(s){
+                           s+='__'
+                       }
+                       return s+=el
+                    },'')
+                    $location.search('labels',str)
+                }else{
+                    $location.search('labels',null)
+                }
+            }else{
+                $location.search('labels',label)
+            }
+        }
+
+        //console.log(self.$stateParams);
+
+        var labels='',labelsFromQuery,query;
+        if(self.$stateParams && self.$stateParams.labels && global.get('labels').val){
+            labelsFromQuery=self.$stateParams.labels.split('__');
+            if(global.get('labels').val && global.get('labels').val.length && labelsFromQuery && labelsFromQuery.length){
+                /* формируем запрос для получения позиций привязанных к меткам*/
+                labelsFromQuery.forEach(function (name) {
+                    var ll = global.get('labels').val.getOFA('name',name)
+                    if(ll){
+                        if(labels){
+                            labels+='__'
+                        }
+                        labels+=ll.name;
+                    }
+                })
+            }
+            //console.log(labels)
+            if(labels && labels.length){
+                query='labels='+labels
+            }
+            console.log(query)
+        }
         var waiting,lastElement,page=0,waitingDiv;
         var td1,td2,td3;
         var model=getModel($state);
@@ -72,7 +128,7 @@
                     }else {
                         return $http.get(url.trim())
                     }*/
-                    return $http.get(url.trim())
+                    return $http.get(url.trim()+((query)?'?'+query:''))
 
                 }
             })
@@ -144,7 +200,7 @@
                             .then(function(){
                                 waitingDiv.html(innerWaitingDiv);
                                 //console.log(url)
-                                return $http.get(url.trim()+'?page='+page)
+                                return $http.get(url.trim()+'?page='+page+((query)?'&'+query:''))
                             })
                             .then(function(response){
                                 //console.log('response',response)

@@ -235,7 +235,8 @@
 */
 
                                  //console.log(h,vh,delta,elH+delta)
-                                element.css('min-height',elH+delta-mt)
+                                //element.css('min-height',elH+delta-mt)
+                                element.css('min-height',elH+delta)
                             }
                         },200)
 
@@ -571,8 +572,10 @@
             if(!self.sections[ii] || !self.sections[ii].openCatalog){
                 $(innerDivs[ii]).slideToggle();
             }
+            console.log(li,ii,self.clickMenu)
             if(self.clickMenu){
                 li.click(function(e) {
+
                     for(var i=0,l=innerDivs.length;i<l;i++){
                         if(i==ii){
                             $(innerDivs[i]).stop(true, false, true).slideToggle(300);

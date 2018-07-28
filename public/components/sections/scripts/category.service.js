@@ -15,6 +15,7 @@
             save:save,
             delete:Items.delete,
             select:select,
+            selectWithSection:selectWithSection
 
         }
         function save(){
@@ -53,6 +54,26 @@
                 });
             })
         }
+
+        function selectWithSection(){
+            return $q(function(resolve,reject){
+                var options={
+                    animation: true,
+                    templateUrl: 'components/sections/selectCategoryWithSectionModal.html',
+                    controller: selectCategoryWithSectionCtrl,
+                    size: 'lg',
+                    controllerAs:'$ctrl'
+                }
+                var modalInstance = $uibModal.open(options);
+                modalInstance.result.then(function (selectedItem) {
+                    resolve(selectedItem)
+                }, function () {
+                    //console.log('Modal dismissed at: ' + new Date());
+                    reject()
+                });
+            })
+        }
+
     }
     selectCategoryCtrl.$inject=['$q','$uibModalInstance','Sections','categoryId','selectSection','sections','forGroupStuffs'];
     function selectCategoryCtrl($q,$uibModalInstance,Sections,categoryId,selectSection,sections,forGroupStuffs){
@@ -79,6 +100,28 @@
             })
         self.ok = function (selectedCategory) {
             $uibModalInstance.close(selectedCategory);
+        };
+        self.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
+    }
+    selectCategoryWithSectionCtrl.$inject=['$q','$uibModalInstance','Sections'];
+    function selectCategoryWithSectionCtrl($q,$uibModalInstance,Sections){
+        var self=this;
+        $q.when()
+            .then(function(){
+                return Sections.getSections();
+            })
+            .then(function(sections){
+                //console.log(sections)
+                self.sections = sections;
+            })
+        self.ok = function (selectedCategory) {
+            $uibModalInstance.close(selectedCategory);
+        };
+        self.okSection = function (section) {
+            var categories=section.categories;
+            $uibModalInstance.close(categories);
         };
         self.cancel = function () {
             $uibModalInstance.dismiss('cancel');

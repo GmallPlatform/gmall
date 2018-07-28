@@ -157,8 +157,8 @@
                         if(response.data.token=='update'){
                             throw null;
                         }else{
-                            $auth.setToken(response);
-                            return Account.getProfile()
+                            //$auth.setToken(response);
+                            //return Account.getProfile()
                         }
                     } else{
                         throw response;
@@ -166,11 +166,11 @@
 
                 })
                 .then(function(response){
-                    console.log(response)
+                    /*console.log(response)
                     if(response){
                         global.set('user',response.data);
                         global.get('functions').val.logged();
-                    }
+                    }*/
 
                 })
                 .catch(function(err){

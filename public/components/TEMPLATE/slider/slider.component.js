@@ -5,7 +5,8 @@
         .directive('gmallSlider',gmallSliderDirective)
         .directive('gmallSliderHome',gmallSliderHomeDirective)
         .directive('gmallSliderHomeNivo',gmallSliderHomeNivoDirective)
-        .directive('gmallSliderPage',gmallSliderPageDirective);
+        .directive('gmallSliderPage',gmallSliderPageDirective)
+        .directive('gmallSliderPageByHover',gmallSliderPageByHoverDirective);
     function gmallSliderDirective(){
         return {
             scope: {
@@ -159,6 +160,120 @@
                 $(window).resize(function(){
                     setHeight(element.height())
                 })
+
+            }
+        }
+    }
+    function gmallSliderPageByHoverDirective($timeout,$rootScope,global){
+        return {
+            restrict:"A",
+            replace:false,
+            link:function(scope,element,attr){
+                //console.log('active')
+                var index=0;
+                var timeSlide=4000;
+                if(global.get('mobile').val){
+                    timeSlide=3000
+                }
+                var innerDiv = element.find('.mytoggle-page'),substrate;
+                var imgs=[]
+                var links=[];
+                var lastLink;
+                var maxHeight=0;
+                innerDiv.each(function (i,div) {
+                    //console.log(div,$(div).attr('id'))
+                    imgs.push($(div).attr('id'))
+                    links.push($(div).find('a'));
+                    if(!i){
+                        $(div).css('opacity', 1)
+                    }
+                })
+                try{
+                    lastLink=links[links.length-1]
+                    links= links.map(function (l) {
+                        return l.attr('href');
+                    })
+                }catch (err){console.log(err)}
+
+                element.find('.substrate').each(function(i,div){
+                    if(i){return}
+                    substrate=$(div);
+                    substrate.find('img').each(function(i,img){
+                        //console.log(i,img)
+                        if(i){return}
+                        //console.log(this.complete)
+                        var self=this;
+                        if(!this.complete){
+                            $(this).bind('load', function() {
+                                /*console.log(self.complete)
+                                 console.log($(this).height())*/
+
+                                var k = 1000+ getRandomInt(100,2000)
+                                //console.log('k',k)
+                                //$timeout(function(){sliderFunc()},k)
+
+                                setHeight($(self).height())
+                                $timeout(function () {
+                                    $(div).css('opacity', 0)
+                                },50)
+
+
+                            })
+                        }else{
+
+                            var k = 1000+ getRandomInt(100,2000)
+                            //console.log('k1',k)
+                            //$timeout(function(){sliderFunc()},k)
+                            //console.log(self,$(self).height())
+                            setHeight($(self).height())
+                            $timeout(function () {
+                                $(div).css('opacity', 0)
+                            },50)
+                        }
+                    })
+                })
+
+                function next() {
+                    //console.log('next',imgs[index],index,innerDiv.length)
+                    $('#'+imgs[index]).css('opacity',0)
+                    index < innerDiv.length - 1 ? index++ : index = 0;
+                    $('#'+imgs[index]).css('opacity',1)
+                    try{$(lastLink).attr('href',links[index])}catch (err){console.log(err)}
+                };
+
+
+                function setHeight(h){
+                    //console.log(h)
+                    innerDiv.each(function(i,div){
+                        //console.log(div)
+                        //console.log(h,this)
+                        $(div).height(h)
+
+                    })
+                }
+                var timer;
+                function sliderFunc() {
+                    timer =  $timeout(function() {
+                        //console.log(timer)
+                        $timeout.cancel(timer)
+                        next();
+                        sliderFunc()
+                    }, 1700);
+                };
+
+                $(window).resize(function(){
+                    setHeight(element.height())
+                })
+                $(element).mouseenter( handlerIn ).mouseleave( handlerOut );
+                function handlerIn() {
+                    console.log('in ')
+                    next()
+                    sliderFunc()
+                }
+                function handlerOut() {
+                    $timeout.cancel(timer)
+                    console.log('out' )
+                }
 
             }
         }

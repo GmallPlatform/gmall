@@ -22,7 +22,7 @@ function getData(model,method,options,c){
     })
 }
 exports.getAllDataForIndex=function(models,lang,store,subDomain,preload,next){
-    let [Group,Brand,Stat,Filter,Paps,Seopage,Coupon,Witget,HomePage,Campaign,Master,Info] = models;
+    let [Group,Brand,Stat,Filter,Paps,Seopage,Coupon,Witget,HomePage,Campaign,Master,Info,Label] = models;
     //console.log(req.query)
     //res.json([[1,3],[2,4]])
     try{
@@ -60,6 +60,7 @@ exports.getAllDataForIndex=function(models,lang,store,subDomain,preload,next){
         options.criteria=q1;
         acts.push(getData(Master,'list',options,'masters'))
         acts.push(getData(Info,'list',options,'info'))
+        acts.push(getData(Label,'list',options,'label'))
         if(preload){
             options.criteria={preload:true,store:store}
             acts.push(getData(Stat,'load',options,'stat'))

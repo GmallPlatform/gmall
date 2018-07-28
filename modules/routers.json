@@ -65,5 +65,6 @@
     "/api/stuffs/changeMPCategory",
     "/api/reNewKeyWords",
     "/api/readStoreStuff/"
-  ]
+  ],
+  "account":[]
 }

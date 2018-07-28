@@ -41,29 +41,29 @@
                         dnd-moved="$ctrl.items.splice($index,1)"
                         ng-class="{bgcolor_one:($index%2==0),bgcolor_two:($index%2!=0)}"
                         ng-repeat="item in $ctrl.items">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <i class="material-icons link-success pull-left" style="margin-top: 20px">swap_vert</i>
-                            <div class=" form-group label-floating pull-left">
-                                <label for="name1" class="control-label">имя</label>
-                                <input type="text" id="name1" class="form-control name"
-                                       ng-model="item.name"
-                                       ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
-                                       required
-                                       ng-change="$ctrl.saveField(item,'name')"/>
+                        <div class="col-lg-5 col-md-5 col-sm-10 col-xs-12">
+                            <i class="material-icons link-success pull-left" style="margin-top: 20px; width: 10%; margin-right: 0">swap_vert</i>
+                            <div class="pull-left" style="width: 90%">
+                                <div class=" form-group label-floating ">
+                                    <label for="name1" class="control-label">имя</label>
+                                    <input type="text" id="name1" class="form-control name"
+                                           ng-model="item.name"
+                                           ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                                           required
+                                           ng-change="$ctrl.saveField(item,'name')"/>
+                                </div>
+                                <div class=" form-group label-floating">
+                                    <label for="position" class="control-label">должность</label>
+                                    <input type="text" id="position" class="form-control name"
+                                           ng-model="item.position"
+                                           ng-model-options="{ updateOn:  'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                                           ng-change="$ctrl.saveField(item,'position')"/>
+                                </div>
                             </div>
-                            <div class="clearfix"></div>
+
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class=" form-group label-floating">
-                                <label for="position" class="control-label">должность</label>
-                                <input type="text" id="position" class="form-control name"
-                                       ng-model="item.position"
-                                       ng-model-options="{ updateOn:  'default blur', debounce: { 'default': 300, 'blur': 0 } }"
-                                        ng-change="$ctrl.saveField(item,'position')"/>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 text-left">
-                            <div class="form-group">
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group text-center">
                                 <div class="togglebutton">
                                     <label for="actived{{$index}}-ds">
                                         <span class="ll" ng-class="{'active':!item.actived}">не опубликовано</span>
@@ -76,17 +76,35 @@
                                     </label>
                                 </div>
                             </div>
+                            <ui-select ng-model="item.labels" multiple
+                                       ng-change="$ctrl.saveField(item,'labels')"
+                                       skip-focusser="true"
+                                       search-enabled="false"
+                                       title="выберите метку">
+                                <ui-select-match  placeholder="метка для списка">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="opt._id as opt  in $ctrl.labels">{{ opt.name }}</ui-select-choices>
+                            </ui-select>
                         </div>
-                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 head-box">
-                            <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.deleteItem(item)">
-                                <i class="material-icons link-warning md-42">delete</i>
-                            </a>
-                            <a class="btn btn-fab btn-fab-mini pull-right" ui-sref="frame.master.item({id:item.url})">
-                                <i class="material-icons link-success md-42">edit</i>
-                            </a>
-                            <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.cloneItem(item)">
-                                <i class="material-icons md-42" title="клонировать компонент">content_copy</i>
-                            </a>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 head-box">
+                            <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12 col-xs-6">
+                                <label for="name12" class="control-label">индекс</label>
+                                <input type="text" id="name12" class="form-control name"
+                                       ng-model="item.index"
+                                       ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 300, 'blur': 0 } }"
+                                       ng-change="$ctrl.saveField(item,'index')"/>
+                            </div>
+                            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-6" style="padding-left: 0; padding-right: 0">
+                                <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.deleteItem(item)">
+                                    <i class="material-icons link-warning md-42">delete</i>
+                                </a>
+                                <a class="btn btn-fab btn-fab-mini pull-right" ui-sref="frame.master.item({id:item.url})">
+                                    <i class="material-icons link-success md-42">edit</i>
+                                </a>
+                                <a class="btn btn-fab btn-fab-mini pull-right" ng-click="$ctrl.cloneItem(item)">
+                                    <i class="material-icons md-42" title="клонировать компонент">content_copy</i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="clearfix"></div>
                     </li>

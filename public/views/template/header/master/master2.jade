@@ -5,7 +5,7 @@ div(class=dj[key].wrapclass+pullClass,set-animate=dj[key].blockAnimate,data-anim
         else
             - var c = 'page-stat master'
         div(class=c,ng-if="global.get('masters').val.length")
-            a(href="/master",set-animate=dj[key].animate,data-animation=dj[key].animate)
+            a(href="/master"+dj[key].addLink,set-animate=dj[key].animate,data-animation=dj[key].animate)
                 if(store.nameLists.masterList)
                     span(class="part")=store.nameLists.masterList
                 else

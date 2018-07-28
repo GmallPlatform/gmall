@@ -366,9 +366,9 @@ var weekDays=[
     },
     ]
 /**************************/
-var reservedFirstParamsForAdmin=['manage','promo','seo','setting','content','translate','admin123','account']
+var reservedFirstParamsForAdmin=['manage','promo','seo','setting','content','translate','admin123','bookkeep']
 var reservedFirstParams=['manage','promo','seo','setting','content','translate',
-    'news','lookbook','stat','master','campaign','info','additional','workplace','cabinet','pricegoods','priceservices','home','search','cart','cabinet','account']
+    'news','lookbook','stat','master','campaign','info','additional','workplace','cabinet','pricegoods','priceservices','home','search','cart','cabinet','bookkeep']
 var languagesOfPlatform=['ru','uk','en','de','es'];
 var propertiesOfConfigData=[{'key':'unitOfMeasure','name':'единицы измерения'}];
 var phoneCodes=[{code:'+38',country:'Ukraine'},{code:'+7',country:'Russia'},
@@ -804,7 +804,7 @@ var listOfBlocksForStuffList={
 var tableOfColorsForButton={0:'black-white',1:'pink-white',2:'turquoise-white',3:'yellow-white',4:'bordo-white',5:'braun-white',6:'powder-white',7:'pinklight-white',8:'white-black',9:'black-white'}
 var tableOfButtonsFile={0:'standart',1:'border-radius',2:'no border',3:'inverse'}
 
-var listOfIcons=['addcart','back','cart','cartin','cartplus','cancelmenu','cancel','cancelzoom','call','caret','categories','change','dialog','down','delete','downslide','gif','envelope','envelopewhite','edit','eur','fb','fbwhite','filters','header','google','googlewhite','humbmobile','chat','inst','instwhite','left','menu','messageme','messagehe','next','nextgallery','ok','okwhite','pin','pinwhite','plus','prev','prevgallery','right','rub','search','send','setting','spinner','subscription','time','tw','twwhite','uah','up','upslide','user','userhe','userme','usd','vk','vkwhite','see','enter','zoom']
+var listOfIcons=['addcart','back','cart','cartin','cartplus','cancelmenu','cancel','cancelzoom','call','caret','categories','change','dialog','down','dot','delete','downslide','gif','envelope','envelopewhite','edit','eur','fb','fbwhite','filters','header','google','googlewhite','humbmobile','chat','inst','instwhite','left','menu','messageme','messagehe','next','nextgallery','ok','okwhite','pin','pinwhite','plus','prev','prevgallery','right','rub','search','send','setting','spinner','subscription','time','tw','twwhite','uah','up','upslide','user','userhe','userme','usd','vk','vkwhite','see','enter','zoom','yt','ytwhite']
 
 var notificationsTypeLang={
     //клиенту
@@ -1232,7 +1232,7 @@ function md5www ( str ) {	// Calculate the md5 hash of a string
     //str = this.utf8_encode(str);
 
     str = unescape( encodeURIComponent( str ) );
-    console.log(str)
+    //console.log(str)
     x = ConvertToWordArray(str);
     a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
 
@@ -1768,6 +1768,7 @@ String.prototype.getFormatedDate=function(){
         //http://stackoverflow.com/questions/436120/javascript-accessing-private-member-variables-from-prototype-defined-functions
         function _checkInCondition(__campaign,stuff){
             var stuffBrand=(stuff.brand && stuff.brand._id)?stuff.brand._id:stuff.brand
+            var stuffCategory = (typeof stuff.category=='object' && stuff.category.length)?stuff.category[0]:stuff.category;
             if (__campaign.conditionStuffs && __campaign.conditionStuffs.length && __campaign.conditionStuffs.indexOf(stuff._id)>-1){
                 return true
             }
@@ -1780,7 +1781,7 @@ String.prototype.getFormatedDate=function(){
             if (__campaign.conditionBrands && __campaign.conditionBrands.length && __campaign.conditionBrands.indexOf(stuffBrand)>-1){
                 return true
             }
-            if (__campaign.conditionCategories && __campaign.conditionCategories.length && __campaign.conditionCategories.indexOf(stuff.category)>-1){
+            if (__campaign.conditionCategories && __campaign.conditionCategories.length && __campaign.conditionCategories.indexOf(stuffCategory)>-1){
                 return true
             }
         }
@@ -1911,8 +1912,10 @@ String.prototype.getFormatedDate=function(){
 
         this._isStuffInCampaign=function(stuff,campaign){
             //console.log(stuff)
+            var stuffCategory = (typeof stuff.category=='object' && stuff.category.length)?stuff.category[0]:stuff.category;
             var stuffBrand=(stuff.brand && stuff.brand._id)?stuff.brand._id:stuff.brand
             function check(__campaign){
+                //console.log(stuffCategory,__campaign.categories)
                 //console.log(__campaign,stuff.name)
                 if (__campaign.stuffs && __campaign.stuffs.length && __campaign.stuffs.indexOf(stuff._id)>-1){
                     return true
@@ -1926,7 +1929,7 @@ String.prototype.getFormatedDate=function(){
                 if (__campaign.brands && __campaign.brands.length && __campaign.brands.indexOf(stuffBrand)>-1){
                     return true
                 }
-                if (__campaign.categories && __campaign.categories.length && __campaign.categories.indexOf(stuff.category)>-1){
+                if (__campaign.categories && __campaign.categories.length && __campaign.categories.indexOf(stuffCategory)>-1){
                     return true
                 }
             }
@@ -1956,7 +1959,7 @@ String.prototype.getFormatedDate=function(){
             if (!campaign) {
                 for (var j=0,ll=self.campaign.length;j<ll;j++){
                     var is=check(self.campaign[j]);
-                    //console.log(is)
+                    //console.log(is,(is && !self.campaign[j].revers),(!is && self.campaign[j].revers))
                     if ((is && !self.campaign[j].revers)||(!is && self.campaign[j].revers)){
                         setCampaignPrice(self.campaign[j])
                         return self.campaign[j];
@@ -1968,6 +1971,7 @@ String.prototype.getFormatedDate=function(){
                 var __campaign=self.campaign.getObjectFromArray('_id',campaign);
                 if(__campaign){
                     var is=check(__campaign);
+
                     if ((is && !__campaign.revers)||(!is && __campaign.revers)){
                         setCampaignPrice(__campaign)
                         return __campaign;
@@ -3641,12 +3645,18 @@ angular.module('gmall', ['ngRoute',
             seopages=dataFromServer[10],
             coupons=dataFromServer[11],
             witget=dataFromServer[12],
-            lang=dataFromServer[13],
-            campaign=dataFromServer[14],
-            masters=dataFromServer[15].filter(function (m) {
+            labels=dataFromServer[13],
+
+            lang=dataFromServer[14],
+            campaign=dataFromServer[15],
+            masters=dataFromServer[16].filter(function (m) {
                 return m.actived
             });
-        //console.log(store.texts)
+        //console.log(labels)
+        if(labels && labels.length){
+            global.set('labels',labels)
+        }
+
         //console.log(store.currency)
 
 
@@ -4620,6 +4630,7 @@ angular.module('gmall', ['ngRoute',
     globalProvider.set('seopages')
     globalProvider.set('currentSeopage')
     globalProvider.set('info')
+    globalProvider.set('labels')
     globalProvider.set('lang')
 
     globalProvider.set('models')
@@ -4704,12 +4715,12 @@ angular.module('gmall', ['ngRoute',
 
 
         .state("lookbook", {
-            url: "/lookbook",
+            url: "/lookbook?labels",
             template:"<items-list></items-list>"
         })
 
         .state("stat", {
-            url: "/stat",
+            url: "/stat?labels",
             template:'<items-list></items-list>'
         })
         .state("stat.item", {
@@ -4717,7 +4728,7 @@ angular.module('gmall', ['ngRoute',
             template:'<items-detail></items-detail>'
         })
         .state("additional", {
-            url: "/additional",
+            url: "/additional?labels",
             template:'<items-list></items-list>'
         })
         .state("additional.item", {
@@ -4725,7 +4736,7 @@ angular.module('gmall', ['ngRoute',
             template:'<items-detail></items-detail>'
         })
         .state("news", {
-            url: "/news",
+            url: "/news?labels",
             template: '<items-list></items-list>',
         })
         .state("news.item", {
@@ -4733,7 +4744,7 @@ angular.module('gmall', ['ngRoute',
             template: "<items-detail></items-detail>",
         })
         .state("master", {
-            url: "/master",
+            url: "/master?labels",
             template: '<items-list></items-list>',
         })
         .state("master.item", {
@@ -4741,7 +4752,7 @@ angular.module('gmall', ['ngRoute',
             template: "<items-detail></items-detail>",
         })
         .state("workplace", {
-            url: "/workplace",
+            url: "/workplace?labels",
             template: '<items-list></items-list>',
         })
         .state("workplace.item", {
@@ -4749,7 +4760,7 @@ angular.module('gmall', ['ngRoute',
             template: "<items-detail></items-detail>",
         })
         .state("info", {
-            url: "/info",
+            url: "/info?labels",
             template: '<items-list></items-list>',
         })
         .state("info.item", {
@@ -4758,7 +4769,7 @@ angular.module('gmall', ['ngRoute',
             template: '<items-detail></items-detail>',
         })
         .state("campaign", {
-            url: "/campaign",
+            url: "/campaign?labels",
             //abstract:true,
             template:'<items-list></items-list>'
         })
@@ -4828,10 +4839,7 @@ angular.module('gmall', ['ngRoute',
                             }
                         }else{
                             if(value){
-                                /*if(value.indexOf('images/Store/') > -1){
-                                    attr.$set('src', storeHost+'/'+value);
-                                }else*/ if(value.indexOf('images/') > -1&& value.indexOf('http') < 0){
-                                    //console.log(stuffHost+'/'+value)
+                                if(value.indexOf('images/') > -1&& value.indexOf('http') < 0){
                                     if(photoHost){attr.$set('src', photoHost+'/'+value);}else{attr.$set('src',value)}
                                 }else{
                                     attr.$set('src',value);
@@ -4851,7 +4859,7 @@ angular.module('gmall', ['ngRoute',
     })
 
 
-
+//console.log('photoHost',photoHost)
 var tempTitles,templateContentHTML;
 function setMetaOG() {
     templateContentHTML=$('#tempContent').html()
@@ -5263,16 +5271,31 @@ angular.module('gmall.directives', [])
     })
 
 
-    .directive('arrowDown',[function(){
+    .directive('arrowDown',['global',function(global){
         return{
             template:"<a class='nav-down animate-style' ng-click='scrollUp()'>" +
             "<span class='icon-down-img'></span></a>",
             link:function(scope,element){
+                //console.log(global.get('store').val.template)
+                var m1 =global.get('store').val.template.menu1
+                var m2 =global.get('store').val.template.menu2
+                //console.log('arrowDown')
                 var visible=false;
                 $(element).hide()
                 scope.scrollUp=function () {
-                    var arrowDown=$("#arrowDownDiv")
-                    var target=arrowDown.offset().top + arrowDown.height()-60
+                    var arrowDown=$("#arrowDownDiv");
+                    var menu1Section1=$("#menu1-section");
+                    var menu1Section2=$("#menu2-section");
+                    var delta=0;
+                    if(m1 && m1.is && m1.fixed && m1.position == 'top' && !m1.scrollSlide){
+                        delta +=menu1Section1.height()
+                    }
+                    if(m2 && m2.is && m2.fixed && m1.position == 'top'){
+                        delta +=menu1Section2.height()
+                    }
+
+
+                    var target=arrowDown.offset().top + arrowDown.height()-delta;
                     $('html, body').animate({
                         scrollTop: target
                     }, 1000);
@@ -5414,11 +5437,48 @@ angular.module('gmall.directives', [])
             }
         }
     }])
+    .directive('addClassByScrollForBlock',[function(){
+        return{
+            restrict : 'EA',
+            scope:{
+                className :'@addClassByScrollForBlock'
+            },
+            link:function(scope,element){
+               // console.log('scope.className',scope.className)
+                $(window).scroll(scrollHandler)
+                var done = false
+                function scrollHandler() {
+                    //console.log('scroll2')
+                    //console.log($(element).isOnScreen())
+                    if(!done && $(element).isOnScreen()){
+                        element.addClass(scope.className)
+                        done = true;
+                        $(window).off("scroll", scrollHandler);
+                    }
+                }
 
+            }
+        }
+    }])
+
+    .directive('bgVideo',function($rootScope,$timeout,global,$compile){
+        return {
+            restrict: 'A',
+            link: function (scope, element,attrs) {
+                //console.log(attrs.bgVideo)
+                var  backgroundVideo = new BackgroundVideo('.bv-video', {
+                    src: [
+                        attrs.bgVideo
+                    ]
+                });
+            }
+        }
+    })
     .directive('homePageTwoRowsContainer',function($rootScope,$timeout,global,$compile){
         return {
             restrict:'E',
             link:function(scope,element){
+
                 //console.log(element)
                 var row1=element[0].firstChild,h1;
                 var row2=element[0].lastChild,h2;
@@ -7214,7 +7274,7 @@ angular.module('lazyImg').directive(
                     return sendPhoneFactory.checkPhone(self.phone)
                 })
                 .then(function (res) {
-                    console.log(res)
+                    //console.log(res)
                     if(!res || !res._id){
                         return $user.newUserByPhone(self.name,self.phone)
                     }
@@ -9499,7 +9559,8 @@ function photoFactory($http) {
 */
 
                                  //console.log(h,vh,delta,elH+delta)
-                                element.css('min-height',elH+delta-mt)
+                                //element.css('min-height',elH+delta-mt)
+                                element.css('min-height',elH+delta)
                             }
                         },200)
 
@@ -9835,8 +9896,10 @@ function photoFactory($http) {
             if(!self.sections[ii] || !self.sections[ii].openCatalog){
                 $(innerDivs[ii]).slideToggle();
             }
+            console.log(li,ii,self.clickMenu)
             if(self.clickMenu){
                 li.click(function(e) {
+
                     for(var i=0,l=innerDivs.length;i<l;i++){
                         if(i==ii){
                             $(innerDivs[i]).stop(true, false, true).slideToggle(300);
@@ -10373,8 +10436,8 @@ function photoFactory($http) {
                         if(response.data.token=='update'){
                             throw null;
                         }else{
-                            $auth.setToken(response);
-                            return Account.getProfile()
+                            //$auth.setToken(response);
+                            //return Account.getProfile()
                         }
                     } else{
                         throw response;
@@ -10382,11 +10445,11 @@ function photoFactory($http) {
 
                 })
                 .then(function(response){
-                    console.log(response)
+                    /*console.log(response)
                     if(response){
                         global.set('user',response.data);
                         global.get('functions').val.logged();
-                    }
+                    }*/
 
                 })
                 .catch(function(err){
@@ -12363,13 +12426,15 @@ angular.module('gmall.directives').directive('chatBox',function($timeout){
 })
 'use strict';
 angular.module('gmall.controllers')
-.controller('callCtrl',['$scope','global','$notification','toaster','CreateContent','$rootScope','$http','exception','$q','$email',function($scope,global,$notification,toaster,CreateContent,$rootScope,$http,exception,$q,$email){
+.controller('callCtrl',['$scope','global','$notification','toaster','CreateContent','$rootScope','$http','exception','$q','$email','$attrs',function($scope,global,$notification,toaster,CreateContent,$rootScope,$http,exception,$q,$email,$attrs){
+
     self=this;
     self.global=global;
 
 
+
     $scope.callCtrl=this;
-    self.user=(global.get('user').val)?global.get('user'):{val:{profile:{phone:''}}};
+    self.user=(global.get('user').val)?global.get('user'):{val:{profile:{phone:'',fio:''}}};
     $scope.phoneNumberPattern = (function() {
         var regexp = /^([0-9\(\)\/\+ \-]*)$/;
         return {
@@ -12390,8 +12455,11 @@ angular.module('gmall.controllers')
         if($scope.callCtrl.blockButton){return};
         if(form.$valid) {
             $scope.callCtrl.blockButton=true;
-            o.content=CreateContent.call(self.user.val.profile.phone);
-            //console.log(o)
+            o.content=global.get('langOrder').val.requestacallback+' '+self.user.val.profile.phone+((self.user.val.fio)?' '+self.user.val.fio:'')+' '+moment().format('LLLL');
+
+            if(self.stuff){
+                o.content +=','+self.stuff
+            }
             //console.log(self.user.val.profile.phone)
             /*$rootScope.checkedMenu.chatMenu=false;
             if(self.modalClose && typeof self.modalClose=='function'){
@@ -12399,7 +12467,7 @@ angular.module('gmall.controllers')
             }
             $scope.$emit('closeWitget')*/
 
-            sendMessage()
+            sendMessage(o.content)
 
             $scope.$emit('closeWitget')
             $rootScope.checkedMenuChange('chatMenu',false)
@@ -12432,13 +12500,13 @@ angular.module('gmall.controllers')
         }
     }
 
-    function sendMessage() {
+    function sendMessage(textForSend) {
+        /*if($attrs.stuff){
+            console.log($attrs.stuff)
+        }*/
         self.dataForSend={}
         self.dataForSend.phone= global.get('store').val.seller.phone;
-        self.dataForSend.text=global.get('langOrder').val.requestacallback+' '+self.user.val.profile.phone+' '+moment().format('LLLL')+((self.name)?' '+self.name:'');
-        if(self.stuff){
-            self.dataForSend.text +=','+self.stuff
-        }
+        self.dataForSend.text=textForSend
         self.dataForSend.userId=md5www(global.get('store').val.subDomain)
         self.dataForSend.onlyText=true;
         //console.log(self.dataForSend)
@@ -14812,6 +14880,7 @@ angular.module('gmall.controllers')
         var Items= $resource('/api/collections/Stuff/:_id',{_id:'@_id'});
         var categoriesLink={},
             queryData={};
+        var stuffsService=[]
 
         $rootScope.$on('$stateChangeStart', function(event, to, toParams, fromState, fromParams){
             if(to.name=='stuffs'||to.name=='stuffs.stuff' || to.name=='frame.stuffs'||to.name=='frame.stuffs.stuff'){
@@ -16312,7 +16381,9 @@ angular.module('gmall.controllers')
 
         }
         function getServicesForOnlineEntry(){
-            var data ={query:{orderType:2,actived:true}};
+            //console.log('stuffsService',stuffsService)
+            if(stuffsService && stuffsService.length){return stuffsService}
+            var data ={query:{orderType:{$in:[2,7]},actived:true}};
             var filterTags=[];
             if(global.get('crawler') && global.get('crawler').val){
                 data.subDomain=global.get('store').val.subDomain;
@@ -16332,6 +16403,7 @@ angular.module('gmall.controllers')
                 .catch(getListFailed);
 
             function getListComplete(data) {
+                //console.log(data)
                 data.shift();
                 var items=[];
                 data.forEach(function(el){
@@ -16384,7 +16456,7 @@ angular.module('gmall.controllers')
 
                     //console.log('done')
                 })
-
+                stuffsService=items;
                 return items;
 
             }
@@ -17031,11 +17103,12 @@ angular.module('gmall.controllers')
         }
 
         function prev() {
-            //console.log('prev')
+            //console.log('prev',self.selectedDay)
             self.$owl.trigger('prev.owl.carousel', [self.selectedDay-3,300]);
         }
         function next() {
-            //console.log('next')
+            //console.log('next',self.selectedDay)
+
             self.$owl.trigger('next.owl.carousel', [self.selectedDay+3,300]);
         }
         function zoomSliderImg(i) {
@@ -18859,6 +18932,7 @@ angular.module('gmall.controllers')
                         }
                     }
                 }
+                //console.log('s','views/template/partials/stuffs/filters/filtersWrap'+s+'.html')
                 return 'views/template/partials/stuffs/filters/filtersWrap'+s+'.html'
             }
 
@@ -20568,7 +20642,7 @@ angular.module('gmall.controllers')
                 //console.log($scope.stuff22)
                 $scope.stuff = Stuff.setDataForStuff($scope.stuff,global.get('filterTags').val)
                 self.stuff=$scope.stuff;
-                console.log(self.stuff)
+                //console.log(self.stuff)
                 self.item=$scope.stuff
                 self.objShare=seoContent.setDataItem(self.item);
                 //console.log(self.item)
@@ -20601,6 +20675,10 @@ angular.module('gmall.controllers')
                 self.getFilterName=getFilterName;
 
                 self.getAveragePrice=getAveragePrice;
+                self.goToSchedule=goToSchedule;
+
+
+
                 var currency=global.get('currency').val
                 var formatAverage=global.get('store').val.currency[currency][4];
                 var del=-1;
@@ -20623,6 +20701,16 @@ angular.module('gmall.controllers')
                     //console.log(formatAverage,del)
                 })
                 //console.log(formatAverage,del)
+                function goToSchedule() {
+
+                    var div= $($element).find("div[schedule-place-from-server='schedule-place-from-server']")
+                    console.log(div)
+                    if(div){
+                        $([document.documentElement, document.body]).animate({
+                            scrollTop: $(div).offset().top
+                        }, 2000);
+                    }
+                }
                 function getAveragePrice(price) {
                     //console.log(price)
                     if(!price){return}
@@ -23434,8 +23522,8 @@ angular.module('gmall.services')
         }
     };
     newsListTemplateDirective.$inject=['global']
-    newsListCtrl.$inject=['News','$state','global','$timeout','$anchorScroll','Photo','Confirm'];
-    function newsListCtrl(News,$state,global,$timeout,$anchorScroll,Photo,Confirm){
+    newsListCtrl.$inject=['News','$state','global','$timeout','$anchorScroll','Photo','Confirm','Label'];
+    function newsListCtrl(News,$state,global,$timeout,$anchorScroll,Photo,Confirm,Label){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.global=global;
@@ -23482,7 +23570,11 @@ angular.module('gmall.services')
 
         function activate() {
             return getList().then(function() {
+                return Label.getList({page:0,rows:100},{list:'news'})
                 //console.log('Activated news list View');
+            }).then(function (data) {
+                console.log(data)
+                self.labels=data
             });
         }
         function getList() {
@@ -26216,7 +26308,7 @@ angular.module('gmall.directives')
                         if(item.stuff && item.stuff.name){
                             self.stuff=item.stuff.name+((item.stuff.artikul)?' '+item.stuff.artikul:'')
                         }
-                        //console.log(item)
+                        //console.log(self.stuff)
                         self.ok=function(state){
                             //console.log(state)
                             $uibModalInstance.close(state);
@@ -26257,16 +26349,6 @@ angular.module('gmall.directives')
                         reject(err)
                     })
                 },delay)
-
-                //var modalInstance = $uibModal.open(options);
-
-
-               /* modalInstance.result.then(function () {
-                    //if(state){$state.go(state)}
-                    resolve()
-                }, function (err) {
-                    reject(err)
-                });*/
             })
 
         }
@@ -26396,7 +26478,8 @@ angular.module('gmall.directives')
         .directive('gmallSlider',gmallSliderDirective)
         .directive('gmallSliderHome',gmallSliderHomeDirective)
         .directive('gmallSliderHomeNivo',gmallSliderHomeNivoDirective)
-        .directive('gmallSliderPage',gmallSliderPageDirective);
+        .directive('gmallSliderPage',gmallSliderPageDirective)
+        .directive('gmallSliderPageByHover',gmallSliderPageByHoverDirective);
     function gmallSliderDirective(){
         return {
             scope: {
@@ -26451,6 +26534,7 @@ angular.module('gmall.directives')
                 var lastLink;
                 var maxHeight=0;
                 innerDiv.each(function (i,div) {
+                    //console.log(div,$(div).attr('id'))
                     imgs.push($(div).attr('id'))
                     links.push($(div).find('a'));
                     if(!i){
@@ -26476,26 +26560,34 @@ angular.module('gmall.directives')
                             $(this).bind('load', function() {
                                 /*console.log(self.complete)
                                  console.log($(this).height())*/
-                                $(div).css('opacity', 0)
+
                                 var k = 1000+ getRandomInt(100,2000)
-                                //console.log(k)
+                                //console.log('k',k)
                                 $timeout(function(){sliderFunc()},k)
 
                                 setHeight($(self).height())
+                                $timeout(function () {
+                                    $(div).css('opacity', 0)
+                                },50)
+
 
                             })
                         }else{
-                            $(div).css('opacity', 0)
+
                             var k = 1000+ getRandomInt(100,2000)
-                            //console.log(k)
+                            //console.log('k1',k)
                             $timeout(function(){sliderFunc()},k)
+                            //console.log(self,$(self).height())
                             setHeight($(self).height())
-                            //console.log($(self).height())
+                            $timeout(function () {
+                                $(div).css('opacity', 0)
+                            },50)
                         }
                     })
                 })
 
                 function next() {
+                    //console.log('next',imgs[index],index,innerDiv.length)
                     $('#'+imgs[index]).css('opacity',0)
                     index < innerDiv.length - 1 ? index++ : index = 0;
                     $('#'+imgs[index]).css('opacity',1)
@@ -26531,6 +26623,7 @@ angular.module('gmall.directives')
                 var timer;
                 function sliderFunc() {
                     timer =  $timeout(function() {
+                        //console.log(timer)
                         $timeout.cancel(timer)
                         next();
                         sliderFunc()
@@ -26540,6 +26633,121 @@ angular.module('gmall.directives')
                 $(window).resize(function(){
                     setHeight(element.height())
                 })
+
+            }
+        }
+    }
+    function gmallSliderPageByHoverDirective($timeout,$rootScope,global){
+        return {
+            restrict:"A",
+            replace:false,
+            link:function(scope,element,attr){
+                //console.log('active')
+                var index=0;
+                var timeSlide=4000;
+                if(global.get('mobile').val){
+                    timeSlide=3000
+                }
+                var innerDiv = element.find('.mytoggle-page'),substrate;
+                var imgs=[]
+                var links=[];
+                var lastLink;
+                var maxHeight=0;
+                innerDiv.each(function (i,div) {
+                    //console.log(div,$(div).attr('id'))
+                    imgs.push($(div).attr('id'))
+                    links.push($(div).find('a'));
+                    if(!i){
+                        $(div).css('opacity', 1)
+                    }
+                })
+                try{
+                    lastLink=links[links.length-1]
+                    links= links.map(function (l) {
+                        return l.attr('href');
+                    })
+                }catch (err){console.log(err)}
+
+                element.find('.substrate').each(function(i,div){
+                    if(i){return}
+                    substrate=$(div);
+                    substrate.find('img').each(function(i,img){
+                        //console.log(i,img)
+                        if(i){return}
+                        //console.log(this.complete)
+                        var self=this;
+                        if(!this.complete){
+                            $(this).bind('load', function() {
+                                /*console.log(self.complete)
+                                 console.log($(this).height())*/
+
+                                var k = 1000+ getRandomInt(100,2000)
+                                //console.log('k',k)
+                                //$timeout(function(){sliderFunc()},k)
+
+                                setHeight($(self).height())
+                                $timeout(function () {
+                                    $(div).css('opacity', 0)
+                                },50)
+
+
+                            })
+                        }else{
+
+                            var k = 1000+ getRandomInt(100,2000)
+                            //console.log('k1',k)
+                            //$timeout(function(){sliderFunc()},k)
+                            //console.log(self,$(self).height())
+                            setHeight($(self).height())
+                            $timeout(function () {
+                                $(div).css('opacity', 0)
+                            },50)
+                        }
+                    })
+                })
+
+                function next() {
+                    //console.log('next',imgs[index],index,innerDiv.length)
+                    $('#'+imgs[index]).css('opacity',0)
+                    index < innerDiv.length - 1 ? index++ : index = 0;
+                    $('#'+imgs[index]).css('opacity',1)
+                    try{$(lastLink).attr('href',links[index])}catch (err){console.log(err)}
+                };
+
+
+                function setHeight(h){
+                    //console.log(h)
+                    innerDiv.each(function(i,div){
+                        //console.log(div)
+                        //console.log(h,this)
+                        $(div).height(h)
+
+                    })
+                }
+                var timer;
+                function sliderFunc() {
+                    timer =  $timeout(function() {
+                        //console.log(timer)
+                        $timeout.cancel(timer)
+                        next();
+                        sliderFunc()
+                    }, 1700);
+                };
+
+                $(window).resize(function(){
+                    setHeight(element.height())
+                })
+                $(element).mouseenter( handlerIn ).mouseleave( handlerOut );
+                function handlerIn() {
+                    console.log('in ')
+                    next()
+                    sliderFunc()
+                }
+                function handlerOut() {
+                    $timeout.cancel(timer)
+                    console.log('out' )
+                }
+
             }
         }
     }
@@ -28515,8 +28723,8 @@ angular.module('gmall.directives')
         }
     };
 
-    lookbookListCtrl.$inject=['Lookbook','$state','global','exception','Confirm','Photo'];
-    function lookbookListCtrl(Lookbook,$state,global,exception,Confirm,Photo){
+    lookbookListCtrl.$inject=['Lookbook','$state','global','exception','Confirm','Photo','$timeout'];
+    function lookbookListCtrl(Lookbook,$state,global,exception,Confirm,Photo,$timeout){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.datePickerOptions ={
@@ -28543,7 +28751,7 @@ angular.module('gmall.directives')
         self.Items=Lookbook;
         self.moment=moment;
         self.query={};
-        self.paginate={page:0,rows:5,totalItems:0}
+        self.paginate={page:0,rows:50,totalItems:0}
         self.newItem={name:'Новая иноформация',actived:false}
         self.getList=getList;
         self.saveField = saveField;
@@ -28586,7 +28794,10 @@ angular.module('gmall.directives')
                 var o={_id:item._id};
                 o[field]=item[field]
                 return self.Items.save({update:field},o ).$promise.then(function(){
-                    console.log('saved')
+                    global.set('saving',true)
+                    $timeout(function () {
+                        global.set('saving',false);
+                    },1500)
                 },function(err){console.log(err)});
             },defer)
         };
@@ -29497,8 +29708,8 @@ angular.module('gmall.directives')
         }
     };
     //masterListTemplateDirective.$inject=['global']
-    masterListCtrl.$inject=['Master','$state','global','Confirm','$q','exception','Photo','$timeout'];
-    function masterListCtrl(Master,$state,global,Confirm,$q,exception,Photo,$timeout){
+    masterListCtrl.$inject=['Master','$state','global','Confirm','$q','exception','Photo','$timeout','Label'];
+    function masterListCtrl(Master,$state,global,Confirm,$q,exception,Photo,$timeout,Label){
         var self = this;
         self.mobile=global.get('mobile' ).val;
         self.global=global;
@@ -29506,7 +29717,8 @@ angular.module('gmall.directives')
         self.$state=$state;
         self.Items=Master;
         self.query={};
-        self.paginate={page:0,rows:20,totalItems:0}
+        self.labels=[]
+        self.paginate={page:0,rows:50,totalItems:0}
         self.newItem={name:'имя мастера'}
         self.getList=getList;
         self.saveField = saveField;
@@ -29520,7 +29732,10 @@ angular.module('gmall.directives')
 
         function activate() {
             return getList().then(function() {
+                return Label.getList({page:0,rows:100},{list:'master'})
                 //console.log('Activated news list View');
+            }).then(function (data) {
+                self.labels=data
             });
         }
         function getList() {
@@ -30471,7 +30686,7 @@ angular.module('gmall.directives')
     }
 
 
-    function listCtrl($scope,$http,$element,global,$state,$q,$anchorScroll,$timeout,$window,$compile,$rootScope,seoContent,$sce){
+    function listCtrl($scope,$http,$element,global,$state,$q,$anchorScroll,$timeout,$window,$compile,$rootScope,seoContent,$sce,$location){
         //console.log(!!global.get('tempContent').val)
         //console.log('??????')
 
@@ -30479,7 +30694,63 @@ angular.module('gmall.directives')
         self.global=global;
         self.$state=$state;
         self.$stateParams=$rootScope.$stateParams;
-        //console.log(self.$stateParams)
+        self.setLabel=setLabel;
+
+        function setLabel(label) {
+
+            //console.log(label,labelsFromQuery)
+            if(labelsFromQuery && labelsFromQuery.length){
+
+                var i = labelsFromQuery.indexOf(label)
+                labelsFromQuery=[];
+                if(i==-1){
+                    labelsFromQuery.push(label)
+                }
+                /*if(i>-1){
+                    labelsFromQuery.splice(i,1)
+                }else{
+                    labelsFromQuery.push(label)
+                }*/
+                //console.log(labelsFromQuery)
+                if(labelsFromQuery.length){
+                    var str = labelsFromQuery.reduce(function (s,el) {
+                       if(s){
+                           s+='__'
+                       }
+                       return s+=el
+                    },'')
+                    $location.search('labels',str)
+                }else{
+                    $location.search('labels',null)
+                }
+            }else{
+                $location.search('labels',label)
+            }
+        }
+
+        //console.log(self.$stateParams);
+
+        var labels='',labelsFromQuery,query;
+        if(self.$stateParams && self.$stateParams.labels && global.get('labels').val){
+            labelsFromQuery=self.$stateParams.labels.split('__');
+            if(global.get('labels').val && global.get('labels').val.length && labelsFromQuery && labelsFromQuery.length){
+                /* формируем запрос для получения позиций привязанных к меткам*/
+                labelsFromQuery.forEach(function (name) {
+                    var ll = global.get('labels').val.getOFA('name',name)
+                    if(ll){
+                        if(labels){
+                            labels+='__'
+                        }
+                        labels+=ll.name;
+                    }
+                })
+            }
+            //console.log(labels)
+            if(labels && labels.length){
+                query='labels='+labels
+            }
+            console.log(query)
+        }
         var waiting,lastElement,page=0,waitingDiv;
         var td1,td2,td3;
         var model=getModel($state);
@@ -30519,7 +30790,7 @@ angular.module('gmall.directives')
                     }else {
                         return $http.get(url.trim())
                     }*/
-                    return $http.get(url.trim())
+                    return $http.get(url.trim()+((query)?'?'+query:''))
 
                 }
             })
@@ -30591,7 +30862,7 @@ angular.module('gmall.directives')
                             .then(function(){
                                 waitingDiv.html(innerWaitingDiv);
                                 //console.log(url)
-                                return $http.get(url.trim()+'?page='+page)
+                                return $http.get(url.trim()+'?page='+page+((query)?'&'+query:''))
                             })
                             .then(function(response){
                                 //console.log('response',response)
@@ -32143,6 +32414,7 @@ angular.module('gmall.directives')
             save:save,
             delete:Items.delete,
             select:select,
+            selectWithSection:selectWithSection
 
         }
         function save(){
@@ -32181,6 +32453,26 @@ angular.module('gmall.directives')
                 });
             })
         }
+
+        function selectWithSection(){
+            return $q(function(resolve,reject){
+                var options={
+                    animation: true,
+                    templateUrl: 'components/sections/selectCategoryWithSectionModal.html',
+                    controller: selectCategoryWithSectionCtrl,
+                    size: 'lg',
+                    controllerAs:'$ctrl'
+                }
+                var modalInstance = $uibModal.open(options);
+                modalInstance.result.then(function (selectedItem) {
+                    resolve(selectedItem)
+                }, function () {
+                    //console.log('Modal dismissed at: ' + new Date());
+                    reject()
+                });
+            })
+        }
+
     }
     selectCategoryCtrl.$inject=['$q','$uibModalInstance','Sections','categoryId','selectSection','sections','forGroupStuffs'];
     function selectCategoryCtrl($q,$uibModalInstance,Sections,categoryId,selectSection,sections,forGroupStuffs){
@@ -32207,6 +32499,28 @@ angular.module('gmall.directives')
             })
         self.ok = function (selectedCategory) {
             $uibModalInstance.close(selectedCategory);
+        };
+        self.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
+    }
+    selectCategoryWithSectionCtrl.$inject=['$q','$uibModalInstance','Sections'];
+    function selectCategoryWithSectionCtrl($q,$uibModalInstance,Sections){
+        var self=this;
+        $q.when()
+            .then(function(){
+                return Sections.getSections();
+            })
+            .then(function(sections){
+                //console.log(sections)
+                self.sections = sections;
+            })
+        self.ok = function (selectedCategory) {
+            $uibModalInstance.close(selectedCategory);
+        };
+        self.okSection = function (section) {
+            var categories=section.categories;
+            $uibModalInstance.close(categories);
         };
         self.cancel = function () {
             $uibModalInstance.dismiss('cancel');
@@ -32707,11 +33021,23 @@ if (!options.criteria){
         function selectCategory(){
             $q.when()
                 .then(function(){
-                    return Category.select();
+                    return Category.selectWithSection();
                 })
                 .then(function(c){
+                    //console.log(c)
+                    if(!c){return}
                     if(!self.item.categories){self.item.categories=[]}
-                    self.item.categories.push(c)
+                    if(typeof c == 'object' && c.length){
+                       c.forEach(function (cat) {
+                           if(!self.item.categories.getOFA('_id',cat._id)){
+                               self.item.categories.push(cat)
+                           }
+                       })
+                    }else{
+                        if(!self.item.categories.getOFA('_id',c._id)){
+                            self.item.categories.push(c)
+                        }
+                    }
                     saveField('categories');
                 })
                 .catch(function(err){
@@ -32784,11 +33110,23 @@ if (!options.criteria){
         function selectConditionCategory(){
             $q.when()
                 .then(function(){
-                    return Category.select();
+                    return Category.selectWithSection();
                 })
                 .then(function(c){
+                    if(!c){return}
                     if(!self.item.conditionCategories){self.item.conditionCategories=[]}
-                    self.item.conditionCategories.push(c)
+
+                    if(typeof c == 'object' && c.length){
+                        c.forEach(function (cat) {
+                            if(!self.item.conditionCategories.getOFA('_id',cat._id)){
+                                self.item.conditionCategories.push(cat)
+                            }
+                        })
+                    }else{
+                        if(!self.item.conditionCategories.getOFA('_id',c._id)){
+                            self.item.conditionCategories.push(c)
+                        }
+                    }
                     saveField('conditionCategories');
                 })
                 .catch(function(err){
@@ -33613,7 +33951,9 @@ angular.module('gmall.directives')
                 return date;
             }catch(err){console.log(err);return 'error handle date'}
         }
-        function sendMessage(entry) {
+        function sendMessage(entry,user) {
+            entry=JSON.parse(JSON.stringify(entry))
+            if(user){entry.user=user;}
             var dataForSend={}
 
             var hour = Math.floor(entry.start/4)
@@ -33684,7 +34024,7 @@ angular.module('gmall.directives')
         }
         function newBooking(master,timePart,services,date,entryDate,start){
 
-            //console.log(entryDate)
+            //console.log(services)
             return $q(function(resolve,reject){
                 var modalInstance = $uibModal.open({
                     animation: true,
@@ -33694,6 +34034,7 @@ angular.module('gmall.directives')
                         //console.log(services)
                         var self=this;
                         self.global=global;
+                        //console.log(global.get('store').val.nameLists)
                         self.date=moment(date).format('L');
                         self.phoneCodes=(global.get('store').val.phoneCodes)?global.get('store').val.phoneCodes:[{code:'+38',country:'Украина'}];
                         self.phoneCode=(global.get('store').val.phoneCode)?global.get('store').val.phoneCode.code:'+38';
@@ -33701,6 +34042,8 @@ angular.module('gmall.directives')
                         self.hour=parseInt(timePart/4);
                         self.minutes=((timePart-self.hour*4)*15)?(timePart-self.hour*4)*15:'00';
                         self.timeRemindArr=timeRemindArr;
+                        self.schedule=true;
+                        self.mastersInEntry=[];
                         //console.log(timePart,self.hour,self.minutes)
                         master.services.forEach(function(s){
                             s.used=false;
@@ -33798,7 +34141,7 @@ angular.module('gmall.directives')
                             console.log('add user')
                             var user={
                                 name:self.userName,
-                                email:self.userEmail,
+                                //email:self.userEmail,
                                 profile:{
                                     phone:self.phoneCode.substring(1)+self.oldPhone.substring(0,10),
                                     fio:self.userName
@@ -33930,9 +34273,12 @@ angular.module('gmall.directives')
                                     name:'reserved',
                                 }
                             }
+                            if(self.mastersInEntry.length){
+                                item.masters=self.mastersInEntry;
+                            }
 
 
-                            //console.log(item)
+
 
                             $uibModalInstance.close(item);
                         }
@@ -33951,6 +34297,11 @@ angular.module('gmall.directives')
                                     })
                                 }
                             })
+                            self.masters=global.get('masters').val.filter(function (m) {
+                                return m._id!=master._id
+                            })
+
+                            //console.log(self.masters)
                         }
                     },
                     controllerAs:'$ctrl',
@@ -34019,6 +34370,13 @@ angular.module('gmall.directives')
                         self.moveEntry=moveEntry;
                         self.timeParts=_setTimeParts()
                         self.changeTimeFilter=changeTimeFilter;
+                        self.addNewUser=addNewUser;
+                        self.refreshUsers=refreshUsers;
+                        self.deleteUser=deleteUser;
+                        self.addUser=addUser;
+
+
+
 
                         //console.log(self.timeParts)
                         self.startPart=oldEntry.start;
@@ -34046,16 +34404,122 @@ angular.module('gmall.directives')
                                 return {part:i,time:t,busy:busy}
                             })
                         }
+                        function addNewUser(user) {
+                            if(user){
+                                self.newUser=user;
+                            }
+                            //console.log(self.newUser)
+                            if(self.entry.users && self.entry.users.length && self.entry.users.some(function (u) {
+                                   return u._id==self.newUser._id
+                                })){return}
+                            var o={_id:self.newUser._id,
+                                phone:self.newUser.phone,
+                                name:self.newUser.name,
+                                email:self.newUser.email
+                            }
+                            self.entry.users.push(o);
+                            saveField('users')
+                        }
+                        function deleteUser(i) {
+                            self.entry.users.splice(i,1);
+                            saveField('users')
+                        }
+                        function refreshUsers(phone){
+                            if (phone.length<3){return}
+                            //var newVal = phone.replace(pattern, '').substring(0,10);
+                            self.cachePhone=phone
+                            //if(self.oldPhone==phone){return}else{self.oldPhone=phone}
+                            searchUser(phone)
+                        }
+                        function searchUser(phone){
+                            var q= {$or:[{'profile.phone':phone},{name:phone},{email:phone}]}
+                            $user.getList({page:0,rows:20},q).then(function(res){
+                                self.users=res.map(function (user) {
+                                    if(user.profile && user.profile.phone && user.profile.phone[0]=="+"){
+                                        user.profile.phone=user.profile.phone.substring(1)
+                                    }
+                                    if(user.profile && user.profile.phone && user.profile.phone.length<10){
+                                        while(user.profile.phone.length<10){
+                                            user.profile.phone+='0'
+                                        }
+                                    }
+                                    if(user.profile && user.profile.phone && user.profile.phone.length==10){
+                                        user.profile.phone='38'+user.profile.phone
+                                    }
+                                    user.phone=(user.profile)?user.profile.phone:null;
+                                    return user
+                                });
+                            })
+                        }
+
+                        function addUser(){
+                            //console.log('add user')
+                            var user={
+                                name:self.userName,
+                                //email:self.userEmail,
+                                profile:{
+                                    phone:self.phoneCode.substring(1)+self.oldPhone.substring(0,10),
+                                    fio:self.userName
+                                },
+                                store:global.get('store').val._id
+                            }
+                            return $q.when()
+                                .then(function () {
+                                    return $user.checkPhoneForExist(user.profile.phone)
+                                })
+                                .then(function (res) {
+                                    if(res && res.exist){
+                                        throw 'phone exist in base'
+                                    }
+                                    if(user.email){
+                                        return $user.checkEmailForExist(user.email)
+                                    }else{
+                                        user.email=user.profile.phone+'@gmall.io'
+                                    }
+                                })
+                                .then(function (res) {
+                                    if(res && res.exist){
+                                        throw 'email exist in base'
+                                    }
+                                })
+                                .then(function(){
+                                    return $user.save(user).$promise
+                                })
+                                .then(function(res){
+                                    user._id=(res._id)?res._id:res.id;
+                                    self.user={
+                                        _id:user._id,
+                                        name: user.name,
+                                        email:user.email,
+                                        phone:user.profile.phone
+                                    }
+                                    addNewUser(self.user)
+                                    //console.log(user)
+
+                                    self.addingUser=false;
+                                    self.userName='';
+                                    self.oldPhone=''
+                                })
+                                .catch(function(err){
+                                    if(err){
+                                        exception.catcher('новый клиент')(err)
+                                    }
+                                })
+                        }
 
                         function actived(){
-                            //console.log(self.entry)
+                           // console.log(self.entry)
                             self.user=Object.assign({},entry.user);
                             if(self.user.phone){
                                 self.splitPoint = self.user.phone.length-10;
                                 self.phoneCode='+'+self.user.phone.substring(0,self.splitPoint)
                                 self.user.phone=self.user.phone.substring(self.splitPoint)
                             }
+                            self.mastersAdditional=global.get('masters').val.filter(function (m) {
+                                return m._id!=self.entry.master._id
+                            })
 
+                            //console.log(self.mastersAdditional)
                         }
                         function updateUser() {
                             self.editingUser=false;
@@ -34129,7 +34593,7 @@ angular.module('gmall.directives')
                             update='user';
                         }
                         var delay;
-                        function recordAgreed() {
+                        function recordAgreed(user) {
                             if(delay){return}
                             delay=true;
                             $timeout(function () {
@@ -34137,7 +34601,7 @@ angular.module('gmall.directives')
                             },2000)
                             entry.confirm=Date.now()
                             saveField('confirm')
-                            Booking.sendMessage(entry)
+                            Booking.sendMessage(entry,user)
                         }
                         function saveField(field) {
                             var o ={_id:entry._id}
@@ -34600,6 +35064,14 @@ angular.module('gmall.directives')
                                 workplace.week[e.date].entryTimeTable[i].serviceLink= serviseLink;
                                 workplace.week[e.date].entryTimeTable[i].masterLink= masterLink;
                                 workplace.week[e.date].entryTimeTable[i].masterName= masterName;
+                                if(e.masters && e.masters.length){
+                                    workplace.week[e.date].entryTimeTable[i].masters=e.masters.map(function (m) {
+                                        var mm = masters.getOFA('_id',m);
+                                        return mm
+                                    })
+                                    //console.log(workplace.week[e.date].entryTimeTable[i].masters);
+
+                                }
 
                                 workplace.week[e.date].entryTimeTable[i].new=true;
                                 workplace.week[e.date].entryTimeTable[i].qty=e.qty;
@@ -37113,12 +37585,24 @@ angular.module('gmall.directives')
         self.global=global;
         self.changeWeek=changeWeek;
         self.chancheActiveSlide=chancheActiveSlide;
+        self.changeService=changeService;
+
         self.week=0;
         var delay;
+        self.services=null;
+        if($attrs.services){
+            try{
+                var services = JSON.parse($attrs.services);
+                //console.log(global.get('services').val)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        if($attrs.stuff){
+            self.stuff=$attrs.stuff;
+        }
         self.$onInit=function () {
-
             //console.log($attrs)
-
             //console.log(self.stuff)
         }
         $scope.$watch(function () {
@@ -37128,13 +37612,14 @@ angular.module('gmall.directives')
                 self.changeWeek(n)
             }
         })
-        function changeWeek(week) {
+        function changeWeek(week,service) {
             self.week=week
+            if(!service){service=$attrs.stuff}
             //console.log(week)
             return $q.when()
                 .then(function(){
                     var url='views/template/partials/scheduleplace/'+week
-                    return $http.get(url.trim()+'.html',{params:{stuff:$attrs.stuff,templ:$attrs.templ}})
+                    return $http.get(url.trim()+'.html',{params:{stuff:service,templ:$attrs.templ}})
                 })
                 .then(function(response){
                    // console.log(response)
@@ -37179,6 +37664,15 @@ angular.module('gmall.directives')
             })
 
 
+        }
+        function changeService(s) {
+            //console.log(delay,s)
+            self.stuff=s
+            if(delay){return}
+            delay=true;
+            changeWeek(self.week,s).then(function () {
+                delay=false;
+            })
         }
     }
 })()

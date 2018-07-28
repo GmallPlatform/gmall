@@ -1,183 +1,342 @@
 <div class="content" ng-if="$state.current.name=='frame'">
-    <div class="" ng-hide="global.get('store').val.orderis">
-        <a ui-sref="frame.orders" class="content-box-link">
-            <div class="panel content-box">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+    <div class="">
+        <a  ui-sref="frame.warehouse" class="content-box-link">
+            <div class=" panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" style="cursor: default">
                     <h3>
                         <span>
-                            <i class="material-icons link-warning">shop</i>
+                            <i class="material-icons link-warning">casino</i>
                         </span>
-                        ордера заказов</h3>
+                        склад</h3>
                 </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        оформленные (поступившие) заказы,  работа с ордерами
-                    </p>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot">
+                        складские остатки, инвентаризационные ведомости, карточки товаров
+                    </span>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </a>
     </div>
-    <div class="" ng-if="global.get('seller').val" ng-hide="global.get('store').val.onlineis">
-        <a   ui-sref="frame.online" class="content-box-link">
+    <!--<div class="" >
+        <a ui-sref="frame.sections" class="content-box-link">
             <div class="panel content-box">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
                     <h3>
-                        <span>
-                            <i class="material-icons link-warning">query_builder</i>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">business</i>
                         </span>
-                        запись он-лайн
+                        каталог
                     </h3>
                 </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        таблица записи к специалистам (мастерам) на дату и время
-                    </p>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                    <span class="plot">
+                        структура каталога,  изменение структуры,
+                        добавление и удаление разделов и категорий
+                    </span>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </a>
     </div>
-    <div class="" ng-if="global.get('seller').val" ng-hide="global.get('store').val.onlineis">
-        <a   ui-sref="frame.schedule" class="content-box-link">
+    <div class="">
+        <a  ui-sref="frame.filters" class="content-box-link">
             <div class="panel content-box">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span class="text-center">
+                            <i class="material-icons link-warning">filter_list</i>
+                        </span>
+                        признаки
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                    <span class="plot">
+                        настройка фильтров и меток поиска в каталоге,
+                        редактирование, добавление и удаление фильтров
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="">
+        <a   ui-sref="frame.brands" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">art_track</i>
+                        </span>
+                        бренды и коллекции
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                    <span class="plot">
+                        работа с данными о брендах  создание новых коллекций
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="">
+        <a  ui-sref="frame.stats" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">account_balance</i>
+                        </span>
+                        статические страницы
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot">
+                        работа со статическими страницами создание и редактирование
+                    </span>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.homePage" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">aspect_ratio</i>
+                        </span>
+                        главная страница
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot">
+                        работа с главной страницей редактирование содержания блоков
+                        обновление слайдов
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+
+    <div class="">
+        <a  ui-sref="frame.lookbook" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">photo_library</i>
+                        </span>
+                        lookbook
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <span class="plot">
+                        создание альбомов фотографий, галереи изображений
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.additionals" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">list</i>
+                        </span>
+                        дополнительный список
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                    <span class="plot">
+                        работа с дополнительным списком создание и редактирование
+                    </span>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.paps" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">settings_brightness</i>
+                        </span>
+                        POST action page
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                    <span class="plot">
+                        формирование страниц  POST action page
+                        после результативных действий на сайте
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.info" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">info</i>
+                        </span>
+                        информационно-справочный раздел
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                    <span class="plot">
+                        формирование списка страниц информационно-справочного раздела
+                        редактирование их содержания
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.master" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">account_circle</i>
+                        </span>
+                        сотрудники
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                    <span class="plot">
+                        список сотрудников - мастеров, специалистов, тренеров и т.п. с описанием и галереей фотографий
+                        редактирование отзывов о сотруднике
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.schedule" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
                     <h3>
                         <span>
                             <i class="material-icons link-warning">assignment</i>
                         </span>
-                       расписание
+                        расписание
                     </h3>
                 </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        перенос (копирование) расписания
-                    </p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </a>
-    </div>
-    <div class="">
-        <a  ui-sref="frame.notification" class="content-box-link">
-            <div class="panel content-box">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
-                    <h3>
-                        <span>
-                            <i class="material-icons link-warning">ring_volume</i>
-                        </span>
-                        уведомления
-                    </h3>
-                </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        уведомления о заказах
-                        сообщениях в чате и других активных действиях
-                    </p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </a>
-    </div>
-    <div class="" ng-if="global.get('seller').val">
-        <a  ui-sref="frame.comments" class="content-box-link">
-            <div class="panel content-box">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
-                    <h3>
-                        <span>
-                            <i class="material-icons link-warning">record_voice_over</i>
-                        </span>
-                    комментарии</h3>
-                </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        редактирование комментариев, которые пользователи оставляют на страницах товаров
-                    </p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </a>
-    </div>
-    <div class="">
-        <a  ui-sref="frame.dialogs" class="content-box-link">
-            <div class="panel content-box">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
-                    <h3>
-                        <span>
-                            <i class="material-icons link-warning">question_answer</i>
-                        </span>
-                        диалоги</h3>
-                </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        чаты с авторизованными <br> и неавторизованными пользователями
-                    </p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </a>
-    </div>
-    <div class="" ng-if="global.get('seller').val">
-        <a   ui-sref="frame.currency" class="content-box-link">
-            <div class="panel content-box">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
-                    <h3>
-                        <span>
-                            <i class="material-icons  link-warning">broken_image</i>
-                        </span>курсы валют</h3>
-                </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        настройка блока валют
-                    </p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </a>
-    </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
 
-    <div class="" ng-if="!global.get('seller').val">
-        <a   ui-sref="frame.user" class="content-box-link">
-            <div class="panel content-box">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
-                    <h3>
-                        <span>
-                            <i class="material-icons  link-warning">line_style</i>
-                        </span>профиль</h3>
-                </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        данные профиля
-                    </p>
+                    <span class="plot">
+                        расписание для объектов типа зал (связано с сотрудниками и товарами)
+
+                    </span>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </a>
     </div>
     <div class="">
-        <a   ui-sref="frame.downloads" class="content-box-link">
+        <a  ui-sref="frame.workplace" class="content-box-link">
             <div class="panel content-box">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
                     <h3>
                         <span>
-                            <i class="material-icons  link-warning">file_download</i>
-                        </span>скачать прайс и архивы фотографий</h3>
+                            <i class="material-icons link-warning">android</i>
+                        </span>
+                        рабочие места (залы)
+                    </h3>
                 </div>
-                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
-                    <p class="plot">
-                        скачать каталог в формате YML/XML, Excel, скачать архивы фотографий и баннеры коллекций
-                    </p>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+
+                    <span class="plot">
+                        список объектов  с описанием и галереей фотографий
+                        на которых выполняются действия сотрудниками
+                    </span>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </a>
     </div>
+    <div class="">
+        <a  ui-sref="frame.groupStuffs" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">group_work</i>
+                        </span>
+                        группы товаров
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                    <span class="plot">
+                        список групп товаров  с описанием и фото
+                        редактирование данных
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.help" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">help_outline</i>
+                        </span>
+                        справочный центр
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                    <span class="plot">
+                        помощь в работе с сайтом
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+    <div class="">
+        <a  ui-sref="frame.externalCatalog" class="content-box-link">
+            <div class="panel content-box">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 heading" >
+                    <h3>
+                        <span>
+                            <i class="material-icons link-warning">cloud_download</i>
+                        </span>
+                        загрузка внешнего каталога
+                    </h3>
+                </div>
+                <div class="panel-body col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                    <span class="plot">
+                       загрузка каталогов с других сайтов для обновленя базы данных
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>-->
     <div class="clearfix"></div>
 </div>
-
 <div ui-view></div>
-
-
-
-
-

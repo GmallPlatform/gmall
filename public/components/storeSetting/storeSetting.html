@@ -56,7 +56,7 @@
             </a>
         </div>
         <div class="tab-nav-stuff text-center" ng-class="{'active':$ctrl.block=='shop','mini-tab':$ctrl.global.get('mobile').val}">
-            <a ng-click="$ctrl.clearCashe()">
+            <a ng-click="$ctrl.clearCache()">
                 <i class="material-icons link-warning" ng-class="{'mini':$ctrl.global.get('mobile').val}">settings_backup_restore</i>
                 <p class="mini-text"  ng-if="$ctrl.global.get('mobile').val">кеш</p>
                 <p ng-if="!$ctrl.global.get('mobile').val">сброс<br> кеша</p>

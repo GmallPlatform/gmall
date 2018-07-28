@@ -286,16 +286,31 @@ angular.module('gmall.directives', [])
     })
 
 
-    .directive('arrowDown',[function(){
+    .directive('arrowDown',['global',function(global){
         return{
             template:"<a class='nav-down animate-style' ng-click='scrollUp()'>" +
             "<span class='icon-down-img'></span></a>",
             link:function(scope,element){
+                //console.log(global.get('store').val.template)
+                var m1 =global.get('store').val.template.menu1
+                var m2 =global.get('store').val.template.menu2
+                //console.log('arrowDown')
                 var visible=false;
                 $(element).hide()
                 scope.scrollUp=function () {
-                    var arrowDown=$("#arrowDownDiv")
-                    var target=arrowDown.offset().top + arrowDown.height()-60
+                    var arrowDown=$("#arrowDownDiv");
+                    var menu1Section1=$("#menu1-section");
+                    var menu1Section2=$("#menu2-section");
+                    var delta=0;
+                    if(m1 && m1.is && m1.fixed && m1.position == 'top' && !m1.scrollSlide){
+                        delta +=menu1Section1.height()
+                    }
+                    if(m2 && m2.is && m2.fixed && m1.position == 'top'){
+                        delta +=menu1Section2.height()
+                    }
+
+
+                    var target=arrowDown.offset().top + arrowDown.height()-delta;
                     $('html, body').animate({
                         scrollTop: target
                     }, 1000);
@@ -437,11 +452,48 @@ angular.module('gmall.directives', [])
             }
         }
     }])
+    .directive('addClassByScrollForBlock',[function(){
+        return{
+            restrict : 'EA',
+            scope:{
+                className :'@addClassByScrollForBlock'
+            },
+            link:function(scope,element){
+               // console.log('scope.className',scope.className)
+                $(window).scroll(scrollHandler)
+                var done = false
+                function scrollHandler() {
+                    //console.log('scroll2')
+                    //console.log($(element).isOnScreen())
+                    if(!done && $(element).isOnScreen()){
+                        element.addClass(scope.className)
+                        done = true;
+                        $(window).off("scroll", scrollHandler);
+                    }
+                }
 
+            }
+        }
+    }])
+
+    .directive('bgVideo',function($rootScope,$timeout,global,$compile){
+        return {
+            restrict: 'A',
+            link: function (scope, element,attrs) {
+                //console.log(attrs.bgVideo)
+                var  backgroundVideo = new BackgroundVideo('.bv-video', {
+                    src: [
+                        attrs.bgVideo
+                    ]
+                });
+            }
+        }
+    })
     .directive('homePageTwoRowsContainer',function($rootScope,$timeout,global,$compile){
         return {
             restrict:'E',
             link:function(scope,element){
+
                 //console.log(element)
                 var row1=element[0].firstChild,h1;
                 var row2=element[0].lastChild,h2;
